@@ -104,7 +104,16 @@ export async function createPost(formData: FormData) {
   };
 
   const { error } = await supabase.from("comm_posts").insert(insertData);
-  if (error) return { error: error.message };
+  if (error) {
+    // `comm_posts` is created by 002_community.sql. Return a useful setup
+    // message instead of making a missing-schema error look like a bad post.
+    if (error.code === "42P01" || /comm_posts|relation .* does not exist/i.test(error.message)) {
+      return {
+        error: "Community database tables are not set up yet. Run supabase/migrations/002_community.sql in your Supabase project, then try again.",
+      };
+    }
+    return { error: error.message };
+  }
 
   await addXp(user.id, 10);
   revalidatePath("/community");

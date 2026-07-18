@@ -12,7 +12,11 @@ A Next.js + Supabase implementation of the CalibiAI MVP: public conversion pages
 ## Local setup
 
 1. Copy `.env.example` to `.env.local` and fill in Supabase values.
-2. Apply `supabase/migrations/001_initial_schema.sql` to your Supabase project.
+2. Apply both Supabase migrations to your Supabase project, in order:
+   - `supabase/migrations/001_initial_schema.sql`
+   - `supabase/migrations/002_community.sql`
+
+   The second migration creates the `comm_posts` and related community tables used when posting. If you are using the Supabase SQL Editor, paste and run each file separately; if you are using the Supabase CLI, run `supabase db push`.
 3. Enable Google OAuth in Supabase Auth and set the callback URL to:
    - Local: `http://localhost:3000/api/auth/callback`
    - Vercel: `https://YOUR_DOMAIN/api/auth/callback`
