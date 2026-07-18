@@ -1,1 +1,5 @@
-export default function SuccessStoriesPage() { return <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8"><p className="font-semibold text-brand-700">Success stories / placements</p><h1 className="mt-2 text-4xl font-black">The CalibiAI signal is visible proof.</h1><p className="mt-4 max-w-3xl text-slate-600">This page is reserved for verified placements, project wins and student profiles that link to auditable artifacts. Placeholder copy is intentionally minimal until real proof is available.</p><div className="mt-10 grid gap-4 md:grid-cols-3">{["Verified profile", "Startup placement", "Hackathon recognition"].map((title) => <div className="card" key={title}><h2 className="font-bold">{title}</h2><p className="mt-2 text-sm text-slate-600">Admin-reviewed stories will appear here after verification.</p></div>)}</div></section>; }
+import { redirect } from "next/navigation";
+
+export default function SuccessStoriesPage() {
+  redirect("/placements");
+}

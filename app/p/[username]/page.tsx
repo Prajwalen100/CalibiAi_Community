@@ -5,12 +5,15 @@ type VerifiedSkillRow = { skills: { name: string; category: string } | null };
 
 export const dynamic = "force-dynamic";
 
-export default async function ProfilePage({ params }: { params: { username: string } }) {
+type Params = Promise<{ username: string }>;
+
+export default async function ProfilePage({ params }: { params: Params }) {
+  const { username } = await params;
   const supabase = createAdminSupabaseClient();
   const { data: profile } = await supabase
     .from("profiles")
     .select("user_id, username, full_name, college, target_role, github_url, linkedin_url, portfolio_url, bio")
-    .eq("username", params.username)
+    .eq("username", username)
     .single();
 
   if (!profile) notFound();
@@ -19,7 +22,7 @@ export default async function ProfilePage({ params }: { params: { username: stri
     supabase.from("scores").select("total,tier,last_calculated_at").eq("user_id", profile.user_id).single(),
     supabase
       .from("projects")
-      .select("title,description,repo_url,live_url,complexity_tier,verified,points_awarded")
+      .select("title,description,repo_url,live_url,complexity_tier,verified,points_awarded,ai_score")
       .eq("user_id", profile.user_id)
       .eq("verified", true),
     supabase
@@ -49,11 +52,15 @@ export default async function ProfilePage({ params }: { params: { username: stri
           <div className="mt-4 grid gap-3">
             {projects?.length ? projects.map((project) => (
               <div key={project.title} className="rounded-2xl border border-slate-100 p-4">
-                <p className="font-semibold">{project.title}</p>
+                <div className="flex items-center justify-between">
+                  <p className="font-semibold">{project.title}</p>
+                  {project.verified && <span className="rounded-full bg-green-50 px-2 py-0.5 text-xs font-bold text-green-700">Verified</span>}
+                </div>
                 <p className="mt-1 text-sm text-slate-600">{project.description}</p>
-                <div className="mt-2 flex gap-3 text-sm font-semibold text-brand-700">
+                <div className="mt-2 flex items-center gap-3 text-sm font-semibold text-brand-700">
                   {project.repo_url ? <a href={project.repo_url}>GitHub</a> : null}
                   {project.live_url ? <a href={project.live_url}>Live</a> : null}
+                  {project.ai_score != null && <span className="text-slate-500 font-medium">AI Score: {project.ai_score}/100</span>}
                 </div>
               </div>
             )) : <p className="text-sm text-slate-600">No verified projects yet.</p>}

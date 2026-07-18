@@ -11,8 +11,9 @@ export function SiteFooter() {
         <div>
           <p className="font-semibold text-ink">Platform</p>
           <div className="mt-3 grid gap-2">
-            <Link href="/programs">Programs</Link>
-            <Link href="/success-stories">Placements</Link>
+            <Link href="/academy">Academy</Link>
+            <Link href="/community">Community</Link>
+            <Link href="/placements">Placements</Link>
             <Link href="/blog">Blog</Link>
           </div>
         </div>
