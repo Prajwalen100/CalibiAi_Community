@@ -5,6 +5,7 @@ import {
   LayoutGrid, Star, Target, ChevronRight,
 } from "lucide-react";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { attachCommunityProfiles } from "@/lib/community/public-profiles";
 import type { ReactNode } from "react";
 
 export const dynamic = "force-dynamic";
@@ -26,7 +27,7 @@ const communityNav = [
 
 type LeaderboardEntry = { user_id: string; xp: number; level: number; profiles: { full_name: string; username: string } | null };
 type EventEntry = { id: string; title: string; event_date: string };
-type JobEntry = { id: string; title: string; job_company: string | null };
+type JobEntry = { id: string; title: string; company_name: string };
 type ChallengeEntry = { id: string; title: string; challenge_deadline: string };
 type JoinedCommunity = { comm_communities: { id: string; slug: string; name: string; emoji: string } | null };
 
@@ -42,14 +43,14 @@ async function getSidebarData() {
 
   try {
     const [lb, ev, jobs, ch, jc] = await Promise.all([
-      supabase.from("comm_xp").select("user_id, xp, level, profiles(full_name, username)").order("xp", { ascending: false }).limit(5),
+      supabase.from("comm_xp").select("user_id, xp, level").order("xp", { ascending: false }).limit(5),
       supabase.from("comm_posts").select("id, title, event_date").eq("post_type", "event").gte("event_date", new Date().toISOString()).order("event_date").limit(3),
-      supabase.from("comm_posts").select("id, title, job_company").eq("post_type", "job").order("created_at", { ascending: false }).limit(3),
+      supabase.from("comm_jobs").select("id, title, company_name").eq("status", "open").order("created_at", { ascending: false }).limit(3),
       supabase.from("comm_posts").select("id, title, challenge_deadline").eq("post_type", "challenge").gte("challenge_deadline", new Date().toISOString()).order("challenge_deadline").limit(1),
       user ? supabase.from("comm_members").select("comm_communities(id, slug, name, emoji)").eq("user_id", user.id) : { data: [] as JoinedCommunity[] | null },
     ]);
 
-    leaderboard = (lb.data ?? []) as unknown as LeaderboardEntry[];
+    leaderboard = await attachCommunityProfiles(supabase, (lb.data ?? []) as Array<Record<string, unknown>>) as LeaderboardEntry[];
     upcomingEvents = (ev.data ?? []) as unknown as EventEntry[];
     latestJobs = (jobs.data ?? []) as unknown as JobEntry[];
     activeChallenge = (ch.data ?? []) as unknown as ChallengeEntry[];
@@ -159,9 +160,9 @@ export default async function CommunityLayout({ children }: { children: ReactNod
               </div>
               <div className="mt-3 space-y-2">
                 {latestJobs.length ? latestJobs.map((j) => (
-                  <Link key={j.id} href={`/community/post/${j.id}`} className="block rounded-lg p-2 text-sm hover:bg-slate-50">
+                  <Link key={j.id} href={`/community/jobs/${j.id}`} className="block rounded-lg p-2 text-sm hover:bg-slate-50">
                     <p className="font-medium truncate">{j.title}</p>
-                    {j.job_company && <p className="text-xs text-slate-500">{j.job_company}</p>}
+                    <p className="text-xs text-slate-500">{j.company_name}</p>
                   </Link>
                 )) : (
                   <p className="text-xs text-slate-400">No jobs posted yet.</p>

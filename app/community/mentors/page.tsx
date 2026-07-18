@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { attachCommunityProfiles } from "@/lib/community/public-profiles";
 
 export const dynamic = "force-dynamic";
 
@@ -15,10 +16,10 @@ export default async function MentorsPage() {
   try {
     const [profilesResult, postsResult] = await Promise.all([
       supabase.from("profiles").select("user_id, full_name, username, target_role, bio, github_url, linkedin_url").in("role", ["author", "admin"]).limit(20),
-      supabase.from("comm_posts").select("id, title, content, created_at, user_id, profiles(full_name, username)").order("created_at", { ascending: false }).limit(10),
+      supabase.from("comm_posts").select("id, title, content, created_at, user_id").order("created_at", { ascending: false }).limit(10),
     ]);
     mentors = (profilesResult.data ?? []) as unknown as MentorProfile[];
-    mentorPosts = (postsResult.data ?? []) as unknown as MentorPost[];
+    mentorPosts = await attachCommunityProfiles(supabase, (postsResult.data ?? []) as Array<Record<string, unknown>>) as MentorPost[];
   } catch { /* tables might not exist */ }
 
   return (

@@ -60,7 +60,7 @@ async function createNotification(userId: string, actorId: string, type: string,
 const CreatePostSchema = z.object({
   title: z.string().min(3, "Title must be at least 3 characters"),
   content: z.string().min(1, "Content is required"),
-  post_type: z.enum(["discussion", "question", "showcase", "tutorial", "research", "career", "challenge", "job", "team_finder", "resource", "event", "meme"]),
+  post_type: z.enum(["discussion", "question", "showcase", "tutorial", "research", "career", "challenge", "team_finder", "resource", "event", "meme"]),
   community_id: z.string().optional(),
   link_url: z.string().url().or(z.literal("")).optional(),
   image_url: z.string().url().or(z.literal("")).optional(),
@@ -69,9 +69,6 @@ const CreatePostSchema = z.object({
   live_url: z.string().url().or(z.literal("")).optional(),
   demo_video_url: z.string().url().or(z.literal("")).optional(),
   tech_stack: z.string().optional(),
-  job_type: z.enum(["internship", "freelance", "full_time", "campus_ambassador"]).optional(),
-  job_company: z.string().optional(),
-  job_location: z.string().optional(),
   event_date: z.string().optional(),
   event_type: z.enum(["workshop", "webinar", "meetup", "hackathon", "ama"]).optional(),
   event_location: z.string().optional(),
@@ -97,7 +94,6 @@ export async function createPost(formData: FormData) {
     tags: d.tags ? d.tags.split(",").map((t) => t.trim()).filter(Boolean) : [],
     repo_url: d.repo_url || null, live_url: d.live_url || null, demo_video_url: d.demo_video_url || null,
     tech_stack: d.tech_stack ? d.tech_stack.split(",").map((t) => t.trim()).filter(Boolean) : [],
-    job_type: d.job_type || null, job_company: d.job_company || null, job_location: d.job_location || null,
     event_date: d.event_date || null, event_type: d.event_type || null, event_location: d.event_location || null,
     resource_type: d.resource_type || null, resource_url: d.resource_url || null,
     challenge_deadline: d.challenge_deadline || null,
@@ -118,6 +114,74 @@ export async function createPost(formData: FormData) {
   await addXp(user.id, 10);
   revalidatePath("/community");
   return { success: true };
+}
+
+// ── Dedicated job postings ───────────────────────────────────
+
+const CreateJobSchema = z.object({
+  title: z.string().trim().min(3, "Job title must be at least 3 characters"),
+  company_name: z.string().trim().min(2, "Company name is required"),
+  company_website: z.string().url("Enter a valid company website URL").or(z.literal("")),
+  description: z.string().trim().min(20, "Job description must be at least 20 characters"),
+  employment_type: z.enum(["internship", "full_time", "part_time", "contract", "freelance"]),
+  workplace_type: z.enum(["remote", "hybrid", "on_site"]),
+  location: z.string().trim().min(2, "Location is required (use Remote if applicable)"),
+  skills_required: z.string().trim().min(1, "Add at least one required skill"),
+  compensation: z.string().trim().min(2, "Compensation details are required"),
+  experience_required: z.string().trim().min(1, "Experience requirement is required"),
+  contact_email: z.string().trim().email("Enter a valid contact email address"),
+  application_url: z.string().url("Enter a valid application URL").or(z.literal("")),
+  application_deadline: z.string().optional(),
+});
+
+export async function createJobPosting(formData: FormData) {
+  const user = await getAuthUser();
+  if (!user) return { error: "Not authenticated" };
+
+  const parsed = CreateJobSchema.safeParse(Object.fromEntries(formData));
+  if (!parsed.success) {
+    return { error: parsed.error.issues.map((issue) => issue.message).join(", ") };
+  }
+
+  const job = parsed.data;
+  const skills = job.skills_required.split(",").map((skill) => skill.trim()).filter(Boolean);
+  if (skills.length === 0) return { error: "Add at least one required skill" };
+
+  const supabase = await createServerSupabaseClient();
+  const { data, error } = await supabase
+    .from("comm_jobs")
+    .insert({
+      user_id: user.id,
+      title: job.title,
+      company_name: job.company_name,
+      company_website: job.company_website || null,
+      description: job.description,
+      employment_type: job.employment_type,
+      workplace_type: job.workplace_type,
+      location: job.location,
+      skills_required: skills,
+      compensation: job.compensation,
+      experience_required: job.experience_required,
+      contact_email: job.contact_email,
+      application_url: job.application_url || null,
+      application_deadline: job.application_deadline || null,
+    })
+    .select("id")
+    .single();
+
+  if (error) {
+    if (error.code === "42P01" || /comm_jobs|relation .* does not exist/i.test(error.message)) {
+      return {
+        error: "Job postings are not set up yet. Run supabase/migrations/003_community_feed_and_jobs.sql in your Supabase project, then try again.",
+      };
+    }
+    return { error: error.message };
+  }
+
+  await addXp(user.id, 10);
+  revalidatePath("/community");
+  revalidatePath("/community/jobs");
+  return { success: true, id: data.id };
 }
 
 // ── Votes ────────────────────────────────────────────────────

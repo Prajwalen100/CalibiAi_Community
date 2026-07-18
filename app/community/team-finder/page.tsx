@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { PostCard } from "@/components/community/post-card";
+import { attachCommunityProfiles } from "@/lib/community/public-profiles";
 
 export const dynamic = "force-dynamic";
 
@@ -9,15 +10,15 @@ export default async function TeamFinderPage() {
   const { data: { user } } = await supabase.auth.getUser();
 
   let posts: Array<Record<string, unknown>> = [];
-  try {
-    const { data } = await supabase
-      .from("comm_posts")
-      .select(`*, comm_communities(slug, name, emoji), profiles(full_name, username)`)
-      .eq("post_type", "team_finder")
-      .order("created_at", { ascending: false })
-      .limit(30);
-    posts = (data ?? []) as Array<Record<string, unknown>>;
-  } catch { /* table might not exist */ }
+  const { data, error } = await supabase
+    .from("comm_posts")
+    .select("*, comm_communities(slug, name, emoji)")
+    .eq("post_type", "team_finder")
+    .order("created_at", { ascending: false })
+    .limit(30);
+  if (!error) {
+    posts = await attachCommunityProfiles(supabase, (data ?? []) as Array<Record<string, unknown>>);
+  }
 
   return (
     <div>

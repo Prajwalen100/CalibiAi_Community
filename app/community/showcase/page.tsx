@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { PostCard } from "@/components/community/post-card";
 import { mapPostToCardData } from "@/lib/community/mappers";
+import { attachCommunityProfiles } from "@/lib/community/public-profiles";
 
 export const dynamic = "force-dynamic";
 
@@ -10,18 +11,18 @@ export default async function ShowcasePage() {
   const { data: { user } } = await supabase.auth.getUser();
 
   let projects: Array<Record<string, unknown>> = [];
-  try {
-    const { data } = await supabase
-      .from("comm_posts")
-      .select(`id, title, content, post_type, upvotes, downvotes, comment_count, save_count,
-        is_featured, is_pinned, is_solved, repo_url, live_url, tech_stack, created_at, user_id,
-        comm_communities(slug, name, emoji), profiles(full_name, username)`)
-      .eq("post_type", "showcase")
-      .order("is_featured", { ascending: false })
-      .order("upvotes", { ascending: false })
-      .limit(30);
-    projects = (data ?? []) as Array<Record<string, unknown>>;
-  } catch { /* table might not exist */ }
+  const { data, error } = await supabase
+    .from("comm_posts")
+    .select(`id, title, content, post_type, upvotes, downvotes, comment_count, save_count,
+      is_featured, is_pinned, is_solved, repo_url, live_url, tech_stack, created_at, user_id,
+      comm_communities(slug, name, emoji)`)
+    .eq("post_type", "showcase")
+    .order("is_featured", { ascending: false })
+    .order("upvotes", { ascending: false })
+    .limit(30);
+  if (!error) {
+    projects = await attachCommunityProfiles(supabase, (data ?? []) as Array<Record<string, unknown>>);
+  }
 
   return (
     <div>

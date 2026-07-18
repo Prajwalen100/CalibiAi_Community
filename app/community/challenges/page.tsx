@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { PostCard } from "@/components/community/post-card";
 import { mapPostToCardData } from "@/lib/community/mappers";
+import { attachCommunityProfiles } from "@/lib/community/public-profiles";
 
 export const dynamic = "force-dynamic";
 
@@ -13,22 +14,24 @@ export default async function ChallengesPage() {
   let past: Array<Record<string, unknown>> = [];
   let topEntries: Array<Record<string, unknown>> = [];
 
-  try {
-    const { data } = await supabase
-      .from("comm_posts")
-      .select(`id, title, content, post_type, upvotes, downvotes, comment_count, save_count,
-        is_pinned, is_featured, is_solved, created_at, user_id, challenge_deadline,
-        comm_communities(slug, name, emoji), profiles(full_name, username)`)
-      .eq("post_type", "challenge")
-      .order("created_at", { ascending: false });
-    const all = (data ?? []) as Array<Record<string, unknown>>;
+  const { data, error } = await supabase
+    .from("comm_posts")
+    .select(`id, title, content, post_type, upvotes, downvotes, comment_count, save_count,
+      is_pinned, is_featured, is_solved, created_at, user_id, challenge_deadline,
+      comm_communities(slug, name, emoji)`)
+    .eq("post_type", "challenge")
+    .order("created_at", { ascending: false });
+  if (!error) {
+    const all = await attachCommunityProfiles(supabase, (data ?? []) as Array<Record<string, unknown>>);
     const now = new Date();
-    active = all.filter((c) => !c.challenge_deadline || new Date(String(c.challenge_deadline)) > now);
-    past = all.filter((c) => c.challenge_deadline && new Date(String(c.challenge_deadline)) <= now);
+    active = all.filter((challenge) => !challenge.challenge_deadline || new Date(String(challenge.challenge_deadline)) > now);
+    past = all.filter((challenge) => challenge.challenge_deadline && new Date(String(challenge.challenge_deadline)) <= now);
+  }
 
-    const entriesResult = await supabase.from("comm_challenge_entries").select("*, profiles(full_name, username)").order("ai_score", { ascending: false }).limit(10);
-    topEntries = (entriesResult.data ?? []) as Array<Record<string, unknown>>;
-  } catch { /* table might not exist */ }
+  const entriesResult = await supabase.from("comm_challenge_entries").select("*").order("ai_score", { ascending: false }).limit(10);
+  if (!entriesResult.error) {
+    topEntries = await attachCommunityProfiles(supabase, (entriesResult.data ?? []) as Array<Record<string, unknown>>);
+  }
 
   return (
     <div>

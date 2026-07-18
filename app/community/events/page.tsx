@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { mapPostToCardData } from "@/lib/community/mappers";
 import { PostCard } from "@/components/community/post-card";
+import { attachCommunityProfiles } from "@/lib/community/public-profiles";
 
 export const dynamic = "force-dynamic";
 
@@ -12,19 +13,19 @@ export default async function EventsPage() {
   let upcoming: Array<Record<string, unknown>> = [];
   let past: Array<Record<string, unknown>> = [];
 
-  try {
-    const { data } = await supabase
-      .from("comm_posts")
-      .select(`id, title, content, post_type, upvotes, downvotes, comment_count, save_count,
-        is_pinned, is_featured, is_solved, created_at, user_id, event_date, event_type, event_location,
-        comm_communities(slug, name, emoji), profiles(full_name, username)`)
-      .eq("post_type", "event")
-      .order("event_date", { ascending: true });
-    const all = (data ?? []) as Array<Record<string, unknown>>;
+  const { data, error } = await supabase
+    .from("comm_posts")
+    .select(`id, title, content, post_type, upvotes, downvotes, comment_count, save_count,
+      is_pinned, is_featured, is_solved, created_at, user_id, event_date, event_type, event_location,
+      comm_communities(slug, name, emoji)`)
+    .eq("post_type", "event")
+    .order("event_date", { ascending: true });
+  if (!error) {
+    const all = await attachCommunityProfiles(supabase, (data ?? []) as Array<Record<string, unknown>>);
     const now = new Date();
-    upcoming = all.filter((e) => e.event_date && new Date(String(e.event_date)) >= now);
-    past = all.filter((e) => e.event_date && new Date(String(e.event_date)) < now);
-  } catch { /* table might not exist */ }
+    upcoming = all.filter((event) => event.event_date && new Date(String(event.event_date)) >= now);
+    past = all.filter((event) => event.event_date && new Date(String(event.event_date)) < now);
+  }
 
   const eventTypeEmoji: Record<string, string> = { workshop: "🛠️", webinar: "🎥", meetup: "🤝", hackathon: "🏆", ama: "🎙️" };
 
