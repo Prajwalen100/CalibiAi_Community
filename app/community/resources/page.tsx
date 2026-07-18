@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { attachCommunityProfiles } from "@/lib/community/public-profiles";
 
 export const dynamic = "force-dynamic";
 
@@ -16,15 +17,15 @@ export default async function ResourcesPage() {
 
   let resources: ResourceRow[] = [];
 
-  try {
-    const { data } = await supabase
-      .from("comm_posts")
-      .select("id, title, content, resource_type, resource_url, upvotes, profiles(full_name, username)")
-      .eq("post_type", "resource")
-      .order("upvotes", { ascending: false })
-      .limit(30);
-    resources = (data ?? []) as unknown as ResourceRow[];
-  } catch { /* table might not exist */ }
+  const { data, error } = await supabase
+    .from("comm_posts")
+    .select("id, user_id, title, content, resource_type, resource_url, upvotes")
+    .eq("post_type", "resource")
+    .order("upvotes", { ascending: false })
+    .limit(30);
+  if (!error) {
+    resources = await attachCommunityProfiles(supabase, (data ?? []) as Array<Record<string, unknown>>) as ResourceRow[];
+  }
 
   return (
     <div>

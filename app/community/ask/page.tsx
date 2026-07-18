@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { PostCard } from "@/components/community/post-card";
 import { mapPostToCardData } from "@/lib/community/mappers";
+import { attachCommunityProfiles } from "@/lib/community/public-profiles";
 
 export const dynamic = "force-dynamic";
 
@@ -10,18 +11,18 @@ export default async function AskPage() {
   const { data: { user } } = await supabase.auth.getUser();
 
   let questions: Array<Record<string, unknown>> = [];
-  try {
-    const { data } = await supabase
-      .from("comm_posts")
-      .select(`id, title, content, post_type, upvotes, downvotes, comment_count, save_count,
-        is_solved, is_featured, is_pinned, created_at, user_id,
-        comm_communities(slug, name, emoji), profiles(full_name, username)`)
-      .eq("post_type", "question")
-      .order("is_solved", { ascending: true })
-      .order("created_at", { ascending: false })
-      .limit(30);
-    questions = (data ?? []) as Array<Record<string, unknown>>;
-  } catch { /* table might not exist */ }
+  const { data, error } = await supabase
+    .from("comm_posts")
+    .select(`id, title, content, post_type, upvotes, downvotes, comment_count, save_count,
+      is_solved, is_featured, is_pinned, created_at, user_id,
+      comm_communities(slug, name, emoji)`)
+    .eq("post_type", "question")
+    .order("is_solved", { ascending: true })
+    .order("created_at", { ascending: false })
+    .limit(30);
+  if (!error) {
+    questions = await attachCommunityProfiles(supabase, (data ?? []) as Array<Record<string, unknown>>);
+  }
 
   const unanswered = questions.filter((q) => !q.is_solved);
   const solved = questions.filter((q) => q.is_solved);

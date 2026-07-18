@@ -13,7 +13,6 @@ const postTypes = [
   { key: "research", label: "📄 Research", desc: "Share a paper or finding" },
   { key: "career", label: "💼 Career", desc: "Career advice or experience" },
   { key: "challenge", label: "🏆 Challenge", desc: "Launch a challenge" },
-  { key: "job", label: "💼 Job", desc: "Post a job or internship" },
   { key: "team_finder", label: "🔍 Team Finder", desc: "Find teammates" },
   { key: "resource", label: "📎 Resource", desc: "Share a useful resource" },
   { key: "event", label: "📅 Event", desc: "Announce an event" },
@@ -101,7 +100,6 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity }: P
               postType === "question" ? "What's your question?" :
               postType === "showcase" ? "Project name" :
               postType === "challenge" ? "Challenge title" :
-              postType === "job" ? "Job title" :
               "Give your post a title"
             }
           />
@@ -164,29 +162,6 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity }: P
           <div>
             <label className="label">Challenge deadline</label>
             <input className="input mt-1" name="challenge_deadline" type="datetime-local" />
-          </div>
-        )}
-
-        {/* Job-specific fields */}
-        {postType === "job" && (
-          <div className="grid gap-4 sm:grid-cols-3">
-            <div>
-              <label className="label">Job type</label>
-              <select className="input mt-1" name="job_type">
-                <option value="internship">Internship</option>
-                <option value="full_time">Full-time</option>
-                <option value="freelance">Freelance</option>
-                <option value="campus_ambassador">Campus Ambassador</option>
-              </select>
-            </div>
-            <div>
-              <label className="label">Company</label>
-              <input className="input mt-1" name="job_company" placeholder="Company name" />
-            </div>
-            <div>
-              <label className="label">Location</label>
-              <input className="input mt-1" name="job_location" placeholder="Remote / City" />
-            </div>
           </div>
         )}
 

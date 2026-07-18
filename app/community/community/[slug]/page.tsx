@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { PostCard } from "@/components/community/post-card";
 import { CommunityJoinButton } from "./join-button";
+import { attachCommunityProfiles } from "@/lib/community/public-profiles";
 
 export const dynamic = "force-dynamic";
 
@@ -27,7 +28,7 @@ export default async function CommunityDetailPage({ params }: { params: Params }
     const [postsResult, memberResult] = await Promise.all([
       supabase
         .from("comm_posts")
-        .select(`*, comm_communities(slug, name, emoji), profiles(full_name, username)`)
+        .select("*, comm_communities(slug, name, emoji)")
         .eq("community_id", communityId)
         .order("is_pinned", { ascending: false })
         .order("created_at", { ascending: false })
@@ -35,7 +36,8 @@ export default async function CommunityDetailPage({ params }: { params: Params }
       user ? supabase.from("comm_members").select("id").eq("user_id", user.id).eq("community_id", communityId).single() : { data: null },
     ]);
 
-    posts = (postsResult.data ?? []) as Array<Record<string, unknown>>;
+    if (postsResult.error) throw postsResult.error;
+    posts = await attachCommunityProfiles(supabase, (postsResult.data ?? []) as Array<Record<string, unknown>>);
     isMember = !!memberResult.data;
   } catch {
     notFound();

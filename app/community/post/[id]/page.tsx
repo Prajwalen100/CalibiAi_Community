@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { attachCommunityProfiles } from "@/lib/community/public-profiles";
 import { PostDetailView } from "./post-detail-view";
 
 export const dynamic = "force-dynamic";
@@ -25,14 +26,17 @@ export default async function PostPage({ params }: { params: Params }) {
 
   try {
     const [postResult, commentsResult] = await Promise.all([
-      supabase.from("comm_posts").select(`*, comm_communities(slug, name, emoji), profiles(full_name, username)`).eq("id", id).single(),
-      supabase.from("comm_comments").select(`*, profiles(full_name, username)`).eq("post_id", id).order("created_at", { ascending: true }),
+      // Profile data is loaded separately below. See public-profiles.ts for
+      // why this must not use profiles(...) as an embedded relation.
+      supabase.from("comm_posts").select("*, comm_communities(slug, name, emoji)").eq("id", id).single(),
+      supabase.from("comm_comments").select("*").eq("post_id", id).order("created_at", { ascending: true }),
     ]);
 
-    post = postResult.data as Record<string, unknown> | null;
-    rawComments = (commentsResult.data ?? []) as Array<Record<string, unknown>>;
+    const rawPost = postResult.data as Record<string, unknown> | null;
+    if (!rawPost) notFound();
 
-    if (!post) notFound();
+    post = (await attachCommunityProfiles(supabase, [rawPost]))[0];
+    rawComments = await attachCommunityProfiles(supabase, (commentsResult.data ?? []) as Array<Record<string, unknown>>);
 
     const authorId = String(post.user_id);
 
@@ -63,8 +67,8 @@ export default async function PostPage({ params }: { params: Params }) {
     }
 
     if (post.post_type === "challenge") {
-      const entriesResult = await supabase.from("comm_challenge_entries").select("*, profiles(full_name, username)").eq("post_id", id).order("created_at", { ascending: false });
-      rawChallengeEntries = (entriesResult.data ?? []) as Array<Record<string, unknown>>;
+      const entriesResult = await supabase.from("comm_challenge_entries").select("*").eq("post_id", id).order("created_at", { ascending: false });
+      rawChallengeEntries = await attachCommunityProfiles(supabase, (entriesResult.data ?? []) as Array<Record<string, unknown>>);
     }
   } catch {
     notFound();

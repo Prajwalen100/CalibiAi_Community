@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { attachCommunityProfiles } from "@/lib/community/public-profiles";
 
 export const dynamic = "force-dynamic";
 
@@ -7,18 +8,18 @@ export default async function LeaderboardPage() {
   const supabase = await createServerSupabaseClient();
 
   type XpRow = { user_id: string; xp: number; level: number; contribution_level: string; total_posts: number; total_comments: number; profiles: { full_name: string | null; username: string | null } | null };
-  type ScoreRow = { total: number; tier: string; profiles: { full_name: string | null; username: string | null } | null };
+  type ScoreRow = { user_id: string; total: number; tier: string; profiles: { full_name: string | null; username: string | null } | null };
 
   let topContributors: XpRow[] = [];
   let topScore: ScoreRow[] = [];
 
   try {
     const [xpResult, scoreResult] = await Promise.all([
-      supabase.from("comm_xp").select("user_id, xp, level, contribution_level, total_posts, total_comments, profiles(full_name, username)").order("xp", { ascending: false }).limit(25),
-      supabase.from("scores").select("total, tier, profiles(full_name, username)").order("total", { ascending: false }).limit(10),
+      supabase.from("comm_xp").select("user_id, xp, level, contribution_level, total_posts, total_comments").order("xp", { ascending: false }).limit(25),
+      supabase.from("scores").select("user_id, total, tier").order("total", { ascending: false }).limit(10),
     ]);
-    topContributors = (xpResult.data ?? []) as unknown as XpRow[];
-    topScore = (scoreResult.data ?? []) as unknown as ScoreRow[];
+    topContributors = await attachCommunityProfiles(supabase, (xpResult.data ?? []) as Array<Record<string, unknown>>) as XpRow[];
+    topScore = await attachCommunityProfiles(supabase, (scoreResult.data ?? []) as Array<Record<string, unknown>>) as ScoreRow[];
   } catch { /* tables might not exist */ }
 
   const contributionLevels: Record<string, { color: string; bg: string }> = {

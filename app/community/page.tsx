@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { PostCard } from "@/components/community/post-card";
 import { mapPostToCardData } from "@/lib/community/mappers";
+import { attachCommunityProfiles } from "@/lib/community/public-profiles";
 import { CommunityCreatePostButton } from "./create-post-button";
 
 export const dynamic = "force-dynamic";
@@ -36,32 +37,37 @@ export default async function CommunityHomePage({
 
   let posts: Array<Record<string, unknown>> = [];
   let trendingCommunities: Array<{ id: string; slug: string; name: string; emoji: string; member_count: number }> = [];
+  let feedError: string | null = null;
 
-  try {
-    const postQuery = supabase
-      .from("comm_posts")
-      .select(`id, title, content, post_type, upvotes, downvotes, comment_count, save_count,
-        is_pinned, is_featured, is_solved, repo_url, live_url, tech_stack,
-        job_type, job_company, created_at, user_id,
-        comm_communities(slug, name, emoji),
-        profiles(full_name, username)`)
-      .order("is_pinned", { ascending: false })
-      .order("created_at", { ascending: false })
-      .limit(30);
+  const postQuery = supabase
+    .from("comm_posts")
+    // Do not embed profiles here. comm_posts.user_id references auth.users and
+    // PostgREST cannot infer a comm_posts -> profiles relationship through it.
+    .select(`id, title, content, post_type, upvotes, downvotes, comment_count, save_count,
+      is_pinned, is_featured, is_solved, repo_url, live_url, tech_stack,
+      created_at, user_id, comm_communities(slug, name, emoji)`)
+    .neq("post_type", "job")
+    .order("is_pinned", { ascending: false })
+    .order("created_at", { ascending: false })
+    .limit(30);
 
-    if (tab !== "all") {
-      postQuery.eq("post_type", tab);
-    }
+  if (tab !== "all") {
+    postQuery.eq("post_type", tab);
+  }
 
-    const [postResult, communitiesResult] = await Promise.all([
-      postQuery,
-      supabase.from("comm_communities").select("id, slug, name, emoji, member_count").order("member_count", { ascending: false }).limit(8),
-    ]);
+  const [postResult, communitiesResult] = await Promise.all([
+    postQuery,
+    supabase.from("comm_communities").select("id, slug, name, emoji, member_count").order("member_count", { ascending: false }).limit(8),
+  ]);
 
-    posts = (postResult.data ?? []) as Array<Record<string, unknown>>;
+  if (postResult.error) {
+    feedError = "The community posts could not be loaded. Please refresh the page; if this continues, confirm that migration 002_community.sql has been applied.";
+  } else {
+    posts = await attachCommunityProfiles(supabase, (postResult.data ?? []) as Array<Record<string, unknown>>);
+  }
+
+  if (!communitiesResult.error) {
     trendingCommunities = (communitiesResult.data ?? []) as typeof trendingCommunities;
-  } catch {
-    // Tables might not exist yet
   }
 
   return (
@@ -103,6 +109,12 @@ export default async function CommunityHomePage({
       </div>
 
       {/* Posts Feed */}
+      {feedError && (
+        <div role="alert" className="mb-4 rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">
+          <p className="font-bold">Unable to load the community feed</p>
+          <p className="mt-1">{feedError}</p>
+        </div>
+      )}
       <div className="space-y-4">
         {posts.length > 0 ? (
           posts.map((p) => <PostCard key={String(p.id)} {...mapPostToCardData(p, { currentUserId: user?.id })} />)

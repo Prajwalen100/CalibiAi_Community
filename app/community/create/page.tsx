@@ -10,6 +10,10 @@ export default async function CreatePostPage({
   searchParams: Promise<{ type?: string; community?: string }>;
 }) {
   const { type, community } = await searchParams;
+  // Jobs use their own structured workflow and never share the discussion
+  // composer. Keep old /community/create?type=job links working as well.
+  if (type === "job") redirect("/community/jobs/create");
+
   const supabase = await createServerSupabaseClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/");
