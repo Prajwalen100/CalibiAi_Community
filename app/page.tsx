@@ -1,11 +1,13 @@
 import Link from "next/link";
-import { CheckCircle2, ShieldCheck, Trophy, Users } from "lucide-react";
+import { CheckCircle2, ShieldCheck, Trophy, Users, Building2, GraduationCap, Briefcase } from "lucide-react";
 import { LeadForm } from "@/components/lead-form";
+import { TypingHeading } from "@/components/typing-heading";
 
 const stats = [
-  ["Placement outcomes", "Manual startup placement support"],
-  ["College network", "Built for tier-2 and tier-3 engineering campuses"],
-  ["Verified artifacts", "Projects, repos, assessments and leaderboard proof"]
+  ["10+ Colleges", "Partnered across engineering campuses"],
+  ["1000+ Students", "Mentored in applied AI engineering"],
+  ["20+ Startups", "Hiring partners for verified talent"],
+  ["College Network", "Building India's largest AI education ecosystem."]
 ];
 
 export default function HomePage() {
@@ -15,11 +17,16 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
           <div>
             <p className="inline-flex rounded-full bg-white px-4 py-2 text-sm font-semibold text-brand-700 shadow-sm">Verified AI profile + placement outcome</p>
-            <h1 className="mt-6 max-w-4xl text-4xl font-black tracking-tight text-ink sm:text-6xl">Become a verified, hire-ready applied-AI engineer.</h1>
+            <TypingHeading text="Become a verified, hire-ready applied-AI engineer." />
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">CalibiAI helps engineering students build real AI projects, pass hands-on assessments and publish a startup-trusted profile where every score point links to proof.</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link href="#join" className="btn-primary">Join a free workshop</Link><Link href="/success-stories" className="btn-secondary">See the verified signal</Link></div>
-            <div className="mt-10 grid gap-4 sm:grid-cols-3">
-              {stats.map(([title, body]) => <div key={title} className="rounded-2xl bg-white p-4 shadow-sm"><p className="font-bold text-ink">{title}</p><p className="mt-1 text-sm text-slate-600">{body}</p></div>)}
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link href="#join" className="btn-primary">Join a free workshop</Link><Link href="/success-stories" className="btn-secondary">See verified placements</Link></div>
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {stats.map(([title, body]) => (
+                <div key={title} className="rounded-2xl bg-white p-4 shadow-sm border border-slate-100">
+                  <p className="font-bold text-ink">{title}</p>
+                  <p className="mt-1 text-xs text-slate-600">{body}</p>
+                </div>
+              ))}
             </div>
           </div>
           <div className="card self-center bg-white/90">
