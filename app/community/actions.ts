@@ -549,16 +549,31 @@ export async function leaveSquad(squadId: string) {
 }
 
 export async function searchCommunityUsers(query: string) {
+  type Row = { user_id: string; full_name: string | null; username: string | null; target_role: string | null; avatar_id: number | null };
   const q = query.trim();
-  if (q.length < 2) return { results: [] as Array<{ user_id: string; full_name: string | null; username: string | null; target_role: string | null }> };
+  if (q.length < 2) return { results: [] as Row[] };
   const supabase = await createServerSupabaseClient();
   const like = `%${q.replace(/[%_]/g, "\\$&")}%`;
-  const { data } = await supabase
+  let response = await supabase
     .from("comm_public_profiles")
-    .select("user_id, full_name, username, target_role")
+    .select("user_id, full_name, username, target_role, avatar_id")
     .or(`full_name.ilike.${like},username.ilike.${like}`)
     .limit(15);
-  return { results: (data ?? []) as Array<{ user_id: string; full_name: string | null; username: string | null; target_role: string | null }> };
+  if (response.error && /avatar_id/.test(response.error.message)) {
+    response = await supabase
+      .from("comm_public_profiles")
+      .select("user_id, full_name, username, target_role")
+      .or(`full_name.ilike.${like},username.ilike.${like}`)
+      .limit(15) as unknown as typeof response;
+  }
+  const results = ((response.data ?? []) as Array<Record<string, unknown>>).map((r) => ({
+    user_id: r.user_id as string,
+    full_name: (r.full_name as string | null) ?? null,
+    username: (r.username as string | null) ?? null,
+    target_role: (r.target_role as string | null) ?? null,
+    avatar_id: (r.avatar_id as number | null) ?? null,
+  })) as Row[];
+  return { results };
 }
 
 // ── Events ────────────────────────────────────────────────────

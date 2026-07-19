@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Users } from "lucide-react";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { SquadMembersManager } from "./members-manager";
+import { ProfileAvatar } from "@/components/ui/profile-avatar";
 
 export const dynamic = "force-dynamic";
 
@@ -28,13 +29,25 @@ export default async function SquadDetailPage({ params }: { params: Params }) {
     .order("joined_at", { ascending: true });
 
   const memberIds = (membersData ?? []).map((m) => m.user_id);
-  let profiles: Array<{ user_id: string; full_name: string | null; username: string | null; target_role: string | null }> = [];
+  let profiles: Array<{ user_id: string; full_name: string | null; username: string | null; target_role: string | null; avatar_id: number | null }> = [];
   if (memberIds.length > 0) {
-    const { data: profRows } = await supabase
+    let profResponse = await supabase
       .from("comm_public_profiles")
-      .select("user_id, full_name, username, target_role")
+      .select("user_id, full_name, username, target_role, avatar_id")
       .in("user_id", memberIds);
-    profiles = (profRows ?? []) as typeof profiles;
+    if (profResponse.error && /avatar_id/.test(profResponse.error.message)) {
+      profResponse = await supabase
+        .from("comm_public_profiles")
+        .select("user_id, full_name, username, target_role")
+        .in("user_id", memberIds) as unknown as typeof profResponse;
+    }
+    profiles = ((profResponse.data ?? []) as Array<Record<string, unknown>>).map((r) => ({
+      user_id: r.user_id as string,
+      full_name: (r.full_name as string | null) ?? null,
+      username: (r.username as string | null) ?? null,
+      target_role: (r.target_role as string | null) ?? null,
+      avatar_id: (r.avatar_id as number | null) ?? null,
+    }));
   }
   const profileById = new Map(profiles.map((p) => [p.user_id, p]));
 
@@ -47,6 +60,7 @@ export default async function SquadDetailPage({ params }: { params: Params }) {
       full_name: profile?.full_name ?? null,
       username: profile?.username ?? null,
       target_role: profile?.target_role ?? null,
+      avatar_id: profile?.avatar_id ?? null,
     };
   });
 
@@ -81,9 +95,7 @@ export default async function SquadDetailPage({ params }: { params: Params }) {
               {members.map((m) => (
                 <li key={m.user_id} className="flex items-center justify-between gap-3 p-4">
                   <div className="flex min-w-0 items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-700">
-                      {(m.full_name || m.username || "?").charAt(0).toUpperCase()}
-                    </div>
+                    <ProfileAvatar avatarId={m.avatar_id} size={40} />
                     <div className="min-w-0">
                       <p className="truncate text-sm font-semibold">{m.full_name || "Unnamed member"}</p>
                       <p className="truncate text-xs text-slate-500">{m.username ? `@${m.username}` : "no username"}{m.target_role ? ` · ${m.target_role}` : ""}</p>

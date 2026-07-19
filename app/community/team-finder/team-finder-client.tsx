@@ -5,12 +5,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Search, Loader2, Plus, UserPlus, X, Check } from "lucide-react";
 import { searchCommunityUsers, createSquad, addMembersToSquad } from "@/app/community/actions";
+import { ProfileAvatar } from "@/components/ui/profile-avatar";
 
 type SearchResult = {
   user_id: string;
   full_name: string | null;
   username: string | null;
   target_role: string | null;
+  avatar_id: number | null;
 };
 
 type MySquadSummary = {
@@ -164,9 +166,7 @@ export function TeamFinderClient({
             return (
               <div key={u.user_id} className="flex items-center justify-between gap-3 p-3">
                 <div className="flex min-w-0 items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-700">
-                    {(u.full_name || u.username || "?").charAt(0).toUpperCase()}
-                  </div>
+                  <ProfileAvatar avatarId={u.avatar_id} size={36} />
                   <div className="min-w-0">
                     <p className="truncate text-sm font-semibold">{u.full_name || "Unnamed member"}</p>
                     <p className="truncate text-xs text-slate-500">{u.username ? `@${u.username}` : "no username"}{u.target_role ? ` · ${u.target_role}` : ""}</p>
