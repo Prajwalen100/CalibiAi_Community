@@ -26,6 +26,17 @@
     --ring: 210 100% 56%;
     --radius: 0.75rem;
     color-scheme: light;
+
+    /* Aliases for components that read direct CSS colors via var(--color-*). */
+    --color-primary: #1f8fff;
+    --color-secondary: #e2e8f0;
+    --color-accent: #d8efff;
+    --color-destructive: #ef4444;
+    --color-chart-1: #7c3aed;
+    --color-chart-2: #0ea5e9;
+    --color-chart-3: #22c55e;
+    --color-chart-4: #f59e0b;
+    --color-chart-5: #ec4899;
   }
 }
 
@@ -38,3 +49,4 @@ a { @apply transition-colors; }
 .btn-primary { @apply inline-flex items-center justify-center rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white shadow-soft hover:bg-slate-800; }
 .btn-secondary { @apply inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-ink hover:border-slate-300 hover:bg-slate-50; }
 .card { @apply rounded-3xl border border-slate-200 bg-white p-6 shadow-sm; }
+
