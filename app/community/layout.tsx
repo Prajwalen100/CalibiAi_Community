@@ -44,7 +44,7 @@ async function getSidebarData() {
   try {
     const [lb, ev, jobs, ch, jc] = await Promise.all([
       supabase.from("comm_xp").select("user_id, xp, level").order("xp", { ascending: false }).limit(5),
-      supabase.from("comm_posts").select("id, title, event_date").eq("post_type", "event").gte("event_date", new Date().toISOString()).order("event_date").limit(3),
+      supabase.from("comm_events").select("id, title, event_date").gte("event_date", new Date().toISOString()).order("event_date").limit(3),
       supabase.from("comm_jobs").select("id, title, company_name").eq("status", "open").order("created_at", { ascending: false }).limit(3),
       supabase.from("comm_posts").select("id, title, challenge_deadline").eq("post_type", "challenge").gte("challenge_deadline", new Date().toISOString()).order("challenge_deadline").limit(1),
       user ? supabase.from("comm_members").select("comm_communities(id, slug, name, emoji)").eq("user_id", user.id) : { data: [] as JoinedCommunity[] | null },
@@ -142,7 +142,7 @@ export default async function CommunityLayout({ children }: { children: ReactNod
               </div>
               <div className="mt-3 space-y-2">
                 {upcomingEvents.length ? upcomingEvents.map((ev) => (
-                  <Link key={ev.id} href={`/community/post/${ev.id}`} className="block rounded-lg p-2 text-sm hover:bg-slate-50">
+                  <Link key={ev.id} href={`/community/events/${ev.id}`} className="block rounded-lg p-2 text-sm hover:bg-slate-50">
                     <p className="font-medium truncate">{ev.title}</p>
                     <p className="text-xs text-slate-500">{new Date(ev.event_date).toLocaleDateString()}</p>
                   </Link>

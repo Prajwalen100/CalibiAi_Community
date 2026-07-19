@@ -440,3 +440,312 @@ export async function markNotificationsRead() {
   } catch { /* ignore */ }
   revalidatePath("/community/notifications");
 }
+
+// ── Squads (Team Finder) ─────────────────────────────────────
+
+const CreateSquadSchema = z.object({
+  name: z.string().trim().min(2, "Squad name must be at least 2 characters"),
+  description: z.string().trim().max(500).optional().or(z.literal("")),
+  purpose: z.enum(["hackathon", "project", "startup", "study_group", "research", "other"]).optional(),
+  max_members: z.string().optional(),
+  initial_member_ids: z.string().optional(),
+});
+
+function squadTableMissing(message?: string) {
+  return !!message && /comm_squads?|comm_squad_members|relation .* does not exist/i.test(message);
+}
+
+export async function createSquad(formData: FormData) {
+  const user = await getAuthUser();
+  if (!user) return { error: "Not authenticated" };
+
+  const parsed = CreateSquadSchema.safeParse(Object.fromEntries(formData));
+  if (!parsed.success) return { error: parsed.error.issues.map((i) => i.message).join(", ") };
+  const d = parsed.data;
+
+  const supabase = await createServerSupabaseClient();
+  const maxMembers = d.max_members ? Math.max(1, Math.min(50, Number(d.max_members))) : null;
+  const initialIds = (d.initial_member_ids ?? "")
+    .split(",")
+    .map((id) => id.trim())
+    .filter((id) => id && id !== user.id);
+
+  const { data: squad, error } = await supabase
+    .from("comm_squads")
+    .insert({
+      owner_id: user.id,
+      name: d.name,
+      description: (d.description || "").toString() || null,
+      purpose: d.purpose ?? "project",
+      max_members: maxMembers,
+    })
+    .select("id")
+    .single();
+
+  if (error || !squad) {
+    if (squadTableMissing(error?.message)) {
+      return { error: "Team Finder database is not set up yet. Apply migration 004_squads_events_applications.sql to enable squads." };
+    }
+    return { error: error?.message ?? "Unable to create the squad. Please try again." };
+  }
+
+  if (initialIds.length > 0) {
+    const rows = initialIds.map((uid) => ({
+      squad_id: squad.id, user_id: uid, role: "member", added_by: user.id,
+    }));
+    await supabase.from("comm_squad_members").insert(rows);
+    await Promise.all(initialIds.map((uid) => createNotification(uid, user.id, "squad_added", undefined, undefined)));
+  }
+
+  revalidatePath("/community/team-finder");
+  return { id: squad.id as string };
+}
+
+export async function addMembersToSquad(squadId: string, userIds: string[]) {
+  const user = await getAuthUser();
+  if (!user) return { error: "Not authenticated" };
+  const cleanIds = [...new Set(userIds.map((id) => id.trim()).filter(Boolean))];
+  if (cleanIds.length === 0) return { error: "Select at least one member to add" };
+
+  const supabase = await createServerSupabaseClient();
+  const { data: squad, error: squadErr } = await supabase
+    .from("comm_squads")
+    .select("id, owner_id, max_members")
+    .eq("id", squadId)
+    .single();
+  if (squadErr || !squad) return { error: "Squad not found" };
+  if (squad.owner_id !== user.id) return { error: "Only the squad owner can add members" };
+
+  if (squad.max_members) {
+    const { count } = await supabase
+      .from("comm_squad_members")
+      .select("id", { count: "exact", head: true })
+      .eq("squad_id", squadId);
+    if ((count ?? 0) + cleanIds.length > squad.max_members) {
+      return { error: `Squad size is capped at ${squad.max_members} members` };
+    }
+  }
+
+  const rows = cleanIds.map((uid) => ({
+    squad_id: squadId, user_id: uid, role: "member", added_by: user.id,
+  }));
+  const { error } = await supabase.from("comm_squad_members").upsert(rows, { onConflict: "squad_id,user_id" });
+  if (error) return { error: error.message };
+
+  await Promise.all(cleanIds.map((uid) => createNotification(uid, user.id, "squad_added")));
+  revalidatePath("/community/team-finder");
+  revalidatePath(`/community/team-finder/${squadId}`);
+  return { success: true };
+}
+
+export async function leaveSquad(squadId: string) {
+  const user = await getAuthUser();
+  if (!user) return { error: "Not authenticated" };
+  const supabase = await createServerSupabaseClient();
+  await supabase.from("comm_squad_members").delete().eq("squad_id", squadId).eq("user_id", user.id);
+  revalidatePath("/community/team-finder");
+  revalidatePath(`/community/team-finder/${squadId}`);
+  return { success: true };
+}
+
+export async function searchCommunityUsers(query: string) {
+  const q = query.trim();
+  if (q.length < 2) return { results: [] as Array<{ user_id: string; full_name: string | null; username: string | null; target_role: string | null }> };
+  const supabase = await createServerSupabaseClient();
+  const like = `%${q.replace(/[%_]/g, "\\$&")}%`;
+  const { data } = await supabase
+    .from("comm_public_profiles")
+    .select("user_id, full_name, username, target_role")
+    .or(`full_name.ilike.${like},username.ilike.${like}`)
+    .limit(15);
+  return { results: (data ?? []) as Array<{ user_id: string; full_name: string | null; username: string | null; target_role: string | null }> };
+}
+
+// ── Events ────────────────────────────────────────────────────
+
+const CreateEventSchema = z.object({
+  title: z.string().trim().min(3, "Event title must be at least 3 characters"),
+  description: z.string().trim().min(10, "Add a description (at least 10 characters)"),
+  event_type: z.enum(["workshop", "webinar", "meetup", "hackathon", "ama", "conference"]),
+  event_date: z.string().min(1, "Event date & time is required"),
+  end_date: z.string().optional(),
+  mode: z.enum(["offline", "virtual", "hybrid"]),
+  location: z.string().trim().optional().or(z.literal("")),
+  room: z.string().trim().optional().or(z.literal("")),
+  virtual_link: z.string().url("Enter a valid meeting link").or(z.literal("")).optional(),
+  cover_image_url: z.string().url().or(z.literal("")).optional(),
+  max_attendees: z.string().optional(),
+});
+
+export async function createEvent(formData: FormData) {
+  const user = await getAuthUser();
+  if (!user) return { error: "Not authenticated" };
+
+  const parsed = CreateEventSchema.safeParse(Object.fromEntries(formData));
+  if (!parsed.success) return { error: parsed.error.issues.map((i) => i.message).join(", ") };
+  const d = parsed.data;
+
+  if (d.mode !== "virtual" && !(d.location && d.location.length > 0)) {
+    return { error: "Location is required for offline or hybrid events" };
+  }
+  if (d.mode !== "offline" && !(d.virtual_link && d.virtual_link.length > 0)) {
+    return { error: "A meeting link is required for virtual or hybrid events" };
+  }
+
+  const eventDate = new Date(d.event_date);
+  if (Number.isNaN(eventDate.getTime())) return { error: "Enter a valid event date & time" };
+  const endDate = d.end_date ? new Date(d.end_date) : null;
+  if (endDate && Number.isNaN(endDate.getTime())) return { error: "Enter a valid end date & time" };
+  if (endDate && endDate < eventDate) return { error: "End time must be after the start time" };
+
+  const maxAttendees = d.max_attendees ? Math.max(1, Math.min(10000, Number(d.max_attendees))) : null;
+
+  const supabase = await createServerSupabaseClient();
+  const { data, error } = await supabase
+    .from("comm_events")
+    .insert({
+      user_id: user.id,
+      title: d.title,
+      description: d.description,
+      event_type: d.event_type,
+      event_date: eventDate.toISOString(),
+      end_date: endDate ? endDate.toISOString() : null,
+      mode: d.mode,
+      location: d.location || null,
+      room: d.room || null,
+      virtual_link: d.virtual_link || null,
+      cover_image_url: d.cover_image_url || null,
+      max_attendees: maxAttendees,
+    })
+    .select("id")
+    .single();
+
+  if (error || !data) {
+    if (/comm_events|relation .* does not exist/i.test(error?.message ?? "")) {
+      return { error: "Events database is not set up yet. Apply migration 004_squads_events_applications.sql." };
+    }
+    return { error: error?.message ?? "Unable to create the event. Please try again." };
+  }
+
+  await addXp(user.id, 15);
+  revalidatePath("/community/events");
+  return { id: data.id as string };
+}
+
+export async function toggleEventRegistration(eventId: string) {
+  const user = await getAuthUser();
+  if (!user) return { error: "Not authenticated" };
+
+  const supabase = await createServerSupabaseClient();
+  const { data: existing } = await supabase
+    .from("comm_event_registrations")
+    .select("id")
+    .eq("event_id", eventId)
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (existing) {
+    await supabase.from("comm_event_registrations").delete().eq("id", existing.id);
+  } else {
+    const { data: event } = await supabase
+      .from("comm_events")
+      .select("user_id, max_attendees, title")
+      .eq("id", eventId)
+      .single();
+    if (event?.max_attendees) {
+      const { count } = await supabase
+        .from("comm_event_registrations")
+        .select("id", { count: "exact", head: true })
+        .eq("event_id", eventId)
+        .neq("status", "cancelled");
+      if ((count ?? 0) >= event.max_attendees) return { error: "This event is full." };
+    }
+    await supabase.from("comm_event_registrations").insert({ event_id: eventId, user_id: user.id });
+    if (event && event.user_id !== user.id) {
+      await createNotification(event.user_id, user.id, "event_registration");
+    }
+    await addXp(user.id, 2);
+  }
+
+  revalidatePath("/community/events");
+  revalidatePath(`/community/events/${eventId}`);
+  return { success: true };
+}
+
+// ── Job Applications ─────────────────────────────────────────
+
+const ApplyJobSchema = z.object({
+  job_id: z.string().min(1),
+  cover_letter: z.string().trim().min(20, "Cover letter must be at least 20 characters"),
+  portfolio_url: z.string().url().or(z.literal("")).optional(),
+  resume_url: z.string().url().or(z.literal("")).optional(),
+  contact_email: z.string().trim().email("Enter a valid contact email address"),
+});
+
+export async function applyToJob(formData: FormData) {
+  const user = await getAuthUser();
+  if (!user) return { error: "Not authenticated" };
+
+  const parsed = ApplyJobSchema.safeParse(Object.fromEntries(formData));
+  if (!parsed.success) return { error: parsed.error.issues.map((i) => i.message).join(", ") };
+  const d = parsed.data;
+
+  const supabase = await createServerSupabaseClient();
+  const { data: job, error: jobErr } = await supabase
+    .from("comm_jobs")
+    .select("id, user_id, title, status")
+    .eq("id", d.job_id)
+    .single();
+  if (jobErr || !job) return { error: "This opportunity is no longer available." };
+  if (job.status !== "open") return { error: "This opportunity is closed and not accepting applications." };
+  if (job.user_id === user.id) return { error: "You can't apply to your own posting." };
+
+  const { error } = await supabase.from("comm_job_applications").insert({
+    job_id: d.job_id,
+    applicant_id: user.id,
+    cover_letter: d.cover_letter,
+    portfolio_url: d.portfolio_url || null,
+    resume_url: d.resume_url || null,
+    contact_email: d.contact_email,
+  });
+
+  if (error) {
+    if (/comm_job_applications|relation .* does not exist/i.test(error.message)) {
+      return { error: "Applications database is not set up yet. Apply migration 004_squads_events_applications.sql." };
+    }
+    if (error.code === "23505") return { error: "You have already applied to this opportunity." };
+    return { error: error.message };
+  }
+
+  await createNotification(job.user_id, user.id, "job_application");
+  await addXp(user.id, 5);
+  revalidatePath(`/community/jobs/${d.job_id}`);
+  revalidatePath("/community/jobs/opportunities");
+  revalidatePath("/community/jobs/applications");
+  return { success: true };
+}
+
+export async function updateApplicationStatus(applicationId: string, status: "submitted" | "shortlisted" | "interviewed" | "accepted" | "rejected") {
+  const user = await getAuthUser();
+  if (!user) return { error: "Not authenticated" };
+  const supabase = await createServerSupabaseClient();
+
+  const { data: existing } = await supabase
+    .from("comm_job_applications")
+    .select("id, applicant_id, job_id, comm_jobs:job_id(user_id)")
+    .eq("id", applicationId)
+    .single();
+  const jobOwner = (existing?.comm_jobs as unknown as { user_id?: string } | null)?.user_id;
+  if (!existing || jobOwner !== user.id) return { error: "Not authorized" };
+
+  const { error } = await supabase
+    .from("comm_job_applications")
+    .update({ status })
+    .eq("id", applicationId);
+  if (error) return { error: error.message };
+
+  await createNotification(existing.applicant_id, user.id, `application_${status}`);
+  revalidatePath(`/community/jobs/${existing.job_id}`);
+  revalidatePath("/community/jobs/applications");
+  return { success: true };
+}
