@@ -13,6 +13,14 @@ const notificationIcons: Record<string, string> = {
   challenge_launched: "🏆",
   event_reminder: "📅",
   new_job: "💼",
+  squad_added: "🤝",
+  event_registration: "📅",
+  job_application: "📨",
+  application_submitted: "📨",
+  application_shortlisted: "⭐",
+  application_interviewed: "🎯",
+  application_accepted: "🎉",
+  application_rejected: "🚫",
 };
 
 export default async function NotificationsPage() {
@@ -64,6 +72,14 @@ export default async function NotificationsPage() {
                   {n.type === "challenge_launched" && "launched a new challenge"}
                   {n.type === "event_reminder" && "reminded you about an event"}
                   {n.type === "new_job" && "posted a job matching your skills"}
+                  {n.type === "squad_added" && "added you to a squad"}
+                  {n.type === "event_registration" && "registered for your event"}
+                  {n.type === "job_application" && "applied to your job posting"}
+                  {n.type === "application_submitted" && "received your application"}
+                  {n.type === "application_shortlisted" && "shortlisted your application"}
+                  {n.type === "application_interviewed" && "moved your application to interview"}
+                  {n.type === "application_accepted" && "accepted your application 🎉"}
+                  {n.type === "application_rejected" && "closed your application"}
                 </p>
                 <div className="mt-1 flex items-center gap-3">
                   <span className="text-xs text-slate-400">{new Date(n.created_at as string).toLocaleString()}</span>

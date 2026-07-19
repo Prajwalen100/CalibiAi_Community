@@ -2,10 +2,11 @@ import Link from "next/link";
 import {
   Home, MessageSquare, Lightbulb, Rocket, Trophy, Calendar,
   Briefcase, Users, BookOpen, GraduationCap, Search, Bell,
-  LayoutGrid, Star, Target, ChevronRight,
+  LayoutGrid, Star, Target, ChevronRight, Smile,
 } from "lucide-react";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { attachCommunityProfiles } from "@/lib/community/public-profiles";
+import { ProfileAvatar } from "@/components/ui/profile-avatar";
 import type { ReactNode } from "react";
 
 export const dynamic = "force-dynamic";
@@ -23,6 +24,7 @@ const communityNav = [
   { label: "Team Finder", href: "/community/team-finder", icon: Users },
   { label: "Resources", href: "/community/resources", icon: BookOpen },
   { label: "Mentors", href: "/community/mentors", icon: GraduationCap },
+  { label: "Choose avatar", href: "/community/profile/avatar", icon: Smile },
 ];
 
 type LeaderboardEntry = { user_id: string; xp: number; level: number; profiles: { full_name: string; username: string } | null };
@@ -40,11 +42,37 @@ async function getSidebarData() {
   let latestJobs: JobEntry[] = [];
   let activeChallenge: ChallengeEntry[] = [];
   let joinedCommunities: JoinedCommunity[] = [];
+  let currentProfile: { full_name: string | null; username: string | null; avatar_id: number | null } | null = null;
+
+  if (user) {
+    try {
+      let profileResp = await supabase
+        .from("profiles")
+        .select("full_name, username, avatar_id")
+        .eq("user_id", user.id)
+        .maybeSingle();
+      if (profileResp.error && /avatar_id/.test(profileResp.error.message)) {
+        profileResp = await supabase
+          .from("profiles")
+          .select("full_name, username")
+          .eq("user_id", user.id)
+          .maybeSingle() as unknown as typeof profileResp;
+      }
+      if (profileResp.data) {
+        const raw = profileResp.data as Record<string, unknown>;
+        currentProfile = {
+          full_name: (raw.full_name as string | null) ?? null,
+          username: (raw.username as string | null) ?? null,
+          avatar_id: (raw.avatar_id as number | null) ?? null,
+        };
+      }
+    } catch { /* avatar_id column might not exist yet */ }
+  }
 
   try {
     const [lb, ev, jobs, ch, jc] = await Promise.all([
       supabase.from("comm_xp").select("user_id, xp, level").order("xp", { ascending: false }).limit(5),
-      supabase.from("comm_posts").select("id, title, event_date").eq("post_type", "event").gte("event_date", new Date().toISOString()).order("event_date").limit(3),
+      supabase.from("comm_events").select("id, title, event_date").gte("event_date", new Date().toISOString()).order("event_date").limit(3),
       supabase.from("comm_jobs").select("id, title, company_name").eq("status", "open").order("created_at", { ascending: false }).limit(3),
       supabase.from("comm_posts").select("id, title, challenge_deadline").eq("post_type", "challenge").gte("challenge_deadline", new Date().toISOString()).order("challenge_deadline").limit(1),
       user ? supabase.from("comm_members").select("comm_communities(id, slug, name, emoji)").eq("user_id", user.id) : { data: [] as JoinedCommunity[] | null },
@@ -59,11 +87,11 @@ async function getSidebarData() {
     // Tables might not exist yet
   }
 
-  return { leaderboard, upcomingEvents, latestJobs, activeChallenge, joinedCommunities, user };
+  return { leaderboard, upcomingEvents, latestJobs, activeChallenge, joinedCommunities, user, currentProfile };
 }
 
 export default async function CommunityLayout({ children }: { children: ReactNode }) {
-  const { leaderboard, upcomingEvents, latestJobs, activeChallenge, joinedCommunities, user } = await getSidebarData();
+  const { leaderboard, upcomingEvents, latestJobs, activeChallenge, joinedCommunities, user, currentProfile } = await getSidebarData();
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -113,6 +141,18 @@ export default async function CommunityLayout({ children }: { children: ReactNod
         {/* Right Sidebar */}
         <aside className="hidden w-72 shrink-0 xl:block">
           <div className="sticky top-24 space-y-4">
+            {/* You */}
+            {user && (
+              <Link href="/community/profile/avatar" className="card flex items-center gap-3 transition-colors hover:border-brand-500">
+                <ProfileAvatar avatarId={currentProfile?.avatar_id ?? null} size={48} />
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-sm font-bold">{currentProfile?.full_name ?? "Your profile"}</p>
+                  <p className="mt-0.5 truncate text-xs text-slate-500">
+                    {currentProfile?.avatar_id ? "Change your avatar" : "Choose your avatar →"}
+                  </p>
+                </div>
+              </Link>
+            )}
             {/* Leaderboard */}
             <div className="card">
               <div className="flex items-center justify-between">
@@ -142,7 +182,7 @@ export default async function CommunityLayout({ children }: { children: ReactNod
               </div>
               <div className="mt-3 space-y-2">
                 {upcomingEvents.length ? upcomingEvents.map((ev) => (
-                  <Link key={ev.id} href={`/community/post/${ev.id}`} className="block rounded-lg p-2 text-sm hover:bg-slate-50">
+                  <Link key={ev.id} href={`/community/events/${ev.id}`} className="block rounded-lg p-2 text-sm hover:bg-slate-50">
                     <p className="font-medium truncate">{ev.title}</p>
                     <p className="text-xs text-slate-500">{new Date(ev.event_date).toLocaleDateString()}</p>
                   </Link>

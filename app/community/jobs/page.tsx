@@ -1,133 +1,101 @@
 import Link from "next/link";
-import { BriefcaseBusiness, Building2, MapPin, Plus, Wallet } from "lucide-react";
+import { BriefcaseBusiness, Plus, Search, Building2 } from "lucide-react";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
-
-const jobTypeColors: Record<string, string> = {
-  internship: "bg-blue-50 text-blue-700",
-  full_time: "bg-green-50 text-green-700",
-  part_time: "bg-amber-50 text-amber-700",
-  contract: "bg-indigo-50 text-indigo-700",
-  freelance: "bg-purple-50 text-purple-700",
-};
-
-type JobRow = {
-  id: string;
-  title: string;
-  company_name: string;
-  description: string;
-  employment_type: string;
-  workplace_type: string;
-  location: string | null;
-  skills_required: string[] | null;
-  compensation: string;
-  experience_required: string;
-  application_deadline: string | null;
-  created_at: string;
-};
-
-function humanize(value: string) {
-  return value.replace(/_/g, " ");
-}
 
 export default async function JobsPage() {
   const supabase = await createServerSupabaseClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  let jobs: JobRow[] = [];
-  let loadError: string | null = null;
+  let openCount = 0;
+  let myPostingsCount = 0;
+  let myApplicationsCount = 0;
 
-  const { data, error } = await supabase
+  const openResult = await supabase
     .from("comm_jobs")
-    .select("id, title, company_name, description, employment_type, workplace_type, location, skills_required, compensation, experience_required, application_deadline, created_at")
-    .eq("status", "open")
-    .order("created_at", { ascending: false })
-    .limit(30);
+    .select("id", { count: "exact", head: true })
+    .eq("status", "open");
+  openCount = openResult.count ?? 0;
 
-  if (error) {
-    loadError = /comm_jobs|relation .* does not exist/i.test(error.message)
-      ? "The jobs database has not been set up yet. Apply migration 003_community_feed_and_jobs.sql to enable dedicated job postings."
-      : "Job postings could not be loaded right now. Please refresh and try again.";
-  } else {
-    jobs = (data ?? []) as JobRow[];
+  if (user) {
+    const [postings, apps] = await Promise.all([
+      supabase.from("comm_jobs").select("id", { count: "exact", head: true }).eq("user_id", user.id),
+      supabase.from("comm_job_applications").select("id", { count: "exact", head: true }).eq("applicant_id", user.id),
+    ]);
+    myPostingsCount = postings.count ?? 0;
+    myApplicationsCount = apps.count ?? 0;
   }
 
   return (
     <div>
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
         <div>
-          <h1 className="text-2xl font-black">💼 Jobs & Internships</h1>
-          <p className="mt-2 text-slate-600">Dedicated opportunities with skills, compensation, experience, and direct contact details.</p>
+          <h1 className="text-2xl font-black">💼 Jobs &amp; Opportunities</h1>
+          <p className="mt-2 text-slate-600">Post a role for your team or browse open opportunities and apply in one click.</p>
         </div>
-        {user && (
-          <Link href="/community/jobs/create" className="btn-primary inline-flex items-center justify-center gap-2">
-            <Plus className="h-4 w-4" /> Post a Job
-          </Link>
-        )}
       </div>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-        {Object.entries(jobTypeColors).map(([type, color]) => {
-          const count = jobs.filter((job) => job.employment_type === type).length;
-          return (
-            <div key={type} className="card text-center">
-              <p className="text-xl font-black">{count}</p>
-              <p className={`text-xs font-semibold capitalize ${color.split(" ")[1]}`}>{humanize(type)}</p>
+      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        {/* Post the Job */}
+        <Link href="/community/jobs/create" className="card group flex flex-col justify-between gap-4 border-2 border-transparent bg-gradient-to-br from-brand-50 to-white transition hover:border-brand-500">
+          <div>
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-600 text-white">
+              <Plus className="h-6 w-6" />
             </div>
-          );
-        })}
+            <h2 className="mt-4 text-xl font-black">Post the Job</h2>
+            <p className="mt-2 text-sm text-slate-600">Publish a role with skills, compensation, experience, and receive applications with instant notifications.</p>
+            <ul className="mt-4 space-y-1 text-xs text-slate-600">
+              <li>• Structured job form</li>
+              <li>• Applications land in your inbox</li>
+              <li>• Update statuses (shortlist, reject, hire)</li>
+            </ul>
+          </div>
+          <span className="inline-flex items-center gap-1 text-sm font-bold text-brand-700">
+            {user ? "Create posting" : "Sign in to post"} →
+          </span>
+        </Link>
+
+        {/* Apply for Opportunity */}
+        <Link href="/community/jobs/opportunities" className="card group flex flex-col justify-between gap-4 border-2 border-transparent bg-gradient-to-br from-indigo-50 to-white transition hover:border-indigo-500">
+          <div>
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-600 text-white">
+              <Search className="h-6 w-6" />
+            </div>
+            <h2 className="mt-4 text-xl font-black">Apply for Opportunity</h2>
+            <p className="mt-2 text-sm text-slate-600">Browse every open role in the community, filter by type or workplace, and apply — the poster gets notified instantly.</p>
+            <ul className="mt-4 space-y-1 text-xs text-slate-600">
+              <li>• {openCount} open opportunit{openCount === 1 ? "y" : "ies"} right now</li>
+              <li>• One-click structured application</li>
+              <li>• Track status in your dashboard</li>
+            </ul>
+          </div>
+          <span className="inline-flex items-center gap-1 text-sm font-bold text-indigo-700">Browse opportunities →</span>
+        </Link>
       </div>
 
-      {loadError && (
-        <div role="alert" className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
-          <p className="font-bold">Jobs setup needed</p>
-          <p className="mt-1">{loadError}</p>
+      {user && (
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <Link href="/community/jobs/manage" className="rounded-2xl border border-slate-200 p-5 transition hover:border-brand-500">
+            <div className="flex items-center gap-3">
+              <Building2 className="h-5 w-5 text-slate-500" />
+              <div>
+                <p className="font-bold">My postings</p>
+                <p className="text-xs text-slate-500">{myPostingsCount} job{myPostingsCount === 1 ? "" : "s"} · View applications received</p>
+              </div>
+            </div>
+          </Link>
+          <Link href="/community/jobs/applications" className="rounded-2xl border border-slate-200 p-5 transition hover:border-brand-500">
+            <div className="flex items-center gap-3">
+              <BriefcaseBusiness className="h-5 w-5 text-slate-500" />
+              <div>
+                <p className="font-bold">My applications</p>
+                <p className="text-xs text-slate-500">{myApplicationsCount} submitted · Track your status</p>
+              </div>
+            </div>
+          </Link>
         </div>
       )}
-
-      <div className="mt-6 space-y-4">
-        {jobs.length > 0 ? jobs.map((job) => {
-          const color = jobTypeColors[job.employment_type] ?? "bg-slate-50 text-slate-700";
-          return (
-            <Link key={job.id} href={`/community/jobs/${job.id}`} className="card block transition-colors hover:border-brand-500">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <div className="min-w-0">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className={`rounded-full px-2.5 py-1 text-xs font-bold capitalize ${color}`}>{humanize(job.employment_type)}</span>
-                    <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold capitalize text-slate-600">{humanize(job.workplace_type)}</span>
-                  </div>
-                  <h2 className="mt-3 text-lg font-bold">{job.title}</h2>
-                  <p className="mt-1 flex items-center gap-1.5 text-sm font-medium text-slate-700"><Building2 className="h-4 w-4" /> {job.company_name}</p>
-                  <p className="mt-3 line-clamp-2 text-sm text-slate-600">{job.description}</p>
-                </div>
-                <span className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-brand-700">View role <BriefcaseBusiness className="h-4 w-4" /></span>
-              </div>
-
-              <div className="mt-4 grid gap-2 border-t border-slate-100 pt-4 text-sm text-slate-600 sm:grid-cols-3">
-                <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4 text-slate-400" /> {job.location || "Location not specified"}</span>
-                <span className="flex items-center gap-1.5"><Wallet className="h-4 w-4 text-slate-400" /> {job.compensation}</span>
-                <span>Experience: {job.experience_required}</span>
-              </div>
-
-              {job.skills_required && job.skills_required.length > 0 && (
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {job.skills_required.slice(0, 6).map((skill) => (
-                    <span key={skill} className="rounded-full bg-brand-50 px-2.5 py-1 text-xs font-medium text-brand-700">{skill}</span>
-                  ))}
-                </div>
-              )}
-            </Link>
-          );
-        }) : !loadError ? (
-          <div className="card text-center">
-            <p className="text-4xl">💼</p>
-            <h2 className="mt-4 font-bold">No open jobs posted yet</h2>
-            <p className="mt-2 text-sm text-slate-600">Be the first to share a complete opportunity with the community.</p>
-            {user && <Link href="/community/jobs/create" className="btn-primary mt-4 inline-block">Post a Job</Link>}
-          </div>
-        ) : null}
-      </div>
     </div>
   );
 }

@@ -22,6 +22,14 @@ export default async function OnboardingPage() {
         <div><label className="label">Quick task: describe an AI concept you can explain clearly</label><textarea className="input mt-1" name="task_two" rows={3} /></div>
         <button className="btn-primary" type="submit">Generate roadmap</button>
       </form>
+
+      <div className="mt-6 rounded-3xl border border-brand-100 bg-brand-50 p-5 text-sm text-brand-900">
+        🎭 <span className="font-semibold">Next step:</span> after generating your roadmap you can
+        <a href="/community/profile/avatar" className="ml-1 font-bold underline hover:text-brand-700">
+          pick your community avatar
+        </a>{" "}
+        so people can spot you in posts, squads, and events.
+      </div>
     </section>
   );
 }

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { FollowButton } from "./follow-button";
+import { ProfileAvatar } from "@/components/ui/profile-avatar";
 
 export const dynamic = "force-dynamic";
 
@@ -10,6 +11,7 @@ type Params = Promise<{ username: string }>;
 type ProfileData = {
   user_id: string; full_name: string; username: string; target_role: string;
   college: string; bio: string; github_url: string; linkedin_url: string; portfolio_url: string;
+  avatar_id: number | null;
 };
 
 export default async function MemberProfilePage({ params }: { params: Params }) {
@@ -20,7 +22,11 @@ export default async function MemberProfilePage({ params }: { params: Params }) 
   let profile: ProfileData;
 
   try {
-    const profileResult = await supabase.from("profiles").select("user_id, full_name, username, target_role, college, bio, github_url, linkedin_url, portfolio_url").eq("username", username).single();
+    let profileResult = await supabase.from("profiles").select("user_id, full_name, username, target_role, college, bio, github_url, linkedin_url, portfolio_url, avatar_id").eq("username", username).single();
+    if (profileResult.error && /avatar_id/.test(profileResult.error.message)) {
+      // Migration 005_profile_avatars.sql has not been applied yet — fall back.
+      profileResult = await supabase.from("profiles").select("user_id, full_name, username, target_role, college, bio, github_url, linkedin_url, portfolio_url").eq("username", username).single();
+    }
     if (!profileResult.data) notFound();
     const pd = profileResult.data as Record<string, unknown>;
     profile = {
@@ -33,6 +39,7 @@ export default async function MemberProfilePage({ params }: { params: Params }) 
       github_url: String(pd.github_url ?? ""),
       linkedin_url: String(pd.linkedin_url ?? ""),
       portfolio_url: String(pd.portfolio_url ?? ""),
+      avatar_id: (pd.avatar_id as number | null) ?? null,
     };
   } catch {
     notFound();
@@ -109,9 +116,11 @@ export default async function MemberProfilePage({ params }: { params: Params }) 
       <div className="rounded-3xl bg-ink p-8 text-white">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/10 text-2xl font-bold text-white">
-              {profile.full_name.charAt(0).toUpperCase()}
-            </div>
+            <ProfileAvatar
+              avatarId={profile.avatar_id}
+              size={64}
+              className="border-white/20 bg-white/10"
+            />
             <div>
               <h1 className="text-2xl font-black">{profile.full_name}</h1>
               <p className="text-slate-300">@{username} · {profile.target_role}</p>

@@ -1,20 +1,21 @@
-"use client";
+import Link from "next/link";
 
-import { createBrowserClient } from "@supabase/ssr";
-
+/**
+ * Header sign-in entry point. Sends the user to the branded sign-in / sign-up
+ * page where they can pick Google, GitHub, or email + password.
+ */
 export function SignInButton() {
-  async function signIn() {
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    if (!url || !key) {
-      alert("Supabase is not configured yet. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.");
-      return;
-    }
-    const supabase = createBrowserClient(url, key);
-    await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: `${window.location.origin}/api/auth/callback` }
-    });
-  }
-  return <button onClick={signIn} className="btn-primary py-2.5">Join with Google</button>;
+  return (
+    <div className="flex items-center gap-2">
+      <Link
+        href="/signin?mode=sign-in"
+        className="text-sm font-semibold text-slate-700 hover:text-ink"
+      >
+        Sign in
+      </Link>
+      <Link href="/signin?mode=sign-up" className="btn-primary py-2.5">
+        Get started
+      </Link>
+    </div>
+  );
 }

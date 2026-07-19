@@ -4,6 +4,7 @@ export type CommunityPublicProfile = {
   user_id: string;
   full_name: string | null;
   username: string | null;
+  avatar_id: number | null;
 };
 
 type ServerSupabaseClient = Awaited<ReturnType<typeof createServerSupabaseClient>>;
@@ -33,22 +34,32 @@ export async function attachCommunityProfiles<T extends RowWithAuthor>(
   // The view deliberately exposes only a display name and username. If the
   // latest migration has not been applied yet, still return the posts instead
   // of hiding the whole feed; cards will use their Anonymous fallback.
-  const { data, error } = await supabase
+  let response = await supabase
     .from("comm_public_profiles")
-    .select("user_id, full_name, username")
+    .select("user_id, full_name, username, avatar_id")
     .in("user_id", userIds);
+
+  // Migration 005_profile_avatars.sql has not been applied yet — retry without avatar_id.
+  if (response.error && /avatar_id/.test(response.error.message)) {
+    response = await supabase
+      .from("comm_public_profiles")
+      .select("user_id, full_name, username")
+      .in("user_id", userIds) as typeof response;
+  }
+  const { data, error } = response;
 
   if (error) {
     return rows.map((row) => ({ ...row, profiles: null }));
   }
 
   const profilesByUserId = new Map(
-    (data ?? []).map((profile) => [
-      profile.user_id,
+    ((data ?? []) as Array<Record<string, unknown>>).map((profile) => [
+      profile.user_id as string,
       {
-        user_id: profile.user_id,
-        full_name: profile.full_name,
-        username: profile.username,
+        user_id: profile.user_id as string,
+        full_name: (profile.full_name as string | null) ?? null,
+        username: (profile.username as string | null) ?? null,
+        avatar_id: (profile.avatar_id as number | null) ?? null,
       } satisfies CommunityPublicProfile,
     ]),
   );
