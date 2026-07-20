@@ -6,7 +6,6 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Existing project tokens (kept)
         ink: "#08111f",
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -15,12 +14,14 @@ const config: Config = {
         brand: {
           50: "#eef8ff",
           100: "#d8efff",
+          300: "#70b9ff",
+          400: "#3b9cff",
           500: "#1f8fff",
           600: "#0b6ed8",
           700: "#0757ae",
+          950: "#03244d",
         },
         signal: "#15b88a",
-        // shadcn/ui tokens (CSS variables defined in globals.css)
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

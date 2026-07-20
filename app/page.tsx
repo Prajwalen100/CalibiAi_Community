@@ -1,57 +1,218 @@
 import Link from "next/link";
-import { CheckCircle2, ShieldCheck, Trophy, Users, Building2, GraduationCap, Briefcase } from "lucide-react";
+import { CheckCircle2, ShieldCheck, Trophy, Users, ArrowRight, Sparkles, Zap, Star } from "lucide-react";
 import { LeadForm } from "@/components/lead-form";
 import { TypingHeading } from "@/components/typing-heading";
-
-const stats = [
-  ["10+ Colleges", "Partnered across engineering campuses"],
-  ["1000+ Students", "Mentored in applied AI engineering"],
-  ["20+ Startups", "Hiring partners for verified talent"],
-  ["College Network", "Building India's largest AI education ecosystem."]
-];
+import { AnimatedStats } from "@/components/animated-stats";
+import { HeroArcadeDemo } from "@/components/hero-arcade-demo";
 
 export default function HomePage() {
   return (
-    <div>
-      <section className="relative overflow-hidden bg-gradient-to-b from-brand-50 to-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
-          <div>
-            <p className="inline-flex rounded-full bg-white px-4 py-2 text-sm font-semibold text-brand-700 shadow-sm">Verified AI profile + placement outcome</p>
-            <TypingHeading text="Become a verified, hire-ready applied-AI engineer." />
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">CalibiAI helps engineering students build real AI projects, pass hands-on assessments and publish a startup-trusted profile where every score point links to proof.</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link href="#join" className="btn-primary">Join a free workshop</Link><Link href="/success-stories" className="btn-secondary">See verified placements</Link></div>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {stats.map(([title, body]) => (
-                <div key={title} className="rounded-2xl bg-white p-4 shadow-sm border border-slate-100">
-                  <p className="font-bold text-ink">{title}</p>
-                  <p className="mt-1 text-xs text-slate-600">{body}</p>
+    <div className="relative overflow-hidden">
+      {/* Background Ambient Radial Glow Mesh */}
+      <div className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[800px] w-full -translate-x-1/2 max-w-7xl overflow-hidden opacity-50 dark:opacity-30">
+        <div className="absolute -top-40 left-1/4 h-[500px] w-[500px] rounded-full bg-gradient-to-tr from-brand-500/30 via-indigo-500/20 to-purple-500/30 blur-[120px]" />
+        <div className="absolute top-20 right-10 h-[400px] w-[400px] rounded-full bg-gradient-to-br from-purple-500/20 via-pink-500/20 to-brand-400/20 blur-[100px]" />
+      </div>
+
+      {/* HERO SECTION */}
+      <section className="relative mx-auto max-w-7xl px-4 pt-12 pb-16 sm:px-6 lg:px-8 lg:pt-20 lg:pb-24">
+        <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+          {/* Left Column: Copy & Actions */}
+          <div className="lg:col-span-7">
+            {/* Pill Badge */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-4 py-2 text-xs font-bold text-brand-700 backdrop-blur-md shadow-sm dark:bg-brand-500/20 dark:text-brand-300">
+              <span className="flex h-2 w-2 rounded-full bg-brand-500 animate-pulse" />
+              <Zap className="h-3.5 w-3.5 text-brand-600 dark:text-brand-400" />
+              <span>Verified AI Profiles + Real Placement Outcomes</span>
+            </div>
+
+            {/* Dynamic Typing Title */}
+            <div className="mt-4">
+              <TypingHeading text="Become a verified, hire-ready applied-AI engineer." />
+            </div>
+
+            {/* Subtitle */}
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-300">
+              CalibiAI helps engineering students build real AI flagship projects, pass hands-on assessments, and publish a startup-trusted profile where every score point links directly to audit proof.
+            </p>
+
+            {/* Action CTAs */}
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <Link href="#join" className="btn-primary text-base shadow-lg shadow-brand-500/25">
+                Join a free workshop
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+
+              <Link href="/success-stories" className="btn-secondary text-base">
+                See verified placements
+              </Link>
+            </div>
+
+            {/* Trust Badges */}
+            <div className="mt-8 flex items-center gap-4 text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <div className="flex items-center gap-1.5">
+                <ShieldCheck className="h-4 w-4 text-emerald-500" />
+                <span>Zero Certificate Padding</span>
+              </div>
+              <span>•</span>
+              <div className="flex items-center gap-1.5">
+                <Sparkles className="h-4 w-4 text-purple-500" />
+                <span>Decay-Aware Score</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Interactive Arcade Product Preview */}
+          <div className="lg:col-span-5">
+            <HeroArcadeDemo />
+          </div>
+        </div>
+
+        {/* REVAMPED STATS GRID (Fixing the boring screenshot section) */}
+        <div className="mt-8">
+          <div className="flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-brand-500" />
+            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+              Ecosystem & Impact Metrics
+            </h3>
+          </div>
+          <AnimatedStats />
+        </div>
+      </section>
+
+      {/* FLYWHEEL / HOW IT WORKS */}
+      <section className="relative border-t border-slate-200/60 bg-white/50 py-20 backdrop-blur-xl dark:border-slate-800/80 dark:bg-slate-950/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-brand-700 dark:bg-brand-950 dark:text-brand-300">
+              <Star className="h-3.5 w-3.5" /> Proven Methodology
+            </span>
+            <h2 className="mt-3 text-3xl font-black text-slate-900 dark:text-white sm:text-4xl">
+              A flywheel built around trusted talent proof.
+            </h2>
+            <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
+              From college workshop to verified hiring signal — every step adds auditable evidence to your profile.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                icon: Users,
+                step: "01",
+                title: "Join Community",
+                desc: "Start with a short workshop, set your AI career track, and join peer squads.",
+                gradient: "from-brand-500/20 to-transparent",
+              },
+              {
+                icon: Trophy,
+                step: "02",
+                title: "Build Projects",
+                desc: "Ship production RAG engines, prompt evaluation suites, and AI workflows.",
+                gradient: "from-purple-500/20 to-transparent",
+              },
+              {
+                icon: ShieldCheck,
+                step: "03",
+                title: "Get Verified",
+                desc: "Only linked, code-reviewed artifacts and passing assessments earn score points.",
+                gradient: "from-emerald-500/20 to-transparent",
+              },
+              {
+                icon: CheckCircle2,
+                step: "04",
+                title: "Placement Support",
+                desc: "Get surfaced directly to hiring startups looking for auditable AI engineering skills.",
+                gradient: "from-amber-500/20 to-transparent",
+              },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.title}
+                  className="group relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/50 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900/80"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 transition-transform group-hover:scale-110 dark:bg-slate-800 dark:text-brand-400">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <span className="font-mono text-2xl font-black text-slate-300 dark:text-slate-700 group-hover:text-brand-500 transition-colors">
+                      {item.step}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-6 text-lg font-bold text-slate-900 dark:text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+                    {item.desc}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* WHAT STARTUPS VERIFY */}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="rounded-3xl border border-slate-200/80 bg-gradient-to-br from-slate-900 via-slate-950 to-brand-950 p-8 text-white shadow-2xl sm:p-12 dark:border-slate-800">
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-5">
+              <div className="inline-flex items-center gap-2 rounded-full bg-brand-500/20 border border-brand-500/30 px-3 py-1 text-xs font-bold text-brand-300">
+                <ShieldCheck className="h-4 w-4 text-brand-400" />
+                <span>Auditable Hiring Standard</span>
+              </div>
+              <h2 className="mt-4 text-3xl font-black text-white sm:text-4xl">
+                What startups can verify on every CalibiAI profile.
+              </h2>
+              <p className="mt-4 text-sm text-slate-300 leading-relaxed">
+                No padded resumes. Hiring managers review actual code commits, live endpoints, and benchmark evaluation logs.
+              </p>
+            </div>
+
+            <div className="lg:col-span-7 grid gap-3 sm:grid-cols-2">
+              {[
+                "Live project links & verified GitHub repos",
+                "Passed hands-on skill & code assessments",
+                "Originality and plagiarism audit status",
+                "Current activity, decay-aware score & tier",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md hover:border-brand-500/40 transition-colors"
+                >
+                  <CheckCircle2 className="h-5 w-5 flex-none text-emerald-400" />
+                  <span className="text-xs font-semibold text-slate-200">{item}</span>
                 </div>
               ))}
             </div>
           </div>
-          <div className="card self-center bg-white/90">
-            <div className="flex items-center gap-3"><ShieldCheck className="text-signal" /><p className="font-bold">What startups can verify</p></div>
-            <div className="mt-6 grid gap-4">
-              {["Live project links and GitHub repos", "Passed hands-on skill assessments", "Originality and integrity review status", "Current activity, decay-aware score and tier"].map((item) => <div key={item} className="flex gap-3"><CheckCircle2 className="mt-0.5 h-5 w-5 flex-none text-signal" /><span className="text-slate-700">{item}</span></div>)}
+        </div>
+      </section>
+
+      {/* START FREE / WORKSHOP REGISTRATION */}
+      <section id="join" className="bg-slate-100/60 py-20 dark:bg-slate-900/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-6">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 px-3.5 py-1.5 text-xs font-bold text-brand-700 dark:text-brand-300">
+                ⚡ Start Free
+              </span>
+              <h2 className="mt-4 text-3xl font-black text-slate-900 dark:text-white sm:text-4xl">
+                Register for the next workshop.
+              </h2>
+              <p className="mt-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Take the first lightweight step toward building a verified AI engineering profile. CalibiAI captures core details now and enriches your roadmap after onboarding.
+              </p>
+            </div>
+
+            <div className="lg:col-span-6">
+              <div className="glass-panel p-8">
+                <LeadForm source="workshop" />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="max-w-2xl"><p className="font-semibold text-brand-700">How it works</p><h2 className="mt-2 text-3xl font-black text-ink">A flywheel built around trusted talent proof.</h2></div>
-        <div className="mt-8 grid gap-4 md:grid-cols-4">
-          {[[Users, "Join community", "Start with a short workshop and role selection."], [Trophy, "Build projects", "Ship RAG apps, prompt systems and AI workflows."], [ShieldCheck, "Get verified", "Only linked, reviewed artifacts add to the CalibiAI Score."], [CheckCircle2, "Placement support", "Admins surface top-tier students for startup roles."]].map(([Icon, title, body]) => {
-            const Component = Icon as typeof Users;
-            return <div key={title as string} className="card"><Component className="text-brand-600" /><h3 className="mt-4 font-bold">{title as string}</h3><p className="mt-2 text-sm leading-6 text-slate-600">{body as string}</p></div>;
-          })}
-        </div>
-      </section>
-
-      <section id="join" className="bg-slate-50 py-16">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <div><p className="font-semibold text-brand-700">Start free</p><h2 className="mt-2 text-3xl font-black">Register for the next workshop.</h2><p className="mt-4 text-slate-600">Keep the first step lightweight. CalibiAI captures core details now and enriches the profile after Google login and onboarding.</p></div>
-          <LeadForm source="workshop" />
         </div>
       </section>
     </div>
