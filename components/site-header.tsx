@@ -4,6 +4,8 @@ import { SignInButton } from "@/components/sign-in-button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { ShieldCheck, Bell } from "lucide-react";
+import { ScrollReveal } from "@/components/scroll-reveal";
+import { CompactBrandLogo } from "@/components/brand-logo";
 
 const links = [
   ["Academy", "/academy"],
@@ -59,44 +61,41 @@ export async function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/60 bg-white/70 backdrop-blur-xl transition-all dark:border-slate-800/80 dark:bg-slate-950/70">
+    <header className="sticky top-0 z-50 border-b border-slate-200/60 bg-white/70 backdrop-blur-2xl transition-all duration-300 dark:border-slate-800/80 dark:bg-slate-950/80 glass-panel-subtle">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
         {/* Brand Logo */}
-        <Link href="/" className="group flex items-center gap-2 text-lg font-black tracking-tight text-slate-900 dark:text-white">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 via-indigo-600 to-purple-600 text-white shadow-md transition-transform duration-300 group-hover:scale-105">
-            <ShieldCheck className="h-5 w-5" />
-          </div>
-          <span className="bg-gradient-to-r from-slate-900 via-brand-600 to-indigo-600 bg-clip-text text-transparent dark:from-white dark:via-brand-300 dark:to-indigo-300">
-            CalibiAI
-          </span>
+        <Link href="/" className="group flex items-center gap-2">
+          <CompactBrandLogo />
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden items-center gap-8 text-sm font-semibold text-slate-600 lg:flex dark:text-slate-300">
-          {links.map(([label, href]) => (
-            <Link
-              key={href}
-              href={href}
-              className="relative transition-colors hover:text-brand-600 dark:hover:text-brand-400"
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
+        <ScrollReveal direction="down" delay={100} className="hidden lg:flex">
+          <nav className="flex items-center gap-6 text-sm font-semibold text-secondary">
+            {links.map(([label, href]) => (
+              <Link
+                key={href}
+                href={href}
+                className="relative transition-colors duration-200 hover:text-brand-600 dark:hover:text-brand-400 after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 after:bg-brand-500 after:transition-all after:duration-300 hover:after:w-full dark:after:bg-brand-400"
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+        </ScrollReveal>
 
         {/* Actions & Controls */}
-        <div className="flex items-center gap-3">
+        <ScrollReveal direction="down" delay={200} className="flex items-center gap-3">
           <ThemeToggle />
 
           {user ? (
             <>
               <Link
                 href="/community/notifications"
-                className="relative flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-brand-500 hover:text-brand-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
+                className="relative flex h-9 w-9 items-center justify-center rounded-full border border-slate-200/80 bg-white/80 backdrop-blur-md text-secondary shadow-sm transition-all duration-200 hover:border-brand-500 hover:text-brand-600 hover:bg-white/90 dark:border-slate-800/80 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:border-brand-400 dark:hover:text-brand-400"
               >
                 <Bell className="h-4 w-4" />
                 {unreadCount > 0 && (
-                  <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white shadow-sm">
+                  <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white shadow-sm animate-pulse-soft">
                     {unreadCount > 9 ? "9+" : unreadCount}
                   </span>
                 )}
@@ -104,7 +103,7 @@ export async function SiteHeader() {
 
               <Link
                 href="/dashboard"
-                className="rounded-full border border-slate-200/80 bg-white/80 px-4 py-2 text-xs font-bold text-slate-800 shadow-sm transition hover:border-brand-500 hover:text-brand-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-brand-400"
+                className="rounded-full border border-slate-200/80 bg-white/80 backdrop-blur-md px-4 py-2 text-xs font-bold text-secondary shadow-sm transition-all duration-200 hover:border-brand-500 hover:text-brand-600 hover:bg-white/90 dark:border-slate-800/80 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:border-brand-400"
               >
                 Dashboard
               </Link>
@@ -119,7 +118,7 @@ export async function SiteHeader() {
               >
                 <button
                   type="submit"
-                  className="px-3 py-2 text-xs font-bold text-rose-600 transition hover:text-rose-700 dark:text-rose-400"
+                  className="px-3 py-2 text-xs font-bold text-danger transition-colors duration-200 hover:text-rose-700 dark:hover:text-rose-300"
                 >
                   Logout
                 </button>
@@ -128,7 +127,7 @@ export async function SiteHeader() {
           ) : (
             <SignInButton />
           )}
-        </div>
+        </ScrollReveal>
       </div>
     </header>
   );
