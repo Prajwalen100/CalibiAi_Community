@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { SignInButton } from "@/components/sign-in-button";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 const links = [
@@ -10,6 +11,19 @@ const links = [
   ["Blog", "/blog"],
 ] as const;
 
+async function withTimeout<T>(promise: PromiseLike<T>, ms: number): Promise<T> {
+  const timeout = new Promise<never>((_, reject) => {
+    const id = setTimeout(() => reject(new Error("Supabase request timed out")), ms);
+    if (typeof (promise as Promise<T>).finally === "function") {
+      void (promise as Promise<T>).finally(() => clearTimeout(id));
+    } else {
+      // If the thenable does not support finally, still clear timeout on resolution
+      void Promise.resolve(promise).finally(() => clearTimeout(id));
+    }
+  });
+  return await Promise.race([Promise.resolve(promise), timeout]);
+}
+
 export async function SiteHeader() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -18,10 +32,10 @@ export async function SiteHeader() {
   if (url && key) {
     try {
       const supabase = await createServerSupabaseClient();
-      const { data } = await supabase.auth.getUser();
+      const { data } = await withTimeout(supabase.auth.getUser(), 2000);
       user = data?.user ?? null;
     } catch {
-      // Ignore during build or offline
+      // Ignore during build, offline, or timeout
     }
   }
 
@@ -30,14 +44,18 @@ export async function SiteHeader() {
   if (user && url && key) {
     try {
       const supabase = await createServerSupabaseClient();
-      const { count } = await supabase
-        .from("comm_notifications")
-        .select("*", { count: "exact", head: true })
-        .eq("user_id", user.id)
-        .eq("is_read", false);
-      unreadCount = count ?? 0;
+      const result = await withTimeout(
+        supabase
+          .from("comm_notifications")
+          .select("*", { count: "exact", head: true })
+          .eq("user_id", user.id)
+          .eq("is_read", false)
+          .then((data) => data),
+        2000
+      );
+      unreadCount = (result as { count?: number | null }).count ?? 0;
     } catch {
-      // Table might not exist yet
+      // Table might not exist yet or request timed out
     }
   }
 
@@ -50,7 +68,8 @@ export async function SiteHeader() {
             <Link key={href} href={href} className="hover:text-ink">{label}</Link>
           ))}
         </nav>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
           {user ? (
             <>
               <Link href="/community/notifications" className="relative text-sm font-semibold text-slate-700 hover:text-ink">

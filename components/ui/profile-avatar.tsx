@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { getAvatarById } from "@/components/ui/avatar-picker";
 

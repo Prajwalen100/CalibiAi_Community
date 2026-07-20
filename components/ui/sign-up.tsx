@@ -234,9 +234,10 @@ const glassButtonTextVariants = cva(
 );
 
 export interface GlassButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof glassButtonVariants> {
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "size">,
+  VariantProps<typeof glassButtonVariants> {
   contentClassName?: string;
+  size?: "default" | "sm" | "lg" | "icon";
 }
 
 const GlassButton = React.forwardRef<HTMLButtonElement, GlassButtonProps>(
