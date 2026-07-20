@@ -9,7 +9,7 @@ export function SignInButton() {
     <div className="flex items-center gap-2">
       <Link
         href="/signin?mode=sign-in"
-        className="text-sm font-semibold text-slate-700 hover:text-ink"
+        className="text-sm font-semibold text-secondary hover:text-primary dark:hover:text-primary transition-colors"
       >
         Sign in
       </Link>
