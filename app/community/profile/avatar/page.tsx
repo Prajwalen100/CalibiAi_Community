@@ -11,11 +11,34 @@ export default async function ChooseAvatarPage() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/");
 
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("full_name, username, avatar_id")
-    .eq("user_id", user.id)
-    .maybeSingle();
+  let profile: { full_name: string | null; username: string | null; avatar_id: number | null } | null = null;
+
+  try {
+    let profileResp = await supabase
+      .from("profiles")
+      .select("full_name, username, avatar_id")
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    if (profileResp.error && /avatar_id/.test(profileResp.error.message)) {
+      profileResp = await supabase
+        .from("profiles")
+        .select("full_name, username")
+        .eq("user_id", user.id)
+        .maybeSingle() as unknown as typeof profileResp;
+    }
+
+    if (profileResp.data) {
+      const raw = profileResp.data as Record<string, unknown>;
+      profile = {
+        full_name: (raw.full_name as string | null) ?? null,
+        username: (raw.username as string | null) ?? null,
+        avatar_id: (raw.avatar_id as number | null) ?? null,
+      };
+    }
+  } catch {
+    /* avatar_id column or profiles table might not exist yet */
+  }
 
   const displayName =
     (profile?.full_name as string) ||
