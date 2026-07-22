@@ -131,7 +131,7 @@ export default async function MemberProfilePage({ params }: { params: Params }) 
         </div>
 
         <div className="mt-6 flex flex-wrap gap-3">
-          <span className="rounded-full bg-white px-4 py-2 font-black text-ink">{scoreTotal}/1000</span>
+          <span className="rounded-full bg-white px-4 py-2 font-black text-ink dark:bg-white dark:text-slate-900">{scoreTotal}/1000</span>
           <span className="rounded-full bg-signal px-4 py-2 font-bold capitalize text-ink">{scoreTier}</span>
           <span className={`rounded-full px-4 py-2 font-bold ${cLevel.bg} ${cLevel.color}`}>{cLevel.label}</span>
           {xpVal > 0 && <span className="rounded-full bg-white/10 px-4 py-2 font-bold">{xpVal} XP</span>}

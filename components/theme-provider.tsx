@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useSyncExternalStore, type ReactNode } from "react";
 
 type Theme = "light" | "dark";
 
@@ -11,56 +11,74 @@ interface ThemeContextType {
   resolvedTheme: Theme;
 }
 
+const THEME_STORAGE_KEY = "calibiai-theme";
+const THEME_CHANGE_EVENT = "calibiai-theme-change";
+
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+function getSystemTheme(): Theme {
+  if (typeof window === "undefined") return "light";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function getStoredTheme(): Theme | null {
+  if (typeof window === "undefined") return null;
+  const saved = window.localStorage.getItem(THEME_STORAGE_KEY);
+  return saved === "dark" || saved === "light" ? saved : null;
+}
+
+function getThemeSnapshot(): Theme {
+  return getStoredTheme() ?? getSystemTheme();
+}
+
+function getServerThemeSnapshot(): Theme {
+  return "light";
+}
+
+function applyTheme(theme: Theme) {
+  if (typeof document === "undefined") return;
+  document.documentElement.classList.toggle("dark", theme === "dark");
+  document.documentElement.style.colorScheme = theme;
+}
+
+function subscribeToThemeChanges(onStoreChange: () => void) {
+  if (typeof window === "undefined") return () => {};
+
+  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  const handleSystemThemeChange = () => {
+    if (!getStoredTheme()) onStoreChange();
+  };
+
+  window.addEventListener("storage", onStoreChange);
+  window.addEventListener(THEME_CHANGE_EVENT, onStoreChange);
+  mediaQuery.addEventListener("change", handleSystemThemeChange);
+
+  return () => {
+    window.removeEventListener("storage", onStoreChange);
+    window.removeEventListener(THEME_CHANGE_EVENT, onStoreChange);
+    mediaQuery.removeEventListener("change", handleSystemThemeChange);
+  };
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("light");
-  const [resolvedTheme, setResolvedTheme] = useState<Theme>("light");
-  const [mounted, setMounted] = useState(false);
+  const theme = useSyncExternalStore(subscribeToThemeChanges, getThemeSnapshot, getServerThemeSnapshot);
 
   useEffect(() => {
-    setMounted(true);
-    const saved = window.localStorage.getItem("calibiai-theme") as Theme | null;
-    const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    const initialTheme = saved ?? preferred;
-    setTheme(initialTheme);
-    setResolvedTheme(initialTheme);
-    document.documentElement.classList.toggle("dark", initialTheme === "dark");
-    document.documentElement.style.colorScheme = initialTheme;
+    applyTheme(theme);
+  }, [theme]);
+
+  const setThemeValue = useCallback((newTheme: Theme) => {
+    window.localStorage.setItem(THEME_STORAGE_KEY, newTheme);
+    applyTheme(newTheme);
+    window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
   }, []);
 
-  const setThemeValue = (newTheme: Theme) => {
-    setTheme(newTheme);
-    setResolvedTheme(newTheme);
-    window.localStorage.setItem("calibiai-theme", newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
-    document.documentElement.style.colorScheme = newTheme;
-  };
-
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setThemeValue(newTheme);
-  };
-
-  // Listen for system theme changes
-  useEffect(() => {
-    if (!mounted) return;
-    
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e: MediaQueryListEvent) => {
-      const saved = window.localStorage.getItem("calibiai-theme");
-      if (!saved) {
-        const newTheme = e.matches ? "dark" : "light";
-        setThemeValue(newTheme);
-      }
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, [mounted]);
+  const toggleTheme = useCallback(() => {
+    setThemeValue(theme === "dark" ? "light" : "dark");
+  }, [setThemeValue, theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme: setThemeValue, toggleTheme, resolvedTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme: setThemeValue, toggleTheme, resolvedTheme: theme }}>
       {children}
     </ThemeContext.Provider>
   );
@@ -68,16 +86,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
 export function useTheme() {
   const context = useContext(ThemeContext);
-  // During SSR/prerendering, return default values instead of throwing
   if (context === undefined) {
-    if (typeof window === "undefined") {
-      return {
-        theme: "light" as Theme,
-        setTheme: () => {},
-        toggleTheme: () => {},
-        resolvedTheme: "light" as Theme,
-      };
-    }
     throw new Error("useTheme must be used within a ThemeProvider");
   }
   return context;

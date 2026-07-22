@@ -41,7 +41,7 @@ export default async function ProfilePage({ params }: { params: Params }) {
         <h1 className="mt-2 text-4xl font-black">{profile.full_name}</h1>
         <p className="mt-2 text-slate-300">{profile.target_role} {profile.college ? `· ${profile.college}` : ""}</p>
         <div className="mt-6 flex gap-3">
-          <span className="rounded-full bg-white px-4 py-2 font-black text-ink">{score?.total ?? 0}/1000</span>
+          <span className="rounded-full bg-white px-4 py-2 font-black text-ink dark:bg-white dark:text-slate-900">{score?.total ?? 0}/1000</span>
           <span className="rounded-full bg-signal px-4 py-2 font-bold capitalize text-ink">{score?.tier ?? "bronze"}</span>
         </div>
       </div>

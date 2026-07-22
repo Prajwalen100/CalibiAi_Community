@@ -75,78 +75,255 @@
   }
 }
 
-/* ── Semantic Text Color Utilities ─────────────────────────── */
-@layer components {
-  .text-primary {
-    color: rgb(15 23 42);
-  }
-  .dark .text-primary {
-    color: rgb(248 250 252);
-  }
-
-  .text-secondary {
-    color: rgb(71 85 105);
-  }
-  .dark .text-secondary {
-    color: rgb(203 213 225);
-  }
-
-  .text-muted {
-    color: rgb(100 116 139);
-  }
-  .dark .text-muted {
-    color: rgb(148 163 184);
-  }
-
-  .text-subtle {
-    color: rgb(148 163 184);
-  }
-  .dark .text-subtle {
-    color: rgb(100 116 139);
-  }
-
-  .text-brand {
-    color: #0757ae;
-  }
-  .dark .text-brand {
-    color: #70b9ff;
-  }
-
-  .text-brand-strong {
-    color: #0b6ed8;
-  }
-  .dark .text-brand-strong {
-    color: #3b9cff;
-  }
-
-  .text-success {
-    color: #047857;
-  }
-  .dark .text-success {
-    color: #86efac;
-  }
-
-  .text-warning {
-    color: #b45309;
-  }
-  .dark .text-warning {
-    color: #fcd34d;
-  }
-
-  .text-danger {
-    color: #be123c;
-  }
-  .dark .text-danger {
-    color: #fda4af;
-  }
-
-  .text-info {
-    color: #1d4ed8;
-  }
-  .dark .text-info {
-    color: #93c5fd;
-  }
+/* ── Semantic Text Color Utilities ───────────────────────────
+   Keep these unlayered and after Tailwind utilities so they win over
+   Tailwind color utilities with the same names (for example text-primary
+   and text-secondary). Interactive variants keep higher specificity, so
+   hover/group-hover/dark utilities still override them where intended. */
+.text-primary {
+  color: hsl(var(--foreground));
 }
+
+.text-secondary {
+  color: hsl(var(--ink-muted));
+}
+
+.text-muted {
+  color: rgb(100 116 139);
+}
+
+.text-subtle {
+  color: rgb(148 163 184);
+}
+
+.text-brand {
+  color: rgb(7 87 174);
+}
+
+.text-brand-strong {
+  color: rgb(11 110 216);
+}
+
+.text-success {
+  color: rgb(4 120 87);
+}
+
+.text-warning {
+  color: rgb(180 83 9);
+}
+
+.text-danger {
+  color: rgb(190 18 60);
+}
+
+.text-info {
+  color: rgb(29 78 216);
+}
+
+.hover\:text-primary:hover {
+  color: hsl(var(--foreground));
+}
+
+.hover\:text-secondary:hover {
+  color: hsl(var(--ink-muted));
+}
+
+.dark .text-primary,
+.dark .dark\:text-primary {
+  color: hsl(var(--foreground));
+}
+
+.dark .text-secondary,
+.dark .dark\:text-secondary {
+  color: hsl(var(--ink-muted));
+}
+
+.dark .text-muted,
+.dark .dark\:text-muted {
+  color: rgb(148 163 184);
+}
+
+.dark .text-subtle,
+.dark .dark\:text-subtle {
+  color: rgb(100 116 139);
+}
+
+.dark .text-brand,
+.dark .dark\:text-brand {
+  color: rgb(112 185 255);
+}
+
+.dark .text-brand-strong,
+.dark .dark\:text-brand-strong {
+  color: rgb(59 156 255);
+}
+
+.dark .text-success,
+.dark .dark\:text-success {
+  color: rgb(110 231 183);
+}
+
+.dark .text-warning,
+.dark .dark\:text-warning {
+  color: rgb(252 211 77);
+}
+
+.dark .text-danger,
+.dark .dark\:text-danger {
+  color: rgb(253 164 175);
+}
+
+.dark .text-info,
+.dark .dark\:text-info {
+  color: rgb(147 197 253);
+}
+
+.dark .hover\:text-primary:hover,
+.dark .dark\:hover\:text-primary:hover {
+  color: hsl(var(--foreground));
+}
+
+.dark .hover\:text-secondary:hover,
+.dark .dark\:hover\:text-secondary:hover {
+  color: hsl(var(--ink-muted));
+}
+
+
+/* ── Theme Contrast Compatibility Layer ──────────────────────
+   Low-specificity dark-mode fallbacks for older pages that still use one-sided
+   Tailwind color utilities (for example text-slate-600 without dark:text-*).
+   Explicit dark:* classes have higher specificity and continue to win. */
+:where(.dark) .text-ink,
+:where(.dark) .hover\:text-ink:hover {
+  color: hsl(var(--foreground));
+}
+
+:where(.dark) .text-slate-950,
+:where(.dark) .text-slate-900,
+:where(.dark) .text-slate-800 {
+  color: rgb(248 250 252);
+}
+
+:where(.dark) .text-slate-700 {
+  color: rgb(226 232 240);
+}
+
+:where(.dark) .text-slate-600 {
+  color: rgb(203 213 225);
+}
+
+:where(.dark) .text-slate-500 {
+  color: rgb(148 163 184);
+}
+
+:where(.dark) .text-slate-400,
+:where(.dark) .text-slate-300,
+:where(.dark) .text-slate-200 {
+  color: rgb(203 213 225);
+}
+
+:where(.dark) .text-brand-900,
+:where(.dark) .text-brand-800,
+:where(.dark) .text-brand-700,
+:where(.dark) .hover\:text-brand-700:hover,
+:where(.dark) .group:hover .group-hover\:text-brand-700 {
+  color: rgb(112 185 255);
+}
+
+:where(.dark) .text-brand-600,
+:where(.dark) .hover\:text-brand-600:hover {
+  color: rgb(59 156 255);
+}
+
+:where(.dark) .text-blue-800,
+:where(.dark) .text-blue-700,
+:where(.dark) .text-blue-600 { color: rgb(147 197 253); }
+:where(.dark) .text-indigo-800,
+:where(.dark) .text-indigo-700,
+:where(.dark) .text-indigo-600 { color: rgb(165 180 252); }
+:where(.dark) .text-purple-800,
+:where(.dark) .text-purple-700,
+:where(.dark) .text-purple-600 { color: rgb(216 180 254); }
+:where(.dark) .text-pink-800,
+:where(.dark) .text-pink-700,
+:where(.dark) .text-pink-600 { color: rgb(249 168 212); }
+:where(.dark) .text-fuchsia-800,
+:where(.dark) .text-fuchsia-700,
+:where(.dark) .text-fuchsia-600 { color: rgb(240 171 252); }
+:where(.dark) .text-cyan-800,
+:where(.dark) .text-cyan-700,
+:where(.dark) .text-cyan-600 { color: rgb(103 232 249); }
+:where(.dark) .text-teal-800,
+:where(.dark) .text-teal-700,
+:where(.dark) .text-teal-600 { color: rgb(94 234 212); }
+:where(.dark) .text-green-800,
+:where(.dark) .text-green-700,
+:where(.dark) .text-green-600,
+:where(.dark) .text-emerald-800,
+:where(.dark) .text-emerald-700,
+:where(.dark) .text-emerald-600 { color: rgb(110 231 183); }
+:where(.dark) .text-lime-800,
+:where(.dark) .text-lime-700,
+:where(.dark) .text-lime-600 { color: rgb(190 242 100); }
+:where(.dark) .text-amber-800,
+:where(.dark) .text-amber-700,
+:where(.dark) .text-amber-600 { color: rgb(252 211 77); }
+:where(.dark) .text-orange-800,
+:where(.dark) .text-orange-700,
+:where(.dark) .text-orange-600 { color: rgb(253 186 116); }
+:where(.dark) .text-red-800,
+:where(.dark) .text-red-700,
+:where(.dark) .text-red-600,
+:where(.dark) .text-rose-800,
+:where(.dark) .text-rose-700,
+:where(.dark) .text-rose-600 { color: rgb(253 164 175); }
+
+:where(.dark) .bg-white,
+:where(.dark) .bg-white\/50,
+:where(.dark) .bg-white\/60,
+:where(.dark) .bg-white\/70,
+:where(.dark) .bg-white\/80,
+:where(.dark) .bg-white\/90,
+:where(.dark) .bg-slate-50,
+:where(.dark) .bg-slate-50\/50,
+:where(.dark) .bg-slate-50\/80,
+:where(.dark) .bg-slate-100,
+:where(.dark) .bg-slate-100\/80,
+:where(.dark) .bg-slate-200 {
+  background-color: rgb(15 23 42 / 0.82);
+}
+
+:where(.dark) .bg-brand-50,
+:where(.dark) .bg-blue-50 { background-color: rgb(23 37 84 / 0.5); }
+:where(.dark) .bg-indigo-50 { background-color: rgb(30 27 75 / 0.5); }
+:where(.dark) .bg-purple-50 { background-color: rgb(59 7 100 / 0.5); }
+:where(.dark) .bg-pink-50 { background-color: rgb(80 7 36 / 0.5); }
+:where(.dark) .bg-fuchsia-50 { background-color: rgb(74 4 78 / 0.5); }
+:where(.dark) .bg-cyan-50 { background-color: rgb(8 51 68 / 0.5); }
+:where(.dark) .bg-teal-50 { background-color: rgb(4 47 46 / 0.5); }
+:where(.dark) .bg-green-50,
+:where(.dark) .bg-emerald-50 { background-color: rgb(6 78 59 / 0.5); }
+:where(.dark) .bg-lime-50 { background-color: rgb(54 83 20 / 0.5); }
+:where(.dark) .bg-amber-50 { background-color: rgb(69 26 3 / 0.5); }
+:where(.dark) .bg-orange-50 { background-color: rgb(67 20 7 / 0.5); }
+:where(.dark) .bg-red-50,
+:where(.dark) .bg-rose-50 { background-color: rgb(76 5 25 / 0.5); }
+
+:where(.dark) .border-slate-100,
+:where(.dark) .border-slate-200,
+:where(.dark) .border-slate-200\/60,
+:where(.dark) .border-slate-200\/80,
+:where(.dark) .border-slate-200\/90 {
+  border-color: rgb(30 41 59 / 0.85);
+}
+
+:where(.dark) .border-brand-200,
+:where(.dark) .border-blue-200 { border-color: rgb(30 64 175 / 0.45); }
+:where(.dark) .border-green-200,
+:where(.dark) .border-emerald-200 { border-color: rgb(6 95 70 / 0.5); }
+:where(.dark) .border-amber-200 { border-color: rgb(146 64 14 / 0.5); }
+:where(.dark) .border-red-200,
+:where(.dark) .border-rose-200 { border-color: rgb(159 18 57 / 0.5); }
 
 /* ── Base Styles ───────────────────────────────────────────── */
 * { 
@@ -209,6 +386,7 @@ a {
   }
 }
 
+@layer components {
 /* ── Form Input Styles ─────────────────────────────────────── */
 .input {
   @apply w-full rounded-2xl border border-slate-200/80 bg-white/90 px-4 py-3 text-sm text-slate-900 outline-none transition-all duration-200 
@@ -320,6 +498,8 @@ a {
   @apply from-brand-500/10 via-indigo-500/5 to-purple-500/10 blur-3xl;
 }
 
+}
+
 /* ── Gradient Text Utilities ───────────────────────────────── */
 .gradient-text {
   @apply bg-gradient-to-r from-slate-900 via-brand-600 to-indigo-600 bg-clip-text text-transparent dark:from-white dark:via-brand-300 dark:to-indigo-300;
@@ -339,62 +519,6 @@ a {
 
 .gradient-text-forest {
   @apply bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 bg-clip-text text-transparent;
-}
-
-/* Theme compatibility for pages built with fixed Tailwind colour classes.
-   These rules keep existing content readable until every page is migrated to
-   the semantic text/background utilities above. Intentionally light text
-   (slate-50 through slate-300) is left alone for dark hero panels. */
-.dark .bg-white,
-.dark .bg-slate-50,
-.dark .bg-slate-100,
-.dark .bg-slate-200 {
-  background-color: rgb(15 23 42) !important;
-}
-
-.dark .bg-brand-50,
-.dark .bg-brand-100 {
-  background-color: rgb(12 37 64) !important;
-}
-
-.dark .border-slate-100,
-.dark .border-slate-200,
-.dark .border-slate-300 {
-  border-color: rgb(51 65 85) !important;
-}
-
-.dark .text-slate-950,
-.dark .text-slate-900,
-.dark .text-slate-800,
-.dark .text-slate-700 {
-  color: rgb(241 245 249) !important;
-}
-
-.dark .text-slate-600,
-.dark .text-slate-500 {
-  color: rgb(203 213 225) !important;
-}
-
-.dark .text-brand-950,
-.dark .text-brand-900,
-.dark .text-brand-800,
-.dark .text-brand-700,
-.dark .text-brand-600 {
-  color: rgb(147 197 253) !important;
-}
-
-.dark .text-emerald-700,
-.dark .text-green-700,
-.dark .text-amber-700,
-.dark .text-rose-700 {
-  color: rgb(167 243 208) !important;
-}
-
-/* Light mode has a small contrast floor for secondary copy on white cards. */
-:root:not(.dark) .text-slate-500,
-:root:not(.dark) .text-muted,
-:root:not(.dark) .text-subtle {
-  color: rgb(71 85 105);
 }
 
 /* ── Animation Keyframes ───────────────────────────────────── */
