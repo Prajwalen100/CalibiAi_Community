@@ -962,3 +962,5 @@ a {
     display: none !important;
   }
 }
+/* OAuth labels sit inside the dark primary button in both themes. */
+.btn-primary .text-foreground { color: white !important; }

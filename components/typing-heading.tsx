@@ -8,7 +8,8 @@ export function TypingHeading({ text }: { text: string }) {
 
   useEffect(() => {
     let i = 0;
-    const speed = 75; // slow motion typing speed in ms per character
+    let restart: ReturnType<typeof setTimeout> | undefined;
+    const speed = 75;
     const timer = setInterval(() => {
       if (i < text.length) {
         setDisplayedText(text.substring(0, i + 1));
@@ -16,10 +17,15 @@ export function TypingHeading({ text }: { text: string }) {
       } else {
         setIsComplete(true);
         clearInterval(timer);
+        // Replay the headline every 10 seconds so the hero stays alive.
+        restart = setTimeout(() => {
+          setDisplayedText("");
+          setIsComplete(false);
+        }, 10000);
       }
     }, speed);
 
-    return () => clearInterval(timer);
+    return () => { clearInterval(timer); if (restart) clearTimeout(restart); };
   }, [text]);
 
   return (

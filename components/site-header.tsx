@@ -10,7 +10,7 @@ import { CompactBrandLogo } from "@/components/brand-logo";
 const links = [
   ["Academy", "/academy"],
   ["Community", "/community"],
-  ["Placements", "/placements"],
+  ["Opportunity", "/placements"],
   ["Blog", "/blog"],
 ] as const;
 

@@ -13,7 +13,6 @@ const pinnedSections = [
   { icon: "🚀", label: "Featured AI Projects", href: "/community/showcase", color: "bg-green-50 border-green-200 dark:bg-green-950/30 dark:border-green-900/30", gradient: "from-emerald-500/20 to-transparent" },
   { icon: "🏆", label: "Weekly Challenge", href: "/community/challenges", color: "bg-amber-50 border-amber-200 dark:bg-amber-950/30 dark:border-amber-900/30", gradient: "from-amber-500/20 to-transparent" },
   { icon: "📅", label: "Upcoming Events", href: "/community/events", color: "bg-rose-50 border-rose-200 dark:bg-rose-950/30 dark:border-rose-900/30", gradient: "from-rose-500/20 to-transparent" },
-  { icon: "💼", label: "Latest Internships", href: "/community/jobs", color: "bg-teal-50 border-teal-200 dark:bg-teal-950/30 dark:border-teal-900/30", gradient: "from-teal-500/20 to-transparent" },
   { icon: "📰", label: "AI News", href: "/community?tab=research", color: "bg-indigo-50 border-indigo-200 dark:bg-indigo-950/30 dark:border-indigo-900/30", gradient: "from-indigo-500/20 to-transparent" },
 ] as const;
 
