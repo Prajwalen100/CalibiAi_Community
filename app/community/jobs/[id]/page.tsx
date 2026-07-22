@@ -145,7 +145,7 @@ export default async function JobDetailPage({ params }: { params: Params }) {
                     <Send className="h-4 w-4" /> Apply now
                   </Link>
                 ) : (
-                  <Link href="/" className="btn-primary mt-4 inline-flex w-full items-center justify-center gap-2">Sign in to apply</Link>
+                  <Link href="/signin?mode=sign-in" className="btn-primary mt-4 inline-flex w-full items-center justify-center gap-2">Student sign in to apply</Link>
                 )}
               </>
             )}

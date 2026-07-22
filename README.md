@@ -18,11 +18,25 @@ A Next.js + Supabase implementation of the CalibiAI MVP: public conversion pages
    - `supabase/migrations/003_community_feed_and_jobs.sql` (Community feed views and structured job postings)
    - `supabase/migrations/004_squads_events_applications.sql` (Team Finder squads, events, and job applications)
    - `supabase/migrations/005_profile_avatars.sql` (Adds `avatar_id` to profiles table & updates community public views)
+   - `supabase/migrations/006_employer.sql` (Employer role, company profiles, job offers, employer-only job posting)
+   - `supabase/migrations/007_curriculum_progress.sql` (Per-user reading progress for Resource Hub / phases curriculum)
 
-   If you skip any migration, you will get setup or feature errors (for example, saving an avatar requires migration 005, and squads/events require migration 004). If you are using the Supabase SQL Editor, paste and run each file separately in numerical order; if you are using the Supabase CLI, run `supabase db push`.
+   If you skip any migration, you will get setup or feature errors (for example, saving an avatar requires migration 005, squads/events require migration 004, employer hiring requires migration 006, and module reading progress requires migration 007). If you are using the Supabase SQL Editor, paste and run each file separately in numerical order; if you are using the Supabase CLI, run `supabase db push`.
 3. Enable Google OAuth in Supabase Auth and set the callback URL to:
    - Local: `http://localhost:3000/api/auth/callback`
    - Vercel: `https://YOUR_DOMAIN/api/auth/callback`
+
+## Employer vs student login
+
+- **Student login** (`/signin`) — onboarding, roadmap, community, apply to jobs.
+- **Employer login** (`/employer/signin`) — company profile (name, logo, email, location type, PAN, website, size), dashboard with applications inbox, candidate profiles, notifications, and job/gig posting.
+- Jobs posted by employers appear on `/placements` (Opportunity) and `/community/jobs/opportunities`. Students apply; employers manage the pipeline and can send offers.
+
+## Resource Hub (Phases curriculum)
+
+- Community → **Resource Hub** (`/community/resources`) loads every lesson from the repo `phases/` folder (20 phases, 500+ modules).
+- Open a phase, then a module to read the full markdown lesson. A **top progress line** tracks scroll %; signed-in users persist progress in `curriculum_progress` (migration 007).
+- Routes: `/community/resources`, `/community/resources/[phaseId]`, `/community/resources/[phaseId]/[moduleSlug]`.
 4. Install and run:
 
 ```bash

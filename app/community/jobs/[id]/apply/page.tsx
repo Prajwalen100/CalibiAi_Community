@@ -12,7 +12,7 @@ export default async function ApplyPage({ params }: { params: Params }) {
   const { id } = await params;
   const supabase = await createServerSupabaseClient();
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) redirect("/");
+  if (!user) redirect("/signin?mode=sign-in");
 
   const { data: job, error } = await supabase
     .from("comm_jobs")
