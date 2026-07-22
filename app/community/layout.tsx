@@ -180,7 +180,7 @@ export default async function CommunityLayout({ children }: { children: ReactNod
                 </div>
               </ScrollReveal>
 
-              {/* Leaderboard */
+              {/* Leaderboard */}
               <ScrollReveal direction="right" delay={100} className="glass-panel p-4">
                 <div className="flex items-center justify-between">
                   <p className="text-sm font-bold text-primary">🏆 Leaderboard</p>
