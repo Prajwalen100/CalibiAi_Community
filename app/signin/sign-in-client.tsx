@@ -24,9 +24,14 @@ export function SignInPageClient({ mode }: { mode: "sign-up" | "sign-in" }) {
       alert("Supabase is not configured. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.");
       return;
     }
+    try {
+      document.cookie = `calibiai_auth_intent=student; path=/; max-age=600; samesite=lax`;
+    } catch {
+      /* ignore */
+    }
     await supabase.auth.signInWithOAuth({
       provider,
-      options: { redirectTo: `${window.location.origin}/api/auth/callback` },
+      options: { redirectTo: `${window.location.origin}/api/auth/callback?intent=student` },
     });
   }
 
@@ -44,11 +49,20 @@ export function SignInPageClient({ mode }: { mode: "sign-up" | "sign-in" }) {
       return "Supabase is not configured yet. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.";
     }
 
+    try {
+      document.cookie = `calibiai_auth_intent=student; path=/; max-age=600; samesite=lax`;
+    } catch {
+      /* ignore */
+    }
+
     if (mode === "sign-up") {
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
-        options: { emailRedirectTo: `${window.location.origin}/api/auth/callback` },
+        options: {
+          emailRedirectTo: `${window.location.origin}/api/auth/callback?intent=student`,
+          data: { account_type: "student" },
+        },
       });
       if (error) return error.message;
       if (!data.session) {
@@ -60,7 +74,7 @@ export function SignInPageClient({ mode }: { mode: "sign-up" | "sign-in" }) {
 
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) return error.message;
-    window.location.assign("/community");
+    window.location.assign("/api/auth/callback?intent=student");
     return;
   }
 
@@ -105,6 +119,9 @@ export function SignInPageClient({ mode }: { mode: "sign-up" | "sign-in" }) {
         </div>
 
         {/* Auth Component */}
+        <div className="mb-2 rounded-full bg-brand-50 px-4 py-1.5 text-xs font-bold text-brand-700 dark:bg-brand-950/40 dark:text-brand-300">
+          Student account
+        </div>
         <AuthComponent
           mode={mode}
           brandName=""
@@ -113,6 +130,13 @@ export function SignInPageClient({ mode }: { mode: "sign-up" | "sign-in" }) {
           onEmailSubmit={handleEmailSubmit}
           switchHref={mode === "sign-up" ? "/signin?mode=sign-in" : "/signin?mode=sign-up"}
         />
+
+        <p className="mt-6 text-center text-sm text-secondary">
+          Hiring talent?{" "}
+          <a href="/employer/signin?mode=sign-in" className="font-bold text-indigo-600 hover:underline dark:text-indigo-400">
+            Employer login →
+          </a>
+        </p>
 
         {/* Footer Links */}
         <div className="mt-10 flex flex-col sm:flex-row items-center gap-4 text-sm text-secondary">

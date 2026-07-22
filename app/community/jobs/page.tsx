@@ -64,28 +64,7 @@ export default async function JobsPage() {
 
       {/* Main Action Cards */}
       <StaggerReveal staggerDelay={150} direction="up" className="mt-6 grid gap-4 sm:grid-cols-2">
-        {/* Post the Job */}
-        <GlowOnHover color="brand" intensity="normal" className="group">
-          <Link href="/community/jobs/create" className="glass-panel-strong group flex flex-col justify-between gap-4 p-6 transition-all duration-300 hover:border-brand-500/50 hover:shadow-xl hover:-translate-y-1 h-full">
-            <div>
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-indigo-600 text-white group-hover:scale-110 transition-transform">
-                <Plus className="h-6 w-6" />
-              </div>
-              <h2 className="mt-4 text-xl font-black text-primary">Post the Job</h2>
-              <p className="mt-2 text-sm text-secondary">Publish a role with skills, compensation, experience, and receive applications with instant notifications.</p>
-              <ul className="mt-4 space-y-1 text-xs text-secondary">
-                <li className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-brand-500" /> Structured job form</li>
-                <li className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-brand-500" /> Applications land in your inbox</li>
-                <li className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-brand-500" /> Update statuses (shortlist, reject, hire)</li>
-              </ul>
-            </div>
-            <span className="inline-flex items-center gap-1 text-sm font-bold text-brand-600 dark:text-brand-400 group-hover:gap-2 transition-all">
-              {user ? "Create posting" : "Sign in to post"} →
-            </span>
-          </Link>
-        </GlowOnHover>
-
-        {/* Apply for Opportunity */}
+        {/* Apply for Opportunity — primary student action */}
         <GlowOnHover color="success" intensity="normal" className="group">
           <Link href="/community/jobs/opportunities" className="glass-panel-strong group flex flex-col justify-between gap-4 p-6 transition-all duration-300 hover:border-emerald-500/50 hover:shadow-xl hover:-translate-y-1 h-full">
             <div>
@@ -93,7 +72,7 @@ export default async function JobsPage() {
                 <Search className="h-6 w-6" />
               </div>
               <h2 className="mt-4 text-xl font-black text-primary">Apply for Opportunity</h2>
-              <p className="mt-2 text-sm text-secondary">Browse every open role in the community, filter by type or workplace, and apply — the poster gets notified instantly.</p>
+              <p className="mt-2 text-sm text-secondary">Browse every open role posted by employers, filter by type or workplace, and apply — the employer gets notified instantly.</p>
               <ul className="mt-4 space-y-1 text-xs text-secondary">
                 <li className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> {openCount} open opportunit{openCount === 1 ? "y" : "ies"} right now</li>
                 <li className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> One-click structured application</li>
@@ -105,26 +84,49 @@ export default async function JobsPage() {
             </span>
           </Link>
         </GlowOnHover>
+
+        {/* Employers post jobs */}
+        <GlowOnHover color="brand" intensity="normal" className="group">
+          <Link href="/employer/signin?mode=sign-in" className="glass-panel-strong group flex flex-col justify-between gap-4 p-6 transition-all duration-300 hover:border-brand-500/50 hover:shadow-xl hover:-translate-y-1 h-full">
+            <div>
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-indigo-600 text-white group-hover:scale-110 transition-transform">
+                <Plus className="h-6 w-6" />
+              </div>
+              <h2 className="mt-4 text-xl font-black text-primary">Employers: Post a job</h2>
+              <p className="mt-2 text-sm text-secondary">Hiring? Sign in with Employer login, complete your company profile, and publish roles that appear here for students.</p>
+              <ul className="mt-4 space-y-1 text-xs text-secondary">
+                <li className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-brand-500" /> Company-verified postings</li>
+                <li className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-brand-500" /> Applications inbox & pipeline</li>
+                <li className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-brand-500" /> Full candidate profiles & offers</li>
+              </ul>
+            </div>
+            <span className="inline-flex items-center gap-1 text-sm font-bold text-brand-600 dark:text-brand-400 group-hover:gap-2 transition-all">
+              Employer login →
+            </span>
+          </Link>
+        </GlowOnHover>
       </StaggerReveal>
 
       {user && (
         <StaggerReveal staggerDelay={150} direction="up" className="mt-8 grid gap-4 sm:grid-cols-2">
-          <GlowOnHover color="brand" intensity="subtle" className="group">
-            <Link href="/community/jobs/manage" className="glass-panel p-5 transition-all duration-300 hover:border-brand-500/50 hover:shadow-lg hover:-translate-y-0.5">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-950/50 dark:text-brand-400 group-hover:scale-110 transition-transform">
-                  <Building2 className="h-5 w-5" />
+          {myPostingsCount > 0 && (
+            <GlowOnHover color="brand" intensity="subtle" className="group">
+              <Link href="/employer/dashboard/jobs" className="glass-panel p-5 transition-all duration-300 hover:border-brand-500/50 hover:shadow-lg hover:-translate-y-0.5">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-950/50 dark:text-brand-400 group-hover:scale-110 transition-transform">
+                    <Building2 className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-primary">My postings</p>
+                    <p className="text-xs text-subtle">{myPostingsCount} job{myPostingsCount === 1 ? "" : "s"} · Manage in employer dashboard</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-bold text-primary">My postings</p>
-                  <p className="text-xs text-subtle">{myPostingsCount} job{myPostingsCount === 1 ? "" : "s"} · View applications received</p>
+                <div className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-brand-600 dark:text-brand-400 group-hover:gap-2 transition-all">
+                  Employer dashboard →
                 </div>
-              </div>
-              <div className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-brand-600 dark:text-brand-400 group-hover:gap-2 transition-all">
-                Manage →
-              </div>
-            </Link>
-          </GlowOnHover>
+              </Link>
+            </GlowOnHover>
+          )}
           
           <GlowOnHover color="success" intensity="subtle" className="group">
             <Link href="/community/jobs/applications" className="glass-panel p-5 transition-all duration-300 hover:border-emerald-500/50 hover:shadow-lg hover:-translate-y-0.5">

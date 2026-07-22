@@ -10,7 +10,21 @@ export const dynamic = "force-dynamic";
 export default async function OnboardingPage() {
   const supabase = await createServerSupabaseClient();
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) redirect("/");
+  if (!user) redirect("/signin?mode=sign-in");
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role, target_role")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (profile?.role === "employer") {
+    redirect("/employer/onboarding");
+  }
+  if (profile?.target_role && profile.role !== "employer") {
+    redirect("/dashboard");
+  }
+
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Animated Background Mesh */}

@@ -138,6 +138,31 @@ export async function createJobPosting(formData: FormData) {
   const user = await getAuthUser();
   if (!user) return { error: "Not authenticated" };
 
+  const supabase = await createServerSupabaseClient();
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  // Job posting is employer-only — students should use employer login.
+  if (profile?.role !== "employer" && profile?.role !== "admin") {
+    return {
+      error:
+        "Only employer accounts can post jobs. Use Employer login from the top navigation, complete your company profile, then post from the Employer dashboard.",
+    };
+  }
+
+  const { data: employer } = await supabase
+    .from("employer_profiles")
+    .select("company_name, website, company_logo_url, onboarding_complete")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (!employer?.onboarding_complete) {
+    return { error: "Complete your employer company profile before posting jobs." };
+  }
+
   const parsed = CreateJobSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) {
     return { error: parsed.error.issues.map((issue) => issue.message).join(", ") };
@@ -147,32 +172,71 @@ export async function createJobPosting(formData: FormData) {
   const skills = job.skills_required.split(",").map((skill) => skill.trim()).filter(Boolean);
   if (skills.length === 0) return { error: "Add at least one required skill" };
 
-  const supabase = await createServerSupabaseClient();
-  const { data, error } = await supabase
-    .from("comm_jobs")
-    .insert({
-      user_id: user.id,
-      title: job.title,
-      company_name: job.company_name,
-      company_website: job.company_website || null,
-      description: job.description,
-      employment_type: job.employment_type,
-      workplace_type: job.workplace_type,
-      location: job.location,
-      skills_required: skills,
-      compensation: job.compensation,
-      experience_required: job.experience_required,
-      contact_email: job.contact_email,
-      application_url: job.application_url || null,
-      application_deadline: job.application_deadline || null,
-    })
-    .select("id")
-    .single();
+  const category =
+    job.employment_type === "freelance"
+      ? "freelance"
+      : job.employment_type === "internship"
+        ? "internship"
+        : "job";
+
+  const insertPayload: Record<string, unknown> = {
+    user_id: user.id,
+    employer_user_id: user.id,
+    title: job.title,
+    company_name: employer.company_name || job.company_name,
+    company_website: job.company_website || employer.website || null,
+    company_logo_url: employer.company_logo_url || null,
+    description: job.description,
+    employment_type: job.employment_type,
+    workplace_type: job.workplace_type,
+    location: job.location,
+    skills_required: skills,
+    compensation: job.compensation,
+    experience_required: job.experience_required,
+    contact_email: job.contact_email,
+    application_url: job.application_url || null,
+    application_deadline: job.application_deadline || null,
+    category,
+  };
+
+  let { data, error } = await supabase.from("comm_jobs").insert(insertPayload).select("id").single();
+
+  // Fallback if optional columns from 006_employer.sql are missing
+  if (error && /employer_user_id|company_logo_url|category|column/i.test(error.message)) {
+    const fallback = await supabase
+      .from("comm_jobs")
+      .insert({
+        user_id: user.id,
+        title: job.title,
+        company_name: employer.company_name || job.company_name,
+        company_website: job.company_website || employer.website || null,
+        description: job.description,
+        employment_type: job.employment_type,
+        workplace_type: job.workplace_type,
+        location: job.location,
+        skills_required: skills,
+        compensation: job.compensation,
+        experience_required: job.experience_required,
+        contact_email: job.contact_email,
+        application_url: job.application_url || null,
+        application_deadline: job.application_deadline || null,
+      })
+      .select("id")
+      .single();
+    data = fallback.data;
+    error = fallback.error;
+  }
 
   if (error) {
     if (error.code === "42P01" || /comm_jobs|relation .* does not exist/i.test(error.message)) {
       return {
         error: "Job postings are not set up yet. Run supabase/migrations/003_community_feed_and_jobs.sql in your Supabase project, then try again.",
+      };
+    }
+    if (error.code === "42501" || /policy|row-level security/i.test(error.message)) {
+      return {
+        error:
+          "Permission denied posting jobs. Ensure migration 006_employer.sql is applied and your account role is employer.",
       };
     }
     return { error: error.message };
@@ -181,7 +245,10 @@ export async function createJobPosting(formData: FormData) {
   await addXp(user.id, 10);
   revalidatePath("/community");
   revalidatePath("/community/jobs");
-  return { success: true, id: data.id };
+  revalidatePath("/community/jobs/opportunities");
+  revalidatePath("/placements");
+  revalidatePath("/employer/dashboard");
+  return { success: true, id: data!.id };
 }
 
 // ── Votes ────────────────────────────────────────────────────
@@ -737,6 +804,36 @@ export async function applyToJob(formData: FormData) {
   revalidatePath(`/community/jobs/${d.job_id}`);
   revalidatePath("/community/jobs/opportunities");
   revalidatePath("/community/jobs/applications");
+  revalidatePath("/employer/dashboard");
+  revalidatePath("/employer/dashboard/applications");
+  revalidatePath("/placements");
+  return { success: true };
+}
+
+export async function respondToJobOffer(offerId: string, status: "accepted" | "declined") {
+  const user = await getAuthUser();
+  if (!user) return { error: "Not authenticated" };
+  const supabase = await createServerSupabaseClient();
+
+  const { data: offer } = await supabase
+    .from("comm_job_offers")
+    .select("id, applicant_id, employer_id, status")
+    .eq("id", offerId)
+    .single();
+
+  if (!offer || offer.applicant_id !== user.id) return { error: "Not authorized" };
+  if (offer.status !== "pending") return { error: "This offer is no longer pending." };
+
+  const { error } = await supabase
+    .from("comm_job_offers")
+    .update({ status })
+    .eq("id", offerId);
+  if (error) return { error: error.message };
+
+  await createNotification(offer.employer_id, user.id, `offer_${status}`);
+  revalidatePath("/community/jobs/applications");
+  revalidatePath("/employer/dashboard");
+  revalidatePath("/employer/dashboard/notifications");
   return { success: true };
 }
 
@@ -762,5 +859,8 @@ export async function updateApplicationStatus(applicationId: string, status: "su
   await createNotification(existing.applicant_id, user.id, `application_${status}`);
   revalidatePath(`/community/jobs/${existing.job_id}`);
   revalidatePath("/community/jobs/applications");
+  revalidatePath("/employer/dashboard");
+  revalidatePath("/employer/dashboard/applications");
+  revalidatePath(`/employer/dashboard/applications/${applicationId}`);
   return { success: true };
 }

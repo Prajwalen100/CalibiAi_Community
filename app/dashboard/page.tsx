@@ -20,6 +20,7 @@ export default async function DashboardPage({
     supabase.from("roadmaps").select("*").eq("user_id", user.id).order("created_at", { ascending: false }).limit(1).single(),
     supabase.from("projects").select("id,title,ai_score,verified,complexity_tier,created_at").eq("user_id", user.id).order("created_at", { ascending: false }),
   ]);
+  if (profile?.role === "employer") redirect("/employer/dashboard");
   if (!profile?.target_role) redirect("/onboarding");
   const plan = roadmap?.generated_plan as GeneratedRoadmap | undefined;
   return (

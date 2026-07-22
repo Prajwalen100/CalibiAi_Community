@@ -10,7 +10,11 @@ import { usePathname } from "next/navigation";
  */
 export function ChromeSlot({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const hide = pathname?.startsWith("/signin");
+  const hide =
+    pathname?.startsWith("/signin") ||
+    pathname?.startsWith("/employer/signin") ||
+    pathname?.startsWith("/employer/onboarding") ||
+    pathname?.startsWith("/employer/dashboard");
   if (hide) return null;
   return <>{children}</>;
 }

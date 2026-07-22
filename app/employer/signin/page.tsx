@@ -1,16 +1,19 @@
 import { redirect } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
-import { SignInPageClient } from "./sign-in-client";
+import { EmployerSignInClient } from "./employer-sign-in-client";
 
 export const dynamic = "force-dynamic";
 
 type SearchParams = Promise<{ mode?: "sign-up" | "sign-in" }>;
 
-export default async function SignInPage({ searchParams }: { searchParams: SearchParams }) {
+export default async function EmployerSignInPage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
   const { mode: rawMode } = await searchParams;
   const mode: "sign-up" | "sign-in" = rawMode === "sign-in" ? "sign-in" : "sign-up";
 
-  // Redirect already-authenticated users to the right dashboard.
   try {
     const supabase = await createServerSupabaseClient();
     const { data } = await supabase.auth.getUser();
@@ -20,6 +23,7 @@ export default async function SignInPage({ searchParams }: { searchParams: Searc
         .select("role, target_role")
         .eq("user_id", data.user.id)
         .maybeSingle();
+
       if (profile?.role === "employer") {
         const { data: emp } = await supabase
           .from("employer_profiles")
@@ -28,12 +32,15 @@ export default async function SignInPage({ searchParams }: { searchParams: Searc
           .maybeSingle();
         redirect(emp?.onboarding_complete ? "/employer/dashboard" : "/employer/onboarding");
       }
-      if (profile?.target_role) redirect("/dashboard");
-      redirect("/onboarding");
+
+      // Student already signed in — send them to student area, not employer
+      if (profile?.target_role && profile.role !== "employer") {
+        redirect("/dashboard");
+      }
     }
   } catch {
-    // Supabase not configured or offline — render the page anyway.
+    // Supabase offline — still render sign-in
   }
 
-  return <SignInPageClient mode={mode} />;
+  return <EmployerSignInClient mode={mode} />;
 }
