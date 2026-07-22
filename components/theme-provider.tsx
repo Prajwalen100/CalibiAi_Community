@@ -59,11 +59,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, [mounted]);
 
-  // During SSR, return children without context to avoid errors
-  if (!mounted) {
-    return <>{children}</>;
-  }
-
   return (
     <ThemeContext.Provider value={{ theme, setTheme: setThemeValue, toggleTheme, resolvedTheme }}>
       {children}
