@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { AlertTriangle, RefreshCw, Home } from "lucide-react";
 import Link from "next/link";
 
@@ -11,31 +10,6 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  const [mounted, setMounted] = useState(false);
-
-  // Simple client-side check - if window exists, we're mounted
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <div className="relative min-h-[70vh] flex items-center justify-center px-4">
-        <div className="text-center max-w-md">
-          <div className="inline-flex items-center gap-2 rounded-full bg-amber-50/50 px-4 py-2 text-xs font-bold text-amber-700 backdrop-blur-md shadow-sm dark:bg-amber-950/30 dark:text-amber-300 mb-6">
-            <AlertTriangle className="h-3.5 w-3.5 text-amber-500" />
-            <span>Something went wrong</span>
-          </div>
-          <div className="animate-pulse space-y-4">
-            <div className="h-12 bg-slate-200 dark:bg-slate-800 rounded-full mx-auto max-w-xs" />
-            <div className="h-6 bg-slate-200 dark:bg-slate-800 rounded mx-auto max-w-md" />
-            <div className="h-4 bg-slate-200 dark:bg-slate-800 rounded mx-auto max-w-sm" />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="relative min-h-[70vh] flex items-center justify-center px-4">
       {/* Background glow */}
