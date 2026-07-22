@@ -36,20 +36,21 @@ export type PostCardData = {
   currentUserId?: string;
 };
 
-// Dark mode compatible post type colors
-const postTypeColors: Record<string, { light: string; dark: string }> = {
-  discussion: { light: "bg-blue-50 text-blue-700", dark: "bg-blue-950/50 text-blue-300" },
-  question: { light: "bg-amber-50 text-amber-700", dark: "bg-amber-950/50 text-amber-300" },
-  showcase: { light: "bg-green-50 text-green-700", dark: "bg-emerald-950/50 text-emerald-300" },
-  tutorial: { light: "bg-purple-50 text-purple-700", dark: "bg-purple-950/50 text-purple-300" },
-  research: { light: "bg-indigo-50 text-indigo-700", dark: "bg-indigo-950/50 text-indigo-300" },
-  career: { light: "bg-pink-50 text-pink-700", dark: "bg-pink-950/50 text-pink-300" },
-  challenge: { light: "bg-orange-50 text-orange-700", dark: "bg-orange-950/50 text-orange-300" },
-  job: { light: "bg-teal-50 text-teal-700", dark: "bg-teal-950/50 text-teal-300" },
-  team_finder: { light: "bg-cyan-50 text-cyan-700", dark: "bg-cyan-950/50 text-cyan-300" },
-  resource: { light: "bg-lime-50 text-lime-700", dark: "bg-lime-950/50 text-lime-300" },
-  event: { light: "bg-rose-50 text-rose-700", dark: "bg-rose-950/50 text-rose-300" },
-  meme: { light: "bg-fuchsia-50 text-fuchsia-700", dark: "bg-fuchsia-950/50 text-fuchsia-300" },
+// Fully-expanded theme classes keep Tailwind's static scanner happy and
+// avoid accidentally applying the dark text color in light mode.
+const postTypeColors: Record<string, string> = {
+  discussion: "bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300",
+  question: "bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-300",
+  showcase: "bg-green-50 text-green-700 dark:bg-emerald-950/50 dark:text-emerald-300",
+  tutorial: "bg-purple-50 text-purple-700 dark:bg-purple-950/50 dark:text-purple-300",
+  research: "bg-indigo-50 text-indigo-700 dark:bg-indigo-950/50 dark:text-indigo-300",
+  career: "bg-pink-50 text-pink-700 dark:bg-pink-950/50 dark:text-pink-300",
+  challenge: "bg-orange-50 text-orange-700 dark:bg-orange-950/50 dark:text-orange-300",
+  job: "bg-teal-50 text-teal-700 dark:bg-teal-950/50 dark:text-teal-300",
+  team_finder: "bg-cyan-50 text-cyan-700 dark:bg-cyan-950/50 dark:text-cyan-300",
+  resource: "bg-lime-50 text-lime-700 dark:bg-lime-950/50 dark:text-lime-300",
+  event: "bg-rose-50 text-rose-700 dark:bg-rose-950/50 dark:text-rose-300",
+  meme: "bg-fuchsia-50 text-fuchsia-700 dark:bg-fuchsia-950/50 dark:text-fuchsia-300",
 };
 
 const postTypeIcons: Record<string, string> = {
@@ -60,9 +61,9 @@ const postTypeIcons: Record<string, string> = {
 
 // Status badge colors with dark mode support
 const statusColors = {
-  pinned: { light: "bg-red-50 text-red-600", dark: "bg-red-950/50 text-red-400" },
-  featured: { light: "bg-brand-50 text-brand-700", dark: "bg-brand-950/50 text-brand-300" },
-  solved: { light: "bg-green-50 text-green-700", dark: "bg-emerald-950/50 text-emerald-300" },
+  pinned: "bg-red-50 text-red-600 dark:bg-red-950/50 dark:text-red-400",
+  featured: "bg-brand-50 text-brand-700 dark:bg-brand-950/50 dark:text-brand-300",
+  solved: "bg-green-50 text-green-700 dark:bg-emerald-950/50 dark:text-emerald-300",
 };
 
 export function PostCard({
@@ -77,7 +78,7 @@ export function PostCard({
   const [following, setFollowing] = useState(isFollowing ?? false);
 
   const timeAgo = getTimeAgo(createdAt);
-  const colorClass = postTypeColors[postType] ? `${postTypeColors[postType].light} dark:${postTypeColors[postType].dark}` : "bg-slate-50 text-slate-700 dark:bg-slate-800/50 dark:text-slate-300";
+  const colorClass = postTypeColors[postType] ?? "bg-slate-50 text-slate-700 dark:bg-slate-800/50 dark:text-slate-300";
   const icon = postTypeIcons[postType] ?? "📝";
 
   async function handleVote(type: 1 | -1) {
@@ -113,9 +114,9 @@ export function PostCard({
         <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold ${colorClass}`}>
           {icon} {postType.replace("_", " ")}
         </span>
-        {isPinned && <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${statusColors.pinned.light} dark:${statusColors.pinned.dark}`}>📌 Pinned</span>}
-        {isFeatured && <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${statusColors.featured.light} dark:${statusColors.featured.dark}`}>⭐ Featured</span>}
-        {isSolved && <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${statusColors.solved.light} dark:${statusColors.solved.dark}`}>✅ Solved</span>}
+        {isPinned && <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${statusColors.pinned}`}>📌 Pinned</span>}
+        {isFeatured && <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${statusColors.featured}`}>⭐ Featured</span>}
+        {isSolved && <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${statusColors.solved}`}>✅ Solved</span>}
         {communityName && (
           <Link href={`/community/community/${communitySlug}`} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600 hover:bg-slate-200 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:bg-slate-700/50 transition-colors">
             {communityEmoji} {communityName}
