@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {
   Home, MessageSquare, Lightbulb, Rocket, Trophy, Calendar,
-  Briefcase, Users, BookOpen, GraduationCap, Search, Bell,
+  Users, BookOpen, GraduationCap, Search, Bell,
   LayoutGrid, Star, Target, ChevronRight, Smile,
 } from "lucide-react";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
@@ -21,7 +21,6 @@ const communityNav = [
   { label: "Challenges", href: "/community/challenges", icon: Target },
   { label: "Leaderboard", href: "/community/leaderboard", icon: Trophy },
   { label: "Events", href: "/community/events", icon: Calendar },
-  { label: "Jobs", href: "/community/jobs", icon: Briefcase },
   { label: "Team Finder", href: "/community/team-finder", icon: Users },
   { label: "Resources", href: "/community/resources", icon: BookOpen },
   { label: "Mentors", href: "/community/mentors", icon: GraduationCap },
@@ -30,7 +29,6 @@ const communityNav = [
 
 type LeaderboardEntry = { user_id: string; xp: number; level: number; profiles: { full_name: string; username: string } | null };
 type EventEntry = { id: string; title: string; event_date: string };
-type JobEntry = { id: string; title: string; company_name: string };
 type ChallengeEntry = { id: string; title: string; challenge_deadline: string };
 type JoinedCommunity = { comm_communities: { id: string; slug: string; name: string; emoji: string } | null };
 
@@ -40,7 +38,6 @@ async function getSidebarData() {
 
   let leaderboard: LeaderboardEntry[] = [];
   let upcomingEvents: EventEntry[] = [];
-  let latestJobs: JobEntry[] = [];
   let activeChallenge: ChallengeEntry[] = [];
   let joinedCommunities: JoinedCommunity[] = [];
   let currentProfile: { full_name: string | null; username: string | null; avatar_id: number | null } | null = null;
@@ -71,24 +68,22 @@ async function getSidebarData() {
   }
 
   try {
-    const [lb, ev, jobs, ch, jc] = await Promise.all([
+    const [lb, ev, ch, jc] = await Promise.all([
       supabase.from("comm_xp").select("user_id, xp, level").order("xp", { ascending: false }).limit(5),
       supabase.from("comm_events").select("id, title, event_date").gte("event_date", new Date().toISOString()).order("event_date").limit(3),
-      supabase.from("comm_jobs").select("id, title, company_name").eq("status", "open").order("created_at", { ascending: false }).limit(3),
       supabase.from("comm_posts").select("id, title, challenge_deadline").eq("post_type", "challenge").gte("challenge_deadline", new Date().toISOString()).order("challenge_deadline").limit(1),
       user ? supabase.from("comm_members").select("comm_communities(id, slug, name, emoji)").eq("user_id", user.id) : { data: [] as JoinedCommunity[] | null },
     ]);
 
     leaderboard = await attachCommunityProfiles(supabase, (lb.data ?? []) as Array<Record<string, unknown>>) as LeaderboardEntry[];
     upcomingEvents = (ev.data ?? []) as unknown as EventEntry[];
-    latestJobs = (jobs.data ?? []) as unknown as JobEntry[];
     activeChallenge = (ch.data ?? []) as unknown as ChallengeEntry[];
     joinedCommunities = ((jc.data ?? []) as unknown as JoinedCommunity[]);
   } catch {
     // Tables might not exist yet
   }
 
-  return { leaderboard, upcomingEvents, latestJobs, activeChallenge, joinedCommunities, user, currentProfile };
+  return { leaderboard, upcomingEvents, activeChallenge, joinedCommunities, user, currentProfile };
 }
 
 function NavLink({ label, href, icon: Icon, isActive = false }: { 
@@ -113,7 +108,7 @@ function NavLink({ label, href, icon: Icon, isActive = false }: {
 }
 
 export default async function CommunityLayout({ children }: { children: ReactNode }) {
-  const { leaderboard, upcomingEvents, latestJobs, activeChallenge, joinedCommunities, user, currentProfile } = await getSidebarData();
+  const { leaderboard, upcomingEvents, activeChallenge, joinedCommunities, user, currentProfile } = await getSidebarData();
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -171,8 +166,8 @@ export default async function CommunityLayout({ children }: { children: ReactNod
           <aside>
             <div className="sticky top-24 space-y-4">
               {/* You */}
-              {user && (
-                <ScrollReveal direction="right" className="card-interactive glass-panel p-4 transition-all duration-300 hover:border-brand-500/50 hover:shadow-xl">
+              <ScrollReveal direction="right" className="card-interactive glass-panel p-4 transition-all duration-300 hover:border-brand-500/50 hover:shadow-xl">
+                <div className="flex items-center gap-3 w-full">
                   <Link href="/community/profile/avatar" className="flex items-center gap-3 w-full">
                     <ProfileAvatar avatarId={currentProfile?.avatar_id ?? null} size={48} />
                     <div className="min-w-0 flex-1">
@@ -182,10 +177,10 @@ export default async function CommunityLayout({ children }: { children: ReactNod
                       </p>
                     </div>
                   </Link>
-                </ScrollReveal>
-              )}
+                </div>
+              </ScrollReveal>
 
-              {/* Leaderboard */}
+              {/* Leaderboard */
               <ScrollReveal direction="right" delay={100} className="glass-panel p-4">
                 <div className="flex items-center justify-between">
                   <p className="text-sm font-bold text-primary">🏆 Leaderboard</p>
@@ -220,24 +215,6 @@ export default async function CommunityLayout({ children }: { children: ReactNod
                     </Link>
                   )) : (
                     <p className="text-xs text-subtle">No upcoming events.</p>
-                  )}
-                </div>
-              </ScrollReveal>
-
-              {/* Latest Jobs */}
-              <ScrollReveal direction="right" delay={300} className="glass-panel p-4">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-bold text-primary">💼 Jobs</p>
-                  <Link href="/community/jobs" className="text-xs font-semibold text-brand-600 hover:text-brand-500 transition-colors">View all</Link>
-                </div>
-                <div className="mt-3 space-y-2">
-                  {latestJobs.length ? latestJobs.map((j) => (
-                    <Link key={j.id} href={`/community/jobs/${j.id}`} className="block rounded-lg p-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors">
-                      <p className="font-medium truncate text-primary">{j.title}</p>
-                      <p className="text-xs text-subtle">{j.company_name}</p>
-                    </Link>
-                  )) : (
-                    <p className="text-xs text-subtle">No jobs posted yet.</p>
                   )}
                 </div>
               </ScrollReveal>

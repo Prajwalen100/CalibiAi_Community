@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { attachCommunityProfiles } from "@/lib/community/public-profiles";
+import { ReadingProgress } from "./reading-progress";
 
 export const dynamic = "force-dynamic";
 
@@ -45,6 +46,8 @@ export default async function ResourcesPage() {
           </Link>
         ))}
       </div>
+
+      <ReadingProgress />
 
       <div className="mt-6 space-y-4">
         {resources.length > 0 ? resources.map((r) => {
