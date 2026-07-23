@@ -348,6 +348,7 @@ export interface AuthComponentProps {
   onEmailSubmit?: (input: { email: string; password: string; mode: AuthMode }) => Promise<string | void> | string | void;
   onOAuth?: (provider: OAuthProvider) => void | Promise<void>;
   switchHref?: string;
+  compact?: boolean;
 }
 
 export const AuthComponent = ({
@@ -357,6 +358,7 @@ export const AuthComponent = ({
   onEmailSubmit,
   onOAuth,
   switchHref,
+  compact = false,
 }: AuthComponentProps) => {
   const isSignUp = mode === "sign-up";
 
@@ -568,18 +570,20 @@ export const AuthComponent = ({
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 className="w-full flex flex-col items-center gap-4"
               >
-                <BlurFade delay={0.25} className="w-full">
-                  <div className="text-center">
-                    <p className="font-serif font-light text-4xl sm:text-5xl md:text-6xl tracking-tight text-primary whitespace-nowrap">
-                      {titles.main}
-                    </p>
-                  </div>
-                </BlurFade>
+                {!compact && (
+                  <BlurFade delay={0.25} className="w-full">
+                    <div className="text-center">
+                      <p className="font-serif font-light text-4xl sm:text-5xl md:text-6xl tracking-tight text-primary whitespace-nowrap">
+                        {titles.main}
+                      </p>
+                    </div>
+                  </BlurFade>
+                )}
                 <BlurFade delay={0.5}>
-                  <p className="text-sm font-medium text-secondary text-center">Continue with</p>
+                  <p className={`text-sm font-medium text-center ${compact ? 'text-slate-400' : 'text-secondary'}`}>Continue with</p>
                 </BlurFade>
                 <BlurFade delay={0.75}>
-                  <div className="flex items-center justify-center gap-4 w-full">
+                  <div className="flex items-center justify-center gap-3 w-full">
                     <GlassButton
                       type="button"
                       contentClassName="flex items-center justify-center gap-2"
@@ -588,7 +592,7 @@ export const AuthComponent = ({
                       className="w-full"
                     >
                       <GoogleIcon />
-                      <span className="font-semibold text-foreground">Continue with Google</span>
+                      <span className="font-semibold">Continue with Google</span>
                     </GlassButton>
                     <GlassButton
                       type="button"
@@ -598,7 +602,7 @@ export const AuthComponent = ({
                       className="w-full"
                     >
                       <GitHubIcon />
-                      <span className="font-semibold text-foreground">Continue with GitHub</span>
+                      <span className="font-semibold">Continue with GitHub</span>
                     </GlassButton>
                   </div>
                 </BlurFade>
@@ -620,15 +624,17 @@ export const AuthComponent = ({
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 className="w-full flex flex-col items-center text-center gap-4"
               >
-                <BlurFade delay={0} className="w-full">
-                  <div className="text-center">
-                    <p className="font-serif font-light text-4xl sm:text-5xl tracking-tight text-primary whitespace-nowrap">
-                      {titles.passwordTitle}
-                    </p>
-                  </div>
-                </BlurFade>
+                {!compact && (
+                  <BlurFade delay={0} className="w-full">
+                    <div className="text-center">
+                      <p className="font-serif font-light text-4xl sm:text-5xl tracking-tight text-primary whitespace-nowrap">
+                        {titles.passwordTitle}
+                      </p>
+                    </div>
+                  </BlurFade>
+                )}
                 <BlurFade delay={0.25}>
-                  <p className="text-sm font-medium text-secondary">{titles.passwordHint}</p>
+                  <p className={`text-sm font-medium ${compact ? 'text-slate-400' : 'text-secondary'}`}>{titles.passwordHint}</p>
                 </BlurFade>
               </motion.div>
             )}
@@ -641,15 +647,17 @@ export const AuthComponent = ({
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 className="w-full flex flex-col items-center text-center gap-4"
               >
-                <BlurFade delay={0} className="w-full">
-                  <div className="text-center">
-                    <p className="font-serif font-light text-4xl sm:text-5xl tracking-tight text-primary whitespace-nowrap">
-                      {titles.confirmTitle}
-                    </p>
-                  </div>
-                </BlurFade>
+                {!compact && (
+                  <BlurFade delay={0} className="w-full">
+                    <div className="text-center">
+                      <p className="font-serif font-light text-4xl sm:text-5xl tracking-tight text-primary whitespace-nowrap">
+                        {titles.confirmTitle}
+                      </p>
+                    </div>
+                  </BlurFade>
+                )}
                 <BlurFade delay={0.25}>
-                  <p className="text-sm font-medium text-secondary">{titles.confirmHint}</p>
+                  <p className={`text-sm font-medium ${compact ? 'text-slate-400' : 'text-secondary'}`}>{titles.confirmHint}</p>
                 </BlurFade>
               </motion.div>
             )}
@@ -674,7 +682,7 @@ export const AuthComponent = ({
                             transition={{ duration: 0.3, delay: 0.4 }}
                             className="absolute -top-6 left-4 z-10"
                           >
-                            <label className="text-xs text-muted-foreground font-semibold">Email</label>
+                            <label className={`text-xs font-semibold ${compact ? 'text-slate-500' : 'text-muted-foreground'}`}>Email</label>
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -716,7 +724,7 @@ export const AuthComponent = ({
                                 transition={{ duration: 0.3 }}
                                 className="absolute -top-6 left-4 z-10"
                               >
-                                <label className="text-xs text-muted-foreground font-semibold">Password</label>
+                                <label className={`text-xs font-semibold ${compact ? 'text-slate-500' : 'text-muted-foreground'}`}>Password</label>
                               </motion.div>
                             )}
                           </AnimatePresence>
@@ -757,7 +765,7 @@ export const AuthComponent = ({
                           <button
                             type="button"
                             onClick={handleGoBack}
-                            className="mt-4 flex items-center gap-2 text-sm text-secondary hover:text-primary transition-colors"
+                            className={`mt-4 flex items-center gap-2 text-sm transition-colors ${compact ? 'text-slate-400 hover:text-white' : 'text-secondary hover:text-primary'}`}
                           >
                             <ArrowLeft className="w-4 h-4" /> Go back
                           </button>
@@ -781,7 +789,7 @@ export const AuthComponent = ({
                           transition={{ duration: 0.3 }}
                           className="absolute -top-6 left-4 z-10"
                         >
-                          <label className="text-xs text-muted-foreground font-semibold">Confirm Password</label>
+                          <label className={`text-xs font-semibold ${compact ? 'text-slate-500' : 'text-muted-foreground'}`}>Confirm Password</label>
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -820,7 +828,7 @@ export const AuthComponent = ({
                     <button
                       type="button"
                       onClick={handleGoBack}
-                      className="mt-4 flex items-center gap-2 text-sm text-secondary hover:text-primary transition-colors"
+                      className={`mt-4 flex items-center gap-2 text-sm transition-colors ${compact ? 'text-slate-400 hover:text-white' : 'text-secondary hover:text-primary'}`}
                     >
                       <ArrowLeft className="w-4 h-4" /> Go back
                     </button>
@@ -831,9 +839,9 @@ export const AuthComponent = ({
           </form>
 
           {switchHref && (
-            <p className="text-sm text-secondary text-center">
+            <p className={`text-sm text-center ${compact ? 'text-slate-400' : 'text-secondary'}`}>
               {isSignUp ? "Already have an account? " : "New here? "}
-              <a href={switchHref} className="font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 transition-colors">
+              <a href={switchHref} className={`font-semibold transition-colors ${compact ? 'text-brand-400 hover:text-brand-300' : 'text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300'}`}>
                 {isSignUp ? "Sign in" : "Create an account"}
               </a>
             </p>
