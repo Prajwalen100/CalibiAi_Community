@@ -290,16 +290,16 @@ export default function HomePage() {
       </section>
 
       {/* STORY - Vertical Timeline */}
-      <section id="story" className="scroll-mt-24 relative overflow-hidden bg-gradient-to-b from-slate-950 via-indigo-950 to-slate-950 py-24">
+      <section id="story" className="scroll-mt-24 relative overflow-hidden bg-gradient-to-b from-slate-100 via-slate-50 to-slate-100 py-24 dark:from-slate-950 dark:via-indigo-950 dark:to-slate-950">
         {/* Ambient glow */}
-        <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/10 blur-[150px]" />
+        <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/10 blur-[150px] dark:bg-brand-500/10" />
 
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up" className="text-center mb-20">
-            <p className="font-bold text-brand-400 tracking-wide uppercase text-sm">Our Journey</p>
-            <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl lg:text-5xl">
+            <p className="font-bold text-brand-600 dark:text-brand-400 tracking-wide uppercase text-sm">Our Journey</p>
+            <h2 className="mt-3 text-3xl font-black text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
               From consulting to{" "}
-              <span className="bg-gradient-to-r from-brand-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-brand-600 via-indigo-600 to-violet-600 dark:from-brand-400 dark:via-cyan-400 dark:to-indigo-400 bg-clip-text text-transparent">
                 ecosystem
               </span>
             </h2>
@@ -308,7 +308,7 @@ export default function HomePage() {
           {/* Timeline */}
           <div className="relative">
             {/* Vertical line */}
-            <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-brand-500/0 via-brand-500/50 to-brand-500/0 sm:left-1/2 sm:-translate-x-1/2" />
+            <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-brand-500/0 via-brand-500/30 to-brand-500/0 sm:left-1/2 sm:-translate-x-1/2 dark:via-brand-500/50" />
 
             {[
               {
@@ -355,11 +355,11 @@ export default function HomePage() {
                   <div className={`ml-24 sm:ml-0 sm:w-[calc(50%-4rem)] ${
                     index % 2 === 0 ? "sm:text-right sm:pr-8" : "sm:text-left sm:pl-8"
                   }`}>
-                    <span className="inline-block rounded-full bg-brand-500/20 px-4 py-1.5 text-sm font-bold text-brand-300 mb-3">
+                    <span className="inline-block rounded-full bg-brand-100 px-4 py-1.5 text-sm font-bold text-brand-700 mb-3 dark:bg-brand-500/20 dark:text-brand-300">
                       {item.year}
                     </span>
-                    <h3 className="text-xl font-black text-white mb-3">{item.title}</h3>
-                    <p className="text-sm leading-relaxed text-slate-300 max-w-md" style={index % 2 !== 0 ? {} : { marginLeft: "auto" }}>
+                    <h3 className="text-xl font-black text-slate-900 mb-3 dark:text-white">{item.title}</h3>
+                    <p className="text-sm leading-relaxed text-slate-600 max-w-md dark:text-slate-300" style={index % 2 !== 0 ? {} : { marginLeft: "auto" }}>
                       {item.text}
                     </p>
                   </div>
@@ -373,22 +373,22 @@ export default function HomePage() {
       {/* TESTIMONIALS */}
       <section
         id="testimonials"
-        className="scroll-mt-24 relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 py-24"
+        className="scroll-mt-24 relative overflow-hidden bg-gradient-to-b from-slate-100 via-slate-50 to-white py-24 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900"
       >
         {/* Ambient glow */}
-        <div className="pointer-events-none absolute -left-40 top-1/3 -z-10 h-[400px] w-[400px] rounded-full bg-brand-500/8 blur-[120px]" />
-        <div className="pointer-events-none absolute -right-40 bottom-1/4 -z-10 h-[350px] w-[350px] rounded-full bg-indigo-500/8 blur-[120px]" />
+        <div className="pointer-events-none absolute -left-40 top-1/3 -z-10 h-[400px] w-[400px] rounded-full bg-brand-500/10 blur-[120px] dark:bg-brand-500/8" />
+        <div className="pointer-events-none absolute -right-40 bottom-1/4 -z-10 h-[350px] w-[350px] rounded-full bg-indigo-500/10 blur-[120px] dark:bg-indigo-500/8" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up" className="text-center mb-16">
-            <p className="font-bold text-brand-400 tracking-wide uppercase text-sm">Testimonials</p>
-            <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl lg:text-5xl">
+            <p className="font-bold text-brand-600 dark:text-brand-400 tracking-wide uppercase text-sm">Testimonials</p>
+            <h2 className="mt-3 text-3xl font-black text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
               Voices from the{" "}
-              <span className="bg-gradient-to-r from-brand-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-brand-600 via-indigo-600 to-violet-600 dark:from-brand-400 dark:via-cyan-400 dark:to-indigo-400 bg-clip-text text-transparent">
                 classroom
               </span>
             </h2>
-            <p className="mt-4 text-slate-400 max-w-xl mx-auto">
+            <p className="mt-4 text-slate-500 max-w-xl mx-auto dark:text-slate-400">
               Students across engineering colleges on workshops that went beyond theory.
             </p>
           </ScrollReveal>
@@ -397,26 +397,26 @@ export default function HomePage() {
             {testimonials.map((t) => (
               <article
                 key={t.name}
-                className="group relative flex h-full flex-col rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 transition-all duration-500 hover:-translate-y-2 hover:border-brand-500/30 hover:bg-white/8 hover:shadow-2xl hover:shadow-brand-500/10"
+                className="group relative flex h-full flex-col rounded-3xl border border-slate-200 bg-white/80 backdrop-blur-xl p-6 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 dark:border-white/10 dark:bg-white/5 dark:hover:border-brand-500/30 dark:hover:bg-white/8 dark:hover:shadow-2xl dark:hover:shadow-brand-500/10"
               >
                 {/* Quote icon */}
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/15">
-                  <Quote className="h-5 w-5 text-brand-400" />
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 dark:bg-brand-500/15">
+                  <Quote className="h-5 w-5 text-brand-600 dark:text-brand-400" />
                 </div>
 
                 {/* Quote text */}
-                <p className="flex-1 text-base font-semibold leading-relaxed text-white/90">
+                <p className="flex-1 text-base font-semibold leading-relaxed text-slate-700 dark:text-white/90">
                   &ldquo;{t.quote}&rdquo;
                 </p>
 
                 {/* Read full review link */}
-                <button className="mt-3 text-xs font-bold text-brand-400 hover:text-brand-300 transition-colors opacity-0 group-hover:opacity-100 duration-300">
+                <button className="mt-3 text-xs font-bold text-brand-600 hover:text-brand-700 transition-colors opacity-0 group-hover:opacity-100 duration-300 dark:text-brand-400 dark:hover:text-brand-300">
                   Read full review →
                 </button>
 
                 {/* Author */}
-                <div className="mt-6 flex items-center gap-4 border-t border-white/10 pt-5">
-                  <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl ring-2 ring-brand-500/30">
+                <div className="mt-6 flex items-center gap-4 border-t border-slate-200 pt-5 dark:border-white/10">
+                  <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl ring-2 ring-brand-200 dark:ring-brand-500/30">
                     <Image
                       src={t.avatar}
                       alt={t.name}
@@ -426,8 +426,8 @@ export default function HomePage() {
                     />
                   </div>
                   <div>
-                    <p className="font-bold text-white">{t.name}</p>
-                    <p className="mt-0.5 text-xs font-medium text-slate-400">{t.role}</p>
+                    <p className="font-bold text-slate-900 dark:text-white">{t.name}</p>
+                    <p className="mt-0.5 text-xs font-medium text-slate-500 dark:text-slate-400">{t.role}</p>
                   </div>
                 </div>
               </article>
@@ -440,7 +440,7 @@ export default function HomePage() {
       <section id="motto" className="scroll-mt-24 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up">
-            <div className="relative overflow-hidden rounded-[2rem] border border-slate-200/80 bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 p-8 text-white shadow-2xl sm:p-12 lg:p-16 dark:border-slate-800">
+            <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 p-8 text-white shadow-2xl sm:p-12 lg:p-16 dark:border-slate-800 dark:from-slate-950 dark:via-indigo-950 dark:to-slate-900">
               <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-brand-500/30 blur-3xl" />
               <div className="pointer-events-none absolute -bottom-24 left-1/4 h-64 w-64 rounded-full bg-cyan-400/20 blur-3xl" />
               <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-indigo-500/15 blur-[100px]" />
@@ -453,7 +453,7 @@ export default function HomePage() {
                 <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
                   <Link
                     href="/signin?mode=sign-up"
-                    className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-4 text-base font-bold text-white shadow-lg shadow-blue-500/25 transition-all hover:shadow-xl hover:shadow-blue-500/30 hover:-translate-y-0.5"
+                    className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-blue-500/25 transition-all hover:shadow-xl hover:shadow-blue-500/30 hover:-translate-y-0.5"
                   >
                     <GraduationCap className="h-5 w-5" />
                     Join as Student
@@ -461,7 +461,7 @@ export default function HomePage() {
                   </Link>
                   <Link
                     href="/employer/signin?mode=sign-up"
-                    className="inline-flex items-center gap-2 rounded-full border-2 border-blue-400/50 bg-white/5 px-8 py-4 text-base font-bold text-blue-200 backdrop-blur transition-all hover:bg-white/10 hover:border-blue-400 hover:-translate-y-0.5"
+                    className="inline-flex items-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-8 py-4 text-base font-bold text-white backdrop-blur transition-all hover:bg-white/15 hover:border-white/50 hover:-translate-y-0.5"
                   >
                     <Building2 className="h-5 w-5" />
                     Join as Employer

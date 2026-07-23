@@ -8,10 +8,9 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { CompactBrandLogo } from "@/components/brand-logo";
 
 const publicLinks = [
-  ["Why CalibiAI", "/#why"],
   ["Story", "/#story"],
   ["Testimonials", "/#testimonials"],
-  ["Our Motto", "/#motto"],
+  ["Get Started", "/#motto"],
 ] as const;
 
 const studentLinks = [

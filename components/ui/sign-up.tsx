@@ -586,7 +586,7 @@ export const AuthComponent = ({
                   <div className="flex items-center justify-center gap-3 w-full">
                     <GlassButton
                       type="button"
-                      contentClassName={`flex items-center justify-center gap-2 ${compact ? '!bg-white/10 !text-white hover:!bg-white/20 !border !border-white/20' : ''}`}
+                      contentClassName="flex items-center justify-center gap-2"
                       size="sm"
                       onClick={() => onOAuth?.("google")}
                       className="w-full"
@@ -596,7 +596,7 @@ export const AuthComponent = ({
                     </GlassButton>
                     <GlassButton
                       type="button"
-                      contentClassName={`flex items-center justify-center gap-2 ${compact ? '!bg-white/10 !text-white hover:!bg-white/20 !border !border-white/20' : ''}`}
+                      contentClassName="flex items-center justify-center gap-2"
                       size="sm"
                       onClick={() => onOAuth?.("github")}
                       className="w-full"
@@ -608,9 +608,9 @@ export const AuthComponent = ({
                 </BlurFade>
                 <BlurFade delay={1} className="w-full max-w-sm">
                   <div className="flex items-center w-full gap-2 py-2">
-                    <hr className={`w-full ${compact ? 'border-white/10' : 'border-slate-200/60 dark:border-slate-800/60'}`} />
-                    <span className={`text-xs font-semibold ${compact ? 'text-slate-500' : 'text-subtle'}`}>OR</span>
-                    <hr className={`w-full ${compact ? 'border-white/10' : 'border-slate-200/60 dark:border-slate-800/60'}`} />
+                    <hr className="w-full border-slate-200/60 dark:border-slate-800/60" />
+                    <span className="text-xs font-semibold text-subtle">OR</span>
+                    <hr className="w-full border-slate-200/60 dark:border-slate-800/60" />
                   </div>
                 </BlurFade>
               </motion.div>
@@ -693,7 +693,7 @@ export const AuthComponent = ({
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           onKeyDown={handleKeyDown}
-                          className={compact ? "input !bg-white/[0.07] !border-white/15 !text-white placeholder:!text-slate-500 focus:!border-brand-400 focus:!ring-brand-400/20" : "input"}
+                          className="input"
                           autoComplete="email"
                         />
                         <div className="absolute right-3 top-1/2 -translate-y-1/2">
@@ -736,7 +736,7 @@ export const AuthComponent = ({
                               value={password}
                               onChange={(e) => setPassword(e.target.value)}
                               onKeyDown={handleKeyDown}
-                              className={compact ? "input pr-12 !bg-white/[0.07] !border-white/15 !text-white placeholder:!text-slate-500 focus:!border-brand-400 focus:!ring-brand-400/20" : "input pr-12"}
+                              className="input pr-12"
                               autoComplete={isSignUp ? "new-password" : "current-password"}
                             />
                             <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
@@ -800,7 +800,7 @@ export const AuthComponent = ({
                         placeholder="Confirm Password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                        className={compact ? "input pr-12 !bg-white/[0.07] !border-white/15 !text-white placeholder:!text-slate-500 focus:!border-brand-400 focus:!ring-brand-400/20" : "input pr-12"}
+                        className="input pr-12"
                         autoComplete="new-password"
                       />
                       <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
