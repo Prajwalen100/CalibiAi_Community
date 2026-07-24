@@ -1,10 +1,10 @@
-# Amazon Bedrock Guide: CalibiAI Personalized Learning Engine
+# AI Provider Guide: CalibiAI Personalized Learning Engine
 
-This is the operational and behavior contract for Amazon Bedrock in CalibiAI. It complements `LEARNING_ENGINE_SETUP.md`. Bedrock **personalizes only**; authored curriculum is always loaded from the immutable repository files in `content/assessment/` and `content/roadmap/`.
+This is the operational and behavior contract for the AI model in CalibiAI. The active provider is **DeepSeek** (`deepseek-chat`, an OpenAI-compatible API); the layer is provider-agnostic and swappable in one place (`lib/ai/deepseek.ts`). It complements `LEARNING_ENGINE_SETUP.md`. The model **personalizes only**; authored curriculum is always loaded from the immutable repository files in `content/assessment/` and `content/roadmap/`.
 
 ## 1. Allowed and prohibited responsibilities
 
-### Bedrock may
+### The model may
 
 - Personalize a supplied roadmap ordering/overlay.
 - Write a weekly review narrative and valid roadmap suggestions.
@@ -14,50 +14,34 @@ This is the operational and behavior contract for Amazon Bedrock in CalibiAI. It
 - Give rubric-based project feedback.
 - Give advisory Talent Score improvement tips.
 
-### Bedrock must never
+### The model must never
 
 - Generate, replace, or edit assessment questions, answers, explanations, roadmap days, videos, articles, assignments, projects, quizzes, or research papers.
 - Score placement assessment answers or choose the learner level.
 - Compute or mutate the Talent Score.
 - Bypass roadmap prerequisites or invent a day/task/project reference.
-- Receive raw resume documents, AWS credentials, Supabase service keys, or browser-originated requests.
+- Receive raw resume documents, provider API keys, Supabase service keys, or browser-originated requests.
 
-## 2. AWS setup
+## 2. DeepSeek setup
 
-1. Choose a Bedrock region where the selected Anthropic model is available. `ap-south-1` is the project default; use another supported region if model access is unavailable.
-2. In **AWS Console → Amazon Bedrock → Model access**, request/enable access to the selected Claude model.
-3. Configure the model and region in server environment variables:
+DeepSeek exposes an OpenAI-compatible `/chat/completions` endpoint, called server-side from `lib/ai/deepseek.ts`.
+
+1. Create an account at <https://platform.deepseek.com> and **add credits** (usage is prepaid).
+2. Under **API keys**, create a key (shown once).
+3. Configure the server environment variables:
 
 ```bash
-AWS_REGION=ap-south-1
-BEDROCK_MODEL_ID=anthropic.claude-3-5-sonnet-20240620-v1:0
+DEEPSEEK_API_KEY=sk-...
+DEEPSEEK_MODEL_ID=deepseek-chat        # V3, default; deepseek-reasoner (R1) for harder reasoning
+DEEPSEEK_BASE_URL=https://api.deepseek.com   # override only for a proxy/self-hosted gateway
 ```
 
-`BEDROCK_CLAUDE_MODEL_ID` remains accepted for legacy project integrations.
-4. Prefer workload identity/IAM roles in production. For local development, the AWS SDK can use `aws configure` credentials or server-only `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
-5. Never use a `NEXT_PUBLIC_` prefix for AWS values.
-
-### Minimal IAM policy
-
-Limit the deploy runtime to only the chosen model:
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [{
-    "Sid": "InvokeConfiguredBedrockModel",
-    "Effect": "Allow",
-    "Action": ["bedrock:InvokeModel"],
-    "Resource": "arn:aws:bedrock:ap-south-1::foundation-model/anthropic.claude-3-5-sonnet-20240620-v1:0"
-  }]
-}
-```
-
-Add `bedrock:InvokeModelWithResponseStream` only if streaming is deliberately introduced. Do not grant `bedrock:*`.
+4. `DEEPSEEK_API_KEY` is **server-only**. Never use a `NEXT_PUBLIC_` prefix or expose it to the client.
+5. **Data governance:** DeepSeek is China-hosted and some tiers retain inputs. Send only compact rollups and summaries (see §6), never raw student PII. Obtain sign-off before real student data is processed.
 
 ## 3. Gateway contract
 
-All new agents must call the server-only gateway at `lib/ai/bedrockClient.ts`:
+All new agents must call the server-only gateway at `lib/ai/bedrockClient.ts`, which delegates transport to `lib/ai/deepseek.ts`:
 
 ```ts
 invokeBedrock({ agent, system, message, schema, cacheKey, maxTokens, temperature, ttlMs })
@@ -66,14 +50,14 @@ invokeBedrock({ agent, system, message, schema, cacheKey, maxTokens, temperature
 The gateway:
 
 - is server-only (`import "server-only"`);
-- resolves `BEDROCK_MODEL_ID`, then legacy `BEDROCK_CLAUDE_MODEL_ID`;
+- resolves the model from `DEEPSEEK_MODEL_ID` (default `deepseek-chat`);
 - caps structured-task temperature at `0.3`;
-- requires JSON-only output;
+- requires JSON-only output (uses DeepSeek `response_format: json_object`);
 - parses and validates output through the supplied Zod schema;
 - supports a stable cache key and TTL;
 - throws `AiUnavailable` on configuration, invocation, parsing, or validation failure.
 
-Agent services, rather than UI code, must catch `AiUnavailable` and save/use a deterministic fallback. No dashboard, mission, roadmap, or assessment screen may block waiting for Bedrock.
+Agent services, rather than UI code, must catch `AiUnavailable` and save/use a deterministic fallback. No dashboard, mission, roadmap, or assessment screen may block waiting for the model.
 
 ## 4. Shared system prompt
 
@@ -196,9 +180,9 @@ Persist each invocation in `ai_invocations` with agent, model, token counts, lat
 ```bash
 npm ci
 cp .env.example .env.local
-# fill Supabase and Bedrock server variables
+# fill Supabase and DeepSeek (DEEPSEEK_API_KEY) server variables
 npx supabase db push
 npm run dev
 ```
 
-Set the same server variables in the host environment, add Supabase Auth callback URLs, apply migrations before deployment, and test with Bedrock disabled as well as enabled. A disabled/unavailable model must leave onboarding, assessment, raw roadmap assignment, dashboard, and deterministic scoring usable.
+Set the same server variables in the host environment, add Supabase Auth callback URLs, apply migrations before deployment, and test with the model disabled (unset `DEEPSEEK_API_KEY`) as well as enabled. A disabled/unavailable model must leave onboarding, assessment, raw roadmap assignment, dashboard, and deterministic scoring usable.
