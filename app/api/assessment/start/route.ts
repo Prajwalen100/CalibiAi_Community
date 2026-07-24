@@ -1,0 +1,1 @@
+import { NextResponse } from "next/server"; import { startAttempt } from "@/lib/services/assessment"; export async function POST(){const result=await startAttempt();return NextResponse.json(result,{status:result.error?.status??(result.error?400:200)});}
