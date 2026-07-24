@@ -1,0 +1,1849 @@
+{
+  "assessment": {
+    "id": "data-science-engineer-beginner-onboarding",
+    "title": "Data Science Engineer Onboarding Assessment",
+    "role": "Data Science Engineer",
+    "difficulty": "Beginner",
+    "type": "adaptive_placement_test",
+    "description": "An adaptive placement assessment for Data Science Engineers. This bank contains 100 questions (10 per skill). During onboarding, 2 questions per skill are randomly selected to produce a unique 20-question assessment for each student. This is not a certification exam.",
+    "provider": "CalibiAI",
+    "total_questions": 100,
+    "total_weight": 1000,
+    "passing_score": null,
+    "question_bank": true,
+    "questions_per_skill": 10,
+    "selection": {
+      "strategy": "random",
+      "questions_per_skill_selected": 2,
+      "generated_assessment_size": 20,
+      "note": "Randomly draw 2 questions from each skill's 10-question pool at onboarding time to build a unique assessment per student."
+    },
+    "difficulty_distribution": {
+      "easy": 70,
+      "medium": 30,
+      "easy_percentage": 70,
+      "medium_percentage": 30
+    },
+    "difficulty_per_skill": {
+      "easy": 7,
+      "medium": 3
+    },
+    "skills_assessed": [
+      "Python",
+      "Statistics",
+      "NumPy",
+      "Pandas",
+      "Data Visualization",
+      "SQL",
+      "Machine Learning",
+      "Deep Learning",
+      "Feature Engineering",
+      "Model Evaluation"
+    ],
+    "estimated_total_time": "10 min per generated 20-question assessment",
+    "instructions": "Select one option for each question. The correct answer and its explanation are revealed only after you click an option. Answer honestly; this test places you on the roadmap and is not graded as a pass/fail exam.",
+    "answer_reveal": "on_select"
+  },
+  "questions": [
+    {
+      "id": "Q1",
+      "topic": "Python List",
+      "skill": "Python",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Which Python type stores an ordered, mutable collection?",
+      "options": [
+        "list",
+        "int",
+        "str",
+        "bool"
+      ],
+      "correct_answer": 0,
+      "explanation": "A list is an ordered, changeable collection.",
+      "roadmap_reference": "Python for Data Science > Data Structures",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q2",
+      "topic": "Python Dict",
+      "skill": "Python",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "How do you store key-value pairs in Python?",
+      "options": [
+        "dict",
+        "tuple",
+        "int",
+        "float"
+      ],
+      "correct_answer": 0,
+      "explanation": "A dict maps keys to values.",
+      "roadmap_reference": "Python for Data Science > Dictionaries",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q3",
+      "topic": "Python Loop",
+      "skill": "Python",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Which loop iterates over each item in a list?",
+      "options": [
+        "for loop",
+        "switch",
+        "goto",
+        "label"
+      ],
+      "correct_answer": 0,
+      "explanation": "A for loop iterates over each element.",
+      "roadmap_reference": "Python for Data Science > Loops",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q4",
+      "topic": "Python Import",
+      "skill": "Python",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "How do you use pandas in a script?",
+      "options": [
+        "import pandas as pd",
+        "include pandas",
+        "use pandas",
+        "require('pandas')"
+      ],
+      "correct_answer": 0,
+      "explanation": "import pandas as pd is the standard import.",
+      "roadmap_reference": "Python for Data Science > Libraries",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q5",
+      "topic": "Python Function",
+      "skill": "Python",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Which keyword defines a function?",
+      "options": [
+        "def",
+        "func",
+        "function",
+        "fn"
+      ],
+      "correct_answer": 0,
+      "explanation": "def defines a function in Python.",
+      "roadmap_reference": "Python for Data Science > Functions",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q6",
+      "topic": "Python Slicing",
+      "skill": "Python",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "What does lst[0:3] return?",
+      "options": [
+        "The first three elements",
+        "The last element",
+        "Nothing",
+        "A dict"
+      ],
+      "correct_answer": 0,
+      "explanation": "Slicing lst[0:3] returns elements at indices 0,1,2.",
+      "roadmap_reference": "Python for Data Science > Slicing",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q7",
+      "topic": "Python pip",
+      "skill": "Python",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Which tool installs data science packages like scikit-learn?",
+      "options": [
+        "pip",
+        "npm",
+        "cargo",
+        "gem"
+      ],
+      "correct_answer": 0,
+      "explanation": "pip installs Python packages.",
+      "roadmap_reference": "Python for Data Science > Environments",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q8",
+      "topic": "Python Comprehension",
+      "skill": "Python",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "What does [x**2 for x in range(3)] produce?",
+      "options": [
+        "[0, 1, 4]",
+        "[1, 2, 3]",
+        "[0, 1, 2]",
+        "An error"
+      ],
+      "correct_answer": 0,
+      "explanation": "It squares 0,1,2 giving [0, 1, 4].",
+      "roadmap_reference": "Python for Data Science > Comprehensions",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q9",
+      "topic": "Python Lambda",
+      "skill": "Python",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "What is a lambda in Python?",
+      "options": [
+        "A small anonymous function",
+        "A loop",
+        "A class",
+        "A module"
+      ],
+      "correct_answer": 0,
+      "explanation": "A lambda is a small anonymous function, e.g. lambda x: x+1.",
+      "roadmap_reference": "Python for Data Science > Lambdas",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q10",
+      "topic": "Python Exceptions",
+      "skill": "Python",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "Which construct handles a possible runtime error?",
+      "options": [
+        "try/except",
+        "if/else",
+        "for/while",
+        "def/return"
+      ],
+      "correct_answer": 0,
+      "explanation": "try/except catches exceptions gracefully.",
+      "roadmap_reference": "Python for Data Science > Exceptions",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q11",
+      "topic": "Mean",
+      "skill": "Statistics",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "The 'mean' of a dataset is its...",
+      "options": [
+        "Average",
+        "Largest value",
+        "Smallest value",
+        "Most frequent value"
+      ],
+      "correct_answer": 0,
+      "explanation": "The mean is the arithmetic average.",
+      "roadmap_reference": "Statistics > Central Tendency",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q12",
+      "topic": "Median",
+      "skill": "Statistics",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "The median is...",
+      "options": [
+        "The middle value when data is sorted",
+        "The average",
+        "The maximum",
+        "The count"
+      ],
+      "correct_answer": 0,
+      "explanation": "The median is the middle value of sorted data.",
+      "roadmap_reference": "Statistics > Central Tendency",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q13",
+      "topic": "Mode",
+      "skill": "Statistics",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "The mode is...",
+      "options": [
+        "The most frequent value",
+        "The average",
+        "The range",
+        "The middle value"
+      ],
+      "correct_answer": 0,
+      "explanation": "The mode is the value that appears most often.",
+      "roadmap_reference": "Statistics > Central Tendency",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q14",
+      "topic": "Std Dev",
+      "skill": "Statistics",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Standard deviation measures...",
+      "options": [
+        "How spread out the data is",
+        "The average only",
+        "The count of rows",
+        "The maximum only"
+      ],
+      "correct_answer": 0,
+      "explanation": "Standard deviation measures dispersion around the mean.",
+      "roadmap_reference": "Statistics > Dispersion",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q15",
+      "topic": "Range",
+      "skill": "Statistics",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "The range of a dataset is...",
+      "options": [
+        "Max minus min",
+        "The average",
+        "The median",
+        "The mode"
+      ],
+      "correct_answer": 0,
+      "explanation": "Range is the difference between the maximum and minimum.",
+      "roadmap_reference": "Statistics > Dispersion",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q16",
+      "topic": "Probability",
+      "skill": "Statistics",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "A probability value must be between...",
+      "options": [
+        "0 and 1",
+        "1 and 100",
+        "-1 and 1",
+        "0 and 10"
+      ],
+      "correct_answer": 0,
+      "explanation": "Probabilities range from 0 (impossible) to 1 (certain).",
+      "roadmap_reference": "Statistics > Probability",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q17",
+      "topic": "Outlier",
+      "skill": "Statistics",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "An outlier is a value that...",
+      "options": [
+        "Differs greatly from most others",
+        "Equals the mean",
+        "Is always zero",
+        "Is the median"
+      ],
+      "correct_answer": 0,
+      "explanation": "An outlier lies far from the bulk of the data.",
+      "roadmap_reference": "Statistics > Outliers",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q18",
+      "topic": "Correlation",
+      "skill": "Statistics",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "A correlation of -0.9 between two variables indicates...",
+      "options": [
+        "A strong negative relationship",
+        "No relationship",
+        "A weak positive relationship",
+        "Causation proven"
+      ],
+      "correct_answer": 0,
+      "explanation": "Values near -1 indicate a strong inverse relationship (not causation).",
+      "roadmap_reference": "Statistics > Correlation",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q19",
+      "topic": "Normal Dist",
+      "skill": "Statistics",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "In a normal distribution, roughly 68% of values fall within...",
+      "options": [
+        "1 standard deviation of the mean",
+        "3 std devs",
+        "the median only",
+        "the maximum"
+      ],
+      "correct_answer": 0,
+      "explanation": "About 68% lie within +/-1 standard deviation (the 68-95-99.7 rule).",
+      "roadmap_reference": "Statistics > Normal Distribution",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q20",
+      "topic": "p-value",
+      "skill": "Statistics",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "A small p-value (e.g. < 0.05) typically suggests...",
+      "options": [
+        "The result is statistically significant",
+        "No effect at all",
+        "Proven causation",
+        "A data error"
+      ],
+      "correct_answer": 0,
+      "explanation": "A small p-value suggests the observed effect is unlikely by chance alone.",
+      "roadmap_reference": "Statistics > Hypothesis Testing",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q21",
+      "topic": "ndarray",
+      "skill": "NumPy",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "What is the core NumPy data structure?",
+      "options": [
+        "ndarray (N-dimensional array)",
+        "DataFrame",
+        "dict",
+        "list only"
+      ],
+      "correct_answer": 0,
+      "explanation": "NumPy's core type is the ndarray.",
+      "roadmap_reference": "NumPy > Arrays",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q22",
+      "topic": "Import",
+      "skill": "NumPy",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "What is the standard NumPy import?",
+      "options": [
+        "import numpy as np",
+        "import np",
+        "from numpy",
+        "require numpy"
+      ],
+      "correct_answer": 0,
+      "explanation": "import numpy as np is conventional.",
+      "roadmap_reference": "NumPy > Basics",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q23",
+      "topic": "Create Array",
+      "skill": "NumPy",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Which creates a NumPy array from a list?",
+      "options": [
+        "np.array([1,2,3])",
+        "np.list([1,2,3])",
+        "numpy(1,2,3)",
+        "array.new()"
+      ],
+      "correct_answer": 0,
+      "explanation": "np.array() builds an ndarray from a sequence.",
+      "roadmap_reference": "NumPy > Array Creation",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q24",
+      "topic": "Vectorized",
+      "skill": "NumPy",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "A key NumPy advantage over plain lists is...",
+      "options": [
+        "Fast vectorized numeric operations",
+        "Colored output",
+        "Web hosting",
+        "Video playback"
+      ],
+      "correct_answer": 0,
+      "explanation": "NumPy performs fast element-wise (vectorized) operations.",
+      "roadmap_reference": "NumPy > Vectorization",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q25",
+      "topic": "Zeros",
+      "skill": "NumPy",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "What does np.zeros(3) create?",
+      "options": [
+        "An array of three zeros",
+        "A single zero",
+        "A 3x3 matrix of ones",
+        "An error"
+      ],
+      "correct_answer": 0,
+      "explanation": "np.zeros(3) yields [0., 0., 0.].",
+      "roadmap_reference": "NumPy > Array Creation",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q26",
+      "topic": "Shape",
+      "skill": "NumPy",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "What does array.shape tell you?",
+      "options": [
+        "The dimensions of the array",
+        "The file size",
+        "The color",
+        "The mean"
+      ],
+      "correct_answer": 0,
+      "explanation": "shape gives the size along each dimension.",
+      "roadmap_reference": "NumPy > Attributes",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q27",
+      "topic": "Elementwise",
+      "skill": "NumPy",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "For arrays a and b, a + b performs...",
+      "options": [
+        "Element-wise addition",
+        "String concatenation",
+        "A database join",
+        "Nothing"
+      ],
+      "correct_answer": 0,
+      "explanation": "NumPy adds arrays element by element.",
+      "roadmap_reference": "NumPy > Operations",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q28",
+      "topic": "Broadcasting",
+      "skill": "NumPy",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "'Broadcasting' in NumPy lets you...",
+      "options": [
+        "Operate on arrays of different but compatible shapes",
+        "Send email",
+        "Broadcast TV",
+        "Delete arrays"
+      ],
+      "correct_answer": 0,
+      "explanation": "Broadcasting stretches shapes so element-wise ops work without copies.",
+      "roadmap_reference": "NumPy > Broadcasting",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q29",
+      "topic": "dtype",
+      "skill": "NumPy",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "Why does a NumPy array have a single dtype?",
+      "options": [
+        "Uniform types enable efficient, fast computation",
+        "To limit users",
+        "To store images only",
+        "It doesn't"
+      ],
+      "correct_answer": 0,
+      "explanation": "A single dtype allows contiguous, efficient numeric operations.",
+      "roadmap_reference": "NumPy > Data Types",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q30",
+      "topic": "Axis",
+      "skill": "NumPy",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "np.sum(arr, axis=0) on a 2D array sums...",
+      "options": [
+        "Down each column",
+        "Across each row",
+        "All elements into one",
+        "Nothing"
+      ],
+      "correct_answer": 0,
+      "explanation": "axis=0 collapses rows, summing down each column.",
+      "roadmap_reference": "NumPy > Aggregations",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q31",
+      "topic": "DataFrame",
+      "skill": "Pandas",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "What is a pandas DataFrame?",
+      "options": [
+        "A 2D labeled table of rows and columns",
+        "A single number",
+        "A NumPy scalar",
+        "A web page"
+      ],
+      "correct_answer": 0,
+      "explanation": "A DataFrame is a 2D labeled tabular structure.",
+      "roadmap_reference": "Pandas > DataFrame",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q32",
+      "topic": "Series",
+      "skill": "Pandas",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "A pandas Series is...",
+      "options": [
+        "A single labeled column/1D array",
+        "A 3D array",
+        "A database",
+        "A CSS file"
+      ],
+      "correct_answer": 0,
+      "explanation": "A Series is a one-dimensional labeled array.",
+      "roadmap_reference": "Pandas > Series",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q33",
+      "topic": "Read CSV",
+      "skill": "Pandas",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Which function loads a CSV into a DataFrame?",
+      "options": [
+        "pd.read_csv()",
+        "pd.open_csv()",
+        "pd.load()",
+        "pd.csv()"
+      ],
+      "correct_answer": 0,
+      "explanation": "pd.read_csv() reads a CSV file into a DataFrame.",
+      "roadmap_reference": "Pandas > IO",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q34",
+      "topic": "Head",
+      "skill": "Pandas",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "What does df.head() show?",
+      "options": [
+        "The first few rows",
+        "The last row only",
+        "The column types only",
+        "Nothing"
+      ],
+      "correct_answer": 0,
+      "explanation": "df.head() returns the first rows (default 5).",
+      "roadmap_reference": "Pandas > Inspection",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q35",
+      "topic": "Column Select",
+      "skill": "Pandas",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "How do you select the 'age' column?",
+      "options": [
+        "df['age']",
+        "df->age",
+        "df::age",
+        "df(age)"
+      ],
+      "correct_answer": 0,
+      "explanation": "df['age'] selects that column as a Series.",
+      "roadmap_reference": "Pandas > Selection",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q36",
+      "topic": "Shape",
+      "skill": "Pandas",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "df.shape returns...",
+      "options": [
+        "(rows, columns)",
+        "only rows",
+        "only columns",
+        "the file name"
+      ],
+      "correct_answer": 0,
+      "explanation": "shape gives the (rows, columns) tuple.",
+      "roadmap_reference": "Pandas > Inspection",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q37",
+      "topic": "Describe",
+      "skill": "Pandas",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "df.describe() provides...",
+      "options": [
+        "Summary statistics for numeric columns",
+        "The logo",
+        "The CSS",
+        "The URL"
+      ],
+      "correct_answer": 0,
+      "explanation": "describe() gives count, mean, std, min, quartiles, max.",
+      "roadmap_reference": "Pandas > Summary",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q38",
+      "topic": "GroupBy",
+      "skill": "Pandas",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "df.groupby('category')['sales'].sum() computes...",
+      "options": [
+        "Total sales per category",
+        "Total rows only",
+        "A random value",
+        "The column names"
+      ],
+      "correct_answer": 0,
+      "explanation": "groupby aggregates sales summed within each category.",
+      "roadmap_reference": "Pandas > GroupBy",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q39",
+      "topic": "Missing",
+      "skill": "Pandas",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "Which detects missing values in a DataFrame?",
+      "options": [
+        "df.isnull()",
+        "df.exists()",
+        "df.full()",
+        "df.clean()"
+      ],
+      "correct_answer": 0,
+      "explanation": "df.isnull() flags NaN/missing entries.",
+      "roadmap_reference": "Pandas > Missing Data",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q40",
+      "topic": "Merge",
+      "skill": "Pandas",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "pd.merge(a, b, on='id') does what?",
+      "options": [
+        "Joins two DataFrames on the id column",
+        "Deletes DataFrame b",
+        "Sorts a only",
+        "Nothing"
+      ],
+      "correct_answer": 0,
+      "explanation": "merge joins DataFrames on a key, like a SQL join.",
+      "roadmap_reference": "Pandas > Merge/Join",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q41",
+      "topic": "Purpose",
+      "skill": "Data Visualization",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "The main purpose of data visualization is to...",
+      "options": [
+        "Communicate patterns and insights clearly",
+        "Encrypt data",
+        "Delete data",
+        "Slow analysis"
+      ],
+      "correct_answer": 0,
+      "explanation": "Visualization reveals patterns and communicates insight.",
+      "roadmap_reference": "Data Visualization > Purpose",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q42",
+      "topic": "Matplotlib",
+      "skill": "Data Visualization",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Which is a core Python plotting library?",
+      "options": [
+        "Matplotlib",
+        "NumPy only",
+        "requests",
+        "Flask"
+      ],
+      "correct_answer": 0,
+      "explanation": "Matplotlib is the foundational plotting library.",
+      "roadmap_reference": "Data Visualization > Tools",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q43",
+      "topic": "Bar Chart",
+      "skill": "Data Visualization",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "A bar chart is best for...",
+      "options": [
+        "Comparing values across categories",
+        "Showing exact source code",
+        "Storing files",
+        "Encrypting data"
+      ],
+      "correct_answer": 0,
+      "explanation": "Bar charts compare categorical quantities.",
+      "roadmap_reference": "Data Visualization > Chart Types",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q44",
+      "topic": "Line Chart",
+      "skill": "Data Visualization",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "A line chart is best for showing...",
+      "options": [
+        "Trends over time",
+        "One single value",
+        "Passwords",
+        "File permissions"
+      ],
+      "correct_answer": 0,
+      "explanation": "Line charts show change/trends over a continuous axis like time.",
+      "roadmap_reference": "Data Visualization > Chart Types",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q45",
+      "topic": "Histogram",
+      "skill": "Data Visualization",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "A histogram shows...",
+      "options": [
+        "The distribution of a single numeric variable",
+        "A map",
+        "Two categories only",
+        "Source code"
+      ],
+      "correct_answer": 0,
+      "explanation": "A histogram shows how a numeric variable is distributed.",
+      "roadmap_reference": "Data Visualization > Distributions",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q46",
+      "topic": "Scatter",
+      "skill": "Data Visualization",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "A scatter plot is best for...",
+      "options": [
+        "Showing the relationship between two numeric variables",
+        "Listing files",
+        "Sending email",
+        "Styling text"
+      ],
+      "correct_answer": 0,
+      "explanation": "Scatter plots reveal relationships/correlation between two variables.",
+      "roadmap_reference": "Data Visualization > Chart Types",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q47",
+      "topic": "Labels",
+      "skill": "Data Visualization",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Why label chart axes and add a title?",
+      "options": [
+        "So readers understand what is shown",
+        "To slow rendering",
+        "To hide data",
+        "To encrypt it"
+      ],
+      "correct_answer": 0,
+      "explanation": "Clear labels/titles make a chart interpretable.",
+      "roadmap_reference": "Data Visualization > Best Practices",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q48",
+      "topic": "Pie Misuse",
+      "skill": "Data Visualization",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "Why are pie charts often discouraged for many categories?",
+      "options": [
+        "Angles are hard to compare precisely",
+        "They are illegal",
+        "They cannot use color",
+        "They need a database"
+      ],
+      "correct_answer": 0,
+      "explanation": "People compare lengths better than angles, so bars often beat pies.",
+      "roadmap_reference": "Data Visualization > Best Practices",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q49",
+      "topic": "Boxplot",
+      "skill": "Data Visualization",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "A box plot is especially useful for showing...",
+      "options": [
+        "Median, quartiles, and outliers",
+        "Exact source code",
+        "A single number",
+        "A map route"
+      ],
+      "correct_answer": 0,
+      "explanation": "Box plots summarize spread, quartiles, and outliers.",
+      "roadmap_reference": "Data Visualization > Distributions",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q50",
+      "topic": "Heatmap",
+      "skill": "Data Visualization",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "A correlation heatmap uses color to show...",
+      "options": [
+        "Strength of relationships between variables",
+        "Server temperature",
+        "Disk usage",
+        "Font sizes"
+      ],
+      "correct_answer": 0,
+      "explanation": "A heatmap encodes correlation magnitudes as colors.",
+      "roadmap_reference": "Data Visualization > Heatmaps",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q51",
+      "topic": "Select",
+      "skill": "SQL",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Which statement reads rows from a table?",
+      "options": [
+        "SELECT",
+        "INSERT",
+        "DELETE",
+        "UPDATE"
+      ],
+      "correct_answer": 0,
+      "explanation": "SELECT retrieves rows.",
+      "roadmap_reference": "SQL > SELECT",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q52",
+      "topic": "Where",
+      "skill": "SQL",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Which clause filters rows?",
+      "options": [
+        "WHERE",
+        "ORDER BY",
+        "GROUP BY",
+        "LIMIT"
+      ],
+      "correct_answer": 0,
+      "explanation": "WHERE filters by condition.",
+      "roadmap_reference": "SQL > WHERE",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q53",
+      "topic": "Distinct",
+      "skill": "SQL",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "SELECT DISTINCT returns...",
+      "options": [
+        "Only unique values",
+        "Duplicate rows",
+        "No rows",
+        "All columns encrypted"
+      ],
+      "correct_answer": 0,
+      "explanation": "DISTINCT removes duplicate rows from results.",
+      "roadmap_reference": "SQL > DISTINCT",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q54",
+      "topic": "Count",
+      "skill": "SQL",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Which function counts rows?",
+      "options": [
+        "COUNT()",
+        "SUM()",
+        "AVG()",
+        "MAX()"
+      ],
+      "correct_answer": 0,
+      "explanation": "COUNT() counts rows.",
+      "roadmap_reference": "SQL > Aggregates",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q55",
+      "topic": "Order",
+      "skill": "SQL",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Which clause sorts results?",
+      "options": [
+        "ORDER BY",
+        "WHERE",
+        "JOIN",
+        "HAVING"
+      ],
+      "correct_answer": 0,
+      "explanation": "ORDER BY sorts the result set.",
+      "roadmap_reference": "SQL > ORDER BY",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q56",
+      "topic": "Limit",
+      "skill": "SQL",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Which clause returns only the first N rows?",
+      "options": [
+        "LIMIT",
+        "TOP only",
+        "FIRST",
+        "HEAD"
+      ],
+      "correct_answer": 0,
+      "explanation": "LIMIT restricts the number of returned rows.",
+      "roadmap_reference": "SQL > LIMIT",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q57",
+      "topic": "Avg",
+      "skill": "SQL",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Which aggregate returns the mean of a column?",
+      "options": [
+        "AVG()",
+        "COUNT()",
+        "MIN()",
+        "MAX()"
+      ],
+      "correct_answer": 0,
+      "explanation": "AVG() computes the average of numeric values.",
+      "roadmap_reference": "SQL > Aggregates",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q58",
+      "topic": "Join",
+      "skill": "SQL",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "An INNER JOIN returns...",
+      "options": [
+        "Rows matching in both tables",
+        "All left rows only",
+        "No rows",
+        "Only columns"
+      ],
+      "correct_answer": 0,
+      "explanation": "INNER JOIN keeps rows with matching keys in both tables.",
+      "roadmap_reference": "SQL > Joins",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q59",
+      "topic": "GroupBy",
+      "skill": "SQL",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "GROUP BY with COUNT(*) gives...",
+      "options": [
+        "A count per group",
+        "One total only",
+        "No output",
+        "Random rows"
+      ],
+      "correct_answer": 0,
+      "explanation": "GROUP BY buckets rows so aggregates compute per group.",
+      "roadmap_reference": "SQL > GROUP BY",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q60",
+      "topic": "Having",
+      "skill": "SQL",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "How do you filter groups after aggregation?",
+      "options": [
+        "HAVING",
+        "WHERE only",
+        "LIMIT",
+        "ORDER BY"
+      ],
+      "correct_answer": 0,
+      "explanation": "HAVING filters aggregated groups (WHERE filters rows before grouping).",
+      "roadmap_reference": "SQL > HAVING",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q61",
+      "topic": "Definition",
+      "skill": "Machine Learning",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Machine learning is about...",
+      "options": [
+        "Learning patterns from data to make predictions",
+        "Hard-coding every rule",
+        "Only storing files",
+        "Only drawing charts"
+      ],
+      "correct_answer": 0,
+      "explanation": "ML learns patterns from data rather than being explicitly programmed.",
+      "roadmap_reference": "Machine Learning > Overview",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q62",
+      "topic": "Supervised",
+      "skill": "Machine Learning",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Supervised learning uses...",
+      "options": [
+        "Labeled data (inputs with known outputs)",
+        "Only unlabeled data",
+        "No data",
+        "Only images"
+      ],
+      "correct_answer": 0,
+      "explanation": "Supervised learning trains on labeled input-output pairs.",
+      "roadmap_reference": "Machine Learning > Supervised",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q63",
+      "topic": "Unsupervised",
+      "skill": "Machine Learning",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Clustering is an example of...",
+      "options": [
+        "Unsupervised learning",
+        "Supervised learning",
+        "A database join",
+        "A web request"
+      ],
+      "correct_answer": 0,
+      "explanation": "Clustering finds structure in unlabeled data (unsupervised).",
+      "roadmap_reference": "Machine Learning > Unsupervised",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q64",
+      "topic": "Classification",
+      "skill": "Machine Learning",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Predicting a category (spam/not spam) is...",
+      "options": [
+        "Classification",
+        "Regression",
+        "Clustering",
+        "Ranking only"
+      ],
+      "correct_answer": 0,
+      "explanation": "Classification predicts discrete categories.",
+      "roadmap_reference": "Machine Learning > Tasks",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q65",
+      "topic": "Regression",
+      "skill": "Machine Learning",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Predicting a continuous number (like price) is...",
+      "options": [
+        "Regression",
+        "Classification",
+        "Clustering",
+        "Encryption"
+      ],
+      "correct_answer": 0,
+      "explanation": "Regression predicts continuous numeric values.",
+      "roadmap_reference": "Machine Learning > Tasks",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q66",
+      "topic": "Features",
+      "skill": "Machine Learning",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "In ML, 'features' are...",
+      "options": [
+        "Input variables used to make predictions",
+        "The final answer only",
+        "Chart colors",
+        "File names"
+      ],
+      "correct_answer": 0,
+      "explanation": "Features are the input variables fed to a model.",
+      "roadmap_reference": "Machine Learning > Features",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q67",
+      "topic": "Training",
+      "skill": "Machine Learning",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "'Training' a model means...",
+      "options": [
+        "Fitting it to data to learn patterns",
+        "Deleting the data",
+        "Drawing it",
+        "Deploying it only"
+      ],
+      "correct_answer": 0,
+      "explanation": "Training fits model parameters to the data.",
+      "roadmap_reference": "Machine Learning > Training",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q68",
+      "topic": "Overfitting",
+      "skill": "Machine Learning",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "Overfitting means a model...",
+      "options": [
+        "Fits training data well but generalizes poorly",
+        "Works great on new data",
+        "Has too little data always",
+        "Never learns"
+      ],
+      "correct_answer": 0,
+      "explanation": "Overfitting memorizes training data and fails on unseen data.",
+      "roadmap_reference": "Machine Learning > Overfitting",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q69",
+      "topic": "Train/Test Split",
+      "skill": "Machine Learning",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "Why split data into train and test sets?",
+      "options": [
+        "Estimate performance on unseen data",
+        "Delete half the data",
+        "Make training slower",
+        "Encrypt the labels"
+      ],
+      "correct_answer": 0,
+      "explanation": "A held-out test set estimates generalization to new data.",
+      "roadmap_reference": "Machine Learning > Validation",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q70",
+      "topic": "Cross-Val",
+      "skill": "Machine Learning",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "What does k-fold cross-validation do?",
+      "options": [
+        "Rotates train/validation folds for a robust estimate",
+        "Trains only once",
+        "Deletes folds",
+        "Ignores validation"
+      ],
+      "correct_answer": 0,
+      "explanation": "k-fold rotates the validation fold, averaging results for a stable estimate.",
+      "roadmap_reference": "Machine Learning > Cross-Validation",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q71",
+      "topic": "Neural Net",
+      "skill": "Deep Learning",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "A neural network is made of...",
+      "options": [
+        "Layers of interconnected nodes (neurons)",
+        "SQL tables",
+        "CSS rules",
+        "DNS records"
+      ],
+      "correct_answer": 0,
+      "explanation": "Neural nets are layers of connected neurons.",
+      "roadmap_reference": "Deep Learning > Neural Networks",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q72",
+      "topic": "Deep",
+      "skill": "Deep Learning",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "'Deep' learning refers to networks with...",
+      "options": [
+        "Many hidden layers",
+        "One row of data",
+        "No layers",
+        "Only CSS"
+      ],
+      "correct_answer": 0,
+      "explanation": "Depth refers to multiple hidden layers.",
+      "roadmap_reference": "Deep Learning > Overview",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q73",
+      "topic": "Weights",
+      "skill": "Deep Learning",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "During training, a neural network adjusts its...",
+      "options": [
+        "Weights",
+        "Colors",
+        "File names",
+        "URLs"
+      ],
+      "correct_answer": 0,
+      "explanation": "Training updates the connection weights to reduce error.",
+      "roadmap_reference": "Deep Learning > Training",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q74",
+      "topic": "Activation",
+      "skill": "Deep Learning",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "An activation function (like ReLU) adds...",
+      "options": [
+        "Non-linearity to the network",
+        "More disk space",
+        "A database",
+        "A CSS theme"
+      ],
+      "correct_answer": 0,
+      "explanation": "Activations introduce non-linearity so nets learn complex patterns.",
+      "roadmap_reference": "Deep Learning > Activations",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q75",
+      "topic": "Framework",
+      "skill": "Deep Learning",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Which is a deep learning framework?",
+      "options": [
+        "PyTorch",
+        "pandas",
+        "Matplotlib",
+        "requests"
+      ],
+      "correct_answer": 0,
+      "explanation": "PyTorch (and TensorFlow) are deep learning frameworks.",
+      "roadmap_reference": "Deep Learning > Frameworks",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q76",
+      "topic": "Image Use",
+      "skill": "Deep Learning",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Deep learning excels at tasks like...",
+      "options": [
+        "Image and speech recognition",
+        "Sorting a tiny CSV only",
+        "Sending email",
+        "Editing DNS"
+      ],
+      "correct_answer": 0,
+      "explanation": "DL powers vision, speech, and language tasks.",
+      "roadmap_reference": "Deep Learning > Applications",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q77",
+      "topic": "GPU",
+      "skill": "Deep Learning",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Why are GPUs used to train deep networks?",
+      "options": [
+        "They accelerate the heavy matrix math in parallel",
+        "They store more files",
+        "They render web pages",
+        "They send email"
+      ],
+      "correct_answer": 0,
+      "explanation": "GPUs parallelize the matrix operations, speeding training.",
+      "roadmap_reference": "Deep Learning > Hardware",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q78",
+      "topic": "Backprop",
+      "skill": "Deep Learning",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "What does backpropagation do?",
+      "options": [
+        "Computes gradients to update weights",
+        "Deletes layers",
+        "Draws charts",
+        "Hosts the model"
+      ],
+      "correct_answer": 0,
+      "explanation": "Backpropagation computes gradients used by the optimizer to update weights.",
+      "roadmap_reference": "Deep Learning > Backpropagation",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q79",
+      "topic": "Epoch",
+      "skill": "Deep Learning",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "One 'epoch' means...",
+      "options": [
+        "One full pass over the training data",
+        "One single row",
+        "One neuron",
+        "One GPU"
+      ],
+      "correct_answer": 0,
+      "explanation": "An epoch is a complete pass through the training dataset.",
+      "roadmap_reference": "Deep Learning > Training Loop",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q80",
+      "topic": "Learning Rate",
+      "skill": "Deep Learning",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "The learning rate controls...",
+      "options": [
+        "How big each weight-update step is",
+        "The image resolution",
+        "The dataset size",
+        "The color scheme"
+      ],
+      "correct_answer": 0,
+      "explanation": "The learning rate scales the step size of weight updates.",
+      "roadmap_reference": "Deep Learning > Hyperparameters",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q81",
+      "topic": "Definition",
+      "skill": "Feature Engineering",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Feature engineering is...",
+      "options": [
+        "Creating/transforming inputs to help models learn",
+        "Deleting the model",
+        "Drawing charts only",
+        "Hosting the app"
+      ],
+      "correct_answer": 0,
+      "explanation": "It transforms raw data into informative features for models.",
+      "roadmap_reference": "Feature Engineering > Overview",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q82",
+      "topic": "Missing Values",
+      "skill": "Feature Engineering",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "A common way to handle missing numeric values is...",
+      "options": [
+        "Imputation (e.g. fill with the mean)",
+        "Delete the whole dataset",
+        "Ignore the column type",
+        "Encrypt them"
+      ],
+      "correct_answer": 0,
+      "explanation": "Imputation fills missing values (e.g. with mean/median).",
+      "roadmap_reference": "Feature Engineering > Missing Data",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q83",
+      "topic": "Encoding",
+      "skill": "Feature Engineering",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Why one-hot encode a categorical column?",
+      "options": [
+        "Convert categories into numeric columns models can use",
+        "To slow training",
+        "To delete categories",
+        "To draw a map"
+      ],
+      "correct_answer": 0,
+      "explanation": "One-hot encoding turns categories into binary numeric features.",
+      "roadmap_reference": "Feature Engineering > Encoding",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q84",
+      "topic": "Scaling",
+      "skill": "Feature Engineering",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Why scale/normalize numeric features?",
+      "options": [
+        "Put them on comparable ranges for many algorithms",
+        "To hide values",
+        "To delete rows",
+        "To add color"
+      ],
+      "correct_answer": 0,
+      "explanation": "Scaling helps algorithms sensitive to feature magnitude converge well.",
+      "roadmap_reference": "Feature Engineering > Scaling",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q85",
+      "topic": "Datetime",
+      "skill": "Feature Engineering",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "From a timestamp you might engineer features like...",
+      "options": [
+        "Day of week, hour, month",
+        "The user's password",
+        "The CSS theme",
+        "The file size only"
+      ],
+      "correct_answer": 0,
+      "explanation": "Extracting parts like day/hour/month often adds signal.",
+      "roadmap_reference": "Feature Engineering > Datetime Features",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q86",
+      "topic": "Domain",
+      "skill": "Feature Engineering",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Domain knowledge helps feature engineering by...",
+      "options": [
+        "Suggesting meaningful features to create",
+        "Slowing the model",
+        "Deleting data",
+        "Encrypting outputs"
+      ],
+      "correct_answer": 0,
+      "explanation": "Understanding the domain guides which features matter.",
+      "roadmap_reference": "Feature Engineering > Domain Knowledge",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q87",
+      "topic": "Binning",
+      "skill": "Feature Engineering",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "'Binning' a numeric feature means...",
+      "options": [
+        "Grouping values into ranges/buckets",
+        "Deleting it",
+        "Encrypting it",
+        "Doubling it"
+      ],
+      "correct_answer": 0,
+      "explanation": "Binning converts a continuous variable into discrete ranges.",
+      "roadmap_reference": "Feature Engineering > Binning",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q88",
+      "topic": "Leakage",
+      "skill": "Feature Engineering",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "'Data leakage' in feature engineering is when...",
+      "options": [
+        "Features use information unavailable at prediction time",
+        "The disk is full",
+        "Colors leak",
+        "The server restarts"
+      ],
+      "correct_answer": 0,
+      "explanation": "Leakage uses future/target info that won't exist at inference, inflating scores.",
+      "roadmap_reference": "Feature Engineering > Data Leakage",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q89",
+      "topic": "Fit on Train",
+      "skill": "Feature Engineering",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "When scaling, you should fit the scaler on...",
+      "options": [
+        "The training set only, then apply to test",
+        "Both sets together",
+        "The test set only",
+        "Neither set"
+      ],
+      "correct_answer": 0,
+      "explanation": "Fitting on train-only prevents test information from leaking in.",
+      "roadmap_reference": "Feature Engineering > Best Practices",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q90",
+      "topic": "Feature Selection",
+      "skill": "Feature Engineering",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "Why perform feature selection?",
+      "options": [
+        "Remove irrelevant/redundant features to improve models",
+        "To add noise",
+        "To delete all features",
+        "To slow inference"
+      ],
+      "correct_answer": 0,
+      "explanation": "Selecting useful features can improve accuracy and reduce overfitting.",
+      "roadmap_reference": "Feature Engineering > Feature Selection",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q91",
+      "topic": "Accuracy",
+      "skill": "Model Evaluation",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Accuracy measures...",
+      "options": [
+        "The fraction of correct predictions",
+        "The training time",
+        "The file size",
+        "The color"
+      ],
+      "correct_answer": 0,
+      "explanation": "Accuracy is correct predictions divided by total predictions.",
+      "roadmap_reference": "Model Evaluation > Accuracy",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q92",
+      "topic": "Test Set",
+      "skill": "Model Evaluation",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "You evaluate a model on...",
+      "options": [
+        "Held-out test data it did not train on",
+        "The same training data only",
+        "No data",
+        "The source code"
+      ],
+      "correct_answer": 0,
+      "explanation": "Evaluation uses unseen test data to estimate real performance.",
+      "roadmap_reference": "Model Evaluation > Test Set",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q93",
+      "topic": "Classification Metric",
+      "skill": "Model Evaluation",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Which is a classification metric?",
+      "options": [
+        "Precision",
+        "Mean squared error",
+        "R-squared",
+        "Learning rate"
+      ],
+      "correct_answer": 0,
+      "explanation": "Precision is a classification metric (MSE/R2 are for regression).",
+      "roadmap_reference": "Model Evaluation > Metrics",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q94",
+      "topic": "Regression Metric",
+      "skill": "Model Evaluation",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Which metric is used for regression?",
+      "options": [
+        "Mean Squared Error (MSE)",
+        "Precision",
+        "Recall",
+        "F1 score"
+      ],
+      "correct_answer": 0,
+      "explanation": "MSE measures average squared error for regression.",
+      "roadmap_reference": "Model Evaluation > Regression Metrics",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q95",
+      "topic": "Confusion Matrix",
+      "skill": "Model Evaluation",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "A confusion matrix shows...",
+      "options": [
+        "Counts of correct and incorrect predictions per class",
+        "The GPU temperature",
+        "The CSS layout",
+        "The file path"
+      ],
+      "correct_answer": 0,
+      "explanation": "It tabulates true/false positives and negatives per class.",
+      "roadmap_reference": "Model Evaluation > Confusion Matrix",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q96",
+      "topic": "Overfit Sign",
+      "skill": "Model Evaluation",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "High training accuracy but low test accuracy suggests...",
+      "options": [
+        "Overfitting",
+        "Perfect generalization",
+        "No training",
+        "A data leak fixed"
+      ],
+      "correct_answer": 0,
+      "explanation": "That gap is a classic sign of overfitting.",
+      "roadmap_reference": "Model Evaluation > Diagnosing",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q97",
+      "topic": "Baseline",
+      "skill": "Model Evaluation",
+      "difficulty": "Easy",
+      "weight": 10,
+      "question": "Why compare a model to a simple baseline?",
+      "options": [
+        "To confirm it actually adds value",
+        "To slow it down",
+        "To delete it",
+        "To hide results"
+      ],
+      "correct_answer": 0,
+      "explanation": "A baseline shows whether the model beats a trivial approach.",
+      "roadmap_reference": "Model Evaluation > Baselines",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q98",
+      "topic": "Precision vs Recall",
+      "skill": "Model Evaluation",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "Recall measures the fraction of...",
+      "options": [
+        "Actual positives correctly identified",
+        "All predictions correct",
+        "Negatives predicted",
+        "Rows in the table"
+      ],
+      "correct_answer": 0,
+      "explanation": "Recall = true positives / all actual positives.",
+      "roadmap_reference": "Model Evaluation > Precision & Recall",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q99",
+      "topic": "F1",
+      "skill": "Model Evaluation",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "The F1 score is...",
+      "options": [
+        "The harmonic mean of precision and recall",
+        "The average of MSE and R2",
+        "The training time",
+        "The dataset size"
+      ],
+      "correct_answer": 0,
+      "explanation": "F1 balances precision and recall via their harmonic mean.",
+      "roadmap_reference": "Model Evaluation > F1 Score",
+      "estimated_time": "30 sec"
+    },
+    {
+      "id": "Q100",
+      "topic": "Imbalance",
+      "skill": "Model Evaluation",
+      "difficulty": "Medium",
+      "weight": 10,
+      "question": "Why can accuracy mislead on imbalanced data?",
+      "options": [
+        "Predicting the majority class can look accurate but be useless",
+        "It is always wrong",
+        "It counts rows",
+        "It needs a GPU"
+      ],
+      "correct_answer": 0,
+      "explanation": "With rare positives, always predicting the majority yields high accuracy but poor utility.",
+      "roadmap_reference": "Model Evaluation > Class Imbalance",
+      "estimated_time": "30 sec"
+    }
+  ]
+}
