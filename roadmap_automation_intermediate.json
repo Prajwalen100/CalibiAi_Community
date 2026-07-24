@@ -1,0 +1,3263 @@
+{
+  "roadmap": {
+    "title": "45-Day Automation Engineer Roadmap",
+    "role": "Automation Engineer",
+    "level": "Intermediate",
+    "total_days": 45,
+    "provider": "CalibiAI",
+    "description": "A rigorous 45-day intermediate curriculum for automation engineers who already know Zapier, Make.com, n8n, APIs, webhooks, and basic Python - advancing into custom integrations, event-driven architecture, production AI agents and RAG, orchestration, containerization, CI/CD, observability, security hardening, scaling, and a production-grade automation-platform capstone.",
+    "outcome": "Ability to architect, build, test, deploy, secure, scale, and monitor production automation platforms - combining custom-coded integrations, event-driven systems, AI agents, orchestration, and DevOps practices - qualifying you for senior automation, integration, and AI-automation engineering roles."
+  },
+  "days": [
+    {
+      "day": 1,
+      "title": "Advanced Automation Architecture and Design Principles",
+      "objectives": [
+        "Design automation systems, not just single workflows",
+        "Apply architectural patterns and trade-off analysis",
+        "Choose synchronous vs asynchronous and centralized vs distributed designs"
+      ],
+      "topics": [
+        "From workflows to systems: architectural thinking",
+        "Integration patterns (point-to-point, hub-and-spoke, event-driven, iPaaS)",
+        "Synchronous vs asynchronous processing",
+        "Coupling, cohesion, and single responsibility in automations",
+        "Non-functional requirements: scalability, reliability, cost, security"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Comfort with Zapier/Make/n8n",
+        "APIs, webhooks, JSON basics",
+        "Basic Python"
+      ],
+      "intermediate_explanation": "At the intermediate level you stop thinking about individual Zaps or scenarios and start thinking about automation systems - collections of workflows, data stores, queues, and services that together support a business capability reliably and at scale. This shift demands architectural thinking. You must understand the classic integration patterns and when each applies: point-to-point (App A talks directly to App B) is simple but becomes an unmaintainable web as you add systems; hub-and-spoke centralizes integration logic in one place (like an n8n instance) to reduce that sprawl; event-driven architecture has systems publish events that any number of consumers react to, giving loose coupling and scalability; and iPaaS is the managed embodiment of these ideas. A core decision is synchronous vs asynchronous: a synchronous flow makes the caller wait for a result (simple, but fragile and slow if a step is slow or down), whereas an asynchronous flow accepts the request, queues the work, and processes it later (resilient and scalable, but more complex and eventually-consistent). You apply software design principles - low coupling so a change in one system does not ripple everywhere, high cohesion so each workflow does one clear job, and single responsibility to keep automations testable and maintainable. Above all, you learn to reason about non-functional requirements: how will this scale as volume grows 100x, how reliable must it be, what does it cost per run, and what are the security implications? Making these architecture and trade-off decisions deliberately - and being able to justify them - is precisely what separates an intermediate/senior automation engineer from a beginner who only wires apps together.",
+      "practical_task": "Take an existing multi-app automation you have built and redraw it as a proper architecture diagram, labeling the integration pattern, sync vs async boundaries, data stores, and where coupling is too tight; then propose an improved design.",
+      "mini_project": "Design (as a documented architecture) two versions of an order-processing system - one synchronous point-to-point and one asynchronous event-driven - and write a trade-off analysis covering scalability, reliability, cost, and complexity for each.",
+      "assignment": "Write a one-page decision guide explaining when to choose point-to-point, hub-and-spoke, and event-driven integration, with a real scenario for each and the non-functional requirements that drive the choice.",
+      "quiz": [
+        {
+          "question": "What is the main drawback of point-to-point integration as systems grow?",
+          "options": [
+            "It is too reliable",
+            "It becomes an unmaintainable web of direct connections",
+            "It cannot use APIs",
+            "It is always asynchronous"
+          ],
+          "answer": "It becomes an unmaintainable web of direct connections"
+        },
+        {
+          "question": "What is a key benefit of asynchronous processing?",
+          "options": [
+            "The caller always waits",
+            "Resilience and scalability by queueing work instead of blocking",
+            "It removes all complexity",
+            "It requires no storage"
+          ],
+          "answer": "Resilience and scalability by queueing work instead of blocking"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Software Architecture and Integration Patterns Explained",
+          "channel": "TechWorld with Nana",
+          "url": "https://www.youtube.com/watch?v=1xo-0gCVhTU"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Enterprise Integration Patterns (official site)",
+          "url": "https://www.enterpriseintegrationpatterns.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "donnemartin/system-design-primer",
+          "url": "https://github.com/donnemartin/system-design-primer"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Enterprise Integration Patterns (Hohpe & Woolf, 2003)",
+          "url": "https://www.enterpriseintegrationpatterns.com/patterns/messaging/"
+        }
+      ],
+      "skills_gained": [
+        "Automation architecture",
+        "Integration pattern selection",
+        "Sync/async trade-off analysis"
+      ],
+      "expected_outcome": "You can architect automation systems and justify design trade-offs."
+    },
+    {
+      "day": 2,
+      "title": "Advanced API Integration: Pagination, Rate Limits, Retries, and Idempotency",
+      "objectives": [
+        "Consume complex APIs robustly at scale",
+        "Handle pagination, rate limiting, and retries correctly",
+        "Guarantee correctness with idempotency"
+      ],
+      "topics": [
+        "Pagination strategies (offset, cursor, link headers)",
+        "Rate limiting, throttling, and backoff",
+        "Retries, jitter, and transient vs permanent errors",
+        "Idempotency keys and exactly-once semantics",
+        "Bulk/batch endpoints and partial failure handling"
+      ],
+      "estimated_time": "7-8 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "API and HTTP fundamentals",
+        "Basic Python (requests)"
+      ],
+      "intermediate_explanation": "Beginner integrations call an API once and assume it works; intermediate engineers write integrations that stay correct and reliable when pulling thousands of records against APIs that impose limits and occasionally fail. Pagination is the first reality: APIs rarely return everything at once, so you must loop through pages using the API's scheme - offset/limit (page numbers), cursor-based (a token pointing to the next batch, the most robust for large or changing datasets), or Link headers - and you learn to detect the last page and avoid infinite loops. Rate limiting is the second: APIs cap requests per second/minute, returning 429 Too Many Requests when exceeded, so you implement throttling to stay under the limit and exponential backoff with jitter (randomized waits) when you do hit it, which prevents a thundering-herd of synchronized retries. Not all errors are equal: you distinguish transient errors (timeouts, 429, 503 - safe to retry) from permanent ones (400, 401, 404 - retrying is pointless and wasteful), and only retry the transient ones. The most subtle and important concept is idempotency: because retries and at-least-once delivery mean an operation may run more than once, you design so that repeating it is safe - using idempotency keys (a unique token the server uses to deduplicate) or upsert logic so you never double-charge a card or create duplicate records. Finally, you use bulk/batch endpoints for efficiency and handle partial failures (some items in a batch succeed, some fail) gracefully. Mastering these patterns is what lets your automations move real volume reliably - and it is exactly the robustness employers expect when data and money are on the line.",
+      "practical_task": "Write a Python script that fully consumes a paginated public API (handling cursor or offset pagination), respects rate limits with backoff on 429s, and retries only transient errors with exponential backoff and jitter.",
+      "mini_project": "Build a resilient sync job that pulls all records from a rate-limited API into a database, using cursor pagination, throttling, retry-with-jitter, idempotent upserts (no duplicates on re-run), and partial-failure logging.",
+      "assignment": "Explain the difference between transient and permanent errors with examples, and describe how idempotency keys prevent duplicate side effects when retries occur.",
+      "quiz": [
+        {
+          "question": "Why add jitter to exponential backoff?",
+          "options": [
+            "To slow all requests permanently",
+            "To randomize retry timing and avoid synchronized retry storms",
+            "To skip pagination",
+            "To disable retries"
+          ],
+          "answer": "To randomize retry timing and avoid synchronized retry storms"
+        },
+        {
+          "question": "What does an idempotency key guarantee?",
+          "options": [
+            "Faster responses",
+            "That repeating an operation does not cause duplicate side effects",
+            "That pagination stops",
+            "That errors never happen"
+          ],
+          "answer": "That repeating an operation does not cause duplicate side effects"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "API Rate Limiting, Retries and Idempotency Explained",
+          "channel": "Hussein Nasser",
+          "url": "https://www.youtube.com/watch?v=6SCTPtBH8bA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Stripe - Idempotent Requests",
+          "url": "https://stripe.com/docs/api/idempotent_requests"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "jd/tenacity",
+          "url": "https://github.com/jd/tenacity"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Exponential Backoff and Jitter (AWS Architecture, Brooker 2015)",
+          "url": "https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/"
+        }
+      ],
+      "skills_gained": [
+        "Robust API consumption",
+        "Rate-limit and retry handling",
+        "Idempotent integration design"
+      ],
+      "expected_outcome": "You can build API integrations that move volume reliably despite limits and failures."
+    },
+    {
+      "day": 3,
+      "title": "GraphQL and Advanced API Protocols",
+      "objectives": [
+        "Consume GraphQL APIs effectively",
+        "Understand when GraphQL beats REST",
+        "Work with other protocols (gRPC, SOAP, streaming)"
+      ],
+      "topics": [
+        "GraphQL queries, mutations, and variables",
+        "Fetching exactly the data you need (over/under-fetching)",
+        "GraphQL pagination (connections/cursors) and rate limits",
+        "REST vs GraphQL vs gRPC vs SOAP",
+        "Streaming and long-polling APIs"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 2 completed",
+        "REST API experience"
+      ],
+      "intermediate_explanation": "Many modern platforms (GitHub, Shopify, Linear, and countless internal APIs) expose GraphQL, so an intermediate automation engineer must be fluent in it, not just REST. GraphQL is a query language for APIs where, instead of many fixed endpoints, there is usually a single endpoint and you send a query describing exactly the fields you want - and you get back exactly that shape, nothing more. This solves two REST pain points: over-fetching (getting huge payloads when you needed three fields) and under-fetching (having to call multiple endpoints to assemble related data), because in one GraphQL query you can traverse relationships (get a customer, their last five orders, and each order's items) in a single round trip. You will learn the three operation types - queries (read), mutations (write), and subscriptions (real-time) - and how to parameterize with variables for safe, reusable requests. GraphQL has its own conventions you must handle: cursor-based pagination via 'connections' (edges/nodes/pageInfo), and rate limiting often based on query complexity/points rather than request count, so an expensive query costs more. You will also place GraphQL in the broader protocol landscape: REST (resource-oriented, ubiquitous), gRPC (fast binary RPC common in microservices, using protobuf), SOAP (older XML-based, still present in enterprise/finance/government systems you may need to integrate), and streaming/long-polling for real-time data. Knowing how to read a GraphQL schema, write efficient queries, and choose or adapt to whatever protocol a system speaks dramatically widens the set of systems you can integrate - a core intermediate competency.",
+      "practical_task": "Using a public GraphQL API (e.g., GitHub GraphQL API or Countries GraphQL API), write queries with variables that fetch nested related data in one request, and handle cursor-based pagination.",
+      "mini_project": "Build an integration that pulls related data from a GraphQL API (e.g., a repo, its issues, and their authors) with efficient single-round-trip queries and connection-based pagination, storing the normalized results in a database.",
+      "assignment": "Explain over-fetching and under-fetching and how GraphQL addresses them, then compare REST, GraphQL, and gRPC, giving one scenario where each is the best fit.",
+      "quiz": [
+        {
+          "question": "What problem does GraphQL solve compared to REST?",
+          "options": [
+            "It removes authentication",
+            "Over-fetching and under-fetching, by letting you request exactly the fields and relations you need",
+            "It only works with XML",
+            "It cannot paginate"
+          ],
+          "answer": "Over-fetching and under-fetching, by letting you request exactly the fields and relations you need"
+        },
+        {
+          "question": "How is GraphQL rate limiting often measured?",
+          "options": [
+            "Only by request count",
+            "By query complexity/points, so expensive queries cost more",
+            "It has no limits",
+            "By response color"
+          ],
+          "answer": "By query complexity/points, so expensive queries cost more"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "GraphQL Full Course - Beginner to Advanced",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=ed8SzALpx1Q"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "GraphQL - Official Documentation",
+          "url": "https://graphql.org/learn/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "graphql/graphql-spec",
+          "url": "https://github.com/graphql/graphql-spec"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Migrating to GraphQL: A Practical Assessment (Brito et al., 2019)",
+          "url": "https://arxiv.org/abs/1906.07535"
+        }
+      ],
+      "skills_gained": [
+        "GraphQL consumption",
+        "Protocol selection",
+        "Efficient querying"
+      ],
+      "expected_outcome": "You can integrate GraphQL and other API protocols confidently."
+    },
+    {
+      "day": 4,
+      "title": "Webhooks at Scale: Security, Verification, and Reliable Delivery",
+      "objectives": [
+        "Secure and verify incoming webhooks",
+        "Handle high-volume webhook traffic reliably",
+        "Design for retries, ordering, and deduplication"
+      ],
+      "topics": [
+        "Signature verification (HMAC) and replay protection",
+        "Fast acknowledgment and offloading to queues",
+        "Idempotency and deduplication of webhook events",
+        "Ordering, retries, and out-of-order delivery",
+        "Building a robust webhook receiver"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Days 2 and 3 completed",
+        "Webhook basics"
+      ],
+      "intermediate_explanation": "You learned to catch webhooks as a beginner; at the intermediate level you must receive them securely and reliably at scale, because production webhook endpoints are public, high-volume, and must never lose or mishandle an event. Security comes first: because anyone can POST to your public URL, you verify that each request genuinely came from the sender using signature verification - the provider signs the payload with a shared secret (HMAC), includes the signature in a header, and you recompute it to confirm authenticity, rejecting anything that does not match; you also implement replay protection using timestamps/nonces so an intercepted request cannot be resent. Performance and reliability come next: webhook senders expect a fast 2xx acknowledgment (often within a few seconds) or they consider delivery failed and retry, so the professional pattern is to acknowledge immediately and offload the actual work to a queue for asynchronous processing, rather than doing slow work inline and timing out. Because senders retry on failure or timeout, you will receive duplicate events, so idempotency and deduplication (tracking processed event IDs) are essential to avoid double-processing. You must also reason about ordering: webhooks can arrive out of order (an 'updated' event before the 'created' event), so you design to tolerate that - using event timestamps/versioning or fetching current state rather than assuming sequence. Finally you learn to build a robust receiver: validate, dedupe, enqueue, ack fast, and process reliably with a dead-letter path for events that keep failing. These practices turn a fragile 'catch webhook' step into a production-grade ingestion point capable of handling real traffic without losing or corrupting data - a hallmark of an intermediate engineer.",
+      "practical_task": "Build a webhook receiver (FastAPI or n8n) that verifies an HMAC signature, rejects invalid/replayed requests, deduplicates by event ID, immediately returns 200, and enqueues the payload for processing.",
+      "mini_project": "Implement a production-grade webhook ingestion service for a provider like Stripe or GitHub: signature + timestamp verification, fast ack, queue offload, idempotent processing, and a dead-letter store for repeatedly failing events.",
+      "assignment": "Explain HMAC signature verification and replay protection, and describe why you should acknowledge a webhook quickly and process it asynchronously rather than inline.",
+      "quiz": [
+        {
+          "question": "Why verify a webhook's HMAC signature?",
+          "options": [
+            "To speed it up",
+            "To confirm the request genuinely came from the trusted sender",
+            "To paginate it",
+            "To store it longer"
+          ],
+          "answer": "To confirm the request genuinely came from the trusted sender"
+        },
+        {
+          "question": "Why acknowledge a webhook fast and process it asynchronously?",
+          "options": [
+            "It is optional",
+            "Senders time out and retry if you are slow, causing duplicates and lost throughput",
+            "To avoid using queues",
+            "To disable security"
+          ],
+          "answer": "Senders time out and retry if you are slow, causing duplicates and lost throughput"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Webhooks Deep Dive: Security and Reliability",
+          "channel": "Hussein Nasser",
+          "url": "https://www.youtube.com/watch?v=x_jjhcjxq1E"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Stripe - Verifying webhook signatures",
+          "url": "https://stripe.com/docs/webhooks/signatures"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "svix/svix-webhooks",
+          "url": "https://github.com/svix/svix-webhooks"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "HMAC: Keyed-Hashing for Message Authentication (RFC 2104)",
+          "url": "https://www.rfc-editor.org/rfc/rfc2104"
+        }
+      ],
+      "skills_gained": [
+        "Webhook security",
+        "Reliable ingestion",
+        "Deduplication and ordering"
+      ],
+      "expected_outcome": "You can build secure, high-volume, reliable webhook ingestion endpoints."
+    },
+    {
+      "day": 5,
+      "title": "Advanced Data Transformation with JSONata, JMESPath, and Expressions",
+      "objectives": [
+        "Transform complex nested data declaratively",
+        "Master expression languages used in automation tools",
+        "Reshape, filter, and aggregate data efficiently"
+      ],
+      "topics": [
+        "JSONata (used in n8n and others) for querying/transforming JSON",
+        "JMESPath and jq for JSON transformation",
+        "Mapping, filtering, and aggregating arrays",
+        "Conditionals, functions, and string manipulation in expressions",
+        "Schema mapping between complex systems"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "JSON proficiency",
+        "n8n/Make expression basics"
+      ],
+      "intermediate_explanation": "Real integrations spend most of their effort reshaping data between systems whose formats never match, and at the intermediate level you do this declaratively and efficiently with expression languages rather than dozens of manual mapping steps. JSONata is especially important because n8n (and other tools) support it: it is a lightweight query-and-transformation language for JSON that lets you, in a single expression, navigate nested structures, filter and map arrays, aggregate values, apply conditionals, and call built-in functions - for example transforming a deeply nested API response into the flat shape another API requires in one readable expression instead of a sprawling workflow. You will also learn JMESPath (used in the AWS CLI/SDKs and many tools) and jq (the command-line JSON processor) which express similar power with different syntax, so you can transform JSON wherever you are. The core skills are array operations - map (transform each item), filter (keep matching items), and reduce/aggregate (combine into a total or single object) - plus string manipulation, type coercion, and conditional logic inside expressions. A key intermediate competency is schema mapping: given system A's schema and system B's required schema, you write a transformation that reliably converts one to the other, handling missing fields, defaults, renamed keys, nested-to-flat and flat-to-nested conversions, and arrays of related records. Doing this with expression languages is faster, more maintainable, and more testable than chaining many low-code formatter steps, and it is exactly the kind of dense, correct data work that distinguishes an engineer who can integrate anything from one who is limited to whatever pre-built mappings a tool provides.",
+      "practical_task": "Take a complex nested JSON payload and, using JSONata (in n8n) and separately jq, write single expressions that flatten it, filter an inner array by a condition, and produce an aggregated summary field.",
+      "mini_project": "Build a reusable schema-mapping layer that converts records between two very different system schemas (renamed keys, nested<->flat, arrays, defaults for missing fields) using JSONata/jq expressions, with test cases proving correctness.",
+      "assignment": "Write and explain three JSONata (or jq) expressions - one map, one filter, one aggregate - on a sample dataset, and describe why declarative transformation is preferable to many manual mapping steps.",
+      "quiz": [
+        {
+          "question": "What is JSONata primarily used for?",
+          "options": [
+            "Styling UIs",
+            "Querying and transforming JSON declaratively in a single expression",
+            "Sending emails",
+            "Storing secrets"
+          ],
+          "answer": "Querying and transforming JSON declaratively in a single expression"
+        },
+        {
+          "question": "Which operation combines a list of items into a single value or object?",
+          "options": [
+            "map",
+            "filter",
+            "reduce/aggregate",
+            "paginate"
+          ],
+          "answer": "reduce/aggregate"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "jq Tutorial - Mastering JSON on the Command Line",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=n8sOm4mz0Cw"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "JSONata - Documentation",
+          "url": "https://docs.jsonata.org/overview.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "jqlang/jq",
+          "url": "https://github.com/jqlang/jq"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Foundations of JSON Schema and JSON Query Languages (Pezoa et al., 2016)",
+          "url": "https://dl.acm.org/doi/10.1145/2872427.2883029"
+        }
+      ],
+      "skills_gained": [
+        "Declarative data transformation",
+        "JSONata/JMESPath/jq",
+        "Schema mapping"
+      ],
+      "expected_outcome": "You can transform and map complex data between systems efficiently and correctly."
+    },
+    {
+      "day": 6,
+      "title": "Zapier Advanced: Code Steps, Custom API Calls, and Sub-Zaps",
+      "objectives": [
+        "Push Zapier beyond its built-in actions",
+        "Run custom code and raw API calls inside Zaps",
+        "Modularize with sub-zaps and advanced error handling"
+      ],
+      "topics": [
+        "Code by Zapier (JavaScript/Python steps)",
+        "Custom Request (raw HTTP) for unsupported endpoints",
+        "Sub-zaps for reusable logic",
+        "Advanced error handling, autoreplay, and Zap monitoring",
+        "Storage by Zapier and looping"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Zapier fundamentals",
+        "Days 2 and 5 completed"
+      ],
+      "intermediate_explanation": "Zapier is often dismissed as beginner-only, but an intermediate engineer knows how to push it far beyond drag-and-drop, which matters because many workplaces standardize on Zapier and expect you to make it do sophisticated things. The Code by Zapier step lets you run JavaScript or Python inside a Zap, so when no built-in action fits you can transform data, implement custom logic, call libraries, and shape payloads exactly as needed - the same escape-hatch mindset as the n8n Code node. Even more powerful is the Custom Request action within Zapier's app integrations (and the Webhooks by Zapier 'Custom Request'), which lets you make raw authenticated HTTP calls to any endpoint an app exposes even if Zapier has no pre-built action for it, so you are never blocked by a missing action - you read the API docs and call it directly, reusing your Day 2-3 skills. You will modularize with Sub-Zaps, calling a reusable Zap from others so shared logic lives in one place (DRY), and use Storage by Zapier to persist small state between runs (counters, dedup keys, last-seen values). On reliability, you go deeper than the beginner error email: configuring autoreplay for transient failures, structuring Zaps to fail safely, and monitoring via the Zap history and error notifications, plus looping to process arrays. The theme is that Zapier's ceiling is much higher than most users realize, and knowing how to combine code steps, raw API calls, sub-zaps, storage, and robust error handling lets you deliver complex, maintainable automations on a platform that non-technical teammates can still partly understand - a valuable, pragmatic intermediate skill.",
+      "practical_task": "Build a Zap that uses a Code by Zapier step to transform data, a Custom Request to hit an endpoint Zapier has no native action for, and Storage by Zapier to deduplicate against previously seen IDs.",
+      "mini_project": "Create a Zapier solution with a reusable sub-zap for a shared notification+logging routine, called from two parent Zaps, where at least one parent uses a Custom Request to an unsupported API and includes autoreplay-based error handling.",
+      "assignment": "Explain when to reach for Code by Zapier versus a Custom Request versus a native action, and describe how sub-zaps and Storage by Zapier improve maintainability and correctness.",
+      "quiz": [
+        {
+          "question": "What does a Custom Request action let you do in Zapier?",
+          "options": [
+            "Only send email",
+            "Make raw authenticated HTTP calls to endpoints with no native action",
+            "Delete Zaps",
+            "Disable triggers"
+          ],
+          "answer": "Make raw authenticated HTTP calls to endpoints with no native action"
+        },
+        {
+          "question": "Why use a sub-zap?",
+          "options": [
+            "To duplicate logic everywhere",
+            "To centralize reusable logic so it is maintained in one place (DRY)",
+            "To slow Zaps down",
+            "To remove code steps"
+          ],
+          "answer": "To centralize reusable logic so it is maintained in one place (DRY)"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Advanced Zapier: Code Steps and Custom Requests",
+          "channel": "Zapier",
+          "url": "https://www.youtube.com/watch?v=ZAZgspZzZ7A"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Zapier - Code steps and Custom Requests",
+          "url": "https://help.zapier.com/hc/en-us/articles/8496197098125-Add-code-to-your-Zaps-with-Code-by-Zapier"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "zapier/zapier-platform",
+          "url": "https://github.com/zapier/zapier-platform"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Trigger-Action Programming in the Wild (Ur et al., 2016)",
+          "url": "https://dl.acm.org/doi/10.1145/2858036.2858556"
+        }
+      ],
+      "skills_gained": [
+        "Zapier code and raw API calls",
+        "Sub-zaps and storage",
+        "Advanced error handling"
+      ],
+      "expected_outcome": "You can build sophisticated, maintainable automations that push Zapier past its built-ins."
+    },
+    {
+      "day": 7,
+      "title": "Building Custom Zapier Integrations (Developer Platform)",
+      "objectives": [
+        "Create your own Zapier app/integration",
+        "Define triggers, actions, and authentication",
+        "Package and test an integration with the Zapier CLI"
+      ],
+      "topics": [
+        "Zapier Platform: UI builder vs CLI",
+        "Defining triggers, actions, and searches",
+        "Authentication schemes (API key, OAuth2)",
+        "Input/output fields, dynamic dropdowns, and dedup",
+        "Testing, versioning, and publishing"
+      ],
+      "estimated_time": "7-8 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 6 completed",
+        "JavaScript basics"
+      ],
+      "intermediate_explanation": "A defining intermediate skill is building your own integration rather than only consuming existing ones - when a service is not on Zapier, or your company has an internal API, you can create a custom Zapier app so that service becomes usable in Zaps by anyone. Zapier's Developer Platform offers two paths: a visual UI builder for straightforward integrations and the Zapier Platform CLI (a Node.js-based framework) for full control, version management, and complex logic - the CLI is what serious integration work uses. You learn to define the building blocks of an integration: triggers (polling or REST-hook based, so your app can start Zaps), actions (create/update operations), and searches (find records) - the same trigger/action/search model you have used as a consumer, now implemented from the provider side. Authentication is central: you configure how users connect, whether via API key, basic auth, or full OAuth2 (implementing the authorization flow, token refresh, and connection testing), which is excellent for cementing your Day 13-style auth knowledge from the other side. You define input fields (what the user fills in) and output fields (what data flows onward), add dynamic dropdowns (fields whose options are fetched live from the API), and implement deduplication so polling triggers do not re-fire on old data. Finally you learn the engineering lifecycle: writing tests for your integration, versioning it so existing users are not broken by changes, and the publishing/review process. Being able to build a robust custom integration means you are never limited by a platform's catalog and can turn any API - including proprietary internal ones - into first-class automation building blocks, which is a high-value capability for both employers and integration consulting.",
+      "practical_task": "Using the Zapier Platform CLI, scaffold a custom integration for a public API: implement API-key authentication, one polling trigger with deduplication, and one create action with input/output fields, then test it locally.",
+      "mini_project": "Build and test a custom Zapier integration for an API of your choice with OAuth2 authentication (auth flow + token refresh), at least one trigger, one action, one search, dynamic dropdowns, and a test suite.",
+      "assignment": "Explain the difference between a polling trigger and a REST-hook trigger in a Zapier integration, and describe why deduplication and versioning matter for integration quality.",
+      "quiz": [
+        {
+          "question": "What does the Zapier Platform CLI let you build?",
+          "options": [
+            "Only single Zaps",
+            "Your own custom Zapier integration (triggers, actions, searches, auth)",
+            "A database",
+            "A spreadsheet"
+          ],
+          "answer": "Your own custom Zapier integration (triggers, actions, searches, auth)"
+        },
+        {
+          "question": "Why is versioning important for a published integration?",
+          "options": [
+            "It is not",
+            "So changes do not break existing users' Zaps",
+            "To hide the integration",
+            "To slow it down"
+          ],
+          "answer": "So changes do not break existing users' Zaps"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Build a Zapier Integration with the CLI",
+          "channel": "Zapier",
+          "url": "https://www.youtube.com/watch?v=ZAZgspZzZ7A"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Zapier Platform CLI Documentation",
+          "url": "https://docs.zapier.com/platform/home"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "zapier/zapier-platform",
+          "url": "https://github.com/zapier/zapier-platform"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "API Design Practices and Integration Quality (industry study)",
+          "url": "https://ieeexplore.ieee.org/document/8611144"
+        }
+      ],
+      "skills_gained": [
+        "Custom integration development",
+        "OAuth2 implementation",
+        "Integration testing and versioning"
+      ],
+      "expected_outcome": "You can build, test, and publish custom Zapier integrations for any API."
+    },
+    {
+      "day": 8,
+      "title": "Make.com Advanced: Custom Functions, Error Routes, and Advanced Modules",
+      "objectives": [
+        "Use Make.com's advanced features for complex logic",
+        "Implement robust error handling with directives",
+        "Leverage advanced functions and custom API calls"
+      ],
+      "topics": [
+        "Advanced built-in functions and IML expressions",
+        "Error handlers and directives (Resume, Rollback, Break, Commit, Ignore)",
+        "Custom API calls with the HTTP and Make API modules",
+        "Advanced iterators, aggregators, and array functions",
+        "Webhooks, data structures, and scenario optimization"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Make.com fundamentals",
+        "Days 2 and 5 completed"
+      ],
+      "intermediate_explanation": "Make.com is the power-user's no-code platform, and intermediate mastery centers on its advanced logic, error handling, and extensibility, which let you build complex, resilient scenarios that rival custom code. You go deep on IML (the Make expression language) and its rich built-in functions - advanced string, array, date, and math operations - so you transform data inside modules rather than adding extra steps, complementing the JSONata/jq skills from Day 5. The standout intermediate topic is Make.com's error-handling system: you attach error handlers to modules and use directives to control exactly what happens on failure - Resume (substitute a value and continue), Rollback (undo the whole run), Commit (finalize), Break (pause and retry later, enabling incremental recovery), and Ignore (skip the error) - which gives you fine-grained, production-grade resilience far beyond a simple retry. You extend Make beyond its catalog using the generic HTTP module and the Make API module to call any endpoint (again leveraging Days 2-3), so a missing app never blocks you. You push arrays further with advanced iterator/aggregator patterns and array functions (map, sort, distinct, merge) to handle complex bulk data, and you use webhooks and custom data structures to model and validate incoming payloads. Finally you learn scenario optimization: minimizing operations (cost), reducing unnecessary modules, and structuring scenarios for clarity and performance. Combined, these skills let you deliver sophisticated, fault-tolerant automations on Make.com - handling complex data, failing gracefully with the right directive, and integrating anything via HTTP - which is exactly the level of Make.com expertise that commands professional rates and roles.",
+      "practical_task": "Build a Make.com scenario that uses advanced IML functions to transform data, attaches an error handler with a Resume directive to a flaky module, and uses the HTTP module to call an API with no native app.",
+      "mini_project": "Create a resilient bulk-processing scenario: iterate a large array, transform each item with IML, call an external API via HTTP with error handlers (Break for transient failures with retry, Ignore for known-skippable errors), aggregate results, and log failures - optimized for minimal operations.",
+      "assignment": "Explain each Make.com error directive (Resume, Rollback, Commit, Break, Ignore) with a scenario where it is the correct choice, and describe two ways to reduce operation cost in a scenario.",
+      "quiz": [
+        {
+          "question": "What does the Make.com 'Break' error directive do?",
+          "options": [
+            "Deletes the scenario",
+            "Pauses the failing run so it can be retried later (incremental recovery)",
+            "Ignores all errors forever",
+            "Sends an email"
+          ],
+          "answer": "Pauses the failing run so it can be retried later (incremental recovery)"
+        },
+        {
+          "question": "How do you call an API that has no native Make.com app?",
+          "options": [
+            "You cannot",
+            "Use the generic HTTP module with the API's docs",
+            "Only via Zapier",
+            "Use a spreadsheet"
+          ],
+          "answer": "Use the generic HTTP module with the API's docs"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Make.com Advanced Error Handling and Functions",
+          "channel": "Make",
+          "url": "https://www.youtube.com/watch?v=5Xh6O4bTfDo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Make.com - Error handling directives",
+          "url": "https://www.make.com/en/help/errors/error-handling-directives"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "integromat/apps-examples",
+          "url": "https://github.com/integromat/apps-examples"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Patterns for Fault Tolerant Software (Hanmer, 2007)",
+          "url": "https://www.oreilly.com/library/view/patterns-for-fault/9780470319796/"
+        }
+      ],
+      "skills_gained": [
+        "Advanced Make.com logic",
+        "Directive-based error handling",
+        "Scenario optimization"
+      ],
+      "expected_outcome": "You can build complex, fault-tolerant, cost-optimized Make.com scenarios."
+    },
+    {
+      "day": 9,
+      "title": "Building Custom Make.com Apps",
+      "objectives": [
+        "Create a custom app for Make.com",
+        "Define modules, connections, and RPCs",
+        "Publish and maintain a private/public app"
+      ],
+      "topics": [
+        "Make.com Custom Apps overview and app structure",
+        "Connections (API key, OAuth2) and base configuration",
+        "Modules: actions, searches, triggers (polling/instant)",
+        "Remote Procedure Calls (RPCs) for dynamic fields",
+        "Testing, versioning, and publishing custom apps"
+      ],
+      "estimated_time": "7-8 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 8 completed",
+        "JSON and API auth"
+      ],
+      "intermediate_explanation": "Just as you learned to build a custom Zapier integration, you should be able to build a custom Make.com app, because it makes you tool-agnostic as an integration engineer and lets you expose any API - internal or niche - as reusable modules for teams that standardize on Make. Make.com custom apps are defined largely through JSON configuration (in the app builder) describing the app's structure. You start with the base configuration - the API's base URL, default headers, and error handling - so all modules inherit consistent behavior. Connections define authentication, supporting API keys, basic auth, and full OAuth2 (authorization, token exchange, and refresh), reinforcing your auth expertise from the implementer's perspective. Then you build modules, Make's equivalent of triggers and actions: action modules (create/update), search modules (list/find), and trigger modules that can be polling (Make periodically fetches new items, with a dedup mechanism) or instant (webhook-based, where your app registers a webhook with the target service). A distinctive Make.com feature is RPCs (Remote Procedure Calls) - small helper calls that populate dynamic fields, such as fetching the list of available projects to show in a dropdown, or dynamically generating input fields based on the API - which make your app feel native and user-friendly. You handle request/response mapping, pagination, and error mapping so failures surface cleanly to users. Finally you follow the lifecycle: testing each module, versioning to avoid breaking existing scenarios, and choosing between a private app (for your org) or submitting a public app for review. Mastering custom app development on both Make.com and Zapier means no platform's catalog limits you, and it is a differentiating, monetizable skill in the integration and automation profession.",
+      "practical_task": "In the Make.com custom app builder, create an app for a public API: configure the base and an API-key connection, and build one action module and one search module, then test them in a scenario.",
+      "mini_project": "Build a custom Make.com app with OAuth2 connection, a polling trigger with deduplication, an action module, and at least one RPC-powered dynamic dropdown, versioned and tested against real API calls.",
+      "assignment": "Explain what an RPC is used for in a Make.com custom app and compare polling vs instant (webhook) triggers from the app developer's perspective, including the dedup/registration concerns of each.",
+      "quiz": [
+        {
+          "question": "What is an RPC used for in a Make.com custom app?",
+          "options": [
+            "Sending invoices",
+            "Populating dynamic fields (like dropdown options) from the API",
+            "Deleting scenarios",
+            "Encrypting data"
+          ],
+          "answer": "Populating dynamic fields (like dropdown options) from the API"
+        },
+        {
+          "question": "What does the base configuration of a custom app provide?",
+          "options": [
+            "Nothing",
+            "Shared settings (base URL, headers, error handling) inherited by all modules",
+            "Only the app icon",
+            "A single hardcoded action"
+          ],
+          "answer": "Shared settings (base URL, headers, error handling) inherited by all modules"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "How to Build a Custom App in Make.com",
+          "channel": "Make",
+          "url": "https://www.youtube.com/watch?v=X5Ec9FzR6zY"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Make.com - Custom Apps Documentation",
+          "url": "https://www.make.com/en/help/apps/custom-apps"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "integromat/apps-examples",
+          "url": "https://github.com/integromat/apps-examples"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "API Design Practices and Integration Quality (industry study)",
+          "url": "https://ieeexplore.ieee.org/document/8611144"
+        }
+      ],
+      "skills_gained": [
+        "Make.com custom app development",
+        "Modules and RPCs",
+        "App versioning and publishing"
+      ],
+      "expected_outcome": "You can build and publish custom Make.com apps for any API."
+    },
+    {
+      "day": 10,
+      "title": "n8n Advanced: Self-Hosting, Environments, and Queue Mode Scaling",
+      "objectives": [
+        "Run n8n reliably in production",
+        "Configure environments, credentials, and security",
+        "Scale n8n horizontally with queue mode"
+      ],
+      "topics": [
+        "Production self-hosting (Docker, Postgres, env config)",
+        "Execution modes: main vs queue (workers + Redis)",
+        "Scaling workers, concurrency, and webhooks",
+        "Environment variables, encryption key, and credential security",
+        "Backups, upgrades, and high availability"
+      ],
+      "estimated_time": "7-8 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "n8n fundamentals",
+        "Docker basics"
+      ],
+      "intermediate_explanation": "n8n is the automation platform intermediate engineers most often run themselves, so knowing how to operate it in production and scale it is a core skill that also demonstrates real DevOps competence. You move beyond a single container to a proper production setup: n8n backed by a Postgres database (not the default SQLite) for durability and concurrency, configured entirely through environment variables, secured behind HTTPS, and with the critical N8N_ENCRYPTION_KEY set and backed up (lose it and you lose access to all stored credentials). The pivotal scaling concept is execution mode. By default n8n runs in 'main' mode, executing workflows in the main process, which is fine for light loads but a bottleneck under volume. 'Queue mode' turns n8n into a distributed system: the main instance enqueues executions into Redis, and separate worker processes pull and run them, so you scale throughput simply by adding more workers, and you can run dedicated webhook processes to absorb spikes of incoming traffic - directly applying the async/queue architecture from Days 1 and 4. You learn to tune concurrency per worker, separate webhook and worker roles, and reason about how many workers a given load needs. Around this you handle the operational essentials: securely managing credentials and secrets, taking regular backups of the database and encryption key, performing safe upgrades (n8n evolves fast, and you must test version bumps), and moving toward high availability with multiple workers and a managed database. Being able to stand up, secure, scale, and maintain a self-hosted n8n cluster means you can offer high-volume, private, cost-efficient automation infrastructure - a capability that distinguishes you sharply from users limited to managed SaaS tiers and opens senior and platform-oriented roles.",
+      "practical_task": "Deploy n8n in queue mode with Docker Compose: n8n main + Postgres + Redis + at least one worker, set the encryption key via env vars, and run a workflow confirming a worker (not main) executed it.",
+      "mini_project": "Stand up a production-style n8n cluster: Postgres-backed, HTTPS, queue mode with multiple workers and a dedicated webhook process, a backup routine for DB and encryption key, and a documented upgrade procedure - then load-test it with concurrent executions.",
+      "assignment": "Explain the difference between n8n main mode and queue mode and how queue mode enables horizontal scaling, and describe why the encryption key must be preserved and backed up.",
+      "quiz": [
+        {
+          "question": "What does n8n queue mode use to distribute executions to workers?",
+          "options": [
+            "Email",
+            "Redis as a queue with separate worker processes",
+            "A spreadsheet",
+            "Nothing; it stays single-process"
+          ],
+          "answer": "Redis as a queue with separate worker processes"
+        },
+        {
+          "question": "Why must the n8n encryption key be backed up?",
+          "options": [
+            "It is not needed",
+            "Losing it means losing access to all stored credentials",
+            "It speeds up workflows",
+            "It changes the UI theme"
+          ],
+          "answer": "Losing it means losing access to all stored credentials"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "n8n Self-Hosting and Scaling with Queue Mode",
+          "channel": "n8n",
+          "url": "https://www.youtube.com/watch?v=1MwSoB0gnM4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "n8n - Scaling and Queue Mode",
+          "url": "https://docs.n8n.io/hosting/scaling/queue-mode/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "n8n-io/n8n",
+          "url": "https://github.com/n8n-io/n8n"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Scalable Distributed Job Processing (industry reference)",
+          "url": "https://sre.google/sre-book/table-of-contents/"
+        }
+      ],
+      "skills_gained": [
+        "Production n8n hosting",
+        "Queue-mode scaling",
+        "Backups and upgrades"
+      ],
+      "expected_outcome": "You can deploy, secure, and horizontally scale n8n in production."
+    },
+    {
+      "day": 11,
+      "title": "n8n Custom Node Development",
+      "objectives": [
+        "Build custom n8n nodes in TypeScript",
+        "Package and install community nodes",
+        "Extend n8n for proprietary or niche systems"
+      ],
+      "topics": [
+        "n8n node structure (declarative vs programmatic)",
+        "TypeScript node development and credentials",
+        "Building actions, triggers, and loading options",
+        "Testing nodes locally and packaging (npm)",
+        "Publishing and installing community nodes"
+      ],
+      "estimated_time": "7-8 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 10 completed",
+        "JavaScript/TypeScript basics"
+      ],
+      "intermediate_explanation": "Because n8n is open-source and extensible, an intermediate engineer can build custom nodes - genuine, reusable building blocks - which is the deepest form of extending an automation platform and a strong differentiator. n8n nodes are written in TypeScript, and you learn its two styles: the declarative style, where you describe the node's operations and API requests largely through configuration (ideal for straightforward REST integrations and the recommended default), and the programmatic style, where you write an execute() function for full control over complex logic, custom pagination, or non-standard behavior. You define the node's properties (the fields users see), its operations (actions like create/get/update), and its credentials type (how authentication is stored and injected securely, mirroring your auth work). You implement loadOptions methods to populate dynamic dropdowns from the API (like Make's RPCs and Zapier's dynamic fields), and you can build trigger nodes (polling or webhook-based) so your node can start workflows. Crucially, you learn the developer workflow: scaffolding a node from the starter template, running n8n locally with your node linked for rapid iteration, testing it against the real API, and handling errors so they surface cleanly in the editor. Then you package the node as an npm module and either keep it private for your organization or publish it as a community node that anyone can install - contributing to the ecosystem and building your reputation. Being able to build a custom node means you can integrate absolutely any system (including proprietary internal APIs) as a first-class, reusable n8n component, giving your teams clean, maintainable automations instead of brittle HTTP-request-and-code workarounds - exactly the kind of platform engineering that intermediate and senior roles value.",
+      "practical_task": "Scaffold a custom n8n node from the starter, implement a declarative node for a public API with one credential type and two operations (e.g., get and create), run it in a local n8n, and use it in a workflow.",
+      "mini_project": "Build, test, and package (as an installable npm/community node) a custom n8n node for an API of your choice with a credentials type, multiple operations, a loadOptions dynamic dropdown, and clean error handling.",
+      "assignment": "Compare declarative and programmatic n8n node styles, explaining when to use each, and describe how the credentials type keeps authentication secure and reusable.",
+      "quiz": [
+        {
+          "question": "When should you use the programmatic (execute function) node style in n8n?",
+          "options": [
+            "Never",
+            "For complex logic, custom pagination, or non-standard behavior beyond simple config",
+            "Only for dropdowns",
+            "Only for triggers"
+          ],
+          "answer": "For complex logic, custom pagination, or non-standard behavior beyond simple config"
+        },
+        {
+          "question": "What does a loadOptions method do in a custom node?",
+          "options": [
+            "Deletes the node",
+            "Populates dynamic dropdown options from the API",
+            "Stores the encryption key",
+            "Sends webhooks"
+          ],
+          "answer": "Populates dynamic dropdown options from the API"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Building Custom n8n Nodes (Developer Tutorial)",
+          "channel": "n8n",
+          "url": "https://www.youtube.com/watch?v=1MwSoB0gnM4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "n8n - Creating Nodes (Developer Docs)",
+          "url": "https://docs.n8n.io/integrations/creating-nodes/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "n8n-io/n8n-nodes-starter",
+          "url": "https://github.com/n8n-io/n8n-nodes-starter"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Plugin Architectures and Extensible Software Systems (survey)",
+          "url": "https://ieeexplore.ieee.org/document/1231147"
+        }
+      ],
+      "skills_gained": [
+        "n8n node development",
+        "TypeScript integrations",
+        "Packaging community nodes"
+      ],
+      "expected_outcome": "You can build, test, and publish custom n8n nodes for any system."
+    },
+    {
+      "day": 12,
+      "title": "Code Node Mastery: JavaScript, Python, and External Libraries",
+      "objectives": [
+        "Write robust code inside automation platforms",
+        "Use external libraries and manage dependencies",
+        "Handle items, binary data, and errors in code steps"
+      ],
+      "topics": [
+        "n8n Code node (JavaScript and Python) and item structure",
+        "Using npm/Python packages in self-hosted n8n",
+        "Working with binary data (files, buffers)",
+        "Error handling and 'continue on fail' in code",
+        "When to use code vs built-in nodes (maintainability)"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Days 10 and 11 completed",
+        "JS/Python basics"
+      ],
+      "intermediate_explanation": "The Code node is the bridge between no-code and real programming, and intermediate mastery means writing production-quality code inside your automation platform - powerful, but used with discipline. In n8n you can write JavaScript or Python in the Code node, and the key mental model is the item structure: workflows pass arrays of items ({ json: {...}, binary: {...} }), and your code either runs once per item or once for all items, returning a properly shaped array - getting this contract right is where most beginners stumble, so you master iterating items, building outputs, and preserving pairing between input and output. A major intermediate capability on self-hosted n8n is using external libraries: you can enable and import npm packages (or Python libraries) to do things built-in nodes cannot - parse a specialized file format, run a crypto operation, use a vendor SDK - which vastly expands what a single node can accomplish, though you manage this carefully (allowed modules, dependencies baked into your Docker image). You learn to work with binary data properly - reading and writing files, handling buffers, base64, and streaming large files - since real automations move documents and media, not just JSON. Robust error handling in code is essential: throwing meaningful errors, using try/catch, and configuring 'continue on fail' so one bad item does not kill an entire batch, with failures routed for later handling. Finally, and importantly, you develop the judgment of when NOT to use code: a Code node that reimplements what a maintained built-in node already does creates fragile, hard-to-maintain workflows, so you reserve code for genuine gaps and keep it small, documented, and testable. This balance - capable with code, disciplined about using it - is a hallmark of an intermediate engineer.",
+      "practical_task": "Write an n8n Code node (JavaScript) that correctly processes an array of items, uses an external library to transform data (e.g., a date or crypto library), preserves item pairing, and handles a failing item without stopping the batch.",
+      "mini_project": "Build a workflow with a Python (or JS) Code node that imports an external library to parse a non-trivial file format from binary input, transforms the data, outputs clean items, and uses continue-on-fail with failures routed to an error branch.",
+      "assignment": "Explain the n8n item structure and the run-once-per-item vs once-for-all-items modes, and give two examples of when using code is justified and two when a built-in node is the better choice.",
+      "quiz": [
+        {
+          "question": "What is the correct output contract for an n8n Code node?",
+          "options": [
+            "A single string",
+            "An array of items in the { json, binary } structure",
+            "Nothing",
+            "A database row"
+          ],
+          "answer": "An array of items in the { json, binary } structure"
+        },
+        {
+          "question": "Why avoid using a Code node to reimplement an existing built-in node?",
+          "options": [
+            "Code is illegal",
+            "It creates fragile, hard-to-maintain workflows for no benefit",
+            "Built-in nodes are slower always",
+            "Code cannot access data"
+          ],
+          "answer": "It creates fragile, hard-to-maintain workflows for no benefit"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "n8n Code Node Deep Dive (JavaScript and Python)",
+          "channel": "n8n",
+          "url": "https://www.youtube.com/watch?v=1MwSoB0gnM4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "n8n - Code node and external libraries",
+          "url": "https://docs.n8n.io/code/code-node/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "n8n-io/n8n",
+          "url": "https://github.com/n8n-io/n8n"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Low-Code Development Platforms: A Systematic Review (Sahay et al., 2020)",
+          "url": "https://ieeexplore.ieee.org/document/9226287"
+        }
+      ],
+      "skills_gained": [
+        "Code-node proficiency",
+        "External libraries and binary data",
+        "Code vs no-code judgment"
+      ],
+      "expected_outcome": "You can write robust, maintainable code inside automation platforms when justified."
+    },
+    {
+      "day": 13,
+      "title": "Event-Driven Architecture and Message Queues",
+      "objectives": [
+        "Design event-driven automation systems",
+        "Use message queues and brokers (Redis, RabbitMQ, Kafka)",
+        "Decouple producers and consumers reliably"
+      ],
+      "topics": [
+        "Events, producers, consumers, and brokers",
+        "Queues vs pub/sub vs streams",
+        "Redis, RabbitMQ, and Kafka compared",
+        "Delivery guarantees (at-least-once, exactly-once) and DLQs",
+        "Backpressure, ordering, and consumer groups"
+      ],
+      "estimated_time": "7-8 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Days 1 and 4 completed"
+      ],
+      "intermediate_explanation": "Event-driven architecture is the backbone of scalable, resilient automation systems, and message queues are the tool that makes it work, so this is a pivotal intermediate topic that elevates you from wiring apps to engineering distributed systems. The core idea: instead of a producer calling a consumer directly (tight coupling, fragile under load or downtime), the producer publishes an event to a broker, and one or more consumers process it independently - decoupling them in time and space. This means a spike of events gets buffered rather than overwhelming downstream systems, a consumer can be down temporarily without losing events, and you can add new consumers without touching the producer. You learn the key messaging models: a queue (work is distributed among competing consumers, each message processed once - great for scaling task processing, like n8n queue mode), pub/sub (each subscriber gets a copy of every event - great for fan-out notifications), and streams/logs (durable, replayable ordered records - Kafka's model, great for event sourcing and analytics). You compare the common brokers: Redis (simple, fast, great for lightweight queues and pub/sub), RabbitMQ (feature-rich traditional message broker with flexible routing and acknowledgments), and Kafka (high-throughput distributed streaming platform for large-scale event pipelines). Critically, you understand delivery guarantees - at-least-once (may duplicate, so consumers must be idempotent, tying back to Day 2), at-most-once, and the difficulty of true exactly-once - plus dead-letter queues for messages that repeatedly fail, backpressure to protect overwhelmed consumers, message ordering constraints, and consumer groups for parallelism. Being able to design an event-driven automation with the right broker and delivery semantics is exactly the distributed-systems thinking that defines a strong intermediate/senior automation engineer.",
+      "practical_task": "Stand up Redis (or RabbitMQ) locally and build a producer that publishes events and a consumer that processes them idempotently, demonstrating buffering when the consumer is temporarily stopped and then resumes.",
+      "mini_project": "Build an event-driven pipeline: a webhook receiver publishes events to a broker, multiple worker consumers process them in parallel (consumer group), failures go to a dead-letter queue, and processing is idempotent - then demonstrate it handling a burst of events without loss.",
+      "assignment": "Compare queues, pub/sub, and streams and compare Redis, RabbitMQ, and Kafka, giving a use case for each, and explain why at-least-once delivery makes consumer idempotency mandatory.",
+      "quiz": [
+        {
+          "question": "What is the main benefit of putting a message broker between producer and consumer?",
+          "options": [
+            "It removes the need for code",
+            "Decoupling: buffering spikes, tolerating consumer downtime, and independent scaling",
+            "It guarantees zero events",
+            "It makes everything synchronous"
+          ],
+          "answer": "Decoupling: buffering spikes, tolerating consumer downtime, and independent scaling"
+        },
+        {
+          "question": "Why must consumers be idempotent under at-least-once delivery?",
+          "options": [
+            "They need not be",
+            "Because messages can be delivered more than once, so reprocessing must be safe",
+            "To slow processing",
+            "To avoid using queues"
+          ],
+          "answer": "Because messages can be delivered more than once, so reprocessing must be safe"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Message Queues and Event-Driven Architecture Explained",
+          "channel": "Hussein Nasser",
+          "url": "https://www.youtube.com/watch?v=oUJbuFMyBDk"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "RabbitMQ - Tutorials and Concepts",
+          "url": "https://www.rabbitmq.com/getstarted.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "apache/kafka",
+          "url": "https://github.com/apache/kafka"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Kafka: a Distributed Messaging System for Log Processing (Kreps et al., 2011)",
+          "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2017/09/Kafka.pdf"
+        }
+      ],
+      "skills_gained": [
+        "Event-driven design",
+        "Message brokers and queues",
+        "Delivery guarantees and DLQs"
+      ],
+      "expected_outcome": "You can design decoupled, event-driven automation systems with message queues."
+    },
+    {
+      "day": 14,
+      "title": "Asynchronous Processing and Job Queues in Code",
+      "objectives": [
+        "Implement background job processing in code",
+        "Use async programming and task queues",
+        "Handle long-running and scheduled jobs reliably"
+      ],
+      "topics": [
+        "Async/await and concurrency in Python (asyncio)",
+        "Task queues (Celery, RQ, BullMQ) with Redis",
+        "Workers, concurrency, and scheduling (beat/cron)",
+        "Retries, timeouts, and result backends",
+        "Long-running jobs, chunking, and progress tracking"
+      ],
+      "estimated_time": "7-8 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Days 13 completed",
+        "Intermediate Python"
+      ],
+      "intermediate_explanation": "When you build custom automation services (rather than only using no-code tools), you need to process work in the background without blocking, and job queues in code are the standard mechanism - a direct, code-level application of the event-driven thinking from Day 13. First you learn asynchronous programming: Python's asyncio with async/await lets a single process handle many I/O-bound operations (API calls, DB queries) concurrently by awaiting instead of blocking, which is essential for efficient integrations that spend most of their time waiting on the network. But async alone runs in one process; for durable, distributed background work you use a task queue such as Celery or RQ (Python, backed by Redis or RabbitMQ) or BullMQ (Node) - you push jobs onto a queue and separate worker processes execute them, so your API can accept a request, enqueue the heavy work, and respond immediately (the fast-ack pattern from Day 4). You configure workers and concurrency to scale throughput, schedule recurring jobs (Celery beat / cron-like scheduling) for periodic automations, and set retries with backoff, timeouts to kill stuck jobs, and a result backend to track outcomes. For long-running jobs you learn to chunk work into smaller tasks (so a failure retries only a piece, not everything), track progress, and make each task idempotent. This is precisely the machinery that powers robust automation backends: a webhook or API call enqueues work, workers process it reliably with retries and dead-lettering, and the whole thing scales by adding workers - the same model as n8n queue mode but implemented yourself, which you need when building custom platforms. Mastering async and job queues lets you build automation services that are responsive, scalable, and resilient rather than fragile synchronous scripts.",
+      "practical_task": "Build a small FastAPI (or Flask) endpoint that enqueues a background job to Celery or RQ (Redis-backed); the worker processes it with a retry policy, and you can query the job's status/result.",
+      "mini_project": "Create a background-processing service: an API accepts bulk work, splits it into idempotent chunked tasks on a queue, workers process them concurrently with retries/timeouts and a scheduled cleanup job, and progress/results are tracked and queryable.",
+      "assignment": "Explain the difference between asyncio concurrency and a distributed task queue, and describe when you need each, plus why chunking long-running jobs improves resilience.",
+      "quiz": [
+        {
+          "question": "What does a task queue like Celery let your API do?",
+          "options": [
+            "Block until work finishes",
+            "Enqueue heavy work and respond immediately while workers process it",
+            "Avoid using workers",
+            "Delete the database"
+          ],
+          "answer": "Enqueue heavy work and respond immediately while workers process it"
+        },
+        {
+          "question": "Why chunk a long-running job into smaller tasks?",
+          "options": [
+            "To make it slower",
+            "So a failure retries only a piece, improving resilience and progress tracking",
+            "To avoid queues",
+            "To disable retries"
+          ],
+          "answer": "So a failure retries only a piece, improving resilience and progress tracking"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Celery and Background Jobs in Python (Full Tutorial)",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=THxCy-6EnQM"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Celery - Official Documentation",
+          "url": "https://docs.celeryq.dev/en/stable/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "celery/celery",
+          "url": "https://github.com/celery/celery"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "The Task-Queue Model for Scalable Web Backends (industry reference)",
+          "url": "https://sre.google/sre-book/table-of-contents/"
+        }
+      ],
+      "skills_gained": [
+        "Async programming",
+        "Distributed task queues",
+        "Reliable background jobs"
+      ],
+      "expected_outcome": "You can build responsive, scalable background job processing in code."
+    },
+    {
+      "day": 15,
+      "title": "Advanced Python for Automation Engineering",
+      "objectives": [
+        "Write clean, typed, testable Python for automation services",
+        "Package and structure real projects",
+        "Apply OOP, typing, and modern tooling"
+      ],
+      "topics": [
+        "Type hints, dataclasses, and Pydantic for validation",
+        "OOP, decorators, and context managers for reusable code",
+        "Project structure, packaging (uv/poetry), and virtual envs",
+        "Configuration, logging, and environment management",
+        "Linting, formatting, and pre-commit (ruff, black, mypy)"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Basic Python",
+        "Days 12 and 14 completed"
+      ],
+      "intermediate_explanation": "As you build custom integrations, nodes, and automation services, your Python must graduate from throwaway scripts to clean, typed, testable, packaged code that a team can maintain - this software-engineering maturity is what separates an intermediate automation engineer from a scripter. Type hints, checked by mypy, document and enforce the shapes of your data and catch bugs before runtime, which is invaluable when transforming complex payloads. Pydantic takes this further by validating and parsing data at the boundaries of your system - you define a model for an incoming webhook or API response and Pydantic guarantees the data matches (or raises a clear error), which is exactly the kind of robust boundary validation automation needs, and it powers FastAPI (Day 16). Dataclasses give you clean data-holding objects with less boilerplate. You apply OOP where it helps (modeling an API client as a class with methods), decorators to add cross-cutting behavior like retries, caching, and timing (reusing Day 2 concepts), and context managers to guarantee resource cleanup (closing connections, releasing locks). You structure projects properly - a src layout, modules with clear responsibilities, dependencies pinned with uv or poetry in isolated virtual environments - so your code is reproducible and installable. You handle configuration and secrets cleanly (env vars, settings objects), use structured logging instead of prints (feeding the observability work on Day 32), and enforce quality automatically with ruff/black formatting, mypy type-checking, and pre-commit hooks so standards are consistent. This disciplined toolkit means the automation services you build are reliable, readable, and maintainable - the difference between code that works once on your machine and code that runs a business process in production for years.",
+      "practical_task": "Refactor an earlier automation script into a properly structured, typed package: add Pydantic models for input validation, type hints throughout, a retry decorator, structured logging, and configure ruff/black/mypy.",
+      "mini_project": "Build a small, installable automation library (src layout, uv/poetry) that wraps an API: a typed client class, Pydantic models for all payloads, decorators for retry/caching, structured logging, config via env vars, and passing mypy/ruff checks.",
+      "assignment": "Explain how Pydantic validation at system boundaries improves reliability, and describe the roles of type hints, mypy, and pre-commit hooks in keeping an automation codebase maintainable.",
+      "quiz": [
+        {
+          "question": "What is Pydantic primarily used for in automation code?",
+          "options": [
+            "Drawing charts",
+            "Validating and parsing data at system boundaries",
+            "Sending emails",
+            "Scheduling cron jobs"
+          ],
+          "answer": "Validating and parsing data at system boundaries"
+        },
+        {
+          "question": "Why use type hints with mypy?",
+          "options": [
+            "They slow code down",
+            "To document data shapes and catch a class of bugs before runtime",
+            "To replace tests entirely",
+            "To encrypt data"
+          ],
+          "answer": "To document data shapes and catch a class of bugs before runtime"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Python Type Hints and Pydantic (Full Guide)",
+          "channel": "ArjanCodes",
+          "url": "https://www.youtube.com/watch?v=XIdQ6gO3Anc"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Pydantic - Documentation",
+          "url": "https://docs.pydantic.dev/latest/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pydantic/pydantic",
+          "url": "https://github.com/pydantic/pydantic"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "An Empirical Study of Type-Related Defects and Gradual Typing (Gao et al., 2017)",
+          "url": "https://dl.acm.org/doi/10.1145/3133872"
+        }
+      ],
+      "skills_gained": [
+        "Typed, validated Python",
+        "Project packaging and tooling",
+        "Maintainable service code"
+      ],
+      "expected_outcome": "You can write clean, typed, testable, packaged Python for automation services."
+    },
+    {
+      "day": 16,
+      "title": "Building Automation APIs and Services with FastAPI",
+      "objectives": [
+        "Build your own APIs and webhook endpoints",
+        "Expose automations as reliable services",
+        "Validate, document, and secure endpoints"
+      ],
+      "topics": [
+        "FastAPI fundamentals and async endpoints",
+        "Pydantic request/response models and validation",
+        "Building webhook receivers and internal automation APIs",
+        "Authentication, dependency injection, and background tasks",
+        "Auto docs (OpenAPI), testing, and error handling"
+      ],
+      "estimated_time": "7-8 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 15 completed",
+        "API and webhook knowledge"
+      ],
+      "intermediate_explanation": "A defining intermediate leap is building your own APIs and services rather than only consuming and connecting others', and FastAPI is the ideal tool because it is fast, modern, and built on the Pydantic and async foundations from Days 14-15. Many real automation problems require a small custom service: a webhook receiver that verifies signatures and enqueues work (Day 4), an internal API that other systems or your n8n workflows call, a middleware that transforms and routes data between systems, or an endpoint that wraps a fiddly integration behind a clean interface. FastAPI lets you build these quickly and robustly. You define endpoints as Python functions with type-hinted parameters and Pydantic request/response models, so incoming data is automatically validated and rejected with clear errors if malformed - exactly the boundary safety automation needs - and outgoing responses are consistently shaped. It is async-native, so your endpoints can efficiently call external APIs concurrently, and its background-tasks feature (plus integration with Celery/queues from Day 14) lets you acknowledge fast and process later. You implement authentication (API keys, OAuth, JWT) using FastAPI's dependency-injection system, which cleanly shares logic like auth and DB sessions across endpoints. A standout benefit is automatic interactive documentation: FastAPI generates OpenAPI/Swagger docs from your code, so your service is self-documenting for the teams and tools that consume it. You add proper error handling (meaningful status codes and messages) and write tests against your endpoints. Being able to stand up a validated, documented, secure API service means you can fill any gap that no-code tools cannot - becoming the person who builds the connective tissue and custom endpoints that hold complex automation systems together, a highly valued capability.",
+      "practical_task": "Build a FastAPI service with a webhook endpoint that validates the payload via a Pydantic model, verifies a signature, returns 200 quickly, and schedules processing as a background task, with automatic OpenAPI docs.",
+      "mini_project": "Create an internal automation API in FastAPI: multiple endpoints with Pydantic validation, API-key auth via dependencies, a webhook receiver that enqueues to a task queue, error handling with proper status codes, auto docs, and a test suite.",
+      "assignment": "Explain how FastAPI + Pydantic provide automatic request validation and documentation, and describe two automation scenarios where building a custom API service is better than using only no-code tools.",
+      "quiz": [
+        {
+          "question": "What do Pydantic models give a FastAPI endpoint?",
+          "options": [
+            "Slower responses",
+            "Automatic request validation and response shaping (plus docs)",
+            "A database",
+            "Nothing"
+          ],
+          "answer": "Automatic request validation and response shaping (plus docs)"
+        },
+        {
+          "question": "How does FastAPI help consumers of your API understand it?",
+          "options": [
+            "It does not",
+            "It auto-generates interactive OpenAPI/Swagger documentation from your code",
+            "By emailing them",
+            "By printing logs"
+          ],
+          "answer": "It auto-generates interactive OpenAPI/Swagger documentation from your code"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "FastAPI Full Course - Build APIs with Python",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=0sOvCWFmrtA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "FastAPI - Official Documentation",
+          "url": "https://fastapi.tiangolo.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "tiangolo/fastapi",
+          "url": "https://github.com/tiangolo/fastapi"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Architectural Styles and the Design of Network-based Software Architectures (Fielding, 2000)",
+          "url": "https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm"
+        }
+      ],
+      "skills_gained": [
+        "API/service development",
+        "Validated, documented endpoints",
+        "Custom webhook receivers"
+      ],
+      "expected_outcome": "You can build validated, documented, secure API services to power automations."
+    },
+    {
+      "day": 17,
+      "title": "Databases for Automation at Scale: PostgreSQL Deep Dive",
+      "objectives": [
+        "Model and query data reliably for automation systems",
+        "Use transactions, indexing, and constraints correctly",
+        "Manage schema changes with migrations"
+      ],
+      "topics": [
+        "Relational modeling and normalization for automation state",
+        "Indexes and query performance (EXPLAIN)",
+        "Transactions, isolation, and concurrency",
+        "Upserts, constraints, and preventing duplicates",
+        "Migrations, connection pooling, and JSONB"
+      ],
+      "estimated_time": "7-8 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Basic SQL",
+        "Day 15 completed"
+      ],
+      "intermediate_explanation": "Automation systems need durable, correct state - to track what has been processed, deduplicate, store events, and coordinate workflows - and PostgreSQL is the workhorse database that intermediate engineers must understand well beyond basic SELECT/INSERT. You start with data modeling: designing normalized tables for your automation's state (jobs, events, entities, idempotency keys) with primary and foreign keys and appropriate constraints, so the database enforces correctness rather than relying on your code. Performance is critical at volume: you learn indexing - which columns to index for your query patterns, how a B-tree index turns a slow full-table scan into a fast lookup, and how to read EXPLAIN/EXPLAIN ANALYZE to diagnose slow queries - because an unindexed dedup lookup that is fine at 1,000 rows becomes crippling at 10 million. Transactions are the heart of correctness: wrapping multiple operations so they all succeed or all roll back (atomicity), which prevents half-completed automation state, and understanding isolation levels and how concurrent workers can conflict (and how row locking or SELECT ... FOR UPDATE resolves it) - directly relevant to the parallel workers from Days 13-14. You master upserts (INSERT ... ON CONFLICT) and unique constraints as the database-native way to guarantee no duplicates even under concurrency, the most robust form of the idempotency you have been practicing. You handle schema evolution with migrations (Alembic/Flyway) so you change structure safely in production without downtime or data loss, use connection pooling so many workers do not exhaust the database, and leverage JSONB to store flexible/semi-structured payloads while still querying them. This depth lets your automations maintain reliable state at scale - the durable foundation that everything else in a production automation platform depends on.",
+      "practical_task": "Design a Postgres schema for automation state (events + idempotency keys), add appropriate indexes and a unique constraint, write an idempotent upsert, and use EXPLAIN ANALYZE to confirm your dedup query uses the index.",
+      "mini_project": "Build the data layer for an automation service: normalized schema with constraints, migrations (Alembic), transactional processing so multi-step updates are atomic, ON CONFLICT upserts for dedup, connection pooling, and a JSONB column for flexible payloads - with a concurrency test proving no duplicates.",
+      "assignment": "Explain why transactions and unique constraints together guarantee correctness under concurrent workers, and describe how you would diagnose and fix a slow dedup query using EXPLAIN and indexing.",
+      "quiz": [
+        {
+          "question": "What does wrapping operations in a transaction guarantee?",
+          "options": [
+            "Faster queries only",
+            "Atomicity: all succeed or all roll back, preventing half-completed state",
+            "That indexes are unnecessary",
+            "That data is deleted"
+          ],
+          "answer": "Atomicity: all succeed or all roll back, preventing half-completed state"
+        },
+        {
+          "question": "What is the most robust database-native way to prevent duplicates under concurrency?",
+          "options": [
+            "Hope for the best",
+            "A unique constraint with INSERT ... ON CONFLICT (upsert)",
+            "A bigger server",
+            "Disabling indexes"
+          ],
+          "answer": "A unique constraint with INSERT ... ON CONFLICT (upsert)"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "PostgreSQL Full Course (Indexes, Transactions, Performance)",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=qw--VYLpxG4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PostgreSQL - Official Documentation",
+          "url": "https://www.postgresql.org/docs/current/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "postgres/postgres",
+          "url": "https://github.com/postgres/postgres"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Critique of ANSI SQL Isolation Levels (Berenson et al., 1995)",
+          "url": "https://arxiv.org/abs/cs/0701157"
+        }
+      ],
+      "skills_gained": [
+        "Data modeling and indexing",
+        "Transactions and concurrency",
+        "Migrations and upserts"
+      ],
+      "expected_outcome": "You can design reliable, performant database state for automation systems."
+    },
+    {
+      "day": 18,
+      "title": "Vector Databases and Embeddings for AI Automation",
+      "objectives": [
+        "Understand embeddings and semantic search",
+        "Use vector databases (pgvector, Pinecone, Weaviate, Qdrant)",
+        "Build the retrieval layer for AI automations"
+      ],
+      "topics": [
+        "Embeddings: turning text/data into vectors",
+        "Semantic similarity and nearest-neighbor search",
+        "Vector databases and indexes (HNSW, IVF)",
+        "Chunking, metadata filtering, and hybrid search",
+        "pgvector vs managed vector DBs"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 17 completed",
+        "AI/LLM basics"
+      ],
+      "intermediate_explanation": "AI-powered automation increasingly depends on giving language models the right context, and embeddings plus vector databases are the technology that makes that possible - so this is essential groundwork for the RAG and agent work coming next. An embedding is a numeric vector (a list of numbers) that represents the meaning of a piece of text (or image/audio) such that similar meanings produce nearby vectors; you generate them with an embedding model (OpenAI, Cohere, or open-source models). The power of this is semantic search: instead of matching keywords, you embed a query and find the stored items whose vectors are closest (by cosine similarity or distance), retrieving results by meaning - so 'how do I reset my password' matches a document titled 'account recovery steps' even with no shared keywords. A vector database stores these vectors and performs fast approximate nearest-neighbor search at scale using specialized indexes like HNSW or IVF, because comparing a query against millions of vectors naively would be far too slow. You will learn the practical pipeline: chunking documents into appropriately sized pieces (too big loses precision, too small loses context), embedding each chunk, storing it with metadata, and at query time embedding the question, filtering by metadata (e.g., only this customer's docs), and retrieving the top matches - often combined with keyword search in 'hybrid search' for the best of both. You compare options: pgvector (a Postgres extension that adds vector search to the database you already run - great for keeping everything in one place, tying back to Day 17) versus managed vector databases like Pinecone, Weaviate, and Qdrant that specialize in scale and features. This retrieval layer is what lets AI automations answer using your company's actual data accurately, and building it well is a core intermediate AI-automation skill.",
+      "practical_task": "Using pgvector (or a free Qdrant/Weaviate instance), embed a set of documents, store the vectors with metadata, then embed a query and retrieve the most semantically similar chunks, verifying meaning-based (not keyword) matching.",
+      "mini_project": "Build a semantic search service: ingest a document set with sensible chunking, generate and store embeddings with metadata in a vector DB, and expose a FastAPI endpoint that returns the top-k relevant chunks for a query, with metadata filtering and optional hybrid (keyword+vector) search.",
+      "assignment": "Explain what an embedding is and how semantic search differs from keyword search, and compare pgvector with a managed vector database, giving a scenario where each is the better choice.",
+      "quiz": [
+        {
+          "question": "What does an embedding represent?",
+          "options": [
+            "A file path",
+            "A piece of content's meaning as a numeric vector, so similar meanings are nearby",
+            "An API key",
+            "A database index only"
+          ],
+          "answer": "A piece of content's meaning as a numeric vector, so similar meanings are nearby"
+        },
+        {
+          "question": "Why do vector databases use indexes like HNSW?",
+          "options": [
+            "For styling",
+            "For fast approximate nearest-neighbor search across many vectors",
+            "To store passwords",
+            "To send webhooks"
+          ],
+          "answer": "For fast approximate nearest-neighbor search across many vectors"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Vector Databases and Embeddings Explained",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=dN0lsF2cvm4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "pgvector - Documentation",
+          "url": "https://github.com/pgvector/pgvector"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pgvector/pgvector",
+          "url": "https://github.com/pgvector/pgvector"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Efficient and Robust Approximate Nearest Neighbor Search Using HNSW (Malkov & Yashunin, 2018)",
+          "url": "https://arxiv.org/abs/1603.09320"
+        }
+      ],
+      "skills_gained": [
+        "Embeddings and semantic search",
+        "Vector databases",
+        "Retrieval pipeline design"
+      ],
+      "expected_outcome": "You can build the embedding/retrieval layer that powers AI automations."
+    },
+    {
+      "day": 19,
+      "title": "Advanced RAG (Retrieval-Augmented Generation) Systems",
+      "objectives": [
+        "Build production-grade RAG pipelines that ground LLM automations in your own trusted data, minimizing hallucination."
+      ],
+      "topics": [
+        "Chunking strategies: fixed, recursive, semantic, structure-aware",
+        "Hybrid search: dense vectors + BM25/keyword",
+        "Re-ranking with cross-encoders (Cohere Rerank, bge-reranker)",
+        "Query transformation: HyDE, multi-query, step-back prompting",
+        "Metadata filtering and self-querying retrievers",
+        "RAG evaluation: RAGAS, faithfulness, answer relevance, recall@k",
+        "n8n Question-and-Answer Chain and LangChain nodes",
+        "Grounding, citations, and defending against injection via retrieved content"
+      ],
+      "estimated_time": "8-10 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 18 (vector databases and embeddings)",
+        "Basic LLM/prompting experience"
+      ],
+      "intermediate_explanation": "RAG is the backbone of any serious AI automation that must answer from company data. You will move beyond naive 'embed-everything, top-k' retrieval into chunking strategies (fixed, recursive, semantic, and structure-aware), metadata filtering, hybrid search (dense vectors + sparse BM25/keyword), re-ranking with cross-encoders, and query transformation (HyDE, multi-query, step-back). You'll learn how to evaluate retrieval quality (recall@k, precision, MRR) and generation quality (faithfulness, answer relevance) using tools like RAGAS. In automation terms, a Make.com or n8n workflow triggers on a support ticket, retrieves the most relevant KB articles from your vector DB, and feeds them into the LLM to draft a grounded reply. n8n has native LangChain nodes and a Question-and-Answer Chain that wire retrieval into a flow visually, while Zapier and Make.com call your own RAG API. You will understand context-window budgeting, citations, and guardrails against prompt injection through retrieved content.",
+      "practical_task": "Build a RAG pipeline over a real document set: implement hybrid search plus a cross-encoder re-ranker, then run RAGAS to compare two chunking strategies and pick the better one.",
+      "mini_project": "Build a hybrid-search RAG API over a 200-document knowledge base with a cross-encoder re-ranker, and expose it as an endpoint your n8n workflow calls.",
+      "assignment": "Run RAGAS on two chunking strategies for the same corpus and report which improves faithfulness and recall@5.",
+      "quiz": [
+        "Why does hybrid search often beat pure vector search?",
+        "What problem does a cross-encoder re-ranker solve?",
+        "How can retrieved content become a prompt-injection vector?"
+      ],
+      "youtube": {
+        "title": "Advanced RAG techniques walkthrough",
+        "url": "https://www.youtube.com/watch?v=sVcwVQRHIc8",
+        "note": "High-view RAG tutorial; verify current view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "LangChain RAG documentation",
+          "url": "https://python.langchain.com/docs/tutorials/rag/"
+        },
+        {
+          "title": "n8n Question and Answer Chain",
+          "url": "https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.chainretrievalqa/"
+        },
+        {
+          "title": "RAGAS evaluation framework",
+          "url": "https://docs.ragas.io/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "run-llama/llama_index",
+          "url": "https://github.com/run-llama/llama_index"
+        },
+        {
+          "name": "langchain-ai/langchain",
+          "url": "https://github.com/langchain-ai/langchain"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., 2020)",
+          "url": "https://arxiv.org/abs/2005.11401"
+        },
+        {
+          "title": "Precise Zero-Shot Dense Retrieval without Relevance Labels / HyDE (Gao et al., 2022)",
+          "url": "https://arxiv.org/abs/2212.10496"
+        }
+      ],
+      "skills_gained": [
+        "Production RAG pipeline design",
+        "Hybrid retrieval and re-ranking",
+        "RAG evaluation and grounding"
+      ],
+      "expected_outcome": "You can build and evaluate a grounded RAG service that automations query for trustworthy AI answers."
+    },
+    {
+      "day": 20,
+      "title": "Building Production AI Agents (LangChain / LangGraph)",
+      "objectives": [
+        "Design reliable, tool-using AI agents that take actions in your automation stack rather than just generating text."
+      ],
+      "topics": [
+        "ReAct pattern and the reason-act-observe loop",
+        "Tool/function calling and JSON tool schemas",
+        "LangGraph state machines: nodes, edges, checkpoints",
+        "Agent memory: short-term, long-term, summarization",
+        "Human-in-the-loop pauses and approvals",
+        "Iteration caps, timeouts, and cost/runaway control",
+        "n8n AI Agent node with tools as sub-nodes",
+        "Connecting agents to Zapier/Make via webhook tools"
+      ],
+      "estimated_time": "8-10 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 19 (RAG)",
+        "Comfort with APIs and function calling"
+      ],
+      "intermediate_explanation": "An AI agent is an LLM that reasons, chooses tools, and acts in a loop until a goal is met. You'll learn the ReAct pattern (reason + act), function/tool calling, and how to give an agent capabilities: call an API, query your RAG service, write to a database, or trigger a Zapier/Make webhook. LangGraph models agents as explicit state graphs with nodes, edges, and checkpoints, giving you deterministic control, retries, human-in-the-loop pauses, and durability - which naive agent loops lack. You'll design tool schemas, handle tool errors, cap iterations to prevent runaway loops and cost, and add memory. In automation practice, an agent can triage an inbox: read the email, decide whether to reply, escalate, or create a CRM task, then execute that action through your existing n8n/Make workflows. n8n's AI Agent node lets you build this visually with tools wired as sub-nodes.",
+      "practical_task": "Build a tool-using agent with LangGraph that reads a task, calls at least two tools (an API and your RAG service), enforces an iteration cap, and logs every tool call.",
+      "mini_project": "Build an inbox-triage agent that reads emails, decides reply/escalate/ignore, and executes the action via an n8n webhook tool, capped at 5 iterations.",
+      "assignment": "Add a human-in-the-loop approval node before any action that sends an external message, and log every tool call.",
+      "quiz": [
+        "What does the 'act' step add over a plain LLM completion?",
+        "Why does LangGraph's explicit state help reliability?",
+        "How do you prevent an agent from looping forever and burning cost?"
+      ],
+      "youtube": {
+        "title": "Build AI agents with LangGraph",
+        "url": "https://www.youtube.com/watch?v=aywZrzNaKjs",
+        "note": "Popular LangGraph tutorial; confirm live view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "LangGraph documentation",
+          "url": "https://langchain-ai.github.io/langgraph/"
+        },
+        {
+          "title": "n8n AI Agent node",
+          "url": "https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "langchain-ai/langgraph",
+          "url": "https://github.com/langchain-ai/langgraph"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al., 2022)",
+          "url": "https://arxiv.org/abs/2210.03629"
+        },
+        {
+          "title": "Toolformer: Language Models Can Teach Themselves to Use Tools (Schick et al., 2023)",
+          "url": "https://arxiv.org/abs/2302.04761"
+        }
+      ],
+      "skills_gained": [
+        "Tool-using agent design",
+        "LangGraph state orchestration",
+        "Safe, bounded agent execution"
+      ],
+      "expected_outcome": "You can ship a reliable agent that takes real actions inside your automation platform with guardrails."
+    },
+    {
+      "day": 21,
+      "title": "Multi-Agent Systems and Orchestration",
+      "objectives": [
+        "Coordinate multiple specialized agents to solve complex automation tasks that a single agent handles poorly."
+      ],
+      "topics": [
+        "Supervisor/router vs hierarchical vs network handoff patterns",
+        "CrewAI role-based crews",
+        "AutoGen conversational multi-agent",
+        "LangGraph multi-actor graphs and shared state",
+        "Handoff protocols and message passing",
+        "Preventing delegation loops and runaway cost",
+        "When multi-agent is overkill vs a single agent + tools"
+      ],
+      "estimated_time": "7-9 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 20 (single agents)"
+      ],
+      "intermediate_explanation": "As tasks grow, one monolithic agent becomes unreliable. Multi-agent systems split work among specialists - a researcher, a writer, a reviewer, an executor - coordinated by a supervisor/orchestrator or arranged as a pipeline. You'll study patterns: supervisor (a router agent delegates to workers), hierarchical teams, and network/handoff models. Frameworks like LangGraph (multi-actor graphs), CrewAI (role-based crews), and AutoGen (conversational agents) each encode these differently. Key engineering concerns are shared state, message passing, handoff protocols, avoiding infinite delegation loops, and cost explosion (each agent call is tokens). In automation, a multi-agent 'content ops' system could research a topic, draft a post, fact-check against your RAG store, then publish through a Make.com scenario - each stage owned by a focused agent with its own tools and prompt.",
+      "practical_task": "Build a 3-agent crew (researcher, writer, reviewer) that produces an approved draft, with a token-budget guard that aborts the crew if spend exceeds a threshold.",
+      "mini_project": "Build a 3-agent content pipeline (researcher, writer, reviewer) in CrewAI or LangGraph that publishes an approved draft via a Make.com webhook.",
+      "assignment": "Add a cost budget: abort the crew if total token spend exceeds a threshold, and log per-agent cost.",
+      "quiz": [
+        "When is multi-agent worse than a single agent with more tools?",
+        "What does a supervisor pattern coordinate?",
+        "How do you stop two agents from delegating to each other endlessly?"
+      ],
+      "youtube": {
+        "title": "Multi-agent systems with CrewAI",
+        "url": "https://www.youtube.com/watch?v=sPzc6hMg7So",
+        "note": "Widely viewed CrewAI tutorial; verify view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "CrewAI documentation",
+          "url": "https://docs.crewai.com/"
+        },
+        {
+          "title": "LangGraph multi-agent",
+          "url": "https://langchain-ai.github.io/langgraph/concepts/multi_agent/"
+        },
+        {
+          "title": "Microsoft AutoGen",
+          "url": "https://microsoft.github.io/autogen/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "crewAIInc/crewAI",
+          "url": "https://github.com/crewAIInc/crewAI"
+        },
+        {
+          "name": "microsoft/autogen",
+          "url": "https://github.com/microsoft/autogen"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation (Wu et al., 2023)",
+          "url": "https://arxiv.org/abs/2308.08155"
+        },
+        {
+          "title": "MetaGPT: Meta Programming for a Multi-Agent Collaborative Framework (Hong et al., 2023)",
+          "url": "https://arxiv.org/abs/2308.00352"
+        }
+      ],
+      "skills_gained": [
+        "Multi-agent orchestration patterns",
+        "CrewAI/LangGraph/AutoGen fluency",
+        "Cost and loop control across agents"
+      ],
+      "expected_outcome": "You can design a coordinated team of agents for complex, multi-stage automation workflows."
+    },
+    {
+      "day": 22,
+      "title": "Prompt Engineering and LLM Reliability",
+      "objectives": [
+        "Make LLM-driven automation steps deterministic, structured, and trustworthy enough for production."
+      ],
+      "topics": [
+        "Structured outputs: JSON mode, function calling, Pydantic schemas",
+        "Retry-on-invalid and self-correction loops",
+        "Few-shot, chain-of-thought, delimiters, output constraints",
+        "Hallucination reduction and grounding",
+        "Prompt injection defense and input sanitization",
+        "Prompt regression testing with eval sets",
+        "Structured-output settings in Zapier/Make/n8n LLM nodes"
+      ],
+      "estimated_time": "6-8 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 19-20 (RAG and agents)"
+      ],
+      "intermediate_explanation": "In automation, an LLM step must return data your next node can parse - not prose. You'll master structured outputs: JSON mode, function calling, and schema validation with Pydantic or JSON Schema, plus retry-on-invalid loops. You'll learn prompting techniques that improve reliability (few-shot examples, chain-of-thought where allowed, output constraints, delimiters), and how to reduce hallucination through grounding and 'say I don't know' instructions. Critically for engineers: prompt-injection defense (untrusted content in the prompt), input sanitization, and evaluation - building a small test set of inputs/expected-outputs and scoring the prompt on every change (regression testing for prompts). Zapier, Make.com, and n8n all expose 'structured output' options; you'll learn to enforce schemas so downstream steps never break on malformed model output.",
+      "practical_task": "Wrap an LLM classification step so it returns Pydantic-validated JSON, retrying up to 3 times on parse failure, and score two prompt versions against a 20-example eval set.",
+      "mini_project": "Build an LLM classification step that returns validated JSON via a Pydantic schema, retrying up to 3 times on parse failure.",
+      "assignment": "Create a 20-example eval set and score two prompt versions; keep the higher-accuracy prompt.",
+      "quiz": [
+        "Why enforce a JSON schema on LLM output in a workflow?",
+        "Name two prompt-injection defenses.",
+        "What is prompt regression testing and why does it matter?"
+      ],
+      "youtube": {
+        "title": "Structured outputs and reliable LLM prompting",
+        "url": "https://www.youtube.com/watch?v=jgpUPZ_zLpg",
+        "note": "Popular prompt-engineering tutorial; confirm view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "OpenAI Structured Outputs",
+          "url": "https://platform.openai.com/docs/guides/structured-outputs"
+        },
+        {
+          "title": "Anthropic prompt engineering guide",
+          "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pydantic/pydantic",
+          "url": "https://github.com/pydantic/pydantic"
+        },
+        {
+          "name": "guardrails-ai/guardrails",
+          "url": "https://github.com/guardrails-ai/guardrails"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (Wei et al., 2022)",
+          "url": "https://arxiv.org/abs/2201.11903"
+        },
+        {
+          "title": "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection (Greshake et al., 2023)",
+          "url": "https://arxiv.org/abs/2302.12173"
+        }
+      ],
+      "skills_gained": [
+        "Structured, schema-validated LLM outputs",
+        "Prompt reliability and injection defense",
+        "Prompt evaluation and regression testing"
+      ],
+      "expected_outcome": "Your LLM automation steps return reliable, parseable, hardened output every run."
+    },
+    {
+      "day": 23,
+      "title": "LLMOps: Cost, Caching, Monitoring, and Fallback",
+      "objectives": [
+        "Operate LLM-powered automations at scale without runaway cost, latency, or silent failures."
+      ],
+      "topics": [
+        "Token accounting and per-workflow cost attribution",
+        "Exact and semantic caching (Redis, GPTCache)",
+        "Model routing and provider fallback",
+        "Observability: Langfuse, LangSmith, Helicone tracing",
+        "Rate-limit handling and backoff for LLM APIs",
+        "Per-tenant budgets and spend alerts",
+        "LLM gateway/proxy in front of Zapier/Make/n8n"
+      ],
+      "estimated_time": "6-8 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 22 (LLM reliability)"
+      ],
+      "intermediate_explanation": "Running LLMs in production is an ops discipline. You'll learn token accounting and cost attribution per workflow, semantic and exact-match caching (e.g., GPTCache, Redis) to avoid paying twice for the same query, and model routing/fallback - try a cheap model first, escalate to a stronger one, or fail over to a second provider if one is down. Observability tooling like Langfuse, LangSmith, or Helicone traces every prompt, response, latency, and cost, letting you debug and monitor quality drift. You'll also handle rate limits with backoff, set per-tenant budgets, and add streaming for UX. In automation platforms this means wrapping your LLM calls in a gateway/proxy so that Zapier, Make, and n8n all benefit from shared caching, logging, and fallback rather than each calling the raw API blind.",
+      "practical_task": "Put an LLM gateway (LiteLLM) with Redis caching and cheap-to-strong fallback in front of a workflow, trace calls in Langfuse, and measure cost/latency before vs after caching.",
+      "mini_project": "Put an LLM gateway with Redis caching and a cheap-to-strong model fallback in front of an n8n workflow, and trace every call in Langfuse.",
+      "assignment": "Measure cost and latency before and after caching over 100 repeated queries; report the savings.",
+      "quiz": [
+        "How does semantic caching differ from exact caching?",
+        "Why route to a cheap model first?",
+        "What does an LLM observability tool trace?"
+      ],
+      "youtube": {
+        "title": "LLMOps and monitoring with Langfuse",
+        "url": "https://www.youtube.com/watch?v=2E8iTvGo9Hs",
+        "note": "High-view LLMOps tutorial; verify view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "Langfuse documentation",
+          "url": "https://langfuse.com/docs"
+        },
+        {
+          "title": "LangSmith observability",
+          "url": "https://docs.smith.langchain.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "langfuse/langfuse",
+          "url": "https://github.com/langfuse/langfuse"
+        },
+        {
+          "name": "BerriAI/litellm",
+          "url": "https://github.com/BerriAI/litellm"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance (Chen et al., 2023)",
+          "url": "https://arxiv.org/abs/2305.05176"
+        }
+      ],
+      "skills_gained": [
+        "LLM cost and cache optimization",
+        "Model routing and fallback",
+        "LLM observability and monitoring"
+      ],
+      "expected_outcome": "You can run LLM automations cost-efficiently, observably, and resiliently at scale."
+    },
+    {
+      "day": 24,
+      "title": "Advanced Web Scraping and Anti-Bot Handling",
+      "objectives": [
+        "Extract data reliably from modern, JavaScript-heavy, protected websites at scale."
+      ],
+      "topics": [
+        "Headless browsers: Playwright/Puppeteer waits and selectors",
+        "Reverse-engineering hidden JSON/XHR APIs",
+        "Proxy rotation, residential IPs, header/user-agent management",
+        "CAPTCHA solving and stealth techniques",
+        "Retries, checkpointing, incremental crawling",
+        "Apify / Bright Data / ScrapingBee managed scraping",
+        "Legal/ethical: robots.txt, ToS, rate courtesy"
+      ],
+      "estimated_time": "7-9 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Basic scraping and Python (assumed from beginner track)"
+      ],
+      "intermediate_explanation": "Beginner scraping breaks on real-world sites. Here you'll handle dynamic content (headless Playwright/Puppeteer with waits for network idle and selectors), intercept and call the site's own hidden JSON APIs (often far more robust than parsing HTML), and manage anti-bot defenses: rotating proxies and residential IPs, realistic user-agents and headers, human-like pacing, CAPTCHA-solving services, and stealth plugins. You'll design resilient scrapers with retries, checkpointing, and incremental crawls, and respect legal/ethical limits - robots.txt, terms of service, and rate courtesy. Managed tools like Apify, Bright Data, and ScrapingBee offload proxy/anti-bot complexity and integrate cleanly with Make.com and n8n via HTTP. You'll also parse at scale (streaming, pagination, deduplication) and store results in a database for downstream automation.",
+      "practical_task": "Scrape a JS-rendered site by calling its hidden JSON API with proxy rotation and checkpointing, dedup results into PostgreSQL, and make an interrupted crawl resume cleanly.",
+      "mini_project": "Scrape a JS-rendered product catalog by calling its hidden JSON API, with proxy rotation and incremental dedup, storing results in PostgreSQL.",
+      "assignment": "Add checkpointing so an interrupted crawl resumes without re-fetching completed pages.",
+      "quiz": [
+        "Why prefer a site's hidden JSON API over HTML parsing?",
+        "Name two anti-bot mitigations.",
+        "What legal signals should a scraper respect?"
+      ],
+      "youtube": {
+        "title": "Advanced Playwright scraping and anti-bot bypass",
+        "url": "https://www.youtube.com/watch?v=zAI3g-QN2Sk",
+        "note": "Popular advanced scraping tutorial; confirm view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "Playwright documentation",
+          "url": "https://playwright.dev/python/docs/intro"
+        },
+        {
+          "title": "Apify documentation",
+          "url": "https://docs.apify.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "microsoft/playwright",
+          "url": "https://github.com/microsoft/playwright"
+        },
+        {
+          "name": "apify/crawlee",
+          "url": "https://github.com/apify/crawlee"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Survey on Web Scraping and Its Legal Considerations (Krotov & Silva, 2018)",
+          "url": "https://aisel.aisnet.org/cais/vol43/iss1/24/"
+        }
+      ],
+      "skills_gained": [
+        "Resilient large-scale scraping",
+        "Anti-bot and proxy handling",
+        "Ethical and legal scraping practice"
+      ],
+      "expected_outcome": "You can extract data reliably from difficult, protected sites and feed it into automations."
+    },
+    {
+      "day": 25,
+      "title": "Advanced RPA (UiPath Orchestrator and Enterprise Automation)",
+      "objectives": [
+        "Automate legacy desktop and enterprise applications that have no API, and manage bots at scale."
+      ],
+      "topics": [
+        "Robust selectors and UI resilience in UiPath",
+        "Attended vs unattended bots",
+        "UiPath Orchestrator: queues, assets, scheduling, credentials",
+        "REFramework: dispatcher/performer and transactional retries",
+        "Exception handling and business vs system exceptions",
+        "Power Automate Desktop and Automation Anywhere alternatives",
+        "Hybrid RPA + API: use RPA only where no API exists"
+      ],
+      "estimated_time": "7-9 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Beginner RPA exposure (Power Automate/UiPath basics)"
+      ],
+      "intermediate_explanation": "Many enterprises run software with no API - legacy ERP, mainframe terminals, desktop apps - where RPA (Robotic Process Automation) is the only bridge. You'll go beyond record-and-play into robust selectors, UI resilience, and exception handling using UiPath (or Power Automate Desktop / Automation Anywhere). The key intermediate leap is orchestration: UiPath Orchestrator manages queues of work items, schedules and dispatches jobs to attended and unattended bots, provides assets/credentials vaulting, retries failed transactions, and reports throughput. You'll design the REFramework (Robotic Enterprise Framework) pattern - dispatcher/performer, transactional retries, and logging. Crucially, you'll learn to combine RPA with API automation: use RPA only for the no-API leg and hand off structured data to n8n/Make for everything else, since API integration is faster and more reliable than screen automation wherever it's available.",
+      "practical_task": "Build a UiPath dispatcher/performer over an Orchestrator queue that processes invoices, retries failed items, and routes business vs system exceptions differently.",
+      "mini_project": "Build a queue-based UiPath dispatcher/performer that reads invoices from a folder, keys them into a legacy app, and retries failed items via Orchestrator.",
+      "assignment": "Separate business exceptions (bad data) from system exceptions (app crash) and route each differently.",
+      "quiz": [
+        "When is RPA the right tool versus an API integration?",
+        "What does Orchestrator's queue give you over a plain loop?",
+        "What is the dispatcher/performer split in REFramework?"
+      ],
+      "youtube": {
+        "title": "UiPath Orchestrator and REFramework tutorial",
+        "url": "https://www.youtube.com/watch?v=E5Bl1wjWjMc",
+        "note": "Widely viewed UiPath tutorial; verify view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "UiPath Orchestrator documentation",
+          "url": "https://docs.uipath.com/orchestrator"
+        },
+        {
+          "title": "Power Automate Desktop documentation",
+          "url": "https://learn.microsoft.com/en-us/power-automate/desktop-flows/introduction"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "UiPath/uipath-python",
+          "url": "https://github.com/UiPath/uipath-python"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Robotic Process Automation: Contemporary Themes and Challenges (Syed et al., 2020)",
+          "url": "https://arxiv.org/abs/2105.14572"
+        }
+      ],
+      "skills_gained": [
+        "Enterprise-grade RPA design",
+        "Orchestrator queue management",
+        "Hybrid RPA + API architecture"
+      ],
+      "expected_outcome": "You can automate no-API enterprise systems reliably and manage bot fleets at scale."
+    },
+    {
+      "day": 26,
+      "title": "Workflow Orchestration (Apache Airflow and Temporal)",
+      "objectives": [
+        "Run complex, dependency-driven, long-running automation pipelines with durability and observability."
+      ],
+      "topics": [
+        "Airflow DAGs, operators, scheduling, backfills, XComs",
+        "Temporal durable execution: workflows, activities, signals",
+        "Prefect and Dagster as modern alternatives",
+        "Retries, timeouts, and idempotency in orchestrators",
+        "Human-in-the-loop and saga-style long-running processes",
+        "Choosing orchestrator vs n8n/Make",
+        "Calling n8n/Make workflows as orchestration steps"
+      ],
+      "estimated_time": "8-10 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 15 (advanced Python)",
+        "Day 13 (event-driven basics)"
+      ],
+      "intermediate_explanation": "No-code tools hit a ceiling for complex batch pipelines and multi-day, stateful workflows. Code-based orchestrators fill the gap. Airflow models pipelines as DAGs (directed acyclic graphs) of tasks with dependencies, scheduling, backfills, retries, and a rich UI - ideal for ETL and scheduled data automation. Temporal (and its cousins like Prefect/Dagster) take a different angle: durable execution, where a workflow function can run for days, survive crashes, and resume exactly where it left off, with automatic retries and timeouts - ideal for long-running, human-in-the-loop, or saga-style business processes. You'll learn when to use an orchestrator versus n8n/Make (rule of thumb: complex dependencies, backfills, or durable long-running state means orchestrator; event-driven glue means n8n/Make), and how to trigger n8n/Make workflows from Airflow/Temporal as steps.",
+      "practical_task": "Build an Airflow DAG (extract, transform, load to Postgres, notify via n8n), then reimplement one long step as a Temporal workflow that survives a worker crash and resumes.",
+      "mini_project": "Build an Airflow DAG that extracts from an API, transforms in Python, loads to PostgreSQL, and triggers an n8n notification workflow on success.",
+      "assignment": "Reimplement one long-running step as a Temporal workflow that survives a simulated worker crash and resumes.",
+      "quiz": [
+        "What is a DAG and why acyclic?",
+        "What does Temporal's durable execution guarantee?",
+        "When would you pick an orchestrator over n8n?"
+      ],
+      "youtube": {
+        "title": "Apache Airflow full tutorial",
+        "url": "https://www.youtube.com/watch?v=K9AnJ9_ZAXE",
+        "note": "Popular Airflow tutorial; confirm view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "Apache Airflow documentation",
+          "url": "https://airflow.apache.org/docs/"
+        },
+        {
+          "title": "Temporal documentation",
+          "url": "https://docs.temporal.io/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "apache/airflow",
+          "url": "https://github.com/apache/airflow"
+        },
+        {
+          "name": "temporalio/temporal",
+          "url": "https://github.com/temporalio/temporal"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Serverless Workflows and Durable Execution: a survey of orchestration systems",
+          "url": "https://arxiv.org/abs/2109.10391"
+        }
+      ],
+      "skills_gained": [
+        "Airflow DAG pipeline design",
+        "Temporal durable workflows",
+        "Orchestrator vs no-code decision-making"
+      ],
+      "expected_outcome": "You can run complex, durable, dependency-aware automation pipelines beyond no-code limits."
+    },
+    {
+      "day": 27,
+      "title": "Containerization: Docker and Docker Compose for Automation Stacks",
+      "objectives": [
+        "Package and run your entire automation stack reproducibly with containers."
+      ],
+      "topics": [
+        "Dockerfiles: multi-stage builds, caching, small images, non-root",
+        "Docker Compose: services, networks, volumes, healthchecks",
+        "Environment variables and secrets in Compose",
+        "Named volumes and data persistence",
+        "Self-hosting n8n (queue mode) + Postgres + Redis via Compose",
+        "Containerizing a FastAPI automation service",
+        "Logs, restart policies, and resource limits"
+      ],
+      "estimated_time": "7-9 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 16 (FastAPI)",
+        "Day 17 (PostgreSQL)"
+      ],
+      "intermediate_explanation": "Production automation means self-hosting services - n8n, a FastAPI service, PostgreSQL, Redis, a vector DB, and workers - reliably across environments. Docker packages each into an image; Docker Compose defines the whole stack in one YAML file with networks, volumes, environment variables, and health checks. You'll write efficient Dockerfiles (multi-stage builds, small base images, layer caching, non-root users), manage secrets via env files and Docker secrets, and persist data with named volumes so a container restart never loses your n8n workflows or database. You'll compose a real stack: self-hosted n8n in queue mode with a Postgres backend and Redis, plus your custom FastAPI automation API, all networked together. This is the foundation for the deployment, scaling, and CI/CD days that follow.",
+      "practical_task": "Write a docker-compose.yml running n8n (queue mode) + PostgreSQL + Redis + your FastAPI service with persistent volumes and healthchecks, then multi-stage build the API image.",
+      "mini_project": "Write a docker-compose.yml running n8n (queue mode), PostgreSQL, Redis, and your FastAPI service, with persistent volumes and healthchecks.",
+      "assignment": "Convert your FastAPI image to a multi-stage, non-root build and measure the image size reduction.",
+      "quiz": [
+        "Why use multi-stage Docker builds?",
+        "What do named volumes protect against?",
+        "What does a Compose healthcheck enable?"
+      ],
+      "youtube": {
+        "title": "Docker and Docker Compose crash course",
+        "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
+        "note": "Very high-view Docker tutorial; verify view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "Docker Compose documentation",
+          "url": "https://docs.docker.com/compose/"
+        },
+        {
+          "title": "Self-hosting n8n with Docker",
+          "url": "https://docs.n8n.io/hosting/installation/docker/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "docker/awesome-compose",
+          "url": "https://github.com/docker/awesome-compose"
+        },
+        {
+          "name": "n8n-io/n8n",
+          "url": "https://github.com/n8n-io/n8n"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "An Updated Performance Comparison of Virtual Machines and Linux Containers (Felter et al., IBM, 2015)",
+          "url": "https://ieeexplore.ieee.org/document/7095802"
+        }
+      ],
+      "skills_gained": [
+        "Docker image and Compose authoring",
+        "Reproducible self-hosted stacks",
+        "Data persistence and healthchecks"
+      ],
+      "expected_outcome": "You can containerize and run a full self-hosted automation stack reproducibly."
+    },
+    {
+      "day": 28,
+      "title": "Kubernetes Basics for Scaling Automation Workloads",
+      "objectives": [
+        "Deploy and scale containerized automation services on Kubernetes for high availability."
+      ],
+      "topics": [
+        "Pods, Deployments, Services, Ingress",
+        "ConfigMaps and Secrets",
+        "Rolling updates and rollbacks",
+        "HorizontalPodAutoscaler and resource requests/limits",
+        "Liveness/readiness probes",
+        "CronJobs for scheduled automation",
+        "Scaling n8n queue-mode workers on K8s",
+        "Managed K8s (GKE/EKS/AKS) and when K8s is overkill"
+      ],
+      "estimated_time": "8-10 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 27 (Docker/Compose)"
+      ],
+      "intermediate_explanation": "When a single Docker host is not enough - you need high availability, autoscaling, and rolling updates - Kubernetes (K8s) orchestrates containers across a cluster. You'll learn the core objects: Pods, Deployments (declarative desired state and rolling updates), Services (stable networking/load balancing), ConfigMaps and Secrets (configuration), and Ingress (external routing). For automation specifically, you'll scale n8n workers horizontally in queue mode, run your FastAPI service behind a Deployment with a HorizontalPodAutoscaler, and schedule batch jobs with CronJobs. You'll grasp resource requests/limits, liveness/readiness probes, and persistent volumes for stateful components. Managed K8s (GKE/EKS/AKS) removes control-plane burden. The goal is not to become a K8s expert but to deploy and scale your automation platform reliably; simpler options (a single VM + Compose, or managed n8n Cloud) remain valid when full K8s is overkill.",
+      "practical_task": "Deploy your FastAPI service to a kind/minikube cluster with a Deployment, Service, Ingress, and HorizontalPodAutoscaler, then perform a rolling update and rollback with zero downtime.",
+      "mini_project": "Deploy your FastAPI automation service to a local (kind/minikube) cluster with a Deployment, Service, Ingress, and a HorizontalPodAutoscaler.",
+      "assignment": "Add liveness/readiness probes and trigger a rolling update, then a rollback, verifying zero downtime.",
+      "quiz": [
+        "What does a Deployment manage that a bare Pod does not?",
+        "What do readiness probes control?",
+        "When is Kubernetes overkill for automation?"
+      ],
+      "youtube": {
+        "title": "Kubernetes tutorial for beginners",
+        "url": "https://www.youtube.com/watch?v=X48VuDVv0do",
+        "note": "Very high-view Kubernetes course; confirm view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "Kubernetes documentation",
+          "url": "https://kubernetes.io/docs/home/"
+        },
+        {
+          "title": "n8n on Kubernetes",
+          "url": "https://docs.n8n.io/hosting/installation/server-setups/kubernetes/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "kubernetes/kubernetes",
+          "url": "https://github.com/kubernetes/kubernetes"
+        },
+        {
+          "name": "kubernetes-sigs/kind",
+          "url": "https://github.com/kubernetes-sigs/kind"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Borg, Omega, and Kubernetes (Burns et al., Google, 2016)",
+          "url": "https://dl.acm.org/doi/10.1145/2890784"
+        }
+      ],
+      "skills_gained": [
+        "Core Kubernetes objects",
+        "Autoscaling and rolling updates",
+        "Scaling n8n and services on K8s"
+      ],
+      "expected_outcome": "You can deploy and scale your automation platform on Kubernetes with HA and autoscaling."
+    },
+    {
+      "day": 29,
+      "title": "CI/CD for Automation (GitHub Actions)",
+      "objectives": [
+        "Automate testing and deployment of your automation code, workflows, and custom nodes."
+      ],
+      "topics": [
+        "GitHub Actions: workflows, jobs, steps, triggers",
+        "Matrix builds and dependency caching",
+        "Secrets, environments, and manual approval gates",
+        "Build/push Docker images to a registry",
+        "Deploy to server or Kubernetes from CI",
+        "Versioning n8n/Make workflows as Git artifacts (dev-to-prod promotion)",
+        "Publishing n8n custom nodes to npm via CI"
+      ],
+      "estimated_time": "6-8 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 27 (Docker)",
+        "Git proficiency"
+      ],
+      "intermediate_explanation": "Your automations are now code - custom Zapier/Make apps, n8n custom nodes, FastAPI services, and even exported n8n workflow JSON - so they deserve a real delivery pipeline. You'll build GitHub Actions workflows triggered on push/PR that lint, run tests, build Docker images, push to a registry, and deploy to your server or K8s cluster. You'll learn pipeline structure (jobs, steps, matrix builds), caching dependencies, storing secrets in GitHub, environment protection rules and manual approvals for production, and versioning/tagging releases. A crucial automation-specific practice is treating n8n/Make workflows as versioned artifacts: export workflow JSON to Git, so changes are reviewed, diffed, and promoted dev-to-prod rather than edited live. You'll also publish n8n custom nodes to npm and Zapier/Make apps to their platforms through the pipeline.",
+      "practical_task": "Build a GitHub Actions pipeline that lints, tests, builds a Docker image, and deploys on merge to main, with a required manual approval gate for the production environment.",
+      "mini_project": "Create a GitHub Actions pipeline that lints and tests a FastAPI service, builds its Docker image, and deploys on merge to main.",
+      "assignment": "Add a production environment with a required manual approval before deploy.",
+      "quiz": [
+        "Why version n8n workflow JSON in Git?",
+        "What does an environment protection rule enforce?",
+        "What belongs in GitHub Secrets versus the repo?"
+      ],
+      "youtube": {
+        "title": "GitHub Actions CI/CD full course",
+        "url": "https://www.youtube.com/watch?v=R8_veQiYBjI",
+        "note": "High-view GitHub Actions tutorial; verify view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "GitHub Actions documentation",
+          "url": "https://docs.github.com/en/actions"
+        },
+        {
+          "title": "n8n environments and source control",
+          "url": "https://docs.n8n.io/source-control-environments/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "actions/starter-workflows",
+          "url": "https://github.com/actions/starter-workflows"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Continuous Integration, Delivery and Deployment: A Systematic Review (Shahin et al., 2017)",
+          "url": "https://arxiv.org/abs/1703.07019"
+        }
+      ],
+      "skills_gained": [
+        "GitHub Actions pipeline design",
+        "Automated build/test/deploy",
+        "Workflow-as-code promotion"
+      ],
+      "expected_outcome": "You can ship automation code and workflows through a tested, gated CI/CD pipeline."
+    },
+    {
+      "day": 30,
+      "title": "Infrastructure as Code (Terraform)",
+      "objectives": [
+        "Provision and manage your automation infrastructure declaratively and reproducibly."
+      ],
+      "topics": [
+        "HCL syntax: resources, variables, outputs",
+        "Providers and the plan/apply lifecycle",
+        "Remote state and state locking",
+        "Modules for reusable infrastructure",
+        "Drift detection and import",
+        "Provisioning n8n/Postgres/Redis infrastructure as code",
+        "GitOps: infra changes through pipelines"
+      ],
+      "estimated_time": "6-8 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Cloud basics",
+        "Day 29 (CI/CD)"
+      ],
+      "intermediate_explanation": "Clicking around cloud consoles does not scale and is not reproducible. Terraform lets you declare infrastructure - servers, databases, networks, DNS, managed n8n, message queues - in version-controlled config, then plan and apply changes predictably. You'll learn HCL syntax, providers (AWS/GCP/Azure/DigitalOcean), resources, variables, outputs, and state management (why remote state and locking matter for teams). You'll understand the plan/apply lifecycle, modules for reuse, and how to avoid drift between declared and real infrastructure. For automation, you'll provision the VM or managed database backing your self-hosted n8n, the Redis for queue mode, and DNS records, all as code that a teammate can reproduce in minutes. Combined with the CI/CD day, this gives you GitOps: infrastructure and application changes both flow through reviewed, automated pipelines.",
+      "practical_task": "Write Terraform to provision a VM, managed PostgreSQL, and a DNS record for self-hosted n8n, then refactor it into a reusable module with remote state and locking.",
+      "mini_project": "Write Terraform to provision a cloud VM, a managed PostgreSQL instance, and a DNS record for your self-hosted n8n.",
+      "assignment": "Refactor the config into a reusable module and configure remote state with locking.",
+      "quiz": [
+        "Why is remote state with locking important on a team?",
+        "What does terraform plan show before apply?",
+        "What is infrastructure drift?"
+      ],
+      "youtube": {
+        "title": "Terraform course for beginners",
+        "url": "https://www.youtube.com/watch?v=SLB_c_ayRMo",
+        "note": "Very high-view Terraform tutorial; confirm view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "Terraform documentation",
+          "url": "https://developer.hashicorp.com/terraform/docs"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "hashicorp/terraform",
+          "url": "https://github.com/hashicorp/terraform"
+        },
+        {
+          "name": "futurice/terraform-examples",
+          "url": "https://github.com/futurice/terraform-examples"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Infrastructure as Code: A Systematic Mapping Study (Rahman et al., 2019)",
+          "url": "https://arxiv.org/abs/1807.04872"
+        }
+      ],
+      "skills_gained": [
+        "Declarative infrastructure provisioning",
+        "Terraform modules and state",
+        "GitOps infrastructure workflow"
+      ],
+      "expected_outcome": "You can provision reproducible automation infrastructure as version-controlled code."
+    },
+    {
+      "day": 31,
+      "title": "Testing Automations (Unit, Integration, and End-to-End)",
+      "objectives": [
+        "Build confidence that automations work correctly and keep working as they change."
+      ],
+      "topics": [
+        "Testing pyramid for automation: unit/integration/e2e",
+        "pytest, fixtures, factories, parametrization",
+        "Mocking APIs: responses, VCR, WireMock",
+        "Testing webhook handlers and idempotency",
+        "n8n pinned data, test workflows, staging",
+        "Contract testing against provider sandboxes",
+        "Testing AI/LLM steps with eval sets"
+      ],
+      "estimated_time": "6-8 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 15 (Python)",
+        "Day 29 (CI/CD)"
+      ],
+      "intermediate_explanation": "Untested automations silently break and corrupt data. You'll build a testing pyramid for automation code: unit tests (pytest) for transformation and business logic, integration tests against real dependencies (a test PostgreSQL, mocked or sandboxed APIs), and end-to-end tests that exercise a full workflow. You'll learn to mock external APIs (responses/VCR/WireMock) so tests are fast and deterministic, use fixtures and factories for test data, and test webhook handlers and idempotency. For no-code tools, you'll adopt strategies specific to them: n8n's test workflows and pinned data, staging environments, and contract tests against provider sandboxes. You'll also test AI steps by asserting on structured outputs and running eval sets (from Day 22). The aim is a suite that runs in CI (Day 29) and blocks broken automations from reaching production.",
+      "practical_task": "Write unit + integration tests for a webhook-driven automation (assert transformation logic and idempotent DB writes) and mock a third-party API so the e2e test runs offline.",
+      "mini_project": "Write unit + integration tests for a webhook-driven automation: validate transformation logic and assert idempotent DB writes against a test Postgres.",
+      "assignment": "Mock a third-party API with recorded responses so the e2e test runs offline and deterministically.",
+      "quiz": [
+        "Why mock external APIs in tests?",
+        "What does an idempotency test verify?",
+        "How do you test a no-code n8n workflow?"
+      ],
+      "youtube": {
+        "title": "pytest full tutorial",
+        "url": "https://www.youtube.com/watch?v=cHYq1MRoyI0",
+        "note": "Popular pytest tutorial; verify view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "pytest documentation",
+          "url": "https://docs.pytest.org/"
+        },
+        {
+          "title": "n8n testing and pinned data",
+          "url": "https://docs.n8n.io/workflows/executions/manual-executions/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pytest-dev/pytest",
+          "url": "https://github.com/pytest-dev/pytest"
+        },
+        {
+          "name": "kevin1024/vcrpy",
+          "url": "https://github.com/kevin1024/vcrpy"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "An Empirical Study of the Impact of Test Suite Quality on Software Reliability",
+          "url": "https://arxiv.org/abs/2103.02224"
+        }
+      ],
+      "skills_gained": [
+        "Automation testing pyramid",
+        "API mocking and fixtures",
+        "CI-gated test suites"
+      ],
+      "expected_outcome": "You can test automations at every level and prevent regressions from shipping."
+    },
+    {
+      "day": 32,
+      "title": "Observability and Monitoring (Prometheus, Grafana, Tracing)",
+      "objectives": [
+        "See what your automations are doing in production and get alerted before users notice failures."
+      ],
+      "topics": [
+        "Three pillars: metrics, logs, traces",
+        "Prometheus: counters, gauges, histograms, scraping",
+        "Grafana dashboards and SLOs",
+        "Structured logging and aggregation (Loki/ELK)",
+        "OpenTelemetry distributed tracing across services",
+        "Alerting with Alertmanager to Slack/PagerDuty",
+        "Scraping n8n's Prometheus metrics endpoint"
+      ],
+      "estimated_time": "7-9 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 27 (Docker)",
+        "Day 16 (FastAPI)"
+      ],
+      "intermediate_explanation": "In production you cannot fix what you cannot see. Observability rests on three pillars: metrics (Prometheus scraping counters/gauges/histograms - executions, failures, latency, queue depth), logs (structured JSON logs aggregated in Loki/ELK), and traces (OpenTelemetry distributed tracing that follows one request across n8n, your API, and downstream services). You'll build Grafana dashboards for automation health, define SLOs (e.g., 99% of workflows succeed within 30s) and alerting rules (Alertmanager to Slack/PagerDuty). You'll instrument a FastAPI service with metrics and OpenTelemetry, scrape n8n's Prometheus metrics endpoint, and correlate a failing workflow run to the exact downstream call that errored. This closes the loop with Day 23 (LLM observability) and Day 34 (resilience): you detect, diagnose, and alert on failures fast.",
+      "practical_task": "Instrument a FastAPI service with Prometheus metrics and OpenTelemetry traces, build a Grafana dashboard (success rate, p95), and add an Alertmanager rule that pings Slack on SLO breach.",
+      "mini_project": "Instrument a FastAPI automation service with Prometheus metrics and OpenTelemetry traces, and build a Grafana dashboard showing success rate and p95 latency.",
+      "assignment": "Define one SLO and an Alertmanager rule that pings Slack when the failure rate breaches it.",
+      "quiz": [
+        "What are the three pillars of observability?",
+        "What does a distributed trace let you correlate?",
+        "What is an SLO and how does it drive alerting?"
+      ],
+      "youtube": {
+        "title": "Prometheus and Grafana monitoring tutorial",
+        "url": "https://www.youtube.com/watch?v=9TJx7QTrTyo",
+        "note": "High-view monitoring tutorial; confirm view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "Prometheus documentation",
+          "url": "https://prometheus.io/docs/introduction/overview/"
+        },
+        {
+          "title": "OpenTelemetry documentation",
+          "url": "https://opentelemetry.io/docs/"
+        },
+        {
+          "title": "n8n metrics and monitoring",
+          "url": "https://docs.n8n.io/hosting/logging-monitoring/monitoring/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "prometheus/prometheus",
+          "url": "https://github.com/prometheus/prometheus"
+        },
+        {
+          "name": "open-telemetry/opentelemetry-python",
+          "url": "https://github.com/open-telemetry/opentelemetry-python"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Dapper, a Large-Scale Distributed Systems Tracing Infrastructure (Sigelman et al., Google, 2010)",
+          "url": "https://research.google/pubs/pub36356/"
+        }
+      ],
+      "skills_gained": [
+        "Metrics, logging, and tracing",
+        "Grafana dashboards and SLOs",
+        "Production alerting"
+      ],
+      "expected_outcome": "You can monitor automation health end-to-end and get alerted before failures spread."
+    },
+    {
+      "day": 33,
+      "title": "Security and Secrets Management (Vault, OAuth, Encryption)",
+      "objectives": [
+        "Harden automation platforms that hold powerful credentials and touch sensitive data."
+      ],
+      "topics": [
+        "Secrets management: Vault / cloud secret managers, rotation",
+        "OAuth 2.0 flows, refresh tokens, PKCE, JWT validation",
+        "Encryption at rest and in transit (TLS)",
+        "Least privilege and scoped service accounts",
+        "Webhook signature verification and input validation",
+        "Audit logging and access control",
+        "AI risks: prompt injection to tools, data exfiltration",
+        "Self-hosted vs SaaS: data residency and compliance"
+      ],
+      "estimated_time": "7-9 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 4 (webhooks)",
+        "Day 20 (agents/tools)"
+      ],
+      "intermediate_explanation": "An automation platform is a high-value target: it holds API keys and OAuth tokens to email, CRMs, banks, and infrastructure. You'll learn secrets management with HashiCorp Vault or cloud secret managers (never secrets in code or plaintext env in Git), dynamic/short-lived credentials, and rotation. You'll deepen OAuth 2.0 (authorization code, client credentials, refresh-token handling, PKCE) and JWT validation. You'll cover encryption at rest and in transit (TLS everywhere), the principle of least privilege for service accounts, webhook signature verification (HMAC, from Day 4), input validation to prevent injection, and audit logging of who ran what. You'll also address AI-specific risks - prompt injection reaching tools, and data exfiltration - and how self-hosting n8n changes your compliance/data-residency posture versus SaaS Zapier/Make. Security is woven through the whole platform, not a bolt-on.",
+      "practical_task": "Move all automation credentials into Vault with rotation, have your stack fetch them at runtime, and add HMAC verification plus least-privilege scopes to one production webhook.",
+      "mini_project": "Move all automation credentials into Vault (or a cloud secret manager) with rotation, and have your FastAPI/n8n stack fetch them at runtime.",
+      "assignment": "Add HMAC verification and least-privilege scopes to one production webhook and its service account.",
+      "quiz": [
+        "Why use short-lived dynamic credentials?",
+        "How does PKCE harden the OAuth code flow?",
+        "How can a prompt-injection attack reach an agent's tools?"
+      ],
+      "youtube": {
+        "title": "HashiCorp Vault secrets management tutorial",
+        "url": "https://www.youtube.com/watch?v=klyC3xV3JZk",
+        "note": "Widely viewed Vault tutorial; verify view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "HashiCorp Vault documentation",
+          "url": "https://developer.hashicorp.com/vault/docs"
+        },
+        {
+          "title": "OWASP Top 10",
+          "url": "https://owasp.org/www-project-top-ten/"
+        },
+        {
+          "title": "n8n external secrets",
+          "url": "https://docs.n8n.io/external-secrets/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "hashicorp/vault",
+          "url": "https://github.com/hashicorp/vault"
+        },
+        {
+          "name": "OWASP/Top10",
+          "url": "https://github.com/OWASP/Top10"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "The Security of Modern Password Expiration / Credential Management (survey)",
+          "url": "https://arxiv.org/abs/2001.10554"
+        }
+      ],
+      "skills_gained": [
+        "Secrets management and rotation",
+        "OAuth/JWT hardening",
+        "Platform-wide security and audit"
+      ],
+      "expected_outcome": "You can secure an automation platform's credentials, data, and AI surface against real threats."
+    },
+    {
+      "day": 34,
+      "title": "Error Handling and Resilience Patterns (Circuit Breaker, DLQ, Saga)",
+      "objectives": [
+        "Design automations that degrade gracefully and recover automatically when dependencies fail."
+      ],
+      "topics": [
+        "Retries with exponential backoff and jitter",
+        "Idempotency keys for safe retries",
+        "Circuit breaker, timeouts, and bulkheads",
+        "Dead-letter queues and message replay",
+        "Saga pattern and compensating transactions",
+        "Make.com error handlers / n8n error-trigger workflows",
+        "Graceful degradation and fallback paths"
+      ],
+      "estimated_time": "7-9 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 13 (message queues)",
+        "Day 2 (retries/idempotency)"
+      ],
+      "intermediate_explanation": "Distributed automations fail partially - an API times out, a queue backs up, a downstream service returns 500. You'll implement resilience patterns: retries with exponential backoff and jitter, idempotency keys (so retries don't double-charge), the circuit breaker (stop hammering a failing service and fail fast), timeouts and bulkheads (isolate failures), dead-letter queues (park messages that can't be processed for later inspection/replay), and the saga pattern with compensating transactions for multi-step business processes that can't use a single database transaction (e.g., book flight, then hotel - if hotel fails, cancel flight). You'll map these onto real tools: Make.com's error handlers and break/rollback directives, n8n's error-trigger workflows and retry settings, and code-level libraries (tenacity, resilience4j-style). The goal is automations that a 2am outage doesn't corrupt.",
+      "practical_task": "Add a circuit breaker and dead-letter queue to a workflow calling a flaky API with a replay path, then implement a two-step saga with a compensating cancel on failure.",
+      "mini_project": "Add a circuit breaker and dead-letter queue to a workflow calling a flaky API, and build a replay path for DLQ messages.",
+      "assignment": "Implement a two-step saga (create order, charge payment) with a compensating cancel if the second step fails.",
+      "quiz": [
+        "What does a circuit breaker prevent?",
+        "Why do retries require idempotency?",
+        "When do you need a saga instead of a DB transaction?"
+      ],
+      "youtube": {
+        "title": "Resilience patterns: circuit breaker, retry, bulkhead",
+        "url": "https://www.youtube.com/watch?v=Y6PXAsuck2s",
+        "note": "Popular resilience-patterns talk; confirm view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "n8n error handling",
+          "url": "https://docs.n8n.io/flow-logic/error-handling/"
+        },
+        {
+          "title": "Make.com error handling",
+          "url": "https://www.make.com/en/help/errors/error-handling"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "jd/tenacity",
+          "url": "https://github.com/jd/tenacity"
+        },
+        {
+          "name": "resilience4j/resilience4j",
+          "url": "https://github.com/resilience4j/resilience4j"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Sagas (Garcia-Molina & Salem, 1987)",
+          "url": "https://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf"
+        }
+      ],
+      "skills_gained": [
+        "Resilience pattern implementation",
+        "DLQ and replay design",
+        "Saga/compensation for distributed workflows"
+      ],
+      "expected_outcome": "You can build automations that survive partial failures without data corruption."
+    },
+    {
+      "day": 35,
+      "title": "Performance and Cost Optimization at Scale",
+      "objectives": [
+        "Make automations fast and cheap as volume grows from hundreds to millions of runs."
+      ],
+      "topics": [
+        "Profiling bottlenecks: N+1, sequential vs parallel, prompt bloat",
+        "Batching, bulk endpoints, and parallelization",
+        "Caching layers and connection pooling",
+        "Database indexing and query optimization at volume",
+        "Platform economics: Zapier/Make per-task vs self-hosted n8n infra cost",
+        "Load testing with Locust/k6",
+        "Concurrency and rate-limit tuning"
+      ],
+      "estimated_time": "6-8 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 17 (Postgres)",
+        "Day 23 (LLMOps)"
+      ],
+      "intermediate_explanation": "At scale, naive automations become slow and expensive. You'll profile bottlenecks (slow API calls, N+1 queries, oversized LLM prompts, sequential steps that could be parallel) and apply fixes: batching and bulk API endpoints, parallelization and concurrency limits, caching (Redis, HTTP cache headers), database indexing and query optimization (from Day 17), connection pooling, and pagination/streaming for large datasets. On cost, you'll analyze the economics of each platform - Zapier/Make bill per task/operation, so consolidating steps and filtering early saves money, while self-hosted n8n trades per-task cost for infrastructure cost - and pick the right execution model for the volume. For AI, you'll apply Day 23's caching/model-routing. You'll learn to load-test (Locust/k6) and set concurrency/rate limits to protect downstream systems. The output is a cost-per-run and latency budget you actively manage.",
+      "practical_task": "Load-test a workflow with k6, find the bottleneck, batch and parallelize it, then model cost per 10,000 runs across Zapier vs Make vs self-hosted n8n and recommend the cheapest.",
+      "mini_project": "Load-test a workflow with k6, identify the bottleneck, then batch + parallelize it and measure the throughput/latency improvement.",
+      "assignment": "Model the cost per 10,000 runs on Zapier vs Make vs self-hosted n8n for one real workflow and recommend the cheapest.",
+      "quiz": [
+        "How does early filtering reduce Zapier/Make cost?",
+        "When does self-hosted n8n beat SaaS on cost?",
+        "What is an N+1 query and how do you fix it?"
+      ],
+      "youtube": {
+        "title": "Load testing with k6 tutorial",
+        "url": "https://www.youtube.com/watch?v=r-Jte8Y8zag",
+        "note": "Popular k6 load-testing tutorial; verify view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "k6 load testing documentation",
+          "url": "https://grafana.com/docs/k6/latest/"
+        },
+        {
+          "title": "n8n scaling and performance",
+          "url": "https://docs.n8n.io/hosting/scaling/overview/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "grafana/k6",
+          "url": "https://github.com/grafana/k6"
+        },
+        {
+          "name": "locustio/locust",
+          "url": "https://github.com/locustio/locust"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Performance Anti-Patterns and Optimization in Cloud Applications (survey)",
+          "url": "https://arxiv.org/abs/2007.10561"
+        }
+      ],
+      "skills_gained": [
+        "Performance profiling and tuning",
+        "Load testing",
+        "Platform cost modeling"
+      ],
+      "expected_outcome": "You can make high-volume automations fast and cost-efficient with data to back it up."
+    },
+    {
+      "day": 36,
+      "title": "Multi-Tenant and Client-Facing Automation Systems",
+      "objectives": [
+        "Serve many clients or teams from one automation platform with isolation, config, and self-service."
+      ],
+      "topics": [
+        "Multi-tenancy models: row (RLS) vs schema vs instance",
+        "Per-tenant configuration and isolated credentials",
+        "Postgres row-level security for tenant isolation",
+        "Per-tenant rate limits, quotas, and usage metering",
+        "Templated/blueprint workflows instantiated per client",
+        "Client self-service onboarding via OAuth",
+        "Tenant security boundaries and data leakage prevention"
+      ],
+      "estimated_time": "7-9 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 17 (Postgres)",
+        "Day 33 (security)"
+      ],
+      "intermediate_explanation": "Agencies and SaaS products run the same automations for many customers. You'll learn multi-tenancy models: isolation by row (a tenant_id column with strict filtering and Postgres row-level security), by schema, or by database/instance - and their trade-offs in isolation, cost, and operational overhead. You'll design per-tenant configuration and credential storage (each client's own API keys, safely separated), per-tenant rate limits and quotas, usage metering for billing, and templated workflows you can instantiate per client (n8n workflow templates, Make.com blueprints, or a parameterized deploy). You'll also cover onboarding/self-service (let a client connect their own accounts via OAuth) and the security boundary that prevents one tenant's data or credentials from ever leaking to another. This is what turns your automation skills into a productized, scalable business.",
+      "practical_task": "Build a multi-tenant automation service using Postgres row-level security and per-tenant isolated credentials, prove two test tenants cannot see each other, and add per-tenant usage metering.",
+      "mini_project": "Build a multi-tenant automation service with Postgres row-level security and per-tenant credential storage, provable to isolate two test tenants.",
+      "assignment": "Add usage metering (runs per tenant per month) and expose it for billing.",
+      "quiz": [
+        "Compare row vs schema vs instance multi-tenancy.",
+        "What does Postgres RLS enforce?",
+        "How do you keep one tenant's OAuth tokens from another?"
+      ],
+      "youtube": {
+        "title": "Multi-tenant SaaS architecture explained",
+        "url": "https://www.youtube.com/watch?v=hVXFXjPUmwc",
+        "note": "Popular multi-tenancy architecture video; confirm view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "PostgreSQL Row Security Policies",
+          "url": "https://www.postgresql.org/docs/current/ddl-rowsecurity.html"
+        },
+        {
+          "title": "n8n workflow templates",
+          "url": "https://docs.n8n.io/workflows/templates/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "dotnet/aspnetcore",
+          "url": "https://github.com/dotnet/aspnetcore"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Framework for Native Multi-Tenancy Application Development and Management",
+          "url": "https://arxiv.org/abs/1904.02710"
+        }
+      ],
+      "skills_gained": [
+        "Multi-tenant architecture",
+        "Tenant isolation and RLS",
+        "Usage metering and self-service"
+      ],
+      "expected_outcome": "You can run one automation platform safely for many clients, ready to productize."
+    },
+    {
+      "day": 37,
+      "title": "Data Pipelines and ETL/ELT for Automation",
+      "objectives": [
+        "Move and transform data reliably between systems at volume - the backbone of business automation."
+      ],
+      "topics": [
+        "ETL vs ELT and the modern warehouse pattern",
+        "Batch vs streaming; change data capture (CDC)",
+        "Incremental loads, watermarks, upserts, dedup",
+        "Schema evolution and data quality (Great Expectations)",
+        "Airbyte/Fivetran connectors and dbt transformations",
+        "Warehouses: BigQuery/Snowflake/Postgres",
+        "When n8n/Make suffices vs a full pipeline stack"
+      ],
+      "estimated_time": "7-9 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 17 (Postgres)",
+        "Day 26 (orchestration)"
+      ],
+      "intermediate_explanation": "A huge share of automation is moving data: sync a CRM to a warehouse, consolidate orders, enrich leads. You'll learn ETL vs ELT (transform before vs after loading, and why ELT + a warehouse now dominates), batch vs streaming ingestion, and change data capture (CDC) to sync only what changed instead of full reloads. You'll cover idempotent, incremental loads (watermarks/high-water marks), upserts and deduplication, schema evolution, and data quality checks (Great Expectations). You'll place tools: managed connectors (Airbyte/Fivetran) for standard source-to-warehouse sync, dbt for warehouse transformations, Airflow (Day 26) for orchestration, and n8n/Make for the long tail of custom, event-driven syncs no connector covers. You'll load into a warehouse (BigQuery/Snowflake/Postgres) and understand when a lightweight n8n sync suffices versus when you need a real pipeline stack.",
+      "practical_task": "Build an incremental ELT (Airbyte or custom n8n sync to Postgres/warehouse, then dbt transform) with a watermark-based CDC sync and a data-quality check.",
+      "mini_project": "Build an incremental ELT: Airbyte (or a custom n8n sync) loads a source into Postgres/warehouse, then dbt transforms it, with a data-quality check.",
+      "assignment": "Add CDC-style incremental sync using a watermark so only changed rows load on each run.",
+      "quiz": [
+        "Why does ELT dominate over ETL with modern warehouses?",
+        "What does a watermark enable in incremental loads?",
+        "When is a managed connector better than a custom n8n sync?"
+      ],
+      "youtube": {
+        "title": "ETL vs ELT and modern data pipelines explained",
+        "url": "https://www.youtube.com/watch?v=OW5OGwrKdcQ",
+        "note": "Popular data-pipeline tutorial; verify view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "Airbyte documentation",
+          "url": "https://docs.airbyte.com/"
+        },
+        {
+          "title": "dbt documentation",
+          "url": "https://docs.getdbt.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "airbytehq/airbyte",
+          "url": "https://github.com/airbytehq/airbyte"
+        },
+        {
+          "name": "dbt-labs/dbt-core",
+          "url": "https://github.com/dbt-labs/dbt-core"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "The Data Warehouse and ETL Process: A Survey",
+          "url": "https://arxiv.org/abs/2010.13830"
+        }
+      ],
+      "skills_gained": [
+        "ETL/ELT pipeline design",
+        "Incremental/CDC sync",
+        "Data quality and warehousing"
+      ],
+      "expected_outcome": "You can build reliable, incremental data pipelines that feed and connect business systems."
+    },
+    {
+      "day": 38,
+      "title": "Integrating AI into Business Workflows End-to-End",
+      "objectives": [
+        "Combine everything - RAG, agents, integrations, resilience - into complete AI-powered business automations."
+      ],
+      "topics": [
+        "AI support automation: RAG + agent + human approval",
+        "Intelligent document processing: OCR/vision + LLM + schema validation",
+        "AI lead qualification: enrich, score, route",
+        "Confidence thresholds and human-in-the-loop fallback",
+        "Deciding no-code (n8n/Make) vs custom code per step",
+        "Logging, evaluation, and quality tracking over time",
+        "Measuring business value and guardrails"
+      ],
+      "estimated_time": "8-10 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 19-23 (RAG/agents/LLMOps)",
+        "Day 34 (resilience)"
+      ],
+      "intermediate_explanation": "This day synthesizes the AI and integration work into real end-to-end use cases. You'll architect complete flows such as: an AI customer-support automation (webhook receives a ticket, RAG retrieves policy docs, an agent drafts a grounded reply, a human approves, the reply is sent and logged); intelligent document processing (extract structured data from PDFs/invoices with vision or OCR + LLM, validate against a schema, write to the ERP); and AI-driven lead qualification (enrich, score, route). You'll make deliberate build decisions: which steps run in n8n/Make for speed of iteration versus which need custom code for control, where to put human-in-the-loop, how to handle low-confidence AI output (fallback to human), and how to log/evaluate quality over time. The emphasis is production judgment: reliability, cost, guardrails, and measurable business value - not demos.",
+      "practical_task": "Build a full AI support automation: ticket webhook, RAG retrieval, agent draft, human approval, send + log, with a confidence-based fallback to a human and quality logging.",
+      "mini_project": "Build a full AI support automation: ticket webhook to RAG retrieval to agent draft to human approval to send + log, with a confidence-based human fallback.",
+      "assignment": "Add quality logging: store every AI draft, the human edit, and a running accuracy metric.",
+      "quiz": [
+        "When should low-confidence AI output fall back to a human?",
+        "Which steps belong in n8n vs custom code, and why?",
+        "How do you measure an AI automation's business value?"
+      ],
+      "youtube": {
+        "title": "Build an end-to-end AI automation in n8n",
+        "url": "https://www.youtube.com/watch?v=Wq3lLZhLnFY",
+        "note": "Popular end-to-end AI automation build; confirm view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "n8n AI and LangChain integrations",
+          "url": "https://docs.n8n.io/advanced-ai/"
+        },
+        {
+          "title": "Make.com AI tools",
+          "url": "https://www.make.com/en/integrations/openai-gpt-3"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "n8n-io/n8n",
+          "url": "https://github.com/n8n-io/n8n"
+        },
+        {
+          "name": "langchain-ai/langgraph",
+          "url": "https://github.com/langchain-ai/langgraph"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Survey on Large Language Model based Autonomous Agents (Wang et al., 2023)",
+          "url": "https://arxiv.org/abs/2308.11432"
+        }
+      ],
+      "skills_gained": [
+        "End-to-end AI workflow architecture",
+        "Human-in-the-loop and confidence handling",
+        "Production AI judgment"
+      ],
+      "expected_outcome": "You can design complete, reliable AI-powered business automations that deliver measurable value."
+    },
+    {
+      "day": 39,
+      "title": "Advanced Integration Patterns (iPaaS, API Gateway, Event Mesh)",
+      "objectives": [
+        "Master the enterprise integration architectures that connect dozens of systems coherently."
+      ],
+      "topics": [
+        "Enterprise Integration Patterns: routing, transformation, aggregation",
+        "Canonical data model (avoid N-squared mappings)",
+        "Hub-and-spoke iPaaS: Zapier/Make/n8n/Workato/MuleSoft",
+        "API gateway (Kong/Apigee): auth, rate limiting, routing",
+        "Event mesh and pub-sub decoupling",
+        "Strangler-fig pattern for legacy replacement",
+        "API versioning and contract management"
+      ],
+      "estimated_time": "7-9 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 1 (architecture)",
+        "Day 13 (event-driven)"
+      ],
+      "intermediate_explanation": "At enterprise scale, point-to-point integrations become an unmaintainable 'spaghetti' mesh. You'll study the patterns that tame it, grounded in the classic Enterprise Integration Patterns (Hohpe & Woolf): message routing, transformation, aggregation, and the canonical data model (a shared internal schema so N systems need N adapters, not N-squared mappings). You'll compare integration topologies: hub-and-spoke iPaaS (Zapier/Make/n8n/MuleSoft/Workato sit in the middle), an API gateway (Kong/Apigee) fronting your services with auth, rate limiting, and routing, and an event mesh/event broker for pub-sub decoupling. You'll learn the strangler-fig pattern for gradually replacing legacy integrations, API versioning and contract management, and when to standardize on an enterprise iPaaS (Workato/MuleSoft) versus composable open tools (n8n). This is the architectural vocabulary senior automation/integration engineers use to design systems, not just workflows.",
+      "practical_task": "Design (diagram + config) a hub-and-spoke integration with a canonical data model connecting CRM, billing, and support through n8n and an API gateway, and plan a strangler-fig migration.",
+      "mini_project": "Design (diagram + config) a hub-and-spoke integration with a canonical data model connecting a CRM, billing, and support system through n8n and an API gateway.",
+      "assignment": "Apply the strangler-fig pattern on paper to migrate one legacy point-to-point integration to the hub without downtime.",
+      "quiz": [
+        "How does a canonical data model avoid N-squared mappings?",
+        "What does an API gateway centralize?",
+        "What problem does the strangler-fig pattern solve?"
+      ],
+      "youtube": {
+        "title": "Enterprise integration patterns explained",
+        "url": "https://www.youtube.com/watch?v=oPSC9nUUb5Q",
+        "note": "Popular integration-patterns talk; verify view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "Enterprise Integration Patterns catalog",
+          "url": "https://www.enterpriseintegrationpatterns.com/patterns/messaging/"
+        },
+        {
+          "title": "Kong API Gateway documentation",
+          "url": "https://docs.konghq.com/gateway/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "Kong/kong",
+          "url": "https://github.com/Kong/kong"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Microservices: The Journey So Far and Challenges Ahead (Jamshidi et al., 2018)",
+          "url": "https://arxiv.org/abs/1606.04036"
+        }
+      ],
+      "skills_gained": [
+        "Enterprise integration architecture",
+        "iPaaS/API-gateway/event-mesh design",
+        "Legacy migration strategy"
+      ],
+      "expected_outcome": "You can architect coherent multi-system integrations the way a senior integration engineer would."
+    },
+    {
+      "day": 40,
+      "title": "Building an Internal Automation Platform",
+      "objectives": [
+        "Turn ad-hoc automations into a governed, self-service internal platform other teams build on."
+      ],
+      "topics": [
+        "Platform vs project mindset; paved-road/golden paths",
+        "Core: self-hosted n8n/Temporal + shared services",
+        "Shared credential vault and RBAC",
+        "Reusable sub-workflows, templates, and component library",
+        "Environments, CI/CD promotion, and versioning",
+        "Governance: naming, review, intake, access control",
+        "Cost chargeback/showback and platform dashboards"
+      ],
+      "estimated_time": "7-9 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 29-36 (CI/CD, security, observability, multi-tenant)"
+      ],
+      "intermediate_explanation": "The senior move is platform thinking: instead of you building every automation, you provide a paved road so other teams safely build their own. You'll design the components of an internal automation platform: a self-hosted n8n (or Temporal + services) core, a shared credential vault (Day 33), reusable sub-workflows/templates and a component library, environments and CI/CD promotion (Day 29), observability and cost dashboards (Day 32/35), and governance - naming conventions, review/approval, access control (RBAC), and an intake process. You'll cover the operating model: a central platform team owns reliability and guardrails while 'citizen developers' compose within them. You'll define golden-path templates, a catalog of approved connectors, chargeback/showback for cost accountability, and documentation/onboarding. This is how automation scales from a person to an organizational capability - the skill that distinguishes lead/staff automation engineers.",
+      "practical_task": "Stand up an internal n8n platform with a template library, shared vault, RBAC, and dev/prod environments, then write the governance model (intake, review, naming, cost showback).",
+      "mini_project": "Stand up an internal n8n platform with a template library, shared vault, RBAC, and dev/prod environments other teams can self-serve from.",
+      "assignment": "Write the governance model: intake form, review checklist, naming convention, and a cost showback report.",
+      "quiz": [
+        "What is a 'golden path' and why offer one?",
+        "What does the central platform team own vs citizen developers?",
+        "Why add cost showback to a shared platform?"
+      ],
+      "youtube": {
+        "title": "Building an internal developer/automation platform",
+        "url": "https://www.youtube.com/watch?v=j5i00z3QXyU",
+        "note": "Popular platform-engineering talk; confirm view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "n8n source control and environments",
+          "url": "https://docs.n8n.io/source-control-environments/"
+        },
+        {
+          "title": "Team Topologies (platform teams) overview",
+          "url": "https://teamtopologies.com/key-concepts"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "backstage/backstage",
+          "url": "https://github.com/backstage/backstage"
+        },
+        {
+          "name": "n8n-io/n8n",
+          "url": "https://github.com/n8n-io/n8n"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Survey of DevOps Concepts and Challenges (Leite et al., 2019)",
+          "url": "https://arxiv.org/abs/1909.05409"
+        }
+      ],
+      "skills_gained": [
+        "Automation platform design",
+        "Governance and RBAC",
+        "Self-service enablement"
+      ],
+      "expected_outcome": "You can build a governed, self-service automation platform that scales beyond a single engineer."
+    },
+    {
+      "day": 41,
+      "title": "Capstone Part 1 - Architecture and Design",
+      "objectives": [
+        "Scope and architect a production-grade AI automation platform that integrates the whole curriculum."
+      ],
+      "topics": [
+        "Requirements, scope, and success metrics",
+        "Architecture selection: n8n vs code vs orchestrator per component",
+        "Data model and canonical schema design",
+        "Multi-tenancy and security boundary planning",
+        "AI approach: RAG + agents selection",
+        "C4/architecture diagrams and API contracts",
+        "Risk, cost, and trade-off analysis"
+      ],
+      "estimated_time": "8-10 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Days 1-40"
+      ],
+      "intermediate_explanation": "You begin a four-part capstone: an AI-powered, multi-tenant automation platform for a realistic business (e.g., an agency that automates client support and operations). In this design phase you'll write the requirements and success metrics, choose the architecture (which parts run in self-hosted n8n versus custom FastAPI services versus an orchestrator), design the data model and canonical schema, plan multi-tenancy and security boundaries (Day 33/36), select the AI approach (RAG + agents, Day 19-23), and produce architecture diagrams (C4/context/container), an API contract, and a risk/cost analysis. You'll justify each tool choice - why n8n here, why code there, why a queue, why a vector DB - the way you'd defend a design in a senior interview or to stakeholders. Deliverable: a design document and diagrams that the next three days implement.",
+      "practical_task": "Produce a full design document with C4 diagrams, data model, tool-selection rationale, and cost/risk analysis for the capstone, and defend three decisions as ADRs.",
+      "mini_project": "Produce a full design document with C4 diagrams, data model, tool-selection rationale, and cost/risk analysis for the capstone platform.",
+      "assignment": "Write and defend three key architectural decisions using an ADR (Architecture Decision Record) format.",
+      "quiz": [
+        "How do you decide n8n vs custom code for a component?",
+        "What does a C4 container diagram communicate?",
+        "What belongs in an ADR?"
+      ],
+      "youtube": {
+        "title": "Software architecture and system design fundamentals",
+        "url": "https://www.youtube.com/watch?v=i53Gi_K3o7I",
+        "note": "High-view system-design tutorial; verify view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "C4 model for software architecture",
+          "url": "https://c4model.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "donnemartin/system-design-primer",
+          "url": "https://github.com/donnemartin/system-design-primer"
+        },
+        {
+          "name": "joelparkerhenderson/architecture-decision-record",
+          "url": "https://github.com/joelparkerhenderson/architecture-decision-record"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Software Architecture: a Roadmap (Garlan, 2000)",
+          "url": "https://www.cs.cmu.edu/~garlan/17811/Readings/garlan-roadmap.pdf"
+        }
+      ],
+      "skills_gained": [
+        "System architecture and design",
+        "Design documentation (C4/ADR)",
+        "Tool-selection justification"
+      ],
+      "expected_outcome": "You have a defensible, complete architecture and design for a production automation platform."
+    },
+    {
+      "day": 42,
+      "title": "Capstone Part 2 - Build, Integrate, and Add AI",
+      "objectives": [
+        "Implement the core platform: integrations, workflows, custom code, and the AI layer."
+      ],
+      "topics": [
+        "Standing up n8n core + FastAPI services",
+        "Key integrations with auth/pagination/rate limits",
+        "Event-driven flows and message queue wiring",
+        "PostgreSQL + vector DB data layer",
+        "RAG service and tool-using agent with human approval",
+        "A custom n8n node / Zapier / Make component",
+        "Structured, schema-validated AI outputs"
+      ],
+      "estimated_time": "12-16 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 41 (design)"
+      ],
+      "intermediate_explanation": "Now you build what you designed. You'll stand up the n8n core and custom FastAPI services, implement the key integrations with proper authentication, pagination, and rate-limit handling (Day 2), wire event-driven flows and a message queue where needed (Day 13), and store data in PostgreSQL plus a vector DB. You'll implement the AI layer end-to-end: a RAG service over the client's knowledge base and an agent that takes real actions with tools and human-in-the-loop approval (Day 19-22). You'll build at least one custom n8n node or a custom Zapier/Make component (Day 7/9/11) to prove you can extend the platforms, and enforce structured, schema-validated LLM outputs. The focus is making a coherent, working system - integrating the pieces correctly - not polishing every edge; hardening comes next.",
+      "practical_task": "Build the working core (integrations + event flows + RAG + agent + one custom n8n node) executing end-to-end for one tenant, with the agent acting behind a logged human-approval gate.",
+      "mini_project": "Build the working core: integrations + event flows + RAG + agent + one custom node, all connected and executing end-to-end for one tenant.",
+      "assignment": "Demonstrate the agent taking a real action behind a human-approval gate, with the action and approval logged.",
+      "quiz": [
+        "Where did you place the message queue and why?",
+        "How does your agent enforce structured output?",
+        "What did building a custom node require that a built-in didn't?"
+      ],
+      "youtube": {
+        "title": "Full-stack automation build with n8n and code",
+        "url": "https://www.youtube.com/watch?v=1MwSoB0gnM4",
+        "note": "Popular n8n build tutorial; confirm view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "n8n creating nodes",
+          "url": "https://docs.n8n.io/integrations/creating-nodes/"
+        },
+        {
+          "title": "FastAPI documentation",
+          "url": "https://fastapi.tiangolo.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "n8n-io/n8n",
+          "url": "https://github.com/n8n-io/n8n"
+        },
+        {
+          "name": "tiangolo/fastapi",
+          "url": "https://github.com/tiangolo/fastapi"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., 2020)",
+          "url": "https://arxiv.org/abs/2005.11401"
+        }
+      ],
+      "skills_gained": [
+        "Full platform implementation",
+        "Custom node/component development",
+        "Integrated AI layer delivery"
+      ],
+      "expected_outcome": "You have a working, integrated automation platform with a functioning AI layer."
+    },
+    {
+      "day": 43,
+      "title": "Capstone Part 3 - Deploy, Scale, Secure, and Monitor",
+      "objectives": [
+        "Take the platform to production: containerized, secured, observable, resilient, and scalable."
+      ],
+      "topics": [
+        "Containerize and deploy (Docker Compose / Kubernetes autoscaling)",
+        "Terraform-provisioned infrastructure",
+        "CI/CD pipeline with gated production deploy",
+        "Secrets in vault with rotation",
+        "Resilience: retries, circuit breaker, DLQ, idempotency",
+        "Observability: Prometheus/Grafana/tracing/alerts + LLM tracing",
+        "Load testing and tuning for target volume"
+      ],
+      "estimated_time": "12-16 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 42 (build)"
+      ],
+      "intermediate_explanation": "You harden and ship. You'll containerize the whole stack with Docker Compose (Day 27) and optionally deploy to Kubernetes (Day 28) with autoscaling for n8n workers and your API. You'll provision infrastructure with Terraform (Day 30), wire a GitHub Actions CI/CD pipeline (Day 29) with a gated production deploy, and move all secrets into a vault with rotation (Day 33). You'll add resilience patterns - retries, circuit breakers, a dead-letter queue, and idempotency (Day 34) - so failures don't corrupt data, and stand up observability: Prometheus metrics, Grafana dashboards, distributed tracing, and alerting to Slack (Day 32), plus LLM cost/quality tracing (Day 23). Finally you'll load-test and tune for the target volume (Day 35). Deliverable: a running, monitored, secured production deployment with dashboards and alerts proving it's operable.",
+      "practical_task": "Deploy the capstone to production via CI/CD with Terraform infra, vault secrets, resilience patterns, and a live Grafana dashboard + alerts, then load-test at target volume.",
+      "mini_project": "Deploy the capstone to production via CI/CD with Terraform-provisioned infra, vault secrets, resilience patterns, and a live Grafana dashboard + alerts.",
+      "assignment": "Run a load test at target volume and prove autoscaling + alerting behave correctly under stress.",
+      "quiz": [
+        "Which resilience patterns protect against data corruption on failure?",
+        "What does your CI/CD gate before production?",
+        "What SLO and alert prove the platform is operable?"
+      ],
+      "youtube": {
+        "title": "Deploy and monitor a production app end-to-end",
+        "url": "https://www.youtube.com/watch?v=9TJx7QTrTyo",
+        "note": "Popular production-deployment tutorial; verify view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "n8n production and scaling",
+          "url": "https://docs.n8n.io/hosting/scaling/overview/"
+        },
+        {
+          "title": "Grafana documentation",
+          "url": "https://grafana.com/docs/grafana/latest/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "dockersamples/example-voting-app",
+          "url": "https://github.com/dockersamples/example-voting-app"
+        },
+        {
+          "name": "grafana/grafana",
+          "url": "https://github.com/grafana/grafana"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Site Reliability Engineering: Measuring and Managing Reliability (Google SRE)",
+          "url": "https://sre.google/sre-book/service-level-objectives/"
+        }
+      ],
+      "skills_gained": [
+        "Production deployment and scaling",
+        "Security and resilience hardening",
+        "Operable observability and alerting"
+      ],
+      "expected_outcome": "Your platform runs in production - secured, monitored, resilient, and scalable."
+    },
+    {
+      "day": 44,
+      "title": "Capstone Part 4 - Testing, Documentation, and Handover",
+      "objectives": [
+        "Make the platform maintainable and transferable with tests, docs, and a professional handover."
+      ],
+      "topics": [
+        "Full test suite in CI: unit/integration/e2e + AI evals",
+        "Architecture docs and diagrams",
+        "Runbooks: deploy, rollback, incident response",
+        "API reference and workflow catalog",
+        "Backup/restore and disaster recovery",
+        "Versioned release notes",
+        "Handover walkthrough and checklist"
+      ],
+      "estimated_time": "8-10 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 43 (deployed platform)"
+      ],
+      "intermediate_explanation": "A production system nobody else can run or trust is unfinished. You'll build the test suite (Day 31): unit tests for logic, integration tests against a test database and mocked APIs, e2e tests for critical workflows, and AI eval sets tracking quality over time, all running in CI. You'll write documentation that matters: an architecture overview and diagrams, runbooks (how to deploy, roll back, and respond to common incidents), an API reference, a workflow catalog, and onboarding docs for new engineers or clients. You'll add operational polish: backup and restore procedures for the database and n8n workflows, a disaster-recovery plan, and versioned release notes. Finally you'll do a handover as if transferring to a team - a walkthrough and a checklist proving someone else can operate, extend, and recover the platform without you. This is the professionalism that separates senior engineers.",
+      "practical_task": "Ship the platform's full test suite in CI plus complete docs (architecture, runbooks, API reference, backup/restore), then do a mock handover where someone else deploys and recovers it.",
+      "mini_project": "Ship the platform's full test suite in CI plus complete docs: architecture, runbooks, API reference, and a backup/restore procedure.",
+      "assignment": "Do a mock handover: have someone else (or your future self) deploy and recover the platform using only your docs, and fix any gaps.",
+      "quiz": [
+        "What belongs in a runbook versus an architecture doc?",
+        "Why include AI eval sets in the CI suite?",
+        "What proves your backup/restore actually works?"
+      ],
+      "youtube": {
+        "title": "Writing great technical documentation and runbooks",
+        "url": "https://www.youtube.com/watch?v=t4vKPhjcMZg",
+        "note": "Popular documentation tutorial; confirm view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "Diataxis documentation framework",
+          "url": "https://diataxis.fr/"
+        },
+        {
+          "title": "n8n backup and restore",
+          "url": "https://docs.n8n.io/hosting/cli-commands/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "google/styleguide",
+          "url": "https://github.com/google/styleguide"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "What Makes a Good Documentation? An Empirical Study (Aghajani et al., 2019)",
+          "url": "https://arxiv.org/abs/1906.05827"
+        }
+      ],
+      "skills_gained": [
+        "Comprehensive testing in CI",
+        "Professional documentation and runbooks",
+        "Backup/DR and handover"
+      ],
+      "expected_outcome": "Your platform is fully tested, documented, and transferable to any team."
+    },
+    {
+      "day": 45,
+      "title": "Career - Senior/Lead Automation Engineer and Beyond",
+      "objectives": [
+        "Convert your intermediate mastery into senior roles, consulting income, and continued growth."
+      ],
+      "topics": [
+        "Senior portfolio: capstone case study, metrics, demo, GitHub",
+        "System-design interviews for automation/integration platforms",
+        "Tool trade-off and reliability behavioral interviews",
+        "Career paths: senior/lead/staff, integration architect, AI specialist",
+        "Consulting: value-based pricing and productizing services",
+        "Certifications and a continued-learning plan",
+        "Staying current in AI automation"
+      ],
+      "estimated_time": "5-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Days 41-44 (capstone)"
+      ],
+      "intermediate_explanation": "You finish by positioning your new capabilities in the market. You'll assemble a senior-level portfolio around the capstone (architecture diagrams, a demo video, a written case study with metrics and cost savings) and a GitHub with your custom nodes, IaC, and pipelines. You'll prepare for senior automation/integration/AI-engineer interviews: system-design questions (design a scalable, resilient integration platform - exactly what you built), tool trade-off discussions (Zapier vs Make vs n8n vs code, when and why), and behavioral stories on reliability incidents and decisions. You'll map career paths - senior/lead/staff automation engineer, integration architect, AI automation specialist, or independent consultant/agency - and their economics, including pricing automation consulting (value-based vs hourly) and productizing (from Day 36/40). You'll set a continued-learning plan tracking the fast-moving AI-automation space and relevant certifications, and define how you'll keep leveling up after day 45.",
+      "practical_task": "Publish a senior-level case study of your capstone (architecture, decisions, metrics, cost savings) and a polished GitHub, then run a timed mock system-design interview and self-critique.",
+      "mini_project": "Publish a senior-level case study of your capstone (architecture, decisions, metrics, cost savings) and a polished GitHub with your custom nodes and IaC.",
+      "assignment": "Do a mock system-design interview: design a scalable multi-tenant automation platform in 45 minutes and self-critique against your capstone.",
+      "quiz": [
+        "How would you defend n8n vs custom code in an interview?",
+        "What makes a senior automation portfolio stand out?",
+        "Value-based vs hourly pricing for automation consulting - when each?"
+      ],
+      "youtube": {
+        "title": "System design interview preparation guide",
+        "url": "https://www.youtube.com/watch?v=i53Gi_K3o7I",
+        "note": "Very high-view system-design interview guide; verify view count on YouTube."
+      },
+      "official_docs": [
+        {
+          "title": "n8n community and creator program",
+          "url": "https://docs.n8n.io/help-community/"
+        },
+        {
+          "title": "Zapier Experts / partner program",
+          "url": "https://zapier.com/experts"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "donnemartin/system-design-primer",
+          "url": "https://github.com/donnemartin/system-design-primer"
+        },
+        {
+          "name": "trimstray/the-book-of-secret-knowledge",
+          "url": "https://github.com/trimstray/the-book-of-secret-knowledge"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "The Future of Work: Automation, AI, and Skill Demand (survey)",
+          "url": "https://arxiv.org/abs/2110.15864"
+        }
+      ],
+      "skills_gained": [
+        "Senior positioning and portfolio",
+        "System-design interview readiness",
+        "Consulting and career strategy"
+      ],
+      "expected_outcome": "You can credibly pursue senior automation-engineering roles or launch profitable automation consulting."
+    }
+  ]
+}

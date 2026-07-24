@@ -1,0 +1,3900 @@
+{
+  "roadmap": {
+    "title": "45-Day GenAI Engineer Roadmap",
+    "role": "GenAI Engineer",
+    "level": "Intermediate",
+    "total_days": 45,
+    "provider": "CalibiAI",
+    "description": "A structured 45-day intermediate curriculum for practitioners who already know Python, ML, and transformer basics, focused on deep transformer internals, advanced fine-tuning (RLHF/DPO/PEFT), production RAG, agents, inference optimization, and scalable LLMOps to prepare for mid-level GenAI Engineer roles.",
+    "outcome": "Ability to design, optimize, fine-tune, evaluate, and deploy production-grade Generative AI systems at scale."
+  },
+  "days": [
+    {
+      "day": 1,
+      "title": "Transformer Internals Deep Dive",
+      "objectives": [
+        "Master the full transformer forward pass mathematically",
+        "Understand residual streams and layer normalization placement",
+        "Analyze parameter and FLOP budgets per layer"
+      ],
+      "topics": [
+        "Residual stream perspective",
+        "Pre-norm vs post-norm",
+        "Feedforward (MLP) expansion ratio",
+        "Weight tying",
+        "Parameter counting",
+        "Compute (FLOPs) estimation"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Beginner transformer knowledge",
+        "PyTorch proficiency",
+        "Linear algebra"
+      ],
+      "intermediate_explanation": "At the intermediate level you stop treating the transformer as a black box. The residual stream view treats each layer as reading from and writing to a shared communication channel, which explains why pre-norm architectures train more stably than the original post-norm design. You learn to count parameters and estimate FLOPs per token so you can reason about memory, latency, and cost before writing a single training job.",
+      "practical_task": "Given a config (d_model, n_layers, n_heads, vocab), compute total parameters and per-token FLOPs by hand, then verify against a PyTorch model summary.",
+      "mini_project": "Instrument nanoGPT to log per-layer activation norms and visualize how the residual stream evolves across layers for a sample input.",
+      "assignment": "Write a technical report comparing pre-norm vs post-norm transformers, including a training-stability experiment on a tiny model.",
+      "quiz": [
+        {
+          "question": "Pre-norm architectures primarily improve...",
+          "options": ["Vocabulary size", "Training stability", "Tokenizer speed", "Dataset quality"],
+          "answer": "Training stability"
+        },
+        {
+          "question": "The residual stream acts as a...",
+          "options": ["Loss function", "Shared communication channel between layers", "Tokenizer", "Optimizer"],
+          "answer": "Shared communication channel between layers"
+        },
+        {
+          "question": "A transformer's forward-pass FLOPs scale roughly with...",
+          "options": ["Vocabulary only", "Parameters times tokens", "Number of GPUs", "Learning rate"],
+          "answer": "Parameters times tokens"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Let's build GPT: from scratch, in code, spelled out",
+          "channel": "Andrej Karpathy",
+          "url": "https://www.youtube.com/watch?v=kCc8FmEb1nY"
+        },
+        {
+          "title": "Transformers, explained visually",
+          "channel": "3Blue1Brown",
+          "url": "https://www.youtube.com/watch?v=wjZofJX0v4M"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "The Annotated Transformer (Harvard NLP)",
+          "url": "https://nlp.seas.harvard.edu/annotated-transformer/"
+        },
+        {
+          "title": "PyTorch nn.Transformer",
+          "url": "https://pytorch.org/docs/stable/generated/torch.nn.Transformer.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "karpathy/nanoGPT",
+          "url": "https://github.com/karpathy/nanoGPT"
+        },
+        {
+          "name": "TransformerLensOrg/TransformerLens",
+          "url": "https://github.com/TransformerLensOrg/TransformerLens"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Attention Is All You Need (Vaswani et al., 2017)",
+          "url": "https://arxiv.org/abs/1706.03762"
+        },
+        {
+          "title": "On Layer Normalization in the Transformer Architecture (Xiong et al., 2020)",
+          "url": "https://arxiv.org/abs/2002.04745"
+        }
+      ],
+      "skills_gained": [
+        "Transformer internals",
+        "Parameter/FLOP estimation",
+        "Architecture analysis"
+      ],
+      "expected_outcome": "You can analyze a transformer's compute and memory profile and explain architectural design choices."
+    },
+    {
+      "day": 2,
+      "title": "Attention Variants and Flash Attention",
+      "objectives": [
+        "Compare MHA, MQA, and GQA",
+        "Understand memory-efficient attention",
+        "Reason about attention complexity"
+      ],
+      "topics": [
+        "Multi-Head Attention (MHA)",
+        "Multi-Query Attention (MQA)",
+        "Grouped-Query Attention (GQA)",
+        "Flash Attention",
+        "KV cache memory implications",
+        "Attention complexity O(n^2)"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 1: Transformer Internals",
+        "CUDA/GPU basics helpful"
+      ],
+      "intermediate_explanation": "The quadratic cost of attention dominates long-context inference. MQA and GQA reduce the number of key/value heads to shrink the KV cache, trading a little quality for large memory savings, which is why modern models like Llama use GQA. Flash Attention reorders the computation to be IO-aware, avoiding materializing the full attention matrix in HBM and delivering major speedups without approximation.",
+      "practical_task": "Benchmark standard attention vs Flash Attention (via PyTorch SDPA) on increasing sequence lengths and plot latency and memory.",
+      "mini_project": "Implement GQA in a small transformer and measure the KV cache reduction and quality impact versus MHA.",
+      "assignment": "Write an analysis of why GQA is the industry default, including a KV-cache size calculation for a 7B model at 8k context.",
+      "quiz": [
+        {
+          "question": "GQA reduces memory by sharing...",
+          "options": ["Query heads", "Key/value heads across query groups", "Layers", "Embeddings"],
+          "answer": "Key/value heads across query groups"
+        },
+        {
+          "question": "Flash Attention is primarily a...",
+          "options": ["Lossy approximation", "IO-aware exact attention algorithm", "New activation", "Tokenizer"],
+          "answer": "IO-aware exact attention algorithm"
+        },
+        {
+          "question": "Standard attention scales with sequence length as...",
+          "options": ["O(n)", "O(n log n)", "O(n^2)", "O(1)"],
+          "answer": "O(n^2)"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "FlashAttention - Tri Dao (Stanford MLSys)",
+          "channel": "Stanford MLSys Seminars",
+          "url": "https://www.youtube.com/watch?v=gMOAud7hZg4"
+        },
+        {
+          "title": "Multi-Query & Grouped-Query Attention Explained",
+          "channel": "Umar Jamil",
+          "url": "https://www.youtube.com/watch?v=Mn_9W1nCFLo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyTorch Scaled Dot Product Attention",
+          "url": "https://pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html"
+        },
+        {
+          "title": "FlashAttention GitHub Docs",
+          "url": "https://github.com/Dao-AILab/flash-attention"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "Dao-AILab/flash-attention",
+          "url": "https://github.com/Dao-AILab/flash-attention"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "FlashAttention: Fast and Memory-Efficient Exact Attention (Dao et al., 2022)",
+          "url": "https://arxiv.org/abs/2205.14135"
+        },
+        {
+          "title": "GQA: Training Generalized Multi-Query Transformer Models (Ainslie et al., 2023)",
+          "url": "https://arxiv.org/abs/2305.13245"
+        }
+      ],
+      "skills_gained": [
+        "Attention variants",
+        "Flash Attention",
+        "KV cache reasoning",
+        "Performance benchmarking"
+      ],
+      "expected_outcome": "You can choose and benchmark attention variants for efficient inference."
+    },
+    {
+      "day": 3,
+      "title": "Positional Encodings: RoPE and ALiBi",
+      "objectives": [
+        "Understand rotary position embeddings",
+        "Compare RoPE, ALiBi, and learned encodings",
+        "Enable context-length extension"
+      ],
+      "topics": [
+        "Absolute vs relative positions",
+        "Rotary Position Embeddings (RoPE)",
+        "ALiBi",
+        "Context length extrapolation",
+        "RoPE scaling (NTK, YaRN)",
+        "Position encoding tradeoffs"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 1-2: Transformer internals and attention"
+      ],
+      "intermediate_explanation": "Position encoding determines how well a model handles long context. RoPE encodes relative position by rotating query and key vectors, and it has become the standard because it extrapolates and can be scaled (via NTK-aware or YaRN methods) to extend context windows post-training. ALiBi biases attention scores by distance, offering strong length extrapolation with no learned parameters. Understanding these is key to long-context engineering.",
+      "practical_task": "Implement RoPE in PyTorch and verify that relative position information is preserved under rotation.",
+      "mini_project": "Take a small RoPE model and apply NTK-aware scaling to extend its usable context, measuring perplexity across lengths.",
+      "assignment": "Write a comparison of RoPE vs ALiBi for long-context tasks with an experiment on extrapolation behavior.",
+      "quiz": [
+        {
+          "question": "RoPE encodes position by...",
+          "options": ["Adding learned vectors", "Rotating query/key vectors", "Masking tokens", "Scaling logits"],
+          "answer": "Rotating query/key vectors"
+        },
+        {
+          "question": "YaRN and NTK scaling are used to...",
+          "options": ["Reduce parameters", "Extend context length", "Speed up tokenization", "Add heads"],
+          "answer": "Extend context length"
+        },
+        {
+          "question": "ALiBi adds a bias based on...",
+          "options": ["Token frequency", "Distance between positions", "Layer index", "Batch size"],
+          "answer": "Distance between positions"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Rotary Positional Embeddings (RoPE) Explained",
+          "channel": "Umar Jamil",
+          "url": "https://www.youtube.com/watch?v=o29P0Kpobz0"
+        },
+        {
+          "title": "Positional Encoding in Transformers",
+          "channel": "CodeEmporium",
+          "url": "https://www.youtube.com/watch?v=1biZfFLPRSY"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face RoPE Scaling Docs",
+          "url": "https://huggingface.co/docs/transformers/main/en/model_doc/llama"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "jquesnelle/yarn",
+          "url": "https://github.com/jquesnelle/yarn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding (Su et al., 2021)",
+          "url": "https://arxiv.org/abs/2104.09864"
+        },
+        {
+          "title": "YaRN: Efficient Context Window Extension of LLMs (Peng et al., 2023)",
+          "url": "https://arxiv.org/abs/2309.00071"
+        }
+      ],
+      "skills_gained": [
+        "Positional encodings",
+        "RoPE",
+        "Context extension"
+      ],
+      "expected_outcome": "You can implement and extend positional encodings for long-context models."
+    },
+    {
+      "day": 4,
+      "title": "Advanced Tokenization and Vocabulary Design",
+      "objectives": [
+        "Understand tokenizer training",
+        "Analyze tokenization efficiency",
+        "Handle multilingual and code tokenization"
+      ],
+      "topics": [
+        "BPE, WordPiece, Unigram",
+        "Training a tokenizer",
+        "Vocabulary size tradeoffs",
+        "Fertility and compression ratio",
+        "Multilingual tokenization",
+        "Special tokens and chat templates"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Beginner tokenization knowledge"
+      ],
+      "intermediate_explanation": "Tokenizer quality directly affects model performance and cost. Fertility (tokens per word) varies drastically across languages, penalizing under-represented ones. You learn to train tokenizers, measure compression ratios, and design vocabularies that balance sequence length against embedding table size. Correct chat templates and special tokens are essential for instruction-tuned models to behave properly.",
+      "practical_task": "Train a BPE tokenizer on a domain corpus with the tokenizers library and compare its fertility to a general-purpose tokenizer.",
+      "mini_project": "Build a tokenizer analysis dashboard that compares compression, fertility, and cost across models for multiple languages.",
+      "assignment": "Analyze how tokenization affects arithmetic and code tasks, with concrete failure examples and explanations.",
+      "quiz": [
+        {
+          "question": "Fertility measures...",
+          "options": ["Model accuracy", "Tokens produced per word", "GPU usage", "Vocabulary depth"],
+          "answer": "Tokens produced per word"
+        },
+        {
+          "question": "A larger vocabulary increases...",
+          "options": ["Sequence length", "Embedding table size", "Attention heads", "Learning rate"],
+          "answer": "Embedding table size"
+        },
+        {
+          "question": "Chat templates define...",
+          "options": ["Optimizer settings", "How roles/messages are formatted into tokens", "GPU layout", "Dataset splits"],
+          "answer": "How roles/messages are formatted into tokens"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Let's build the GPT Tokenizer",
+          "channel": "Andrej Karpathy",
+          "url": "https://www.youtube.com/watch?v=zduSFxRajkE"
+        },
+        {
+          "title": "Tokenizers: How machines read",
+          "channel": "HuggingFace",
+          "url": "https://www.youtube.com/watch?v=VFp38yj8h3A"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face Tokenizers Library",
+          "url": "https://huggingface.co/docs/tokenizers/index"
+        },
+        {
+          "title": "Chat Templates Docs",
+          "url": "https://huggingface.co/docs/transformers/chat_templating"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/tokenizers",
+          "url": "https://github.com/huggingface/tokenizers"
+        },
+        {
+          "name": "google/sentencepiece",
+          "url": "https://github.com/google/sentencepiece"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "SentencePiece: A simple and language independent subword tokenizer (Kudo & Richardson, 2018)",
+          "url": "https://arxiv.org/abs/1808.06226"
+        }
+      ],
+      "skills_gained": [
+        "Tokenizer training",
+        "Vocabulary design",
+        "Multilingual tokenization",
+        "Chat templates"
+      ],
+      "expected_outcome": "You can train and evaluate tokenizers and reason about their impact on models."
+    },
+    {
+      "day": 5,
+      "title": "LLM Training Pipeline End-to-End",
+      "objectives": [
+        "Understand the full pretraining pipeline",
+        "Configure training runs correctly",
+        "Diagnose training instabilities"
+      ],
+      "topics": [
+        "Data loading and packing",
+        "Learning rate schedules and warmup",
+        "Gradient accumulation and clipping",
+        "Checkpointing and resumption",
+        "Loss spikes and divergence",
+        "Weights & Biases logging"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 1-4",
+        "PyTorch training loops"
+      ],
+      "intermediate_explanation": "Training LLMs reliably is an engineering discipline. Sequence packing maximizes GPU utilization, warmup plus cosine decay stabilizes early training, and gradient clipping prevents blow-ups. You learn to read training curves to catch loss spikes early, checkpoint safely for long runs, and log everything so experiments are reproducible and debuggable.",
+      "practical_task": "Configure and launch a small language model pretraining run with warmup, cosine schedule, gradient clipping, and W&B logging.",
+      "mini_project": "Pretrain a small GPT on a curated corpus, deliberately induce and then fix a loss spike, and document the diagnosis.",
+      "assignment": "Produce a runbook for LLM training that covers hyperparameter selection, monitoring, and recovery from common failures.",
+      "quiz": [
+        {
+          "question": "Learning rate warmup helps to...",
+          "options": ["Reduce vocab", "Stabilize early training", "Increase batch size", "Speed tokenization"],
+          "answer": "Stabilize early training"
+        },
+        {
+          "question": "Gradient clipping prevents...",
+          "options": ["Underfitting", "Exploding gradients", "Slow GPUs", "Small vocab"],
+          "answer": "Exploding gradients"
+        },
+        {
+          "question": "Sequence packing improves...",
+          "options": ["Accuracy directly", "GPU utilization", "Tokenizer speed", "Model depth"],
+          "answer": "GPU utilization"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Let's reproduce GPT-2 (124M)",
+          "channel": "Andrej Karpathy",
+          "url": "https://www.youtube.com/watch?v=l8pRSuU81PU"
+        },
+        {
+          "title": "Weights & Biases Tutorial",
+          "channel": "Weights & Biases",
+          "url": "https://www.youtube.com/watch?v=krsWZBfHFr8"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face Trainer Docs",
+          "url": "https://huggingface.co/docs/transformers/main_classes/trainer"
+        },
+        {
+          "title": "Weights & Biases Docs",
+          "url": "https://docs.wandb.ai/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "karpathy/nanoGPT",
+          "url": "https://github.com/karpathy/nanoGPT"
+        },
+        {
+          "name": "huggingface/nanotron",
+          "url": "https://github.com/huggingface/nanotron"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "An Empirical Model of Large-Batch Training (McCandlish et al., 2018)",
+          "url": "https://arxiv.org/abs/1812.06162"
+        }
+      ],
+      "skills_gained": [
+        "Training pipelines",
+        "LR scheduling",
+        "Debugging training",
+        "Experiment tracking"
+      ],
+      "expected_outcome": "You can configure, monitor, and debug an LLM training run end-to-end."
+    },
+    {
+      "day": 6,
+      "title": "Scaling Laws and Compute-Optimal Training",
+      "objectives": [
+        "Understand scaling laws",
+        "Apply Chinchilla-optimal ratios",
+        "Plan compute budgets"
+      ],
+      "topics": [
+        "Kaplan vs Chinchilla scaling laws",
+        "Compute-optimal token/parameter ratio",
+        "Emergent abilities",
+        "Data-constrained scaling",
+        "Compute budgeting",
+        "Inference vs training tradeoffs"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 5: Training pipeline"
+      ],
+      "intermediate_explanation": "Scaling laws let you predict model performance from compute, parameters, and data before training. Chinchilla showed that many early models were undertrained, establishing roughly 20 tokens per parameter as compute-optimal. But because models are trained once and served millions of times, production teams often overtrain smaller models to reduce inference cost. Understanding these tradeoffs guides real budget decisions.",
+      "practical_task": "Given a fixed compute budget, use scaling-law formulas to choose an optimal model size and token count.",
+      "mini_project": "Fit a small-scale scaling curve by training several tiny models of increasing size and plotting loss vs compute.",
+      "assignment": "Write a decision memo recommending model size and training tokens for a hypothetical product, justified with scaling laws.",
+      "quiz": [
+        {
+          "question": "Chinchilla's key finding was that many models were...",
+          "options": ["Overtrained", "Undertrained on data", "Too small", "Too fast"],
+          "answer": "Undertrained on data"
+        },
+        {
+          "question": "Compute-optimal training balances...",
+          "options": ["GPUs and RAM", "Parameters and training tokens", "Vocab and heads", "Batch and depth"],
+          "answer": "Parameters and training tokens"
+        },
+        {
+          "question": "Overtraining a small model helps reduce...",
+          "options": ["Training cost", "Inference cost", "Vocabulary", "Context length"],
+          "answer": "Inference cost"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Scaling Laws for Neural Language Models Explained",
+          "channel": "Yannic Kilcher",
+          "url": "https://www.youtube.com/watch?v=QMqOe5rf5Vs"
+        },
+        {
+          "title": "Chinchilla Scaling Laws",
+          "channel": "AI Coffee Break with Letitia",
+          "url": "https://www.youtube.com/watch?v=PZWjPo_gYCY"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "EleutherAI Scaling Laws Resources",
+          "url": "https://www.eleuther.ai/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "EleutherAI/gpt-neox",
+          "url": "https://github.com/EleutherAI/gpt-neox"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Scaling Laws for Neural Language Models (Kaplan et al., 2020)",
+          "url": "https://arxiv.org/abs/2001.08361"
+        },
+        {
+          "title": "Training Compute-Optimal LLMs (Chinchilla, Hoffmann et al., 2022)",
+          "url": "https://arxiv.org/abs/2203.15556"
+        }
+      ],
+      "skills_gained": [
+        "Scaling laws",
+        "Compute budgeting",
+        "Model sizing"
+      ],
+      "expected_outcome": "You can size models and data budgets using scaling-law reasoning."
+    },
+    {
+      "day": 7,
+      "title": "Mixture of Experts (MoE)",
+      "objectives": [
+        "Understand sparse MoE architectures",
+        "Learn routing and load balancing",
+        "Reason about MoE tradeoffs"
+      ],
+      "topics": [
+        "Dense vs sparse models",
+        "Expert layers and gating",
+        "Top-k routing",
+        "Load balancing loss",
+        "Capacity factor",
+        "MoE in production (Mixtral)"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 1: Transformer internals",
+        "Day 6: Scaling laws"
+      ],
+      "intermediate_explanation": "Mixture-of-Experts models scale parameter count without proportionally scaling compute by activating only a few expert subnetworks per token. A router chooses top-k experts, and an auxiliary load-balancing loss prevents collapse where all tokens route to the same expert. MoE powers efficient frontier models like Mixtral, giving large model capacity at the inference cost of a much smaller dense model.",
+      "practical_task": "Implement a simple top-2 MoE feedforward layer with a router and load-balancing loss, and inspect expert utilization.",
+      "mini_project": "Convert a small dense transformer's MLP into an MoE layer and compare quality, active parameters, and throughput.",
+      "assignment": "Write an analysis of MoE tradeoffs covering memory, routing instability, and serving challenges.",
+      "quiz": [
+        {
+          "question": "MoE activates...",
+          "options": ["All experts per token", "A subset of experts per token", "No experts", "Only layer 1"],
+          "answer": "A subset of experts per token"
+        },
+        {
+          "question": "The load-balancing loss prevents...",
+          "options": ["Overfitting", "Expert collapse", "Slow GPUs", "Small vocab"],
+          "answer": "Expert collapse"
+        },
+        {
+          "question": "MoE increases parameters while keeping ______ roughly constant.",
+          "options": ["Memory", "Active compute per token", "Vocab", "Depth"],
+          "answer": "Active compute per token"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Mixture of Experts (MoE) Explained",
+          "channel": "Trelis Research",
+          "url": "https://www.youtube.com/watch?v=mwO6v4BlgZQ"
+        },
+        {
+          "title": "Mixtral of Experts Paper Explained",
+          "channel": "Yannic Kilcher",
+          "url": "https://www.youtube.com/watch?v=mwO6v4BlgZQ"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face MoE Blog",
+          "url": "https://huggingface.co/blog/moe"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "mistralai/mistral-inference",
+          "url": "https://github.com/mistralai/mistral-inference"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Switch Transformers (Fedus et al., 2021)",
+          "url": "https://arxiv.org/abs/2101.03961"
+        },
+        {
+          "title": "Mixtral of Experts (Jiang et al., 2024)",
+          "url": "https://arxiv.org/abs/2401.04088"
+        }
+      ],
+      "skills_gained": [
+        "Mixture of Experts",
+        "Routing",
+        "Sparse models"
+      ],
+      "expected_outcome": "You understand and can implement basic MoE layers and their tradeoffs."
+    },
+    {
+      "day": 8,
+      "title": "Data Curation and Preprocessing for LLMs",
+      "objectives": [
+        "Build data pipelines for LLMs",
+        "Apply deduplication and quality filtering",
+        "Handle contamination and safety"
+      ],
+      "topics": [
+        "Web-scale data sources",
+        "Quality filtering and classifiers",
+        "Deduplication (MinHash, exact)",
+        "Decontamination",
+        "Data mixtures and weighting",
+        "PII and safety filtering"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 5: Training pipeline"
+      ],
+      "intermediate_explanation": "Model quality is bounded by data quality. Curation involves aggressive deduplication (near-duplicates hurt generalization), quality filtering with classifiers, and decontamination against benchmarks to keep evaluations honest. Data mixture weights across domains materially change downstream abilities. PII and safety filtering are both ethical and legal requirements, making this a critical, often underrated, engineering skill.",
+      "practical_task": "Build a data-cleaning pipeline that performs language detection, quality filtering, and MinHash deduplication on a raw text dump.",
+      "mini_project": "Create a reproducible dataset preparation pipeline with a datasheet documenting sources, filters, and dedup statistics.",
+      "assignment": "Design a data mixture for a coding-focused model and justify domain weights with expected effects.",
+      "quiz": [
+        {
+          "question": "Deduplication improves...",
+          "options": ["Vocab size", "Generalization", "GPU count", "Context length"],
+          "answer": "Generalization"
+        },
+        {
+          "question": "Decontamination protects...",
+          "options": ["GPUs", "Benchmark integrity", "Tokenizers", "Optimizers"],
+          "answer": "Benchmark integrity"
+        },
+        {
+          "question": "MinHash is used for...",
+          "options": ["Exact dedup only", "Near-duplicate detection at scale", "Tokenization", "Quantization"],
+          "answer": "Near-duplicate detection at scale"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Data Curation for LLMs",
+          "channel": "HuggingFace",
+          "url": "https://www.youtube.com/watch?v=8pgWzEjV0sw"
+        },
+        {
+          "title": "How to Build High-Quality Datasets",
+          "channel": "AI Coffee Break with Letitia",
+          "url": "https://www.youtube.com/watch?v=8pgWzEjV0sw"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face Datasets Docs",
+          "url": "https://huggingface.co/docs/datasets/index"
+        },
+        {
+          "title": "DataTrove Docs",
+          "url": "https://github.com/huggingface/datatrove"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/datatrove",
+          "url": "https://github.com/huggingface/datatrove"
+        },
+        {
+          "name": "NVIDIA/NeMo-Curator",
+          "url": "https://github.com/NVIDIA/NeMo-Curator"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "The RefinedWeb Dataset for Falcon LLM (Penedo et al., 2023)",
+          "url": "https://arxiv.org/abs/2306.01116"
+        },
+        {
+          "title": "Deduplicating Training Data Makes Language Models Better (Lee et al., 2021)",
+          "url": "https://arxiv.org/abs/2107.06499"
+        }
+      ],
+      "skills_gained": [
+        "Data curation",
+        "Deduplication",
+        "Quality filtering",
+        "Data pipelines"
+      ],
+      "expected_outcome": "You can build high-quality, decontaminated data pipelines for LLM training."
+    },
+    {
+      "day": 9,
+      "title": "Distributed Training: DDP, FSDP, DeepSpeed",
+      "objectives": [
+        "Understand data and model parallelism",
+        "Use FSDP and ZeRO",
+        "Scale training across GPUs"
+      ],
+      "topics": [
+        "Data parallelism (DDP)",
+        "Fully Sharded Data Parallel (FSDP)",
+        "ZeRO stages (DeepSpeed)",
+        "Tensor and pipeline parallelism",
+        "Gradient checkpointing",
+        "Communication overhead"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 5: Training pipeline",
+        "Multi-GPU access helpful"
+      ],
+      "intermediate_explanation": "Large models exceed single-GPU memory, so you shard the work. DDP replicates the model and splits data; FSDP and DeepSpeed ZeRO shard parameters, gradients, and optimizer states across devices to fit huge models. Tensor and pipeline parallelism split individual layers or stages. The engineering challenge is minimizing inter-GPU communication, which quickly becomes the bottleneck.",
+      "practical_task": "Convert a single-GPU training script to multi-GPU using FSDP or DeepSpeed and measure throughput scaling.",
+      "mini_project": "Fine-tune a model that does not fit on one GPU using ZeRO-3 offloading and document memory and speed tradeoffs.",
+      "assignment": "Write a guide explaining when to use DDP vs FSDP vs tensor/pipeline parallelism with memory calculations.",
+      "quiz": [
+        {
+          "question": "FSDP reduces memory by sharding...",
+          "options": ["Only data", "Parameters, gradients, and optimizer states", "Vocabulary", "Attention heads"],
+          "answer": "Parameters, gradients, and optimizer states"
+        },
+        {
+          "question": "The main cost of distributed training is...",
+          "options": ["Tokenization", "Inter-GPU communication", "Vocab size", "Learning rate"],
+          "answer": "Inter-GPU communication"
+        },
+        {
+          "question": "Gradient checkpointing trades compute for...",
+          "options": ["Accuracy", "Memory savings", "Speed", "Vocabulary"],
+          "answer": "Memory savings"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Distributed Training with PyTorch FSDP",
+          "channel": "PyTorch",
+          "url": "https://www.youtube.com/watch?v=8_k76AHu__s"
+        },
+        {
+          "title": "DeepSpeed ZeRO Explained",
+          "channel": "Microsoft Research",
+          "url": "https://www.youtube.com/watch?v=pDGI668pNg0"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyTorch FSDP Tutorial",
+          "url": "https://pytorch.org/tutorials/intermediate/FSDP_tutorial.html"
+        },
+        {
+          "title": "DeepSpeed Docs",
+          "url": "https://www.deepspeed.ai/"
+        },
+        {
+          "title": "Hugging Face Accelerate",
+          "url": "https://huggingface.co/docs/accelerate/index"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "microsoft/DeepSpeed",
+          "url": "https://github.com/microsoft/DeepSpeed"
+        },
+        {
+          "name": "huggingface/accelerate",
+          "url": "https://github.com/huggingface/accelerate"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "ZeRO: Memory Optimizations Toward Training Trillion Parameter Models (Rajbhandari et al., 2019)",
+          "url": "https://arxiv.org/abs/1910.02054"
+        }
+      ],
+      "skills_gained": [
+        "Distributed training",
+        "FSDP",
+        "DeepSpeed ZeRO",
+        "Parallelism strategies"
+      ],
+      "expected_outcome": "You can scale training across multiple GPUs using sharding frameworks."
+    },
+    {
+      "day": 10,
+      "title": "Mixed Precision and Quantization Theory",
+      "objectives": [
+        "Understand numeric formats",
+        "Use mixed-precision training",
+        "Grasp quantization fundamentals"
+      ],
+      "topics": [
+        "FP32, FP16, BF16, FP8",
+        "Mixed precision training",
+        "Loss scaling",
+        "Post-training quantization",
+        "Quantization-aware training",
+        "INT8/INT4 basics"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 9: Distributed training"
+      ],
+      "intermediate_explanation": "Numeric precision governs the memory-speed-accuracy tradeoff. BF16 has become the training default because its wide exponent range avoids the overflow issues of FP16 without needing loss scaling. Quantization compresses weights to INT8 or INT4 for cheaper inference, either post-training or via quantization-aware training. Understanding the format tradeoffs is essential before applying practical quantization tools.",
+      "practical_task": "Train the same small model in FP32, FP16, and BF16, comparing memory, speed, and final loss.",
+      "mini_project": "Quantize a model to INT8 with post-training quantization and measure accuracy loss versus speedup.",
+      "assignment": "Write a technical explainer on why BF16 is preferred over FP16 for LLM training, with numeric examples.",
+      "quiz": [
+        {
+          "question": "BF16 is preferred over FP16 because it has...",
+          "options": ["More mantissa bits", "A wider exponent range", "Smaller size", "Higher precision"],
+          "answer": "A wider exponent range"
+        },
+        {
+          "question": "Loss scaling is needed in...",
+          "options": ["BF16 training", "FP16 training", "INT8 inference", "FP32 training"],
+          "answer": "FP16 training"
+        },
+        {
+          "question": "Post-training quantization is applied...",
+          "options": ["During training", "After training with no retraining", "Before data collection", "During tokenization"],
+          "answer": "After training with no retraining"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Mixed Precision Training Explained",
+          "channel": "Weights & Biases",
+          "url": "https://www.youtube.com/watch?v=b5dAmcBKxHg"
+        },
+        {
+          "title": "Quantization Explained",
+          "channel": "Umar Jamil",
+          "url": "https://www.youtube.com/watch?v=0VdNflU08yA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyTorch AMP Docs",
+          "url": "https://pytorch.org/docs/stable/amp.html"
+        },
+        {
+          "title": "Hugging Face Quantization Docs",
+          "url": "https://huggingface.co/docs/transformers/quantization"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "bitsandbytes-foundation/bitsandbytes",
+          "url": "https://github.com/bitsandbytes-foundation/bitsandbytes"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Mixed Precision Training (Micikevicius et al., 2017)",
+          "url": "https://arxiv.org/abs/1710.03740"
+        },
+        {
+          "title": "LLM.int8(): 8-bit Matrix Multiplication for Transformers (Dettmers et al., 2022)",
+          "url": "https://arxiv.org/abs/2208.07339"
+        }
+      ],
+      "skills_gained": [
+        "Mixed precision",
+        "Numeric formats",
+        "Quantization theory"
+      ],
+      "expected_outcome": "You understand precision tradeoffs and can apply mixed-precision and basic quantization."
+    },
+    {
+      "day": 11,
+      "title": "Fine-Tuning Strategies: Full vs PEFT",
+      "objectives": [
+        "Compare fine-tuning approaches",
+        "Choose the right method per task",
+        "Avoid catastrophic forgetting"
+      ],
+      "topics": [
+        "Full fine-tuning",
+        "PEFT overview",
+        "Adapters, prefix, prompt tuning",
+        "Catastrophic forgetting",
+        "Continual learning",
+        "Cost/quality tradeoffs"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Beginner fine-tuning",
+        "Day 10: Quantization"
+      ],
+      "intermediate_explanation": "There is a spectrum of adaptation methods. Full fine-tuning maximizes capacity but is costly and risks catastrophic forgetting of general abilities. PEFT methods (adapters, prefix tuning, prompt tuning, LoRA) update tiny parameter subsets, are cheaper, and are easier to serve as swappable modules. Choosing correctly depends on data size, task divergence, and serving constraints.",
+      "practical_task": "Fine-tune the same base model with full FT and with LoRA on one task, comparing quality, memory, and forgetting.",
+      "mini_project": "Build a benchmark comparing three PEFT methods on a task, reporting a quality/cost frontier.",
+      "assignment": "Create a decision framework for selecting a fine-tuning method given dataset size, budget, and deployment needs.",
+      "quiz": [
+        {
+          "question": "Catastrophic forgetting is when a model...",
+          "options": ["Trains faster", "Loses prior abilities after fine-tuning", "Gains vocab", "Uses less memory"],
+          "answer": "Loses prior abilities after fine-tuning"
+        },
+        {
+          "question": "PEFT methods update...",
+          "options": ["All weights", "A small subset of parameters", "Only the tokenizer", "Nothing"],
+          "answer": "A small subset of parameters"
+        },
+        {
+          "question": "A serving advantage of adapters is...",
+          "options": ["Larger models", "Swappable per-task modules", "Faster tokenization", "Bigger vocab"],
+          "answer": "Swappable per-task modules"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "PEFT: Parameter Efficient Fine-Tuning Explained",
+          "channel": "HuggingFace",
+          "url": "https://www.youtube.com/watch?v=YVU5wAA6m3E"
+        },
+        {
+          "title": "Fine-tuning LLMs: Full vs LoRA",
+          "channel": "AI Jason",
+          "url": "https://www.youtube.com/watch?v=t509sv5MT0w"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face PEFT Docs",
+          "url": "https://huggingface.co/docs/peft/index"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/peft",
+          "url": "https://github.com/huggingface/peft"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Parameter-Efficient Transfer Learning for NLP (Adapters, Houlsby et al., 2019)",
+          "url": "https://arxiv.org/abs/1902.00751"
+        }
+      ],
+      "skills_gained": [
+        "Fine-tuning strategy",
+        "PEFT methods",
+        "Continual learning"
+      ],
+      "expected_outcome": "You can select and justify a fine-tuning strategy for any adaptation task."
+    },
+    {
+      "day": 12,
+      "title": "LoRA and QLoRA in Depth",
+      "objectives": [
+        "Understand LoRA math",
+        "Tune LoRA hyperparameters",
+        "Apply QLoRA effectively"
+      ],
+      "topics": [
+        "Low-rank decomposition",
+        "Rank, alpha, target modules",
+        "QLoRA and NF4 quantization",
+        "Adapter merging",
+        "Multi-adapter serving",
+        "LoRA hyperparameter tuning"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 11: Fine-tuning strategies"
+      ],
+      "intermediate_explanation": "LoRA approximates weight updates as the product of two low-rank matrices, dramatically cutting trainable parameters. Rank and alpha control capacity and effective learning rate, and choosing which modules to target (attention only vs all linear layers) affects quality. QLoRA loads the frozen base in NF4 4-bit precision, enabling fine-tuning of large models on a single GPU. Adapter merging and multi-adapter serving make this production-ready.",
+      "practical_task": "Sweep LoRA rank and alpha on a task and plot how they affect quality and overfitting.",
+      "mini_project": "Fine-tune a 7B+ model with QLoRA, merge the adapter, and benchmark the merged model against the base.",
+      "assignment": "Document QLoRA best practices including target modules, rank selection, and memory budgeting for a given GPU.",
+      "quiz": [
+        {
+          "question": "LoRA decomposes updates into...",
+          "options": ["A single matrix", "Two low-rank matrices", "Three tensors", "A bias vector"],
+          "answer": "Two low-rank matrices"
+        },
+        {
+          "question": "QLoRA quantizes the base model to...",
+          "options": ["FP32", "NF4 (4-bit)", "INT16", "FP8"],
+          "answer": "NF4 (4-bit)"
+        },
+        {
+          "question": "LoRA alpha primarily scales...",
+          "options": ["Vocabulary", "The adapter update magnitude", "Batch size", "Context length"],
+          "answer": "The adapter update magnitude"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "LoRA explained (precision and quantization)",
+          "channel": "Umar Jamil",
+          "url": "https://www.youtube.com/watch?v=PXWYUTMt-AU"
+        },
+        {
+          "title": "QLoRA Fine-tuning Tutorial",
+          "channel": "AI Jason",
+          "url": "https://www.youtube.com/watch?v=t509sv5MT0w"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face LoRA Conceptual Guide",
+          "url": "https://huggingface.co/docs/peft/conceptual_guides/lora"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "artidoro/qlora",
+          "url": "https://github.com/artidoro/qlora"
+        },
+        {
+          "name": "unslothai/unsloth",
+          "url": "https://github.com/unslothai/unsloth"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "LoRA: Low-Rank Adaptation of Large Language Models (Hu et al., 2021)",
+          "url": "https://arxiv.org/abs/2106.09685"
+        },
+        {
+          "title": "QLoRA: Efficient Finetuning of Quantized LLMs (Dettmers et al., 2023)",
+          "url": "https://arxiv.org/abs/2305.14314"
+        }
+      ],
+      "skills_gained": [
+        "LoRA tuning",
+        "QLoRA",
+        "Adapter merging",
+        "Multi-adapter serving"
+      ],
+      "expected_outcome": "You can expertly fine-tune large models with LoRA/QLoRA and tune their hyperparameters."
+    },
+    {
+      "day": 13,
+      "title": "Instruction Tuning and Dataset Construction",
+      "objectives": [
+        "Build instruction datasets",
+        "Apply SFT best practices",
+        "Use synthetic data generation"
+      ],
+      "topics": [
+        "Instruction dataset format",
+        "SFT loss masking",
+        "Synthetic data (Self-Instruct, Evol-Instruct)",
+        "Data quality vs quantity",
+        "Chat formatting",
+        "Data filtering and dedup for SFT"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 12: LoRA in depth"
+      ],
+      "intermediate_explanation": "Instruction tuning turns a base model into a helpful assistant using curated instruction/response pairs. Quality matters far more than quantity; a few thousand excellent examples often beat hundreds of thousands of noisy ones (the LIMA finding). Synthetic generation methods like Self-Instruct and Evol-Instruct scale data creation, and correct loss masking ensures the model learns responses, not prompts.",
+      "practical_task": "Construct a small high-quality instruction dataset with correct loss masking and fine-tune a model on it.",
+      "mini_project": "Use an LLM to generate a synthetic instruction dataset via Evol-Instruct, filter it, and fine-tune, comparing to a baseline.",
+      "assignment": "Write a report on instruction data quality principles, referencing LIMA, with a curation checklist.",
+      "quiz": [
+        {
+          "question": "The LIMA paper emphasized...",
+          "options": ["More data always wins", "Data quality over quantity", "Bigger models only", "No fine-tuning"],
+          "answer": "Data quality over quantity"
+        },
+        {
+          "question": "SFT loss masking ensures the model learns...",
+          "options": ["The prompt", "The response tokens", "The tokenizer", "The vocab"],
+          "answer": "The response tokens"
+        },
+        {
+          "question": "Self-Instruct is a method for...",
+          "options": ["Quantization", "Generating synthetic instructions", "Deployment", "Reranking"],
+          "answer": "Generating synthetic instructions"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Instruction Tuning Explained",
+          "channel": "HuggingFace",
+          "url": "https://www.youtube.com/watch?v=eC6Hd1hFvos"
+        },
+        {
+          "title": "Creating Instruction Datasets",
+          "channel": "Trelis Research",
+          "url": "https://www.youtube.com/watch?v=iamXy03zdPk"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face TRL SFT Docs",
+          "url": "https://huggingface.co/docs/trl/sft_trainer"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/trl",
+          "url": "https://github.com/huggingface/trl"
+        },
+        {
+          "name": "yizhongw/self-instruct",
+          "url": "https://github.com/yizhongw/self-instruct"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "LIMA: Less Is More for Alignment (Zhou et al., 2023)",
+          "url": "https://arxiv.org/abs/2305.11206"
+        },
+        {
+          "title": "Self-Instruct: Aligning LMs with Self-Generated Instructions (Wang et al., 2022)",
+          "url": "https://arxiv.org/abs/2212.10560"
+        }
+      ],
+      "skills_gained": [
+        "Instruction tuning",
+        "Dataset construction",
+        "Synthetic data",
+        "SFT"
+      ],
+      "expected_outcome": "You can build high-quality instruction datasets and run effective SFT."
+    },
+    {
+      "day": 14,
+      "title": "RLHF and PPO",
+      "objectives": [
+        "Understand the RLHF pipeline",
+        "Train a reward model",
+        "Grasp PPO for LLMs"
+      ],
+      "topics": [
+        "Preference data collection",
+        "Reward modeling",
+        "PPO for language models",
+        "KL penalty and reference model",
+        "Reward hacking",
+        "RLHF challenges"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 13: Instruction tuning",
+        "RL basics helpful"
+      ],
+      "intermediate_explanation": "RLHF aligns models with human preferences in three stages: SFT, training a reward model on human preference comparisons, then optimizing the policy with PPO against that reward while a KL penalty keeps it close to the reference model. The main pitfalls are reward hacking and training instability, which is why simpler alternatives like DPO have gained popularity, but understanding PPO-based RLHF remains essential.",
+      "practical_task": "Train a small reward model on a preference dataset and evaluate its agreement with held-out human preferences.",
+      "mini_project": "Run a minimal RLHF loop with TRL (SFT to reward model to PPO) on a small model and observe reward and KL curves.",
+      "assignment": "Write a technical explainer of the full RLHF pipeline including the role of the KL penalty and reward hacking risks.",
+      "quiz": [
+        {
+          "question": "The reward model is trained on...",
+          "options": ["Raw text", "Human preference comparisons", "Images", "Token counts"],
+          "answer": "Human preference comparisons"
+        },
+        {
+          "question": "The KL penalty in PPO keeps the policy...",
+          "options": ["Far from the reference", "Close to the reference model", "At zero reward", "Deterministic"],
+          "answer": "Close to the reference model"
+        },
+        {
+          "question": "Reward hacking is when the model...",
+          "options": ["Learns fast", "Exploits the reward without true improvement", "Forgets vocab", "Overfits data"],
+          "answer": "Exploits the reward without true improvement"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "RLHF: Reinforcement Learning from Human Feedback",
+          "channel": "HuggingFace",
+          "url": "https://www.youtube.com/watch?v=2MBJOuVq380"
+        },
+        {
+          "title": "RLHF and PPO Explained",
+          "channel": "Umar Jamil",
+          "url": "https://www.youtube.com/watch?v=qGyFrqc34yc"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face TRL PPO Docs",
+          "url": "https://huggingface.co/docs/trl/ppo_trainer"
+        },
+        {
+          "title": "Hugging Face RLHF Blog",
+          "url": "https://huggingface.co/blog/rlhf"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/trl",
+          "url": "https://github.com/huggingface/trl"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Training language models to follow instructions with human feedback (InstructGPT, Ouyang et al., 2022)",
+          "url": "https://arxiv.org/abs/2203.02155"
+        }
+      ],
+      "skills_gained": [
+        "RLHF",
+        "Reward modeling",
+        "PPO",
+        "Alignment"
+      ],
+      "expected_outcome": "You understand and can run a basic RLHF pipeline with reward modeling and PPO."
+    },
+    {
+      "day": 15,
+      "title": "DPO and Preference Optimization",
+      "objectives": [
+        "Understand DPO",
+        "Compare DPO to RLHF",
+        "Explore ORPO, KTO, and variants"
+      ],
+      "topics": [
+        "Direct Preference Optimization",
+        "DPO vs PPO",
+        "ORPO and KTO",
+        "Preference dataset formats",
+        "Beta hyperparameter",
+        "Reference-free methods"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 14: RLHF and PPO"
+      ],
+      "intermediate_explanation": "DPO reformulates preference alignment as a simple classification-style loss on chosen/rejected pairs, removing the need for a separate reward model and unstable RL loop. It is far easier to implement and tune, which is why many open models now use DPO or variants like ORPO (which merges SFT and preference tuning) and KTO (which needs only binary good/bad labels). This is the modern, practical alignment toolkit.",
+      "practical_task": "Fine-tune a model with DPO on a preference dataset and compare it against the SFT baseline on quality.",
+      "mini_project": "Run DPO and ORPO on the same data and compare training simplicity, stability, and output quality.",
+      "assignment": "Write a comparison of DPO, PPO-RLHF, ORPO, and KTO covering data needs, stability, and use cases.",
+      "quiz": [
+        {
+          "question": "DPO removes the need for a separate...",
+          "options": ["Tokenizer", "Reward model and RL loop", "Optimizer", "Dataset"],
+          "answer": "Reward model and RL loop"
+        },
+        {
+          "question": "DPO trains on...",
+          "options": ["Single responses", "Chosen/rejected preference pairs", "Images", "Token counts"],
+          "answer": "Chosen/rejected preference pairs"
+        },
+        {
+          "question": "KTO requires only...",
+          "options": ["Pairwise rankings", "Binary good/bad labels", "Reward scores", "Human raters live"],
+          "answer": "Binary good/bad labels"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Direct Preference Optimization (DPO) Explained",
+          "channel": "Umar Jamil",
+          "url": "https://www.youtube.com/watch?v=hvGa5Mba4c8"
+        },
+        {
+          "title": "DPO vs RLHF",
+          "channel": "Trelis Research",
+          "url": "https://www.youtube.com/watch?v=k2pD3k1485c"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face TRL DPO Docs",
+          "url": "https://huggingface.co/docs/trl/dpo_trainer"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/trl",
+          "url": "https://github.com/huggingface/trl"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Direct Preference Optimization (Rafailov et al., 2023)",
+          "url": "https://arxiv.org/abs/2305.18290"
+        },
+        {
+          "title": "ORPO: Monolithic Preference Optimization without Reference Model (Hong et al., 2024)",
+          "url": "https://arxiv.org/abs/2403.07691"
+        }
+      ],
+      "skills_gained": [
+        "DPO",
+        "Preference optimization",
+        "ORPO/KTO",
+        "Alignment tuning"
+      ],
+      "expected_outcome": "You can align models using DPO and modern preference-optimization methods."
+    },
+    {
+      "day": 16,
+      "title": "LLM Evaluation and Benchmarks",
+      "objectives": [
+        "Use standard benchmarks",
+        "Build custom evaluations",
+        "Avoid evaluation pitfalls"
+      ],
+      "topics": [
+        "MMLU, GSM8K, HumanEval, MT-Bench",
+        "LM Evaluation Harness",
+        "LLM-as-judge",
+        "Contamination and gaming",
+        "Task-specific evals",
+        "Statistical significance"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 15: DPO"
+      ],
+      "intermediate_explanation": "You cannot improve what you cannot measure. Standard benchmarks (MMLU, GSM8K, HumanEval) give comparability, but they suffer from contamination and often do not reflect your real task. The professional approach combines harness-based benchmarks with custom, contamination-free evaluations for your domain, plus LLM-as-judge for open-ended quality, always with attention to statistical significance.",
+      "practical_task": "Evaluate a model on a benchmark using the LM Evaluation Harness and interpret the results critically.",
+      "mini_project": "Build a domain-specific evaluation suite (with a golden dataset and LLM-as-judge) and score two candidate models.",
+      "assignment": "Write a critique of a popular benchmark, identifying contamination or validity issues and proposing improvements.",
+      "quiz": [
+        {
+          "question": "A key risk with public benchmarks is...",
+          "options": ["Too few tokens", "Training-data contamination", "Small vocab", "Slow GPUs"],
+          "answer": "Training-data contamination"
+        },
+        {
+          "question": "HumanEval measures...",
+          "options": ["Math", "Code generation", "Translation", "Summarization"],
+          "answer": "Code generation"
+        },
+        {
+          "question": "LLM-as-judge is best for...",
+          "options": ["Exact-match tasks", "Open-ended quality assessment", "Tokenization", "Quantization"],
+          "answer": "Open-ended quality assessment"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "How to Evaluate LLMs",
+          "channel": "DeepLearningAI",
+          "url": "https://www.youtube.com/watch?v=fWC4VxolWAk"
+        },
+        {
+          "title": "LLM Benchmarks Explained",
+          "channel": "IBM Technology",
+          "url": "https://www.youtube.com/watch?v=lC_y_9Wj2xE"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "EleutherAI LM Evaluation Harness",
+          "url": "https://github.com/EleutherAI/lm-evaluation-harness"
+        },
+        {
+          "title": "Hugging Face Open LLM Leaderboard",
+          "url": "https://huggingface.co/open-llm-leaderboard"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "EleutherAI/lm-evaluation-harness",
+          "url": "https://github.com/EleutherAI/lm-evaluation-harness"
+        },
+        {
+          "name": "confident-ai/deepeval",
+          "url": "https://github.com/confident-ai/deepeval"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Measuring Massive Multitask Language Understanding (MMLU, Hendrycks et al., 2020)",
+          "url": "https://arxiv.org/abs/2009.03300"
+        },
+        {
+          "title": "Judging LLM-as-a-Judge with MT-Bench (Zheng et al., 2023)",
+          "url": "https://arxiv.org/abs/2306.05685"
+        }
+      ],
+      "skills_gained": [
+        "LLM benchmarking",
+        "Custom evaluation",
+        "LLM-as-judge",
+        "Contamination awareness"
+      ],
+      "expected_outcome": "You can rigorously evaluate LLMs with standard and custom benchmarks."
+    },
+    {
+      "day": 17,
+      "title": "Advanced Prompt Engineering and Optimization",
+      "objectives": [
+        "Apply advanced reasoning techniques",
+        "Optimize prompts programmatically",
+        "Use DSPy for prompt programming"
+      ],
+      "topics": [
+        "Self-consistency and ToT",
+        "ReAct and reflection",
+        "Automatic prompt optimization",
+        "DSPy",
+        "Prompt compression",
+        "Meta-prompting"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Beginner prompt engineering"
+      ],
+      "intermediate_explanation": "Beyond hand-crafted prompts, advanced techniques treat prompting as an optimizable program. Self-consistency samples multiple reasoning paths and votes, Tree-of-Thoughts explores branches, and reflection lets models critique and revise. Frameworks like DSPy compile and automatically optimize prompts against metrics, replacing brittle manual tuning with a systematic, measurable workflow.",
+      "practical_task": "Implement self-consistency on a reasoning task and measure accuracy gains versus a single chain-of-thought.",
+      "mini_project": "Use DSPy to build and automatically optimize a multi-step pipeline against a metric, comparing to manual prompts.",
+      "assignment": "Write a comparison of self-consistency, ToT, and reflection with an experiment measuring cost vs accuracy tradeoffs.",
+      "quiz": [
+        {
+          "question": "Self-consistency improves reasoning by...",
+          "options": ["Using one path", "Sampling multiple paths and voting", "Reducing tokens", "Skipping steps"],
+          "answer": "Sampling multiple paths and voting"
+        },
+        {
+          "question": "DSPy treats prompting as...",
+          "options": ["Manual art only", "An optimizable program", "Tokenization", "Quantization"],
+          "answer": "An optimizable program"
+        },
+        {
+          "question": "Reflection lets a model...",
+          "options": ["Skip reasoning", "Critique and revise its own output", "Reduce vocab", "Train itself"],
+          "answer": "Critique and revise its own output"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "DSPy Explained",
+          "channel": "Connor Shorten",
+          "url": "https://www.youtube.com/watch?v=41EfOY0Ldkc"
+        },
+        {
+          "title": "Advanced Prompt Engineering Techniques",
+          "channel": "DeepLearningAI",
+          "url": "https://www.youtube.com/watch?v=H4YK_7MAckk"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "DSPy Documentation",
+          "url": "https://dspy.ai/"
+        },
+        {
+          "title": "Prompt Engineering Guide - Advanced",
+          "url": "https://www.promptingguide.ai/techniques"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "stanfordnlp/dspy",
+          "url": "https://github.com/stanfordnlp/dspy"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Self-Consistency Improves Chain of Thought Reasoning (Wang et al., 2022)",
+          "url": "https://arxiv.org/abs/2203.11171"
+        },
+        {
+          "title": "Tree of Thoughts: Deliberate Problem Solving with LLMs (Yao et al., 2023)",
+          "url": "https://arxiv.org/abs/2305.10601"
+        }
+      ],
+      "skills_gained": [
+        "Advanced prompting",
+        "Self-consistency",
+        "DSPy",
+        "Prompt optimization"
+      ],
+      "expected_outcome": "You can systematically optimize prompts and reasoning pipelines."
+    },
+    {
+      "day": 18,
+      "title": "Structured Output and Function Calling",
+      "objectives": [
+        "Enforce structured outputs",
+        "Master function/tool calling",
+        "Use constrained decoding"
+      ],
+      "topics": [
+        "JSON mode and schemas",
+        "Function/tool calling protocols",
+        "Constrained decoding (grammars)",
+        "Pydantic validation",
+        "Instructor and Outlines",
+        "Error recovery"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 17: Advanced prompting"
+      ],
+      "intermediate_explanation": "Reliable structured output is what turns an LLM into a dependable software component. Rather than hoping the model returns valid JSON, you enforce it with schema-guided generation, constrained decoding that restricts tokens to a grammar, and validation libraries like Pydantic, Instructor, and Outlines. Robust function calling with validation and retry logic is a core production skill.",
+      "practical_task": "Use Instructor or Outlines to guarantee a Pydantic-validated JSON output from an LLM for an extraction task.",
+      "mini_project": "Build a document-to-structured-data extractor with schema validation, constrained decoding, and automatic retry on failure.",
+      "assignment": "Compare prompt-based JSON, JSON mode, and constrained decoding on reliability, measuring failure rates.",
+      "quiz": [
+        {
+          "question": "Constrained decoding restricts...",
+          "options": ["The dataset", "Which tokens can be generated to fit a grammar", "The optimizer", "The vocab size"],
+          "answer": "Which tokens can be generated to fit a grammar"
+        },
+        {
+          "question": "Pydantic is used to...",
+          "options": ["Train models", "Validate structured data", "Tokenize text", "Quantize weights"],
+          "answer": "Validate structured data"
+        },
+        {
+          "question": "Function calling lets a model return...",
+          "options": ["Only prose", "Structured calls to external tools", "Images", "Embeddings"],
+          "answer": "Structured calls to external tools"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Structured Outputs with LLMs",
+          "channel": "Jason Liu",
+          "url": "https://www.youtube.com/watch?v=yj-wSRJwrrc"
+        },
+        {
+          "title": "Function Calling Explained",
+          "channel": "James Briggs",
+          "url": "https://www.youtube.com/watch?v=0lOSvOoF2to"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "OpenAI Structured Outputs",
+          "url": "https://platform.openai.com/docs/guides/structured-outputs"
+        },
+        {
+          "title": "Outlines Docs",
+          "url": "https://dottxt-ai.github.io/outlines/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "jxnl/instructor",
+          "url": "https://github.com/jxnl/instructor"
+        },
+        {
+          "name": "dottxt-ai/outlines",
+          "url": "https://github.com/dottxt-ai/outlines"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Efficient Guided Generation for LLMs (Willard & Louf, 2023)",
+          "url": "https://arxiv.org/abs/2307.09702"
+        }
+      ],
+      "skills_gained": [
+        "Structured output",
+        "Function calling",
+        "Constrained decoding",
+        "Validation"
+      ],
+      "expected_outcome": "You can force reliable structured outputs from LLMs for production integration."
+    },
+    {
+      "day": 19,
+      "title": "Advanced RAG Architectures",
+      "objectives": [
+        "Design advanced RAG pipelines",
+        "Understand pre- and post-retrieval optimization",
+        "Reduce failure modes systematically"
+      ],
+      "topics": [
+        "Naive vs advanced vs modular RAG",
+        "Pre-retrieval optimization",
+        "Post-retrieval compression",
+        "Sentence-window and parent-document",
+        "RAG failure taxonomy",
+        "Self-RAG and corrective RAG"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Beginner RAG knowledge"
+      ],
+      "intermediate_explanation": "Advanced RAG treats retrieval as a modular, optimizable system. Pre-retrieval steps rewrite and route queries, post-retrieval steps compress and rerank context, and patterns like sentence-window and parent-document retrieval decouple the chunk you embed from the chunk you feed the model. Self-RAG and corrective RAG add self-assessment loops that decide when and what to retrieve, sharply reducing hallucinations.",
+      "practical_task": "Implement parent-document retrieval and measure the answer-quality improvement over naive fixed-chunk RAG.",
+      "mini_project": "Build a modular RAG system with query rewriting, reranking, and context compression, benchmarked with RAGAS.",
+      "assignment": "Produce a RAG failure taxonomy for a real corpus and map each failure to a specific architectural fix.",
+      "quiz": [
+        {
+          "question": "Parent-document retrieval decouples...",
+          "options": ["Model and tokenizer", "Embedded chunk from returned context", "GPU and CPU", "Query and answer"],
+          "answer": "Embedded chunk from returned context"
+        },
+        {
+          "question": "Corrective RAG adds...",
+          "options": ["Quantization", "A self-assessment/retrieval-decision loop", "More GPUs", "A tokenizer"],
+          "answer": "A self-assessment/retrieval-decision loop"
+        },
+        {
+          "question": "Post-retrieval compression aims to...",
+          "options": ["Increase tokens", "Fit the most relevant context in the window", "Slow generation", "Add noise"],
+          "answer": "Fit the most relevant context in the window"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Advanced RAG Techniques",
+          "channel": "LangChain",
+          "url": "https://www.youtube.com/watch?v=sVcwVQRHIc8"
+        },
+        {
+          "title": "12 RAG Pain Points and Solutions",
+          "channel": "LlamaIndex",
+          "url": "https://www.youtube.com/watch?v=TRjq7t2Ms5I"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LlamaIndex Advanced RAG",
+          "url": "https://docs.llamaindex.ai/en/stable/optimizing/production_rag/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "run-llama/llama_index",
+          "url": "https://github.com/run-llama/llama_index"
+        },
+        {
+          "name": "langchain-ai/langchain",
+          "url": "https://github.com/langchain-ai/langchain"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Self-RAG: Learning to Retrieve, Generate, and Critique (Asai et al., 2023)",
+          "url": "https://arxiv.org/abs/2310.11511"
+        },
+        {
+          "title": "Retrieval-Augmented Generation for LLMs: A Survey (Gao et al., 2023)",
+          "url": "https://arxiv.org/abs/2312.10997"
+        }
+      ],
+      "skills_gained": [
+        "Advanced RAG",
+        "Modular RAG",
+        "Self-RAG",
+        "Failure analysis"
+      ],
+      "expected_outcome": "You can design modular, high-accuracy RAG architectures."
+    },
+    {
+      "day": 20,
+      "title": "Chunking and Indexing Strategies",
+      "objectives": [
+        "Master chunking strategies",
+        "Build multi-representation indexes",
+        "Optimize index design"
+      ],
+      "topics": [
+        "Fixed, recursive, semantic chunking",
+        "Metadata-aware chunking",
+        "Multi-vector indexing",
+        "Summary and hypothetical-question indexes",
+        "Hierarchical indexing (RAPTOR)",
+        "Index evaluation"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 19: Advanced RAG"
+      ],
+      "intermediate_explanation": "How you split and index documents often matters more than which model you use. Semantic chunking respects meaning boundaries, multi-vector indexing stores several representations per document (raw, summary, hypothetical questions), and hierarchical methods like RAPTOR build tree summaries for multi-level retrieval. Choosing the right strategy per document type is a high-leverage engineering decision.",
+      "practical_task": "Compare fixed, recursive, and semantic chunking on the same corpus and measure retrieval quality for each.",
+      "mini_project": "Implement a RAPTOR-style hierarchical index and compare it to flat chunking on multi-hop questions.",
+      "assignment": "Write a chunking-strategy guide mapping document types (code, legal, chat logs) to recommended approaches.",
+      "quiz": [
+        {
+          "question": "Semantic chunking splits text by...",
+          "options": ["Fixed size", "Meaning/topic boundaries", "Alphabetical order", "File size"],
+          "answer": "Meaning/topic boundaries"
+        },
+        {
+          "question": "Multi-vector indexing stores...",
+          "options": ["One vector per doc", "Multiple representations per document", "Only summaries", "Only raw text"],
+          "answer": "Multiple representations per document"
+        },
+        {
+          "question": "RAPTOR builds...",
+          "options": ["A flat list", "Hierarchical summary trees", "A tokenizer", "A reward model"],
+          "answer": "Hierarchical summary trees"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Chunking Strategies for RAG",
+          "channel": "LlamaIndex",
+          "url": "https://www.youtube.com/watch?v=8OJC21T2SL4"
+        },
+        {
+          "title": "The 5 Levels of Text Splitting",
+          "channel": "Greg Kamradt",
+          "url": "https://www.youtube.com/watch?v=8OJC21T2SL4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LangChain Text Splitters",
+          "url": "https://python.langchain.com/docs/how_to/#text-splitters"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "parthsarthi03/raptor",
+          "url": "https://github.com/parthsarthi03/raptor"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval (Sarthi et al., 2024)",
+          "url": "https://arxiv.org/abs/2401.18059"
+        }
+      ],
+      "skills_gained": [
+        "Chunking strategies",
+        "Multi-vector indexing",
+        "Hierarchical retrieval"
+      ],
+      "expected_outcome": "You can design optimal chunking and indexing for any document type."
+    },
+    {
+      "day": 21,
+      "title": "Hybrid Search and Reranking",
+      "objectives": [
+        "Combine sparse and dense retrieval",
+        "Apply cross-encoder reranking",
+        "Fuse rankings effectively"
+      ],
+      "topics": [
+        "BM25 and sparse retrieval",
+        "Dense retrieval",
+        "Hybrid fusion (RRF)",
+        "Cross-encoder rerankers",
+        "ColBERT and late interaction",
+        "Reranker latency tradeoffs"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 20: Chunking and indexing"
+      ],
+      "intermediate_explanation": "Dense embeddings capture semantics but miss exact terms like IDs and error codes, where sparse BM25 excels. Hybrid search fuses both with Reciprocal Rank Fusion. A cross-encoder reranker then scores each query-document pair jointly for far higher precision than bi-encoders, at added latency. ColBERT's late interaction offers a middle ground. Tuning this stack is central to production retrieval quality.",
+      "practical_task": "Build a hybrid retriever (BM25 + dense) with RRF and add a cross-encoder reranker, measuring nDCG improvements.",
+      "mini_project": "Create a retrieval-quality benchmark comparing dense-only, hybrid, and hybrid+rerank on a labeled query set.",
+      "assignment": "Analyze the latency vs quality tradeoff of reranking top-k values and recommend a production setting.",
+      "quiz": [
+        {
+          "question": "BM25 is strong at...",
+          "options": ["Semantic paraphrase", "Exact term matching", "Image search", "Summarization"],
+          "answer": "Exact term matching"
+        },
+        {
+          "question": "A cross-encoder reranker scores...",
+          "options": ["Query and doc independently", "Query and doc jointly", "Only the query", "Only the doc"],
+          "answer": "Query and doc jointly"
+        },
+        {
+          "question": "RRF is used to...",
+          "options": ["Train models", "Fuse multiple ranked lists", "Tokenize", "Quantize"],
+          "answer": "Fuse multiple ranked lists"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Hybrid Search Explained",
+          "channel": "James Briggs",
+          "url": "https://www.youtube.com/watch?v=ySus5ZS0b94"
+        },
+        {
+          "title": "Rerankers for RAG",
+          "channel": "Cohere",
+          "url": "https://www.youtube.com/watch?v=Uh9bYiVrW_s"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Cohere Rerank Docs",
+          "url": "https://docs.cohere.com/docs/rerank-overview"
+        },
+        {
+          "title": "Sentence Transformers Cross-Encoders",
+          "url": "https://www.sbert.net/examples/applications/cross-encoder/README.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "stanford-futuredata/ColBERT",
+          "url": "https://github.com/stanford-futuredata/ColBERT"
+        },
+        {
+          "name": "AnswerDotAI/rerankers",
+          "url": "https://github.com/AnswerDotAI/rerankers"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "ColBERT: Efficient and Effective Passage Search via Late Interaction (Khattab & Zaharia, 2020)",
+          "url": "https://arxiv.org/abs/2004.12832"
+        }
+      ],
+      "skills_gained": [
+        "Hybrid search",
+        "Reranking",
+        "Rank fusion",
+        "Retrieval tuning"
+      ],
+      "expected_outcome": "You can build and tune hybrid retrieval with reranking for high precision."
+    },
+    {
+      "day": 22,
+      "title": "Query Transformation Techniques",
+      "objectives": [
+        "Transform queries for better retrieval",
+        "Apply HyDE and multi-query",
+        "Route and decompose queries"
+      ],
+      "topics": [
+        "Query rewriting",
+        "HyDE (hypothetical documents)",
+        "Multi-query generation",
+        "RAG-Fusion",
+        "Query decomposition",
+        "Semantic routing"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 21: Hybrid search and reranking"
+      ],
+      "intermediate_explanation": "User queries are often short and ambiguous, hurting retrieval. Query transformation fixes this before search: HyDE generates a hypothetical answer to embed instead of the raw query, multi-query and RAG-Fusion issue several reformulations and merge results, decomposition breaks complex questions into sub-questions, and semantic routing sends queries to the right index or tool. These techniques dramatically improve recall.",
+      "practical_task": "Implement HyDE and multi-query retrieval and compare recall against direct query embedding.",
+      "mini_project": "Build a query-transformation layer with routing and decomposition for a multi-source knowledge base.",
+      "assignment": "Evaluate HyDE, multi-query, and decomposition on complex multi-hop questions and report which wins where.",
+      "quiz": [
+        {
+          "question": "HyDE embeds...",
+          "options": ["The raw query", "A hypothetical answer document", "The reranker", "The tokenizer"],
+          "answer": "A hypothetical answer document"
+        },
+        {
+          "question": "Query decomposition is useful for...",
+          "options": ["Simple lookups", "Complex multi-hop questions", "Tokenization", "Quantization"],
+          "answer": "Complex multi-hop questions"
+        },
+        {
+          "question": "Semantic routing directs a query to...",
+          "options": ["A random index", "The most appropriate index/tool", "The optimizer", "The GPU"],
+          "answer": "The most appropriate index/tool"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Query Transformations for RAG",
+          "channel": "LangChain",
+          "url": "https://www.youtube.com/watch?v=wd7TZ4w1mSw"
+        },
+        {
+          "title": "HyDE and RAG-Fusion Explained",
+          "channel": "LlamaIndex",
+          "url": "https://www.youtube.com/watch?v=TRjq7t2Ms5I"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LangChain Query Transformation",
+          "url": "https://python.langchain.com/docs/how_to/#query-analysis"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "langchain-ai/rag-from-scratch",
+          "url": "https://github.com/langchain-ai/rag-from-scratch"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Precise Zero-Shot Dense Retrieval without Relevance Labels (HyDE, Gao et al., 2022)",
+          "url": "https://arxiv.org/abs/2212.10496"
+        }
+      ],
+      "skills_gained": [
+        "Query transformation",
+        "HyDE",
+        "Query routing",
+        "Decomposition"
+      ],
+      "expected_outcome": "You can boost retrieval recall with query transformation and routing."
+    },
+    {
+      "day": 23,
+      "title": "Vector Database Internals and Optimization",
+      "objectives": [
+        "Understand ANN index internals",
+        "Tune index parameters",
+        "Optimize for scale and cost"
+      ],
+      "topics": [
+        "HNSW internals",
+        "IVF and product quantization",
+        "Recall vs latency tuning",
+        "Sharding and replication",
+        "Filtering strategies",
+        "Memory vs disk indexes"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Beginner vector DB knowledge"
+      ],
+      "intermediate_explanation": "At scale, vector search becomes a systems problem. HNSW builds navigable small-world graphs tuned by parameters like M and ef, while IVF with product quantization compresses vectors to fit billions in memory. You learn to navigate the recall-latency-memory triangle, choose pre- vs post-filtering, and shard indexes, decisions that directly control cost and quality in production retrieval.",
+      "practical_task": "Tune HNSW parameters (M, ef_construction, ef_search) on a dataset and plot the recall-latency tradeoff curve.",
+      "mini_project": "Benchmark an IVF+PQ index vs HNSW at 1M+ vectors, comparing recall, latency, and memory footprint.",
+      "assignment": "Write a tuning guide for a chosen vector DB covering index selection, parameters, and filtering strategies.",
+      "quiz": [
+        {
+          "question": "HNSW's ef_search parameter trades...",
+          "options": ["Vocab for depth", "Recall for latency", "Memory for accuracy only", "Batch for epochs"],
+          "answer": "Recall for latency"
+        },
+        {
+          "question": "Product quantization primarily reduces...",
+          "options": ["Recall", "Memory footprint", "Latency to zero", "Vocabulary"],
+          "answer": "Memory footprint"
+        },
+        {
+          "question": "Pre-filtering applies metadata filters...",
+          "options": ["After search", "Before/within the ANN search", "During training", "During tokenization"],
+          "answer": "Before/within the ANN search"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "HNSW Explained",
+          "channel": "James Briggs",
+          "url": "https://www.youtube.com/watch?v=QvKMwLjdK-s"
+        },
+        {
+          "title": "Product Quantization for Vector Search",
+          "channel": "James Briggs",
+          "url": "https://www.youtube.com/watch?v=t9mRf2S5vDI"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "FAISS Wiki",
+          "url": "https://github.com/facebookresearch/faiss/wiki"
+        },
+        {
+          "title": "Qdrant Indexing Docs",
+          "url": "https://qdrant.tech/documentation/concepts/indexing/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "facebookresearch/faiss",
+          "url": "https://github.com/facebookresearch/faiss"
+        },
+        {
+          "name": "qdrant/qdrant",
+          "url": "https://github.com/qdrant/qdrant"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Efficient and robust approximate nearest neighbor search using HNSW (Malkov & Yashunin, 2016)",
+          "url": "https://arxiv.org/abs/1603.09320"
+        },
+        {
+          "title": "Product Quantization for Nearest Neighbor Search (Jegou et al., 2011)",
+          "url": "https://ieeexplore.ieee.org/document/5432202"
+        }
+      ],
+      "skills_gained": [
+        "ANN internals",
+        "Index tuning",
+        "Vector DB optimization",
+        "Scaling retrieval"
+      ],
+      "expected_outcome": "You can tune and scale vector databases for production workloads."
+    },
+    {
+      "day": 24,
+      "title": "GraphRAG and Knowledge Graphs",
+      "objectives": [
+        "Understand knowledge-graph RAG",
+        "Build entity/relationship graphs",
+        "Answer global questions"
+      ],
+      "topics": [
+        "Knowledge graph basics",
+        "Entity and relation extraction",
+        "GraphRAG (Microsoft)",
+        "Community detection and summaries",
+        "Graph vs vector retrieval",
+        "Hybrid graph+vector"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 22-23: Query transforms and vector DB internals"
+      ],
+      "intermediate_explanation": "Vector RAG struggles with global, connect-the-dots questions that span an entire corpus. GraphRAG extracts entities and relationships into a knowledge graph, clusters it into communities, and pre-summarizes each community, enabling both local (entity-centric) and global (thematic) queries. Combining graph traversal with vector retrieval gives the best of structured and semantic search.",
+      "practical_task": "Extract entities and relations from a document set with an LLM and build a small knowledge graph you can query.",
+      "mini_project": "Build a GraphRAG pipeline over a corpus and compare its global-question answers against vector RAG.",
+      "assignment": "Write an analysis of when GraphRAG outperforms vector RAG, with example query types for each.",
+      "quiz": [
+        {
+          "question": "GraphRAG is especially good at...",
+          "options": ["Exact keyword lookup", "Global, corpus-spanning questions", "Image search", "Tokenization"],
+          "answer": "Global, corpus-spanning questions"
+        },
+        {
+          "question": "GraphRAG summarizes graph...",
+          "options": ["Tokens", "Communities/clusters", "GPUs", "Optimizers"],
+          "answer": "Communities/clusters"
+        },
+        {
+          "question": "A knowledge graph stores...",
+          "options": ["Only vectors", "Entities and their relationships", "Only text", "Only images"],
+          "answer": "Entities and their relationships"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "GraphRAG Explained",
+          "channel": "Microsoft Research",
+          "url": "https://www.youtube.com/watch?v=r09tJfON6kE"
+        },
+        {
+          "title": "Knowledge Graphs for RAG",
+          "channel": "Neo4j",
+          "url": "https://www.youtube.com/watch?v=hb8uT-VBEww"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Microsoft GraphRAG Docs",
+          "url": "https://microsoft.github.io/graphrag/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "microsoft/graphrag",
+          "url": "https://github.com/microsoft/graphrag"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "From Local to Global: A Graph RAG Approach to Query-Focused Summarization (Edge et al., 2024)",
+          "url": "https://arxiv.org/abs/2404.16130"
+        }
+      ],
+      "skills_gained": [
+        "GraphRAG",
+        "Knowledge graphs",
+        "Entity extraction",
+        "Graph+vector retrieval"
+      ],
+      "expected_outcome": "You can build GraphRAG systems for global, relationship-aware queries."
+    },
+    {
+      "day": 25,
+      "title": "Agentic RAG",
+      "objectives": [
+        "Combine agents with retrieval",
+        "Enable iterative retrieval",
+        "Add self-correction loops"
+      ],
+      "topics": [
+        "Agentic RAG concept",
+        "Retrieval as a tool",
+        "Iterative/multi-step retrieval",
+        "Self-correction and grading",
+        "Adaptive retrieval decisions",
+        "LangGraph RAG agents"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 19-24: Advanced RAG stack"
+      ],
+      "intermediate_explanation": "Agentic RAG replaces a fixed retrieve-then-generate pipeline with an agent that decides whether, what, and how many times to retrieve. It can grade retrieved documents, rewrite the query and retry when results are poor, and combine multiple sources, implementing corrective and self-RAG patterns as a control loop. This adaptivity is the current state of the art for complex knowledge tasks.",
+      "practical_task": "Build a LangGraph agent that retrieves, grades relevance, and re-queries when documents are insufficient.",
+      "mini_project": "Create an agentic RAG assistant with document grading, query rewriting, and web-search fallback.",
+      "assignment": "Compare static RAG vs agentic RAG on hard queries and quantify accuracy, latency, and cost differences.",
+      "quiz": [
+        {
+          "question": "Agentic RAG treats retrieval as...",
+          "options": ["A fixed first step", "A tool the agent decides to use", "A loss function", "A tokenizer"],
+          "answer": "A tool the agent decides to use"
+        },
+        {
+          "question": "Document grading lets the agent...",
+          "options": ["Skip generation", "Decide if retrieved context is relevant", "Quantize", "Train itself"],
+          "answer": "Decide if retrieved context is relevant"
+        },
+        {
+          "question": "A tradeoff of agentic RAG is...",
+          "options": ["Lower accuracy", "Higher latency and cost", "Smaller vocab", "No retrieval"],
+          "answer": "Higher latency and cost"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Agentic RAG with LangGraph",
+          "channel": "LangChain",
+          "url": "https://www.youtube.com/watch?v=hvAPnpSfSGo"
+        },
+        {
+          "title": "Building Agentic RAG Systems",
+          "channel": "LlamaIndex",
+          "url": "https://www.youtube.com/watch?v=TRjq7t2Ms5I"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LangGraph RAG Tutorials",
+          "url": "https://langchain-ai.github.io/langgraph/tutorials/rag/langgraph_agentic_rag/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "langchain-ai/langgraph",
+          "url": "https://github.com/langchain-ai/langgraph"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Corrective Retrieval Augmented Generation (Yan et al., 2024)",
+          "url": "https://arxiv.org/abs/2401.15884"
+        }
+      ],
+      "skills_gained": [
+        "Agentic RAG",
+        "Iterative retrieval",
+        "Self-correction",
+        "LangGraph"
+      ],
+      "expected_outcome": "You can build adaptive, self-correcting agentic RAG systems."
+    },
+    {
+      "day": 26,
+      "title": "Agent Frameworks Deep Dive (LangGraph)",
+      "objectives": [
+        "Model agents as graphs",
+        "Manage state and control flow",
+        "Add human-in-the-loop"
+      ],
+      "topics": [
+        "Graph-based agent design",
+        "State management",
+        "Conditional edges and cycles",
+        "Checkpointing and persistence",
+        "Human-in-the-loop",
+        "Streaming and observability"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 25: Agentic RAG"
+      ],
+      "intermediate_explanation": "Production agents need explicit, debuggable control flow, not opaque loops. LangGraph models agents as state machines: nodes perform work, conditional edges route based on state, and cycles enable iteration. Built-in checkpointing gives durable memory and time-travel debugging, while human-in-the-loop breakpoints let you approve or edit actions before they execute, essential for safe, reliable agents.",
+      "practical_task": "Build a LangGraph agent with conditional routing, a cycle for retries, and a human-approval breakpoint.",
+      "mini_project": "Create a stateful multi-tool agent with persistence and streaming that a user can pause, inspect, and resume.",
+      "assignment": "Design and diagram the state graph for a real agent use case and justify each node and edge.",
+      "quiz": [
+        {
+          "question": "LangGraph models agents as...",
+          "options": ["Flat scripts", "State machines/graphs", "Tokenizers", "Optimizers"],
+          "answer": "State machines/graphs"
+        },
+        {
+          "question": "Checkpointing enables...",
+          "options": ["Faster GPUs", "Durable memory and resumption", "Smaller vocab", "More heads"],
+          "answer": "Durable memory and resumption"
+        },
+        {
+          "question": "Human-in-the-loop breakpoints allow...",
+          "options": ["Skipping tools", "Approving actions before execution", "Quantization", "Training"],
+          "answer": "Approving actions before execution"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "LangGraph Complete Tutorial",
+          "channel": "LangChain",
+          "url": "https://www.youtube.com/watch?v=hvAPnpSfSGo"
+        },
+        {
+          "title": "Building Agents with LangGraph",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=bZzyPscbtI8"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LangGraph Documentation",
+          "url": "https://langchain-ai.github.io/langgraph/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "langchain-ai/langgraph",
+          "url": "https://github.com/langchain-ai/langgraph"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al., 2022)",
+          "url": "https://arxiv.org/abs/2210.03629"
+        }
+      ],
+      "skills_gained": [
+        "LangGraph",
+        "Agent state management",
+        "Human-in-the-loop",
+        "Durable agents"
+      ],
+      "expected_outcome": "You can build robust, stateful agents with explicit control flow."
+    },
+    {
+      "day": 27,
+      "title": "Multi-Agent Systems",
+      "objectives": [
+        "Design multi-agent architectures",
+        "Coordinate specialized agents",
+        "Manage communication and roles"
+      ],
+      "topics": [
+        "Multi-agent patterns",
+        "Supervisor/orchestrator",
+        "Specialized agent roles",
+        "Agent communication",
+        "Collaboration vs cost",
+        "Frameworks (CrewAI, AutoGen)"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 26: Agent frameworks"
+      ],
+      "intermediate_explanation": "Complex tasks benefit from teams of specialized agents. A supervisor pattern routes subtasks to expert agents (researcher, coder, reviewer) and integrates results, while hierarchical and network topologies enable richer collaboration. The tradeoff is cost and latency, so you learn when a single strong agent beats a crowd and how to control communication to avoid runaway loops.",
+      "practical_task": "Build a supervisor multi-agent system where a coordinator delegates to a researcher and a writer agent.",
+      "mini_project": "Create a multi-agent content pipeline (research, draft, critique, revise) and compare quality to a single agent.",
+      "assignment": "Write a decision guide for single-agent vs multi-agent designs, including cost and reliability considerations.",
+      "quiz": [
+        {
+          "question": "The supervisor pattern is used to...",
+          "options": ["Train models", "Route subtasks to specialized agents", "Quantize", "Tokenize"],
+          "answer": "Route subtasks to specialized agents"
+        },
+        {
+          "question": "A key cost of multi-agent systems is...",
+          "options": ["Lower accuracy always", "Higher token cost and latency", "Smaller vocab", "No tools"],
+          "answer": "Higher token cost and latency"
+        },
+        {
+          "question": "AutoGen and CrewAI are...",
+          "options": ["Vector DBs", "Multi-agent frameworks", "Tokenizers", "Optimizers"],
+          "answer": "Multi-agent frameworks"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Multi-Agent Systems with LangGraph",
+          "channel": "LangChain",
+          "url": "https://www.youtube.com/watch?v=hvAPnpSfSGo"
+        },
+        {
+          "title": "CrewAI Full Tutorial",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=sPzc6hMg7So"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "AutoGen Docs",
+          "url": "https://microsoft.github.io/autogen/"
+        },
+        {
+          "title": "CrewAI Docs",
+          "url": "https://docs.crewai.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "microsoft/autogen",
+          "url": "https://github.com/microsoft/autogen"
+        },
+        {
+          "name": "crewAIInc/crewAI",
+          "url": "https://github.com/crewAIInc/crewAI"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation (Wu et al., 2023)",
+          "url": "https://arxiv.org/abs/2308.08155"
+        }
+      ],
+      "skills_gained": [
+        "Multi-agent systems",
+        "Agent orchestration",
+        "Role design",
+        "CrewAI/AutoGen"
+      ],
+      "expected_outcome": "You can design and coordinate multi-agent systems for complex tasks."
+    },
+    {
+      "day": 28,
+      "title": "Agent Memory and Planning",
+      "objectives": [
+        "Implement agent memory types",
+        "Add planning capabilities",
+        "Manage long-horizon tasks"
+      ],
+      "topics": [
+        "Short-term vs long-term memory",
+        "Episodic and semantic memory",
+        "Memory retrieval and summarization",
+        "Task planning and decomposition",
+        "Reflection and self-improvement",
+        "Context window management"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 27: Multi-agent systems"
+      ],
+      "intermediate_explanation": "Capable agents need memory and planning. Short-term memory holds the current task, while long-term memory (episodic experiences and semantic facts) persists across sessions via a store the agent retrieves from. Planning decomposes goals into steps, and reflection lets agents learn from past attempts. Managing what stays in the finite context window versus external memory is the core engineering challenge.",
+      "practical_task": "Add long-term memory to an agent using a vector store, with retrieval and periodic summarization.",
+      "mini_project": "Build a personal-assistant agent that remembers user preferences across sessions and plans multi-step tasks.",
+      "assignment": "Design a memory architecture for a long-running agent, specifying what is stored, retrieved, and forgotten.",
+      "quiz": [
+        {
+          "question": "Long-term memory persists...",
+          "options": ["Only within one turn", "Across sessions", "Only in GPU", "Never"],
+          "answer": "Across sessions"
+        },
+        {
+          "question": "Reflection helps an agent...",
+          "options": ["Skip tasks", "Learn from past attempts", "Quantize", "Tokenize"],
+          "answer": "Learn from past attempts"
+        },
+        {
+          "question": "Context window management decides what stays...",
+          "options": ["On disk only", "In the finite prompt vs external memory", "In the vocab", "In the optimizer"],
+          "answer": "In the finite prompt vs external memory"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Agent Memory Explained",
+          "channel": "LangChain",
+          "url": "https://www.youtube.com/watch?v=hvAPnpSfSGo"
+        },
+        {
+          "title": "Building Agents with Memory",
+          "channel": "Deeplearning.ai",
+          "url": "https://www.youtube.com/watch?v=bZzyPscbtI8"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LangGraph Memory Docs",
+          "url": "https://langchain-ai.github.io/langgraph/concepts/memory/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "langchain-ai/langmem",
+          "url": "https://github.com/langchain-ai/langmem"
+        },
+        {
+          "name": "mem0ai/mem0",
+          "url": "https://github.com/mem0ai/mem0"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Generative Agents: Interactive Simulacra of Human Behavior (Park et al., 2023)",
+          "url": "https://arxiv.org/abs/2304.03442"
+        },
+        {
+          "title": "Reflexion: Language Agents with Verbal Reinforcement Learning (Shinn et al., 2023)",
+          "url": "https://arxiv.org/abs/2303.11366"
+        }
+      ],
+      "skills_gained": [
+        "Agent memory",
+        "Planning",
+        "Reflection",
+        "Long-horizon tasks"
+      ],
+      "expected_outcome": "You can build agents with persistent memory and planning capabilities."
+    },
+    {
+      "day": 29,
+      "title": "Tool Use and the Model Context Protocol (MCP)",
+      "objectives": [
+        "Master robust tool calling",
+        "Understand and use MCP",
+        "Build reusable tool servers"
+      ],
+      "topics": [
+        "Tool schemas and descriptions",
+        "Parallel tool calls",
+        "Model Context Protocol (MCP)",
+        "MCP servers and clients",
+        "Tool error handling",
+        "Security of tool execution"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 18: Function calling",
+        "Day 26: Agent frameworks"
+      ],
+      "intermediate_explanation": "The Model Context Protocol standardizes how LLM applications connect to tools and data sources, so a tool built once (an MCP server) works across many clients. You learn to write clear tool schemas the model reliably invokes, handle parallel calls and errors gracefully, and sandbox tool execution for security. MCP is rapidly becoming the industry integration standard.",
+      "practical_task": "Build a simple MCP server exposing two tools and connect it to an MCP-capable client to invoke them.",
+      "mini_project": "Create a reusable MCP server (e.g., database + file access) with validation and sandboxing, usable by any agent.",
+      "assignment": "Write a security analysis of tool execution risks and the mitigations you would apply in production.",
+      "quiz": [
+        {
+          "question": "MCP standardizes...",
+          "options": ["Model training", "How apps connect to tools/data", "Tokenization", "Quantization"],
+          "answer": "How apps connect to tools/data"
+        },
+        {
+          "question": "Good tool descriptions primarily improve...",
+          "options": ["GPU speed", "Whether the model calls the tool correctly", "Vocab size", "Context length"],
+          "answer": "Whether the model calls the tool correctly"
+        },
+        {
+          "question": "Tool execution should be...",
+          "options": ["Unrestricted", "Sandboxed and validated", "Skipped", "Hardcoded"],
+          "answer": "Sandboxed and validated"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Model Context Protocol (MCP) Explained",
+          "channel": "Anthropic",
+          "url": "https://www.youtube.com/watch?v=CDjjaTALI68"
+        },
+        {
+          "title": "Build an MCP Server",
+          "channel": "Matt Pocock",
+          "url": "https://www.youtube.com/watch?v=Ek8JHgZtmcI"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Model Context Protocol Docs",
+          "url": "https://modelcontextprotocol.io/"
+        },
+        {
+          "title": "Anthropic Tool Use Docs",
+          "url": "https://docs.anthropic.com/en/docs/build-with-claude/tool-use"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "modelcontextprotocol/servers",
+          "url": "https://github.com/modelcontextprotocol/servers"
+        },
+        {
+          "name": "modelcontextprotocol/python-sdk",
+          "url": "https://github.com/modelcontextprotocol/python-sdk"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Toolformer: Language Models Can Teach Themselves to Use Tools (Schick et al., 2023)",
+          "url": "https://arxiv.org/abs/2302.04761"
+        }
+      ],
+      "skills_gained": [
+        "Tool use",
+        "MCP",
+        "Tool server design",
+        "Execution security"
+      ],
+      "expected_outcome": "You can build robust, reusable tool integrations using MCP."
+    },
+    {
+      "day": 30,
+      "title": "LLM Orchestration and Workflows",
+      "objectives": [
+        "Design LLM workflows",
+        "Balance workflows vs agents",
+        "Build durable pipelines"
+      ],
+      "topics": [
+        "Workflows vs agents",
+        "Prompt chaining and routing",
+        "Parallelization and orchestration",
+        "Evaluator-optimizer loops",
+        "Durable execution",
+        "Cost and latency design"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 29: Tool use and MCP"
+      ],
+      "intermediate_explanation": "Not every task needs a fully autonomous agent. Anthropic's guidance distinguishes predictable workflows (chaining, routing, parallelization, evaluator-optimizer) from agents that decide their own path. Workflows are more reliable and cheaper when the steps are known, while agents suit open-ended problems. Choosing correctly, and making execution durable, is a hallmark of mature GenAI engineering.",
+      "practical_task": "Implement three workflow patterns (chaining, routing, parallelization) for a task and compare reliability and cost.",
+      "mini_project": "Build an evaluator-optimizer workflow that iteratively drafts and refines output until it passes a quality bar.",
+      "assignment": "Write a guide for choosing workflows vs agents with a decision tree and cost/reliability analysis.",
+      "quiz": [
+        {
+          "question": "Workflows are preferred when steps are...",
+          "options": ["Unknown", "Predictable", "Random", "Impossible"],
+          "answer": "Predictable"
+        },
+        {
+          "question": "An evaluator-optimizer loop...",
+          "options": ["Runs once", "Iteratively refines output against a check", "Skips evaluation", "Only tokenizes"],
+          "answer": "Iteratively refines output against a check"
+        },
+        {
+          "question": "Agents are best suited to...",
+          "options": ["Fixed pipelines", "Open-ended, dynamic problems", "Tokenization", "Quantization"],
+          "answer": "Open-ended, dynamic problems"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Building Effective Agents",
+          "channel": "Anthropic",
+          "url": "https://www.youtube.com/watch?v=D7_ipDqhtwk"
+        },
+        {
+          "title": "LLM Workflows vs Agents",
+          "channel": "LangChain",
+          "url": "https://www.youtube.com/watch?v=hvAPnpSfSGo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Anthropic: Building Effective Agents",
+          "url": "https://www.anthropic.com/engineering/building-effective-agents"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "langchain-ai/langgraph",
+          "url": "https://github.com/langchain-ai/langgraph"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al., 2022)",
+          "url": "https://arxiv.org/abs/2210.03629"
+        }
+      ],
+      "skills_gained": [
+        "LLM orchestration",
+        "Workflow patterns",
+        "Durable execution",
+        "Design tradeoffs"
+      ],
+      "expected_outcome": "You can architect reliable LLM workflows and know when to use agents."
+    },
+    {
+      "day": 31,
+      "title": "LLM Inference Optimization (vLLM, TGI)",
+      "objectives": [
+        "Understand inference bottlenecks",
+        "Use high-throughput serving engines",
+        "Apply continuous batching"
+      ],
+      "topics": [
+        "Prefill vs decode phases",
+        "PagedAttention",
+        "Continuous batching",
+        "vLLM and TGI",
+        "Throughput vs latency",
+        "Tensor parallelism for serving"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 2: Attention variants",
+        "Day 10: Quantization"
+      ],
+      "intermediate_explanation": "Serving LLMs efficiently is a specialized discipline. Inference has a compute-bound prefill phase and a memory-bandwidth-bound decode phase. vLLM's PagedAttention manages the KV cache like OS virtual memory to eliminate fragmentation, and continuous batching keeps the GPU busy by swapping requests in and out per token. These techniques deliver order-of-magnitude throughput gains over naive serving.",
+      "practical_task": "Serve a model with vLLM and benchmark throughput and latency against a naive Hugging Face generate loop.",
+      "mini_project": "Deploy an OpenAI-compatible vLLM endpoint and load-test it, tuning batch and concurrency for best throughput.",
+      "assignment": "Write an explainer on why PagedAttention and continuous batching improve throughput, with measured results.",
+      "quiz": [
+        {
+          "question": "PagedAttention manages the...",
+          "options": ["Optimizer", "KV cache like virtual memory", "Vocabulary", "Dataset"],
+          "answer": "KV cache like virtual memory"
+        },
+        {
+          "question": "The decode phase is bound by...",
+          "options": ["Compute", "Memory bandwidth", "Vocab", "Disk"],
+          "answer": "Memory bandwidth"
+        },
+        {
+          "question": "Continuous batching improves...",
+          "options": ["Accuracy", "GPU utilization/throughput", "Vocab size", "Context length"],
+          "answer": "GPU utilization/throughput"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "vLLM and PagedAttention Explained",
+          "channel": "Anyscale",
+          "url": "https://www.youtube.com/watch?v=5ZlavKF_98U"
+        },
+        {
+          "title": "LLM Inference Optimization",
+          "channel": "Trelis Research",
+          "url": "https://www.youtube.com/watch?v=z2M8gKGYws4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "vLLM Documentation",
+          "url": "https://docs.vllm.ai/"
+        },
+        {
+          "title": "Text Generation Inference (TGI) Docs",
+          "url": "https://huggingface.co/docs/text-generation-inference/index"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "vllm-project/vllm",
+          "url": "https://github.com/vllm-project/vllm"
+        },
+        {
+          "name": "huggingface/text-generation-inference",
+          "url": "https://github.com/huggingface/text-generation-inference"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Efficient Memory Management for LLM Serving with PagedAttention (Kwon et al., 2023)",
+          "url": "https://arxiv.org/abs/2309.06180"
+        }
+      ],
+      "skills_gained": [
+        "Inference optimization",
+        "vLLM",
+        "Continuous batching",
+        "Serving throughput"
+      ],
+      "expected_outcome": "You can serve LLMs at high throughput using modern inference engines."
+    },
+    {
+      "day": 32,
+      "title": "KV Cache and Speculative Decoding",
+      "objectives": [
+        "Optimize the KV cache",
+        "Apply speculative decoding",
+        "Reduce decode latency"
+      ],
+      "topics": [
+        "KV cache mechanics and size",
+        "Cache quantization",
+        "Prefix/prompt caching",
+        "Speculative decoding",
+        "Draft models and Medusa",
+        "Latency optimization"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 31: Inference optimization"
+      ],
+      "intermediate_explanation": "The KV cache stores past keys/values so each new token avoids recomputation, but it grows with context and dominates memory. You reduce it via GQA and cache quantization, and reuse it across requests with prefix caching. Speculative decoding uses a small draft model to propose several tokens that the large model verifies in parallel, cutting latency substantially without changing outputs.",
+      "practical_task": "Enable prefix caching and speculative decoding in a serving engine and measure latency reduction.",
+      "mini_project": "Benchmark speculative decoding with different draft models and quantify the accepted-token rate and speedup.",
+      "assignment": "Write an analysis of KV-cache memory scaling with context and batch, and strategies to bound it.",
+      "quiz": [
+        {
+          "question": "The KV cache grows with...",
+          "options": ["Vocab only", "Context length and batch size", "Learning rate", "Optimizer"],
+          "answer": "Context length and batch size"
+        },
+        {
+          "question": "Speculative decoding uses a draft model to...",
+          "options": ["Replace the big model", "Propose tokens verified by the big model", "Tokenize", "Quantize"],
+          "answer": "Propose tokens verified by the big model"
+        },
+        {
+          "question": "Prefix caching reuses computation for...",
+          "options": ["Random tokens", "Shared prompt prefixes", "The optimizer", "The vocab"],
+          "answer": "Shared prompt prefixes"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Speculative Decoding Explained",
+          "channel": "Trelis Research",
+          "url": "https://www.youtube.com/watch?v=hm7VEgxhOvk"
+        },
+        {
+          "title": "KV Cache Explained",
+          "channel": "Umar Jamil",
+          "url": "https://www.youtube.com/watch?v=80bIUggRJf4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "vLLM Speculative Decoding Docs",
+          "url": "https://docs.vllm.ai/en/latest/features/spec_decode.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "FasterDecoding/Medusa",
+          "url": "https://github.com/FasterDecoding/Medusa"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Fast Inference from Transformers via Speculative Decoding (Leviathan et al., 2022)",
+          "url": "https://arxiv.org/abs/2211.17192"
+        }
+      ],
+      "skills_gained": [
+        "KV cache optimization",
+        "Speculative decoding",
+        "Prefix caching",
+        "Latency tuning"
+      ],
+      "expected_outcome": "You can minimize inference latency with cache and decoding optimizations."
+    },
+    {
+      "day": 33,
+      "title": "Model Quantization in Practice (GPTQ, AWQ, GGUF)",
+      "objectives": [
+        "Apply post-training quantization",
+        "Compare GPTQ, AWQ, GGUF",
+        "Run quantized models efficiently"
+      ],
+      "topics": [
+        "GPTQ",
+        "AWQ",
+        "GGUF and llama.cpp",
+        "Bitsandbytes NF4",
+        "Accuracy vs size tradeoffs",
+        "Calibration data"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 10: Quantization theory"
+      ],
+      "intermediate_explanation": "Practical quantization lets you run large models on modest hardware. GPTQ and AWQ are calibration-based methods that preserve accuracy well at 4-bit for GPU inference, while GGUF (with llama.cpp) targets efficient CPU and edge deployment. You learn which format fits which deployment, how calibration data affects quality, and how to measure the accuracy cost of compression.",
+      "practical_task": "Quantize a model with AWQ and GGUF, then compare output quality, size, and inference speed across formats.",
+      "mini_project": "Build a quantization comparison report for a model across GPTQ/AWQ/GGUF at multiple bit widths with benchmarks.",
+      "assignment": "Recommend a quantization strategy for three deployment targets (GPU server, laptop, edge) with justification.",
+      "quiz": [
+        {
+          "question": "GGUF with llama.cpp targets...",
+          "options": ["Only training", "Efficient CPU/edge inference", "Tokenization", "Data curation"],
+          "answer": "Efficient CPU/edge inference"
+        },
+        {
+          "question": "GPTQ and AWQ rely on...",
+          "options": ["No data", "Calibration data", "Human feedback", "Reranking"],
+          "answer": "Calibration data"
+        },
+        {
+          "question": "4-bit quantization primarily reduces...",
+          "options": ["Accuracy to zero", "Memory footprint", "Vocab", "Context"],
+          "answer": "Memory footprint"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "GPTQ vs AWQ vs GGUF Quantization",
+          "channel": "Trelis Research",
+          "url": "https://www.youtube.com/watch?v=mNE_d-C82lI"
+        },
+        {
+          "title": "Run LLMs Locally with llama.cpp",
+          "channel": "Matthew Berman",
+          "url": "https://www.youtube.com/watch?v=B7t8jN8j2Cg"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face Quantization Overview",
+          "url": "https://huggingface.co/docs/transformers/quantization/overview"
+        },
+        {
+          "title": "llama.cpp README",
+          "url": "https://github.com/ggerganov/llama.cpp"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "ggerganov/llama.cpp",
+          "url": "https://github.com/ggerganov/llama.cpp"
+        },
+        {
+          "name": "casper-hansen/AutoAWQ",
+          "url": "https://github.com/casper-hansen/AutoAWQ"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "GPTQ: Accurate Post-Training Quantization for Generative Transformers (Frantar et al., 2022)",
+          "url": "https://arxiv.org/abs/2210.17323"
+        },
+        {
+          "title": "AWQ: Activation-aware Weight Quantization (Lin et al., 2023)",
+          "url": "https://arxiv.org/abs/2306.00978"
+        }
+      ],
+      "skills_gained": [
+        "Practical quantization",
+        "GPTQ/AWQ/GGUF",
+        "Edge deployment",
+        "Format selection"
+      ],
+      "expected_outcome": "You can quantize and deploy models efficiently across hardware targets."
+    },
+    {
+      "day": 34,
+      "title": "Serving and Scaling LLMs in Production",
+      "objectives": [
+        "Architect scalable serving",
+        "Implement autoscaling",
+        "Optimize cost per token"
+      ],
+      "topics": [
+        "Serving architecture",
+        "Load balancing and queuing",
+        "Autoscaling GPUs",
+        "Multi-model routing",
+        "Caching layers",
+        "Cost per token optimization"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 31-33: Inference and quantization"
+      ],
+      "intermediate_explanation": "Production serving must handle bursty, concurrent traffic within latency SLAs and a budget. You design a stack with load balancing, request queuing, and GPU autoscaling, route requests to the cheapest capable model, and add semantic and prompt caches to cut cost. The goal is minimizing cost per token while meeting p95 latency and reliability targets.",
+      "practical_task": "Deploy a serving stack with a load balancer and a request queue, then load-test it to find its throughput ceiling.",
+      "mini_project": "Build a multi-model gateway that routes queries to small/large models by difficulty and tracks cost per request.",
+      "assignment": "Design a serving architecture for a target QPS and latency SLA, with a capacity and cost estimate.",
+      "quiz": [
+        {
+          "question": "A multi-model router saves cost by...",
+          "options": ["Always using the biggest model", "Routing easy queries to cheaper models", "Skipping inference", "Disabling cache"],
+          "answer": "Routing easy queries to cheaper models"
+        },
+        {
+          "question": "Autoscaling responds to...",
+          "options": ["Vocab size", "Traffic/load", "Learning rate", "Tokenizer"],
+          "answer": "Traffic/load"
+        },
+        {
+          "question": "Semantic caching returns cached answers for...",
+          "options": ["Identical bytes only", "Semantically similar queries", "Random queries", "All queries"],
+          "answer": "Semantically similar queries"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Scaling LLMs in Production",
+          "channel": "Anyscale",
+          "url": "https://www.youtube.com/watch?v=5ZlavKF_98U"
+        },
+        {
+          "title": "Deploying LLMs at Scale",
+          "channel": "Trelis Research",
+          "url": "https://www.youtube.com/watch?v=z2M8gKGYws4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "vLLM Distributed Serving",
+          "url": "https://docs.vllm.ai/en/latest/serving/distributed_serving.html"
+        },
+        {
+          "title": "Ray Serve Docs",
+          "url": "https://docs.ray.io/en/latest/serve/index.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "ray-project/ray",
+          "url": "https://github.com/ray-project/ray"
+        },
+        {
+          "name": "BerriAI/litellm",
+          "url": "https://github.com/BerriAI/litellm"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Orca: A Distributed Serving System for Transformer-Based Generative Models (Yu et al., 2022)",
+          "url": "https://www.usenix.org/conference/osdi22/presentation/yu"
+        }
+      ],
+      "skills_gained": [
+        "Scalable serving",
+        "Autoscaling",
+        "Model routing",
+        "Cost optimization"
+      ],
+      "expected_outcome": "You can architect cost-efficient, scalable LLM serving systems."
+    },
+    {
+      "day": 35,
+      "title": "LLMOps and Observability",
+      "objectives": [
+        "Implement end-to-end LLMOps",
+        "Trace and monitor pipelines",
+        "Manage prompts and versions"
+      ],
+      "topics": [
+        "Tracing (LangSmith, Langfuse)",
+        "Metrics: latency, cost, quality",
+        "Prompt and model versioning",
+        "A/B testing and canaries",
+        "Feedback collection",
+        "Drift detection"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Beginner LLMOps",
+        "Day 34: Serving"
+      ],
+      "intermediate_explanation": "Mature LLMOps brings observability and controlled change to LLM systems. Distributed tracing reconstructs every step of a request for debugging, dashboards track latency/cost/quality, and prompt/model versioning plus A/B tests and canary releases let you ship changes safely. Capturing user feedback and detecting distribution drift close the loop for continuous improvement.",
+      "practical_task": "Instrument a RAG or agent app with full tracing and a dashboard for latency, cost, and quality signals.",
+      "mini_project": "Set up A/B testing between two prompt versions with online metrics and a statistically sound comparison.",
+      "assignment": "Design an LLMOps observability plan covering tracing, versioning, alerts, and drift detection for a product.",
+      "quiz": [
+        {
+          "question": "Distributed tracing helps you...",
+          "options": ["Train faster", "Reconstruct and debug each request step", "Reduce vocab", "Quantize"],
+          "answer": "Reconstruct and debug each request step"
+        },
+        {
+          "question": "Canary releases reduce risk by...",
+          "options": ["Shipping to all users at once", "Rolling out to a small subset first", "Skipping tests", "Disabling logs"],
+          "answer": "Rolling out to a small subset first"
+        },
+        {
+          "question": "Drift detection catches...",
+          "options": ["GPU faults", "Shifts in input/output distributions", "Vocab errors", "Tokenizer bugs"],
+          "answer": "Shifts in input/output distributions"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "LLMOps Full Guide",
+          "channel": "IBM Technology",
+          "url": "https://www.youtube.com/watch?v=Fs6Jr6Uwc9E"
+        },
+        {
+          "title": "LangSmith Observability Tutorial",
+          "channel": "LangChain",
+          "url": "https://www.youtube.com/watch?v=tFXm5ijih98"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LangSmith Docs",
+          "url": "https://docs.smith.langchain.com/"
+        },
+        {
+          "title": "Langfuse Docs",
+          "url": "https://langfuse.com/docs"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "langfuse/langfuse",
+          "url": "https://github.com/langfuse/langfuse"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Challenges in Deploying Machine Learning: a Survey of Case Studies (Paleyes et al., 2020)",
+          "url": "https://arxiv.org/abs/2011.09926"
+        }
+      ],
+      "skills_gained": [
+        "LLMOps",
+        "Observability",
+        "Versioning",
+        "A/B testing"
+      ],
+      "expected_outcome": "You can operate LLM systems with full observability and safe change management."
+    },
+    {
+      "day": 36,
+      "title": "Evaluation and Testing Pipelines",
+      "objectives": [
+        "Build automated eval pipelines",
+        "Test RAG and agents",
+        "Integrate evals into CI/CD"
+      ],
+      "topics": [
+        "Offline vs online evaluation",
+        "RAG metrics (faithfulness, relevance)",
+        "Agent trajectory evaluation",
+        "LLM-as-judge pipelines",
+        "Regression testing",
+        "Evals in CI/CD"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 16: LLM evaluation",
+        "Day 35: LLMOps"
+      ],
+      "intermediate_explanation": "Shipping GenAI safely requires treating evaluation like software testing. You build offline eval suites (faithfulness, context relevance, answer correctness for RAG; trajectory correctness for agents), automate LLM-as-judge scoring, and add regression tests so a prompt or model change cannot silently degrade quality. Wiring these into CI/CD makes quality a gate, not an afterthought.",
+      "practical_task": "Build an automated RAG evaluation pipeline with RAGAS metrics and a golden dataset, run on every change.",
+      "mini_project": "Add an eval gate to a CI pipeline that blocks merges when quality metrics regress beyond a threshold.",
+      "assignment": "Design an evaluation strategy document covering offline, online, and regression testing for a GenAI product.",
+      "quiz": [
+        {
+          "question": "Faithfulness measures whether an answer is...",
+          "options": ["Fast", "Grounded in the retrieved context", "Short", "Formatted"],
+          "answer": "Grounded in the retrieved context"
+        },
+        {
+          "question": "Regression tests prevent...",
+          "options": ["Faster training", "Silent quality degradation", "Bigger vocab", "More GPUs"],
+          "answer": "Silent quality degradation"
+        },
+        {
+          "question": "Agent evaluation often checks the...",
+          "options": ["Final answer only", "Trajectory of steps and tool calls", "Tokenizer", "Optimizer"],
+          "answer": "Trajectory of steps and tool calls"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Evaluating RAG with RAGAS",
+          "channel": "LlamaIndex",
+          "url": "https://www.youtube.com/watch?v=TRjq7t2Ms5I"
+        },
+        {
+          "title": "LLM Testing and Evaluation",
+          "channel": "DeepLearningAI",
+          "url": "https://www.youtube.com/watch?v=fWC4VxolWAk"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "RAGAS Documentation",
+          "url": "https://docs.ragas.io/"
+        },
+        {
+          "title": "DeepEval Docs",
+          "url": "https://docs.confident-ai.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "explodinggradients/ragas",
+          "url": "https://github.com/explodinggradients/ragas"
+        },
+        {
+          "name": "confident-ai/deepeval",
+          "url": "https://github.com/confident-ai/deepeval"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "RAGAS: Automated Evaluation of Retrieval Augmented Generation (Es et al., 2023)",
+          "url": "https://arxiv.org/abs/2309.15217"
+        }
+      ],
+      "skills_gained": [
+        "Evaluation pipelines",
+        "RAG/agent testing",
+        "CI/CD for LLMs",
+        "Regression testing"
+      ],
+      "expected_outcome": "You can build automated evaluation pipelines integrated into CI/CD."
+    },
+    {
+      "day": 37,
+      "title": "Guardrails, Safety, and Red-Teaming",
+      "objectives": [
+        "Implement layered guardrails",
+        "Defend against attacks",
+        "Red-team GenAI systems"
+      ],
+      "topics": [
+        "Input/output guardrails",
+        "Prompt injection and jailbreaks",
+        "Data exfiltration risks",
+        "Content moderation",
+        "Red-teaming methodology",
+        "Defense in depth"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 36: Evaluation pipelines"
+      ],
+      "intermediate_explanation": "Any public GenAI system will be attacked. Prompt injection can hijack instructions, jailbreaks bypass safety, and tool-using agents create data-exfiltration risks. Defense in depth layers input validation, output filtering, least-privilege tool permissions, and monitoring. Systematic red-teaming, probing your own system adversarially, is how you find weaknesses before attackers do.",
+      "practical_task": "Build a guardrail layer that detects prompt injection and moderates outputs, then try to bypass it.",
+      "mini_project": "Red-team your own RAG/agent app with an attack suite and produce a findings report with mitigations.",
+      "assignment": "Write a threat model for a tool-using agent covering injection, exfiltration, and privilege escalation with defenses.",
+      "quiz": [
+        {
+          "question": "Prompt injection attacks aim to...",
+          "options": ["Speed up the model", "Override the system's instructions", "Reduce vocab", "Quantize"],
+          "answer": "Override the system's instructions"
+        },
+        {
+          "question": "Defense in depth means...",
+          "options": ["One strong filter", "Multiple layered defenses", "No defenses", "Only monitoring"],
+          "answer": "Multiple layered defenses"
+        },
+        {
+          "question": "Red-teaming is...",
+          "options": ["Training data collection", "Adversarially probing your own system", "Quantization", "Tokenization"],
+          "answer": "Adversarially probing your own system"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Prompt Injection and LLM Security",
+          "channel": "IBM Technology",
+          "url": "https://www.youtube.com/watch?v=lMBUgxfXCsc"
+        },
+        {
+          "title": "Red-Teaming LLMs",
+          "channel": "DeepLearningAI",
+          "url": "https://www.youtube.com/watch?v=fWC4VxolWAk"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "OWASP Top 10 for LLM Applications",
+          "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+        },
+        {
+          "title": "Guardrails AI Docs",
+          "url": "https://www.guardrailsai.com/docs"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "guardrails-ai/guardrails",
+          "url": "https://github.com/guardrails-ai/guardrails"
+        },
+        {
+          "name": "NVIDIA/NeMo-Guardrails",
+          "url": "https://github.com/NVIDIA/NeMo-Guardrails"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Universal and Transferable Adversarial Attacks on Aligned Language Models (Zou et al., 2023)",
+          "url": "https://arxiv.org/abs/2307.15043"
+        }
+      ],
+      "skills_gained": [
+        "Guardrails",
+        "LLM security",
+        "Red-teaming",
+        "Threat modeling"
+      ],
+      "expected_outcome": "You can secure and red-team GenAI systems with layered defenses."
+    },
+    {
+      "day": 38,
+      "title": "Fine-Tuning Vision-Language Models",
+      "objectives": [
+        "Understand VLM architectures",
+        "Fine-tune multimodal models",
+        "Build vision-language applications"
+      ],
+      "topics": [
+        "VLM architecture (vision encoder + LLM)",
+        "Image-text alignment",
+        "Fine-tuning VLMs (LLaVA)",
+        "Visual instruction tuning",
+        "Document and chart understanding",
+        "Multimodal evaluation"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 12: LoRA in depth",
+        "Beginner multimodal knowledge"
+      ],
+      "intermediate_explanation": "Vision-language models pair a vision encoder with an LLM through a projection layer, letting text models reason over images. Fine-tuning them with visual instruction data (the LLaVA recipe) adapts them to domains like document, chart, or medical-image understanding. You typically freeze most of the model and train the projector and LoRA adapters, applying the fine-tuning skills you already have to multimodal data.",
+      "practical_task": "Fine-tune a small VLM with LoRA on a visual-instruction dataset for a specific image-understanding task.",
+      "mini_project": "Build a document-understanding assistant by fine-tuning a VLM to extract structured data from images.",
+      "assignment": "Write an explainer of VLM architecture and a plan for fine-tuning one on a chosen visual domain.",
+      "quiz": [
+        {
+          "question": "A VLM connects a vision encoder to an LLM via a...",
+          "options": ["Tokenizer", "Projection/adapter layer", "Reward model", "Vector DB"],
+          "answer": "Projection/adapter layer"
+        },
+        {
+          "question": "Visual instruction tuning uses...",
+          "options": ["Text only", "Image-instruction-response data", "Audio only", "No data"],
+          "answer": "Image-instruction-response data"
+        },
+        {
+          "question": "When fine-tuning VLMs you often freeze...",
+          "options": ["Everything", "Most of the model, training projector/adapters", "The dataset", "The tokenizer only"],
+          "answer": "Most of the model, training projector/adapters"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "LLaVA and Vision-Language Models Explained",
+          "channel": "Umar Jamil",
+          "url": "https://www.youtube.com/watch?v=vAmKB7iPkWw"
+        },
+        {
+          "title": "Fine-tuning Multimodal Models",
+          "channel": "Trelis Research",
+          "url": "https://www.youtube.com/watch?v=iamXy03zdPk"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face Vision-Language Models",
+          "url": "https://huggingface.co/docs/transformers/tasks/image_text_to_text"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "haotian-liu/LLaVA",
+          "url": "https://github.com/haotian-liu/LLaVA"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Visual Instruction Tuning (LLaVA, Liu et al., 2023)",
+          "url": "https://arxiv.org/abs/2304.08485"
+        }
+      ],
+      "skills_gained": [
+        "Vision-language models",
+        "Multimodal fine-tuning",
+        "Visual instruction tuning"
+      ],
+      "expected_outcome": "You can fine-tune vision-language models for domain-specific multimodal tasks."
+    },
+    {
+      "day": 39,
+      "title": "Advanced Diffusion Models (ControlNet, LoRA)",
+      "objectives": [
+        "Control image generation precisely",
+        "Train image LoRAs",
+        "Understand latent diffusion internals"
+      ],
+      "topics": [
+        "Latent diffusion (U-Net, VAE)",
+        "Samplers and schedulers",
+        "ControlNet",
+        "LoRA and DreamBooth for images",
+        "IP-Adapter",
+        "SDXL and workflows"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Beginner diffusion knowledge",
+        "Day 12: LoRA in depth"
+      ],
+      "intermediate_explanation": "Advanced image generation is about control. Latent diffusion denoises in a compressed VAE space guided by a U-Net; different samplers trade speed for quality. ControlNet conditions generation on structure (pose, depth, edges), while LoRA and DreamBooth teach new styles or subjects with a handful of images. IP-Adapter enables image prompting. Together these give production-grade, controllable generation.",
+      "practical_task": "Use ControlNet to generate images conditioned on a pose or edge map and compare samplers for quality/speed.",
+      "mini_project": "Train a style or subject LoRA for Stable Diffusion and build a controllable generation pipeline around it.",
+      "assignment": "Write a guide on controllable diffusion covering ControlNet, LoRA, and IP-Adapter with example use cases.",
+      "quiz": [
+        {
+          "question": "Latent diffusion denoises in the space of a...",
+          "options": ["Tokenizer", "VAE latent", "Reward model", "Vector DB"],
+          "answer": "VAE latent"
+        },
+        {
+          "question": "ControlNet conditions generation on...",
+          "options": ["Random noise only", "Structural inputs like pose/edges", "The optimizer", "The vocab"],
+          "answer": "Structural inputs like pose/edges"
+        },
+        {
+          "question": "DreamBooth is used to...",
+          "options": ["Quantize", "Teach a model a new subject/style", "Tokenize", "Serve models"],
+          "answer": "Teach a model a new subject/style"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "How Stable Diffusion Works (Latent Diffusion)",
+          "channel": "Computerphile",
+          "url": "https://www.youtube.com/watch?v=1CIpzeNxIhU"
+        },
+        {
+          "title": "ControlNet Explained",
+          "channel": "Two Minute Papers",
+          "url": "https://www.youtube.com/watch?v=fhIGt7QGg4w"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face Diffusers ControlNet",
+          "url": "https://huggingface.co/docs/diffusers/using-diffusers/controlnet"
+        },
+        {
+          "title": "Diffusers Training (LoRA/DreamBooth)",
+          "url": "https://huggingface.co/docs/diffusers/training/lora"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/diffusers",
+          "url": "https://github.com/huggingface/diffusers"
+        },
+        {
+          "name": "lllyasviel/ControlNet",
+          "url": "https://github.com/lllyasviel/ControlNet"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Adding Conditional Control to Text-to-Image Diffusion Models (ControlNet, Zhang et al., 2023)",
+          "url": "https://arxiv.org/abs/2302.05543"
+        },
+        {
+          "title": "High-Resolution Image Synthesis with Latent Diffusion Models (Rombach et al., 2022)",
+          "url": "https://arxiv.org/abs/2112.10752"
+        }
+      ],
+      "skills_gained": [
+        "Controllable diffusion",
+        "ControlNet",
+        "Image LoRA/DreamBooth",
+        "Latent diffusion internals"
+      ],
+      "expected_outcome": "You can build controllable, customized image-generation pipelines."
+    },
+    {
+      "day": 40,
+      "title": "Audio and Speech Generative AI",
+      "objectives": [
+        "Build speech-to-text pipelines",
+        "Generate speech (TTS)",
+        "Combine audio with LLMs"
+      ],
+      "topics": [
+        "ASR with Whisper",
+        "Text-to-speech models",
+        "Voice cloning basics",
+        "Audio tokenization",
+        "Real-time streaming audio",
+        "Voice agent pipelines"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Beginner multimodal knowledge",
+        "Day 30: Orchestration"
+      ],
+      "intermediate_explanation": "Voice is a fast-growing GenAI interface. Whisper provides robust multilingual speech-to-text, modern TTS models produce natural speech and can clone voices, and audio-native models tokenize sound directly. Building a voice agent means orchestrating ASR to LLM to TTS with low latency and streaming, a highly marketable applied skill as voice assistants proliferate.",
+      "practical_task": "Build an ASR-to-LLM-to-TTS pipeline that transcribes speech, answers with an LLM, and speaks the response.",
+      "mini_project": "Create a real-time voice assistant with streaming transcription, LLM reasoning, and low-latency TTS.",
+      "assignment": "Analyze latency sources in a voice pipeline and propose optimizations to reach conversational latency.",
+      "quiz": [
+        {
+          "question": "Whisper is used for...",
+          "options": ["Text-to-speech", "Speech-to-text", "Image generation", "Quantization"],
+          "answer": "Speech-to-text"
+        },
+        {
+          "question": "A voice agent pipeline chains...",
+          "options": ["ASR to LLM to TTS", "VAE to U-Net", "BM25 to reranker", "Tokenizer to optimizer"],
+          "answer": "ASR to LLM to TTS"
+        },
+        {
+          "question": "The main UX challenge for voice agents is...",
+          "options": ["Vocab size", "End-to-end latency", "Disk space", "Tokenizer choice"],
+          "answer": "End-to-end latency"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "OpenAI Whisper Tutorial",
+          "channel": "AssemblyAI",
+          "url": "https://www.youtube.com/watch?v=ABFqbY_rmEk"
+        },
+        {
+          "title": "Build a Real-Time Voice Assistant",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=Kk_Lx-c1cEg"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "OpenAI Whisper GitHub",
+          "url": "https://github.com/openai/whisper"
+        },
+        {
+          "title": "Hugging Face Audio Course",
+          "url": "https://huggingface.co/learn/audio-course"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "openai/whisper",
+          "url": "https://github.com/openai/whisper"
+        },
+        {
+          "name": "coqui-ai/TTS",
+          "url": "https://github.com/coqui-ai/TTS"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Robust Speech Recognition via Large-Scale Weak Supervision (Whisper, Radford et al., 2022)",
+          "url": "https://arxiv.org/abs/2212.04356"
+        }
+      ],
+      "skills_gained": [
+        "ASR",
+        "TTS",
+        "Voice agents",
+        "Audio pipelines"
+      ],
+      "expected_outcome": "You can build real-time voice-enabled GenAI applications."
+    },
+    {
+      "day": 41,
+      "title": "Cost Optimization and Caching Strategies",
+      "objectives": [
+        "Reduce LLM operating costs",
+        "Implement multi-level caching",
+        "Optimize token usage"
+      ],
+      "topics": [
+        "Cost drivers analysis",
+        "Semantic and exact caching",
+        "Prompt caching",
+        "Model right-sizing and cascades",
+        "Batch processing",
+        "Context/token reduction"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 34: Serving",
+        "Day 35: LLMOps"
+      ],
+      "intermediate_explanation": "GenAI costs scale with tokens and can spiral fast. You learn to profile cost drivers, then attack them: semantic caching serves near-duplicate queries for free, prompt caching discounts repeated context, model cascades try cheap models first and escalate only when needed, and batching plus context compression cut token spend. Disciplined cost engineering often reduces bills by an order of magnitude.",
+      "practical_task": "Add semantic caching and prompt caching to an app and measure the resulting cost reduction on realistic traffic.",
+      "mini_project": "Build a cost-optimized inference layer with a model cascade and caching, reporting cost-per-query before and after.",
+      "assignment": "Audit a hypothetical GenAI product's cost structure and propose a prioritized optimization plan with estimates.",
+      "quiz": [
+        {
+          "question": "A model cascade tries...",
+          "options": ["The biggest model first", "Cheaper models first, escalating if needed", "No model", "Random models"],
+          "answer": "Cheaper models first, escalating if needed"
+        },
+        {
+          "question": "Prompt caching discounts...",
+          "options": ["Output tokens", "Repeated input context", "Vocab", "GPUs"],
+          "answer": "Repeated input context"
+        },
+        {
+          "question": "Semantic caching keys on...",
+          "options": ["Exact bytes only", "Query meaning/similarity", "Timestamps", "Token IDs"],
+          "answer": "Query meaning/similarity"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Reduce LLM Costs",
+          "channel": "Trelis Research",
+          "url": "https://www.youtube.com/watch?v=z2M8gKGYws4"
+        },
+        {
+          "title": "LLM Caching Strategies",
+          "channel": "LangChain",
+          "url": "https://www.youtube.com/watch?v=tFXm5ijih98"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Anthropic Prompt Caching Docs",
+          "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching"
+        },
+        {
+          "title": "GPTCache Docs",
+          "url": "https://gptcache.readthedocs.io/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "zilliztech/GPTCache",
+          "url": "https://github.com/zilliztech/GPTCache"
+        },
+        {
+          "name": "BerriAI/litellm",
+          "url": "https://github.com/BerriAI/litellm"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "FrugalGPT: How to Use LLMs While Reducing Cost and Improving Performance (Chen et al., 2023)",
+          "url": "https://arxiv.org/abs/2305.05176"
+        }
+      ],
+      "skills_gained": [
+        "Cost optimization",
+        "Caching",
+        "Model cascades",
+        "Token reduction"
+      ],
+      "expected_outcome": "You can dramatically reduce the operating cost of GenAI systems."
+    },
+    {
+      "day": 42,
+      "title": "Security and Data Privacy for GenAI",
+      "objectives": [
+        "Protect sensitive data",
+        "Ensure compliance",
+        "Secure the GenAI supply chain"
+      ],
+      "topics": [
+        "PII detection and redaction",
+        "Data privacy (GDPR, HIPAA)",
+        "PII in training vs inference",
+        "Access control and tenancy",
+        "Model/prompt supply-chain risks",
+        "Audit logging"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 37: Guardrails and red-teaming"
+      ],
+      "intermediate_explanation": "Enterprises will not deploy GenAI that leaks data or breaks compliance. You learn to detect and redact PII before it reaches a model or logs, enforce per-tenant access control in RAG so users only retrieve permitted documents, and manage supply-chain risks from untrusted models and prompts. Audit logging and data-handling controls turn a prototype into something legal and security teams will approve.",
+      "practical_task": "Add PII detection and redaction to an ingestion and logging pipeline and verify sensitive data never leaks.",
+      "mini_project": "Build a multi-tenant RAG system with document-level access control so users only see permitted content.",
+      "assignment": "Write a data-handling and compliance plan for a GenAI product covering PII, retention, and access control.",
+      "quiz": [
+        {
+          "question": "PII redaction should happen...",
+          "options": ["Never", "Before data reaches the model/logs", "Only after deployment", "During tokenization only"],
+          "answer": "Before data reaches the model/logs"
+        },
+        {
+          "question": "Multi-tenant RAG must enforce...",
+          "options": ["Shared access to all docs", "Per-user document access control", "No filtering", "Random access"],
+          "answer": "Per-user document access control"
+        },
+        {
+          "question": "Audit logging supports...",
+          "options": ["Faster GPUs", "Compliance and traceability", "Smaller vocab", "Quantization"],
+          "answer": "Compliance and traceability"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "LLM Data Privacy and Security",
+          "channel": "IBM Technology",
+          "url": "https://www.youtube.com/watch?v=lMBUgxfXCsc"
+        },
+        {
+          "title": "PII Redaction for LLMs",
+          "channel": "AssemblyAI",
+          "url": "https://www.youtube.com/watch?v=OATCgQtNX2o"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Microsoft Presidio Docs",
+          "url": "https://microsoft.github.io/presidio/"
+        },
+        {
+          "title": "OWASP Top 10 for LLM Applications",
+          "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "microsoft/presidio",
+          "url": "https://github.com/microsoft/presidio"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Extracting Training Data from Large Language Models (Carlini et al., 2020)",
+          "url": "https://arxiv.org/abs/2012.07805"
+        }
+      ],
+      "skills_gained": [
+        "Data privacy",
+        "PII redaction",
+        "Access control",
+        "Compliance"
+      ],
+      "expected_outcome": "You can build compliant, privacy-preserving GenAI systems."
+    },
+    {
+      "day": 43,
+      "title": "Advanced Deployment: Kubernetes and Autoscaling",
+      "objectives": [
+        "Deploy GenAI on Kubernetes",
+        "Configure GPU autoscaling",
+        "Build production CI/CD"
+      ],
+      "topics": [
+        "Containerizing GPU workloads",
+        "Kubernetes for LLMs",
+        "GPU scheduling and node pools",
+        "Horizontal autoscaling (KEDA)",
+        "Blue-green and canary deploys",
+        "Infrastructure as code"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 34: Serving and scaling"
+      ],
+      "intermediate_explanation": "Production GenAI runs on orchestrated infrastructure. You containerize GPU workloads, schedule them on Kubernetes with GPU node pools, and autoscale on queue depth or latency using KEDA. Blue-green and canary deployment strategies enable zero-downtime, low-risk releases, and infrastructure as code makes the whole stack reproducible. These platform skills are what separate a demo from a real service.",
+      "practical_task": "Containerize a vLLM service and deploy it to Kubernetes with a GPU node pool and an autoscaler.",
+      "mini_project": "Build a full CI/CD pipeline that builds, tests, evaluates, and canary-deploys a GenAI service to Kubernetes.",
+      "assignment": "Design a production infrastructure diagram (with IaC) for a GenAI service meeting an availability SLA.",
+      "quiz": [
+        {
+          "question": "KEDA is used for...",
+          "options": ["Tokenization", "Event-driven autoscaling", "Quantization", "Training"],
+          "answer": "Event-driven autoscaling"
+        },
+        {
+          "question": "Canary deployment reduces risk by...",
+          "options": ["Full rollout instantly", "Releasing to a small percentage first", "Skipping tests", "Disabling logs"],
+          "answer": "Releasing to a small percentage first"
+        },
+        {
+          "question": "Infrastructure as code makes deployments...",
+          "options": ["Manual", "Reproducible and versioned", "Slower always", "Untracked"],
+          "answer": "Reproducible and versioned"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Kubernetes for Machine Learning",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=X48VuDVv0do"
+        },
+        {
+          "title": "Deploying LLMs on Kubernetes",
+          "channel": "Anyscale",
+          "url": "https://www.youtube.com/watch?v=5ZlavKF_98U"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Kubernetes Documentation",
+          "url": "https://kubernetes.io/docs/home/"
+        },
+        {
+          "title": "KServe Docs",
+          "url": "https://kserve.github.io/website/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "kserve/kserve",
+          "url": "https://github.com/kserve/kserve"
+        },
+        {
+          "name": "kedacore/keda",
+          "url": "https://github.com/kedacore/keda"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Borg, Omega, and Kubernetes (Burns et al., 2016)",
+          "url": "https://research.google/pubs/pub44843/"
+        }
+      ],
+      "skills_gained": [
+        "Kubernetes",
+        "GPU autoscaling",
+        "CI/CD",
+        "Infrastructure as code"
+      ],
+      "expected_outcome": "You can deploy and autoscale GenAI services on production-grade infrastructure."
+    },
+    {
+      "day": 44,
+      "title": "Capstone Part 1: Architect a Production GenAI System",
+      "objectives": [
+        "Design a full production system",
+        "Implement the core pipeline",
+        "Apply best practices end-to-end"
+      ],
+      "topics": [
+        "Requirements and constraints",
+        "System architecture design",
+        "RAG/agent core implementation",
+        "Fine-tuned or optimized model",
+        "Evaluation harness",
+        "Observability wiring"
+      ],
+      "estimated_time": "8 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Days 19-43"
+      ],
+      "intermediate_explanation": "The capstone integrates the intermediate curriculum into one production-grade system. You define real requirements and SLAs, design an architecture combining advanced RAG and/or agents with an optimized or fine-tuned model, and implement the core with evaluation and observability built in from the start. This mirrors exactly what a mid-level GenAI engineer delivers on the job.",
+      "practical_task": "Write a system design doc (requirements, architecture, data flow, SLAs, cost model) and scaffold the repository.",
+      "mini_project": "Build the core of a production GenAI application, for example an enterprise knowledge platform with agentic RAG.",
+      "assignment": "Implement the core pipeline with an evaluation harness and tracing wired in, under version control.",
+      "quiz": [
+        {
+          "question": "A production system design should start with...",
+          "options": ["Coding immediately", "Requirements and constraints", "Deployment", "Quantization"],
+          "answer": "Requirements and constraints"
+        },
+        {
+          "question": "Evaluation and observability should be added...",
+          "options": ["At the very end", "From the start", "Never", "Only if it fails"],
+          "answer": "From the start"
+        },
+        {
+          "question": "An SLA specifies...",
+          "options": ["Vocab size", "Target latency/availability commitments", "Tokenizer", "Optimizer"],
+          "answer": "Target latency/availability commitments"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "End to End GenAI Project",
+          "channel": "Krish Naik",
+          "url": "https://www.youtube.com/watch?v=x0AnCE9SE4A"
+        },
+        {
+          "title": "Building Production LLM Applications",
+          "channel": "LangChain",
+          "url": "https://www.youtube.com/watch?v=sVcwVQRHIc8"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LangGraph Production Docs",
+          "url": "https://langchain-ai.github.io/langgraph/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "langchain-ai/langgraph",
+          "url": "https://github.com/langchain-ai/langgraph"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Retrieval-Augmented Generation for LLMs: A Survey (Gao et al., 2023)",
+          "url": "https://arxiv.org/abs/2312.10997"
+        }
+      ],
+      "skills_gained": [
+        "System design",
+        "Production architecture",
+        "End-to-end implementation"
+      ],
+      "expected_outcome": "You have designed and built the core of a production-grade GenAI system."
+    },
+    {
+      "day": 45,
+      "title": "Capstone Part 2: Deploy, Optimize, and Interview Prep",
+      "objectives": [
+        "Deploy and optimize the capstone",
+        "Complete evaluation and guardrails",
+        "Prepare for mid-level interviews"
+      ],
+      "topics": [
+        "Optimized serving deployment",
+        "Cost and latency tuning",
+        "Guardrails and security",
+        "Final evaluation report",
+        "GenAI system-design interviews",
+        "Portfolio presentation"
+      ],
+      "estimated_time": "8 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Day 44: Capstone Part 1"
+      ],
+      "intermediate_explanation": "You finish and harden the capstone, then convert it into interview leverage. Deploy with an optimized serving stack, tune cost and latency, add guardrails and security, and produce a final evaluation report proving quality. Then rehearse GenAI system-design interviews, where you must reason aloud about RAG vs fine-tuning, scaling, evaluation, cost, and safety tradeoffs, the exact skills this roadmap built.",
+      "practical_task": "Deploy the capstone with optimized serving, guardrails, and monitoring, then produce a final evaluation report.",
+      "mini_project": "Ship the complete production GenAI system with a live demo, architecture docs, and a metrics dashboard.",
+      "assignment": "Complete two GenAI system-design mock interviews (RAG platform and agent system) and write up your solutions.",
+      "quiz": [
+        {
+          "question": "A GenAI system-design interview tests reasoning about...",
+          "options": ["Only coding syntax", "RAG/fine-tuning, scaling, eval, cost, safety tradeoffs", "Only UI", "Only tokenization"],
+          "answer": "RAG/fine-tuning, scaling, eval, cost, safety tradeoffs"
+        },
+        {
+          "question": "A final evaluation report should demonstrate...",
+          "options": ["Nothing", "Measured quality, cost, and latency", "Only the UI", "Only the code"],
+          "answer": "Measured quality, cost, and latency"
+        },
+        {
+          "question": "Before a public launch you must add...",
+          "options": ["More parameters", "Guardrails and monitoring", "A bigger vocab", "A new tokenizer"],
+          "answer": "Guardrails and monitoring"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Machine Learning System Design Interview",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=t6gOpFLt-Ks"
+        },
+        {
+          "title": "LLM System Design Interviews",
+          "channel": "Exponent",
+          "url": "https://www.youtube.com/watch?v=UyVAvff9Cm0"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Papers with Code (stay current)",
+          "url": "https://paperswithcode.com/"
+        },
+        {
+          "title": "Hugging Face Blog",
+          "url": "https://huggingface.co/blog"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "mlabonne/llm-course",
+          "url": "https://github.com/mlabonne/llm-course"
+        },
+        {
+          "name": "ashishps1/awesome-system-design-resources",
+          "url": "https://github.com/ashishps1/awesome-system-design-resources"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Survey of Large Language Models (Zhao et al., 2023)",
+          "url": "https://arxiv.org/abs/2303.18223"
+        }
+      ],
+      "skills_gained": [
+        "Production deployment",
+        "System-design interviews",
+        "Portfolio presentation",
+        "Optimization"
+      ],
+      "expected_outcome": "You have a deployed, optimized production capstone and are ready for mid-level GenAI Engineer interviews."
+    }
+  ]
+}

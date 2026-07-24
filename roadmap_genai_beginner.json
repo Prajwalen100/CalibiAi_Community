@@ -1,0 +1,3743 @@
+{
+  "roadmap": {
+    "title": "45-Day GenAI Engineer Roadmap",
+    "role": "GenAI Engineer",
+    "level": "Beginner",
+    "total_days": 45,
+    "provider": "CalibiAI",
+    "description": "A structured 45-day beginner curriculum designed to prepare students for entry-level Generative AI Engineer roles, covering Python, ML foundations, deep learning, NLP, transformers, LLMs, RAG, agents, and deployment.",
+    "outcome": "Ability to build, fine-tune, and deploy Generative AI applications using modern LLM tooling and MLOps practices."
+  },
+  "days": [
+    {
+      "day": 1,
+      "title": "Python Fundamentals for AI",
+      "objectives": [
+        "Understand Python syntax, variables, and data types",
+        "Write conditional logic, loops, and functions",
+        "Set up a Python development environment for AI work"
+      ],
+      "topics": [
+        "Variables and data types",
+        "Operators and expressions",
+        "Conditional statements",
+        "Loops (for, while)",
+        "Functions and scope",
+        "Virtual environments and pip"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Basic computer literacy",
+        "No prior programming experience required"
+      ],
+      "beginner_explanation": "Python is the primary language of AI and machine learning because of its simple syntax and rich ecosystem of libraries. Today you learn the core building blocks: how to store data in variables, make decisions with if-statements, repeat work with loops, and package reusable logic into functions. You also set up a clean, isolated environment so your AI projects never conflict with each other.",
+      "practical_task": "Install Python 3.11+, create a virtual environment, and write a script that takes a number and prints whether it is prime, using a loop and a function.",
+      "mini_project": "Build a command-line 'AI budget calculator' that asks for monthly income and expenses, then prints savings, a warning if overspending, and a category breakdown using functions and dictionaries.",
+      "assignment": "Write five small programs: a temperature converter, a FizzBuzz solution, a factorial calculator, a palindrome checker, and a simple calculator. Push them to a GitHub repository.",
+      "quiz": [
+        {
+          "question": "Which keyword defines a function in Python?",
+          "options": ["func", "def", "function", "lambda"],
+          "answer": "def"
+        },
+        {
+          "question": "What does a virtual environment provide?",
+          "options": ["Faster CPU", "Isolated package dependencies", "A GUI", "Cloud storage"],
+          "answer": "Isolated package dependencies"
+        },
+        {
+          "question": "Which data type stores key-value pairs?",
+          "options": ["list", "tuple", "dict", "set"],
+          "answer": "dict"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Python Full Course for Beginners",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=rfscVS0vtbw"
+        },
+        {
+          "title": "Python for Beginners - Learn Python in 1 Hour",
+          "channel": "Programming with Mosh",
+          "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Python Official Tutorial",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "title": "Python venv documentation",
+          "url": "https://docs.python.org/3/library/venv.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "TheAlgorithms/Python",
+          "url": "https://github.com/TheAlgorithms/Python"
+        },
+        {
+          "name": "trekhleb/learn-python",
+          "url": "https://github.com/trekhleb/learn-python"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Python for Scientific Computing (Oliphant, 2007)",
+          "url": "https://ieeexplore.ieee.org/document/4160250"
+        }
+      ],
+      "skills_gained": [
+        "Python syntax",
+        "Control flow",
+        "Functions",
+        "Environment management"
+      ],
+      "expected_outcome": "You can write basic Python programs with loops, conditionals, and functions, and manage isolated project environments."
+    },
+    {
+      "day": 2,
+      "title": "Python Data Structures and OOP",
+      "objectives": [
+        "Master lists, tuples, sets, and dictionaries",
+        "Understand list/dict comprehensions",
+        "Grasp object-oriented programming basics"
+      ],
+      "topics": [
+        "Lists, tuples, sets, dictionaries",
+        "Comprehensions",
+        "Classes and objects",
+        "Inheritance and methods",
+        "Exception handling",
+        "Modules and packages"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 1: Python Fundamentals"
+      ],
+      "beginner_explanation": "Data structures are how you organize information in memory. Choosing the right one (list vs dict vs set) affects performance and clarity. Object-oriented programming lets you model real-world things as objects with data (attributes) and behavior (methods), which is how most AI libraries are structured internally.",
+      "practical_task": "Create a 'Dataset' class that stores a list of records, with methods to add, filter, and summarize records. Handle errors when a record is missing a field.",
+      "mini_project": "Build a mini contact book with a Contact class and a ContactBook class supporting add, search, delete, and save to a JSON file.",
+      "assignment": "Refactor Day 1's budget calculator into an OOP design with a Budget class, using exception handling for invalid input.",
+      "quiz": [
+        {
+          "question": "Which data structure is immutable?",
+          "options": ["list", "dict", "tuple", "set"],
+          "answer": "tuple"
+        },
+        {
+          "question": "What does 'self' refer to in a class method?",
+          "options": ["The class itself", "The current instance", "A global variable", "The parent class"],
+          "answer": "The current instance"
+        },
+        {
+          "question": "Which keyword is used to handle exceptions?",
+          "options": ["catch", "try/except", "throw", "error"],
+          "answer": "try/except"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Python OOP Tutorial - Full Course",
+          "channel": "Programming with Mosh",
+          "url": "https://www.youtube.com/watch?v=Ej_02ICOIgs"
+        },
+        {
+          "title": "Object Oriented Programming (OOP) in Python",
+          "channel": "Corey Schafer",
+          "url": "https://www.youtube.com/watch?v=ZDa-Z5JzLYM"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Python Data Structures",
+          "url": "https://docs.python.org/3/tutorial/datastructures.html"
+        },
+        {
+          "title": "Python Classes",
+          "url": "https://docs.python.org/3/tutorial/classes.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "faif/python-patterns",
+          "url": "https://github.com/faif/python-patterns"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Design Patterns: Elements of Reusable Object-Oriented Software (overview)",
+          "url": "https://dl.acm.org/doi/book/10.5555/186897"
+        }
+      ],
+      "skills_gained": [
+        "Data structures",
+        "OOP",
+        "Exception handling",
+        "Modular code"
+      ],
+      "expected_outcome": "You can model problems with classes and pick appropriate data structures for AI workflows."
+    },
+    {
+      "day": 3,
+      "title": "NumPy for Numerical Computing",
+      "objectives": [
+        "Understand N-dimensional arrays",
+        "Perform vectorized operations",
+        "Use broadcasting and array slicing"
+      ],
+      "topics": [
+        "ndarray creation",
+        "Indexing and slicing",
+        "Broadcasting",
+        "Vectorized math",
+        "Aggregations and axes",
+        "Random number generation"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 1-2: Python basics and data structures"
+      ],
+      "beginner_explanation": "NumPy is the foundation of the entire scientific Python stack. It provides fast, memory-efficient arrays and vectorized operations that run in optimized C under the hood. Neural network tensors, embeddings, and matrices are all conceptually NumPy arrays, so understanding it is essential before deep learning.",
+      "practical_task": "Create a 5x5 matrix of random numbers, compute row/column means, normalize the matrix, and find the max value's position.",
+      "mini_project": "Implement a grayscale image manipulator: load an image as a NumPy array, then brighten, invert, and crop it using array operations.",
+      "assignment": "Reimplement a dot product, matrix multiplication, and mean-squared-error calculation using only NumPy (no loops).",
+      "quiz": [
+        {
+          "question": "What does broadcasting allow?",
+          "options": ["Network calls", "Operations on arrays of different shapes", "Parallel threads", "GPU access"],
+          "answer": "Operations on arrays of different shapes"
+        },
+        {
+          "question": "Which function creates an array of zeros?",
+          "options": ["np.empty", "np.zeros", "np.null", "np.blank"],
+          "answer": "np.zeros"
+        },
+        {
+          "question": "What does axis=0 refer to in a 2D array?",
+          "options": ["Columns", "Rows", "Depth", "Diagonal"],
+          "answer": "Rows"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Python NumPy Tutorial for Beginners",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=QUT1VHiLmmI"
+        },
+        {
+          "title": "NumPy Full Course",
+          "channel": "Keith Galli",
+          "url": "https://www.youtube.com/watch?v=GB9ByFAIAH4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "NumPy Documentation",
+          "url": "https://numpy.org/doc/stable/"
+        },
+        {
+          "title": "NumPy Absolute Beginners Guide",
+          "url": "https://numpy.org/doc/stable/user/absolute_beginners.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "numpy/numpy",
+          "url": "https://github.com/numpy/numpy"
+        },
+        {
+          "name": "rougier/numpy-100",
+          "url": "https://github.com/rougier/numpy-100"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Array programming with NumPy (Harris et al., Nature 2020)",
+          "url": "https://www.nature.com/articles/s41586-020-2649-2"
+        }
+      ],
+      "skills_gained": [
+        "Vectorization",
+        "Array manipulation",
+        "Broadcasting",
+        "Numerical computing"
+      ],
+      "expected_outcome": "You can manipulate numerical data efficiently with NumPy arrays, a prerequisite for tensors."
+    },
+    {
+      "day": 4,
+      "title": "Pandas for Data Handling",
+      "objectives": [
+        "Load and inspect datasets",
+        "Clean and transform data",
+        "Group, merge, and aggregate data"
+      ],
+      "topics": [
+        "Series and DataFrames",
+        "Reading CSV/JSON",
+        "Filtering and selection",
+        "Handling missing data",
+        "GroupBy and aggregation",
+        "Merging and joining"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 3: NumPy"
+      ],
+      "beginner_explanation": "Pandas is the go-to tool for loading, cleaning, and exploring tabular data. Before you train any model, you must understand and prepare your data. Pandas DataFrames give you a spreadsheet-like interface backed by NumPy speed, and data preparation typically consumes most of a real ML project's time.",
+      "practical_task": "Load a public CSV (e.g., Titanic), inspect it, handle missing values, and compute survival rate grouped by class and gender.",
+      "mini_project": "Build a data-cleaning pipeline that ingests a messy CSV, standardizes column names, fills missing values, removes duplicates, and outputs a clean dataset with a summary report.",
+      "assignment": "Analyze a dataset of your choice: produce 5 insights using groupby, filtering, and merging, documented in a Jupyter notebook.",
+      "quiz": [
+        {
+          "question": "Which method shows the first rows of a DataFrame?",
+          "options": ["df.top()", "df.head()", "df.first()", "df.start()"],
+          "answer": "df.head()"
+        },
+        {
+          "question": "How do you handle missing values?",
+          "options": ["df.fillna()", "df.remove()", "df.clean()", "df.reset()"],
+          "answer": "df.fillna()"
+        },
+        {
+          "question": "What does groupby do?",
+          "options": ["Sorts rows", "Splits data into groups for aggregation", "Deletes columns", "Renames columns"],
+          "answer": "Splits data into groups for aggregation"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Pandas Tutorial - Complete Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=vmEHCJofslg"
+        },
+        {
+          "title": "Complete Pandas Tutorial for Beginners",
+          "channel": "Corey Schafer",
+          "url": "https://www.youtube.com/watch?v=ZyhVh-qRZPA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Pandas Documentation",
+          "url": "https://pandas.pydata.org/docs/"
+        },
+        {
+          "title": "10 Minutes to Pandas",
+          "url": "https://pandas.pydata.org/docs/user_guide/10min.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pandas-dev/pandas",
+          "url": "https://github.com/pandas-dev/pandas"
+        },
+        {
+          "name": "guipsamora/pandas_exercises",
+          "url": "https://github.com/guipsamora/pandas_exercises"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Data Structures for Statistical Computing in Python (McKinney, 2010)",
+          "url": "https://conference.scipy.org/proceedings/scipy2010/mckinney.html"
+        }
+      ],
+      "skills_gained": [
+        "Data wrangling",
+        "Data cleaning",
+        "Exploratory data analysis",
+        "Aggregation"
+      ],
+      "expected_outcome": "You can load, clean, and analyze real-world tabular datasets confidently."
+    },
+    {
+      "day": 5,
+      "title": "Data Visualization",
+      "objectives": [
+        "Create plots with Matplotlib",
+        "Build statistical charts with Seaborn",
+        "Communicate insights visually"
+      ],
+      "topics": [
+        "Line, bar, scatter plots",
+        "Histograms and distributions",
+        "Subplots and figures",
+        "Seaborn statistical plots",
+        "Correlation heatmaps",
+        "Customizing charts"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 4: Pandas"
+      ],
+      "beginner_explanation": "Visualization turns raw numbers into understanding. As a GenAI engineer you will inspect data distributions, training curves, and model outputs constantly. Matplotlib gives fine-grained control while Seaborn produces beautiful statistical charts with minimal code.",
+      "practical_task": "Using a dataset, create a histogram, a scatter plot with a trend, and a correlation heatmap, then interpret each.",
+      "mini_project": "Build an exploratory data analysis (EDA) dashboard notebook for a dataset with at least 6 visualizations and written insights.",
+      "assignment": "Recreate three chart types from a published data-journalism article and explain what makes them effective.",
+      "quiz": [
+        {
+          "question": "Which library is built on top of Matplotlib for statistics?",
+          "options": ["Plotly", "Seaborn", "Bokeh", "Altair"],
+          "answer": "Seaborn"
+        },
+        {
+          "question": "Which plot shows the distribution of a single variable?",
+          "options": ["Scatter", "Histogram", "Heatmap", "Line"],
+          "answer": "Histogram"
+        },
+        {
+          "question": "What does a correlation heatmap show?",
+          "options": ["Time series", "Relationships between variables", "Geographic data", "Category counts"],
+          "answer": "Relationships between variables"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Matplotlib Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=3Xc3CA655Y4"
+        },
+        {
+          "title": "Matplotlib Tutorial Series",
+          "channel": "Corey Schafer",
+          "url": "https://www.youtube.com/watch?v=UO98lJQ3QGI"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Matplotlib Documentation",
+          "url": "https://matplotlib.org/stable/index.html"
+        },
+        {
+          "title": "Seaborn Documentation",
+          "url": "https://seaborn.pydata.org/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "matplotlib/matplotlib",
+          "url": "https://github.com/matplotlib/matplotlib"
+        },
+        {
+          "name": "mwaskom/seaborn",
+          "url": "https://github.com/mwaskom/seaborn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Matplotlib: A 2D Graphics Environment (Hunter, 2007)",
+          "url": "https://ieeexplore.ieee.org/document/4160265"
+        }
+      ],
+      "skills_gained": [
+        "Data visualization",
+        "EDA",
+        "Storytelling with data",
+        "Chart design"
+      ],
+      "expected_outcome": "You can visualize data and communicate insights clearly through charts."
+    },
+    {
+      "day": 6,
+      "title": "Linear Algebra for ML",
+      "objectives": [
+        "Understand vectors and matrices",
+        "Perform matrix operations",
+        "Grasp eigenvalues and dot products intuitively"
+      ],
+      "topics": [
+        "Vectors and vector spaces",
+        "Matrix multiplication",
+        "Dot product and norms",
+        "Transpose and inverse",
+        "Eigenvalues and eigenvectors",
+        "Linear transformations"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 3: NumPy",
+        "High-school algebra"
+      ],
+      "beginner_explanation": "Linear algebra is the mathematical language of machine learning. Data is represented as vectors, models as matrices, and learning as transformations of these objects. Understanding dot products and matrix multiplication intuitively will make neural networks and embeddings far less mysterious.",
+      "practical_task": "Using NumPy, compute the dot product, matrix product, transpose, and inverse of small matrices, and verify the inverse by multiplication.",
+      "mini_project": "Implement a 2D linear transformation visualizer that shows how a matrix rotates, scales, and shears a set of points.",
+      "assignment": "Work through 15 linear algebra problems (vector operations, matrix multiplication, eigen-decomposition) and verify each with NumPy.",
+      "quiz": [
+        {
+          "question": "What is the dot product of two orthogonal vectors?",
+          "options": ["1", "0", "-1", "Their magnitude"],
+          "answer": "0"
+        },
+        {
+          "question": "What does matrix multiplication require?",
+          "options": ["Equal shapes", "Inner dimensions to match", "Square matrices", "Same values"],
+          "answer": "Inner dimensions to match"
+        },
+        {
+          "question": "Eigenvectors describe what property of a transformation?",
+          "options": ["Directions that only scale", "Random noise", "Color", "Time"],
+          "answer": "Directions that only scale"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Essence of Linear Algebra",
+          "channel": "3Blue1Brown",
+          "url": "https://www.youtube.com/watch?v=fNk_zzaMoSs"
+        },
+        {
+          "title": "Linear Algebra Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=JnTa9XtvmfI"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "NumPy Linear Algebra",
+          "url": "https://numpy.org/doc/stable/reference/routines.linalg.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "fastai/numerical-linear-algebra",
+          "url": "https://github.com/fastai/numerical-linear-algebra"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "The Matrix Cookbook (Petersen & Pedersen)",
+          "url": "https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf"
+        }
+      ],
+      "skills_gained": [
+        "Linear algebra",
+        "Matrix operations",
+        "Mathematical intuition"
+      ],
+      "expected_outcome": "You understand the linear algebra that underpins neural networks and embeddings."
+    },
+    {
+      "day": 7,
+      "title": "Calculus and Probability for ML",
+      "objectives": [
+        "Understand derivatives and gradients",
+        "Grasp the chain rule for backpropagation",
+        "Learn probability and statistics basics"
+      ],
+      "topics": [
+        "Derivatives and slopes",
+        "Partial derivatives and gradients",
+        "Chain rule",
+        "Probability distributions",
+        "Mean, variance, expectation",
+        "Bayes' theorem"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 6: Linear Algebra"
+      ],
+      "beginner_explanation": "Calculus explains how models learn: gradients tell us which direction to adjust parameters to reduce error, and the chain rule makes backpropagation possible. Probability lets us reason about uncertainty, which is central to generative models that predict likely next tokens or pixels.",
+      "practical_task": "Compute the gradient of a simple function f(x,y) by hand and verify numerically; simulate a coin-flip experiment to estimate probability.",
+      "mini_project": "Implement gradient descent from scratch to minimize a quadratic function and plot the descent path.",
+      "assignment": "Solve 10 derivative problems and 10 probability problems, including two Bayes' theorem applications.",
+      "quiz": [
+        {
+          "question": "What does a gradient point toward?",
+          "options": ["Steepest descent", "Steepest ascent", "The origin", "Zero"],
+          "answer": "Steepest ascent"
+        },
+        {
+          "question": "Which rule enables backpropagation?",
+          "options": ["Product rule", "Chain rule", "Power rule", "Quotient rule"],
+          "answer": "Chain rule"
+        },
+        {
+          "question": "Bayes' theorem updates what?",
+          "options": ["Loss", "Prior beliefs with evidence", "Learning rate", "Weights directly"],
+          "answer": "Prior beliefs with evidence"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Essence of Calculus",
+          "channel": "3Blue1Brown",
+          "url": "https://www.youtube.com/watch?v=WUvTyaaNkzM"
+        },
+        {
+          "title": "Probability - Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=xxpc-HPKN28"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "SciPy Statistics",
+          "url": "https://docs.scipy.org/doc/scipy/reference/stats.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "AllenDowney/ThinkStats2",
+          "url": "https://github.com/AllenDowney/ThinkStats2"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Mathematics for Machine Learning (Deisenroth et al.)",
+          "url": "https://mml-book.github.io/"
+        }
+      ],
+      "skills_gained": [
+        "Calculus intuition",
+        "Gradients",
+        "Probability",
+        "Statistical reasoning"
+      ],
+      "expected_outcome": "You understand gradients and probability well enough to reason about model training."
+    },
+    {
+      "day": 8,
+      "title": "Introduction to Machine Learning",
+      "objectives": [
+        "Understand what ML is and its types",
+        "Learn the ML workflow",
+        "Distinguish supervised, unsupervised, and reinforcement learning"
+      ],
+      "topics": [
+        "What is machine learning",
+        "Supervised vs unsupervised vs RL",
+        "Features and labels",
+        "Training, validation, test sets",
+        "Overfitting and underfitting",
+        "The bias-variance tradeoff"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 6-7: Math foundations"
+      ],
+      "beginner_explanation": "Machine learning is teaching computers to find patterns in data instead of hard-coding rules. Today you learn the big picture: the three main paradigms, how data is split for honest evaluation, and the central challenge of building models that generalize to new data rather than memorizing training examples.",
+      "practical_task": "Split a dataset into train/validation/test sets and explain why each split matters using a simple example.",
+      "mini_project": "Create an illustrated notebook that demonstrates overfitting vs underfitting by fitting polynomials of increasing degree to noisy data.",
+      "assignment": "Write a one-page explainer classifying 10 real-world problems as supervised, unsupervised, or reinforcement learning, with justification.",
+      "quiz": [
+        {
+          "question": "Which learning type uses labeled data?",
+          "options": ["Unsupervised", "Supervised", "Reinforcement", "Self-play"],
+          "answer": "Supervised"
+        },
+        {
+          "question": "Overfitting means the model...",
+          "options": ["Generalizes well", "Memorizes training data", "Is too simple", "Has no parameters"],
+          "answer": "Memorizes training data"
+        },
+        {
+          "question": "Why use a test set?",
+          "options": ["To train faster", "To honestly evaluate generalization", "To clean data", "To visualize"],
+          "answer": "To honestly evaluate generalization"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Machine Learning for Everybody - Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=i_LwzRVP7bg"
+        },
+        {
+          "title": "Machine Learning Basics",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=Gv9_4yMHFhI"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Google Machine Learning Crash Course",
+          "url": "https://developers.google.com/machine-learning/crash-course"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "microsoft/ML-For-Beginners",
+          "url": "https://github.com/microsoft/ML-For-Beginners"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Few Useful Things to Know About Machine Learning (Domingos, 2012)",
+          "url": "https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf"
+        }
+      ],
+      "skills_gained": [
+        "ML fundamentals",
+        "ML workflow",
+        "Model evaluation concepts"
+      ],
+      "expected_outcome": "You understand ML paradigms and the workflow used to build reliable models."
+    },
+    {
+      "day": 9,
+      "title": "Supervised Learning Algorithms",
+      "objectives": [
+        "Understand regression and classification",
+        "Learn linear and logistic regression",
+        "Understand decision trees and KNN"
+      ],
+      "topics": [
+        "Linear regression",
+        "Logistic regression",
+        "Decision trees",
+        "K-Nearest Neighbors",
+        "Loss functions",
+        "Gradient descent training"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 8: Intro to ML"
+      ],
+      "beginner_explanation": "Supervised learning maps inputs to known outputs. Regression predicts numbers (like house prices) while classification predicts categories (like spam vs not spam). Today you meet the foundational algorithms and see how a model 'learns' by minimizing a loss function via gradient descent.",
+      "practical_task": "Train a linear regression model on a simple dataset and interpret its coefficients and error metrics.",
+      "mini_project": "Build a house-price predictor with linear regression and a spam classifier with logistic regression, comparing their metrics.",
+      "assignment": "Implement linear regression from scratch using NumPy and gradient descent, then compare against scikit-learn.",
+      "quiz": [
+        {
+          "question": "Which algorithm predicts continuous values?",
+          "options": ["Logistic regression", "Linear regression", "KNN classifier", "Decision tree classifier"],
+          "answer": "Linear regression"
+        },
+        {
+          "question": "Logistic regression outputs a...",
+          "options": ["Category count", "Probability", "Distance", "Cluster id"],
+          "answer": "Probability"
+        },
+        {
+          "question": "What does a loss function measure?",
+          "options": ["Speed", "Prediction error", "Memory", "Data size"],
+          "answer": "Prediction error"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Linear Regression, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=nk2CQITm_eo"
+        },
+        {
+          "title": "Machine Learning Course - Supervised Learning",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=NWONeJKn6kc"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Supervised Learning",
+          "url": "https://scikit-learn.org/stable/supervised_learning.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "ageron/handson-ml3",
+          "url": "https://github.com/ageron/handson-ml3"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Random Forests (Breiman, 2001)",
+          "url": "https://link.springer.com/article/10.1023/A:1010933404324"
+        }
+      ],
+      "skills_gained": [
+        "Regression",
+        "Classification",
+        "Loss functions",
+        "Model training"
+      ],
+      "expected_outcome": "You can train and interpret basic supervised learning models."
+    },
+    {
+      "day": 10,
+      "title": "Unsupervised Learning",
+      "objectives": [
+        "Understand clustering",
+        "Learn dimensionality reduction",
+        "Apply K-Means and PCA"
+      ],
+      "topics": [
+        "K-Means clustering",
+        "Hierarchical clustering",
+        "PCA",
+        "t-SNE and UMAP",
+        "Anomaly detection",
+        "Choosing number of clusters"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 9: Supervised Learning"
+      ],
+      "beginner_explanation": "Unsupervised learning finds structure in data without labels. Clustering groups similar items, and dimensionality reduction compresses high-dimensional data (like embeddings) into fewer dimensions for visualization. These techniques are vital for exploring the embedding spaces used in modern GenAI.",
+      "practical_task": "Apply K-Means to a dataset, choose k with the elbow method, and visualize clusters with PCA.",
+      "mini_project": "Build a customer-segmentation tool that clusters users and visualizes segments in 2D using PCA.",
+      "assignment": "Compare PCA and t-SNE on a high-dimensional dataset and discuss when each is appropriate.",
+      "quiz": [
+        {
+          "question": "K-Means is used for...",
+          "options": ["Regression", "Clustering", "Classification", "Ranking"],
+          "answer": "Clustering"
+        },
+        {
+          "question": "PCA is a technique for...",
+          "options": ["Increasing dimensions", "Dimensionality reduction", "Labeling data", "Boosting"],
+          "answer": "Dimensionality reduction"
+        },
+        {
+          "question": "The elbow method helps choose...",
+          "options": ["Learning rate", "Number of clusters", "Batch size", "Epochs"],
+          "answer": "Number of clusters"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "K-means clustering, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=4b5d3muPQmA"
+        },
+        {
+          "title": "PCA, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=FgakZw6K1QQ"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Clustering",
+          "url": "https://scikit-learn.org/stable/modules/clustering.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn/scikit-learn",
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Visualizing Data using t-SNE (van der Maaten & Hinton, 2008)",
+          "url": "https://www.jmlr.org/papers/v9/vandermaaten08a.html"
+        }
+      ],
+      "skills_gained": [
+        "Clustering",
+        "Dimensionality reduction",
+        "Embedding visualization"
+      ],
+      "expected_outcome": "You can cluster and reduce the dimensionality of data, useful for embedding analysis."
+    },
+    {
+      "day": 11,
+      "title": "Scikit-learn End-to-End",
+      "objectives": [
+        "Build ML pipelines",
+        "Preprocess features properly",
+        "Tune hyperparameters"
+      ],
+      "topics": [
+        "Estimators and transformers",
+        "Pipelines",
+        "Feature scaling and encoding",
+        "Cross-validation",
+        "Grid and random search",
+        "Model persistence"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 9-10: Supervised & Unsupervised Learning"
+      ],
+      "beginner_explanation": "Scikit-learn is the standard toolkit for classical ML. Its consistent API (fit/predict) and pipelines let you chain preprocessing and modeling into a single reproducible object. Learning proper cross-validation and hyperparameter tuning here builds discipline you will carry into deep learning.",
+      "practical_task": "Build a scikit-learn Pipeline that scales features, encodes categoricals, and trains a classifier, evaluated with cross-validation.",
+      "mini_project": "Create a complete ML project on a Kaggle-style dataset: EDA, pipeline, tuning, evaluation, and saved model.",
+      "assignment": "Use GridSearchCV to tune a model and report how tuning changed performance, with a confusion matrix.",
+      "quiz": [
+        {
+          "question": "What does a Pipeline do?",
+          "options": ["Speeds up CPU", "Chains preprocessing and modeling steps", "Stores data", "Plots charts"],
+          "answer": "Chains preprocessing and modeling steps"
+        },
+        {
+          "question": "Cross-validation helps to...",
+          "options": ["Overfit", "Estimate generalization reliably", "Reduce data", "Encode text"],
+          "answer": "Estimate generalization reliably"
+        },
+        {
+          "question": "Which method fits and predicts?",
+          "options": ["load/save", "fit/predict", "open/close", "read/write"],
+          "answer": "fit/predict"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Scikit-learn Crash Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=0B5eIE_1vpU"
+        },
+        {
+          "title": "Machine Learning with scikit-learn",
+          "channel": "Data School",
+          "url": "https://www.youtube.com/watch?v=elojMnjn4kk"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn User Guide",
+          "url": "https://scikit-learn.org/stable/user_guide.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "justmarkham/scikit-learn-videos",
+          "url": "https://github.com/justmarkham/scikit-learn-videos"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Scikit-learn: Machine Learning in Python (Pedregosa et al., 2011)",
+          "url": "https://www.jmlr.org/papers/v12/pedregosa11a.html"
+        }
+      ],
+      "skills_gained": [
+        "ML pipelines",
+        "Feature engineering",
+        "Hyperparameter tuning",
+        "Cross-validation"
+      ],
+      "expected_outcome": "You can build reproducible, tuned ML pipelines end-to-end."
+    },
+    {
+      "day": 12,
+      "title": "Model Evaluation and Metrics",
+      "objectives": [
+        "Choose appropriate metrics",
+        "Interpret confusion matrices",
+        "Understand ROC/AUC and regression metrics"
+      ],
+      "topics": [
+        "Accuracy, precision, recall, F1",
+        "Confusion matrix",
+        "ROC curve and AUC",
+        "Regression metrics (MSE, MAE, R2)",
+        "Class imbalance",
+        "Baseline models"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 11: Scikit-learn"
+      ],
+      "beginner_explanation": "A model is only as good as how you measure it. Accuracy can be misleading on imbalanced data, so you must understand precision, recall, and F1 for classification, and MSE/MAE/R2 for regression. Correct metric selection is a core skill interviewers probe for.",
+      "practical_task": "Compute precision, recall, F1, and plot an ROC curve for a classifier on imbalanced data.",
+      "mini_project": "Build an evaluation report generator that, given predictions, outputs all key metrics, a confusion matrix, and an ROC plot.",
+      "assignment": "Given a fraud-detection scenario, argue which metric matters most and defend your choice in writing.",
+      "quiz": [
+        {
+          "question": "Which metric balances precision and recall?",
+          "options": ["Accuracy", "F1 score", "MSE", "AUC"],
+          "answer": "F1 score"
+        },
+        {
+          "question": "AUC measures...",
+          "options": ["Training speed", "Ranking quality across thresholds", "Data size", "Memory"],
+          "answer": "Ranking quality across thresholds"
+        },
+        {
+          "question": "R2 is used for...",
+          "options": ["Classification", "Regression", "Clustering", "Ranking"],
+          "answer": "Regression"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Confusion Matrix, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=Kdsp6soqA7o"
+        },
+        {
+          "title": "ROC and AUC, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=4jRBRDbJemM"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Metrics",
+          "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn/scikit-learn",
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "The Relationship Between Precision-Recall and ROC Curves (Davis & Goadrich, 2006)",
+          "url": "https://www.biostat.wisc.edu/~page/rocpr.pdf"
+        }
+      ],
+      "skills_gained": [
+        "Metric selection",
+        "Model evaluation",
+        "Handling imbalance"
+      ],
+      "expected_outcome": "You can choose and interpret the right metrics for any ML task."
+    },
+    {
+      "day": 13,
+      "title": "Introduction to Neural Networks",
+      "objectives": [
+        "Understand neurons and layers",
+        "Learn activation functions",
+        "Grasp forward propagation"
+      ],
+      "topics": [
+        "The perceptron",
+        "Weights, biases, activations",
+        "Activation functions (ReLU, sigmoid, softmax)",
+        "Feedforward networks",
+        "Loss functions for NN",
+        "Forward propagation"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 6-7: Math",
+        "Day 9: Supervised Learning"
+      ],
+      "beginner_explanation": "Neural networks stack simple units (neurons) into layers that can learn complex patterns. Each neuron computes a weighted sum, adds a bias, and applies a non-linear activation. Stacking these lets the network approximate almost any function, which is why they power modern generative AI.",
+      "practical_task": "Draw and compute by hand a forward pass through a 2-layer network with ReLU activations for a small input.",
+      "mini_project": "Implement a simple feedforward neural network from scratch in NumPy that classifies XOR.",
+      "assignment": "Explain, with diagrams, how activation functions introduce non-linearity and why that matters.",
+      "quiz": [
+        {
+          "question": "What introduces non-linearity in a network?",
+          "options": ["Weights", "Activation functions", "Biases", "Learning rate"],
+          "answer": "Activation functions"
+        },
+        {
+          "question": "Softmax is typically used for...",
+          "options": ["Regression output", "Multi-class probabilities", "Hidden layers only", "Normalization of inputs"],
+          "answer": "Multi-class probabilities"
+        },
+        {
+          "question": "A perceptron computes a...",
+          "options": ["Random value", "Weighted sum plus bias", "Cluster", "Gradient"],
+          "answer": "Weighted sum plus bias"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "But what is a neural network?",
+          "channel": "3Blue1Brown",
+          "url": "https://www.youtube.com/watch?v=aircAruvnKk"
+        },
+        {
+          "title": "Neural Networks from Scratch",
+          "channel": "sentdex",
+          "url": "https://www.youtube.com/watch?v=Wo5dMEP_BbI"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Deep Learning Book - Neural Networks",
+          "url": "https://www.deeplearningbook.org/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "Sentdex/nnfs",
+          "url": "https://github.com/Sentdex/NNfSiX"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Multilayer Feedforward Networks are Universal Approximators (Hornik, 1989)",
+          "url": "https://www.sciencedirect.com/science/article/abs/pii/0893608089900208"
+        }
+      ],
+      "skills_gained": [
+        "Neural network basics",
+        "Activation functions",
+        "Forward propagation"
+      ],
+      "expected_outcome": "You understand how neural networks compute predictions."
+    },
+    {
+      "day": 14,
+      "title": "Deep Learning Fundamentals",
+      "objectives": [
+        "Understand backpropagation",
+        "Learn optimizers and learning rate",
+        "Grasp regularization"
+      ],
+      "topics": [
+        "Backpropagation",
+        "Gradient descent variants (SGD, Adam)",
+        "Learning rate scheduling",
+        "Overfitting in deep nets",
+        "Dropout and batch norm",
+        "Epochs and batches"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 13: Neural Networks"
+      ],
+      "beginner_explanation": "Deep learning is training multi-layer networks using backpropagation, which applies the chain rule to compute how each weight affects the loss. Optimizers like Adam use these gradients to update weights efficiently, while techniques like dropout prevent overfitting on large models.",
+      "practical_task": "Trace how backpropagation updates a single weight in a tiny network, computing the gradient step by step.",
+      "mini_project": "Extend your NumPy network from Day 13 to include backpropagation and train it on a small dataset.",
+      "assignment": "Experiment with three learning rates and two optimizers, then plot and compare training curves.",
+      "quiz": [
+        {
+          "question": "Backpropagation applies which rule?",
+          "options": ["Bayes' rule", "Chain rule", "Product rule", "L'Hopital's rule"],
+          "answer": "Chain rule"
+        },
+        {
+          "question": "Dropout helps to...",
+          "options": ["Speed up GPU", "Reduce overfitting", "Increase data", "Encode text"],
+          "answer": "Reduce overfitting"
+        },
+        {
+          "question": "Adam is a type of...",
+          "options": ["Loss function", "Optimizer", "Activation", "Layer"],
+          "answer": "Optimizer"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Backpropagation, step-by-step",
+          "channel": "3Blue1Brown",
+          "url": "https://www.youtube.com/watch?v=Ilg3gGewQ5U"
+        },
+        {
+          "title": "The spelled-out intro to neural networks and backpropagation (micrograd)",
+          "channel": "Andrej Karpathy",
+          "url": "https://www.youtube.com/watch?v=VMj-3S1tku0"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Deep Learning Book",
+          "url": "https://www.deeplearningbook.org/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "karpathy/micrograd",
+          "url": "https://github.com/karpathy/micrograd"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Adam: A Method for Stochastic Optimization (Kingma & Ba, 2014)",
+          "url": "https://arxiv.org/abs/1412.6980"
+        }
+      ],
+      "skills_gained": [
+        "Backpropagation",
+        "Optimization",
+        "Regularization"
+      ],
+      "expected_outcome": "You understand how deep networks are trained and regularized."
+    },
+    {
+      "day": 15,
+      "title": "PyTorch Basics",
+      "objectives": [
+        "Understand tensors and autograd",
+        "Build and train a model in PyTorch",
+        "Use datasets and dataloaders"
+      ],
+      "topics": [
+        "Tensors and operations",
+        "Autograd",
+        "nn.Module",
+        "Optimizers and loss functions",
+        "Training loops",
+        "Datasets and DataLoaders"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 14: Deep Learning Fundamentals"
+      ],
+      "beginner_explanation": "PyTorch is the dominant framework for GenAI research and production. Its tensors behave like NumPy arrays but run on GPUs and track gradients automatically via autograd. Mastering the standard training loop here is essential for everything that follows with transformers and LLMs.",
+      "practical_task": "Build a PyTorch model with nn.Module to classify handwritten digits (MNIST) and write the training loop manually.",
+      "mini_project": "Train an MNIST classifier in PyTorch, log accuracy per epoch, and save/load the trained model.",
+      "assignment": "Reimplement your Day 14 network in PyTorch and compare training convenience and results.",
+      "quiz": [
+        {
+          "question": "What does autograd do?",
+          "options": ["Loads data", "Automatically computes gradients", "Plots charts", "Cleans data"],
+          "answer": "Automatically computes gradients"
+        },
+        {
+          "question": "Which base class defines models?",
+          "options": ["nn.Model", "nn.Module", "torch.Net", "nn.Layer"],
+          "answer": "nn.Module"
+        },
+        {
+          "question": "DataLoader is used to...",
+          "options": ["Plot data", "Batch and shuffle data", "Compress models", "Tune params"],
+          "answer": "Batch and shuffle data"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "PyTorch for Deep Learning - Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=V_xro1bcAuA"
+        },
+        {
+          "title": "PyTorch Tutorial for Beginners",
+          "channel": "Patrick Loeber",
+          "url": "https://www.youtube.com/watch?v=EMXfZB8FVUA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyTorch Documentation",
+          "url": "https://pytorch.org/docs/stable/index.html"
+        },
+        {
+          "title": "PyTorch Learn the Basics",
+          "url": "https://pytorch.org/tutorials/beginner/basics/intro.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pytorch/pytorch",
+          "url": "https://github.com/pytorch/pytorch"
+        },
+        {
+          "name": "mrdbourke/pytorch-deep-learning",
+          "url": "https://github.com/mrdbourke/pytorch-deep-learning"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "PyTorch: An Imperative Style, High-Performance Deep Learning Library (Paszke et al., 2019)",
+          "url": "https://arxiv.org/abs/1912.01703"
+        }
+      ],
+      "skills_gained": [
+        "PyTorch",
+        "Tensors",
+        "Autograd",
+        "Training loops"
+      ],
+      "expected_outcome": "You can build and train neural networks in PyTorch."
+    },
+    {
+      "day": 16,
+      "title": "TensorFlow and Keras Basics",
+      "objectives": [
+        "Build models with Keras",
+        "Understand the Sequential and Functional APIs",
+        "Train and evaluate models"
+      ],
+      "topics": [
+        "Keras Sequential API",
+        "Functional API",
+        "Layers and activations",
+        "Compiling models",
+        "Callbacks",
+        "Saving models"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 15: PyTorch Basics"
+      ],
+      "beginner_explanation": "TensorFlow with Keras offers a high-level, beginner-friendly way to build neural networks with minimal code. While PyTorch dominates research, many production systems and tutorials use Keras, so knowing both frameworks makes you versatile and employable.",
+      "practical_task": "Build and train an image classifier using the Keras Sequential API on the Fashion-MNIST dataset.",
+      "mini_project": "Create the same model in both Keras and PyTorch and write a short comparison of the developer experience.",
+      "assignment": "Use Keras callbacks (early stopping, checkpointing) and document how they change training behavior.",
+      "quiz": [
+        {
+          "question": "Which API stacks layers linearly?",
+          "options": ["Functional", "Sequential", "Subclassing", "Estimator"],
+          "answer": "Sequential"
+        },
+        {
+          "question": "What does model.compile set?",
+          "options": ["Data source", "Optimizer, loss, metrics", "GPU count", "Batch size"],
+          "answer": "Optimizer, loss, metrics"
+        },
+        {
+          "question": "EarlyStopping is a...",
+          "options": ["Layer", "Callback", "Optimizer", "Loss"],
+          "answer": "Callback"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "TensorFlow 2.0 Complete Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=tPYj3fFJGjk"
+        },
+        {
+          "title": "Keras with TensorFlow Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=qFJeN9V1ZsI"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Keras Documentation",
+          "url": "https://keras.io/"
+        },
+        {
+          "title": "TensorFlow Guide",
+          "url": "https://www.tensorflow.org/guide"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "keras-team/keras",
+          "url": "https://github.com/keras-team/keras"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "TensorFlow: A System for Large-Scale Machine Learning (Abadi et al., 2016)",
+          "url": "https://arxiv.org/abs/1605.08695"
+        }
+      ],
+      "skills_gained": [
+        "Keras",
+        "TensorFlow",
+        "Model building",
+        "Callbacks"
+      ],
+      "expected_outcome": "You can build and train models with Keras and understand both major frameworks."
+    },
+    {
+      "day": 17,
+      "title": "Convolutional Neural Networks (CNNs)",
+      "objectives": [
+        "Understand convolution and pooling",
+        "Build a CNN for images",
+        "Apply transfer learning"
+      ],
+      "topics": [
+        "Convolution layers",
+        "Pooling layers",
+        "Feature maps",
+        "CNN architectures",
+        "Transfer learning",
+        "Data augmentation"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 15-16: PyTorch/Keras"
+      ],
+      "beginner_explanation": "CNNs are specialized networks for images. Convolution layers detect local patterns (edges, textures) that combine into complex features. Understanding CNNs matters for GenAI because image-generation models like diffusion models build on convolutional foundations.",
+      "practical_task": "Build a CNN in PyTorch or Keras to classify CIFAR-10 images and report accuracy.",
+      "mini_project": "Use transfer learning with a pretrained ResNet to classify a custom set of images with high accuracy.",
+      "assignment": "Compare a from-scratch CNN vs a transfer-learning model on the same dataset and discuss the difference.",
+      "quiz": [
+        {
+          "question": "Convolution layers detect...",
+          "options": ["Global averages", "Local patterns", "Random noise", "Labels"],
+          "answer": "Local patterns"
+        },
+        {
+          "question": "Pooling layers do what?",
+          "options": ["Add parameters", "Downsample feature maps", "Increase resolution", "Normalize labels"],
+          "answer": "Downsample feature maps"
+        },
+        {
+          "question": "Transfer learning reuses...",
+          "options": ["Data", "Pretrained weights", "Metrics", "GPUs"],
+          "answer": "Pretrained weights"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "But what is a convolution?",
+          "channel": "3Blue1Brown",
+          "url": "https://www.youtube.com/watch?v=KuXjwB4LzSA"
+        },
+        {
+          "title": "Convolutional Neural Networks Explained",
+          "channel": "deeplizard",
+          "url": "https://www.youtube.com/watch?v=YRhxdVk_sIs"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyTorch CNN Tutorial",
+          "url": "https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pytorch/vision",
+          "url": "https://github.com/pytorch/vision"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "ImageNet Classification with Deep CNNs (AlexNet, Krizhevsky et al., 2012)",
+          "url": "https://papers.nips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "CNNs",
+        "Transfer learning",
+        "Computer vision basics"
+      ],
+      "expected_outcome": "You can build image classifiers and apply transfer learning."
+    },
+    {
+      "day": 18,
+      "title": "RNNs, LSTMs and Sequence Models",
+      "objectives": [
+        "Understand sequence modeling",
+        "Learn RNN and LSTM mechanics",
+        "Grasp the vanishing gradient problem"
+      ],
+      "topics": [
+        "Sequential data",
+        "Recurrent neural networks",
+        "LSTM and GRU",
+        "Vanishing gradients",
+        "Sequence-to-sequence",
+        "Limitations of RNNs"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 14: Deep Learning Fundamentals"
+      ],
+      "beginner_explanation": "Before transformers, RNNs and LSTMs were the standard for text and sequences. They process data step by step, keeping a memory of previous inputs. Understanding their limitations, especially difficulty with long-range dependencies, explains exactly why the transformer was invented.",
+      "practical_task": "Build an LSTM that predicts the next character in a text sequence and generate a short sample.",
+      "mini_project": "Train a character-level LSTM text generator on a small corpus (e.g., song lyrics) and sample new text.",
+      "assignment": "Write an explainer comparing RNN, LSTM, and GRU, highlighting the vanishing gradient problem.",
+      "quiz": [
+        {
+          "question": "RNNs are designed for...",
+          "options": ["Images", "Sequential data", "Tabular data", "Graphs"],
+          "answer": "Sequential data"
+        },
+        {
+          "question": "LSTMs help solve which problem?",
+          "options": ["Overfitting", "Vanishing gradients", "Slow GPUs", "Data leakage"],
+          "answer": "Vanishing gradients"
+        },
+        {
+          "question": "A key limitation of RNNs is...",
+          "options": ["No parameters", "Poor long-range dependencies", "Cannot use GPU", "No memory"],
+          "answer": "Poor long-range dependencies"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Recurrent Neural Networks (RNNs), Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=AsNTP8Kwu80"
+        },
+        {
+          "title": "Long Short-Term Memory (LSTM), Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=YCzL96nL7j0"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyTorch LSTM Docs",
+          "url": "https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "karpathy/char-rnn",
+          "url": "https://github.com/karpathy/char-rnn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Long Short-Term Memory (Hochreiter & Schmidhuber, 1997)",
+          "url": "https://www.bioinf.jku.at/publications/older/2604.pdf"
+        }
+      ],
+      "skills_gained": [
+        "Sequence modeling",
+        "RNNs",
+        "LSTMs"
+      ],
+      "expected_outcome": "You understand sequence models and why transformers replaced them."
+    },
+    {
+      "day": 19,
+      "title": "Introduction to NLP",
+      "objectives": [
+        "Understand core NLP tasks",
+        "Learn text preprocessing",
+        "Build a text classifier"
+      ],
+      "topics": [
+        "Tokenization basics",
+        "Stopwords, stemming, lemmatization",
+        "Bag of words and TF-IDF",
+        "Text classification",
+        "N-grams",
+        "NLP task overview"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 9: Supervised Learning"
+      ],
+      "beginner_explanation": "Natural Language Processing is teaching computers to work with human language, the core of GenAI. Before deep models, text was turned into numbers using techniques like TF-IDF. Learning these classical methods builds intuition for how machines represent meaning in text.",
+      "practical_task": "Preprocess a set of documents (tokenize, remove stopwords, lemmatize) and build a TF-IDF sentiment classifier.",
+      "mini_project": "Build a movie-review sentiment analyzer using TF-IDF and logistic regression, reporting accuracy and top features.",
+      "assignment": "Compare bag-of-words vs TF-IDF on a classification task and explain the difference in results.",
+      "quiz": [
+        {
+          "question": "TF-IDF weights words by...",
+          "options": ["Length", "Frequency and rarity", "Position", "Font"],
+          "answer": "Frequency and rarity"
+        },
+        {
+          "question": "Lemmatization reduces words to their...",
+          "options": ["Root form", "Uppercase", "Synonyms", "Numbers"],
+          "answer": "Root form"
+        },
+        {
+          "question": "Stopwords are...",
+          "options": ["Rare words", "Common low-information words", "Numbers", "Names"],
+          "answer": "Common low-information words"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Natural Language Processing (NLP) Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=dIUTsFT2MeQ"
+        },
+        {
+          "title": "NLP with spaCy Tutorial",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=dIUTsFT2MeQ"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "NLTK Documentation",
+          "url": "https://www.nltk.org/"
+        },
+        {
+          "title": "spaCy Documentation",
+          "url": "https://spacy.io/usage"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "explosion/spaCy",
+          "url": "https://github.com/explosion/spaCy"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Statistical Interpretation of Term Specificity (TF-IDF, Sparck Jones, 1972)",
+          "url": "https://www.emerald.com/insight/content/doi/10.1108/eb026526/full/html"
+        }
+      ],
+      "skills_gained": [
+        "Text preprocessing",
+        "TF-IDF",
+        "Text classification"
+      ],
+      "expected_outcome": "You can preprocess text and build classical NLP classifiers."
+    },
+    {
+      "day": 20,
+      "title": "Word Embeddings",
+      "objectives": [
+        "Understand distributed word representations",
+        "Learn Word2Vec and GloVe",
+        "Explore embedding spaces"
+      ],
+      "topics": [
+        "Word2Vec (CBOW, Skip-gram)",
+        "GloVe",
+        "Embedding vectors",
+        "Semantic similarity",
+        "Vector arithmetic",
+        "Limitations of static embeddings"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 19: Intro to NLP"
+      ],
+      "beginner_explanation": "Word embeddings represent words as dense vectors where similar words are close together. The famous example 'king - man + woman = queen' shows meaning encoded as geometry. Embeddings are the foundation of modern NLP and the retrieval systems used in RAG.",
+      "practical_task": "Load pretrained GloVe embeddings, find nearest neighbors of a word, and test vector arithmetic analogies.",
+      "mini_project": "Build a word-similarity explorer that visualizes embeddings in 2D and answers analogy queries.",
+      "assignment": "Train a small Word2Vec model on a corpus and analyze the clusters that emerge.",
+      "quiz": [
+        {
+          "question": "Word embeddings represent words as...",
+          "options": ["One-hot vectors", "Dense vectors", "Integers", "Strings"],
+          "answer": "Dense vectors"
+        },
+        {
+          "question": "Skip-gram predicts...",
+          "options": ["The center word", "Context words from a center word", "Sentences", "Labels"],
+          "answer": "Context words from a center word"
+        },
+        {
+          "question": "A limitation of static embeddings is...",
+          "options": ["Too small", "No context sensitivity", "Too fast", "No training"],
+          "answer": "No context sensitivity"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Word Embedding and Word2Vec, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=viZrOnJclY0"
+        },
+        {
+          "title": "Word2Vec Explained",
+          "channel": "The Semicolon",
+          "url": "https://www.youtube.com/watch?v=Q2NtCcqmIww"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Gensim Word2Vec",
+          "url": "https://radimrehurek.com/gensim/models/word2vec.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "RaRe-Technologies/gensim",
+          "url": "https://github.com/RaRe-Technologies/gensim"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Efficient Estimation of Word Representations in Vector Space (Word2Vec, Mikolov et al., 2013)",
+          "url": "https://arxiv.org/abs/1301.3781"
+        }
+      ],
+      "skills_gained": [
+        "Word embeddings",
+        "Semantic similarity",
+        "Vector representations"
+      ],
+      "expected_outcome": "You understand how words become vectors, foundational for embeddings and RAG."
+    },
+    {
+      "day": 21,
+      "title": "The Attention Mechanism",
+      "objectives": [
+        "Understand attention intuitively",
+        "Learn query, key, value",
+        "Grasp self-attention"
+      ],
+      "topics": [
+        "Motivation for attention",
+        "Query, Key, Value",
+        "Scaled dot-product attention",
+        "Self-attention",
+        "Multi-head attention",
+        "Attention weights interpretation"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 18: RNNs",
+        "Day 20: Word Embeddings"
+      ],
+      "beginner_explanation": "Attention lets a model focus on the most relevant parts of the input when producing each output. Instead of reading sequentially like an RNN, self-attention compares every token to every other token in parallel. This single idea unlocked the transformer and the entire modern LLM era.",
+      "practical_task": "Compute scaled dot-product attention by hand for a tiny 3-token example and interpret the weights.",
+      "mini_project": "Implement single-head self-attention in NumPy/PyTorch and visualize the attention matrix for a sentence.",
+      "assignment": "Explain, with a worked example, how query-key-value produces attention weights and why scaling is used.",
+      "quiz": [
+        {
+          "question": "Attention lets the model...",
+          "options": ["Ignore all inputs", "Focus on relevant tokens", "Reduce parameters", "Skip training"],
+          "answer": "Focus on relevant tokens"
+        },
+        {
+          "question": "Self-attention compares...",
+          "options": ["Layers to layers", "Every token to every token", "Batches to batches", "Weights to biases"],
+          "answer": "Every token to every token"
+        },
+        {
+          "question": "The three key vectors are...",
+          "options": ["Input, output, loss", "Query, key, value", "Weight, bias, gradient", "Token, label, mask"],
+          "answer": "Query, key, value"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Attention in transformers, step-by-step",
+          "channel": "3Blue1Brown",
+          "url": "https://www.youtube.com/watch?v=eMlx5fFNoYc"
+        },
+        {
+          "title": "Attention for Neural Networks, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=PSs6nxngL6k"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "The Annotated Transformer (Harvard NLP)",
+          "url": "https://nlp.seas.harvard.edu/annotated-transformer/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "harvardnlp/annotated-transformer",
+          "url": "https://github.com/harvardnlp/annotated-transformer"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Neural Machine Translation by Jointly Learning to Align and Translate (Bahdanau et al., 2014)",
+          "url": "https://arxiv.org/abs/1409.0473"
+        }
+      ],
+      "skills_gained": [
+        "Attention mechanism",
+        "Self-attention",
+        "QKV intuition"
+      ],
+      "expected_outcome": "You understand the attention mechanism that powers transformers."
+    },
+    {
+      "day": 22,
+      "title": "The Transformer Architecture",
+      "objectives": [
+        "Understand the full transformer",
+        "Learn positional encoding",
+        "Grasp encoder-decoder structure"
+      ],
+      "topics": [
+        "Encoder-decoder architecture",
+        "Positional encoding",
+        "Feedforward layers",
+        "Residual connections and layer norm",
+        "Multi-head attention stacks",
+        "Why transformers scale"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 21: Attention Mechanism"
+      ],
+      "beginner_explanation": "The transformer combines self-attention, positional encodings, and feedforward layers into a highly parallelizable architecture. Because it processes all tokens at once and scales well with data and compute, it became the backbone of GPT, BERT, and every modern LLM.",
+      "practical_task": "Read 'The Illustrated Transformer' and annotate a diagram labeling each component and its purpose.",
+      "mini_project": "Follow Karpathy's nanoGPT lecture to build a tiny GPT that generates text character by character.",
+      "assignment": "Write a technical summary of the 'Attention Is All You Need' paper in your own words.",
+      "quiz": [
+        {
+          "question": "Positional encoding provides...",
+          "options": ["Color", "Order information", "Labels", "Gradients"],
+          "answer": "Order information"
+        },
+        {
+          "question": "Transformers are highly...",
+          "options": ["Sequential", "Parallelizable", "Small", "Rule-based"],
+          "answer": "Parallelizable"
+        },
+        {
+          "question": "Residual connections help with...",
+          "options": ["Data loading", "Gradient flow in deep nets", "Tokenization", "Plotting"],
+          "answer": "Gradient flow in deep nets"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Let's build GPT: from scratch, in code, spelled out",
+          "channel": "Andrej Karpathy",
+          "url": "https://www.youtube.com/watch?v=kCc8FmEb1nY"
+        },
+        {
+          "title": "Transformers, explained: Understand the model behind GPT",
+          "channel": "3Blue1Brown",
+          "url": "https://www.youtube.com/watch?v=wjZofJX0v4M"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "The Illustrated Transformer (Jay Alammar)",
+          "url": "https://jalammar.github.io/illustrated-transformer/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "karpathy/nanoGPT",
+          "url": "https://github.com/karpathy/nanoGPT"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Attention Is All You Need (Vaswani et al., 2017)",
+          "url": "https://arxiv.org/abs/1706.03762"
+        }
+      ],
+      "skills_gained": [
+        "Transformer architecture",
+        "Positional encoding",
+        "nanoGPT"
+      ],
+      "expected_outcome": "You understand the transformer architecture end-to-end and can build a tiny GPT."
+    },
+    {
+      "day": 23,
+      "title": "BERT and Encoder Models",
+      "objectives": [
+        "Understand encoder-only models",
+        "Learn masked language modeling",
+        "Use BERT for downstream tasks"
+      ],
+      "topics": [
+        "BERT architecture",
+        "Masked language modeling",
+        "Next sentence prediction",
+        "Contextual embeddings",
+        "Fine-tuning BERT",
+        "BERT variants (RoBERTa, DistilBERT)"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 22: Transformer Architecture"
+      ],
+      "beginner_explanation": "BERT is an encoder-only transformer trained to fill in masked words, giving it deep bidirectional understanding of text. It excels at understanding tasks like classification, named-entity recognition, and question answering, and its contextual embeddings power many production search systems.",
+      "practical_task": "Use a pretrained BERT model to generate contextual embeddings and compare word meanings in different sentences.",
+      "mini_project": "Fine-tune DistilBERT for sentiment classification on a small dataset using Hugging Face.",
+      "assignment": "Explain masked language modeling and how BERT's bidirectionality differs from GPT's left-to-right approach.",
+      "quiz": [
+        {
+          "question": "BERT is which type of model?",
+          "options": ["Decoder-only", "Encoder-only", "Encoder-decoder", "RNN"],
+          "answer": "Encoder-only"
+        },
+        {
+          "question": "BERT is trained with...",
+          "options": ["Next-token prediction", "Masked language modeling", "Clustering", "Reinforcement learning"],
+          "answer": "Masked language modeling"
+        },
+        {
+          "question": "BERT is best for...",
+          "options": ["Text generation", "Understanding tasks", "Image generation", "Audio"],
+          "answer": "Understanding tasks"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "BERT Neural Network - EXPLAINED!",
+          "channel": "CodeEmporium",
+          "url": "https://www.youtube.com/watch?v=xI0HHN5XKDo"
+        },
+        {
+          "title": "BERT explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=90mGPxR2GgY"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face BERT Docs",
+          "url": "https://huggingface.co/docs/transformers/model_doc/bert"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "google-research/bert",
+          "url": "https://github.com/google-research/bert"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "BERT: Pre-training of Deep Bidirectional Transformers (Devlin et al., 2018)",
+          "url": "https://arxiv.org/abs/1810.04805"
+        }
+      ],
+      "skills_gained": [
+        "Encoder models",
+        "Masked language modeling",
+        "Contextual embeddings"
+      ],
+      "expected_outcome": "You understand and can fine-tune encoder models like BERT."
+    },
+    {
+      "day": 24,
+      "title": "GPT and Decoder Models",
+      "objectives": [
+        "Understand decoder-only models",
+        "Learn autoregressive generation",
+        "Grasp the GPT training objective"
+      ],
+      "topics": [
+        "GPT architecture",
+        "Autoregressive language modeling",
+        "Causal masking",
+        "Next-token prediction",
+        "Scaling laws",
+        "GPT model family evolution"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 22: Transformer Architecture"
+      ],
+      "beginner_explanation": "GPT models are decoder-only transformers trained to predict the next token, generating text one token at a time. This simple objective, scaled to massive data and parameters, produces the fluent, capable models that define generative AI today. Understanding autoregression is key to using LLMs well.",
+      "practical_task": "Use a small GPT-2 model to generate text and experiment with how prompts affect output.",
+      "mini_project": "Extend your nanoGPT from Day 22 to train on a new text corpus and generate themed text.",
+      "assignment": "Explain how next-token prediction leads to emergent capabilities, referencing scaling laws.",
+      "quiz": [
+        {
+          "question": "GPT models are...",
+          "options": ["Encoder-only", "Decoder-only", "Encoder-decoder", "Convolutional"],
+          "answer": "Decoder-only"
+        },
+        {
+          "question": "GPT generates text by...",
+          "options": ["Predicting the next token", "Masking words", "Clustering", "Averaging"],
+          "answer": "Predicting the next token"
+        },
+        {
+          "question": "Causal masking prevents...",
+          "options": ["Overfitting", "Seeing future tokens", "GPU use", "Slow training"],
+          "answer": "Seeing future tokens"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Let's reproduce GPT-2 (124M)",
+          "channel": "Andrej Karpathy",
+          "url": "https://www.youtube.com/watch?v=l8pRSuU81PU"
+        },
+        {
+          "title": "How GPT works",
+          "channel": "3Blue1Brown",
+          "url": "https://www.youtube.com/watch?v=wjZofJX0v4M"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face GPT-2 Docs",
+          "url": "https://huggingface.co/docs/transformers/model_doc/gpt2"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "openai/gpt-2",
+          "url": "https://github.com/openai/gpt-2"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Language Models are Few-Shot Learners (GPT-3, Brown et al., 2020)",
+          "url": "https://arxiv.org/abs/2005.14165"
+        }
+      ],
+      "skills_gained": [
+        "Decoder models",
+        "Autoregressive generation",
+        "LLM fundamentals"
+      ],
+      "expected_outcome": "You understand how GPT-style models generate text."
+    },
+    {
+      "day": 25,
+      "title": "Hugging Face Transformers",
+      "objectives": [
+        "Use the Transformers library",
+        "Load and run pretrained models",
+        "Use pipelines and the Hub"
+      ],
+      "topics": [
+        "Transformers library",
+        "Pipelines API",
+        "AutoModel and AutoTokenizer",
+        "The Hugging Face Hub",
+        "Datasets library",
+        "Model cards"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 23-24: BERT and GPT"
+      ],
+      "beginner_explanation": "Hugging Face is the GitHub of machine learning models. Its Transformers library lets you download and run thousands of pretrained models in a few lines of code. This is the single most important practical tool for a working GenAI engineer.",
+      "practical_task": "Use the pipeline API for sentiment analysis, summarization, and text generation with different models.",
+      "mini_project": "Build a multi-task NLP web app (sentiment, summarization, Q&A) using Hugging Face pipelines and Streamlit.",
+      "assignment": "Explore the Hub, pick three models for one task, and benchmark their speed and quality.",
+      "quiz": [
+        {
+          "question": "The pipeline API is used to...",
+          "options": ["Train from scratch", "Quickly run pretrained models", "Clean data", "Plot charts"],
+          "answer": "Quickly run pretrained models"
+        },
+        {
+          "question": "AutoTokenizer does what?",
+          "options": ["Loads the correct tokenizer for a model", "Trains models", "Deploys apps", "Visualizes data"],
+          "answer": "Loads the correct tokenizer for a model"
+        },
+        {
+          "question": "The Hugging Face Hub hosts...",
+          "options": ["Only datasets", "Models, datasets, and demos", "Only code", "Only papers"],
+          "answer": "Models, datasets, and demos"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Hugging Face Transformers Course",
+          "channel": "HuggingFace",
+          "url": "https://www.youtube.com/watch?v=00GKzGyWFEs"
+        },
+        {
+          "title": "Getting Started with Hugging Face",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=QEaBAZQCtwE"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face Transformers Docs",
+          "url": "https://huggingface.co/docs/transformers/index"
+        },
+        {
+          "title": "Hugging Face Course",
+          "url": "https://huggingface.co/learn/nlp-course"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/transformers",
+          "url": "https://github.com/huggingface/transformers"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Transformers: State-of-the-Art Natural Language Processing (Wolf et al., 2020)",
+          "url": "https://arxiv.org/abs/1910.03771"
+        }
+      ],
+      "skills_gained": [
+        "Hugging Face",
+        "Pretrained models",
+        "Pipelines",
+        "Model Hub"
+      ],
+      "expected_outcome": "You can load and run any pretrained model from Hugging Face."
+    },
+    {
+      "day": 26,
+      "title": "Tokenization Deep Dive",
+      "objectives": [
+        "Understand subword tokenization",
+        "Learn BPE and WordPiece",
+        "Handle special tokens and context limits"
+      ],
+      "topics": [
+        "Byte-Pair Encoding (BPE)",
+        "WordPiece and SentencePiece",
+        "Vocabulary and token IDs",
+        "Special tokens",
+        "Context windows",
+        "Token counting and cost"
+      ],
+      "estimated_time": "4 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 25: Hugging Face Transformers"
+      ],
+      "beginner_explanation": "Tokenization is how text becomes numbers a model can process. Modern models use subword tokenization (like BPE) that balances vocabulary size and flexibility. Understanding tokens is practical: it affects context limits, API costs, and why models sometimes struggle with spelling or math.",
+      "practical_task": "Tokenize sentences with several tokenizers, count tokens, and observe how BPE splits rare words.",
+      "mini_project": "Build a token-counter and cost-estimator tool for LLM API calls across different models.",
+      "assignment": "Explain BPE with a worked example of merging character pairs into subwords.",
+      "quiz": [
+        {
+          "question": "BPE tokenization works at the level of...",
+          "options": ["Whole words only", "Subwords", "Sentences", "Paragraphs"],
+          "answer": "Subwords"
+        },
+        {
+          "question": "The context window limits...",
+          "options": ["GPU count", "How many tokens a model can process", "Model size", "Vocabulary"],
+          "answer": "How many tokens a model can process"
+        },
+        {
+          "question": "Token IDs are...",
+          "options": ["Random", "Integer indices into a vocabulary", "Strings", "Floats"],
+          "answer": "Integer indices into a vocabulary"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Let's build the GPT Tokenizer",
+          "channel": "Andrej Karpathy",
+          "url": "https://www.youtube.com/watch?v=zduSFxRajkE"
+        },
+        {
+          "title": "Tokenization in NLP",
+          "channel": "HuggingFace",
+          "url": "https://www.youtube.com/watch?v=VFp38yj8h3A"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face Tokenizers",
+          "url": "https://huggingface.co/docs/tokenizers/index"
+        },
+        {
+          "title": "OpenAI tiktoken",
+          "url": "https://github.com/openai/tiktoken"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "karpathy/minbpe",
+          "url": "https://github.com/karpathy/minbpe"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Neural Machine Translation of Rare Words with Subword Units (BPE, Sennrich et al., 2015)",
+          "url": "https://arxiv.org/abs/1508.07909"
+        }
+      ],
+      "skills_gained": [
+        "Tokenization",
+        "BPE",
+        "Context windows",
+        "Cost estimation"
+      ],
+      "expected_outcome": "You understand tokenization and its practical impact on LLM usage."
+    },
+    {
+      "day": 27,
+      "title": "Pretraining vs Fine-tuning",
+      "objectives": [
+        "Distinguish pretraining and fine-tuning",
+        "Understand transfer learning for LLMs",
+        "Learn instruction tuning and RLHF basics"
+      ],
+      "topics": [
+        "Pretraining objectives",
+        "Fine-tuning approaches",
+        "Instruction tuning",
+        "RLHF overview",
+        "Foundation models",
+        "When to fine-tune vs prompt"
+      ],
+      "estimated_time": "4 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 24: GPT Models"
+      ],
+      "beginner_explanation": "Modern LLMs are built in stages: expensive pretraining on huge text corpora gives general knowledge, then fine-tuning adapts the model to specific tasks or behaviors. Instruction tuning and RLHF make models helpful and safe. Knowing this pipeline helps you decide when to fine-tune versus simply prompt a model.",
+      "practical_task": "Create a decision flowchart for when to use prompting, fine-tuning, or RAG for a given business problem.",
+      "mini_project": "Write a comparative report on three real models (base, instruction-tuned, RLHF) and their intended uses.",
+      "assignment": "Summarize how RLHF turns a base model into a helpful assistant, in under 500 words.",
+      "quiz": [
+        {
+          "question": "Pretraining gives a model...",
+          "options": ["Task-specific skills", "General language knowledge", "Deployment", "A UI"],
+          "answer": "General language knowledge"
+        },
+        {
+          "question": "RLHF stands for...",
+          "options": ["Reinforcement Learning from Human Feedback", "Rapid Learning for Humans First", "Recursive Loss Function", "Random Layer Hidden Features"],
+          "answer": "Reinforcement Learning from Human Feedback"
+        },
+        {
+          "question": "Instruction tuning makes models...",
+          "options": ["Slower", "Better at following instructions", "Larger", "Untrained"],
+          "answer": "Better at following instructions"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Intro to Large Language Models",
+          "channel": "Andrej Karpathy",
+          "url": "https://www.youtube.com/watch?v=zjkBMFhNj_g"
+        },
+        {
+          "title": "Reinforcement Learning from Human Feedback (RLHF) Explained",
+          "channel": "HuggingFace",
+          "url": "https://www.youtube.com/watch?v=2MBJOuVq380"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face RLHF Blog",
+          "url": "https://huggingface.co/blog/rlhf"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/trl",
+          "url": "https://github.com/huggingface/trl"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Training language models to follow instructions with human feedback (InstructGPT, Ouyang et al., 2022)",
+          "url": "https://arxiv.org/abs/2203.02155"
+        }
+      ],
+      "skills_gained": [
+        "Transfer learning for LLMs",
+        "Instruction tuning",
+        "RLHF concepts"
+      ],
+      "expected_outcome": "You can decide between prompting, fine-tuning, and RAG for a use case."
+    },
+    {
+      "day": 28,
+      "title": "Fine-tuning LLMs",
+      "objectives": [
+        "Prepare data for fine-tuning",
+        "Fine-tune a small model",
+        "Evaluate a fine-tuned model"
+      ],
+      "topics": [
+        "Dataset formatting",
+        "Supervised fine-tuning (SFT)",
+        "Training arguments",
+        "Hugging Face Trainer",
+        "Evaluating generations",
+        "Common pitfalls"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 25: Hugging Face",
+        "Day 27: Pretraining vs Fine-tuning"
+      ],
+      "beginner_explanation": "Fine-tuning adapts a pretrained model to your specific data or style. You format examples, run supervised training with the Hugging Face Trainer, and evaluate the results. Even small fine-tunes can dramatically improve performance on niche tasks, a highly marketable GenAI skill.",
+      "practical_task": "Fine-tune DistilGPT-2 on a small custom text dataset and generate samples before and after.",
+      "mini_project": "Fine-tune a small model to answer questions in a specific tone or domain and demonstrate the improvement.",
+      "assignment": "Document a full fine-tuning experiment including dataset prep, config, metrics, and lessons learned.",
+      "quiz": [
+        {
+          "question": "SFT stands for...",
+          "options": ["Supervised Fine-Tuning", "Simple Feature Training", "Static Function Transfer", "Scaled Fast Training"],
+          "answer": "Supervised Fine-Tuning"
+        },
+        {
+          "question": "The Hugging Face Trainer handles...",
+          "options": ["Deployment only", "Training loops and evaluation", "Tokenization only", "Data collection"],
+          "answer": "Training loops and evaluation"
+        },
+        {
+          "question": "A common fine-tuning pitfall is...",
+          "options": ["Too much data", "Catastrophic forgetting", "Fast GPUs", "Small vocab"],
+          "answer": "Catastrophic forgetting"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Fine-tuning LLMs Tutorial",
+          "channel": "HuggingFace",
+          "url": "https://www.youtube.com/watch?v=eC6Hd1hFvos"
+        },
+        {
+          "title": "Fine Tuning LLM Models",
+          "channel": "Krish Naik",
+          "url": "https://www.youtube.com/watch?v=iOdFUJiB0Zc"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face Fine-tuning Guide",
+          "url": "https://huggingface.co/docs/transformers/training"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/transformers",
+          "url": "https://github.com/huggingface/transformers"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Universal Language Model Fine-tuning for Text Classification (ULMFiT, Howard & Ruder, 2018)",
+          "url": "https://arxiv.org/abs/1801.06146"
+        }
+      ],
+      "skills_gained": [
+        "Fine-tuning",
+        "Dataset preparation",
+        "Hugging Face Trainer"
+      ],
+      "expected_outcome": "You can fine-tune a small language model on custom data."
+    },
+    {
+      "day": 29,
+      "title": "LoRA and Parameter-Efficient Fine-Tuning (PEFT)",
+      "objectives": [
+        "Understand PEFT motivation",
+        "Learn LoRA and QLoRA",
+        "Fine-tune efficiently on limited hardware"
+      ],
+      "topics": [
+        "Why PEFT",
+        "LoRA adapters",
+        "QLoRA and quantization",
+        "The PEFT library",
+        "Merging adapters",
+        "Memory and cost savings"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 28: Fine-tuning LLMs"
+      ],
+      "beginner_explanation": "Full fine-tuning of large models needs enormous GPU memory. LoRA solves this by freezing the base model and training tiny 'adapter' matrices, cutting trainable parameters by over 99%. QLoRA adds quantization so you can fine-tune billion-parameter models on a single consumer GPU, a game-changing practical skill.",
+      "practical_task": "Fine-tune a 7B model with LoRA using the PEFT library on a small instruction dataset in a free GPU notebook.",
+      "mini_project": "Create a domain-specific assistant by fine-tuning an open model with QLoRA and publish the adapter to the Hub.",
+      "assignment": "Compare full fine-tuning vs LoRA in terms of memory, speed, and quality, with a written analysis.",
+      "quiz": [
+        {
+          "question": "LoRA trains...",
+          "options": ["All parameters", "Small adapter matrices", "Only the tokenizer", "Nothing"],
+          "answer": "Small adapter matrices"
+        },
+        {
+          "question": "QLoRA adds...",
+          "options": ["More layers", "Quantization for memory savings", "New data", "A UI"],
+          "answer": "Quantization for memory savings"
+        },
+        {
+          "question": "PEFT primarily reduces...",
+          "options": ["Accuracy", "Trainable parameters and memory", "Vocabulary", "Context length"],
+          "answer": "Trainable parameters and memory"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "LoRA & QLoRA Fine-tuning Explained",
+          "channel": "AI Jason",
+          "url": "https://www.youtube.com/watch?v=t509sv5MT0w"
+        },
+        {
+          "title": "LoRA explained (and a bit about precision and quantization)",
+          "channel": "Umar Jamil",
+          "url": "https://www.youtube.com/watch?v=PXWYUTMt-AU"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face PEFT Docs",
+          "url": "https://huggingface.co/docs/peft/index"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/peft",
+          "url": "https://github.com/huggingface/peft"
+        },
+        {
+          "name": "artidoro/qlora",
+          "url": "https://github.com/artidoro/qlora"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "LoRA: Low-Rank Adaptation of Large Language Models (Hu et al., 2021)",
+          "url": "https://arxiv.org/abs/2106.09685"
+        },
+        {
+          "title": "QLoRA: Efficient Finetuning of Quantized LLMs (Dettmers et al., 2023)",
+          "url": "https://arxiv.org/abs/2305.14314"
+        }
+      ],
+      "skills_gained": [
+        "LoRA",
+        "QLoRA",
+        "PEFT",
+        "Efficient fine-tuning"
+      ],
+      "expected_outcome": "You can efficiently fine-tune large models on limited hardware using LoRA/QLoRA."
+    },
+    {
+      "day": 30,
+      "title": "Prompt Engineering",
+      "objectives": [
+        "Master prompting techniques",
+        "Use few-shot and chain-of-thought",
+        "Design robust system prompts"
+      ],
+      "topics": [
+        "Zero-shot and few-shot prompting",
+        "Chain-of-thought",
+        "System vs user prompts",
+        "Prompt templates",
+        "Output formatting and constraints",
+        "Common prompting failures"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 24: GPT Models"
+      ],
+      "beginner_explanation": "Prompt engineering is the art of communicating with LLMs to get reliable results. Techniques like few-shot examples and chain-of-thought reasoning dramatically improve output quality without any training. This is the fastest, cheapest way to control model behavior and a daily skill for GenAI engineers.",
+      "practical_task": "Take one task and iteratively improve results using zero-shot, few-shot, and chain-of-thought prompts.",
+      "mini_project": "Build a prompt library with reusable templates for summarization, extraction, classification, and reasoning tasks.",
+      "assignment": "Document a prompt-optimization case study showing before/after outputs and what changed.",
+      "quiz": [
+        {
+          "question": "Few-shot prompting provides...",
+          "options": ["No examples", "A few examples in the prompt", "Model weights", "Training data"],
+          "answer": "A few examples in the prompt"
+        },
+        {
+          "question": "Chain-of-thought encourages the model to...",
+          "options": ["Answer instantly", "Reason step by step", "Ignore context", "Shorten output"],
+          "answer": "Reason step by step"
+        },
+        {
+          "question": "A system prompt typically sets...",
+          "options": ["The GPU", "The model's role and behavior", "The tokenizer", "The dataset"],
+          "answer": "The model's role and behavior"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Prompt Engineering Tutorial - Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=_ZvnD73m40o"
+        },
+        {
+          "title": "ChatGPT Prompt Engineering for Developers",
+          "channel": "DeepLearningAI",
+          "url": "https://www.youtube.com/watch?v=H4YK_7MAckk"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "OpenAI Prompt Engineering Guide",
+          "url": "https://platform.openai.com/docs/guides/prompt-engineering"
+        },
+        {
+          "title": "Anthropic Prompt Engineering Guide",
+          "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "dair-ai/Prompt-Engineering-Guide",
+          "url": "https://github.com/dair-ai/Prompt-Engineering-Guide"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Chain-of-Thought Prompting Elicits Reasoning in LLMs (Wei et al., 2022)",
+          "url": "https://arxiv.org/abs/2201.11903"
+        }
+      ],
+      "skills_gained": [
+        "Prompt engineering",
+        "Few-shot prompting",
+        "Chain-of-thought"
+      ],
+      "expected_outcome": "You can reliably steer LLM behavior through effective prompting."
+    },
+    {
+      "day": 31,
+      "title": "LLM APIs (OpenAI, Anthropic, Open Models)",
+      "objectives": [
+        "Call commercial LLM APIs",
+        "Manage parameters and streaming",
+        "Handle costs and rate limits"
+      ],
+      "topics": [
+        "OpenAI and Anthropic APIs",
+        "Chat completions",
+        "Temperature and top-p",
+        "Streaming responses",
+        "Structured output / JSON mode",
+        "API keys and security"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 30: Prompt Engineering"
+      ],
+      "beginner_explanation": "Most GenAI products are built on hosted LLM APIs. You learn to authenticate securely, structure chat messages, control randomness with temperature, stream tokens for responsive UIs, and request structured JSON output. These are the concrete integration skills interviewers expect.",
+      "practical_task": "Write a Python script that calls an LLM API with a system prompt, streams the response, and returns structured JSON.",
+      "mini_project": "Build a CLI chatbot with conversation memory using an LLM API, with streaming and token-cost tracking.",
+      "assignment": "Implement robust API error handling with retries and rate-limit backoff, and document your approach.",
+      "quiz": [
+        {
+          "question": "Higher temperature makes output...",
+          "options": ["More deterministic", "More random/creative", "Shorter", "Faster"],
+          "answer": "More random/creative"
+        },
+        {
+          "question": "API keys should be...",
+          "options": ["Committed to git", "Stored securely in env variables", "Shared publicly", "Hardcoded"],
+          "answer": "Stored securely in env variables"
+        },
+        {
+          "question": "Streaming returns...",
+          "options": ["The full text at once", "Tokens incrementally", "Only errors", "Images"],
+          "answer": "Tokens incrementally"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "OpenAI API Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=c-g6epk3fFE"
+        },
+        {
+          "title": "Build with the Anthropic API",
+          "channel": "Anthropic",
+          "url": "https://www.youtube.com/watch?v=X3aG9gJ2Fme"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "OpenAI API Reference",
+          "url": "https://platform.openai.com/docs/api-reference"
+        },
+        {
+          "title": "Anthropic API Docs",
+          "url": "https://docs.anthropic.com/en/api/getting-started"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "openai/openai-python",
+          "url": "https://github.com/openai/openai-python"
+        },
+        {
+          "name": "anthropics/anthropic-sdk-python",
+          "url": "https://github.com/anthropics/anthropic-sdk-python"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "GPT-4 Technical Report (OpenAI, 2023)",
+          "url": "https://arxiv.org/abs/2303.08774"
+        }
+      ],
+      "skills_gained": [
+        "LLM API integration",
+        "Streaming",
+        "Structured output",
+        "Cost management"
+      ],
+      "expected_outcome": "You can integrate commercial LLM APIs into applications securely."
+    },
+    {
+      "day": 32,
+      "title": "LangChain Basics",
+      "objectives": [
+        "Understand LangChain components",
+        "Build chains and use prompts",
+        "Add memory to conversations"
+      ],
+      "topics": [
+        "LangChain overview",
+        "Models, prompts, output parsers",
+        "Chains and LCEL",
+        "Memory",
+        "Document loaders",
+        "Integrations ecosystem"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 31: LLM APIs"
+      ],
+      "beginner_explanation": "LangChain is a framework for building LLM applications by composing reusable components: models, prompts, parsers, memory, and tools. It standardizes common patterns so you can build chatbots, RAG systems, and agents faster. It is one of the most in-demand GenAI frameworks.",
+      "practical_task": "Build a LangChain chain that takes a topic, generates an outline, then expands each section, using LCEL.",
+      "mini_project": "Create a conversational assistant with LangChain that remembers context across turns and uses a custom prompt template.",
+      "assignment": "Rebuild your Day 31 chatbot in LangChain and compare the two approaches in a short write-up.",
+      "quiz": [
+        {
+          "question": "LangChain is used to...",
+          "options": ["Train models", "Compose LLM application components", "Clean data", "Host GPUs"],
+          "answer": "Compose LLM application components"
+        },
+        {
+          "question": "Memory in LangChain stores...",
+          "options": ["Model weights", "Conversation history", "GPU state", "Datasets"],
+          "answer": "Conversation history"
+        },
+        {
+          "question": "LCEL stands for...",
+          "options": ["LangChain Expression Language", "Large Compute Engine Layer", "Linear Chain Execution Loop", "Local Cache Extension Library"],
+          "answer": "LangChain Expression Language"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "LangChain Crash Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=lG7Uxts9SXs"
+        },
+        {
+          "title": "LangChain Explained in 13 Minutes",
+          "channel": "Rabbitmetrics",
+          "url": "https://www.youtube.com/watch?v=aywZrzNaKjs"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LangChain Documentation",
+          "url": "https://python.langchain.com/docs/introduction/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "langchain-ai/langchain",
+          "url": "https://github.com/langchain-ai/langchain"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al., 2022)",
+          "url": "https://arxiv.org/abs/2210.03629"
+        }
+      ],
+      "skills_gained": [
+        "LangChain",
+        "Chains",
+        "Prompt templates",
+        "Conversation memory"
+      ],
+      "expected_outcome": "You can build LLM applications by composing LangChain components."
+    },
+    {
+      "day": 33,
+      "title": "Embeddings and Semantic Search",
+      "objectives": [
+        "Generate text embeddings",
+        "Compute semantic similarity",
+        "Build a semantic search system"
+      ],
+      "topics": [
+        "Embedding models",
+        "Cosine similarity",
+        "Chunking strategies",
+        "Semantic vs keyword search",
+        "Embedding APIs",
+        "Evaluation of retrieval"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 20: Word Embeddings",
+        "Day 31: LLM APIs"
+      ],
+      "beginner_explanation": "Embeddings turn text into vectors that capture meaning, so semantically similar texts have similar vectors. Semantic search finds relevant documents by vector similarity rather than exact keywords. This is the retrieval engine behind RAG, the most common GenAI architecture in production.",
+      "practical_task": "Embed a set of documents, then given a query, retrieve the top-k most similar using cosine similarity.",
+      "mini_project": "Build a semantic search engine over a collection of articles with adjustable chunking and top-k retrieval.",
+      "assignment": "Experiment with three chunk sizes and measure their effect on retrieval quality for sample queries.",
+      "quiz": [
+        {
+          "question": "Semantic search matches by...",
+          "options": ["Exact keywords", "Vector similarity of meaning", "File size", "Date"],
+          "answer": "Vector similarity of meaning"
+        },
+        {
+          "question": "Cosine similarity measures...",
+          "options": ["Vector length", "Angle between vectors", "Word count", "Token cost"],
+          "answer": "Angle between vectors"
+        },
+        {
+          "question": "Chunking is needed because...",
+          "options": ["Models are free", "Documents exceed context and retrieval granularity matters", "GPUs are slow", "Text is short"],
+          "answer": "Documents exceed context and retrieval granularity matters"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Text Embeddings Explained",
+          "channel": "AssemblyAI",
+          "url": "https://www.youtube.com/watch?v=OATCgQtNX2o"
+        },
+        {
+          "title": "Semantic Search with Embeddings",
+          "channel": "James Briggs",
+          "url": "https://www.youtube.com/watch?v=ySus5ZS0b94"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "OpenAI Embeddings Guide",
+          "url": "https://platform.openai.com/docs/guides/embeddings"
+        },
+        {
+          "title": "Sentence Transformers",
+          "url": "https://www.sbert.net/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "UKPLab/sentence-transformers",
+          "url": "https://github.com/UKPLab/sentence-transformers"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks (Reimers & Gurevych, 2019)",
+          "url": "https://arxiv.org/abs/1908.10084"
+        }
+      ],
+      "skills_gained": [
+        "Text embeddings",
+        "Semantic search",
+        "Chunking",
+        "Similarity metrics"
+      ],
+      "expected_outcome": "You can build semantic search systems using embeddings."
+    },
+    {
+      "day": 34,
+      "title": "Vector Databases",
+      "objectives": [
+        "Understand vector databases",
+        "Store and query embeddings at scale",
+        "Use metadata filtering"
+      ],
+      "topics": [
+        "What is a vector database",
+        "ANN indexes (HNSW)",
+        "Chroma, FAISS, Pinecone, Weaviate",
+        "Upserting and querying vectors",
+        "Metadata filtering",
+        "Scaling considerations"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 33: Embeddings and Semantic Search"
+      ],
+      "beginner_explanation": "Vector databases store millions of embeddings and retrieve the most similar ones in milliseconds using approximate nearest neighbor indexes. They add persistence, metadata filtering, and scalability to semantic search. Every production RAG system relies on a vector database.",
+      "practical_task": "Load documents into Chroma or FAISS, run similarity queries, and filter results using metadata.",
+      "mini_project": "Migrate your Day 33 search engine to a vector database with persistence and metadata filters.",
+      "assignment": "Compare two vector databases (e.g., Chroma vs FAISS) on setup, speed, and features in a written report.",
+      "quiz": [
+        {
+          "question": "Vector databases use which index type?",
+          "options": ["B-tree", "Approximate nearest neighbor", "Hash join", "Bitmap"],
+          "answer": "Approximate nearest neighbor"
+        },
+        {
+          "question": "Metadata filtering lets you...",
+          "options": ["Train models", "Restrict search by attributes", "Compress vectors", "Encode text"],
+          "answer": "Restrict search by attributes"
+        },
+        {
+          "question": "HNSW is a type of...",
+          "options": ["Loss function", "ANN index", "Tokenizer", "Optimizer"],
+          "answer": "ANN index"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Vector Databases Explained",
+          "channel": "IBM Technology",
+          "url": "https://www.youtube.com/watch?v=dN0lsF2cvm4"
+        },
+        {
+          "title": "What is a Vector Database?",
+          "channel": "Fireship",
+          "url": "https://www.youtube.com/watch?v=klTvEwg3oJ4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Chroma Docs",
+          "url": "https://docs.trychroma.com/"
+        },
+        {
+          "title": "FAISS Wiki",
+          "url": "https://github.com/facebookresearch/faiss/wiki"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "chroma-core/chroma",
+          "url": "https://github.com/chroma-core/chroma"
+        },
+        {
+          "name": "facebookresearch/faiss",
+          "url": "https://github.com/facebookresearch/faiss"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Efficient and robust approximate nearest neighbor search using HNSW (Malkov & Yashunin, 2016)",
+          "url": "https://arxiv.org/abs/1603.09320"
+        }
+      ],
+      "skills_gained": [
+        "Vector databases",
+        "ANN search",
+        "Metadata filtering",
+        "Scalable retrieval"
+      ],
+      "expected_outcome": "You can store and query embeddings at scale with a vector database."
+    },
+    {
+      "day": 35,
+      "title": "Retrieval-Augmented Generation (RAG) Fundamentals",
+      "objectives": [
+        "Understand the RAG architecture",
+        "Combine retrieval with generation",
+        "Reduce hallucinations with grounding"
+      ],
+      "topics": [
+        "Why RAG",
+        "Retriever + generator pipeline",
+        "Context injection",
+        "Grounding and citations",
+        "RAG vs fine-tuning",
+        "Hallucination reduction"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 34: Vector Databases"
+      ],
+      "beginner_explanation": "RAG lets an LLM answer questions using your private, up-to-date data by retrieving relevant chunks and injecting them into the prompt. This grounds responses in facts, reduces hallucinations, and avoids expensive retraining. RAG is the single most common GenAI architecture in industry.",
+      "practical_task": "Build a minimal RAG pipeline: embed docs, retrieve top-k for a query, and generate a grounded answer with citations.",
+      "mini_project": "Build a 'chat with your PDF' app that answers questions from an uploaded document using RAG.",
+      "assignment": "Demonstrate, with examples, how RAG reduces hallucinations compared to a plain LLM on domain questions.",
+      "quiz": [
+        {
+          "question": "RAG combines retrieval with...",
+          "options": ["Clustering", "Generation", "Classification", "Compression"],
+          "answer": "Generation"
+        },
+        {
+          "question": "RAG helps reduce...",
+          "options": ["Speed", "Hallucinations", "Accuracy", "Context"],
+          "answer": "Hallucinations"
+        },
+        {
+          "question": "RAG is preferred over fine-tuning when...",
+          "options": ["Data never changes", "Knowledge is dynamic and factual grounding is needed", "You have no data", "You want a smaller model"],
+          "answer": "Knowledge is dynamic and factual grounding is needed"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "What is Retrieval-Augmented Generation (RAG)?",
+          "channel": "IBM Technology",
+          "url": "https://www.youtube.com/watch?v=T-D1OfcDW1M"
+        },
+        {
+          "title": "RAG from Scratch",
+          "channel": "LangChain",
+          "url": "https://www.youtube.com/watch?v=wd7TZ4w1mSw"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LangChain RAG Tutorial",
+          "url": "https://python.langchain.com/docs/tutorials/rag/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "langchain-ai/rag-from-scratch",
+          "url": "https://github.com/langchain-ai/rag-from-scratch"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., 2020)",
+          "url": "https://arxiv.org/abs/2005.11401"
+        }
+      ],
+      "skills_gained": [
+        "RAG architecture",
+        "Grounding",
+        "Hallucination mitigation"
+      ],
+      "expected_outcome": "You understand and can build a basic RAG pipeline."
+    },
+    {
+      "day": 36,
+      "title": "Building a Production RAG Pipeline",
+      "objectives": [
+        "Build an end-to-end RAG app",
+        "Improve retrieval quality",
+        "Add reranking and evaluation"
+      ],
+      "topics": [
+        "Ingestion pipeline",
+        "Advanced chunking",
+        "Hybrid search",
+        "Reranking",
+        "RAG evaluation (RAGAS)",
+        "Prompt design for RAG"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 35: RAG Fundamentals"
+      ],
+      "beginner_explanation": "A production RAG system needs more than basic retrieval: careful chunking, hybrid keyword+vector search, reranking to surface the best chunks, and evaluation to measure quality. Today you assemble these into a robust pipeline and learn to measure whether your RAG actually works.",
+      "practical_task": "Add a reranker to your Day 35 RAG app and measure the improvement in answer relevance.",
+      "mini_project": "Build a documentation Q&A assistant with hybrid search, reranking, citations, and a RAGAS evaluation report.",
+      "assignment": "Evaluate your RAG system with RAGAS metrics and write recommendations to improve weak areas.",
+      "quiz": [
+        {
+          "question": "Reranking is used to...",
+          "options": ["Generate text", "Reorder retrieved results by relevance", "Clean data", "Train models"],
+          "answer": "Reorder retrieved results by relevance"
+        },
+        {
+          "question": "Hybrid search combines...",
+          "options": ["Two GPUs", "Keyword and vector search", "Two models", "Two datasets"],
+          "answer": "Keyword and vector search"
+        },
+        {
+          "question": "RAGAS is a framework for...",
+          "options": ["Training", "Evaluating RAG systems", "Tokenization", "Deployment"],
+          "answer": "Evaluating RAG systems"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Advanced RAG Techniques",
+          "channel": "LangChain",
+          "url": "https://www.youtube.com/watch?v=sVcwVQRHIc8"
+        },
+        {
+          "title": "Building Production-Ready RAG Applications",
+          "channel": "LlamaIndex",
+          "url": "https://www.youtube.com/watch?v=TRjq7t2Ms5I"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "RAGAS Documentation",
+          "url": "https://docs.ragas.io/"
+        },
+        {
+          "title": "LlamaIndex Docs",
+          "url": "https://docs.llamaindex.ai/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "explodinggradients/ragas",
+          "url": "https://github.com/explodinggradients/ragas"
+        },
+        {
+          "name": "run-llama/llama_index",
+          "url": "https://github.com/run-llama/llama_index"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Dense Passage Retrieval for Open-Domain QA (Karpukhin et al., 2020)",
+          "url": "https://arxiv.org/abs/2004.04906"
+        }
+      ],
+      "skills_gained": [
+        "Production RAG",
+        "Reranking",
+        "Hybrid search",
+        "RAG evaluation"
+      ],
+      "expected_outcome": "You can build and evaluate a production-quality RAG system."
+    },
+    {
+      "day": 37,
+      "title": "LLM Agents and Tool Use",
+      "objectives": [
+        "Understand the agent paradigm",
+        "Enable tool/function calling",
+        "Build a multi-step agent"
+      ],
+      "topics": [
+        "What are agents",
+        "Function/tool calling",
+        "ReAct reasoning",
+        "Multi-tool agents",
+        "Agent memory",
+        "Guardrails for agents"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 32: LangChain",
+        "Day 36: Production RAG"
+      ],
+      "beginner_explanation": "Agents let LLMs take actions, not just generate text. Through tool calling, a model can search the web, run code, query databases, or call APIs, then reason over the results to solve multi-step problems. Agentic systems are the current frontier of applied GenAI.",
+      "practical_task": "Build an agent that can use a calculator tool and a search tool to answer multi-step questions.",
+      "mini_project": "Create a research assistant agent that searches, retrieves, and synthesizes information into a cited summary.",
+      "assignment": "Design and implement three custom tools for an agent and document how the agent decides when to use each.",
+      "quiz": [
+        {
+          "question": "Tool calling lets an LLM...",
+          "options": ["Only chat", "Invoke external functions", "Train itself", "Reduce tokens"],
+          "answer": "Invoke external functions"
+        },
+        {
+          "question": "ReAct combines reasoning with...",
+          "options": ["Rendering", "Acting (tool use)", "Recording", "Ranking"],
+          "answer": "Acting (tool use)"
+        },
+        {
+          "question": "Guardrails are used to...",
+          "options": ["Speed up agents", "Constrain agent behavior safely", "Add tools", "Increase tokens"],
+          "answer": "Constrain agent behavior safely"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Building AI Agents from Scratch",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=bZzyPscbtI8"
+        },
+        {
+          "title": "LangGraph Agents Tutorial",
+          "channel": "LangChain",
+          "url": "https://www.youtube.com/watch?v=hvAPnpSfSGo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LangGraph Docs",
+          "url": "https://langchain-ai.github.io/langgraph/"
+        },
+        {
+          "title": "OpenAI Function Calling",
+          "url": "https://platform.openai.com/docs/guides/function-calling"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "langchain-ai/langgraph",
+          "url": "https://github.com/langchain-ai/langgraph"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Toolformer: Language Models Can Teach Themselves to Use Tools (Schick et al., 2023)",
+          "url": "https://arxiv.org/abs/2302.04761"
+        }
+      ],
+      "skills_gained": [
+        "AI agents",
+        "Tool calling",
+        "ReAct",
+        "Multi-step reasoning"
+      ],
+      "expected_outcome": "You can build LLM agents that use tools to solve multi-step tasks."
+    },
+    {
+      "day": 38,
+      "title": "Diffusion Models and Image Generation",
+      "objectives": [
+        "Understand diffusion models",
+        "Generate images from text",
+        "Learn key parameters"
+      ],
+      "topics": [
+        "How diffusion works",
+        "Text-to-image models",
+        "Stable Diffusion",
+        "Prompts, guidance scale, steps",
+        "Image-to-image and inpainting",
+        "Diffusers library"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 17: CNNs",
+        "Day 25: Hugging Face"
+      ],
+      "beginner_explanation": "Diffusion models generate images by learning to reverse a process that gradually adds noise, starting from random noise and denoising into a coherent image guided by a text prompt. They power tools like Stable Diffusion and are essential for the visual side of generative AI.",
+      "practical_task": "Use the Diffusers library to generate images from text prompts and experiment with guidance scale and steps.",
+      "mini_project": "Build a text-to-image web app with prompt controls and image-to-image editing using Stable Diffusion.",
+      "assignment": "Explain the forward and reverse diffusion processes and how text conditioning guides generation.",
+      "quiz": [
+        {
+          "question": "Diffusion models generate images by...",
+          "options": ["Cropping photos", "Denoising from random noise", "Copying data", "Clustering pixels"],
+          "answer": "Denoising from random noise"
+        },
+        {
+          "question": "Guidance scale controls...",
+          "options": ["Image size", "How closely output follows the prompt", "GPU speed", "File format"],
+          "answer": "How closely output follows the prompt"
+        },
+        {
+          "question": "Inpainting is used to...",
+          "options": ["Generate text", "Edit/fill parts of an image", "Compress files", "Train models"],
+          "answer": "Edit/fill parts of an image"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "How Stable Diffusion Works",
+          "channel": "Computerphile",
+          "url": "https://www.youtube.com/watch?v=1CIpzeNxIhU"
+        },
+        {
+          "title": "Diffusion Models Explained",
+          "channel": "AssemblyAI",
+          "url": "https://www.youtube.com/watch?v=fbLgFrlTnGU"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face Diffusers Docs",
+          "url": "https://huggingface.co/docs/diffusers/index"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/diffusers",
+          "url": "https://github.com/huggingface/diffusers"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Denoising Diffusion Probabilistic Models (Ho et al., 2020)",
+          "url": "https://arxiv.org/abs/2006.11239"
+        },
+        {
+          "title": "High-Resolution Image Synthesis with Latent Diffusion Models (Rombach et al., 2022)",
+          "url": "https://arxiv.org/abs/2112.10752"
+        }
+      ],
+      "skills_gained": [
+        "Diffusion models",
+        "Text-to-image",
+        "Diffusers library"
+      ],
+      "expected_outcome": "You can generate and edit images with diffusion models."
+    },
+    {
+      "day": 39,
+      "title": "Multimodal Models",
+      "objectives": [
+        "Understand multimodal AI",
+        "Use vision-language models",
+        "Build image + text applications"
+      ],
+      "topics": [
+        "Multimodal concepts",
+        "CLIP and contrastive learning",
+        "Vision-language models (GPT-4V, LLaVA)",
+        "Image captioning and VQA",
+        "Audio and speech models (Whisper)",
+        "Multimodal use cases"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 38: Diffusion Models"
+      ],
+      "beginner_explanation": "Multimodal models understand more than one type of data at once, such as images and text together. CLIP aligns images and text in a shared space, and vision-language models can describe images or answer questions about them. Whisper transcribes speech. These unlock rich, real-world GenAI applications.",
+      "practical_task": "Use CLIP to match images to text captions and a vision-language model to answer questions about an image.",
+      "mini_project": "Build a multimodal assistant that accepts an image and a question and returns a grounded answer, plus Whisper voice input.",
+      "assignment": "Explain how CLIP's contrastive training aligns images and text, with a diagram.",
+      "quiz": [
+        {
+          "question": "Multimodal models process...",
+          "options": ["Only text", "Multiple data types", "Only images", "Only audio"],
+          "answer": "Multiple data types"
+        },
+        {
+          "question": "CLIP aligns...",
+          "options": ["Two texts", "Images and text in a shared space", "Two images", "Audio and video"],
+          "answer": "Images and text in a shared space"
+        },
+        {
+          "question": "Whisper is used for...",
+          "options": ["Image generation", "Speech-to-text", "Translation only", "Clustering"],
+          "answer": "Speech-to-text"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "OpenAI CLIP Explained",
+          "channel": "AssemblyAI",
+          "url": "https://www.youtube.com/watch?v=fGwH2YoQkDM"
+        },
+        {
+          "title": "Multimodal AI Explained",
+          "channel": "IBM Technology",
+          "url": "https://www.youtube.com/watch?v=WkoytlA3MoQ"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face CLIP Docs",
+          "url": "https://huggingface.co/docs/transformers/model_doc/clip"
+        },
+        {
+          "title": "OpenAI Whisper",
+          "url": "https://github.com/openai/whisper"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "openai/CLIP",
+          "url": "https://github.com/openai/CLIP"
+        },
+        {
+          "name": "haotian-liu/LLaVA",
+          "url": "https://github.com/haotian-liu/LLaVA"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Learning Transferable Visual Models From Natural Language Supervision (CLIP, Radford et al., 2021)",
+          "url": "https://arxiv.org/abs/2103.00020"
+        }
+      ],
+      "skills_gained": [
+        "Multimodal AI",
+        "CLIP",
+        "Vision-language models",
+        "Speech models"
+      ],
+      "expected_outcome": "You can build applications combining images, text, and audio."
+    },
+    {
+      "day": 40,
+      "title": "LLM Evaluation and Guardrails",
+      "objectives": [
+        "Evaluate LLM outputs",
+        "Implement safety guardrails",
+        "Detect and mitigate hallucinations"
+      ],
+      "topics": [
+        "Evaluation metrics (BLEU, ROUGE, LLM-as-judge)",
+        "Benchmark datasets",
+        "Hallucination detection",
+        "Content moderation",
+        "Prompt injection defense",
+        "Guardrail frameworks"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 36: Production RAG",
+        "Day 37: Agents"
+      ],
+      "beginner_explanation": "Shipping GenAI safely requires measuring quality and preventing harm. You learn evaluation methods including LLM-as-judge, plus guardrails that block unsafe content and defend against prompt injection. Employers increasingly demand these responsible-AI skills before deployment.",
+      "practical_task": "Set up an LLM-as-judge evaluation for a set of model outputs and add an input/output moderation guardrail.",
+      "mini_project": "Build an evaluation harness that scores your RAG app's answers and flags hallucinations and unsafe content.",
+      "assignment": "Design a test suite of adversarial prompts (including injection attempts) and report how your guardrails respond.",
+      "quiz": [
+        {
+          "question": "LLM-as-judge uses...",
+          "options": ["Human raters only", "Another LLM to score outputs", "Random scoring", "No evaluation"],
+          "answer": "Another LLM to score outputs"
+        },
+        {
+          "question": "Prompt injection is...",
+          "options": ["A training method", "An attack manipulating model instructions", "A metric", "A tokenizer"],
+          "answer": "An attack manipulating model instructions"
+        },
+        {
+          "question": "Guardrails aim to...",
+          "options": ["Increase tokens", "Ensure safe, constrained outputs", "Train faster", "Reduce cost"],
+          "answer": "Ensure safe, constrained outputs"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Evaluating LLMs",
+          "channel": "DeepLearningAI",
+          "url": "https://www.youtube.com/watch?v=fWC4VxolWAk"
+        },
+        {
+          "title": "LLM Guardrails Explained",
+          "channel": "IBM Technology",
+          "url": "https://www.youtube.com/watch?v=lMBUgxfXCsc"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "OpenAI Safety Best Practices",
+          "url": "https://platform.openai.com/docs/guides/safety-best-practices"
+        },
+        {
+          "title": "Guardrails AI Docs",
+          "url": "https://www.guardrailsai.com/docs"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "guardrails-ai/guardrails",
+          "url": "https://github.com/guardrails-ai/guardrails"
+        },
+        {
+          "name": "confident-ai/deepeval",
+          "url": "https://github.com/confident-ai/deepeval"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena (Zheng et al., 2023)",
+          "url": "https://arxiv.org/abs/2306.05685"
+        }
+      ],
+      "skills_gained": [
+        "LLM evaluation",
+        "Guardrails",
+        "Safety",
+        "Prompt injection defense"
+      ],
+      "expected_outcome": "You can evaluate and safeguard LLM applications for production."
+    },
+    {
+      "day": 41,
+      "title": "Deploying GenAI Applications",
+      "objectives": [
+        "Build an API around an LLM app",
+        "Create a web interface",
+        "Deploy to the cloud"
+      ],
+      "topics": [
+        "FastAPI for LLM backends",
+        "Streaming endpoints",
+        "Streamlit / Gradio UIs",
+        "Containerization with Docker",
+        "Environment and secrets management",
+        "Deploying to cloud platforms"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 31: LLM APIs",
+        "Day 36: Production RAG"
+      ],
+      "beginner_explanation": "A model is only useful when others can access it. You wrap your LLM logic in a FastAPI backend, build a UI with Streamlit or Gradio, containerize with Docker, and deploy to the cloud. These full-stack deployment skills turn prototypes into real products employers value.",
+      "practical_task": "Wrap your RAG app in a FastAPI endpoint with streaming and connect a simple Gradio front end.",
+      "mini_project": "Deploy your RAG chatbot as a containerized web app to a free cloud host with a public URL.",
+      "assignment": "Write a deployment guide documenting your architecture, Dockerfile, and environment configuration.",
+      "quiz": [
+        {
+          "question": "FastAPI is used to...",
+          "options": ["Train models", "Build web APIs", "Clean data", "Tokenize text"],
+          "answer": "Build web APIs"
+        },
+        {
+          "question": "Docker provides...",
+          "options": ["A GPU", "Reproducible containerized environments", "A tokenizer", "A dataset"],
+          "answer": "Reproducible containerized environments"
+        },
+        {
+          "question": "Secrets like API keys should be...",
+          "options": ["Hardcoded", "Managed via environment variables/secret stores", "Public", "In the UI"],
+          "answer": "Managed via environment variables/secret stores"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "FastAPI Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=0sOvCWFmrtA"
+        },
+        {
+          "title": "Build and Deploy an AI App",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=Kk_Lx-c1cEg"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "FastAPI Documentation",
+          "url": "https://fastapi.tiangolo.com/"
+        },
+        {
+          "title": "Gradio Documentation",
+          "url": "https://www.gradio.app/docs"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "tiangolo/fastapi",
+          "url": "https://github.com/tiangolo/fastapi"
+        },
+        {
+          "name": "gradio-app/gradio",
+          "url": "https://github.com/gradio-app/gradio"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Hidden Technical Debt in Machine Learning Systems (Sculley et al., 2015)",
+          "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "FastAPI",
+        "UI development",
+        "Docker",
+        "Cloud deployment"
+      ],
+      "expected_outcome": "You can deploy a GenAI application as a live web service."
+    },
+    {
+      "day": 42,
+      "title": "LLMOps and Monitoring",
+      "objectives": [
+        "Understand LLMOps",
+        "Monitor and trace LLM apps",
+        "Manage cost, caching, and versions"
+      ],
+      "topics": [
+        "LLMOps overview",
+        "Observability and tracing (LangSmith)",
+        "Prompt and model versioning",
+        "Caching and cost optimization",
+        "Latency and throughput",
+        "Feedback loops"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 41: Deploying GenAI Applications"
+      ],
+      "beginner_explanation": "LLMOps applies DevOps discipline to LLM applications: monitoring quality and cost, tracing requests to debug failures, versioning prompts and models, and caching to save money. These operational skills separate hobby projects from production systems and are increasingly required for GenAI roles.",
+      "practical_task": "Add tracing to your deployed app with LangSmith and implement response caching to reduce repeated API costs.",
+      "mini_project": "Instrument your GenAI app with a monitoring dashboard tracking latency, cost, token usage, and user feedback.",
+      "assignment": "Analyze one week of simulated logs and propose three optimizations for cost and latency.",
+      "quiz": [
+        {
+          "question": "LLMOps focuses on...",
+          "options": ["Only training", "Operating LLM apps in production", "Only UI", "Only data cleaning"],
+          "answer": "Operating LLM apps in production"
+        },
+        {
+          "question": "Tracing helps you...",
+          "options": ["Train faster", "Debug and understand app behavior", "Reduce vocab", "Add tools"],
+          "answer": "Debug and understand app behavior"
+        },
+        {
+          "question": "Caching reduces...",
+          "options": ["Accuracy", "Repeated cost and latency", "Context", "Safety"],
+          "answer": "Repeated cost and latency"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "LLMOps Explained",
+          "channel": "IBM Technology",
+          "url": "https://www.youtube.com/watch?v=Fs6Jr6Uwc9E"
+        },
+        {
+          "title": "LangSmith Tutorial",
+          "channel": "LangChain",
+          "url": "https://www.youtube.com/watch?v=tFXm5ijih98"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LangSmith Documentation",
+          "url": "https://docs.smith.langchain.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "langfuse/langfuse",
+          "url": "https://github.com/langfuse/langfuse"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Challenges in Deploying Machine Learning: a Survey of Case Studies (Paleyes et al., 2020)",
+          "url": "https://arxiv.org/abs/2011.09926"
+        }
+      ],
+      "skills_gained": [
+        "LLMOps",
+        "Observability",
+        "Cost optimization",
+        "Versioning"
+      ],
+      "expected_outcome": "You can monitor, trace, and optimize GenAI applications in production."
+    },
+    {
+      "day": 43,
+      "title": "Capstone Project - Part 1: Design and Build",
+      "objectives": [
+        "Scope a real GenAI product",
+        "Design the architecture",
+        "Implement the core system"
+      ],
+      "topics": [
+        "Problem definition",
+        "Architecture design",
+        "Data ingestion",
+        "RAG or agent core",
+        "API and UI",
+        "Version control and structure"
+      ],
+      "estimated_time": "6-8 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 36-42: RAG, Agents, Deployment, LLMOps"
+      ],
+      "beginner_explanation": "The capstone ties everything together. Today you choose a meaningful problem, design a clean architecture combining RAG and/or agents, and implement the core functionality with a proper project structure. A strong capstone is the centerpiece of a GenAI job application.",
+      "practical_task": "Write a one-page project spec (problem, users, architecture diagram, tech stack) and scaffold the repository.",
+      "mini_project": "Build the core of a full GenAI application, for example an AI knowledge assistant with RAG and tool-using agents.",
+      "assignment": "Implement the ingestion pipeline and core generation logic with clean, documented, version-controlled code.",
+      "quiz": [
+        {
+          "question": "A good capstone should be...",
+          "options": ["Undocumented", "A complete, deployable, real-world app", "A single script", "Only a notebook"],
+          "answer": "A complete, deployable, real-world app"
+        },
+        {
+          "question": "Architecture design should come...",
+          "options": ["After coding everything", "Before implementation", "Never", "Only at deployment"],
+          "answer": "Before implementation"
+        },
+        {
+          "question": "Version control is important for...",
+          "options": ["Slower work", "Tracking changes and collaboration", "Bigger models", "Faster GPUs"],
+          "answer": "Tracking changes and collaboration"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Build a Full Stack AI SaaS App",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=Kk_Lx-c1cEg"
+        },
+        {
+          "title": "End to End GenAI Project",
+          "channel": "Krish Naik",
+          "url": "https://www.youtube.com/watch?v=x0AnCE9SE4A"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LangChain Templates",
+          "url": "https://python.langchain.com/docs/templates/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "langchain-ai/langchain",
+          "url": "https://github.com/langchain-ai/langchain"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., 2020)",
+          "url": "https://arxiv.org/abs/2005.11401"
+        }
+      ],
+      "skills_gained": [
+        "System design",
+        "Project architecture",
+        "End-to-end building"
+      ],
+      "expected_outcome": "You have a working core of a real GenAI application."
+    },
+    {
+      "day": 44,
+      "title": "Capstone Project - Part 2: Evaluate, Deploy, Polish",
+      "objectives": [
+        "Add evaluation and guardrails",
+        "Deploy the capstone live",
+        "Polish UX and documentation"
+      ],
+      "topics": [
+        "Evaluation integration",
+        "Guardrails and safety",
+        "Deployment",
+        "Monitoring",
+        "README and documentation",
+        "Demo preparation"
+      ],
+      "estimated_time": "6-8 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Day 43: Capstone Part 1"
+      ],
+      "beginner_explanation": "A great project is finished, safe, and presentable. Today you add evaluation and guardrails, deploy to a public URL, set up monitoring, and write clear documentation. Polishing the user experience and demo turns a good project into a portfolio piece that lands interviews.",
+      "practical_task": "Add guardrails and an evaluation report to the capstone, then deploy it publicly with monitoring enabled.",
+      "mini_project": "Finish and deploy the full capstone with a polished UI, live demo, and comprehensive README.",
+      "assignment": "Record a 3-minute demo video and write a technical README covering architecture, setup, and results.",
+      "quiz": [
+        {
+          "question": "A portfolio project should include...",
+          "options": ["No docs", "Clear README and a live demo", "Only code", "Only a video"],
+          "answer": "Clear README and a live demo"
+        },
+        {
+          "question": "Guardrails should be added...",
+          "options": ["Never", "Before public deployment", "Only after complaints", "During training only"],
+          "answer": "Before public deployment"
+        },
+        {
+          "question": "Monitoring in production helps...",
+          "options": ["Hide bugs", "Catch issues and track quality", "Slow the app", "Remove features"],
+          "answer": "Catch issues and track quality"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Deploy Machine Learning Models",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=Kk_Lx-c1cEg"
+        },
+        {
+          "title": "How to Write a Great README",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=E6NO0rgFub4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Streamlit Deployment",
+          "url": "https://docs.streamlit.io/deploy"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "matiassingers/awesome-readme",
+          "url": "https://github.com/matiassingers/awesome-readme"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Hidden Technical Debt in Machine Learning Systems (Sculley et al., 2015)",
+          "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "Deployment",
+        "Evaluation",
+        "Documentation",
+        "Demo skills"
+      ],
+      "expected_outcome": "You have a deployed, documented, portfolio-ready GenAI capstone."
+    },
+    {
+      "day": 45,
+      "title": "Portfolio, Interview Prep, and Career Launch",
+      "objectives": [
+        "Assemble a GenAI portfolio",
+        "Prepare for GenAI interviews",
+        "Plan continued learning"
+      ],
+      "topics": [
+        "Portfolio and GitHub presentation",
+        "Resume for GenAI roles",
+        "Common interview questions",
+        "System design for LLM apps",
+        "Staying current with research",
+        "Community and networking"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 44: Capstone complete"
+      ],
+      "beginner_explanation": "Skills get you interviews only if people can see them. Today you polish your GitHub, write a targeted resume, and rehearse common GenAI interview questions covering transformers, RAG, fine-tuning, and system design. You also set up habits to keep learning as the field evolves rapidly.",
+      "practical_task": "Polish your GitHub profile and pin your best projects with clear READMEs, then draft a GenAI-focused resume.",
+      "mini_project": "Create a personal portfolio site showcasing your capstone and key projects with descriptions and live links.",
+      "assignment": "Answer 20 GenAI interview questions in writing and complete one mock LLM system-design question.",
+      "quiz": [
+        {
+          "question": "The most important portfolio asset is...",
+          "options": ["A long resume", "Deployed, documented projects", "Many certificates", "A blog only"],
+          "answer": "Deployed, documented projects"
+        },
+        {
+          "question": "For a RAG system design question you should discuss...",
+          "options": ["Only the model", "Ingestion, retrieval, generation, eval, and scaling", "Only the UI", "Only cost"],
+          "answer": "Ingestion, retrieval, generation, eval, and scaling"
+        },
+        {
+          "question": "Staying current in GenAI requires...",
+          "options": ["Ignoring papers", "Following research, releases, and community", "Only reading old books", "Nothing"],
+          "answer": "Following research, releases, and community"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "How to Build a Developer Portfolio",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=u-RLu_8kwA0"
+        },
+        {
+          "title": "Machine Learning Interview Preparation",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=t6gOpFLt-Ks"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face Blog (stay current)",
+          "url": "https://huggingface.co/blog"
+        },
+        {
+          "title": "Papers with Code",
+          "url": "https://paperswithcode.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "mlabonne/llm-course",
+          "url": "https://github.com/mlabonne/llm-course"
+        },
+        {
+          "name": "khangich/machine-learning-interview",
+          "url": "https://github.com/khangich/machine-learning-interview"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Survey of Large Language Models (Zhao et al., 2023)",
+          "url": "https://arxiv.org/abs/2303.18223"
+        }
+      ],
+      "skills_gained": [
+        "Portfolio building",
+        "Interview readiness",
+        "System design",
+        "Continuous learning"
+      ],
+      "expected_outcome": "You are ready to apply and interview for entry-level GenAI Engineer roles."
+    }
+  ]
+}

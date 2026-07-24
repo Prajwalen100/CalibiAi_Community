@@ -1,0 +1,3119 @@
+{
+  "roadmap": {
+    "title": "45-Day Data Science Roadmap",
+    "role": "Data Science",
+    "level": "Intermediate",
+    "total_days": 45,
+    "provider": "CalibiAI",
+    "description": "A rigorous 45-day intermediate curriculum for practitioners who already know Python, basic statistics, and core ML - advancing into production-grade engineering, advanced statistics and causal inference, modern ML and deep learning, MLOps, big data, and a deployed end-to-end capstone.",
+    "outcome": "Ability to engineer scalable data workflows, design and analyze experiments, build and optimize advanced ML and deep learning models, deploy and monitor them in production, and deliver rigorous, business-driving data science."
+  },
+  "days": [
+    {
+      "day": 1,
+      "title": "Advanced Python for Data Science",
+      "objectives": [
+        "Write clean, idiomatic, and performant Python",
+        "Use OOP, decorators, generators, and type hints effectively",
+        "Structure reusable data science code"
+      ],
+      "topics": [
+        "Object-oriented programming and dataclasses",
+        "Decorators and context managers",
+        "Generators and iterators for memory efficiency",
+        "Type hints and static typing (mypy)",
+        "Comprehensions, functools, and itertools"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Python fundamentals",
+        "Basic data science experience"
+      ],
+      "intermediate_explanation": "At the intermediate level you stop writing throwaway scripts and start writing Python that other people (and production systems) can rely on. Object-oriented programming lets you model concepts as classes with encapsulated state and behavior, and dataclasses remove boilerplate for data-holding objects. Decorators are functions that wrap other functions to add behavior (timing, caching, logging) without changing their code, and context managers (the 'with' statement) guarantee setup/teardown like closing files or database connections. Generators and iterators produce values lazily, one at a time, which is essential for processing datasets too large to fit in memory. Type hints, checked by tools like mypy, document expected types and catch a whole class of bugs before runtime, making large codebases maintainable. Mastering functools (caching, partial application) and itertools (efficient iteration) lets you express complex data transformations concisely. These skills separate a data scientist who can only prototype in notebooks from one who can ship robust, reusable code that scales.",
+      "practical_task": "Refactor a procedural data-processing script into a class-based module with type hints, use a decorator to time functions, and rewrite one data-loading step as a generator to reduce memory use.",
+      "mini_project": "Build a small reusable data science utility package (with classes, decorators, generators, and full type hints) that you can import across projects, and run mypy to verify it type-checks cleanly.",
+      "assignment": "Implement a caching decorator and a context manager for a database connection, then write a short note explaining when each pattern is appropriate.",
+      "quiz": [
+        {
+          "question": "What is the main advantage of a generator over returning a list?",
+          "options": ["It is always faster to write", "It produces values lazily, using far less memory", "It sorts the data", "It adds type safety"],
+          "answer": "It produces values lazily, using far less memory"
+        },
+        {
+          "question": "What does a decorator do?",
+          "options": ["Deletes a function", "Wraps a function to add behavior without changing its code", "Converts a class to a dict", "Runs static type checks"],
+          "answer": "Wraps a function to add behavior without changing its code"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Python OOP Tutorial - Corey Schafer (Full Series)",
+          "channel": "Corey Schafer",
+          "url": "https://www.youtube.com/watch?v=ZDa-Z5JzLYM"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Python Data Model and Language Reference",
+          "url": "https://docs.python.org/3/reference/datamodel.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "python/mypy",
+          "url": "https://github.com/python/mypy"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Python for Scientific Computing (Oliphant, 2007)",
+          "url": "https://ieeexplore.ieee.org/document/4160250"
+        }
+      ],
+      "skills_gained": [
+        "Advanced Python",
+        "OOP and decorators",
+        "Type-safe code"
+      ],
+      "expected_outcome": "You can write clean, reusable, type-safe Python suitable for production data science."
+    },
+    {
+      "day": 2,
+      "title": "Software Engineering and Testing for Data Science",
+      "objectives": [
+        "Apply software engineering practices to DS code",
+        "Write tests for data and models",
+        "Use environments, linting, and packaging"
+      ],
+      "topics": [
+        "Project structure and modular code",
+        "Unit testing with pytest",
+        "Testing data and ML code (fixtures, mocking)",
+        "Linting and formatting (ruff, black)",
+        "Dependency management and packaging (uv/poetry)"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Advanced Python",
+        "Git basics"
+      ],
+      "intermediate_explanation": "Data science code that reaches production must be tested and maintainable, not just correct once in a notebook. Software engineering practices bring discipline: organizing code into modules with clear responsibilities, separating configuration from logic, and keeping notebooks for exploration but scripts/packages for anything reused. Testing is central. Unit tests with pytest verify that individual functions behave as expected, and for data science you also write tests for data (schema, ranges, no unexpected nulls) and for model behavior (does accuracy stay above a threshold, does the pipeline run end to end). Fixtures provide reusable test setup and mocking lets you test code that depends on external services without calling them. Linters and formatters like ruff and black automatically enforce style and catch errors, keeping a team's code consistent. Proper dependency management with tools like uv or poetry pins exact versions so your project is reproducible anywhere. Adopting these practices dramatically reduces bugs, makes collaboration possible, and is exactly what distinguishes a professional data scientist's workflow from an amateur's.",
+      "practical_task": "Take an existing analysis, split it into a tested module, write pytest unit tests for at least three functions including a data-validation test, and configure ruff/black to lint and format the project.",
+      "mini_project": "Convert a project into a properly packaged, tested repository with a src layout, a pytest suite (including a model-quality test), linting configuration, and pinned dependencies managed by uv or poetry.",
+      "assignment": "Write a pytest suite for a data-cleaning function that includes tests for edge cases (empty input, all-null column, unexpected type) and explain your test choices.",
+      "quiz": [
+        {
+          "question": "Why write tests for your data, not just your code?",
+          "options": ["Tests are only for code", "Because bad or unexpected data silently breaks models and pipelines", "To slow down deployment", "To replace EDA"],
+          "answer": "Because bad or unexpected data silently breaks models and pipelines"
+        },
+        {
+          "question": "What does mocking allow you to do in a test?",
+          "options": ["Format the code", "Test code without calling real external services", "Increase model accuracy", "Delete dependencies"],
+          "answer": "Test code without calling real external services"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Pytest Tutorial - How to Test Python Code",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=cHYq1MRoyI0"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "pytest Documentation",
+          "url": "https://docs.pytest.org/en/stable/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pytest-dev/pytest",
+          "url": "https://github.com/pytest-dev/pytest"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Hidden Technical Debt in Machine Learning Systems (Sculley et al., 2015)",
+          "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "Software engineering for DS",
+        "Testing with pytest",
+        "Packaging and linting"
+      ],
+      "expected_outcome": "You can build tested, maintainable, reproducible data science codebases."
+    },
+    {
+      "day": 3,
+      "title": "High-Performance NumPy and Vectorization",
+      "objectives": [
+        "Write vectorized code that avoids Python loops",
+        "Understand broadcasting and memory layout",
+        "Profile and optimize numerical code"
+      ],
+      "topics": [
+        "Vectorization vs Python loops",
+        "Broadcasting rules",
+        "Strides, views, and memory layout",
+        "Universal functions (ufuncs) and aggregation",
+        "Profiling and optimizing numerical code"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "NumPy basics",
+        "Advanced Python"
+      ],
+      "intermediate_explanation": "NumPy is fast because its operations run in optimized C under the hood, but only if you use it correctly, and intermediate practitioners must learn to write vectorized code that replaces slow Python loops with array operations that process entire arrays at once, often 10-100x faster. The key mechanism is broadcasting: NumPy's rules for automatically expanding arrays of different shapes so they can be combined without explicit loops or copies. Understanding memory layout matters too: arrays are stored as contiguous blocks, and 'views' share memory with the original while 'copies' don't, which affects both performance and subtle bugs when you modify data. Strides describe how NumPy steps through memory, and knowing this explains why some operations are cheap and others expensive. Universal functions (ufuncs) apply element-wise operations efficiently, and aggregations along axes summarize data fast. Finally, you learn to profile code to find bottlenecks and optimize the parts that matter. These skills are foundational because Pandas, scikit-learn, and deep learning frameworks all build on NumPy, and vectorized thinking is essential for handling real dataset sizes efficiently.",
+      "practical_task": "Take a computation written with nested Python loops and rewrite it as fully vectorized NumPy using broadcasting, then benchmark both versions to measure the speedup.",
+      "mini_project": "Implement a small numerical routine (e.g., pairwise distance matrix or a moving-window statistic) in three ways - pure Python, partially vectorized, and fully vectorized - and produce a benchmark report explaining the differences.",
+      "assignment": "Demonstrate broadcasting by combining arrays of three different shapes, and write an explanation of how NumPy aligns their dimensions.",
+      "quiz": [
+        {
+          "question": "Why is vectorized NumPy code faster than an equivalent Python loop?",
+          "options": ["It uses more memory", "The operations run in optimized compiled C on whole arrays", "It skips computation", "It uses the GPU by default"],
+          "answer": "The operations run in optimized compiled C on whole arrays"
+        },
+        {
+          "question": "What is broadcasting?",
+          "options": ["Sending data over a network", "Automatically expanding arrays of different shapes to combine them", "Copying arrays to disk", "Sorting an array"],
+          "answer": "Automatically expanding arrays of different shapes to combine them"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "NumPy Full Course - Data Science with Python",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=GB9ByFAIAH4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "NumPy Broadcasting Documentation",
+          "url": "https://numpy.org/doc/stable/user/basics.broadcasting.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "numpy/numpy",
+          "url": "https://github.com/numpy/numpy"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Array Programming with NumPy (Harris et al., 2020)",
+          "url": "https://www.nature.com/articles/s41586-020-2649-2"
+        }
+      ],
+      "skills_gained": [
+        "Vectorization",
+        "Broadcasting",
+        "Numerical optimization"
+      ],
+      "expected_outcome": "You can write fast, vectorized numerical code and reason about NumPy performance."
+    },
+    {
+      "day": 4,
+      "title": "Advanced Pandas and Performance",
+      "objectives": [
+        "Master advanced Pandas operations",
+        "Optimize memory and speed in Pandas",
+        "Handle complex reshaping and multi-index data"
+      ],
+      "topics": [
+        "MultiIndex and hierarchical data",
+        "Advanced groupby (transform, agg, apply)",
+        "Pivot, melt, and reshaping",
+        "Memory optimization (dtypes, categoricals)",
+        "Method chaining and the .pipe pattern"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Pandas fundamentals",
+        "High-performance NumPy"
+      ],
+      "intermediate_explanation": "Beyond basic filtering and grouping, Pandas has a deep toolkit that intermediate data scientists use to handle real, messy, large datasets. MultiIndex (hierarchical indexing) lets you work with data organized along multiple dimensions, like time and region, in a single DataFrame. Advanced groupby goes well past simple aggregation: transform returns group-wise results aligned to the original rows (useful for group-normalization), agg applies multiple functions at once, and apply handles arbitrary group logic. Reshaping with pivot, melt, stack, and unstack lets you move fluidly between wide and long formats, which is essential for analysis and plotting. Performance becomes critical as data grows: choosing efficient dtypes, converting repetitive string columns to categoricals, and downcasting numerics can cut memory use by an order of magnitude and speed up operations. Finally, method chaining and the .pipe pattern let you express a whole transformation as a readable, top-to-bottom sequence without messy intermediate variables. Mastering these turns Pandas from a beginner tool into a powerful engine for serious data manipulation.",
+      "practical_task": "Take a wide dataset, reshape it with melt/pivot, build a MultiIndex, apply a group-wise transform to normalize values within groups, and reduce its memory footprint using categoricals and downcast dtypes.",
+      "mini_project": "Refactor a messy multi-step Pandas analysis into a single readable method-chained pipeline using .pipe, and produce a before/after report on memory usage and execution time after dtype optimization.",
+      "assignment": "Demonstrate the difference between groupby transform and agg on the same dataset, explaining when each is the right tool.",
+      "quiz": [
+        {
+          "question": "What does groupby().transform() return?",
+          "options": ["One row per group", "Results aligned to the original rows", "A pivot table", "A plot"],
+          "answer": "Results aligned to the original rows"
+        },
+        {
+          "question": "Which change most reduces the memory of a repetitive string column?",
+          "options": ["Converting it to a categorical", "Sorting it", "Adding an index", "Renaming it"],
+          "answer": "Converting it to a categorical"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Advanced Pandas Tutorial",
+          "channel": "Corey Schafer",
+          "url": "https://www.youtube.com/watch?v=zmdjNSmRXF4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "pandas User Guide (Advanced)",
+          "url": "https://pandas.pydata.org/docs/user_guide/index.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pandas-dev/pandas",
+          "url": "https://github.com/pandas-dev/pandas"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Data Structures for Statistical Computing in Python (McKinney, 2010)",
+          "url": "https://conference.scipy.org/proceedings/scipy2010/mckinney.html"
+        }
+      ],
+      "skills_gained": [
+        "Advanced Pandas",
+        "Reshaping and MultiIndex",
+        "Memory optimization"
+      ],
+      "expected_outcome": "You can manipulate complex datasets efficiently and write clean Pandas pipelines."
+    },
+    {
+      "day": 5,
+      "title": "Scalable Data Wrangling with Polars and Dask",
+      "objectives": [
+        "Process datasets larger than memory",
+        "Use Polars for fast DataFrame operations",
+        "Parallelize workloads with Dask"
+      ],
+      "topics": [
+        "Limits of Pandas and when to scale",
+        "Polars lazy vs eager execution",
+        "Query optimization in Polars",
+        "Dask DataFrames and parallel computing",
+        "Out-of-core and chunked processing"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Advanced Pandas"
+      ],
+      "intermediate_explanation": "Pandas is single-threaded and holds everything in memory, so it hits a wall on large datasets, and intermediate data scientists must know how to scale beyond it. Polars is a modern DataFrame library written in Rust that is dramatically faster, uses multiple cores automatically, and offers a lazy execution mode: instead of running each step immediately, it builds a query plan and optimizes the whole thing (like pushing filters earlier) before executing, much like a database. This lazy, query-optimized approach lets Polars process data far larger and faster than Pandas. Dask takes a different approach: it parallelizes familiar Pandas-like operations across cores or even a cluster, and processes data out-of-core, in chunks that don't all fit in memory at once, so you can work with datasets bigger than RAM. You also learn chunked processing patterns for reading and aggregating huge files piece by piece. Knowing when and how to reach for Polars (speed and memory on one machine) versus Dask (parallel/distributed and out-of-core) lets you handle real-world data volumes that would crash a naive Pandas workflow.",
+      "practical_task": "Rewrite a Pandas aggregation pipeline in Polars using lazy execution, then process a larger-than-memory CSV with Dask in chunks, comparing runtime and memory to the Pandas version.",
+      "mini_project": "Take a large dataset and build the same analytical pipeline three ways - Pandas, Polars (lazy), and Dask - then produce a benchmark comparing speed, memory, and code ergonomics, with a recommendation.",
+      "assignment": "Explain, with a concrete example, the difference between Polars eager and lazy execution and why lazy mode can be faster.",
+      "quiz": [
+        {
+          "question": "What is a key advantage of Polars lazy execution?",
+          "options": ["It uses only one core", "It builds and optimizes a query plan before running", "It removes the need for a schema", "It stores data on disk only"],
+          "answer": "It builds and optimizes a query plan before running"
+        },
+        {
+          "question": "What problem does Dask's out-of-core processing solve?",
+          "options": ["Slow plotting", "Working with datasets larger than available memory", "Missing values", "Type errors"],
+          "answer": "Working with datasets larger than available memory"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Polars: The Super Fast DataFrame Library for Python",
+          "channel": "Rob Mulla",
+          "url": "https://www.youtube.com/watch?v=Ctqhi1Fb8HA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Polars User Guide",
+          "url": "https://docs.pola.rs/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pola-rs/polars",
+          "url": "https://github.com/pola-rs/polars"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Dask: Parallel Computation with Blocked algorithms (Rocklin, 2015)",
+          "url": "https://conference.scipy.org/proceedings/scipy2015/matthew_rocklin.html"
+        }
+      ],
+      "skills_gained": [
+        "Polars",
+        "Dask parallel computing",
+        "Out-of-core processing"
+      ],
+      "expected_outcome": "You can process datasets that exceed memory using Polars and Dask."
+    },
+    {
+      "day": 6,
+      "title": "Advanced SQL and Analytical Queries",
+      "objectives": [
+        "Write complex analytical SQL",
+        "Master window functions and CTEs",
+        "Optimize query performance"
+      ],
+      "topics": [
+        "Advanced joins and set operations",
+        "Window functions (partitioning, framing)",
+        "Recursive CTEs",
+        "Query execution plans and indexing",
+        "Analytical SQL patterns (cohorts, funnels)"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "SQL joins and aggregation"
+      ],
+      "intermediate_explanation": "SQL remains the backbone of analytics, and intermediate data scientists must go far beyond SELECT and GROUP BY to answer sophisticated business questions directly in the database, where it's fastest. Window functions are the centerpiece: they compute values across a set of rows related to the current row (a 'window') without collapsing them, enabling running totals, moving averages, rankings, and period-over-period comparisons using PARTITION BY to define groups and frame clauses to define the window's extent. Recursive CTEs let you query hierarchical data like org charts or category trees. Analytical patterns built on these, cohort analysis (tracking groups over time), funnel analysis (conversion through stages), and retention, are exactly what product and business teams ask for. Equally important is performance: understanding how the database plans and executes a query, reading the execution plan, and using indexes appropriately can turn a query that takes minutes into one that takes milliseconds. Mastering analytical SQL means you can do heavy lifting at the source and hand Python only the results it needs, which is both faster and more scalable.",
+      "practical_task": "Using a database, write queries that compute a running total and a rank within groups using window functions, build a cohort retention query, and inspect a query's execution plan to identify an indexing opportunity.",
+      "mini_project": "Build an analytical SQL report suite for a sample database that includes a funnel analysis, a cohort/retention table, and period-over-period growth, all using window functions and CTEs.",
+      "assignment": "Write a window-function query that computes each row's value as a percentage of its group total, and explain how PARTITION BY drives the result.",
+      "quiz": [
+        {
+          "question": "What do window functions let you do that GROUP BY does not?",
+          "options": ["Delete rows", "Compute across related rows without collapsing them", "Create tables", "Import CSVs"],
+          "answer": "Compute across related rows without collapsing them"
+        },
+        {
+          "question": "What is the purpose of reading a query execution plan?",
+          "options": ["To format the SQL", "To understand and optimize how the database runs the query", "To add columns", "To back up the data"],
+          "answer": "To understand and optimize how the database runs the query"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Advanced SQL Window Functions Tutorial",
+          "channel": "Alex The Analyst",
+          "url": "https://www.youtube.com/watch?v=Ww71knvhQ-s"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PostgreSQL Window Functions",
+          "url": "https://www.postgresql.org/docs/current/tutorial-window.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "postgres/postgres",
+          "url": "https://github.com/postgres/postgres"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Access Path Selection in a Relational Database Management System (Selinger et al., 1979)",
+          "url": "https://dl.acm.org/doi/10.1145/582095.582099"
+        }
+      ],
+      "skills_gained": [
+        "Advanced SQL",
+        "Window functions",
+        "Query optimization"
+      ],
+      "expected_outcome": "You can write and optimize complex analytical SQL for real business questions."
+    },
+    {
+      "day": 7,
+      "title": "Data Engineering Fundamentals for Data Scientists",
+      "objectives": [
+        "Understand ETL/ELT and data pipelines",
+        "Build reliable data ingestion",
+        "Work with common data formats and storage"
+      ],
+      "topics": [
+        "ETL vs ELT paradigms",
+        "Batch vs streaming ingestion",
+        "File formats (CSV, Parquet, Avro)",
+        "Data lakes, warehouses, and lakehouses",
+        "Data quality and validation (Great Expectations)"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Advanced SQL",
+        "Python"
+      ],
+      "intermediate_explanation": "Data scientists increasingly need data engineering skills because models are only as good as the data pipelines feeding them. The core concept is ETL/ELT: Extract data from sources, Transform it into a usable shape, and Load it into a store, with modern 'ELT' loading raw data first and transforming inside a powerful warehouse. You learn the difference between batch processing (periodic, large jobs) and streaming (continuous, low-latency ingestion) and when each fits. File formats matter enormously at scale: columnar formats like Parquet are far more efficient than CSV for analytics because they compress well and let you read only the columns you need. You also map the storage landscape, data lakes (raw, any-format storage), warehouses (structured, query-optimized), and lakehouses (combining both), so you know where data lives and why. Crucially, you learn data quality and validation: tools like Great Expectations let you codify expectations (schemas, ranges, uniqueness) so bad data is caught before it corrupts analyses or models. Understanding these fundamentals lets a data scientist build reliable pipelines, collaborate effectively with data engineers, and take ownership of the full data lifecycle.",
+      "practical_task": "Build a small ETL pipeline in Python that ingests raw data, transforms and validates it (with basic quality checks), and writes it out as partitioned Parquet, comparing file size and read speed to CSV.",
+      "mini_project": "Create a reproducible ingestion pipeline that pulls data from a source, applies Great Expectations validation rules, transforms it, and loads it into a local warehouse (e.g., DuckDB), failing loudly on data-quality violations.",
+      "assignment": "Explain the difference between ETL and ELT with a concrete example, and describe when you would choose Parquet over CSV.",
+      "quiz": [
+        {
+          "question": "Why is Parquet often preferred over CSV for analytics at scale?",
+          "options": ["It is human-readable", "It is columnar, compresses well, and allows reading only needed columns", "It supports images", "It requires no schema"],
+          "answer": "It is columnar, compresses well, and allows reading only needed columns"
+        },
+        {
+          "question": "What does a tool like Great Expectations provide?",
+          "options": ["Model training", "Codified data-quality validation to catch bad data early", "Data visualization", "Web deployment"],
+          "answer": "Codified data-quality validation to catch bad data early"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Data Engineering Course for Beginners",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=PHsC_t0j1dU"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Great Expectations Documentation",
+          "url": "https://docs.greatexpectations.io/docs/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "great-expectations/great_expectations",
+          "url": "https://github.com/great-expectations/great_expectations"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "The Data Lakehouse: Paradigm Convergence (Armbrust et al., 2021)",
+          "url": "https://www.cidrdb.org/cidr2021/papers/cidr2021_paper17.pdf"
+        }
+      ],
+      "skills_gained": [
+        "ETL/ELT pipelines",
+        "Data formats and storage",
+        "Data quality validation"
+      ],
+      "expected_outcome": "You can build reliable, validated data pipelines and understand modern data storage."
+    },
+    {
+      "day": 8,
+      "title": "Data Modeling and Analytics Engineering with dbt",
+      "objectives": [
+        "Design analytical data models",
+        "Transform data with dbt",
+        "Apply testing and documentation to transformations"
+      ],
+      "topics": [
+        "Dimensional modeling (star and snowflake schemas)",
+        "Fact and dimension tables",
+        "The modern data stack and dbt",
+        "dbt models, refs, and materializations",
+        "Testing and documenting transformations"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Advanced SQL",
+        "Data engineering fundamentals"
+      ],
+      "intermediate_explanation": "Raw data is rarely analysis-ready, and analytics engineering is the discipline of transforming it into clean, well-structured models that analysts and data scientists can trust. The foundational technique is dimensional modeling: organizing data into fact tables (measurable events like sales, each row a transaction) and dimension tables (descriptive context like customers, products, dates), arranged in a star schema that is intuitive and fast to query. dbt (data build tool) has become the standard for this in the 'modern data stack': you write transformations as SQL SELECT statements (models), reference other models with ref() so dbt builds a dependency graph and runs them in the right order, and choose materializations (view, table, incremental) to balance freshness and cost. Crucially, dbt brings software engineering to analytics, you write tests (uniqueness, not-null, referential integrity) that run on every build to catch data problems, and you auto-generate documentation and lineage graphs. Learning dbt and dimensional modeling lets a data scientist produce reliable, documented, tested datasets, bridging the gap between raw pipelines and the clean tables that power analysis and features.",
+      "practical_task": "Design a small star schema for a sample business, then implement it in dbt with staging and mart models using ref(), add not-null and unique tests, and generate the documentation site.",
+      "mini_project": "Build a dbt project that transforms raw source tables into a documented, tested star schema (facts and dimensions), including at least one incremental model and a lineage graph, on a local warehouse like DuckDB.",
+      "assignment": "Explain the difference between a fact table and a dimension table with an example, and describe why star schemas are efficient to query.",
+      "quiz": [
+        {
+          "question": "In dimensional modeling, what does a fact table typically contain?",
+          "options": ["Descriptive attributes", "Measurable business events/metrics", "Only dates", "Configuration settings"],
+          "answer": "Measurable business events/metrics"
+        },
+        {
+          "question": "What does dbt's ref() function enable?",
+          "options": ["Model training", "Building a dependency graph so models run in the correct order", "Plotting charts", "Uploading files"],
+          "answer": "Building a dependency graph so models run in the correct order"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "dbt (Data Build Tool) Full Tutorial",
+          "channel": "Kahan Data Solutions",
+          "url": "https://www.youtube.com/watch?v=5rNquRnNb4E"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "dbt Documentation",
+          "url": "https://docs.getdbt.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "dbt-labs/dbt-core",
+          "url": "https://github.com/dbt-labs/dbt-core"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Kimball's Dimensional Modeling Techniques",
+          "url": "https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/"
+        }
+      ],
+      "skills_gained": [
+        "Dimensional modeling",
+        "dbt transformations",
+        "Data testing and documentation"
+      ],
+      "expected_outcome": "You can design and build tested, documented analytical data models with dbt."
+    },
+    {
+      "day": 9,
+      "title": "Advanced Probability and Distributions",
+      "objectives": [
+        "Work with joint, marginal, and conditional distributions",
+        "Apply key distributions to real problems",
+        "Understand maximum likelihood estimation"
+      ],
+      "topics": [
+        "Random variables and expectation/variance",
+        "Joint, marginal, and conditional distributions",
+        "Common distributions and their uses",
+        "Moment generating and likelihood functions",
+        "Maximum Likelihood Estimation (MLE)"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Basic probability and statistics"
+      ],
+      "intermediate_explanation": "Intermediate data science demands a deeper, working command of probability than the beginner rules. You solidify random variables and their expectation and variance, then move to multivariate thinking: joint distributions describe two or more variables together, marginal distributions isolate one by summing out the others, and conditional distributions describe one given the value of another, the machinery behind everything from Naive Bayes to graphical models. You develop fluency with the distributions you'll actually meet, when data is Poisson (counts), exponential (waiting times), gamma, beta (proportions), or multivariate normal, and why. The conceptual centerpiece is Maximum Likelihood Estimation (MLE): given data and an assumed distribution, MLE finds the parameters that make the observed data most probable by maximizing the likelihood function. This is the theoretical foundation under most models you fit, linear regression, logistic regression, and many more are MLE in disguise, so understanding it demystifies why models are trained the way they are. This deeper probability foundation makes advanced statistics, Bayesian methods, and probabilistic modeling accessible rather than mysterious.",
+      "practical_task": "For a chosen dataset, fit a distribution's parameters using MLE (analytically or with scipy.optimize), overlay the fitted density on a histogram, and compute conditional distributions from a joint frequency table.",
+      "mini_project": "Build a notebook that, given a real dataset, identifies plausible distributions for several variables, fits them via MLE, and uses goodness-of-fit checks to compare candidates, with written interpretation.",
+      "assignment": "Derive or explain why ordinary least squares regression is equivalent to MLE under Gaussian noise, in your own words.",
+      "quiz": [
+        {
+          "question": "What does Maximum Likelihood Estimation find?",
+          "options": ["The largest data value", "Parameters that make the observed data most probable", "The mean of the data", "The number of features"],
+          "answer": "Parameters that make the observed data most probable"
+        },
+        {
+          "question": "A marginal distribution is obtained from a joint distribution by:",
+          "options": ["Conditioning on a value", "Summing/integrating out the other variables", "Taking the maximum", "Sorting the data"],
+          "answer": "Summing/integrating out the other variables"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Maximum Likelihood, clearly explained!!!",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=XepXtl9YKwc"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scipy.stats Distributions",
+          "url": "https://docs.scipy.org/doc/scipy/reference/stats.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scipy/scipy",
+          "url": "https://github.com/scipy/scipy"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "On the Mathematical Foundations of Theoretical Statistics (Fisher, 1922)",
+          "url": "https://royalsocietypublishing.org/doi/10.1098/rsta.1922.0009"
+        }
+      ],
+      "skills_gained": [
+        "Advanced probability",
+        "Distribution fitting",
+        "Maximum Likelihood Estimation"
+      ],
+      "expected_outcome": "You can reason about multivariate distributions and estimate parameters via MLE."
+    },
+    {
+      "day": 10,
+      "title": "Statistical Inference and Resampling",
+      "objectives": [
+        "Perform robust inference beyond textbook tests",
+        "Use bootstrapping and permutation tests",
+        "Handle multiple comparisons correctly"
+      ],
+      "topics": [
+        "Sampling distributions and standard errors",
+        "Bootstrap confidence intervals",
+        "Permutation (randomization) tests",
+        "Multiple testing and corrections (Bonferroni, FDR)",
+        "Effect size and statistical power"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Hypothesis testing",
+        "Advanced probability"
+      ],
+      "intermediate_explanation": "Real data rarely satisfies the neat assumptions of textbook tests, so intermediate practitioners rely on resampling methods that make far fewer assumptions. The bootstrap is the key idea: by repeatedly resampling your data with replacement and recomputing a statistic, you empirically build its sampling distribution and derive confidence intervals for almost any statistic, even ones with no simple formula. Permutation tests take a similar computational approach to hypothesis testing: by randomly shuffling labels many times, you build the distribution of a test statistic under the null hypothesis and compute a p-value directly, without distributional assumptions. Just as important is handling multiple comparisons: when you run many tests, some will look significant by chance, so you correct for it, Bonferroni controls the family-wise error rate conservatively, while the False Discovery Rate (Benjamini-Hochberg) is a more powerful modern choice. Finally, you learn to report effect size (how big the difference is, not just whether it's significant) and to reason about statistical power (the chance of detecting a real effect). These tools make your inferences trustworthy on messy, real-world data.",
+      "practical_task": "Compute a bootstrap confidence interval for a statistic that lacks a simple closed form (e.g., the median or a correlation), and run a permutation test to compare two groups, comparing results to a classical test.",
+      "mini_project": "Build a resampling-based inference toolkit notebook that provides bootstrap CIs and permutation tests, applies FDR correction across many comparisons on a real dataset, and reports effect sizes.",
+      "assignment": "Explain why running 20 independent tests at alpha=0.05 tends to produce a false positive, and show how a correction fixes it.",
+      "quiz": [
+        {
+          "question": "How does the bootstrap estimate a sampling distribution?",
+          "options": ["By assuming normality", "By resampling the data with replacement many times", "By removing outliers", "By increasing the sample"],
+          "answer": "By resampling the data with replacement many times"
+        },
+        {
+          "question": "Why apply a multiple-testing correction?",
+          "options": ["To speed up tests", "Because running many tests inflates the chance of false positives", "To increase effect size", "To remove missing data"],
+          "answer": "Because running many tests inflates the chance of false positives"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "The Bootstrap, clearly explained!!!",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=Xz0x-8-cgaQ"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scipy.stats.bootstrap",
+          "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scipy/scipy",
+          "url": "https://github.com/scipy/scipy"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Controlling the False Discovery Rate (Benjamini & Hochberg, 1995)",
+          "url": "https://www.jstor.org/stable/2346101"
+        }
+      ],
+      "skills_gained": [
+        "Bootstrapping",
+        "Permutation tests",
+        "Multiple-comparison correction"
+      ],
+      "expected_outcome": "You can perform robust, assumption-light statistical inference on real data."
+    },
+    {
+      "day": 11,
+      "title": "Bayesian Statistics and Inference",
+      "objectives": [
+        "Understand Bayesian thinking and updating",
+        "Build and interpret Bayesian models",
+        "Use probabilistic programming"
+      ],
+      "topics": [
+        "Prior, likelihood, and posterior",
+        "Conjugate priors and Bayesian updating",
+        "Markov Chain Monte Carlo (MCMC) intuition",
+        "Probabilistic programming (PyMC)",
+        "Credible intervals vs confidence intervals"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Advanced probability",
+        "Statistical inference"
+      ],
+      "intermediate_explanation": "Bayesian statistics offers a powerful alternative to the frequentist methods you've used, treating probability as a degree of belief that you update with evidence. The framework is Bayes' theorem applied to parameters: you start with a prior distribution encoding what you believe before seeing data, combine it with the likelihood of the observed data, and get a posterior distribution representing your updated belief. This gives you full distributions over parameters, not just point estimates, so uncertainty is built in. Conjugate priors make some updates analytic, but most real models require sampling from the posterior, which is where Markov Chain Monte Carlo (MCMC) comes in: it draws samples that approximate the posterior even when it has no closed form. Probabilistic programming languages like PyMC let you specify a model declaratively and handle the sampling automatically, making Bayesian modeling practical. A key conceptual payoff is interpretation: a Bayesian 95% credible interval genuinely means 'there's a 95% probability the parameter lies in this range,' which is what people wrongly assume confidence intervals mean. Bayesian methods shine with small data, prior knowledge, and when honest uncertainty quantification matters.",
+      "practical_task": "Model a simple problem (e.g., estimating a conversion rate) in PyMC with a prior and likelihood, sample the posterior, and report a credible interval, comparing it to the frequentist estimate.",
+      "mini_project": "Build a Bayesian analysis of an A/B test in PyMC that models both groups, computes the posterior probability that B beats A, and visualizes the posteriors with credible intervals.",
+      "assignment": "Explain the difference between a 95% credible interval and a 95% confidence interval, and why the Bayesian interpretation is often what people actually want.",
+      "quiz": [
+        {
+          "question": "In Bayesian inference, the posterior is proportional to:",
+          "options": ["Prior minus likelihood", "Prior times likelihood", "Likelihood only", "The p-value"],
+          "answer": "Prior times likelihood"
+        },
+        {
+          "question": "What does MCMC provide?",
+          "options": ["Exact closed-form posteriors always", "Samples that approximate the posterior distribution", "A single point estimate", "Faster data loading"],
+          "answer": "Samples that approximate the posterior distribution"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Bayesian Statistics Explained",
+          "channel": "ritvikmath",
+          "url": "https://www.youtube.com/watch?v=9TDjifpGj-k"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyMC Documentation",
+          "url": "https://www.pymc.io/welcome.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pymc-devs/pymc",
+          "url": "https://github.com/pymc-devs/pymc"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Probabilistic Programming in Python using PyMC3 (Salvatier et al., 2016)",
+          "url": "https://peerj.com/articles/cs-55/"
+        }
+      ],
+      "skills_gained": [
+        "Bayesian inference",
+        "Probabilistic programming",
+        "Uncertainty quantification"
+      ],
+      "expected_outcome": "You can build Bayesian models and interpret posteriors and credible intervals."
+    },
+    {
+      "day": 12,
+      "title": "Advanced Experiment Design and A/B Testing",
+      "objectives": [
+        "Design rigorous experiments",
+        "Handle real-world experimentation challenges",
+        "Analyze experiments with advanced methods"
+      ],
+      "topics": [
+        "Power analysis and sample size determination",
+        "Randomization, stratification, and blocking",
+        "Variance reduction (CUPED)",
+        "Sequential testing and peeking problem",
+        "Multi-armed bandits vs A/B tests"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Hypothesis testing",
+        "Statistical inference"
+      ],
+      "intermediate_explanation": "Beyond a basic two-group comparison, real experimentation at companies requires rigor and cleverness, and this is a highly valued intermediate skill. It starts with power analysis: before running a test you compute the sample size needed to reliably detect a minimum effect worth caring about, so you don't waste time on underpowered tests. Good design controls nuisance variation through randomization, stratification (ensuring groups are balanced on key covariates), and blocking. A major practical technique is variance reduction: methods like CUPED use pre-experiment data to remove noise, letting you reach significance with far fewer users. You confront the 'peeking' problem, checking results repeatedly inflates false positives, and its solutions: sequential testing methods that allow valid continuous monitoring. Finally, you learn when a fixed A/B test is the right tool versus a multi-armed bandit, which dynamically shifts traffic toward better-performing variants to reduce the cost of experimentation. Mastering these techniques lets you design experiments that are fast, trustworthy, and efficient, exactly what product and growth teams depend on data scientists to deliver.",
+      "practical_task": "Run a power analysis to determine the sample size for a target effect, then simulate an experiment and apply CUPED variance reduction, comparing the required sample size with and without it.",
+      "mini_project": "Build an experimentation analysis notebook that designs a test (power/sample size), analyzes results with variance reduction, and includes a simulation demonstrating why naive peeking inflates false positives.",
+      "assignment": "Explain when you would prefer a multi-armed bandit over a classic A/B test, giving a concrete business scenario.",
+      "quiz": [
+        {
+          "question": "What does a power analysis determine before an experiment?",
+          "options": ["The p-value", "The sample size needed to detect a meaningful effect", "The color of charts", "The database schema"],
+          "answer": "The sample size needed to detect a meaningful effect"
+        },
+        {
+          "question": "What is the main benefit of variance reduction techniques like CUPED?",
+          "options": ["They increase noise", "They reach significance with fewer samples", "They remove randomization", "They replace the metric"],
+          "answer": "They reach significance with fewer samples"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "A/B Testing and Experimentation Explained",
+          "channel": "Data Professor",
+          "url": "https://www.youtube.com/watch?v=DUNk4GPZ9bw"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "statsmodels Power and Sample Size",
+          "url": "https://www.statsmodels.org/stable/stats.html#power-and-sample-size-calculations"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "statsmodels/statsmodels",
+          "url": "https://github.com/statsmodels/statsmodels"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Improving the Sensitivity of Online Experiments with CUPED (Deng et al., 2013)",
+          "url": "https://dl.acm.org/doi/10.1145/2433396.2433413"
+        }
+      ],
+      "skills_gained": [
+        "Experiment design",
+        "Power analysis",
+        "Variance reduction"
+      ],
+      "expected_outcome": "You can design and analyze rigorous, efficient experiments for real products."
+    },
+    {
+      "day": 13,
+      "title": "Causal Inference",
+      "objectives": [
+        "Distinguish correlation from causation rigorously",
+        "Estimate causal effects from data",
+        "Apply core causal methods"
+      ],
+      "topics": [
+        "Potential outcomes and counterfactuals",
+        "Confounding and causal graphs (DAGs)",
+        "Propensity score matching",
+        "Difference-in-differences",
+        "Instrumental variables and regression discontinuity"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Regression",
+        "Statistical inference"
+      ],
+      "intermediate_explanation": "Businesses constantly ask causal questions, 'did this campaign cause more sales?', but you can't always run an experiment, so causal inference gives you tools to estimate cause and effect from observational data. The conceptual foundation is potential outcomes and counterfactuals: the causal effect of a treatment is the difference between what happened and what would have happened without it, which we never directly observe. The central obstacle is confounding, a third variable that influences both treatment and outcome and creates spurious association; causal graphs (DAGs) help you reason visually about which variables to control for and which to leave alone. Several methods let you estimate effects despite confounding: propensity score matching pairs treated and untreated units with similar characteristics; difference-in-differences compares changes over time between a treated and control group, cancelling out fixed differences; instrumental variables exploit a factor that affects treatment but not the outcome directly; and regression discontinuity uses a cutoff rule to approximate an experiment. These methods, used carefully, let a data scientist move from 'these are correlated' to defensible claims about what actually drives outcomes, which is enormously valuable and increasingly expected.",
+      "practical_task": "On an observational dataset, estimate a treatment effect two ways - a naive comparison and propensity score matching - and explain why the estimates differ due to confounding.",
+      "mini_project": "Build a causal analysis that draws a DAG for a real question, chooses an appropriate method (matching or difference-in-differences), estimates the causal effect, and discusses assumptions and threats to validity.",
+      "assignment": "Take a real headline claiming causation from observational data and critique it using the concepts of confounding and counterfactuals.",
+      "quiz": [
+        {
+          "question": "What is a confounder?",
+          "options": ["A missing value", "A variable that affects both treatment and outcome, creating spurious association", "A type of model", "A plotting error"],
+          "answer": "A variable that affects both treatment and outcome, creating spurious association"
+        },
+        {
+          "question": "Difference-in-differences primarily controls for:",
+          "options": ["Random noise only", "Fixed pre-existing differences between groups by comparing changes over time", "Missing data", "Feature scaling"],
+          "answer": "Fixed pre-existing differences between groups by comparing changes over time"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Causal Inference - Full Crash Course",
+          "channel": "ritvikmath",
+          "url": "https://www.youtube.com/watch?v=Od6oAz1Op2k"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "DoWhy Documentation",
+          "url": "https://www.pywhy.org/dowhy/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "py-why/dowhy",
+          "url": "https://github.com/py-why/dowhy"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Causal Inference in Statistics: An Overview (Pearl, 2009)",
+          "url": "https://projecteuclid.org/journals/statistics-surveys/volume-3/issue-none/Causal-inference-in-statistics-An-overview/10.1214/09-SS057.full"
+        }
+      ],
+      "skills_gained": [
+        "Causal inference",
+        "Confounding and DAGs",
+        "Quasi-experimental methods"
+      ],
+      "expected_outcome": "You can estimate causal effects from observational data and reason about confounding."
+    },
+    {
+      "day": 14,
+      "title": "Advanced Feature Engineering",
+      "objectives": [
+        "Engineer powerful features systematically",
+        "Handle high-cardinality and temporal features",
+        "Prevent leakage in feature creation"
+      ],
+      "topics": [
+        "Target and frequency encoding",
+        "Feature interactions and polynomial features",
+        "Temporal and lag features",
+        "Text and aggregation features",
+        "Leakage-safe feature pipelines"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Feature engineering basics",
+        "Advanced Pandas"
+      ],
+      "intermediate_explanation": "Feature engineering is often the biggest lever on model performance, and intermediate practitioners apply it systematically and safely. Beyond one-hot encoding, you handle high-cardinality categoricals with target encoding (replacing a category with the mean target for that category) and frequency encoding, which capture signal compactly, but you must do this carefully within cross-validation folds to avoid leakage. You create feature interactions and polynomial terms to let linear models capture non-linear relationships. For time-aware problems you engineer temporal features (day of week, seasonality) and lag/rolling features that summarize the recent past, which are critical for forecasting and any time-dependent target. You build aggregation features that summarize related records (a customer's average order value, count of past events) and extract structured signal from text. The unifying discipline is preventing data leakage: any feature computed using information that wouldn't be available at prediction time, or fit on the whole dataset before splitting, will inflate offline metrics and fail in production. So you build leakage-safe pipelines where every feature transformation is fit only on training data within each fold. Mastering this turns raw data into the informative features that separate winning models from mediocre ones.",
+      "practical_task": "On a dataset with high-cardinality categoricals and a timestamp, engineer target-encoded, lag, and aggregation features inside a cross-validation-safe pipeline, and verify no leakage inflates the score.",
+      "mini_project": "Build an advanced feature engineering pipeline for a predictive problem that combines encoding, interactions, temporal/lag features, and aggregations, then quantify the model-performance lift each feature group provides.",
+      "assignment": "Show, with an experiment, how naive target encoding on the full dataset leaks and inflates validation performance, and fix it with proper in-fold encoding.",
+      "quiz": [
+        {
+          "question": "Why must target encoding be done inside cross-validation folds?",
+          "options": ["To save memory", "To avoid leaking target information into the features", "To speed up training", "To reduce the number of categories"],
+          "answer": "To avoid leaking target information into the features"
+        },
+        {
+          "question": "What are lag features useful for?",
+          "options": ["Reducing file size", "Capturing information from previous time steps", "Encoding text", "Scaling numbers"],
+          "answer": "Capturing information from previous time steps"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Feature Engineering Techniques for Machine Learning",
+          "channel": "Krish Naik",
+          "url": "https://www.youtube.com/watch?v=6WDFfaYtN6s"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "category_encoders Documentation",
+          "url": "https://contrib.scikit-learn.org/category_encoders/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn-contrib/category_encoders",
+          "url": "https://github.com/scikit-learn-contrib/category_encoders"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Preprocessing Scheme for High-Cardinality Categorical Attributes (Micci-Barreca, 2001)",
+          "url": "https://dl.acm.org/doi/10.1145/507533.507538"
+        }
+      ],
+      "skills_gained": [
+        "Advanced feature engineering",
+        "Categorical encoding",
+        "Leakage prevention"
+      ],
+      "expected_outcome": "You can engineer powerful, leakage-safe features that materially improve models."
+    },
+    {
+      "day": 15,
+      "title": "Feature Selection and Dimensionality Reduction",
+      "objectives": [
+        "Select the most informative features",
+        "Reduce dimensionality with linear and nonlinear methods",
+        "Balance performance and interpretability"
+      ],
+      "topics": [
+        "Filter, wrapper, and embedded selection methods",
+        "Recursive feature elimination",
+        "Regularization-based selection (L1)",
+        "PCA revisited and kernel PCA",
+        "Nonlinear reduction (t-SNE, UMAP)"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Feature engineering",
+        "Model evaluation"
+      ],
+      "intermediate_explanation": "More features are not always better, too many can cause overfitting, slow training, and obscure interpretation, so intermediate practitioners actively select and reduce them. Feature selection comes in three families: filter methods rank features by a statistical measure (correlation, mutual information) independent of any model; wrapper methods like recursive feature elimination repeatedly train a model and drop the weakest features; and embedded methods select during training, most notably L1 (Lasso) regularization, which drives some coefficients exactly to zero, performing selection automatically. Dimensionality reduction takes a different route, compressing many features into fewer combined components. You revisit PCA (linear) and meet kernel PCA for nonlinear structure. For visualization and understanding high-dimensional data, nonlinear methods like t-SNE and UMAP project data into 2D while preserving local structure, revealing clusters that linear methods miss (though they're for exploration, not as model inputs). The art is balancing predictive performance, computational cost, and interpretability: fewer, well-chosen features often generalize better and are far easier to explain to stakeholders.",
+      "practical_task": "On a high-dimensional dataset, compare feature subsets chosen by a filter method, recursive feature elimination, and L1 regularization, and use UMAP to visualize the data in 2D.",
+      "mini_project": "Build a feature-selection study that reduces a wide dataset with three different methods, measures the effect on model performance and training time, and produces a UMAP visualization of the resulting structure.",
+      "assignment": "Explain how L1 regularization performs feature selection and contrast it with recursive feature elimination.",
+      "quiz": [
+        {
+          "question": "Which regularization drives some coefficients exactly to zero, performing feature selection?",
+          "options": ["L2 (Ridge)", "L1 (Lasso)", "Dropout", "Batch norm"],
+          "answer": "L1 (Lasso)"
+        },
+        {
+          "question": "What are t-SNE and UMAP primarily used for?",
+          "options": ["Model deployment", "Visualizing high-dimensional data by preserving local structure", "Feature encoding", "Hyperparameter tuning"],
+          "answer": "Visualizing high-dimensional data by preserving local structure"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Feature Selection Techniques in Machine Learning",
+          "channel": "Krish Naik",
+          "url": "https://www.youtube.com/watch?v=EqLBAmtKMnQ"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Feature Selection",
+          "url": "https://scikit-learn.org/stable/modules/feature_selection.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "lmcinnes/umap",
+          "url": "https://github.com/lmcinnes/umap"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "UMAP: Uniform Manifold Approximation and Projection (McInnes et al., 2018)",
+          "url": "https://arxiv.org/abs/1802.03426"
+        }
+      ],
+      "skills_gained": [
+        "Feature selection",
+        "Dimensionality reduction",
+        "Manifold visualization"
+      ],
+      "expected_outcome": "You can select informative features and reduce dimensionality effectively."
+    },
+    {
+      "day": 16,
+      "title": "Regularized and Generalized Linear Models",
+      "objectives": [
+        "Apply regularization to control overfitting",
+        "Use generalized linear models",
+        "Interpret regularized models"
+      ],
+      "topics": [
+        "Ridge, Lasso, and Elastic Net",
+        "The bias-variance tradeoff via regularization",
+        "Generalized Linear Models (GLMs)",
+        "Poisson and other link functions",
+        "Regularization path and cross-validated tuning"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Linear and logistic regression",
+        "Model evaluation"
+      ],
+      "intermediate_explanation": "Linear models remain indispensable because they're fast, interpretable, and, with the right techniques, surprisingly competitive. Regularization adds a penalty on coefficient size to the loss, preventing the model from fitting noise and thus controlling overfitting, directly managing the bias-variance tradeoff. Ridge (L2) shrinks all coefficients smoothly and handles correlated features well; Lasso (L1) shrinks some to exactly zero, performing feature selection; and Elastic Net blends both, giving you the benefits of each. You tune the regularization strength with cross-validation and can visualize the regularization path to see how coefficients shrink as the penalty grows. Generalized Linear Models (GLMs) extend linear regression to non-normal targets by using a link function: logistic regression (for binary outcomes) is a GLM, Poisson regression models count data, and others handle rates and proportions. Choosing the right GLM for your target's distribution produces well-calibrated, interpretable models, for example, Poisson regression for predicting event counts. Together, regularization and GLMs give you a principled, transparent modeling toolkit that's often the right first choice and a strong, explainable baseline for any problem.",
+      "practical_task": "Fit Ridge, Lasso, and Elastic Net on a dataset with correlated features, tune the penalty via cross-validation, plot the regularization path, and fit a Poisson GLM to a count target.",
+      "mini_project": "Build a comparison of regularized linear models on a real dataset that tunes each, reports which features Lasso keeps, and includes a GLM appropriate to the target's distribution with interpretation.",
+      "assignment": "Explain how increasing the regularization strength affects bias and variance, illustrated with your cross-validation curves.",
+      "quiz": [
+        {
+          "question": "Which penalty performs automatic feature selection?",
+          "options": ["Ridge (L2)", "Lasso (L1)", "No penalty", "Dropout"],
+          "answer": "Lasso (L1)"
+        },
+        {
+          "question": "What does a GLM's link function allow?",
+          "options": ["Faster training only", "Modeling non-normal targets like counts or probabilities", "Feature scaling", "Data cleaning"],
+          "answer": "Modeling non-normal targets like counts or probabilities"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Regularization - Ridge, Lasso and Elastic Net",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=Q81RR3yKn30"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Linear Models",
+          "url": "https://scikit-learn.org/stable/modules/linear_model.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn/scikit-learn",
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Regression Shrinkage and Selection via the Lasso (Tibshirani, 1996)",
+          "url": "https://www.jstor.org/stable/2346178"
+        }
+      ],
+      "skills_gained": [
+        "Regularization",
+        "Generalized Linear Models",
+        "Cross-validated tuning"
+      ],
+      "expected_outcome": "You can build and interpret regularized linear and generalized linear models."
+    },
+    {
+      "day": 17,
+      "title": "Classification with Imbalanced Data",
+      "objectives": [
+        "Handle severe class imbalance",
+        "Choose metrics and thresholds appropriately",
+        "Calibrate probability outputs"
+      ],
+      "topics": [
+        "Why accuracy fails on imbalanced data",
+        "Resampling (SMOTE, undersampling)",
+        "Class weights and cost-sensitive learning",
+        "Precision-recall curves and threshold tuning",
+        "Probability calibration"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Classification",
+        "Model evaluation"
+      ],
+      "intermediate_explanation": "Many high-value problems, fraud, churn, disease, rare-event detection, have severely imbalanced classes, and standard approaches fail badly here. A model that predicts 'not fraud' for everyone can be 99.9% accurate and completely useless, which is why accuracy is the wrong metric; you use precision, recall, F1, and especially the precision-recall curve and average precision, which focus on the rare positive class. Several techniques help models learn from few positives: resampling methods like SMOTE synthesize new minority examples or undersample the majority to balance training; class weights and cost-sensitive learning tell the algorithm to penalize errors on the rare class more heavily, which is often cleaner than resampling. Crucially, you decouple the model from the decision threshold: instead of the default 0.5, you tune the threshold to the business tradeoff between catching positives (recall) and avoiding false alarms (precision). Finally, probability calibration ensures the scores a model outputs actually reflect real probabilities, essential when downstream decisions depend on '70% likely' meaning what it says. Handling imbalance well is a hallmark of a capable applied data scientist because so many real problems have this structure.",
+      "practical_task": "On an imbalanced dataset, compare a baseline, class-weighting, and SMOTE, evaluate with precision-recall and average precision, tune the decision threshold to a business objective, and check calibration.",
+      "mini_project": "Build a fraud/churn-style classifier on imbalanced data that applies at least two imbalance techniques, selects an operating threshold from the precision-recall tradeoff, and produces a calibration plot with interpretation.",
+      "assignment": "Explain with an example why a 99% accurate model can be worthless on imbalanced data and which metrics you would report instead.",
+      "quiz": [
+        {
+          "question": "Why is accuracy misleading on highly imbalanced data?",
+          "options": ["It is too slow", "A trivial majority-class predictor scores high while being useless", "It requires scaling", "It ignores features"],
+          "answer": "A trivial majority-class predictor scores high while being useless"
+        },
+        {
+          "question": "What does SMOTE do?",
+          "options": ["Removes features", "Synthesizes new minority-class examples", "Scales the data", "Tunes hyperparameters"],
+          "answer": "Synthesizes new minority-class examples"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Handling Imbalanced Datasets in Machine Learning",
+          "channel": "Krish Naik",
+          "url": "https://www.youtube.com/watch?v=JnlM4yLFNuo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "imbalanced-learn Documentation",
+          "url": "https://imbalanced-learn.org/stable/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn-contrib/imbalanced-learn",
+          "url": "https://github.com/scikit-learn-contrib/imbalanced-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "SMOTE: Synthetic Minority Over-sampling Technique (Chawla et al., 2002)",
+          "url": "https://www.jair.org/index.php/jair/article/view/10302"
+        }
+      ],
+      "skills_gained": [
+        "Imbalanced classification",
+        "Threshold tuning",
+        "Probability calibration"
+      ],
+      "expected_outcome": "You can build effective classifiers for rare-event, imbalanced problems."
+    },
+    {
+      "day": 18,
+      "title": "Ensemble Methods Deep Dive",
+      "objectives": [
+        "Understand bagging, boosting, and stacking deeply",
+        "Combine diverse models effectively",
+        "Know when ensembles help or hurt"
+      ],
+      "topics": [
+        "Bias-variance view of ensembles",
+        "Bagging and Random Forests revisited",
+        "Boosting fundamentals",
+        "Stacking and blending",
+        "Voting and model diversity"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Random Forests",
+        "Model evaluation"
+      ],
+      "intermediate_explanation": "Ensembles combine multiple models to outperform any single one, and understanding them deeply, not just calling RandomForest, lets you squeeze out top performance. The unifying lens is the bias-variance tradeoff. Bagging (bootstrap aggregating), the basis of Random Forests, trains many high-variance models on resampled data and averages them, primarily reducing variance. Boosting works oppositely: it trains weak models sequentially, each correcting the previous ones' errors, primarily reducing bias to build a strong learner (the foundation of gradient boosting you'll master next). Stacking is the most sophisticated: you train several diverse base models and then a 'meta-model' that learns how to best combine their predictions, often beating any base model. Simpler blending and voting average predictions directly. The key insight running through all of this is diversity: ensembles help most when their members make different, uncorrelated errors, so combining a tree model, a linear model, and a neural network can beat combining three similar trees. You also learn when ensembles aren't worth it, when interpretability, latency, or simplicity matters more than a marginal accuracy gain. This deeper understanding lets you engineer ensembles deliberately rather than by trial and error.",
+      "practical_task": "Build a stacking ensemble that combines at least three diverse base models with a meta-learner, and compare its cross-validated performance to each base model and to simple voting.",
+      "mini_project": "Build an ensemble study on a dataset that implements bagging, boosting, voting, and stacking, analyzes the correlation of base-model errors, and explains why diversity did or didn't help.",
+      "assignment": "Explain, using the bias-variance framework, why bagging reduces variance while boosting reduces bias.",
+      "quiz": [
+        {
+          "question": "Bagging primarily reduces which component of error?",
+          "options": ["Bias", "Variance", "Irreducible error", "Latency"],
+          "answer": "Variance"
+        },
+        {
+          "question": "Why does model diversity matter in an ensemble?",
+          "options": ["It looks impressive", "Uncorrelated errors cancel out when combined", "It reduces the dataset", "It speeds up training"],
+          "answer": "Uncorrelated errors cancel out when combined"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Ensemble Learning: Bagging, Boosting, Stacking",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=sN5ZcJLDMaP"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Ensembles",
+          "url": "https://scikit-learn.org/stable/modules/ensemble.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn/scikit-learn",
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Stacked Generalization (Wolpert, 1992)",
+          "url": "https://www.sciencedirect.com/science/article/abs/pii/S0893608005800231"
+        }
+      ],
+      "skills_gained": [
+        "Ensemble methods",
+        "Stacking and blending",
+        "Model diversity"
+      ],
+      "expected_outcome": "You can deliberately design ensembles and know when they add value."
+    },
+    {
+      "day": 19,
+      "title": "Gradient Boosting Mastery",
+      "objectives": [
+        "Master XGBoost, LightGBM, and CatBoost",
+        "Tune boosting models expertly",
+        "Handle categoricals and large data efficiently"
+      ],
+      "topics": [
+        "How gradient boosting works under the hood",
+        "XGBoost, LightGBM, and CatBoost differences",
+        "Key hyperparameters and regularization",
+        "Handling categoricals and missing values natively",
+        "Early stopping and learning curves"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Gradient boosting basics",
+        "Model evaluation"
+      ],
+      "intermediate_explanation": "Gradient boosting is the reigning champion for tabular data, and mastering it is one of the highest-return skills for an applied data scientist. Under the hood, it builds trees sequentially, each fitting the negative gradient (the direction that reduces the loss) of the previous ensemble's errors, effectively doing gradient descent in function space. The three dominant libraries differ in ways that matter: XGBoost is robust and widely used; LightGBM grows trees leaf-wise and uses histogram binning for blazing speed on large data; CatBoost handles categorical features natively with clever ordered encoding that avoids leakage. You learn the hyperparameters that actually move the needle, learning rate, number of estimators, tree depth/leaves, subsampling, and the regularization terms (L1/L2 and minimum child weight) that combat overfitting, and how they interact (lower learning rate needs more trees). These models also handle missing values and, in CatBoost/LightGBM, categoricals natively, reducing preprocessing. You use early stopping against a validation set to find the right number of trees automatically and read learning curves to diagnose over/underfitting. With expert tuning, gradient boosting delivers state-of-the-art tabular performance, which is why it dominates competitions and production systems alike.",
+      "practical_task": "Train XGBoost, LightGBM, and CatBoost on the same tabular problem, tune the core hyperparameters with early stopping, and compare accuracy, speed, and preprocessing effort across the three.",
+      "mini_project": "Build a gradient boosting solution to a challenging tabular dataset that systematically tunes one library, uses early stopping and learning curves, handles categoricals natively, and documents the tuning strategy and final performance.",
+      "assignment": "Explain how the learning rate and number of estimators trade off, supported by learning curves at two different learning rates.",
+      "quiz": [
+        {
+          "question": "What does each new tree in gradient boosting fit?",
+          "options": ["A random subset of rows", "The errors/negative gradient of the current ensemble", "The full target again", "A different dataset"],
+          "answer": "The errors/negative gradient of the current ensemble"
+        },
+        {
+          "question": "Why does LightGBM tend to be fast on large datasets?",
+          "options": ["It uses fewer features", "It uses histogram binning and leaf-wise tree growth", "It skips training", "It ignores the target"],
+          "answer": "It uses histogram binning and leaf-wise tree growth"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "XGBoost Part 1: Regression - Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=OtD8wVaFm6E"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LightGBM Documentation",
+          "url": "https://lightgbm.readthedocs.io/en/stable/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "microsoft/LightGBM",
+          "url": "https://github.com/microsoft/LightGBM"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "LightGBM: A Highly Efficient Gradient Boosting Decision Tree (Ke et al., 2017)",
+          "url": "https://papers.nips.cc/paper/2017/hash/6449f44a102fde848669bdd9eb6b76fa-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "Gradient boosting mastery",
+        "XGBoost/LightGBM/CatBoost",
+        "Expert tuning"
+      ],
+      "expected_outcome": "You can expertly train and tune gradient boosting for top tabular performance."
+    },
+    {
+      "day": 20,
+      "title": "Hyperparameter Optimization at Scale",
+      "objectives": [
+        "Move beyond grid search",
+        "Use Bayesian and multi-fidelity optimization",
+        "Track and parallelize tuning experiments"
+      ],
+      "topics": [
+        "Grid vs random vs Bayesian search",
+        "Optuna and Tree-structured Parzen Estimators",
+        "Pruning and multi-fidelity (Hyperband)",
+        "Search spaces and conditional parameters",
+        "Parallel and distributed tuning"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Model evaluation",
+        "Gradient boosting"
+      ],
+      "intermediate_explanation": "As models gain many hyperparameters, brute-force grid search becomes hopelessly inefficient, so intermediate practitioners use smarter optimization. Random search is a surprisingly strong baseline because it explores important dimensions better than a grid. Bayesian optimization is the modern standard: it builds a probabilistic model of how hyperparameters affect performance and uses it to intelligently choose the next configuration to try, focusing effort on promising regions, Optuna implements this with Tree-structured Parzen Estimators and a clean define-by-run API. Multi-fidelity methods like Hyperband and Optuna's pruning save enormous compute by stopping unpromising trials early (e.g., killing a run after a few epochs if it's clearly losing), so you evaluate many more configurations for the same budget. You also learn to define good search spaces, using log scales for learning rates, conditional parameters that only apply for certain choices, and how to parallelize or distribute the search across cores or machines. Finally, you track every trial so results are reproducible and comparable. Efficient hyperparameter optimization can be the difference between a good model and a great one, delivered in a fraction of the time.",
+      "practical_task": "Use Optuna to tune a gradient boosting model with a well-designed search space, enable pruning to stop weak trials early, and compare the best result and time to a grid search.",
+      "mini_project": "Build a reusable Optuna tuning framework for a model that defines a conditional search space, uses pruning, runs trials in parallel, logs all trials, and visualizes the optimization history and parameter importances.",
+      "assignment": "Explain why Bayesian optimization is more sample-efficient than grid search, and describe what pruning saves.",
+      "quiz": [
+        {
+          "question": "How does Bayesian optimization choose the next configuration?",
+          "options": ["Randomly", "Using a model of performance to focus on promising regions", "Exhaustively", "By alphabetical order"],
+          "answer": "Using a model of performance to focus on promising regions"
+        },
+        {
+          "question": "What does trial pruning do?",
+          "options": ["Removes features", "Stops unpromising trials early to save compute", "Deletes the dataset", "Increases the learning rate"],
+          "answer": "Stops unpromising trials early to save compute"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Hyperparameter Optimization with Optuna",
+          "channel": "Abhishek Thakur",
+          "url": "https://www.youtube.com/watch?v=P6NwZVl8ttc"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Optuna Documentation",
+          "url": "https://optuna.readthedocs.io/en/stable/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "optuna/optuna",
+          "url": "https://github.com/optuna/optuna"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Optuna: A Next-generation Hyperparameter Optimization Framework (Akiba et al., 2019)",
+          "url": "https://dl.acm.org/doi/10.1145/3292500.3330701"
+        }
+      ],
+      "skills_gained": [
+        "Hyperparameter optimization",
+        "Optuna",
+        "Efficient search"
+      ],
+      "expected_outcome": "You can efficiently optimize hyperparameters with modern, scalable methods."
+    },
+    {
+      "day": 21,
+      "title": "Rigorous Model Evaluation and Validation",
+      "objectives": [
+        "Design leakage-free validation schemes",
+        "Choose validation strategies for the data structure",
+        "Estimate uncertainty in performance"
+      ],
+      "topics": [
+        "Nested cross-validation",
+        "Time-series and grouped cross-validation",
+        "Leakage detection and prevention",
+        "Confidence intervals on metrics",
+        "Statistical comparison of models"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Model evaluation",
+        "Statistical inference"
+      ],
+      "intermediate_explanation": "Trustworthy model evaluation is deceptively hard, and getting it wrong is one of the most common ways real projects fail silently. The core danger is optimistic bias: if you tune hyperparameters and estimate performance on the same data, your reported score is inflated. Nested cross-validation fixes this by using an inner loop for tuning and an outer loop for unbiased performance estimation. Equally important is matching the validation scheme to the data's structure: for time series you must use time-based splits (train on the past, test on the future) because random splits leak future information; for data with groups (multiple rows per customer) you use grouped splits so the same entity never appears in both train and test. You develop a sharp eye for leakage, features or preprocessing that sneak target or future information into training, which is the number-one cause of models that look brilliant offline and fail in production. Beyond a single number, you quantify uncertainty by putting confidence intervals on metrics and statistically comparing models to know whether a difference is real or noise. Rigorous validation is what lets you deploy with confidence rather than hope.",
+      "practical_task": "Implement nested cross-validation for a tuned model, then build a correct time-series (forward-chaining) split for a temporal dataset, contrasting the honest score with a naive random-split score.",
+      "mini_project": "Build a validation harness that supports nested CV, grouped CV, and time-series CV, reports metrics with bootstrap confidence intervals, and statistically compares two candidate models.",
+      "assignment": "Give a concrete example of data leakage in a time-series problem and explain how a proper split prevents it.",
+      "quiz": [
+        {
+          "question": "Why use nested cross-validation?",
+          "options": ["To train faster", "To get an unbiased performance estimate when also tuning hyperparameters", "To reduce features", "To avoid scaling"],
+          "answer": "To get an unbiased performance estimate when also tuning hyperparameters"
+        },
+        {
+          "question": "Why must time-series data use time-based splits?",
+          "options": ["To save memory", "Because random splits leak future information into training", "To add features", "To balance classes"],
+          "answer": "Because random splits leak future information into training"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Cross Validation: Nested and Time Series",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=fSytzGwwBVw"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Cross-validation",
+          "url": "https://scikit-learn.org/stable/modules/cross_validation.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn/scikit-learn",
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "On Over-fitting in Model Selection and Subsequent Selection Bias (Cawley & Talbot, 2010)",
+          "url": "https://www.jmlr.org/papers/v11/cawley10a.html"
+        }
+      ],
+      "skills_gained": [
+        "Nested and time-series CV",
+        "Leakage prevention",
+        "Statistical model comparison"
+      ],
+      "expected_outcome": "You can design leakage-free validation and report performance with honest uncertainty."
+    },
+    {
+      "day": 22,
+      "title": "Model Interpretability and Explainability",
+      "objectives": [
+        "Explain model predictions to stakeholders",
+        "Apply SHAP and other explainability tools",
+        "Distinguish global from local explanations"
+      ],
+      "topics": [
+        "Why interpretability matters",
+        "Global vs local explanations",
+        "Permutation importance and partial dependence",
+        "SHAP values (theory and use)",
+        "LIME and counterfactual explanations"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Ensemble methods",
+        "Model evaluation"
+      ],
+      "intermediate_explanation": "Powerful models like gradient boosting and neural networks are often 'black boxes,' but stakeholders, regulators, and your own debugging demand explanations, so interpretability is now an essential skill. You distinguish two levels: global explanations describe how the model behaves overall (which features matter most, how the prediction changes with a feature), while local explanations justify a single prediction ('this loan was denied mainly because of X and Y'). Permutation importance measures how much shuffling a feature hurts performance, and partial dependence plots show a feature's average effect. The centerpiece is SHAP (SHapley Additive exPlanations), grounded in cooperative game theory: it fairly attributes each prediction to its features with strong consistency guarantees, and provides both local explanations and, aggregated, global insight, with rich visualizations. LIME offers fast local approximations, and counterfactual explanations tell you the smallest change that would flip a decision, which is intuitive and actionable. Beyond communication, interpretability is a debugging tool, it exposes leakage, spurious correlations, and bias. Mastering these techniques lets you deploy complex models responsibly and build trust with the people who depend on them.",
+      "practical_task": "Train a gradient boosting model and explain it with permutation importance, partial dependence plots, and SHAP (both a global summary plot and a local explanation for individual predictions).",
+      "mini_project": "Build an explainability report for a model that combines global SHAP insights, per-prediction local explanations, and at least one counterfactual example, written for a non-technical stakeholder.",
+      "assignment": "Use SHAP to investigate a suspiciously high-performing model and determine whether an unexpectedly important feature indicates leakage.",
+      "quiz": [
+        {
+          "question": "SHAP values are based on which mathematical foundation?",
+          "options": ["Linear regression", "Cooperative game theory (Shapley values)", "Gradient descent", "Bayesian priors"],
+          "answer": "Cooperative game theory (Shapley values)"
+        },
+        {
+          "question": "What does a local explanation describe?",
+          "options": ["Overall model behavior", "Why the model made one specific prediction", "The training time", "The dataset size"],
+          "answer": "Why the model made one specific prediction"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "SHAP Values Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=L8_sVRhBDLU"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "SHAP Documentation",
+          "url": "https://shap.readthedocs.io/en/latest/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "shap/shap",
+          "url": "https://github.com/shap/shap"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Unified Approach to Interpreting Model Predictions (Lundberg & Lee, 2017)",
+          "url": "https://papers.nips.cc/paper/2017/hash/8a20a8621978632d76c43dfd28b67767-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "Model interpretability",
+        "SHAP and LIME",
+        "Stakeholder explanations"
+      ],
+      "expected_outcome": "You can explain any model's behavior and individual predictions clearly and rigorously."
+    },
+    {
+      "day": 23,
+      "title": "Advanced Clustering and Unsupervised Learning",
+      "objectives": [
+        "Apply density- and model-based clustering",
+        "Choose and validate clustering approaches",
+        "Cluster complex, non-spherical data"
+      ],
+      "topics": [
+        "Limitations of K-Means",
+        "DBSCAN and HDBSCAN",
+        "Gaussian Mixture Models (soft clustering)",
+        "Hierarchical clustering",
+        "Cluster validation (silhouette, Davies-Bouldin)"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "K-Means clustering",
+        "Advanced probability"
+      ],
+      "intermediate_explanation": "K-Means is a fine starting point but has real limitations: it assumes spherical, similarly-sized clusters, requires you to specify the number of clusters, and forces every point into a cluster, so intermediate practitioners learn a broader toolkit. Density-based methods like DBSCAN and HDBSCAN find clusters of arbitrary shape by grouping densely-packed points and, crucially, label sparse points as noise/outliers, and they don't need you to pre-specify the number of clusters, making them excellent for messy real data. Gaussian Mixture Models take a probabilistic, model-based view: they assume the data is generated from a mixture of Gaussian distributions and perform soft clustering, giving each point a probability of belonging to each cluster, which is more nuanced than hard assignment. Hierarchical clustering builds a tree (dendrogram) of nested clusters, letting you choose the granularity after the fact and understand structure at multiple scales. Because clustering is unsupervised, validating it is subtle: internal metrics like the silhouette score and Davies-Bouldin index assess cohesion and separation without labels. Knowing which algorithm fits the data's geometry, and how to validate the result, lets you extract genuine structure rather than imposing artificial groupings.",
+      "practical_task": "On a dataset with non-spherical clusters and noise, compare K-Means, DBSCAN/HDBSCAN, and a Gaussian Mixture Model, and use silhouette and Davies-Bouldin scores plus visualization to judge them.",
+      "mini_project": "Build a clustering study on a real dataset that selects an appropriate algorithm for the data's geometry, validates the result with multiple internal metrics, and profiles and interprets the discovered clusters.",
+      "assignment": "Explain a scenario where DBSCAN clearly outperforms K-Means and why, referencing cluster shape and noise.",
+      "quiz": [
+        {
+          "question": "What key advantage does DBSCAN have over K-Means?",
+          "options": ["It is always faster", "It finds arbitrary-shaped clusters and labels noise without pre-setting k", "It requires labels", "It only works on images"],
+          "answer": "It finds arbitrary-shaped clusters and labels noise without pre-setting k"
+        },
+        {
+          "question": "What does a Gaussian Mixture Model produce for each point?",
+          "options": ["A hard single-cluster label only", "A probability of belonging to each cluster (soft assignment)", "A regression value", "A feature ranking"],
+          "answer": "A probability of belonging to each cluster (soft assignment)"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "DBSCAN Clustering, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=RDZUdRSDOok"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Clustering",
+          "url": "https://scikit-learn.org/stable/modules/clustering.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn-contrib/hdbscan",
+          "url": "https://github.com/scikit-learn-contrib/hdbscan"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Density-Based Algorithm for Discovering Clusters (Ester et al., 1996)",
+          "url": "https://dl.acm.org/doi/10.5555/3001460.3001507"
+        }
+      ],
+      "skills_gained": [
+        "Advanced clustering",
+        "Density and model-based methods",
+        "Cluster validation"
+      ],
+      "expected_outcome": "You can choose, apply, and validate the right clustering method for complex data."
+    },
+    {
+      "day": 24,
+      "title": "Anomaly and Outlier Detection",
+      "objectives": [
+        "Detect anomalies in unlabeled data",
+        "Apply statistical and ML-based detectors",
+        "Evaluate detection in low-signal settings"
+      ],
+      "topics": [
+        "Types of anomalies (point, contextual, collective)",
+        "Statistical methods (z-score, IQR, Mahalanobis)",
+        "Isolation Forest",
+        "Local Outlier Factor and one-class SVM",
+        "Autoencoders for anomaly detection"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Advanced clustering",
+        "Model evaluation"
+      ],
+      "intermediate_explanation": "Anomaly detection, finding the rare, unusual, or suspicious, powers fraud detection, fault monitoring, network security, and data-quality checks, and it's challenging because anomalies are rare and often unlabeled. You first distinguish types: point anomalies (a single unusual value), contextual anomalies (normal in general but abnormal in context, like high heating usage in summer), and collective anomalies (a sequence that's abnormal together). Simple statistical methods, z-scores, the IQR rule, and the Mahalanobis distance for multivariate data, catch many cases cheaply. Machine-learning detectors handle complex, high-dimensional data: Isolation Forest isolates anomalies efficiently because they're easier to separate with random splits; Local Outlier Factor flags points in low-density regions relative to their neighbors; and one-class SVM learns a boundary around 'normal' data. For rich data, autoencoders (neural networks that learn to reconstruct normal data) flag anomalies as points they reconstruct poorly. A recurring difficulty is evaluation: with few or no labels, you rely on precision-recall on whatever labels exist, expert review, and the business cost of false positives versus misses. Mastering anomaly detection lets you build the monitoring and safety systems that many high-value applications depend on.",
+      "practical_task": "Apply a statistical method, Isolation Forest, and Local Outlier Factor to a dataset with known anomalies, compare which anomalies each catches, and evaluate with precision-recall on the labeled subset.",
+      "mini_project": "Build an anomaly detection system for a realistic scenario (fraud, sensor faults, or data-quality) that combines at least two methods, tunes the contamination/threshold to a cost tradeoff, and reports detection performance.",
+      "assignment": "Give a concrete example of a contextual anomaly and explain why a simple global threshold would miss it.",
+      "quiz": [
+        {
+          "question": "Why does Isolation Forest detect anomalies efficiently?",
+          "options": ["It labels all data", "Anomalies are easier to isolate with random splits, needing fewer splits", "It uses deep learning", "It requires balanced classes"],
+          "answer": "Anomalies are easier to isolate with random splits, needing fewer splits"
+        },
+        {
+          "question": "How do autoencoders flag anomalies?",
+          "options": ["By classifying labels", "By reconstructing normal data well and anomalies poorly", "By clustering", "By scaling features"],
+          "answer": "By reconstructing normal data well and anomalies poorly"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Anomaly Detection : Machine Learning",
+          "channel": "Krish Naik",
+          "url": "https://www.youtube.com/watch?v=qYpqYaVJHz0"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Outlier Detection",
+          "url": "https://scikit-learn.org/stable/modules/outlier_detection.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "yzhao062/pyod",
+          "url": "https://github.com/yzhao062/pyod"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Isolation Forest (Liu, Ting & Zhou, 2008)",
+          "url": "https://ieeexplore.ieee.org/document/4781136"
+        }
+      ],
+      "skills_gained": [
+        "Anomaly detection",
+        "Isolation Forest and LOF",
+        "Low-label evaluation"
+      ],
+      "expected_outcome": "You can build and evaluate anomaly detection systems for rare-event problems."
+    },
+    {
+      "day": 25,
+      "title": "Recommender Systems",
+      "objectives": [
+        "Understand major recommendation approaches",
+        "Build collaborative and content-based recommenders",
+        "Evaluate recommendations properly"
+      ],
+      "topics": [
+        "Content-based vs collaborative filtering",
+        "Matrix factorization (SVD, ALS)",
+        "Implicit feedback and cold start",
+        "Ranking metrics (Precision@k, NDCG, MAP)",
+        "Hybrid and modern recommenders"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Dimensionality reduction",
+        "Model evaluation"
+      ],
+      "intermediate_explanation": "Recommender systems drive a huge share of value at consumer companies, deciding what products, videos, or content users see, so it's a high-impact specialization. Two classic approaches anchor the field. Content-based filtering recommends items similar to those a user liked, using item features, it handles new items well but can be narrow. Collaborative filtering recommends based on patterns across users ('people like you also liked...') without needing item features, and it's remarkably powerful; its workhorse is matrix factorization (SVD, ALS), which learns latent factors for users and items whose dot products predict preferences. You confront real challenges: most feedback is implicit (clicks, watches) rather than explicit ratings, requiring different modeling; and the cold-start problem, how to recommend for brand-new users or items with no history, often solved with hybrid methods that blend content and collaborative signals. Evaluation differs from standard ML: because recommendations are ranked lists, you use ranking metrics like Precision@k, NDCG, and MAP that reward putting relevant items near the top. Understanding these fundamentals prepares you for both classic systems and modern deep-learning recommenders, and for the offline/online evaluation gap that makes recommendation uniquely tricky.",
+      "practical_task": "Build a collaborative-filtering recommender with matrix factorization on a ratings dataset (e.g., MovieLens) and a content-based recommender, then evaluate both with Precision@k and NDCG.",
+      "mini_project": "Build a hybrid recommender that combines collaborative and content-based signals, handles cold-start for new items, and is evaluated with ranking metrics against a popularity baseline.",
+      "assignment": "Explain the cold-start problem and describe two concrete strategies to mitigate it.",
+      "quiz": [
+        {
+          "question": "What does matrix factorization learn in collaborative filtering?",
+          "options": ["Item images", "Latent factors for users and items whose interaction predicts preference", "Text embeddings only", "Cluster labels"],
+          "answer": "Latent factors for users and items whose interaction predicts preference"
+        },
+        {
+          "question": "Why use NDCG instead of accuracy for recommendations?",
+          "options": ["It is faster", "It rewards placing relevant items near the top of a ranked list", "It ignores ranking", "It requires no labels"],
+          "answer": "It rewards placing relevant items near the top of a ranked list"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Recommender Systems Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=G4MBc40rQ2k"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Surprise Library Documentation",
+          "url": "https://surpriselib.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "benfred/implicit",
+          "url": "https://github.com/benfred/implicit"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Matrix Factorization Techniques for Recommender Systems (Koren et al., 2009)",
+          "url": "https://ieeexplore.ieee.org/document/5197422"
+        }
+      ],
+      "skills_gained": [
+        "Recommender systems",
+        "Matrix factorization",
+        "Ranking evaluation"
+      ],
+      "expected_outcome": "You can build and correctly evaluate collaborative, content-based, and hybrid recommenders."
+    },
+    {
+      "day": 26,
+      "title": "Time Series Forecasting: Classical Methods",
+      "objectives": [
+        "Model and forecast time series rigorously",
+        "Apply ARIMA-family models",
+        "Diagnose and validate forecasts"
+      ],
+      "topics": [
+        "Stationarity, differencing, and ADF test",
+        "ACF/PACF and model identification",
+        "AR, MA, ARIMA, and SARIMA",
+        "Exogenous variables (ARIMAX)",
+        "Backtesting and forecast metrics"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Time series basics",
+        "Statistical inference"
+      ],
+      "intermediate_explanation": "Forecasting, demand, revenue, traffic, is one of data science's most requested capabilities, and the classical ARIMA family remains a rigorous, interpretable foundation. The key prerequisite is stationarity: many models assume the series' statistical properties don't change over time, so you test for it (e.g., the Augmented Dickey-Fuller test) and apply differencing to remove trends and make it stationary. To identify model structure you read the autocorrelation (ACF) and partial autocorrelation (PACF) plots, which reveal how many autoregressive (AR) and moving-average (MA) terms to include. ARIMA combines AR, differencing (I), and MA components; SARIMA adds seasonal terms for repeating patterns; and ARIMAX/SARIMAX incorporate exogenous predictors like promotions or holidays. Crucially, you validate forecasts correctly with backtesting, evaluating on rolling out-of-sample windows that respect time order, never a random split, and use forecast-appropriate metrics like MAE, RMSE, and MAPE. You also generate prediction intervals to communicate uncertainty. Mastering classical forecasting gives you transparent, well-understood models that are often competitive with fancier methods and serve as essential baselines for any forecasting project.",
+      "practical_task": "Take a time series, test and enforce stationarity, use ACF/PACF to select an ARIMA/SARIMA order, fit the model, and backtest it with rolling-origin evaluation reporting MAE and MAPE.",
+      "mini_project": "Build a complete forecasting project on a seasonal series that includes stationarity analysis, SARIMA modeling with exogenous variables, backtesting against a naive baseline, and prediction intervals.",
+      "assignment": "Explain why you must never use a random train/test split for forecasting and how rolling-origin backtesting works instead.",
+      "quiz": [
+        {
+          "question": "What does differencing a time series aim to achieve?",
+          "options": ["Add seasonality", "Make the series stationary by removing trend", "Increase noise", "Encode categories"],
+          "answer": "Make the series stationary by removing trend"
+        },
+        {
+          "question": "Which validation approach is correct for forecasting?",
+          "options": ["Random k-fold", "Rolling-origin (time-ordered) backtesting", "Stratified split", "Leave-one-out on shuffled data"],
+          "answer": "Rolling-origin (time-ordered) backtesting"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Time Series Forecasting with ARIMA",
+          "channel": "ritvikmath",
+          "url": "https://www.youtube.com/watch?v=gqryqIWth8Q"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "statsmodels Time Series Analysis",
+          "url": "https://www.statsmodels.org/stable/tsa.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "statsmodels/statsmodels",
+          "url": "https://github.com/statsmodels/statsmodels"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Forecasting: Principles and Practice (Hyndman & Athanasopoulos)",
+          "url": "https://otexts.com/fpp3/"
+        }
+      ],
+      "skills_gained": [
+        "ARIMA/SARIMA forecasting",
+        "Stationarity analysis",
+        "Backtesting"
+      ],
+      "expected_outcome": "You can build, validate, and interpret rigorous classical time series forecasts."
+    },
+    {
+      "day": 27,
+      "title": "Modern and ML-Based Time Series Forecasting",
+      "objectives": [
+        "Forecast with ML and specialized libraries",
+        "Engineer features for time series ML",
+        "Handle multiple series at scale"
+      ],
+      "topics": [
+        "Feature-based ML forecasting",
+        "Prophet for business time series",
+        "Gradient boosting for forecasting",
+        "Global models for many series",
+        "Intro to deep learning forecasting (LSTM, N-BEATS)"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Classical time series forecasting",
+        "Gradient boosting"
+      ],
+      "intermediate_explanation": "Classical models shine on single, well-behaved series, but modern practice often needs to forecast many series with rich covariates, and machine learning approaches excel here. The key reframing is turning forecasting into a supervised learning problem: you engineer lag features (past values), rolling statistics, and calendar/seasonal features, then train any regressor, often gradient boosting, to predict the next value. This lets you incorporate arbitrary external drivers (price, weather, promotions) and handle nonlinearities that ARIMA can't. Facebook's Prophet is a popular, robust choice for business series with strong seasonality and holiday effects, requiring little tuning and producing interpretable trend/seasonality decompositions with uncertainty intervals. A major advantage of ML approaches is global models: instead of fitting one model per series, you train a single model across thousands of related series (e.g., sales per store-item), which shares information and scales far better, this is how large retailers forecast. You also get an introduction to deep learning forecasters like LSTMs and N-BEATS that capture complex temporal patterns. Knowing when to use classical, feature-based ML, Prophet, or global/deep models, and how to validate each with proper backtesting, makes you a versatile, scalable forecaster.",
+      "practical_task": "Reframe a forecasting task as supervised learning with lag and calendar features, train a gradient boosting forecaster, and compare it via backtesting to a Prophet model and to your earlier ARIMA baseline.",
+      "mini_project": "Build a global forecasting model across many related series (e.g., store-item sales) using engineered features and gradient boosting, backtested against per-series baselines, with a report on when the global approach wins.",
+      "assignment": "Explain the advantage of a single global model over fitting one model per series, and when it might not help.",
+      "quiz": [
+        {
+          "question": "How is forecasting reframed for ML models like gradient boosting?",
+          "options": ["As clustering", "As supervised learning using lag and calendar features", "As dimensionality reduction", "As anomaly detection"],
+          "answer": "As supervised learning using lag and calendar features"
+        },
+        {
+          "question": "What is a global forecasting model?",
+          "options": ["One model per series", "A single model trained across many related series", "A world-map visualization", "A Bayesian prior"],
+          "answer": "A single model trained across many related series"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Time Series Forecasting with Machine Learning",
+          "channel": "Rob Mulla",
+          "url": "https://www.youtube.com/watch?v=vV12dGe_Fho"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Prophet Documentation",
+          "url": "https://facebook.github.io/prophet/docs/quick_start.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "Nixtla/mlforecast",
+          "url": "https://github.com/Nixtla/mlforecast"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Forecasting at Scale (Taylor & Letham, 2018)",
+          "url": "https://peerj.com/preprints/3190/"
+        }
+      ],
+      "skills_gained": [
+        "ML-based forecasting",
+        "Prophet and global models",
+        "Time series feature engineering"
+      ],
+      "expected_outcome": "You can forecast at scale with ML methods and choose the right approach per problem."
+    },
+    {
+      "day": 28,
+      "title": "Deep Learning Foundations with PyTorch",
+      "objectives": [
+        "Build and train neural networks in PyTorch",
+        "Understand tensors, autograd, and training loops",
+        "Structure deep learning code properly"
+      ],
+      "topics": [
+        "Tensors and GPU acceleration",
+        "Autograd and computational graphs",
+        "Building models with nn.Module",
+        "The training loop, loss, and optimizers",
+        "Datasets, DataLoaders, and batching"
+      ],
+      "estimated_time": "7-8 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Neural network basics",
+        "Advanced Python",
+        "NumPy"
+      ],
+      "intermediate_explanation": "PyTorch is the dominant framework for deep learning research and increasingly production, and understanding it from first principles, rather than only high-level Keras, gives you the flexibility serious work demands. The core object is the tensor, a multidimensional array like NumPy's but able to run on GPUs for massive speedups and to track operations for gradients. That gradient tracking is autograd: PyTorch builds a computational graph of your operations and automatically computes derivatives via backpropagation, so you never hand-derive gradients. You define models by subclassing nn.Module, composing layers and specifying the forward pass, which makes architectures explicit and customizable. Then you write the training loop yourself, and doing so demystifies training: for each batch you compute predictions, calculate the loss, call backward() to get gradients, and step the optimizer (like Adam) to update weights, remembering to zero gradients each iteration. Datasets and DataLoaders handle efficient batching, shuffling, and parallel loading. This lower-level control is essential because real deep learning, custom architectures, losses, and training logic, requires understanding each piece, and this foundation underlies everything from CNNs to transformers.",
+      "practical_task": "Implement a neural network in PyTorch from scratch: define an nn.Module, write the manual training loop with a DataLoader, train it on a dataset, and move the computation to a GPU if available.",
+      "mini_project": "Build a PyTorch training framework with a reusable training/validation loop, checkpointing, and metric tracking, then use it to train a network on a real dataset and plot the learning curves.",
+      "assignment": "Explain each line of a PyTorch training loop (zero_grad, forward, loss, backward, step) and what would break if you omitted zero_grad.",
+      "quiz": [
+        {
+          "question": "What is autograd responsible for in PyTorch?",
+          "options": ["Loading data", "Automatically computing gradients via backpropagation", "Plotting curves", "Saving models"],
+          "answer": "Automatically computing gradients via backpropagation"
+        },
+        {
+          "question": "Why must you call optimizer.zero_grad() each iteration?",
+          "options": ["To reset the model weights", "Because gradients accumulate by default and would otherwise sum across batches", "To load the next batch", "To move data to GPU"],
+          "answer": "Because gradients accumulate by default and would otherwise sum across batches"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "PyTorch for Deep Learning - Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=V_xro1bcAuA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyTorch Documentation",
+          "url": "https://pytorch.org/docs/stable/index.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pytorch/pytorch",
+          "url": "https://github.com/pytorch/pytorch"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "PyTorch: An Imperative Style, High-Performance Deep Learning Library (Paszke et al., 2019)",
+          "url": "https://papers.nips.cc/paper/2019/hash/bdbca288fee7f92f2bfa9f7012727740-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "PyTorch",
+        "Autograd and training loops",
+        "Deep learning code structure"
+      ],
+      "expected_outcome": "You can build, train, and structure neural networks from first principles in PyTorch."
+    },
+    {
+      "day": 29,
+      "title": "Neural Network Training and Optimization",
+      "objectives": [
+        "Train deep networks that converge well",
+        "Apply regularization and normalization",
+        "Diagnose and fix training problems"
+      ],
+      "topics": [
+        "Optimizers (SGD, Adam, AdamW) and learning rate schedules",
+        "Weight initialization and vanishing/exploding gradients",
+        "Batch normalization and dropout",
+        "Regularization and early stopping",
+        "Debugging training (loss curves, overfitting)"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Deep learning foundations (PyTorch)"
+      ],
+      "intermediate_explanation": "Getting a neural network to actually learn well is a craft, and this day covers the techniques that separate a network that trains smoothly from one that stalls or overfits. Optimizers matter: plain SGD works but Adam/AdamW adapt the learning rate per parameter and converge faster, and pairing them with learning-rate schedules (warmup, decay, cosine) improves both speed and final quality. The learning rate is the single most important hyperparameter, too high diverges, too low crawls. Weight initialization affects whether gradients flow: poor initialization causes vanishing or exploding gradients in deep nets, which is why schemes like He/Xavier initialization exist. Batch normalization stabilizes and accelerates training by normalizing activations, and dropout regularizes by randomly disabling neurons so the network can't over-rely on any one path. You combine these with classic regularization (weight decay) and early stopping to prevent overfitting. Just as important is diagnosis: reading loss curves to tell underfitting from overfitting, spotting a bad learning rate, and recognizing when the model isn't learning at all. Mastering these training dynamics lets you reliably get good results instead of fighting mysterious failures, a skill that applies to every deep architecture you'll build.",
+      "practical_task": "Train the same network with different optimizers and learning rates, add batch normalization and dropout, and use loss curves to diagnose and fix an overfitting and an underfitting scenario.",
+      "mini_project": "Build a training-diagnostics notebook that systematically studies the effect of learning rate, optimizer, batch norm, and dropout on a network, with learning-curve visualizations and a written 'training playbook' of best practices.",
+      "assignment": "Describe the symptoms of too-high and too-low learning rates on the loss curve and how you would correct each.",
+      "quiz": [
+        {
+          "question": "What problem does batch normalization primarily help with?",
+          "options": ["Data loading speed", "Stabilizing and accelerating training by normalizing activations", "Reducing dataset size", "Encoding categories"],
+          "answer": "Stabilizing and accelerating training by normalizing activations"
+        },
+        {
+          "question": "What is the effect of a learning rate that is far too high?",
+          "options": ["Training converges perfectly", "The loss diverges or oscillates instead of decreasing", "Nothing changes", "It reduces overfitting"],
+          "answer": "The loss diverges or oscillates instead of decreasing"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Neural Network Training Tricks and Optimization",
+          "channel": "DeepLearningAI",
+          "url": "https://www.youtube.com/watch?v=NE88eqLngkg"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyTorch Optimization (torch.optim)",
+          "url": "https://pytorch.org/docs/stable/optim.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pytorch/pytorch",
+          "url": "https://github.com/pytorch/pytorch"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Adam: A Method for Stochastic Optimization (Kingma & Ba, 2015)",
+          "url": "https://arxiv.org/abs/1412.6980"
+        }
+      ],
+      "skills_gained": [
+        "Optimization and schedules",
+        "Regularization and normalization",
+        "Training diagnostics"
+      ],
+      "expected_outcome": "You can train deep networks reliably and diagnose training problems."
+    },
+    {
+      "day": 30,
+      "title": "Convolutional Neural Networks for Computer Vision",
+      "objectives": [
+        "Understand and build CNNs",
+        "Apply transfer learning to images",
+        "Solve real image classification tasks"
+      ],
+      "topics": [
+        "Convolution, pooling, and feature maps",
+        "CNN architectures (ResNet, EfficientNet)",
+        "Data augmentation for images",
+        "Transfer learning and fine-tuning",
+        "Image classification pipeline in PyTorch"
+      ],
+      "estimated_time": "7-8 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Neural network training",
+        "PyTorch"
+      ],
+      "intermediate_explanation": "Convolutional Neural Networks (CNNs) revolutionized computer vision, and understanding them equips you for any image task. The core operation is convolution: small learnable filters slide across the image detecting local patterns, edges in early layers, textures and shapes deeper, producing feature maps; this exploits the spatial structure of images and shares parameters, making CNNs far more efficient than dense networks for images. Pooling layers downsample to build translation-invariance and shrink computation. You study landmark architectures, ResNet's skip connections that enabled very deep networks, and efficient modern designs, to understand the design principles rather than memorize them. Because vision datasets are often limited, two techniques are essential: data augmentation (random flips, crops, color shifts) artificially expands training data and improves generalization; and transfer learning, taking a network pretrained on millions of images (ImageNet) and fine-tuning it on your smaller task, which delivers strong results with far less data and compute than training from scratch. This is how most real vision projects are done. You put it together in a full PyTorch pipeline: data loading with augmentation, a pretrained backbone, fine-tuning, and evaluation, giving you a practical, transferable workflow for image problems.",
+      "practical_task": "Fine-tune a pretrained CNN (e.g., ResNet) on an image classification dataset using data augmentation, and compare its accuracy to a small CNN trained from scratch.",
+      "mini_project": "Build an image classifier for a real task via transfer learning that includes an augmentation pipeline, fine-tuning of a pretrained backbone, evaluation with a confusion matrix, and visualization of misclassified examples.",
+      "assignment": "Explain why transfer learning works so well for images with limited data, and what you would freeze versus fine-tune.",
+      "quiz": [
+        {
+          "question": "What does a convolutional filter learn to detect?",
+          "options": ["Global averages only", "Local spatial patterns like edges and textures", "Row order", "Missing values"],
+          "answer": "Local spatial patterns like edges and textures"
+        },
+        {
+          "question": "What is the main benefit of transfer learning for vision?",
+          "options": ["It removes the need for a GPU", "Strong results with far less data by reusing pretrained features", "It eliminates evaluation", "It only works on text"],
+          "answer": "Strong results with far less data by reusing pretrained features"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Convolutional Neural Networks Explained",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=V_xro1bcAuA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyTorch torchvision Models",
+          "url": "https://pytorch.org/vision/stable/models.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pytorch/vision",
+          "url": "https://github.com/pytorch/vision"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Deep Residual Learning for Image Recognition (He et al., 2015)",
+          "url": "https://arxiv.org/abs/1512.03385"
+        }
+      ],
+      "skills_gained": [
+        "CNNs",
+        "Transfer learning",
+        "Computer vision pipelines"
+      ],
+      "expected_outcome": "You can build image classifiers using CNNs and transfer learning."
+    },
+    {
+      "day": 31,
+      "title": "Sequence Models: RNNs and LSTMs",
+      "objectives": [
+        "Model sequential data with RNNs",
+        "Understand LSTMs and GRUs",
+        "Apply sequence models to real tasks"
+      ],
+      "topics": [
+        "Sequential data and recurrence",
+        "Vanilla RNNs and their limitations",
+        "LSTM and GRU gating mechanisms",
+        "Sequence tasks (classification, forecasting, seq2seq)",
+        "Limitations that motivate transformers"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Neural network training",
+        "PyTorch"
+      ],
+      "intermediate_explanation": "Before transformers, recurrent neural networks (RNNs) were the standard for sequential data, text, time series, audio, and they remain valuable to understand both practically and conceptually. An RNN processes a sequence one step at a time, maintaining a hidden state that carries information forward, so it can, in principle, use past context to interpret the present. But vanilla RNNs suffer from vanishing gradients over long sequences, meaning they forget distant context. LSTMs (Long Short-Term Memory) solve this with a gating mechanism: learnable gates control what to remember, forget, and output, letting information persist across many time steps; GRUs are a lighter variant with similar power. You apply these to real sequence tasks: sequence classification (sentiment), sequence forecasting (predicting future values), and sequence-to-sequence models (translation, where an encoder reads the input and a decoder generates the output). Understanding RNNs/LSTMs also clarifies why transformers took over, their sequential processing prevents parallelization and still struggles with very long-range dependencies, motivating the attention mechanism you'll study next. This grounding makes the leap to modern architectures intuitive rather than magical.",
+      "practical_task": "Build an LSTM in PyTorch for a sequence task (e.g., text sentiment or univariate forecasting), train it, and compare its performance to a non-sequential baseline.",
+      "mini_project": "Build a sequence-modeling project (sentiment classification or forecasting) using an LSTM/GRU, experiment with sequence length and hidden size, and write an analysis of where the model succeeds and fails.",
+      "assignment": "Explain how LSTM gates mitigate the vanishing gradient problem that limits vanilla RNNs.",
+      "quiz": [
+        {
+          "question": "What key problem do LSTMs address compared to vanilla RNNs?",
+          "options": ["Slow data loading", "Vanishing gradients / forgetting long-range context", "Missing values", "Feature scaling"],
+          "answer": "Vanishing gradients / forgetting long-range context"
+        },
+        {
+          "question": "Why do RNNs struggle to parallelize?",
+          "options": ["They use too much memory", "They process a sequence step by step, each depending on the previous state", "They require GPUs", "They ignore order"],
+          "answer": "They process a sequence step by step, each depending on the previous state"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Recurrent Neural Networks (RNNs) and LSTMs, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=YCzL96nL7j0"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyTorch Recurrent Layers",
+          "url": "https://pytorch.org/docs/stable/nn.html#recurrent-layers"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pytorch/pytorch",
+          "url": "https://github.com/pytorch/pytorch"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Long Short-Term Memory (Hochreiter & Schmidhuber, 1997)",
+          "url": "https://www.bioinf.jku.at/publications/older/2604.pdf"
+        }
+      ],
+      "skills_gained": [
+        "Sequence modeling",
+        "LSTMs and GRUs",
+        "Seq2seq tasks"
+      ],
+      "expected_outcome": "You can model sequential data with RNNs/LSTMs and understand their limitations."
+    },
+    {
+      "day": 32,
+      "title": "NLP: Text Processing and Embeddings",
+      "objectives": [
+        "Build modern NLP preprocessing pipelines",
+        "Understand and use word and sentence embeddings",
+        "Apply embeddings to downstream tasks"
+      ],
+      "topics": [
+        "Tokenization (word, subword, BPE)",
+        "Word embeddings (Word2Vec, GloVe)",
+        "Contextual embeddings intuition",
+        "Sentence embeddings and semantic similarity",
+        "Text classification and clustering with embeddings"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "NLP basics",
+        "Sequence models"
+      ],
+      "intermediate_explanation": "Modern NLP represents text as dense vectors (embeddings) that capture meaning, and understanding embeddings is foundational to everything from search to LLMs. It begins with tokenization: splitting text into units. Beyond simple word tokens, subword methods like Byte-Pair Encoding (BPE) break words into common fragments, which handles rare/unknown words gracefully and is what modern models use. Static word embeddings like Word2Vec and GloVe map each word to a fixed vector learned so that words used in similar contexts sit close together, famously enabling analogies (king - man + woman ~ queen). Their limitation is that a word has one vector regardless of context, which contextual embeddings (from models like BERT) fix by producing vectors that depend on the surrounding sentence, so 'bank' differs in 'river bank' vs 'bank account.' Sentence embeddings extend this to whole sentences, enabling semantic similarity search, clustering, and retrieval by comparing vectors with cosine similarity, the backbone of modern semantic search and RAG systems. You apply embeddings practically: powering text classification, clustering documents by meaning, and finding similar texts. This embedding-centric view is the bridge from classical NLP to today's transformer-based systems.",
+      "practical_task": "Generate word and sentence embeddings for a text corpus, use cosine similarity to find semantically similar items, and train a classifier on sentence embeddings, comparing to a TF-IDF baseline.",
+      "mini_project": "Build a semantic search or document-clustering system using sentence embeddings that lets you query by meaning, evaluate its retrieval quality, and compare it to a keyword-based approach.",
+      "assignment": "Explain the difference between static (Word2Vec) and contextual (BERT) embeddings with an example word whose meaning depends on context.",
+      "quiz": [
+        {
+          "question": "What is the advantage of subword tokenization like BPE?",
+          "options": ["It removes punctuation", "It handles rare and unknown words by splitting into known fragments", "It ignores context", "It requires no vocabulary"],
+          "answer": "It handles rare and unknown words by splitting into known fragments"
+        },
+        {
+          "question": "How do you measure semantic similarity between two embeddings?",
+          "options": ["Row count", "Cosine similarity", "Accuracy", "Learning rate"],
+          "answer": "Cosine similarity"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Word Embeddings and Word2Vec, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=viZrOnJclY0"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Sentence-Transformers Documentation",
+          "url": "https://www.sbert.net/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "UKPLab/sentence-transformers",
+          "url": "https://github.com/UKPLab/sentence-transformers"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Efficient Estimation of Word Representations in Vector Space (Mikolov et al., 2013)",
+          "url": "https://arxiv.org/abs/1301.3781"
+        }
+      ],
+      "skills_gained": [
+        "Tokenization",
+        "Word and sentence embeddings",
+        "Semantic similarity"
+      ],
+      "expected_outcome": "You can represent text as embeddings and build semantic search and classification."
+    },
+    {
+      "day": 33,
+      "title": "Transformers and Hugging Face",
+      "objectives": [
+        "Understand the transformer architecture",
+        "Use pretrained transformers via Hugging Face",
+        "Fine-tune a transformer for a task"
+      ],
+      "topics": [
+        "Self-attention and multi-head attention",
+        "Transformer architecture (encoder/decoder)",
+        "Pretraining and fine-tuning paradigm",
+        "The Hugging Face ecosystem (transformers, datasets)",
+        "Fine-tuning for classification/NER"
+      ],
+      "estimated_time": "7-8 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "NLP embeddings",
+        "PyTorch"
+      ],
+      "intermediate_explanation": "Transformers power modern AI, from BERT to GPT, and understanding them is now core to data science. Their breakthrough is the self-attention mechanism: instead of processing a sequence step by step like an RNN, attention lets every token directly look at every other token and weigh their relevance, capturing long-range dependencies and, critically, doing so in parallel, which makes training on massive data feasible. Multi-head attention runs several attention operations in parallel to capture different relationship types. The architecture comes in flavors: encoder-only (BERT) for understanding tasks like classification, decoder-only (GPT) for generation, and encoder-decoder for translation/summarization. The dominant paradigm is pretraining then fine-tuning: models are pretrained on enormous unlabeled corpora to learn language broadly, then fine-tuned on your specific labeled task with comparatively little data, delivering state-of-the-art results. The Hugging Face ecosystem makes all of this accessible: the transformers library provides thousands of pretrained models with a uniform API, datasets handles data efficiently, and a few lines let you load, fine-tune, and deploy. Learning to wield transformers via Hugging Face lets you solve advanced NLP tasks and sets the stage for working with large language models.",
+      "practical_task": "Use Hugging Face to run a pretrained transformer for a task (e.g., sentiment or NER) zero-shot, then fine-tune a model like DistilBERT on a labeled dataset and compare performance.",
+      "mini_project": "Fine-tune a transformer for a real text classification or token-classification task using the Hugging Face Trainer, evaluate it against your earlier embedding/TF-IDF models, and document the pretraining-then-fine-tuning gains.",
+      "assignment": "Explain in your own words how self-attention lets a transformer capture long-range dependencies that an RNN struggles with.",
+      "quiz": [
+        {
+          "question": "What core mechanism defines the transformer architecture?",
+          "options": ["Convolution", "Self-attention", "Recurrence", "Pooling"],
+          "answer": "Self-attention"
+        },
+        {
+          "question": "What does the pretraining-then-fine-tuning paradigm enable?",
+          "options": ["Training from scratch every time", "State-of-the-art results on a specific task with relatively little labeled data", "Avoiding GPUs", "Removing tokenization"],
+          "answer": "State-of-the-art results on a specific task with relatively little labeled data"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Transformers, explained: Understand the model behind GPT, BERT",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=zxQyTK8quyY"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face Transformers Documentation",
+          "url": "https://huggingface.co/docs/transformers/index"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/transformers",
+          "url": "https://github.com/huggingface/transformers"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Attention Is All You Need (Vaswani et al., 2017)",
+          "url": "https://arxiv.org/abs/1706.03762"
+        }
+      ],
+      "skills_gained": [
+        "Transformer architecture",
+        "Hugging Face",
+        "Fine-tuning"
+      ],
+      "expected_outcome": "You can use and fine-tune pretrained transformers for advanced NLP tasks."
+    },
+    {
+      "day": 34,
+      "title": "Large Language Models for Data Science",
+      "objectives": [
+        "Use LLMs effectively in data workflows",
+        "Apply prompt engineering and structured output",
+        "Build retrieval-augmented and embedding applications"
+      ],
+      "topics": [
+        "How LLMs work and their capabilities/limits",
+        "Prompt engineering and few-shot prompting",
+        "Structured output and function/tool calling",
+        "Embeddings and Retrieval-Augmented Generation (RAG)",
+        "LLMs for data tasks (extraction, labeling, analysis)"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Transformers",
+        "NLP embeddings"
+      ],
+      "intermediate_explanation": "Large Language Models have become general-purpose tools that data scientists use both to build features/products and to accelerate their own work. Conceptually, an LLM is a very large transformer trained to predict the next token, which, at scale, yields surprising abilities to reason, summarize, extract, and generate, but with real limits: it can hallucinate (produce confident falsehoods), has a knowledge cutoff, and is nondeterministic. Prompt engineering is the practical craft of getting reliable outputs: clear instructions, few-shot examples that demonstrate the desired pattern, and techniques like chain-of-thought for reasoning tasks. For programmatic use you need structured output, prompting the model to return JSON, or using function/tool calling, so results are machine-parseable and integrate into pipelines. The most important production pattern is Retrieval-Augmented Generation (RAG): you embed your documents into a vector store, retrieve the most relevant chunks for a query using semantic similarity, and feed them to the LLM as context, grounding its answers in your data and reducing hallucination. Data scientists also use LLMs directly for practical tasks, extracting structured data from unstructured text, labeling data at scale, and drafting analysis, dramatically boosting productivity. Understanding both the power and the pitfalls lets you use LLMs responsibly and effectively.",
+      "practical_task": "Build a prompt that extracts structured JSON fields from unstructured text reliably, then build a minimal RAG pipeline: embed a small document set, retrieve relevant chunks for a query, and generate a grounded answer.",
+      "mini_project": "Build an LLM-powered data tool (e.g., a document Q&A system with RAG or a bulk text-to-structured-data extractor) with evaluation of accuracy and a discussion of hallucination risks and mitigations.",
+      "assignment": "Explain what RAG is and why it reduces hallucination compared to asking an LLM a question with no context.",
+      "quiz": [
+        {
+          "question": "What does Retrieval-Augmented Generation (RAG) do?",
+          "options": ["Retrains the LLM", "Retrieves relevant documents and gives them to the LLM as grounding context", "Removes the need for prompts", "Compresses the model"],
+          "answer": "Retrieves relevant documents and gives them to the LLM as grounding context"
+        },
+        {
+          "question": "Why prefer structured output / function calling for programmatic LLM use?",
+          "options": ["It is prettier", "So results are machine-parseable and integrate into pipelines", "It trains faster", "It avoids embeddings"],
+          "answer": "So results are machine-parseable and integrate into pipelines"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Large Language Models explained briefly / Intro to LLMs",
+          "channel": "3Blue1Brown",
+          "url": "https://www.youtube.com/watch?v=LPZh9BOjkQs"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face LLM Course",
+          "url": "https://huggingface.co/learn/nlp-course"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "langchain-ai/langchain",
+          "url": "https://github.com/langchain-ai/langchain"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., 2020)",
+          "url": "https://arxiv.org/abs/2005.11401"
+        }
+      ],
+      "skills_gained": [
+        "LLM application",
+        "Prompt engineering",
+        "RAG"
+      ],
+      "expected_outcome": "You can apply LLMs to data tasks and build grounded RAG applications responsibly."
+    },
+    {
+      "day": 35,
+      "title": "MLOps: Experiment Tracking and Reproducibility",
+      "objectives": [
+        "Track experiments systematically",
+        "Version data, code, and models",
+        "Make ML work reproducible and comparable"
+      ],
+      "topics": [
+        "The reproducibility crisis in ML",
+        "Experiment tracking with MLflow",
+        "Parameter, metric, and artifact logging",
+        "Model registry and versioning",
+        "Data and pipeline versioning (DVC)"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Model evaluation",
+        "Software engineering for DS"
+      ],
+      "intermediate_explanation": "As you run dozens of experiments, ad-hoc notebooks make it impossible to remember which configuration produced which result, and MLOps practices bring order and reproducibility. Experiment tracking is the first pillar: tools like MLflow automatically log each run's parameters (hyperparameters, data version), metrics (accuracy, loss over time), and artifacts (the trained model, plots, confusion matrices), giving you a searchable, comparable history so you can answer 'what was my best model and how did I get it?' months later. This transforms guesswork into systematic, comparable science. A model registry versions your models and manages their lifecycle stages (staging, production, archived), so you always know which model is deployed and can roll back. Because ML depends on data as much as code, you also version data and pipelines, DVC (Data Version Control) tracks large datasets and model files alongside Git, linking a code commit to the exact data and model it produced, achieving true end-to-end reproducibility. Together these practices solve the reproducibility crisis that plagues ML: without them, results can't be trusted or rebuilt. Adopting experiment tracking and versioning is a defining step from doing ad-hoc data science to doing production-grade, accountable ML.",
+      "practical_task": "Instrument a training script with MLflow to log parameters, metrics, and the model artifact, run several experiments, and use the MLflow UI to compare runs and pick the best.",
+      "mini_project": "Build a tracked, reproducible ML project that logs all experiments to MLflow, registers the best model in the model registry, and versions the dataset with DVC so any result can be reproduced from a commit.",
+      "assignment": "Explain why versioning data (not just code) is necessary for ML reproducibility, with a scenario where code-only versioning fails.",
+      "quiz": [
+        {
+          "question": "What does MLflow experiment tracking log for each run?",
+          "options": ["Only the code", "Parameters, metrics, and artifacts", "Only the dataset", "Nothing persistent"],
+          "answer": "Parameters, metrics, and artifacts"
+        },
+        {
+          "question": "Why is a model registry useful?",
+          "options": ["To visualize data", "To version models and manage lifecycle stages like production and rollback", "To clean data", "To tune hyperparameters"],
+          "answer": "To version models and manage lifecycle stages like production and rollback"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "MLflow Tutorial - Machine Learning Lifecycle",
+          "channel": "Databricks",
+          "url": "https://www.youtube.com/watch?v=859OxXrt_TI"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "MLflow Documentation",
+          "url": "https://mlflow.org/docs/latest/index.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "mlflow/mlflow",
+          "url": "https://github.com/mlflow/mlflow"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Hidden Technical Debt in Machine Learning Systems (Sculley et al., 2015)",
+          "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "Experiment tracking",
+        "Model registry",
+        "Data/pipeline versioning"
+      ],
+      "expected_outcome": "You can track experiments and version data and models for full reproducibility."
+    },
+    {
+      "day": 36,
+      "title": "Model Deployment with FastAPI and Docker",
+      "objectives": [
+        "Serve models via a REST API",
+        "Containerize applications with Docker",
+        "Build production-ready inference services"
+      ],
+      "topics": [
+        "Serialization and model packaging",
+        "Building a prediction API with FastAPI",
+        "Input validation with Pydantic",
+        "Containerizing with Docker",
+        "Testing and basic performance considerations"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Software engineering for DS",
+        "scikit-learn/PyTorch models"
+      ],
+      "intermediate_explanation": "To deliver value, a model must be accessible to other software, and the standard way is to serve it behind a REST API packaged in a container. First you serialize the trained model (joblib, pickle, or a framework format) so it can be loaded without retraining. FastAPI is the modern Python framework for this: it's fast, async-capable, and auto-generates interactive API docs; you define an endpoint that receives input, runs the model, and returns predictions as JSON. Crucially, you validate incoming requests with Pydantic models, which enforce types and constraints, so malformed input is rejected cleanly rather than crashing your service, an essential production safeguard. Then you containerize with Docker: a Dockerfile specifies the exact environment (Python version, dependencies, model files) so your service runs identically on your laptop, a teammate's machine, or a cloud server, eliminating 'works on my machine' problems and making deployment portable and reproducible. You also learn to test the API and consider basic performance (batching, async, keeping the model loaded in memory). This deployment skillset is what lets a data scientist ship models as real services that applications and users can call, a capability that dramatically increases your impact and employability.",
+      "practical_task": "Serialize a trained model, build a FastAPI service with a Pydantic-validated prediction endpoint, test it locally, then write a Dockerfile and run the service in a container.",
+      "mini_project": "Deploy one of your models as a containerized FastAPI service with input validation, health-check and prediction endpoints, automated API tests, and a documented Docker build/run process.",
+      "assignment": "Explain the role of Pydantic validation in a prediction API and give an example of a bad request it would reject.",
+      "quiz": [
+        {
+          "question": "What problem does Docker containerization solve for deployment?",
+          "options": ["Slow training", "Environment inconsistency ('works on my machine')", "Missing data", "Overfitting"],
+          "answer": "Environment inconsistency ('works on my machine')"
+        },
+        {
+          "question": "What does Pydantic provide in a FastAPI service?",
+          "options": ["Model training", "Automatic request input validation with types and constraints", "GPU acceleration", "Data visualization"],
+          "answer": "Automatic request input validation with types and constraints"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Deploy ML Models with FastAPI and Docker",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=0sOvCWFmrtA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "FastAPI Documentation",
+          "url": "https://fastapi.tiangolo.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "tiangolo/fastapi",
+          "url": "https://github.com/tiangolo/fastapi"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture (Kreuzberger et al., 2023)",
+          "url": "https://arxiv.org/abs/2205.02302"
+        }
+      ],
+      "skills_gained": [
+        "Model serving",
+        "FastAPI",
+        "Docker containerization"
+      ],
+      "expected_outcome": "You can deploy models as containerized, validated production APIs."
+    },
+    {
+      "day": 37,
+      "title": "ML Pipelines and Orchestration",
+      "objectives": [
+        "Automate multi-step ML workflows",
+        "Orchestrate pipelines with a scheduler",
+        "Build reliable, retriable data/ML pipelines"
+      ],
+      "topics": [
+        "Why orchestration matters",
+        "DAGs and task dependencies",
+        "Airflow (or Prefect/Dagster) fundamentals",
+        "Scheduling, retries, and monitoring",
+        "Automating training and batch inference"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Data engineering fundamentals",
+        "Model deployment"
+      ],
+      "intermediate_explanation": "Real ML systems are not single scripts but multi-step workflows, ingest data, validate it, engineer features, train, evaluate, and deploy, that must run reliably on a schedule, and orchestration tools manage this. The central abstraction is the DAG (Directed Acyclic Graph): you define tasks and their dependencies, and the orchestrator runs them in the correct order, in parallel where possible. Apache Airflow is the most widely adopted (with modern alternatives like Prefect and Dagster offering nicer developer experiences): you author pipelines as code, schedule them (e.g., retrain nightly, score hourly), and the tool handles execution. Production-grade features are what make orchestration essential: automatic retries when a task fails transiently, alerting when something breaks, backfilling historical runs, and a UI to monitor status and debug failures, none of which a bare cron job provides well. You use this to automate the recurring work of ML: scheduled retraining as new data arrives, and batch inference jobs that score large datasets on a cadence. Learning orchestration lets a data scientist build dependable, self-running pipelines instead of manually re-running notebooks, which is fundamental to operating ML in production.",
+      "practical_task": "Build a simple pipeline (extract -> validate -> transform -> train -> evaluate) as a DAG in Airflow or Prefect, schedule it, and configure retries and a failure alert.",
+      "mini_project": "Build an orchestrated end-to-end ML pipeline that ingests data, trains and evaluates a model on a schedule, logs to MLflow, and handles failures with retries and notifications, with a monitoring view.",
+      "assignment": "Explain the advantages of an orchestrator like Airflow over a plain cron job for a multi-step ML workflow.",
+      "quiz": [
+        {
+          "question": "What does a DAG define in an orchestration tool?",
+          "options": ["A neural network", "Tasks and their dependencies/execution order", "A database schema", "A visualization"],
+          "answer": "Tasks and their dependencies/execution order"
+        },
+        {
+          "question": "Which orchestration feature helps handle transient task failures?",
+          "options": ["Automatic retries", "Feature scaling", "One-hot encoding", "Dropout"],
+          "answer": "Automatic retries"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Apache Airflow Tutorial for Beginners",
+          "channel": "coder2j",
+          "url": "https://www.youtube.com/watch?v=K9AnJ9_ZAXE"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Apache Airflow Documentation",
+          "url": "https://airflow.apache.org/docs/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "apache/airflow",
+          "url": "https://github.com/apache/airflow"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture (Kreuzberger et al., 2023)",
+          "url": "https://arxiv.org/abs/2205.02302"
+        }
+      ],
+      "skills_gained": [
+        "Workflow orchestration",
+        "Airflow/Prefect",
+        "Pipeline automation"
+      ],
+      "expected_outcome": "You can build automated, reliable, scheduled ML and data pipelines."
+    },
+    {
+      "day": 38,
+      "title": "Model Monitoring and Drift Detection",
+      "objectives": [
+        "Monitor models in production",
+        "Detect data and concept drift",
+        "Set up alerting and retraining triggers"
+      ],
+      "topics": [
+        "Why models degrade in production",
+        "Data drift vs concept drift",
+        "Monitoring metrics and distributions",
+        "Drift detection methods and tools (Evidently)",
+        "Alerting and automated retraining triggers"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "Model deployment",
+        "Statistical inference"
+      ],
+      "intermediate_explanation": "A model's job doesn't end at deployment, in fact, that's when the risk begins, because models silently degrade over time and monitoring is how you catch it before it causes harm. The reason is that the world changes: the data a model sees in production drifts away from what it was trained on. You distinguish data drift (the distribution of inputs changes, e.g., a new customer demographic) from concept drift (the relationship between inputs and the target changes, e.g., buying behavior shifts after an economic change), each requiring different responses. Effective monitoring tracks several layers: operational metrics (latency, errors), input data health (missing values, distribution shifts, out-of-range values), prediction distributions, and, when ground truth eventually arrives, actual model performance. Statistical tests and tools like Evidently detect drift by comparing production data to a reference window and flagging significant divergence. You then wire up alerting so the team is notified, and, ideally, automated retraining triggers that refresh the model when drift or performance decay crosses a threshold, closing the loop. This monitoring discipline is what makes deployed ML trustworthy and durable rather than a fire-and-forget liability, and it's a core responsibility of production data science.",
+      "practical_task": "Take a deployed model's reference dataset and a shifted 'production' dataset, use Evidently to generate a data-drift report, and set a rule that would trigger an alert or retraining.",
+      "mini_project": "Build a monitoring setup for a model that computes drift and performance metrics on incoming batches, produces dashboards/reports with Evidently, and defines alerting and retraining-trigger logic with a written runbook.",
+      "assignment": "Explain the difference between data drift and concept drift with a concrete example of each and how you'd detect them.",
+      "quiz": [
+        {
+          "question": "What is concept drift?",
+          "options": ["Inputs change distribution", "The relationship between inputs and the target changes", "The code changes", "The server restarts"],
+          "answer": "The relationship between inputs and the target changes"
+        },
+        {
+          "question": "Why is monitoring essential after deployment?",
+          "options": ["Models never change", "Models silently degrade as the world and data drift over time", "To reduce training time", "To encode features"],
+          "answer": "Models silently degrade as the world and data drift over time"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "ML Model Monitoring and Data Drift Detection",
+          "channel": "Made With ML",
+          "url": "https://www.youtube.com/watch?v=QcevzK9ZuDg"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Evidently AI Documentation",
+          "url": "https://docs.evidentlyai.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "evidentlyai/evidently",
+          "url": "https://github.com/evidentlyai/evidently"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Survey on Concept Drift Adaptation (Gama et al., 2014)",
+          "url": "https://dl.acm.org/doi/10.1145/2523813"
+        }
+      ],
+      "skills_gained": [
+        "Model monitoring",
+        "Drift detection",
+        "Alerting and retraining triggers"
+      ],
+      "expected_outcome": "You can monitor deployed models and detect and respond to drift."
+    },
+    {
+      "day": 39,
+      "title": "Big Data Processing with Apache Spark",
+      "objectives": [
+        "Process datasets larger than memory with distributed computing",
+        "Write PySpark transformations and Spark SQL",
+        "Understand the Spark execution model"
+      ],
+      "topics": [
+        "Distributed computing concepts and the Spark architecture",
+        "RDDs vs DataFrames and lazy evaluation",
+        "PySpark DataFrame API and transformations/actions",
+        "Spark SQL and the Catalyst optimizer",
+        "Partitioning, shuffles, and performance tuning"
+      ],
+      "estimated_time": "7-8 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Advanced Pandas",
+        "SQL",
+        "Data engineering fundamentals"
+      ],
+      "intermediate_explanation": "When data grows beyond what a single machine can hold, you need distributed computing, and Apache Spark is the industry standard. Spark spreads data across a cluster of machines and executes computations in parallel, letting you process terabytes with the same logical operations you use on a Pandas DataFrame. The key mental model is lazy evaluation: transformations (filter, select, join, groupBy) build up a plan but nothing runs until an action (count, collect, write) triggers it, which lets Spark's Catalyst optimizer rewrite and optimize the whole computation before executing. The DataFrame API is the modern, optimized interface (RDDs are the lower-level foundation you rarely touch directly), and Spark SQL lets you query distributed data with plain SQL. Performance in Spark is dominated by shuffles - operations like joins and groupBys that move data across the network - so understanding partitioning and how to minimize shuffles is what separates a working Spark job from a fast one. Even if you use managed platforms like Databricks, these fundamentals let you reason about why a job is slow and how to fix it, which is essential when working at real-world data scale.",
+      "practical_task": "Set up PySpark locally (or on Databricks Community Edition), load a multi-file dataset, and perform filtering, aggregation, and a join using the DataFrame API and equivalent Spark SQL.",
+      "mini_project": "Build a Spark batch job that ingests a large raw dataset, cleans and aggregates it, and writes partitioned Parquet output, then inspect the query plan and tune at least one shuffle-heavy step.",
+      "assignment": "Take a groupBy-join workload, measure its runtime, then improve it by repartitioning or broadcasting the smaller table and document the speedup and why it happened.",
+      "quiz": [
+        {
+          "question": "Why does Spark use lazy evaluation?",
+          "options": ["To save disk space", "So it can optimize the entire computation plan before executing", "To avoid using SQL", "To run only on one machine"],
+          "answer": "So it can optimize the entire computation plan before executing"
+        },
+        {
+          "question": "What operation is typically the most expensive in Spark?",
+          "options": ["Selecting a column", "A shuffle (e.g., join or groupBy moving data across the network)", "Reading a schema", "Renaming a column"],
+          "answer": "A shuffle (e.g., join or groupBy moving data across the network)"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "PySpark Tutorial for Beginners (Full Course)",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=_C8kWso4ne4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Apache Spark - PySpark DataFrame Guide",
+          "url": "https://spark.apache.org/docs/latest/api/python/getting_started/index.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "apache/spark",
+          "url": "https://github.com/apache/spark"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Spark: Cluster Computing with Working Sets (Zaharia et al., 2010)",
+          "url": "https://www.usenix.org/legacy/event/hotcloud10/tech/full_papers/Zaharia.pdf"
+        }
+      ],
+      "skills_gained": [
+        "Distributed data processing",
+        "PySpark and Spark SQL",
+        "Spark performance tuning"
+      ],
+      "expected_outcome": "You can process large-scale datasets with Spark and reason about distributed performance."
+    },
+    {
+      "day": 40,
+      "title": "Cloud Data Science and Scalable Infrastructure",
+      "objectives": [
+        "Run data science workloads on the cloud",
+        "Use cloud storage, compute, and managed ML services",
+        "Understand cost, scaling, and security basics"
+      ],
+      "topics": [
+        "Cloud object storage (S3/GCS) and data lakes",
+        "Managed compute and notebooks (SageMaker/Vertex AI)",
+        "Managed data warehouses (BigQuery/Redshift/Snowflake)",
+        "Infrastructure basics: IAM, VMs, containers, and autoscaling",
+        "Cost management and cloud security fundamentals"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Data engineering fundamentals",
+        "Docker basics"
+      ],
+      "intermediate_explanation": "Almost all production data science runs in the cloud, so knowing how to use it is a core practitioner skill. The foundation is cheap, durable object storage (S3 on AWS, GCS on Google Cloud) which holds the raw and processed data that forms a data lake. On top of that, managed compute lets you spin up powerful machines or GPU instances on demand and shut them down when done, so you pay only for what you use. Managed ML platforms like SageMaker and Vertex AI provide hosted notebooks, training jobs, and model endpoints so you do not maintain servers yourself, while cloud data warehouses like BigQuery, Redshift, and Snowflake let you run SQL over massive datasets with separated storage and compute that scales automatically. Underpinning all of this are infrastructure concepts you must respect: IAM controls who can access what (getting this wrong causes both outages and breaches), containers make your environment portable, and autoscaling adjusts capacity to load. Two things bite newcomers hardest - cost (a forgotten GPU cluster or an unpartitioned warehouse query can cost thousands) and security (leaked credentials or public buckets). Understanding these lets you build data science systems that scale without surprising bills or breaches.",
+      "practical_task": "Create a cloud storage bucket, upload a dataset, query it from a managed warehouse or a cloud notebook, and set up a budget alert to monitor cost.",
+      "mini_project": "Deploy a training-and-inference workflow to the cloud: store data in object storage, train a model on managed compute, and expose it through a managed endpoint, documenting the IAM roles and estimated cost.",
+      "assignment": "Design (as a diagram plus notes) a cloud architecture for a batch prediction pipeline, labeling storage, compute, orchestration, and security controls, and explain your cost-control choices.",
+      "quiz": [
+        {
+          "question": "What is the main benefit of cloud object storage for data science?",
+          "options": ["It runs models automatically", "Cheap, durable, and scalable storage for raw and processed data", "It replaces SQL", "It formats code"],
+          "answer": "Cheap, durable, and scalable storage for raw and processed data"
+        },
+        {
+          "question": "Why is IAM (identity and access management) critical in the cloud?",
+          "options": ["It speeds up training", "It controls who can access which resources, affecting both security and reliability", "It reduces model size", "It replaces Docker"],
+          "answer": "It controls who can access which resources, affecting both security and reliability"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "AWS for Data Science / Machine Learning (Full Overview)",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=RrbF9V6ObRc"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "AWS SageMaker Documentation",
+          "url": "https://docs.aws.amazon.com/sagemaker/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "aws/amazon-sagemaker-examples",
+          "url": "https://github.com/aws/amazon-sagemaker-examples"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A View of Cloud Computing (Armbrust et al., 2010)",
+          "url": "https://dl.acm.org/doi/10.1145/1721654.1721672"
+        }
+      ],
+      "skills_gained": [
+        "Cloud storage and compute",
+        "Managed ML services",
+        "Cost and security awareness"
+      ],
+      "expected_outcome": "You can run and scale data science workloads on the cloud responsibly."
+    },
+    {
+      "day": 41,
+      "title": "Data Storytelling and Advanced Visualization",
+      "objectives": [
+        "Communicate complex results to technical and business audiences",
+        "Build clear, persuasive visualizations and narratives",
+        "Translate analysis into decisions"
+      ],
+      "topics": [
+        "Principles of effective data visualization",
+        "Choosing the right chart and avoiding misleading graphics",
+        "Advanced visualization (Plotly, Altair) and interactivity",
+        "Structuring a data story for stakeholders",
+        "Executive summaries and quantifying business impact"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": [
+        "EDA and visualization basics"
+      ],
+      "intermediate_explanation": "At the intermediate level, the analysis is only half the job - the other half is getting people to understand and act on it. Data storytelling is the discipline of turning results into a clear narrative aimed at a specific audience. That starts with visualization principles: choose the chart that matches the message (trends over time as lines, comparisons as bars, relationships as scatter), maximize the data-to-ink ratio, use color deliberately, and never distort scales in ways that mislead. Advanced tools like Plotly and Altair let you add interactivity so stakeholders can explore, but the goal is always clarity, not decoration. Beyond charts, structure matters: lead with the conclusion (executives read top-down), support it with evidence, and always translate statistical findings into business terms - not 'the coefficient was 0.3 with p<0.01' but 'each extra onboarding email increased retention by an estimated 3%, worth roughly $X per year.' Quantifying impact and tailoring depth to the audience (technical appendix for peers, one-slide summary for leadership) is what turns a correct analysis into an influential one. Many strong models never ship because the analyst could not communicate their value; mastering this makes your work matter.",
+      "practical_task": "Take a past analysis and produce two outputs: a one-paragraph executive summary quantifying the business impact, and a single polished, correctly-chosen chart that supports the main conclusion.",
+      "mini_project": "Build a short stakeholder-ready report or interactive dashboard that tells the story of a dataset - problem, key findings, and a clear recommendation - with each visualization deliberately chosen and annotated.",
+      "assignment": "Find a misleading chart (truncated axis, wrong chart type, or cherry-picked range), explain why it misleads, and redesign it honestly.",
+      "quiz": [
+        {
+          "question": "When presenting to executives, how should you structure your findings?",
+          "options": ["Bury the conclusion at the end", "Lead with the conclusion and recommendation, then support with evidence", "Show only raw data tables", "Use as many charts as possible"],
+          "answer": "Lead with the conclusion and recommendation, then support with evidence"
+        },
+        {
+          "question": "What makes a statistical result persuasive to business stakeholders?",
+          "options": ["Reporting the p-value only", "Translating it into quantified business impact (e.g., revenue or retention)", "Using more decimals", "Hiding the methodology"],
+          "answer": "Translating it into quantified business impact (e.g., revenue or retention)"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Data Storytelling and Visualization Best Practices",
+          "channel": "Google Career Certificates",
+          "url": "https://www.youtube.com/watch?v=8EMW7io4rSI"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Plotly Python Open Source Graphing Library",
+          "url": "https://plotly.com/python/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "plotly/plotly.py",
+          "url": "https://github.com/plotly/plotly.py"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "The Grammar of Graphics / A Layered Grammar of Graphics (Wickham, 2010)",
+          "url": "https://www.tandfonline.com/doi/abs/10.1198/jcgs.2009.07098"
+        }
+      ],
+      "skills_gained": [
+        "Data storytelling",
+        "Advanced visualization",
+        "Stakeholder communication"
+      ],
+      "expected_outcome": "You can turn complex analysis into clear, persuasive stories that drive decisions."
+    },
+    {
+      "day": 42,
+      "title": "Responsible AI, Fairness, and Governance",
+      "objectives": [
+        "Identify and mitigate bias in data and models",
+        "Apply fairness metrics and privacy-preserving practices",
+        "Understand ML governance and regulation"
+      ],
+      "topics": [
+        "Sources of bias in data and models",
+        "Fairness metrics (demographic parity, equalized odds)",
+        "Bias mitigation techniques (pre-, in-, post-processing)",
+        "Privacy: PII, anonymization, and differential privacy basics",
+        "Model governance, documentation, and regulation (GDPR, EU AI Act)"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Model evaluation",
+        "Model interpretability"
+      ],
+      "intermediate_explanation": "As your models influence real decisions - loans, hiring, healthcare, pricing - the responsibility to make them fair, private, and accountable becomes part of the job, not an afterthought. Bias enters through data (historical discrimination baked into labels, under-represented groups, biased sampling) and through modeling choices, and it can cause real harm and legal liability. Fairness metrics let you measure it: demographic parity checks whether positive predictions are equal across groups, while equalized odds checks whether error rates are equal - and crucially, these definitions can conflict, so you must choose the one that fits the context. Mitigation happens at three stages: pre-processing the data (reweighting, resampling), in-processing during training (fairness constraints), and post-processing the predictions (adjusting thresholds per group). Privacy is the other pillar: you must handle personally identifiable information carefully, anonymize where possible, and understand techniques like differential privacy that add mathematical noise to protect individuals. Finally, governance ties it together - documenting models (model cards, datasheets), maintaining auditability, and complying with regulations like GDPR and the EU AI Act. A data scientist who ignores these ships models that get pulled, sued, or cause harm; one who masters them builds trustworthy systems that survive scrutiny.",
+      "practical_task": "Take a classifier trained on a dataset with a sensitive attribute, compute fairness metrics across groups, and apply one mitigation (e.g., threshold adjustment) then compare fairness and accuracy trade-offs.",
+      "mini_project": "Audit an existing model end to end: analyze data for bias, evaluate multiple fairness metrics, apply and compare two mitigation strategies, and write a model card documenting intended use, limitations, and risks.",
+      "assignment": "Explain a real-world case where a deployed model caused biased or harmful outcomes, identify where bias entered, and describe how fairness metrics and governance could have caught it.",
+      "quiz": [
+        {
+          "question": "Why can you rarely satisfy all fairness definitions at once?",
+          "options": ["Fairness metrics are always identical", "Different fairness criteria (e.g., demographic parity vs equalized odds) can mathematically conflict", "Because models are always fair", "Because data is always balanced"],
+          "answer": "Different fairness criteria (e.g., demographic parity vs equalized odds) can mathematically conflict"
+        },
+        {
+          "question": "What is a model card used for?",
+          "options": ["To speed up training", "To document a model's intended use, performance, and limitations for accountability", "To store model weights", "To replace testing"],
+          "answer": "To document a model's intended use, performance, and limitations for accountability"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Fairness and Bias in Machine Learning",
+          "channel": "Google Cloud Tech",
+          "url": "https://www.youtube.com/watch?v=59bMh59JQDo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Fairlearn Documentation",
+          "url": "https://fairlearn.org/main/user_guide/index.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "fairlearn/fairlearn",
+          "url": "https://github.com/fairlearn/fairlearn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Equality of Opportunity in Supervised Learning (Hardt et al., 2016)",
+          "url": "https://arxiv.org/abs/1610.02413"
+        }
+      ],
+      "skills_gained": [
+        "Fairness measurement and mitigation",
+        "Privacy awareness",
+        "ML governance"
+      ],
+      "expected_outcome": "You can audit and improve models for fairness, privacy, and accountability."
+    },
+    {
+      "day": 43,
+      "title": "Capstone Part 1: Problem Framing and Data Foundation",
+      "objectives": [
+        "Frame a real business problem as a data science project",
+        "Build a reproducible data and feature pipeline",
+        "Establish evaluation and success criteria"
+      ],
+      "topics": [
+        "Translating a business problem into ML objectives and metrics",
+        "Scoping, success criteria, and baselines",
+        "Building a reproducible ingestion and cleaning pipeline",
+        "Feature engineering and a versioned dataset",
+        "Rigorous EDA and data validation"
+      ],
+      "estimated_time": "7-8 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Data engineering",
+        "Feature engineering",
+        "Statistical inference"
+      ],
+      "intermediate_explanation": "The capstone is where every skill from the previous six weeks comes together on one substantial, portfolio-worthy project, and Part 1 is about doing the unglamorous but decisive work of framing and foundations. First you translate a real business problem ('reduce customer churn', 'forecast demand', 'detect fraud') into a precise ML formulation: what exactly are you predicting, what is the target, and - critically - what metric defines success in business terms, not just accuracy. You set a baseline (a trivial model or current process) so improvements are measurable, and you define success criteria up front to avoid moving goalposts. Then you build the data foundation properly: a reproducible pipeline that ingests, cleans, and validates data, engineered features stored as a versioned dataset, and thorough EDA to understand distributions, leakage risks, and data quality issues before any modeling. Getting this stage right is what separates a project that produces trustworthy results from one that silently learns from leaked or broken data. By the end of Part 1 you have a clearly framed problem, a clean versioned dataset, a baseline, and a validation strategy - the platform everything else is built on.",
+      "practical_task": "Choose a capstone problem, write a one-page project charter (problem, ML formulation, success metric, baseline), and build a reproducible pipeline that outputs a cleaned, versioned, feature-engineered dataset.",
+      "mini_project": "Deliver the Part 1 artifact: a documented repository with the problem framing, a tested ingestion/cleaning/feature pipeline, a versioned dataset, an EDA report, and an established baseline and evaluation plan.",
+      "assignment": "Write and defend your success metric and baseline choice, explaining why they reflect real business value and how you will guard against data leakage.",
+      "quiz": [
+        {
+          "question": "Why define a baseline before modeling?",
+          "options": ["To skip evaluation", "So you can measure whether a complex model actually adds value over a simple approach", "To increase accuracy automatically", "To avoid EDA"],
+          "answer": "So you can measure whether a complex model actually adds value over a simple approach"
+        },
+        {
+          "question": "Why is success defined in business terms, not just accuracy?",
+          "options": ["Accuracy is always enough", "Because the project's value is judged by business impact, and the right metric aligns the model with it", "To confuse stakeholders", "Because metrics do not matter"],
+          "answer": "Because the project's value is judged by business impact, and the right metric aligns the model with it"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "End-to-End Data Science Project Walkthrough",
+          "channel": "Ken Jee",
+          "url": "https://www.youtube.com/watch?v=MpF9HENQjDo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn: Common Pitfalls and Recommended Practices",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "drivendata/cookiecutter-data-science",
+          "url": "https://github.com/drivendata/cookiecutter-data-science"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Hidden Technical Debt in Machine Learning Systems (Sculley et al., 2015)",
+          "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "Problem framing",
+        "Reproducible pipelines",
+        "Baselines and evaluation design"
+      ],
+      "expected_outcome": "You have a well-framed capstone with a clean, versioned dataset and a clear evaluation plan."
+    },
+    {
+      "day": 44,
+      "title": "Capstone Part 2: Modeling, Optimization, and Validation",
+      "objectives": [
+        "Build, tune, and rigorously validate models for the capstone",
+        "Compare approaches and interpret the best model",
+        "Track experiments reproducibly"
+      ],
+      "topics": [
+        "Iterative modeling from baseline to advanced models",
+        "Hyperparameter optimization and cross-validation strategy",
+        "Model comparison and selection",
+        "Interpretability and error analysis",
+        "Experiment tracking and reproducibility"
+      ],
+      "estimated_time": "8 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Gradient boosting",
+        "Hyperparameter optimization",
+        "Model interpretability",
+        "Experiment tracking"
+      ],
+      "intermediate_explanation": "With a solid foundation from Part 1, Part 2 is the modeling heart of the capstone, and the emphasis is on rigor, not just fitting an algorithm. You work iteratively: start from your baseline, try progressively stronger models (regularized linear models, gradient boosting, and where appropriate deep learning), and improve features based on what you learn. Every experiment is tracked with a tool like MLflow so results are reproducible and comparable rather than lost in notebook cells. Validation strategy is critical and must match the data - stratified cross-validation for classification, time-series splits for temporal data, and nested CV when you also tune hyperparameters, so your reported performance is an honest estimate and not the result of leakage or overfitting to the validation set. Hyperparameter optimization (with Optuna) squeezes out real gains, but you select the final model on the validation strategy and then confirm on a held-out test set exactly once. Finally you interpret the chosen model with SHAP and do error analysis - where does it fail, on which segments, and why - because understanding failures is what makes the model trustworthy and points to the next improvement. By the end you have a validated, tuned, well-understood model with a documented experiment trail.",
+      "practical_task": "For your capstone dataset, run a tracked modeling workflow: baseline, at least two advanced models with tuned hyperparameters using an appropriate CV strategy, then select and interpret the best model with SHAP.",
+      "mini_project": "Deliver the Part 2 artifact: an MLflow (or equivalent) experiment log comparing models, a rigorously validated final model with reported test-set performance, a SHAP-based interpretation, and an error-analysis section.",
+      "assignment": "Document your cross-validation strategy and justify it for your data type, then explain one failure mode you found in error analysis and how you would address it.",
+      "quiz": [
+        {
+          "question": "Why track experiments with a tool like MLflow during modeling?",
+          "options": ["To slow things down", "So results, parameters, and metrics are reproducible and comparable", "To avoid validation", "To replace the model"],
+          "answer": "So results, parameters, and metrics are reproducible and comparable"
+        },
+        {
+          "question": "How often should the held-out test set be used?",
+          "options": ["Continuously during tuning", "Exactly once, to confirm the final selected model's performance", "Never", "To select hyperparameters"],
+          "answer": "Exactly once, to confirm the final selected model's performance"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "MLflow and Experiment Tracking for ML Projects",
+          "channel": "Databricks",
+          "url": "https://www.youtube.com/watch?v=859OxXrt_TI"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn: Cross-validation and Model Selection",
+          "url": "https://scikit-learn.org/stable/modules/cross_validation.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "optuna/optuna",
+          "url": "https://github.com/optuna/optuna"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Random Search for Hyper-Parameter Optimization (Bergstra & Bengio, 2012)",
+          "url": "https://www.jmlr.org/papers/v13/bergstra12a.html"
+        }
+      ],
+      "skills_gained": [
+        "Rigorous modeling and validation",
+        "Hyperparameter optimization",
+        "Interpretation and error analysis"
+      ],
+      "expected_outcome": "You have a validated, tuned, and well-understood capstone model with a full experiment trail."
+    },
+    {
+      "day": 45,
+      "title": "Capstone Part 3: Deployment, Communication, and Career Launch",
+      "objectives": [
+        "Deploy and monitor the capstone model",
+        "Communicate results and build a strong portfolio",
+        "Prepare for intermediate/senior data science roles"
+      ],
+      "topics": [
+        "Packaging and deploying the model (FastAPI + Docker)",
+        "Basic monitoring and a retraining plan",
+        "Writing up results and an executive summary",
+        "Portfolio, GitHub, and case-study presentation",
+        "Interview preparation and career strategy"
+      ],
+      "estimated_time": "8 hours",
+      "difficulty": "Advanced",
+      "prerequisites": [
+        "Model deployment",
+        "Model monitoring",
+        "Data storytelling"
+      ],
+      "intermediate_explanation": "Part 3 turns your validated model into something real and something that advances your career. First you deploy it: package the model behind a FastAPI service, containerize it with Docker so it runs identically anywhere, and expose a clean prediction endpoint - closing the loop from data to a usable product. You add basic monitoring (logging predictions, tracking input drift, defining when to retrain) so the deployed model does not silently rot, demonstrating that you understand ML as a lifecycle, not a one-off. Then you communicate: write up the project as a clear case study with the problem, approach, results in business terms, and honest limitations, plus an executive summary. This becomes a centerpiece of your portfolio - a well-documented GitHub repository and a presentable narrative that shows not just that you can model, but that you can deliver end-to-end. Finally you prepare for the job market at the intermediate/senior level: structuring your portfolio around impact, practicing how to explain your capstone's technical and business decisions, and readying yourself for interviews that probe statistics, ML, coding, and system design. Finishing this roadmap you have both a deployed, monitored, well-communicated project and the professional positioning to move into more advanced data science roles.",
+      "practical_task": "Deploy your capstone model as a Dockerized FastAPI service with a documented endpoint, add prediction logging and a drift/retraining note, and write a one-page executive summary of results and impact.",
+      "mini_project": "Publish the complete capstone: a clean GitHub repository (pipeline, tracked experiments, deployed service, tests, and README case study) plus a short presentation, forming a portfolio-ready, end-to-end data science project.",
+      "assignment": "Prepare and rehearse a 5-minute walkthrough of your capstone that covers the business problem, your key technical decisions, the results and their impact, and the limitations - as you would in an interview.",
+      "quiz": [
+        {
+          "question": "Why add monitoring after deploying a model?",
+          "options": ["It is not needed", "Because data drift can silently degrade performance, so you must detect it and know when to retrain", "To make training faster", "To hide errors"],
+          "answer": "Because data drift can silently degrade performance, so you must detect it and know when to retrain"
+        },
+        {
+          "question": "What makes a capstone strong in a portfolio?",
+          "options": ["Only high accuracy", "A clear end-to-end story: framed problem, rigorous modeling, deployment, and communicated business impact", "The number of models tried", "Using the newest library"],
+          "answer": "A clear end-to-end story: framed problem, rigorous modeling, deployment, and communicated business impact"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "How to Build a Data Science Portfolio That Gets You Hired",
+          "channel": "Ken Jee",
+          "url": "https://www.youtube.com/watch?v=xrhPjE7wHas"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "FastAPI - Deployment Documentation",
+          "url": "https://fastapi.tiangolo.com/deployment/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "tiangolo/full-stack-fastapi-template",
+          "url": "https://github.com/tiangolo/full-stack-fastapi-template"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Challenges in Deploying Machine Learning: A Survey of Case Studies (Paleyes et al., 2022)",
+          "url": "https://dl.acm.org/doi/10.1145/3533378"
+        }
+      ],
+      "skills_gained": [
+        "Model deployment and monitoring",
+        "Portfolio and communication",
+        "Career preparation"
+      ],
+      "expected_outcome": "You have a deployed, monitored capstone and a portfolio and strategy to advance your data science career."
+    }
+  ]
+}

@@ -1,0 +1,3100 @@
+{
+  "roadmap": {
+    "title": "45-Day Data Science Roadmap",
+    "role": "Data Science",
+    "level": "Beginner",
+    "total_days": 45,
+    "provider": "CalibiAI",
+    "description": "A structured 45-day beginner curriculum to become a Data Scientist - covering Python, statistics, data wrangling, visualization, SQL, machine learning, communication, and a deployed capstone project.",
+    "outcome": "Ability to collect, clean, analyze, and model data, communicate insights, and build and share end-to-end data science projects."
+  },
+  "days": [
+    {
+      "day": 1,
+      "title": "What is Data Science and the Data Scientist Role",
+      "objectives": [
+        "Understand what data science is and is not",
+        "Learn the data science workflow",
+        "Know the tools and skills of a data scientist"
+      ],
+      "topics": [
+        "Definition and scope of data science",
+        "Data science vs data analytics vs ML engineering",
+        "The data science lifecycle (CRISP-DM)",
+        "Types of data (structured, unstructured)",
+        "Core skills: stats, coding, communication",
+        "Common tools and career paths"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Basic computer literacy"],
+      "beginner_explanation": "Data science is the practice of extracting insights and building predictions from data to support decisions. A data scientist blends three skill sets: statistics to reason about data, programming to manipulate it, and domain and communication skills to turn results into action. Before writing any code, it helps to understand the full lifecycle - from framing a business question, gathering and cleaning data, exploring and modeling it, to communicating findings. Knowing this map keeps you oriented as you learn each individual skill over the coming weeks.",
+      "practical_task": "Research three real data science job postings and list the tools, skills, and responsibilities they share. Map each to a stage of the data science lifecycle.",
+      "mini_project": "Create a one-page written overview of a data science problem in a domain you like (e.g., sports, healthcare), describing the question, data needed, and how you would approach it.",
+      "assignment": "Explain the difference between data science, data analytics, and machine learning engineering in your own words with an example of each.",
+      "quiz": [
+        {
+          "question": "Which best describes the FIRST stage of a data science project?",
+          "options": ["Training a model", "Framing the business problem and questions", "Deploying to production", "Building a dashboard"],
+          "answer": "Framing the business problem and questions"
+        },
+        {
+          "question": "Which is an example of unstructured data?",
+          "options": ["A SQL table", "A spreadsheet of numbers", "Free-text customer reviews", "A CSV of sales"],
+          "answer": "Free-text customer reviews"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Data Science In 5 Minutes",
+          "channel": "Simplilearn",
+          "url": "https://www.youtube.com/watch?v=X3paOmcrTjQ"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "CRISP-DM Overview (IBM)",
+          "url": "https://www.ibm.com/docs/en/spss-modeler/saas?topic=dm-crisp-help-overview"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "academic/awesome-datascience",
+          "url": "https://github.com/academic/awesome-datascience"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "50 Years of Data Science (Donoho, 2017)",
+          "url": "https://www.tandfonline.com/doi/full/10.1080/10618600.2017.1384734"
+        }
+      ],
+      "skills_gained": [
+        "Data science fundamentals",
+        "Understanding the DS lifecycle",
+        "Career awareness"
+      ],
+      "expected_outcome": "You understand what data science is and how a data scientist works end to end."
+    },
+    {
+      "day": 2,
+      "title": "Python Fundamentals for Data Science",
+      "objectives": [
+        "Write basic Python programs",
+        "Use variables, types, and operators",
+        "Control flow with conditionals and loops"
+      ],
+      "topics": [
+        "Variables and data types",
+        "Numbers, strings, booleans",
+        "Arithmetic and comparison operators",
+        "Conditionals (if/elif/else)",
+        "Loops (for, while)",
+        "Input/output and basic debugging"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Data science fundamentals"],
+      "beginner_explanation": "Python is the dominant language in data science because it is readable, powerful, and has a huge ecosystem of data libraries. Before those libraries make sense, you need the basics: storing values in variables, understanding data types, making decisions with conditionals, and repeating work with loops. These building blocks appear in every data script you will write, from cleaning a dataset to training a model. Mastering them now makes everything that follows far easier.",
+      "practical_task": "Write Python scripts that compute statistics on a list of numbers (sum, average, max) using loops and conditionals, without any libraries.",
+      "mini_project": "Build a simple text-based data quiz or number-guessing game that uses loops, conditionals, and user input to reinforce control flow.",
+      "assignment": "Write a program that classifies a list of exam scores into grade buckets (A/B/C/F) using conditionals and a loop, and prints a count of each grade.",
+      "quiz": [
+        {
+          "question": "What does a for loop do?",
+          "options": ["Defines a function", "Repeats a block over a sequence", "Stores a value", "Imports a library"],
+          "answer": "Repeats a block over a sequence"
+        },
+        {
+          "question": "Which data type would you use for True/False values?",
+          "options": ["str", "int", "bool", "float"],
+          "answer": "bool"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Python for Beginners - Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=eWRfhZUzrAc"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Python Official Tutorial",
+          "url": "https://docs.python.org/3/tutorial/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "TheAlgorithms/Python",
+          "url": "https://github.com/TheAlgorithms/Python"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Python for Scientific Computing (Oliphant, 2007)",
+          "url": "https://ieeexplore.ieee.org/document/4160250"
+        }
+      ],
+      "skills_gained": [
+        "Python syntax",
+        "Control flow",
+        "Basic programming logic"
+      ],
+      "expected_outcome": "You can write basic Python programs using variables, conditionals, and loops."
+    },
+    {
+      "day": 3,
+      "title": "Python Data Structures and Functions",
+      "objectives": [
+        "Use lists, tuples, dictionaries, and sets",
+        "Write reusable functions",
+        "Apply comprehensions"
+      ],
+      "topics": [
+        "Lists and list methods",
+        "Tuples and sets",
+        "Dictionaries and key-value data",
+        "Functions, arguments, return values",
+        "List and dict comprehensions",
+        "Modules and imports"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Python fundamentals"],
+      "beginner_explanation": "Data structures are how you organize data in memory, and choosing the right one makes your code cleaner and faster. Lists hold ordered collections, dictionaries map keys to values (perfect for structured records), sets store unique items, and tuples are immutable groupings. Functions let you package logic for reuse, and comprehensions provide a concise way to transform data. These tools are the everyday vocabulary of data manipulation and prepare you to understand how libraries like Pandas organize data.",
+      "practical_task": "Given a list of dictionaries representing people, write functions to filter, sort, and summarize them using comprehensions and built-in functions.",
+      "mini_project": "Build a small contact book or inventory manager in pure Python using dictionaries and functions, supporting add, search, and summary operations.",
+      "assignment": "Write a function that takes a list of words and returns a dictionary of word frequencies, using a comprehension or loop.",
+      "quiz": [
+        {
+          "question": "Which structure maps keys to values?",
+          "options": ["list", "tuple", "dictionary", "set"],
+          "answer": "dictionary"
+        },
+        {
+          "question": "What does a function's return statement do?",
+          "options": ["Prints output", "Sends a value back to the caller", "Loops forever", "Imports a module"],
+          "answer": "Sends a value back to the caller"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Python Data Structures Tutorial",
+          "channel": "Corey Schafer",
+          "url": "https://www.youtube.com/watch?v=W8KRzm-HUcc"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Python Data Structures Docs",
+          "url": "https://docs.python.org/3/tutorial/datastructures.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "TheAlgorithms/Python",
+          "url": "https://github.com/TheAlgorithms/Python"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Python for Scientific Computing (Oliphant, 2007)",
+          "url": "https://ieeexplore.ieee.org/document/4160250"
+        }
+      ],
+      "skills_gained": [
+        "Python data structures",
+        "Functions",
+        "Comprehensions"
+      ],
+      "expected_outcome": "You can organize and manipulate data using Python's core data structures and functions."
+    },
+    {
+      "day": 4,
+      "title": "Data Science Environment and Tools",
+      "objectives": [
+        "Set up a data science environment",
+        "Use Jupyter notebooks effectively",
+        "Manage packages and virtual environments"
+      ],
+      "topics": [
+        "Anaconda/Miniconda and pip",
+        "Virtual environments",
+        "Jupyter Notebook and JupyterLab",
+        "Notebook best practices",
+        "Google Colab",
+        "Markdown for documentation"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Python fundamentals"],
+      "beginner_explanation": "Data scientists live in interactive environments that mix code, output, and notes. Jupyter notebooks let you run code in cells, see results immediately, and document your thinking with Markdown - ideal for exploration and sharing analyses. Managing packages with pip or conda and isolating projects in virtual environments prevents the classic 'it works on my machine' problems. Setting this up properly now gives you a smooth, reproducible workspace for every project ahead.",
+      "practical_task": "Create a virtual environment, install NumPy and Pandas, and build a Jupyter notebook that documents a small analysis with Markdown headings and code cells.",
+      "mini_project": "Set up a clean, reproducible project folder with a virtual environment, a requirements file, and a well-documented starter notebook.",
+      "assignment": "Write a short notebook explaining, with Markdown and code cells, why virtual environments matter and demonstrate creating one.",
+      "quiz": [
+        {
+          "question": "What is the main benefit of a virtual environment?",
+          "options": ["Faster CPU", "Isolating project dependencies", "Prettier plots", "More RAM"],
+          "answer": "Isolating project dependencies"
+        },
+        {
+          "question": "Jupyter notebooks are especially good for:",
+          "options": ["Compiling C code", "Interactive analysis mixing code, output, and notes", "Editing videos", "Managing databases only"],
+          "answer": "Interactive analysis mixing code, output, and notes"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Jupyter Notebook Tutorial for Beginners",
+          "channel": "Corey Schafer",
+          "url": "https://www.youtube.com/watch?v=HW29067qVWk"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Project Jupyter Documentation",
+          "url": "https://docs.jupyter.org/en/latest/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "jupyter/notebook",
+          "url": "https://github.com/jupyter/notebook"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Jupyter Notebooks - a publishing format for reproducible computational workflows (Kluyver et al., 2016)",
+          "url": "https://eprints.soton.ac.uk/403913/"
+        }
+      ],
+      "skills_gained": [
+        "Environment setup",
+        "Jupyter notebooks",
+        "Reproducible workflows"
+      ],
+      "expected_outcome": "You can set up and work in a reproducible data science environment with Jupyter."
+    },
+    {
+      "day": 5,
+      "title": "NumPy for Numerical Computing",
+      "objectives": [
+        "Create and manipulate NumPy arrays",
+        "Perform vectorized operations",
+        "Use indexing, slicing, and aggregation"
+      ],
+      "topics": [
+        "NumPy arrays vs Python lists",
+        "Array creation and attributes",
+        "Indexing, slicing, and boolean masks",
+        "Vectorized arithmetic and broadcasting",
+        "Aggregations (sum, mean, std)",
+        "Reshaping arrays"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Python data structures"],
+      "beginner_explanation": "NumPy is the foundation of the entire Python data stack. It provides the ndarray, a fast, memory-efficient array that supports vectorized operations - applying an operation to a whole array at once instead of looping. This is both faster and cleaner than plain Python. Pandas, scikit-learn, and deep learning libraries all build on NumPy, so understanding arrays, indexing, and broadcasting gives you the numerical fluency that underpins all quantitative data work.",
+      "practical_task": "Create NumPy arrays, use boolean masking to filter values, compute summary statistics, and demonstrate broadcasting with arrays of different shapes.",
+      "mini_project": "Analyze a numeric dataset (e.g., temperatures or sales) purely with NumPy: load values, compute statistics, normalize them, and find outliers using masks.",
+      "assignment": "Explain vectorization with an example comparing a Python loop and a NumPy operation, and describe why NumPy is faster.",
+      "quiz": [
+        {
+          "question": "What is a key advantage of NumPy arrays over Python lists?",
+          "options": ["They store text better", "Fast vectorized numerical operations", "They cannot be indexed", "They use more memory"],
+          "answer": "Fast vectorized numerical operations"
+        },
+        {
+          "question": "Boolean masking is used to:",
+          "options": ["Rename arrays", "Filter elements meeting a condition", "Plot data", "Import files"],
+          "answer": "Filter elements meeting a condition"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "NumPy Tutorial for Beginners",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=QUT1VHiLmmI"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "NumPy Absolute Beginners Guide",
+          "url": "https://numpy.org/doc/stable/user/absolute_beginners.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "numpy/numpy",
+          "url": "https://github.com/numpy/numpy"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Array Programming with NumPy (Harris et al., 2020)",
+          "url": "https://www.nature.com/articles/s41586-020-2649-2"
+        }
+      ],
+      "skills_gained": [
+        "NumPy arrays",
+        "Vectorization",
+        "Numerical computing"
+      ],
+      "expected_outcome": "You can perform efficient numerical computations with NumPy arrays."
+    },
+    {
+      "day": 6,
+      "title": "Pandas Fundamentals",
+      "objectives": [
+        "Work with Series and DataFrames",
+        "Load and inspect datasets",
+        "Select, filter, and sort data"
+      ],
+      "topics": [
+        "Series and DataFrame basics",
+        "Reading CSV/Excel files",
+        "Inspecting data (head, info, describe)",
+        "Selecting columns and rows (loc, iloc)",
+        "Filtering with conditions",
+        "Sorting and basic transformations"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["NumPy"],
+      "beginner_explanation": "Pandas is the workhorse of data science - it lets you work with tabular data (rows and columns) the way you would in a spreadsheet, but programmatically and at scale. The DataFrame is its central object. You will constantly load data from files, inspect its shape and summary statistics, select and filter the rows and columns you care about, and sort results. These operations are the daily bread of any data scientist and the gateway to cleaning and analysis.",
+      "practical_task": "Load a real CSV dataset into a DataFrame, inspect it with head/info/describe, filter rows by conditions, and select specific columns.",
+      "mini_project": "Perform a first-pass exploration of a public dataset (e.g., Titanic or a sales CSV): load it, summarize it, and answer five simple questions with filtering and sorting.",
+      "assignment": "Load a dataset and write code to answer: how many rows, what are the column types, and which rows meet a specific condition you choose.",
+      "quiz": [
+        {
+          "question": "A Pandas DataFrame is best described as:",
+          "options": ["A single number", "A 2D labeled table of rows and columns", "A plotting library", "A database server"],
+          "answer": "A 2D labeled table of rows and columns"
+        },
+        {
+          "question": "Which method gives summary statistics of numeric columns?",
+          "options": ["df.plot()", "df.describe()", "df.merge()", "df.drop()"],
+          "answer": "df.describe()"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Pandas Tutorial for Beginners - Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=vmEHCJofslg"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Pandas Getting Started",
+          "url": "https://pandas.pydata.org/docs/getting_started/index.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pandas-dev/pandas",
+          "url": "https://github.com/pandas-dev/pandas"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Data Structures for Statistical Computing in Python (McKinney, 2010)",
+          "url": "https://conference.scipy.org/proceedings/scipy2010/mckinney.html"
+        }
+      ],
+      "skills_gained": [
+        "Pandas DataFrames",
+        "Data loading and inspection",
+        "Filtering and selection"
+      ],
+      "expected_outcome": "You can load, inspect, and query tabular datasets with Pandas."
+    },
+    {
+      "day": 7,
+      "title": "Advanced Pandas: Grouping, Merging, and Reshaping",
+      "objectives": [
+        "Aggregate data with groupby",
+        "Combine datasets with merge and concat",
+        "Reshape data with pivot and melt"
+      ],
+      "topics": [
+        "groupby and aggregation",
+        "Merging and joining DataFrames",
+        "Concatenating datasets",
+        "Pivot tables",
+        "Melt and wide/long formats",
+        "Apply and map functions"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Pandas fundamentals"],
+      "beginner_explanation": "Real analysis rarely uses a single flat table. You need to summarize data by categories (groupby), combine information from multiple sources (merge/join), and reshape data between wide and long formats for different purposes. These operations turn raw tables into the aggregated, joined datasets that answer business questions - like average revenue per region or combining customer and order tables. Mastering them is what lets you actually extract insight rather than just view rows.",
+      "practical_task": "Use groupby to compute aggregate statistics by category, merge two related DataFrames on a key, and create a pivot table summarizing the result.",
+      "mini_project": "Combine two related datasets (e.g., orders and customers), then produce grouped summaries and a pivot table answering business questions about the merged data.",
+      "assignment": "Explain the difference between an inner and a left join with a small example, and show a groupby that computes a metric per category.",
+      "quiz": [
+        {
+          "question": "groupby is used to:",
+          "options": ["Delete rows", "Split data into groups and aggregate", "Plot charts", "Rename files"],
+          "answer": "Split data into groups and aggregate"
+        },
+        {
+          "question": "A left join keeps:",
+          "options": ["Only matching rows", "All rows from the left table plus matches from the right", "No rows", "Only the right table"],
+          "answer": "All rows from the left table plus matches from the right"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Pandas GroupBy and Merge Tutorial",
+          "channel": "Corey Schafer",
+          "url": "https://www.youtube.com/watch?v=txMdrV1Ut64"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Pandas Merge and Join Docs",
+          "url": "https://pandas.pydata.org/docs/user_guide/merging.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pandas-dev/pandas",
+          "url": "https://github.com/pandas-dev/pandas"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Tidy Data (Wickham, 2014)",
+          "url": "https://www.jstatsoft.org/article/view/v059i10"
+        }
+      ],
+      "skills_gained": [
+        "Data aggregation",
+        "Joining datasets",
+        "Reshaping data"
+      ],
+      "expected_outcome": "You can aggregate, combine, and reshape datasets to answer analytical questions."
+    },
+    {
+      "day": 8,
+      "title": "Data Cleaning and Preparation",
+      "objectives": [
+        "Handle missing and duplicate data",
+        "Fix data types and inconsistencies",
+        "Prepare clean datasets for analysis"
+      ],
+      "topics": [
+        "Detecting and handling missing values",
+        "Removing duplicates",
+        "Converting and fixing data types",
+        "Handling outliers",
+        "String cleaning and standardization",
+        "Data validation basics"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Advanced Pandas"],
+      "beginner_explanation": "Real-world data is messy: missing values, duplicates, wrong types, and inconsistent formats are everywhere. Data cleaning is often the largest part of a data scientist's job, and the quality of your cleaning directly determines the quality of your analysis - garbage in, garbage out. You will learn systematic ways to find and fix these issues so that your downstream statistics and models are trustworthy. Clean data is the unglamorous but essential foundation of every reliable result.",
+      "practical_task": "Take a messy dataset, identify missing values and duplicates, decide how to handle each, fix data types, and standardize inconsistent text fields.",
+      "mini_project": "Build a documented data-cleaning notebook that turns a raw, messy public dataset into a clean, analysis-ready version, explaining each decision.",
+      "assignment": "Given a dataset with missing values, describe two strategies for handling them and explain when each is appropriate.",
+      "quiz": [
+        {
+          "question": "Why is data cleaning important?",
+          "options": ["It makes plots colorful", "Poor data quality leads to unreliable analysis and models", "It speeds up the CPU", "It is not important"],
+          "answer": "Poor data quality leads to unreliable analysis and models"
+        },
+        {
+          "question": "One common way to handle missing numeric values is:",
+          "options": ["Ignore the whole dataset", "Impute with the mean or median", "Delete the column always", "Convert them to text"],
+          "answer": "Impute with the mean or median"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Data Cleaning in Pandas",
+          "channel": "Alex The Analyst",
+          "url": "https://www.youtube.com/watch?v=bDhvCp3_lYw"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Pandas Working with Missing Data",
+          "url": "https://pandas.pydata.org/docs/user_guide/missing_data.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pandas-dev/pandas",
+          "url": "https://github.com/pandas-dev/pandas"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Tidy Data (Wickham, 2014)",
+          "url": "https://www.jstatsoft.org/article/view/v059i10"
+        }
+      ],
+      "skills_gained": [
+        "Data cleaning",
+        "Handling missing data",
+        "Data preparation"
+      ],
+      "expected_outcome": "You can turn messy raw data into clean, reliable, analysis-ready datasets."
+    },
+    {
+      "day": 9,
+      "title": "Descriptive Statistics for Data Science",
+      "objectives": [
+        "Understand measures of central tendency and dispersion",
+        "Compute and interpret summary statistics",
+        "Recognize the shape and spread of distributions"
+      ],
+      "topics": [
+        "Mean, median, mode",
+        "Range, variance, standard deviation",
+        "Quartiles, percentiles, IQR",
+        "Skewness and kurtosis",
+        "Five-number summary and box plots"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Pandas fundamentals",
+        "NumPy basics"
+      ],
+      "beginner_explanation": "Descriptive statistics summarize a dataset with a few numbers so you can understand it without reading every row. Central tendency (mean, median, mode) tells you where the 'middle' of your data is: the mean is the average, the median is the middle value when sorted (robust to outliers), and the mode is the most frequent value. Dispersion tells you how spread out the data is: variance and standard deviation measure average distance from the mean, while the IQR (interquartile range) captures the middle 50% and is used to detect outliers. Percentiles rank values (the 90th percentile is the value below which 90% of data falls). Skewness measures asymmetry and kurtosis measures tail-heaviness. Together these numbers let a data scientist quickly grasp a variable's typical value, variability, and outliers before doing deeper analysis.",
+      "practical_task": "Take a numeric dataset (e.g., Titanic fares or house prices) and compute mean, median, mode, std, variance, and quartiles using Pandas .describe() and manual calculations; interpret what each number says about the data.",
+      "mini_project": "Build a 'Dataset Summary Report' function that takes any DataFrame and prints a formatted statistical summary for every numeric column, flagging columns that are highly skewed or contain outliers based on the IQR rule.",
+      "assignment": "Choose 3 numeric columns from a real dataset, compute the full five-number summary for each, and write 2-3 sentences per column explaining what the statistics reveal.",
+      "quiz": [
+        {
+          "question": "Which measure of central tendency is most robust to outliers?",
+          "options": ["Mean", "Median", "Mode", "Range"],
+          "answer": "Median"
+        },
+        {
+          "question": "What does the IQR represent?",
+          "options": ["The full range of data", "The middle 50% of the data", "The average deviation", "The most frequent value"],
+          "answer": "The middle 50% of the data"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Statistics - A Full University Course on Data Science Basics",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=xxpc-HPKN28"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "pandas.DataFrame.describe",
+          "url": "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scipy/scipy",
+          "url": "https://github.com/scipy/scipy"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "The Visual Display of Quantitative Information (Tufte)",
+          "url": "https://www.edwardtufte.com/tufte/books_vdqi"
+        }
+      ],
+      "skills_gained": [
+        "Descriptive statistics",
+        "Summarizing data",
+        "Outlier awareness"
+      ],
+      "expected_outcome": "You can summarize any numeric dataset with the right statistics and interpret what they mean."
+    },
+    {
+      "day": 10,
+      "title": "Data Visualization with Matplotlib",
+      "objectives": [
+        "Create core plot types with Matplotlib",
+        "Customize plots for clarity",
+        "Choose the right chart for the data"
+      ],
+      "topics": [
+        "Figure and Axes objects",
+        "Line, bar, scatter, and histogram plots",
+        "Titles, labels, legends, and ticks",
+        "Subplots and figure layout",
+        "Saving figures"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Pandas fundamentals",
+        "NumPy basics"
+      ],
+      "beginner_explanation": "Matplotlib is the foundational plotting library in Python, and almost every other visualization tool builds on it. It uses a Figure (the whole canvas) containing one or more Axes (individual plots). You choose a chart type based on your question: line plots show trends over time, bar charts compare categories, scatter plots reveal relationships between two numeric variables, and histograms show the distribution of a single variable. Good visualization is about communication, not decoration, so you always add clear titles, axis labels, and legends so a viewer can understand the chart without explanation. Learning to control the Figure/Axes structure lets you build multi-panel dashboards and precisely customize every element. Visualization is one of a data scientist's most important skills because a well-chosen chart can reveal patterns, outliers, and trends that summary statistics alone would hide.",
+      "practical_task": "Using a dataset of your choice, create a line plot, bar chart, scatter plot, and histogram, each with proper titles, axis labels, and legends, then arrange four of them in a 2x2 subplot grid.",
+      "mini_project": "Build a visual EDA notebook for a dataset (e.g., Gapminder or Titanic) that uses at least five different Matplotlib chart types to tell a story about the data.",
+      "assignment": "Recreate a chart you find in a news article or report using Matplotlib, matching the chart type and labeling as closely as you can.",
+      "quiz": [
+        {
+          "question": "Which chart type is best for showing the distribution of a single numeric variable?",
+          "options": ["Line plot", "Histogram", "Bar chart", "Scatter plot"],
+          "answer": "Histogram"
+        },
+        {
+          "question": "In Matplotlib, what contains the individual plot with its axes and data?",
+          "options": ["Figure", "Canvas", "Axes", "Window"],
+          "answer": "Axes"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Matplotlib Tutorial (Full Course) - Corey Schafer",
+          "channel": "Corey Schafer",
+          "url": "https://www.youtube.com/watch?v=UO98lJQ3QGI"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Matplotlib Documentation",
+          "url": "https://matplotlib.org/stable/index.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "matplotlib/matplotlib",
+          "url": "https://github.com/matplotlib/matplotlib"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Matplotlib: A 2D Graphics Environment (Hunter, 2007)",
+          "url": "https://ieeexplore.ieee.org/document/4160265"
+        }
+      ],
+      "skills_gained": [
+        "Data visualization",
+        "Matplotlib",
+        "Chart selection"
+      ],
+      "expected_outcome": "You can create clear, well-labeled charts to explore and communicate data."
+    },
+    {
+      "day": 11,
+      "title": "Advanced Visualization with Seaborn",
+      "objectives": [
+        "Create statistical visualizations quickly with Seaborn",
+        "Visualize distributions and relationships",
+        "Style plots for presentation"
+      ],
+      "topics": [
+        "Seaborn vs Matplotlib",
+        "Distribution plots (histplot, kdeplot, boxplot, violinplot)",
+        "Relationship plots (scatterplot, lineplot, regplot)",
+        "Categorical plots (barplot, countplot)",
+        "Heatmaps and pairplots",
+        "Themes and color palettes"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Matplotlib basics",
+        "Pandas fundamentals"
+      ],
+      "beginner_explanation": "Seaborn is a high-level visualization library built on top of Matplotlib that makes attractive statistical charts with far less code. Where Matplotlib requires many lines to build a styled plot, Seaborn produces it in one line and works directly with Pandas DataFrames. It excels at statistical visualization: KDE plots show smooth distributions, box and violin plots compare distributions across categories, and regplot adds a regression line to a scatter plot automatically. Two especially powerful tools for exploratory analysis are the correlation heatmap (which shows how strongly numeric variables relate to each other using color) and the pairplot (which plots every pair of variables in a grid). Seaborn also ships with polished themes and color palettes, so your charts look professional by default. Most data scientists use Seaborn for fast exploration and Matplotlib underneath for fine-grained customization.",
+      "practical_task": "On a dataset with several numeric and categorical columns, create a correlation heatmap, a pairplot, a boxplot grouped by a category, and a regplot, then interpret the relationships you see.",
+      "mini_project": "Build a Seaborn-based exploratory analysis of a dataset (e.g., tips, iris, or penguins) that uses at least six different Seaborn plot types and includes written interpretations of each finding.",
+      "assignment": "Create a correlation heatmap for a dataset and write a short paragraph identifying the two strongest and two weakest relationships.",
+      "quiz": [
+        {
+          "question": "What is Seaborn primarily built on top of?",
+          "options": ["Plotly", "Matplotlib", "Bokeh", "ggplot"],
+          "answer": "Matplotlib"
+        },
+        {
+          "question": "Which Seaborn plot shows all pairwise relationships between numeric variables at once?",
+          "options": ["heatmap", "pairplot", "violinplot", "countplot"],
+          "answer": "pairplot"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Seaborn Tutorial : Seaborn Full Course",
+          "channel": "Derek Banas",
+          "url": "https://www.youtube.com/watch?v=6GUZXDef2U0"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Seaborn Documentation",
+          "url": "https://seaborn.pydata.org/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "mwaskom/seaborn",
+          "url": "https://github.com/mwaskom/seaborn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "seaborn: statistical data visualization (Waskom, 2021)",
+          "url": "https://joss.theoj.org/papers/10.21105/joss.03021"
+        }
+      ],
+      "skills_gained": [
+        "Statistical visualization",
+        "Seaborn",
+        "Correlation analysis"
+      ],
+      "expected_outcome": "You can rapidly produce polished statistical visualizations and read relationships between variables."
+    },
+    {
+      "day": 12,
+      "title": "Exploratory Data Analysis (EDA)",
+      "objectives": [
+        "Follow a systematic EDA workflow",
+        "Uncover patterns, trends, and anomalies",
+        "Form hypotheses from data"
+      ],
+      "topics": [
+        "The EDA process and mindset",
+        "Univariate, bivariate, and multivariate analysis",
+        "Detecting outliers and anomalies",
+        "Examining relationships and correlations",
+        "Automated EDA tools (ydata-profiling)"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Descriptive statistics",
+        "Matplotlib and Seaborn",
+        "Pandas"
+      ],
+      "beginner_explanation": "Exploratory Data Analysis (EDA) is the detective phase of data science where you investigate a dataset to understand its structure, spot problems, and discover patterns before building models. A systematic EDA moves through three levels: univariate analysis looks at one variable at a time (its distribution, central tendency, and outliers), bivariate analysis examines relationships between two variables (like how price relates to size), and multivariate analysis considers several variables together. Throughout, you're asking questions: Are there missing values or outliers? Which variables are correlated? Are there surprising groupings or trends? Good EDA combines summary statistics with visualization because charts reveal patterns numbers can hide. Tools like ydata-profiling can auto-generate a full report, but the real skill is asking the right questions and forming hypotheses that guide the rest of the project. EDA is where most of a data scientist's insight and intuition is built.",
+      "practical_task": "Perform a complete EDA on an unfamiliar dataset: examine each variable's distribution, check for missing values and outliers, explore correlations, and write down at least five insights you discover.",
+      "mini_project": "Create a full EDA report notebook on a real dataset (e.g., a Kaggle dataset) that includes data overview, univariate/bivariate/multivariate analysis, outlier detection, and a summary of key findings and hypotheses.",
+      "assignment": "Run ydata-profiling on a dataset and compare its automated report to your own manual EDA, noting what the tool missed that your judgment caught.",
+      "quiz": [
+        {
+          "question": "What does bivariate analysis examine?",
+          "options": ["One variable at a time", "The relationship between two variables", "Only categorical variables", "The entire dataset at once"],
+          "answer": "The relationship between two variables"
+        },
+        {
+          "question": "What is the main goal of EDA?",
+          "options": ["To deploy a model", "To understand the data and form hypotheses", "To clean the code", "To write documentation"],
+          "answer": "To understand the data and form hypotheses"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Exploratory Data Analysis with Pandas Python",
+          "channel": "Rob Mulla",
+          "url": "https://www.youtube.com/watch?v=xi0vhXFPegw"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "ydata-profiling Documentation",
+          "url": "https://docs.profiling.ydata.ai/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "ydataai/ydata-profiling",
+          "url": "https://github.com/ydataai/ydata-profiling"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Exploratory Data Analysis (Tukey, 1977)",
+          "url": "https://archive.org/details/exploratorydataa0000tuke"
+        }
+      ],
+      "skills_gained": [
+        "Exploratory data analysis",
+        "Pattern discovery",
+        "Hypothesis generation"
+      ],
+      "expected_outcome": "You can systematically explore any dataset and extract meaningful insights and hypotheses."
+    },
+    {
+      "day": 13,
+      "title": "Probability Fundamentals",
+      "objectives": [
+        "Understand basic probability concepts",
+        "Apply probability rules",
+        "Connect probability to data science"
+      ],
+      "topics": [
+        "Sample spaces and events",
+        "Probability rules (addition, multiplication)",
+        "Conditional probability and independence",
+        "Bayes' theorem intuition",
+        "Random variables and expectation"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Descriptive statistics"
+      ],
+      "beginner_explanation": "Probability is the mathematics of uncertainty, and it underlies nearly all of statistics and machine learning. It starts with a sample space (all possible outcomes) and events (subsets of outcomes we care about). The basic rules let you combine probabilities: the addition rule handles 'or' situations and the multiplication rule handles 'and' situations for independent events. Conditional probability, written P(A|B), asks how likely A is given that B already happened, and it captures how information updates our beliefs. Independence means one event doesn't affect another's probability. Bayes' theorem formalizes how to flip conditional probabilities and update beliefs with new evidence, which is the foundation for classifiers like Naive Bayes and for Bayesian thinking generally. Random variables assign numbers to outcomes, and expectation is the long-run average value. Understanding probability gives you the vocabulary to reason correctly about randomness, risk, and the models you'll build later.",
+      "practical_task": "Simulate coin flips and dice rolls with NumPy to empirically verify probability rules, and compute a conditional probability from a real two-way table (e.g., survival by class in Titanic).",
+      "mini_project": "Build a small 'probability simulator' that estimates probabilities of compound events (e.g., getting at least one six in four dice rolls) via simulation and compares them to the theoretical values.",
+      "assignment": "Work through three Bayes' theorem word problems (e.g., a medical test scenario) by hand, then verify your answers with a simulation.",
+      "quiz": [
+        {
+          "question": "What does P(A|B) represent?",
+          "options": ["Probability of A and B", "Probability of A given B", "Probability of A or B", "Probability of not A"],
+          "answer": "Probability of A given B"
+        },
+        {
+          "question": "If two events are independent, then P(A and B) equals:",
+          "options": ["P(A) + P(B)", "P(A) - P(B)", "P(A) x P(B)", "P(A) / P(B)"],
+          "answer": "P(A) x P(B)"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Probability - Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=OL6bIRAdJhY"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "NumPy random sampling",
+          "url": "https://numpy.org/doc/stable/reference/random/index.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "numpy/numpy",
+          "url": "https://github.com/numpy/numpy"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "An Essay towards Solving a Problem in the Doctrine of Chances (Bayes, 1763)",
+          "url": "https://royalsocietypublishing.org/doi/10.1098/rstl.1763.0053"
+        }
+      ],
+      "skills_gained": [
+        "Probability reasoning",
+        "Conditional probability",
+        "Bayes' theorem"
+      ],
+      "expected_outcome": "You can reason about uncertainty and apply probability rules to data problems."
+    },
+    {
+      "day": 14,
+      "title": "Probability Distributions and Sampling",
+      "objectives": [
+        "Understand common probability distributions",
+        "Grasp sampling and the Central Limit Theorem",
+        "Simulate distributions in Python"
+      ],
+      "topics": [
+        "Discrete vs continuous distributions",
+        "Normal, binomial, and Poisson distributions",
+        "The normal distribution and the 68-95-99.7 rule",
+        "Sampling and sampling distributions",
+        "The Central Limit Theorem"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Probability fundamentals"
+      ],
+      "beginner_explanation": "Probability distributions describe how likely different values of a random variable are. Discrete distributions (like the binomial, for counts of successes, and the Poisson, for counts of events in a time window) apply to countable outcomes, while continuous distributions (like the normal) apply to measurements. The normal (bell-curve) distribution is central to statistics: it's symmetric around its mean, and the 68-95-99.7 rule says about 68% of values fall within one standard deviation, 95% within two, and 99.7% within three. Sampling is the act of drawing a subset from a population, and a sampling distribution describes how a statistic (like the sample mean) varies across many samples. The Central Limit Theorem is the powerful result that the distribution of sample means approaches a normal distribution as sample size grows, regardless of the population's shape. This is why so many statistical methods assume normality and why the normal distribution appears everywhere in data science.",
+      "practical_task": "Use scipy.stats and NumPy to generate and plot normal, binomial, and Poisson distributions, then demonstrate the Central Limit Theorem by repeatedly sampling from a skewed distribution and plotting the distribution of sample means.",
+      "mini_project": "Build an interactive notebook that lets you vary distribution parameters (mean, std, n) and visualizes how the shape changes, plus a demonstration of the CLT with adjustable sample sizes.",
+      "assignment": "Given a real dataset column, determine which distribution best describes it and justify your choice with a histogram overlaid with the theoretical distribution.",
+      "quiz": [
+        {
+          "question": "According to the 68-95-99.7 rule, what percent of data falls within 2 standard deviations of the mean in a normal distribution?",
+          "options": ["68%", "95%", "99.7%", "50%"],
+          "answer": "95%"
+        },
+        {
+          "question": "The Central Limit Theorem states that the distribution of sample means approaches which shape as sample size grows?",
+          "options": ["Uniform", "Skewed", "Normal", "Binomial"],
+          "answer": "Normal"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Statistics and Probability Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=xxpc-HPKN28"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scipy.stats Documentation",
+          "url": "https://docs.scipy.org/doc/scipy/reference/stats.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scipy/scipy",
+          "url": "https://github.com/scipy/scipy"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "The Central Limit Theorem: A Historical Note",
+          "url": "https://www.jstor.org/stable/2683143"
+        }
+      ],
+      "skills_gained": [
+        "Probability distributions",
+        "Sampling",
+        "Central Limit Theorem"
+      ],
+      "expected_outcome": "You understand key distributions and why the normal distribution and CLT matter for statistics."
+    },
+    {
+      "day": 15,
+      "title": "Inferential Statistics and Hypothesis Testing",
+      "objectives": [
+        "Understand statistical inference and confidence intervals",
+        "Perform and interpret hypothesis tests",
+        "Avoid common statistical mistakes"
+      ],
+      "topics": [
+        "Population vs sample and point estimates",
+        "Confidence intervals",
+        "Null and alternative hypotheses",
+        "p-values and significance levels",
+        "t-tests, chi-square tests, and ANOVA basics",
+        "Type I and Type II errors"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Probability distributions and sampling"
+      ],
+      "beginner_explanation": "Inferential statistics lets you draw conclusions about a whole population from a sample. A confidence interval gives a range of plausible values for a population parameter (e.g., 'the average is between 48 and 52 with 95% confidence') and communicates the uncertainty of an estimate. Hypothesis testing is a formal procedure for deciding whether an observed effect is real or could be due to chance. You state a null hypothesis (no effect) and an alternative (there is an effect), then compute a p-value: the probability of seeing data at least as extreme as yours if the null were true. If the p-value is below a chosen significance level (commonly 0.05), you reject the null. Different tests suit different questions: t-tests compare means, chi-square tests examine categorical associations, and ANOVA compares means across several groups. It's crucial to understand errors: a Type I error is a false positive (rejecting a true null) and a Type II error is a false negative. This framework is the backbone of A/B testing and scientific data analysis.",
+      "practical_task": "Use scipy.stats to run a t-test comparing two groups (e.g., fares of survivors vs non-survivors), compute a confidence interval, and correctly interpret the p-value in plain language.",
+      "mini_project": "Design and analyze a simulated A/B test: generate data for a control and treatment group, run the appropriate hypothesis test, report the p-value and confidence interval, and write a clear conclusion.",
+      "assignment": "Find a claim in a news article that reports a statistic and critique it in terms of sample size, significance, and possible errors.",
+      "quiz": [
+        {
+          "question": "What is a p-value?",
+          "options": ["The probability the null hypothesis is true", "The probability of observing data at least as extreme as yours if the null is true", "The size of the effect", "The confidence level"],
+          "answer": "The probability of observing data at least as extreme as yours if the null is true"
+        },
+        {
+          "question": "Rejecting a null hypothesis that is actually true is which type of error?",
+          "options": ["Type I error", "Type II error", "Sampling error", "Measurement error"],
+          "answer": "Type I error"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Hypothesis Testing - Full Explanation",
+          "channel": "zedstatistics",
+          "url": "https://www.youtube.com/watch?v=0oc49DyA3hU"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scipy.stats statistical tests",
+          "url": "https://docs.scipy.org/doc/scipy/reference/stats.html#statistical-tests"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "statsmodels/statsmodels",
+          "url": "https://github.com/statsmodels/statsmodels"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "The ASA Statement on p-Values (Wasserstein & Lazar, 2016)",
+          "url": "https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108"
+        }
+      ],
+      "skills_gained": [
+        "Statistical inference",
+        "Hypothesis testing",
+        "Confidence intervals"
+      ],
+      "expected_outcome": "You can run and correctly interpret hypothesis tests and confidence intervals."
+    },
+    {
+      "day": 16,
+      "title": "Correlation and Simple Linear Regression",
+      "objectives": [
+        "Measure relationships between variables",
+        "Understand and fit simple linear regression",
+        "Interpret regression output"
+      ],
+      "topics": [
+        "Covariance and correlation (Pearson, Spearman)",
+        "Correlation vs causation",
+        "The linear regression equation",
+        "Least squares fitting",
+        "R-squared and residuals"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Descriptive statistics",
+        "Data visualization"
+      ],
+      "beginner_explanation": "Correlation measures how strongly two numeric variables move together, on a scale from -1 (perfect negative) to +1 (perfect positive), with 0 meaning no linear relationship. Pearson correlation captures linear relationships while Spearman captures monotonic ones based on ranks. A critical lesson is that correlation does not imply causation: two variables can move together because of coincidence or a hidden third factor. Simple linear regression goes a step further by fitting a straight line (y = mx + b) that best predicts one variable from another, using the least squares method to minimize the total squared distance between the line and the data points. R-squared tells you the proportion of variance in the outcome explained by the predictor, and residuals (the leftover errors) help you check whether the model fits well. This is the gateway to machine learning: regression is both a statistical tool for understanding relationships and the simplest predictive model you'll build.",
+      "practical_task": "Compute Pearson and Spearman correlations for pairs of variables, fit a simple linear regression with scikit-learn or statsmodels, plot the regression line, and interpret the slope and R-squared.",
+      "mini_project": "Build a regression analysis on a real dataset (e.g., predicting tips from bill amount) that includes a scatter plot with fitted line, correlation coefficients, R-squared, and a residual plot with interpretation.",
+      "assignment": "Find two variables that are correlated but not causally related and write a short explanation of the likely confounding factor.",
+      "quiz": [
+        {
+          "question": "A correlation coefficient of -0.9 indicates:",
+          "options": ["A weak positive relationship", "A strong negative relationship", "No relationship", "A perfect positive relationship"],
+          "answer": "A strong negative relationship"
+        },
+        {
+          "question": "What does R-squared measure?",
+          "options": ["The slope of the line", "The proportion of variance explained by the model", "The correlation between residuals", "The number of predictors"],
+          "answer": "The proportion of variance explained by the model"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Linear Regression, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=nk2CQITm_eo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "statsmodels Linear Regression",
+          "url": "https://www.statsmodels.org/stable/regression.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "statsmodels/statsmodels",
+          "url": "https://github.com/statsmodels/statsmodels"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Regression Towards Mediocrity in Hereditary Stature (Galton, 1886)",
+          "url": "https://www.jstor.org/stable/2841583"
+        }
+      ],
+      "skills_gained": [
+        "Correlation analysis",
+        "Simple linear regression",
+        "Model interpretation"
+      ],
+      "expected_outcome": "You can measure and interpret relationships between variables and fit a simple regression model."
+    },
+    {
+      "day": 17,
+      "title": "SQL for Data Science - Fundamentals",
+      "objectives": [
+        "Query data with core SQL statements",
+        "Filter, sort, and aggregate data",
+        "Understand relational database concepts"
+      ],
+      "topics": [
+        "Relational databases and tables",
+        "SELECT, WHERE, ORDER BY, LIMIT",
+        "Aggregate functions (COUNT, SUM, AVG, MIN, MAX)",
+        "GROUP BY and HAVING",
+        "Data types and NULL handling"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Basic data concepts"
+      ],
+      "beginner_explanation": "SQL (Structured Query Language) is the standard language for working with data stored in relational databases, and it's one of the most in-demand skills for data scientists because most organizational data lives in databases, not CSV files. A relational database organizes data into tables (rows and columns) that can relate to each other. The SELECT statement retrieves columns, WHERE filters rows by conditions, ORDER BY sorts results, and LIMIT restricts how many rows come back. Aggregate functions summarize data: COUNT, SUM, AVG, MIN, and MAX. GROUP BY splits data into groups so you can aggregate within each (e.g., average salary per department), and HAVING filters those groups after aggregation. Handling NULLs correctly matters because missing values behave specially in SQL. Mastering these fundamentals lets you pull exactly the data you need directly from the source, often far more efficiently than loading everything into Python first.",
+      "practical_task": "Using a sample database (e.g., SQLite Chinook or a Kaggle SQL dataset), write queries to filter rows, sort results, and compute grouped aggregates like counts and averages per category.",
+      "mini_project": "Build a set of 10 analytical SQL queries answering business questions about a sample database, ranging from simple filters to grouped aggregations with HAVING clauses.",
+      "assignment": "Write five queries that each use GROUP BY with a different aggregate function and explain in one sentence what business question each answers.",
+      "quiz": [
+        {
+          "question": "Which SQL clause is used to filter groups after aggregation?",
+          "options": ["WHERE", "HAVING", "GROUP BY", "ORDER BY"],
+          "answer": "HAVING"
+        },
+        {
+          "question": "Which function counts the number of rows?",
+          "options": ["SUM()", "AVG()", "COUNT()", "MAX()"],
+          "answer": "COUNT()"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "SQL Tutorial - Full Database Course for Beginners",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=HXV3zeQKqGY"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "SQLite SQL Language Reference",
+          "url": "https://www.sqlite.org/lang.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "lerocha/chinook-database",
+          "url": "https://github.com/lerocha/chinook-database"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Relational Model of Data for Large Shared Data Banks (Codd, 1970)",
+          "url": "https://dl.acm.org/doi/10.1145/362384.362685"
+        }
+      ],
+      "skills_gained": [
+        "SQL querying",
+        "Data aggregation",
+        "Relational databases"
+      ],
+      "expected_outcome": "You can retrieve, filter, and summarize data directly from a relational database with SQL."
+    },
+    {
+      "day": 18,
+      "title": "SQL for Data Science - Joins and Subqueries",
+      "objectives": [
+        "Combine data from multiple tables with joins",
+        "Write subqueries and CTEs",
+        "Use window functions for analytics"
+      ],
+      "topics": [
+        "INNER, LEFT, RIGHT, and FULL joins",
+        "Subqueries and nested queries",
+        "Common Table Expressions (CTEs)",
+        "Window functions (ROW_NUMBER, RANK, running totals)",
+        "Combining SQL with Pandas (read_sql)"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "SQL fundamentals"
+      ],
+      "beginner_explanation": "Real databases spread data across many related tables, so the ability to combine them with joins is essential. An INNER JOIN keeps only rows that match in both tables, a LEFT JOIN keeps all rows from the left table (filling in NULLs where there's no match), and RIGHT and FULL joins do the mirror and union cases. Subqueries are queries nested inside other queries, useful for filtering based on a computed set or value. Common Table Expressions (CTEs), written with the WITH keyword, let you name intermediate results to make complex queries readable and reusable. Window functions are a powerful analytical tool that compute values across a set of rows related to the current row without collapsing them, enabling running totals, rankings, and moving averages, which are hard to do otherwise. Finally, Pandas' read_sql lets you run these queries from Python and load results straight into a DataFrame, bridging the database and your analysis. Together these skills let you assemble and analyze data at the source like a professional.",
+      "practical_task": "Write queries that join at least three tables, use a CTE to structure a multi-step analysis, and apply a window function to rank items within groups; then load one result into Pandas with read_sql.",
+      "mini_project": "Build an analytical report from a multi-table database that uses joins, a CTE, and window functions to answer a layered business question (e.g., top-selling product per region with running totals).",
+      "assignment": "Rewrite a complex nested subquery as a CTE and explain why the CTE version is easier to read and maintain.",
+      "quiz": [
+        {
+          "question": "Which join returns all rows from the left table plus matches from the right?",
+          "options": ["INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "CROSS JOIN"],
+          "answer": "LEFT JOIN"
+        },
+        {
+          "question": "What keyword introduces a Common Table Expression?",
+          "options": ["WITH", "AS", "USING", "OVER"],
+          "answer": "WITH"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "SQL Joins Explained",
+          "channel": "Socratica",
+          "url": "https://www.youtube.com/watch?v=9yeOJ0ZMUYw"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "pandas.read_sql",
+          "url": "https://pandas.pydata.org/docs/reference/api/pandas.read_sql.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "lerocha/chinook-database",
+          "url": "https://github.com/lerocha/chinook-database"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Access Path Selection in a Relational Database Management System (Selinger et al., 1979)",
+          "url": "https://dl.acm.org/doi/10.1145/582095.582099"
+        }
+      ],
+      "skills_gained": [
+        "SQL joins",
+        "CTEs and subqueries",
+        "Window functions"
+      ],
+      "expected_outcome": "You can combine and analyze data across multiple tables using advanced SQL."
+    },
+    {
+      "day": 19,
+      "title": "Data Collection: APIs and Web Scraping",
+      "objectives": [
+        "Collect data from web APIs",
+        "Scrape data from web pages responsibly",
+        "Understand data collection ethics and limits"
+      ],
+      "topics": [
+        "HTTP basics and JSON",
+        "Calling REST APIs with requests",
+        "Web scraping with BeautifulSoup",
+        "Handling pagination and rate limits",
+        "robots.txt and scraping ethics"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Python fundamentals",
+        "Pandas"
+      ],
+      "beginner_explanation": "Not all data comes in a tidy CSV; often you must collect it yourself from the web. There are two main approaches. APIs (Application Programming Interfaces) are the preferred way: many services expose endpoints that return structured data, usually as JSON, and you fetch it with HTTP requests using Python's requests library. You'll learn about HTTP methods (GET to retrieve), status codes, query parameters, authentication with API keys, pagination (fetching results page by page), and rate limits (how often you're allowed to call). When no API exists, web scraping extracts data directly from HTML pages using tools like BeautifulSoup to parse the page structure and pull out the elements you need. Scraping must be done responsibly: you should check a site's robots.txt file, respect terms of service, avoid overloading servers, and never collect personal data unlawfully. These skills let a data scientist build original datasets that others don't have, which is often where the most valuable insights come from.",
+      "practical_task": "Fetch data from a free public API (e.g., a weather or open-data API), parse the JSON into a Pandas DataFrame, then separately scrape a simple public web page's table with BeautifulSoup.",
+      "mini_project": "Build a data collector that pulls data from an API over multiple pages, handles rate limiting, stores results in a clean DataFrame, and saves them to CSV for later analysis.",
+      "assignment": "Find a public API, read its documentation, and write a script that retrieves and structures a dataset of at least 100 records, documenting the endpoints you used.",
+      "quiz": [
+        {
+          "question": "Which HTTP method is typically used to retrieve data from an API?",
+          "options": ["POST", "GET", "DELETE", "PUT"],
+          "answer": "GET"
+        },
+        {
+          "question": "Which file tells scrapers which parts of a site they may access?",
+          "options": ["sitemap.xml", "robots.txt", "index.html", "config.json"],
+          "answer": "robots.txt"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Python API Development - Comprehensive Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=0sOvCWFmrtA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Requests: HTTP for Humans",
+          "url": "https://requests.readthedocs.io/en/latest/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "psf/requests",
+          "url": "https://github.com/psf/requests"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Web Scraping in the Statistics and Data Science Curriculum",
+          "url": "https://www.tandfonline.com/doi/full/10.1080/10691898.2020.1787116"
+        }
+      ],
+      "skills_gained": [
+        "API consumption",
+        "Web scraping",
+        "Data collection ethics"
+      ],
+      "expected_outcome": "You can gather your own datasets from APIs and web pages responsibly."
+    },
+    {
+      "day": 20,
+      "title": "Feature Engineering",
+      "objectives": [
+        "Create informative features from raw data",
+        "Encode categorical and scale numeric features",
+        "Understand the impact of features on models"
+      ],
+      "topics": [
+        "What features are and why they matter",
+        "Encoding categoricals (one-hot, label, ordinal)",
+        "Scaling and normalization",
+        "Creating features from dates and text",
+        "Binning and interaction features"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Pandas",
+        "Data cleaning"
+      ],
+      "beginner_explanation": "Feature engineering is the craft of transforming raw data into inputs that help machine learning models learn better, and it's often what separates a mediocre model from a great one. A 'feature' is any measurable input variable. Models generally need numeric input, so categorical variables must be encoded: one-hot encoding creates a binary column per category (good for unordered categories), label/ordinal encoding maps categories to numbers (appropriate when there's a natural order). Numeric features often benefit from scaling (standardization to mean 0 and std 1, or min-max normalization to a 0-1 range) so that no single feature dominates just because of its units. You can also create new features that expose hidden signal: extracting the day-of-week or month from a date, computing ratios, binning continuous values into ranges, or building interaction terms that combine two variables. Thoughtful feature engineering uses domain knowledge to give the model the most informative view of the problem, and it frequently improves accuracy more than switching algorithms.",
+      "practical_task": "Take a dataset with categorical, numeric, and date columns and engineer a richer feature set: one-hot encode categories, scale numeric columns, and extract at least three new features from dates or combinations.",
+      "mini_project": "Build a feature engineering pipeline for a dataset (e.g., a housing or e-commerce dataset) that produces a model-ready feature matrix, documenting the rationale for each transformation.",
+      "assignment": "Take one raw column and create at least four derived features from it, explaining what signal each new feature is meant to capture.",
+      "quiz": [
+        {
+          "question": "Which encoding is best for an unordered categorical variable with few categories?",
+          "options": ["Label encoding", "One-hot encoding", "No encoding", "Scaling"],
+          "answer": "One-hot encoding"
+        },
+        {
+          "question": "Why do we scale numeric features?",
+          "options": ["To remove missing values", "So no feature dominates due to its units", "To convert them to categories", "To reduce the number of rows"],
+          "answer": "So no feature dominates due to its units"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Feature Engineering Full Course",
+          "channel": "Krish Naik",
+          "url": "https://www.youtube.com/watch?v=6WDFfaYtN6s"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Preprocessing",
+          "url": "https://scikit-learn.org/stable/modules/preprocessing.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "feature-engine/feature_engine",
+          "url": "https://github.com/feature-engine/feature_engine"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Few Useful Things to Know About Machine Learning (Domingos, 2012)",
+          "url": "https://dl.acm.org/doi/10.1145/2347736.2347755"
+        }
+      ],
+      "skills_gained": [
+        "Feature engineering",
+        "Encoding and scaling",
+        "Feature creation"
+      ],
+      "expected_outcome": "You can transform raw data into informative, model-ready features."
+    },
+    {
+      "day": 21,
+      "title": "Introduction to Machine Learning",
+      "objectives": [
+        "Understand what machine learning is and its main types",
+        "Grasp the train/test workflow",
+        "Recognize the ML project lifecycle"
+      ],
+      "topics": [
+        "Supervised vs unsupervised vs reinforcement learning",
+        "Classification vs regression",
+        "Features, labels, and training",
+        "Train/test split and generalization",
+        "The scikit-learn estimator API"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Feature engineering",
+        "Statistics basics"
+      ],
+      "beginner_explanation": "Machine learning is the practice of building systems that learn patterns from data to make predictions or decisions, rather than being explicitly programmed with rules. There are three broad types: supervised learning, where the model learns from labeled examples (inputs paired with known outputs) to predict labels for new data; unsupervised learning, where the model finds structure in unlabeled data (like grouping similar customers); and reinforcement learning, where an agent learns by trial and error through rewards. Supervised problems split into classification (predicting a category, like spam or not-spam) and regression (predicting a number, like price). The core workflow is to split your data into a training set (used to fit the model) and a test set (held back to estimate how well the model generalizes to unseen data), because a model that memorizes training data but fails on new data is useless. Scikit-learn provides a consistent API for all of this: every model has .fit() to train and .predict() to make predictions, which makes experimenting with different algorithms easy.",
+      "practical_task": "Load a built-in scikit-learn dataset, split it into train and test sets, fit a simple model, and evaluate its accuracy on the test set, observing the difference between training and test performance.",
+      "mini_project": "Build your first end-to-end ML notebook: load data, split it, train a baseline model, evaluate it, and write a short reflection on whether it generalized well.",
+      "assignment": "For three real-world problems of your choice, classify each as supervised or unsupervised and, if supervised, as classification or regression, with justification.",
+      "quiz": [
+        {
+          "question": "Predicting a house's price from its features is an example of:",
+          "options": ["Classification", "Regression", "Clustering", "Reinforcement learning"],
+          "answer": "Regression"
+        },
+        {
+          "question": "Why do we hold back a test set?",
+          "options": ["To speed up training", "To estimate how the model generalizes to unseen data", "To reduce memory usage", "To clean the data"],
+          "answer": "To estimate how the model generalizes to unseen data"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Machine Learning for Everybody - Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=i_LwzRVP7bg"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Getting Started",
+          "url": "https://scikit-learn.org/stable/getting_started.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn/scikit-learn",
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Scikit-learn: Machine Learning in Python (Pedregosa et al., 2011)",
+          "url": "https://www.jmlr.org/papers/v12/pedregosa11a.html"
+        }
+      ],
+      "skills_gained": [
+        "ML fundamentals",
+        "Train/test workflow",
+        "scikit-learn API"
+      ],
+      "expected_outcome": "You understand the types of ML and can train and evaluate a basic model."
+    },
+    {
+      "day": 22,
+      "title": "Linear and Logistic Regression",
+      "objectives": [
+        "Build multiple linear regression models",
+        "Understand logistic regression for classification",
+        "Interpret coefficients and predictions"
+      ],
+      "topics": [
+        "Multiple linear regression",
+        "Assumptions and diagnostics",
+        "The logistic (sigmoid) function",
+        "Logistic regression for binary classification",
+        "Interpreting coefficients and odds"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Simple linear regression",
+        "Intro to ML"
+      ],
+      "beginner_explanation": "Linear and logistic regression are the two workhorse models every data scientist must know because they are simple, fast, and highly interpretable. Multiple linear regression extends the single-predictor line to many features, predicting a numeric outcome as a weighted sum of inputs; each coefficient tells you how much the outcome changes when that feature increases by one unit, holding others constant. It relies on assumptions (linearity, independence, constant variance of errors) that you check with diagnostics. Logistic regression, despite its name, is a classification model: it passes a linear combination of features through the sigmoid function, which squashes any number into a probability between 0 and 1, then classifies based on a threshold (usually 0.5). Its coefficients relate to the odds of the positive class, so they're interpretable too. These models are often the first thing to try on a new problem: they set a strong baseline, run instantly, and their transparency helps you understand which features actually matter.",
+      "practical_task": "Fit a multiple linear regression to predict a numeric target and a logistic regression to predict a binary target, then interpret at least three coefficients from each in plain language.",
+      "mini_project": "Build a dual-model notebook on a dataset that has both a numeric and a categorical target, comparing a linear regression and a logistic regression, and report the key drivers each model identifies.",
+      "assignment": "Fit a logistic regression, extract the coefficients, and write an explanation of which features increase and which decrease the probability of the positive class.",
+      "quiz": [
+        {
+          "question": "What function does logistic regression use to output a probability?",
+          "options": ["ReLU", "Sigmoid", "Softmax", "Tanh"],
+          "answer": "Sigmoid"
+        },
+        {
+          "question": "In multiple linear regression, a coefficient represents:",
+          "options": ["The total prediction", "The change in the outcome per unit change in that feature, holding others constant", "The error of the model", "The correlation coefficient"],
+          "answer": "The change in the outcome per unit change in that feature, holding others constant"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Logistic Regression, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=yIYKR4sgzI8"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Linear Models",
+          "url": "https://scikit-learn.org/stable/modules/linear_model.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn/scikit-learn",
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "The Regression Analysis of Binary Sequences (Cox, 1958)",
+          "url": "https://www.jstor.org/stable/2983890"
+        }
+      ],
+      "skills_gained": [
+        "Multiple linear regression",
+        "Logistic regression",
+        "Coefficient interpretation"
+      ],
+      "expected_outcome": "You can build and interpret regression models for both numeric and categorical targets."
+    },
+    {
+      "day": 23,
+      "title": "Decision Trees and k-Nearest Neighbors",
+      "objectives": [
+        "Understand how decision trees make predictions",
+        "Understand the k-NN algorithm",
+        "Recognize overfitting in tree models"
+      ],
+      "topics": [
+        "Decision tree structure and splitting",
+        "Gini impurity and entropy",
+        "Tree depth and overfitting",
+        "k-Nearest Neighbors algorithm",
+        "Choosing k and distance metrics"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Intro to ML"
+      ],
+      "beginner_explanation": "Decision trees and k-Nearest Neighbors are intuitive models that work very differently from regression. A decision tree makes predictions by asking a series of yes/no questions about the features, splitting the data at each node to make the resulting groups as 'pure' as possible (measured by Gini impurity or entropy), until it reaches a leaf that gives the prediction. Trees are easy to visualize and require no feature scaling, but they tend to overfit: a deep tree can memorize the training data and fail on new data, which is why you limit depth or prune the tree. k-Nearest Neighbors is even simpler in concept: to classify a new point, it looks at the k closest training points (by a distance metric like Euclidean distance) and takes a majority vote. It's a 'lazy' learner that stores all the data and does the work at prediction time. Choosing k matters: too small and it's noisy, too large and it blurs the boundaries. Both models help you build intuition for how different algorithms carve up the feature space.",
+      "practical_task": "Train a decision tree and a k-NN classifier on the same dataset, visualize the tree, experiment with tree depth and k values, and observe how each affects training vs test accuracy.",
+      "mini_project": "Build a comparison notebook that tunes tree depth and k on a classification dataset, plots how accuracy changes with each hyperparameter, and identifies the overfitting point.",
+      "assignment": "Train a decision tree at three different depths and write a short explanation of how depth relates to overfitting, supported by your train/test accuracy numbers.",
+      "quiz": [
+        {
+          "question": "What does a decision tree try to maximize at each split?",
+          "options": ["The number of leaves", "The purity of the resulting groups", "The tree depth", "The distance between points"],
+          "answer": "The purity of the resulting groups"
+        },
+        {
+          "question": "In k-NN, what happens if k is set too small?",
+          "options": ["The model becomes too smooth", "The model becomes noisy and sensitive to outliers", "Training becomes slow", "It ignores the data"],
+          "answer": "The model becomes noisy and sensitive to outliers"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Decision Trees, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=_L39rN6gz7Y"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Decision Trees",
+          "url": "https://scikit-learn.org/stable/modules/tree.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn/scikit-learn",
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Induction of Decision Trees (Quinlan, 1986)",
+          "url": "https://link.springer.com/article/10.1007/BF00116251"
+        }
+      ],
+      "skills_gained": [
+        "Decision trees",
+        "k-Nearest Neighbors",
+        "Overfitting awareness"
+      ],
+      "expected_outcome": "You can build tree and distance-based models and reason about overfitting."
+    },
+    {
+      "day": 24,
+      "title": "Model Evaluation and Validation",
+      "objectives": [
+        "Choose appropriate evaluation metrics",
+        "Use cross-validation for reliable estimates",
+        "Diagnose overfitting and underfitting"
+      ],
+      "topics": [
+        "Classification metrics (accuracy, precision, recall, F1)",
+        "Confusion matrix and ROC-AUC",
+        "Regression metrics (MAE, MSE, RMSE, R2)",
+        "k-fold cross-validation",
+        "Bias-variance tradeoff"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Intro to ML",
+        "Linear and logistic regression"
+      ],
+      "beginner_explanation": "Building a model is easy; knowing whether it's actually good is the real skill, and that's what model evaluation is about. For classification, accuracy (percent correct) can be misleading on imbalanced data, so you use precision (of the items predicted positive, how many really are), recall (of the actual positives, how many you caught), and their harmonic mean, the F1 score. The confusion matrix breaks predictions into true/false positives and negatives, and ROC-AUC summarizes performance across all thresholds. For regression, you measure error with MAE (average absolute error), MSE/RMSE (which penalize large errors more), and R-squared (variance explained). Crucially, a single train/test split can be lucky or unlucky, so k-fold cross-validation splits the data into k parts, trains on k-1 and tests on the remaining fold, rotating through, then averages, giving a far more reliable estimate. Underlying all this is the bias-variance tradeoff: underfitting (high bias) means the model is too simple, while overfitting (high variance) means it memorizes noise; good evaluation helps you find the sweet spot.",
+      "practical_task": "Evaluate a classifier using accuracy, precision, recall, F1, a confusion matrix, and ROC-AUC, then run 5-fold cross-validation and compare the averaged score to a single split.",
+      "mini_project": "Build an evaluation report for a model that presents all relevant metrics, a confusion matrix visualization, a cross-validation score distribution, and a written diagnosis of bias vs variance.",
+      "assignment": "Take a model on an imbalanced dataset and explain, with numbers, why accuracy is misleading and which metric better reflects performance.",
+      "quiz": [
+        {
+          "question": "Which metric is the harmonic mean of precision and recall?",
+          "options": ["Accuracy", "F1 score", "ROC-AUC", "RMSE"],
+          "answer": "F1 score"
+        },
+        {
+          "question": "What is the main benefit of k-fold cross-validation?",
+          "options": ["Faster training", "A more reliable estimate of generalization", "Fewer features", "Less data needed"],
+          "answer": "A more reliable estimate of generalization"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Machine Learning Fundamentals: Cross Validation",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=fSytzGwwBVw"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Model Evaluation",
+          "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn/scikit-learn",
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Study of Cross-Validation and Bootstrap for Accuracy Estimation (Kohavi, 1995)",
+          "url": "https://dl.acm.org/doi/10.5555/1643031.1643047"
+        }
+      ],
+      "skills_gained": [
+        "Model evaluation metrics",
+        "Cross-validation",
+        "Bias-variance analysis"
+      ],
+      "expected_outcome": "You can rigorously evaluate models and choose the right metric for the problem."
+    },
+    {
+      "day": 25,
+      "title": "Clustering with K-Means",
+      "objectives": [
+        "Understand unsupervised clustering",
+        "Apply K-Means and choose the number of clusters",
+        "Interpret and use cluster results"
+      ],
+      "topics": [
+        "Unsupervised learning recap",
+        "The K-Means algorithm",
+        "Choosing k (elbow method, silhouette score)",
+        "Feature scaling for clustering",
+        "Interpreting and profiling clusters"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Intro to ML",
+        "Feature engineering"
+      ],
+      "beginner_explanation": "Clustering is the most common unsupervised learning task, where you group similar data points together without any labels, and K-Means is the classic algorithm for it. K-Means works by choosing k cluster centers, assigning each point to its nearest center, then moving each center to the average of its assigned points, and repeating until the assignments stabilize. Because it relies on distances, you must scale your features first, or a large-range feature will dominate. The tricky part is choosing k, the number of clusters: the elbow method plots the within-cluster error against k and looks for the 'elbow' where adding clusters stops helping much, while the silhouette score measures how well-separated the clusters are. Once you have clusters, the real value comes from interpreting them, profiling each group by its average feature values to give it a meaningful name (for example, 'high-value frequent customers'). Clustering is widely used for customer segmentation, anomaly detection, and exploring structure in data you don't yet understand.",
+      "practical_task": "Scale a dataset's features, run K-Means for several values of k, use the elbow method and silhouette score to pick k, then profile each resulting cluster.",
+      "mini_project": "Build a customer (or similar) segmentation project that clusters a dataset, chooses k with proper methods, visualizes the clusters, and writes a descriptive profile and business interpretation for each segment.",
+      "assignment": "Cluster a dataset with two different k values and write a comparison of how the interpretation changes, arguing for which k is more useful.",
+      "quiz": [
+        {
+          "question": "Why must features be scaled before K-Means?",
+          "options": ["To remove outliers", "Because K-Means uses distances and large-range features would dominate", "To create labels", "To speed up plotting"],
+          "answer": "Because K-Means uses distances and large-range features would dominate"
+        },
+        {
+          "question": "Which method helps choose the number of clusters k?",
+          "options": ["Confusion matrix", "Elbow method", "ROC curve", "p-value"],
+          "answer": "Elbow method"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "K-means clustering, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=4b5d3muPQmA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Clustering",
+          "url": "https://scikit-learn.org/stable/modules/clustering.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn/scikit-learn",
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Least Squares Quantization in PCM (Lloyd, 1982)",
+          "url": "https://ieeexplore.ieee.org/document/1056489"
+        }
+      ],
+      "skills_gained": [
+        "Clustering",
+        "K-Means",
+        "Cluster interpretation"
+      ],
+      "expected_outcome": "You can segment unlabeled data into meaningful groups and interpret them."
+    },
+    {
+      "day": 26,
+      "title": "Dimensionality Reduction with PCA",
+      "objectives": [
+        "Understand why dimensionality reduction matters",
+        "Apply PCA and interpret components",
+        "Visualize high-dimensional data in 2D"
+      ],
+      "topics": [
+        "The curse of dimensionality",
+        "Principal Component Analysis (PCA) intuition",
+        "Explained variance",
+        "Scaling before PCA",
+        "Using PCA for visualization and preprocessing"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Feature engineering",
+        "Clustering"
+      ],
+      "beginner_explanation": "Datasets often have many features, and high dimensionality causes problems: models slow down, overfit, and become hard to visualize, a phenomenon called the curse of dimensionality. Dimensionality reduction compresses many features into a few while keeping most of the information. Principal Component Analysis (PCA) is the most widely used technique: it finds new axes, called principal components, that are combinations of the original features ordered by how much variance (spread) they capture. The first component captures the most variation, the second the next most (while being uncorrelated with the first), and so on. By keeping only the top few components you can often represent most of the data's structure in 2 or 3 dimensions, which is invaluable for visualization and for speeding up or de-noising models. You must scale features first, since PCA is sensitive to their variance. The 'explained variance ratio' tells you how much information each component retains, helping you decide how many to keep. PCA is a core tool for exploring and simplifying complex data.",
+      "practical_task": "Apply PCA to a high-dimensional dataset, plot the cumulative explained variance to choose the number of components, and project the data to 2D to visualize it colored by a label or cluster.",
+      "mini_project": "Build a notebook that uses PCA to visualize a high-dimensional dataset (e.g., digits or a gene-expression set) in 2D, and separately shows how PCA preprocessing affects a downstream model's speed and accuracy.",
+      "assignment": "Run PCA on a dataset and write an explanation of how many components are needed to retain 90% of the variance and what that implies about redundancy in the features.",
+      "quiz": [
+        {
+          "question": "What do principal components maximize?",
+          "options": ["The number of features", "The variance captured", "The number of clusters", "The prediction accuracy"],
+          "answer": "The variance captured"
+        },
+        {
+          "question": "What does the explained variance ratio tell you?",
+          "options": ["The model's accuracy", "How much information each component retains", "The number of rows", "The correlation between features"],
+          "answer": "How much information each component retains"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "StatQuest: Principal Component Analysis (PCA), Step-by-Step",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=FgakZw6K1QQ"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Decomposition (PCA)",
+          "url": "https://scikit-learn.org/stable/modules/decomposition.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn/scikit-learn",
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "On Lines and Planes of Closest Fit (Pearson, 1901)",
+          "url": "https://www.tandfonline.com/doi/abs/10.1080/14786440109462720"
+        }
+      ],
+      "skills_gained": [
+        "Dimensionality reduction",
+        "PCA",
+        "High-dimensional visualization"
+      ],
+      "expected_outcome": "You can reduce and visualize high-dimensional data while preserving its structure."
+    },
+    {
+      "day": 27,
+      "title": "Random Forests and Ensemble Methods",
+      "objectives": [
+        "Understand why ensembles outperform single models",
+        "Use Random Forests effectively",
+        "Read feature importances"
+      ],
+      "topics": [
+        "Ensemble learning intuition",
+        "Bagging and the Random Forest algorithm",
+        "Out-of-bag error",
+        "Feature importance",
+        "Tuning key hyperparameters"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Decision trees",
+        "Model evaluation"
+      ],
+      "beginner_explanation": "A single decision tree is easy to understand but prone to overfitting; ensemble methods combine many models to get better, more stable predictions than any one alone. The key insight is that averaging many diverse, individually-imperfect models cancels out their errors. A Random Forest uses a technique called bagging: it trains hundreds of decision trees, each on a random bootstrap sample of the data and each considering only a random subset of features at every split. This randomness makes the trees diverse, and averaging their votes produces a robust model that rarely overfits and works well out of the box on many problems. A handy bonus is the out-of-bag error, a free validation estimate from the data each tree didn't see. Random Forests also compute feature importance, ranking which features drove the predictions, which is valuable for understanding your data. Because they need little tuning and handle mixed data types well, Random Forests are one of the most reliable go-to models for a data scientist's toolkit.",
+      "practical_task": "Train a Random Forest on a classification dataset, compare its accuracy to a single decision tree, extract and plot feature importances, and tune the number of trees and max depth.",
+      "mini_project": "Build a predictive model with a Random Forest on a real dataset, present cross-validated performance versus a single tree baseline, and produce a ranked feature-importance chart with interpretation.",
+      "assignment": "Compare a single decision tree and a Random Forest on the same data and explain, with metrics, why the forest generalizes better.",
+      "quiz": [
+        {
+          "question": "What technique does a Random Forest use to create diverse trees?",
+          "options": ["Boosting", "Bagging with random feature subsets", "Pruning", "Scaling"],
+          "answer": "Bagging with random feature subsets"
+        },
+        {
+          "question": "What does out-of-bag error provide?",
+          "options": ["A free validation estimate", "The training time", "The number of features", "The tree depth"],
+          "answer": "A free validation estimate"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Random Forests, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=J4Wdy0Wc_xQ"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Ensembles",
+          "url": "https://scikit-learn.org/stable/modules/ensemble.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn/scikit-learn",
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Random Forests (Breiman, 2001)",
+          "url": "https://link.springer.com/article/10.1023/A:1010933404324"
+        }
+      ],
+      "skills_gained": [
+        "Ensemble learning",
+        "Random Forests",
+        "Feature importance"
+      ],
+      "expected_outcome": "You can build robust ensemble models and interpret which features matter most."
+    },
+    {
+      "day": 28,
+      "title": "Gradient Boosting Introduction",
+      "objectives": [
+        "Understand boosting vs bagging",
+        "Use gradient boosting libraries",
+        "Recognize when boosting is the right choice"
+      ],
+      "topics": [
+        "Boosting intuition",
+        "Gradient boosting fundamentals",
+        "XGBoost and LightGBM basics",
+        "Key hyperparameters (learning rate, depth, estimators)",
+        "Avoiding overfitting with early stopping"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Random Forests",
+        "Model evaluation"
+      ],
+      "beginner_explanation": "Gradient boosting is another ensemble method, but it builds models differently from Random Forests and is often the top performer on structured/tabular data. Where bagging trains many trees independently and averages them, boosting trains trees sequentially, with each new tree focused on correcting the errors (residuals) the previous trees made. This step-by-step error correction, guided by gradient descent on the loss function, produces extremely accurate models. Popular libraries like XGBoost, LightGBM, and CatBoost implement this efficiently and win many data science competitions. The tradeoff is that boosting is more sensitive to hyperparameters than Random Forests: the learning rate controls how much each tree contributes (smaller is more accurate but slower), the number of estimators sets how many trees, and tree depth controls complexity. Because boosting can overfit if you add too many trees, early stopping halts training when validation performance stops improving. As a beginner, knowing when to reach for gradient boosting, and how to tune its core knobs, gives you access to state-of-the-art tabular performance.",
+      "practical_task": "Train an XGBoost or LightGBM model on a tabular dataset, compare it to a Random Forest, tune the learning rate and number of estimators, and use early stopping with a validation set.",
+      "mini_project": "Build a model that applies gradient boosting to a Kaggle-style tabular problem, tunes the main hyperparameters, uses early stopping, and reports how it compares to your earlier Random Forest on the same data.",
+      "assignment": "Experiment with three learning rates and write an explanation of how learning rate trades off accuracy against the number of trees needed.",
+      "quiz": [
+        {
+          "question": "How does boosting differ from bagging?",
+          "options": ["It trains trees in parallel", "It trains trees sequentially, each correcting prior errors", "It uses no trees", "It reduces the number of features"],
+          "answer": "It trains trees sequentially, each correcting prior errors"
+        },
+        {
+          "question": "What does early stopping prevent?",
+          "options": ["Underfitting", "Overfitting from too many boosting rounds", "Missing values", "Slow data loading"],
+          "answer": "Overfitting from too many boosting rounds"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Gradient Boost, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=3CC4N4z3GJc"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "XGBoost Documentation",
+          "url": "https://xgboost.readthedocs.io/en/stable/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "dmlc/xgboost",
+          "url": "https://github.com/dmlc/xgboost"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "XGBoost: A Scalable Tree Boosting System (Chen & Guestrin, 2016)",
+          "url": "https://dl.acm.org/doi/10.1145/2939672.2939785"
+        }
+      ],
+      "skills_gained": [
+        "Gradient boosting",
+        "XGBoost/LightGBM",
+        "Hyperparameter tuning"
+      ],
+      "expected_outcome": "You can train and tune gradient boosting models for strong tabular performance."
+    },
+    {
+      "day": 29,
+      "title": "Building Scikit-learn Pipelines",
+      "objectives": [
+        "Chain preprocessing and modeling into pipelines",
+        "Prevent data leakage",
+        "Tune pipelines with grid search"
+      ],
+      "topics": [
+        "Why pipelines matter",
+        "Pipeline and ColumnTransformer",
+        "Preventing data leakage",
+        "GridSearchCV and RandomizedSearchCV",
+        "Saving and loading pipelines (joblib)"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Feature engineering",
+        "Model evaluation"
+      ],
+      "beginner_explanation": "As your workflow grows, doing preprocessing steps manually becomes error-prone, and scikit-learn pipelines solve this by chaining every step, scaling, encoding, and the model, into a single object. This matters most for preventing data leakage, one of the most common and dangerous mistakes in data science: if you fit a scaler or imputer on the entire dataset before splitting, information from the test set leaks into training and inflates your scores, giving a false sense of performance. A pipeline ensures each transformation is fit only on training data within each cross-validation fold. The ColumnTransformer lets you apply different preprocessing to different columns (e.g., scale numerics, one-hot encode categoricals) in one step. Pipelines also make hyperparameter tuning clean: GridSearchCV or RandomizedSearchCV can search over both preprocessing and model parameters together. Finally, you can save the entire fitted pipeline with joblib so it can be reused for deployment. Pipelines turn a messy notebook into reproducible, production-ready, leak-free code.",
+      "practical_task": "Build a pipeline with a ColumnTransformer that scales numeric and one-hot encodes categorical columns, ends in a classifier, and tune it with GridSearchCV using cross-validation.",
+      "mini_project": "Refactor an earlier end-to-end model into a single scikit-learn pipeline that handles all preprocessing, is tuned with grid search, and is saved to disk with joblib for reuse.",
+      "assignment": "Demonstrate data leakage by scaling before vs inside a pipeline and report the difference in cross-validated scores with an explanation.",
+      "quiz": [
+        {
+          "question": "What is the main benefit of using a Pipeline for cross-validation?",
+          "options": ["Faster plotting", "It prevents data leakage by fitting preprocessing only on training folds", "It removes the need for a test set", "It reduces the number of features"],
+          "answer": "It prevents data leakage by fitting preprocessing only on training folds"
+        },
+        {
+          "question": "Which tool applies different preprocessing to different columns?",
+          "options": ["GridSearchCV", "ColumnTransformer", "joblib", "StandardScaler"],
+          "answer": "ColumnTransformer"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Scikit-Learn Pipelines Tutorial",
+          "channel": "Data School",
+          "url": "https://www.youtube.com/watch?v=irHhDMbw3xo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Pipelines",
+          "url": "https://scikit-learn.org/stable/modules/compose.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn/scikit-learn",
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Leakage in Data Mining (Kaufman et al., 2012)",
+          "url": "https://dl.acm.org/doi/10.1145/2382577.2382579"
+        }
+      ],
+      "skills_gained": [
+        "scikit-learn pipelines",
+        "Leakage prevention",
+        "Hyperparameter search"
+      ],
+      "expected_outcome": "You can build reproducible, leak-free pipelines and tune them systematically."
+    },
+    {
+      "day": 30,
+      "title": "Time Series Analysis Basics",
+      "objectives": [
+        "Understand time series data and its components",
+        "Work with dates and resampling in Pandas",
+        "Build a simple forecast"
+      ],
+      "topics": [
+        "Time series components (trend, seasonality, noise)",
+        "DateTime indexing and resampling in Pandas",
+        "Rolling windows and moving averages",
+        "Stationarity and autocorrelation",
+        "Simple forecasting baselines"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Pandas",
+        "Data visualization"
+      ],
+      "beginner_explanation": "Time series data is any data indexed by time, such as daily sales, hourly temperatures, or monthly website traffic, and it requires special handling because the order of observations matters and points close in time are related. A time series can be decomposed into components: a trend (long-term direction), seasonality (repeating patterns like weekday or holiday effects), and noise (random fluctuation). Pandas is excellent for this: with a DateTime index you can resample data to different frequencies (e.g., turn daily into monthly), compute rolling-window statistics like a 7-day moving average to smooth noise, and easily slice by date ranges. Two important concepts are stationarity (whether the statistical properties stay constant over time, which many forecasting methods assume) and autocorrelation (how a series correlates with its own past values). Even before advanced models, simple baselines, like predicting tomorrow equals today, or the average of the last week, are surprisingly effective and set the bar any fancier model must beat. Time series skills are essential for forecasting demand, finance, and operations.",
+      "practical_task": "Load a time series dataset, set a DateTime index, resample it to a coarser frequency, plot a rolling moving average, and build a naive forecast baseline you evaluate against.",
+      "mini_project": "Build a time series analysis notebook that decomposes a real series into trend/seasonality/noise, visualizes rolling statistics, and compares two simple forecasting baselines with an error metric.",
+      "assignment": "Take a daily time series, compute 7-day and 30-day moving averages, and write an interpretation of the trend and any seasonality you observe.",
+      "quiz": [
+        {
+          "question": "Which is NOT a standard component of a time series?",
+          "options": ["Trend", "Seasonality", "Noise", "Correlation matrix"],
+          "answer": "Correlation matrix"
+        },
+        {
+          "question": "What does resampling a time series do?",
+          "options": ["Removes outliers", "Changes the time frequency of the data", "Scales the values", "Adds new features"],
+          "answer": "Changes the time frequency of the data"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Time Series Analysis in Python",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=e8Yw4alG16Q"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "pandas Time Series / Date functionality",
+          "url": "https://pandas.pydata.org/docs/user_guide/timeseries.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "statsmodels/statsmodels",
+          "url": "https://github.com/statsmodels/statsmodels"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Forecasting: Principles and Practice (Hyndman & Athanasopoulos)",
+          "url": "https://otexts.com/fpp3/"
+        }
+      ],
+      "skills_gained": [
+        "Time series handling",
+        "Resampling and rolling windows",
+        "Baseline forecasting"
+      ],
+      "expected_outcome": "You can manipulate time-indexed data and build simple forecasting baselines."
+    },
+    {
+      "day": 31,
+      "title": "Working with Text Data (NLP Basics)",
+      "objectives": [
+        "Preprocess and clean text data",
+        "Convert text to numeric features",
+        "Build a simple text classifier"
+      ],
+      "topics": [
+        "Text cleaning (lowercasing, stopwords, tokenization)",
+        "Bag-of-words and TF-IDF",
+        "Building a text classification model",
+        "Sentiment analysis basics",
+        "Intro to word embeddings"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Feature engineering",
+        "Intro to ML"
+      ],
+      "beginner_explanation": "A huge amount of real-world data is unstructured text, reviews, tweets, support tickets, and Natural Language Processing (NLP) lets you analyze it. Since models need numbers, the first job is to clean and vectorize text. Cleaning includes lowercasing, removing punctuation and stopwords (common words like 'the' that carry little meaning), and tokenizing (splitting into words). Then you convert text to numbers: the bag-of-words model counts how often each word appears, while TF-IDF (Term Frequency-Inverse Document Frequency) weights words by how distinctive they are, downweighting words common across all documents and highlighting rare, informative ones. With these numeric features you can train a standard classifier, for example, to predict whether a review is positive or negative (sentiment analysis). Finally, word embeddings are a more modern approach that represents words as dense vectors capturing meaning, so similar words sit close together, which is the foundation of the deep learning NLP you'd study later. These basics let you turn raw text into insight and predictions.",
+      "practical_task": "Clean a set of text documents, vectorize them with TF-IDF, and train a classifier (e.g., logistic regression or Naive Bayes) to predict a label such as sentiment, then evaluate it.",
+      "mini_project": "Build a sentiment analysis project on a review dataset that cleans text, uses TF-IDF, trains and evaluates a classifier, and shows the most predictive words for each class.",
+      "assignment": "Compare bag-of-words vs TF-IDF features on the same text classification task and write an explanation of why TF-IDF often performs better.",
+      "quiz": [
+        {
+          "question": "What does TF-IDF downweight?",
+          "options": ["Rare informative words", "Words common across all documents", "Numbers", "Long documents"],
+          "answer": "Words common across all documents"
+        },
+        {
+          "question": "What are stopwords?",
+          "options": ["Misspelled words", "Common words that carry little meaning", "Rare technical terms", "Punctuation marks"],
+          "answer": "Common words that carry little meaning"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Natural Language Processing (NLP) Tutorial with Python",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=M7SWr5xObkA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Text Feature Extraction",
+          "url": "https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "nltk/nltk",
+          "url": "https://github.com/nltk/nltk"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Efficient Estimation of Word Representations in Vector Space (Mikolov et al., 2013)",
+          "url": "https://arxiv.org/abs/1301.3781"
+        }
+      ],
+      "skills_gained": [
+        "Text preprocessing",
+        "TF-IDF vectorization",
+        "Text classification"
+      ],
+      "expected_outcome": "You can turn raw text into features and build a working text classifier."
+    },
+    {
+      "day": 32,
+      "title": "Introduction to Deep Learning",
+      "objectives": [
+        "Understand neural network fundamentals",
+        "Build a simple neural network",
+        "Know when to use deep learning"
+      ],
+      "topics": [
+        "Neurons, layers, weights, and activations",
+        "Forward pass and backpropagation intuition",
+        "Building a network with Keras",
+        "Overfitting and regularization (dropout)",
+        "When to use deep learning vs classical ML"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Intro to ML",
+        "Model evaluation"
+      ],
+      "beginner_explanation": "Deep learning uses neural networks, models loosely inspired by the brain, that excel at complex patterns in images, text, and audio. The building block is a neuron that computes a weighted sum of its inputs, adds a bias, and passes the result through a nonlinear activation function (like ReLU) that lets the network learn non-linear relationships. Neurons are organized into layers: an input layer, one or more hidden layers, and an output layer, and 'deep' just means many hidden layers. Training happens in two phases: the forward pass computes predictions, and backpropagation calculates how each weight contributed to the error and nudges it in the right direction using gradient descent, repeated over many epochs. Frameworks like Keras make building a network as simple as stacking layers. Because deep networks have many parameters, they overfit easily, so techniques like dropout (randomly disabling neurons during training) help them generalize. Crucially, deep learning isn't always the answer: for typical tabular data, gradient boosting usually wins, while deep learning shines on unstructured data like images and language. Knowing this tradeoff is a mark of a thoughtful data scientist.",
+      "practical_task": "Build a small feedforward neural network with Keras to classify a dataset (e.g., MNIST digits or a tabular problem), train it over several epochs, and plot the training vs validation accuracy.",
+      "mini_project": "Build a deep learning notebook that trains a neural network on an image or tabular dataset, applies dropout to combat overfitting, and compares its performance to a classical ML baseline on the same data.",
+      "assignment": "Train a neural network with and without dropout and write an explanation, backed by your loss curves, of how dropout affects overfitting.",
+      "quiz": [
+        {
+          "question": "What is the purpose of an activation function?",
+          "options": ["To speed up training", "To introduce non-linearity so the network can learn complex patterns", "To reduce the number of layers", "To load the data"],
+          "answer": "To introduce non-linearity so the network can learn complex patterns"
+        },
+        {
+          "question": "For typical structured/tabular data, which often outperforms deep learning?",
+          "options": ["Gradient boosting", "Convolutional networks", "Recurrent networks", "Transformers"],
+          "answer": "Gradient boosting"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Deep Learning for Beginners - Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=VyWAvY2CF9c"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Keras Documentation",
+          "url": "https://keras.io/getting_started/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "keras-team/keras",
+          "url": "https://github.com/keras-team/keras"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Deep Learning (LeCun, Bengio & Hinton, 2015)",
+          "url": "https://www.nature.com/articles/nature14539"
+        }
+      ],
+      "skills_gained": [
+        "Neural network basics",
+        "Keras",
+        "Deep learning judgment"
+      ],
+      "expected_outcome": "You can build a basic neural network and judge when deep learning is appropriate."
+    },
+    {
+      "day": 33,
+      "title": "Data Storytelling and Communication",
+      "objectives": [
+        "Communicate insights to non-technical audiences",
+        "Design clear, honest visualizations",
+        "Structure a compelling data narrative"
+      ],
+      "topics": [
+        "The importance of communication in data science",
+        "Knowing your audience",
+        "Principles of effective charts",
+        "Building a narrative arc",
+        "Avoiding misleading visualizations"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Data visualization",
+        "EDA"
+      ],
+      "beginner_explanation": "The best analysis is worthless if no one understands or acts on it, which is why communication is one of the most valuable and underrated data science skills. Data storytelling means turning your findings into a clear narrative that drives a decision. It starts with knowing your audience: an executive wants the bottom-line implication and recommendation, while a fellow analyst wants the methodology. Effective charts follow principles: choose the right chart type for the message, remove clutter ('chartjunk'), label directly, use color purposefully to highlight rather than decorate, and always start bar-chart axes at zero to avoid exaggerating differences. A good data story has a narrative arc, setting the context, revealing the key insight, and ending with a clear recommendation, rather than dumping every chart you made. You also have an ethical duty to avoid misleading visualizations (truncated axes, cherry-picked ranges, or dual axes that imply false relationships). Mastering communication is often what turns a competent analyst into a trusted, influential data scientist.",
+      "practical_task": "Take findings from an earlier EDA and craft a short (3-5 slide) data story for a non-technical audience, with one clear message per chart and a final recommendation.",
+      "mini_project": "Build a polished insight presentation from a real dataset that follows a narrative arc, uses clean purposeful visuals, and ends with an actionable recommendation supported by the data.",
+      "assignment": "Find a misleading chart online, explain what makes it misleading, and redesign an honest version.",
+      "quiz": [
+        {
+          "question": "Why should bar chart value axes typically start at zero?",
+          "options": ["To save space", "To avoid exaggerating differences between bars", "To add color", "It is required by the software"],
+          "answer": "To avoid exaggerating differences between bars"
+        },
+        {
+          "question": "What should drive how you present findings?",
+          "options": ["The number of charts you made", "Your audience and the decision they need to make", "The software you used", "The size of the dataset"],
+          "answer": "Your audience and the decision they need to make"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Data Storytelling: How to Present Data Effectively",
+          "channel": "Google Career Certificates",
+          "url": "https://www.youtube.com/watch?v=8EMW7io4rSI"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Google Data Analytics: Share Data Through Visualization",
+          "url": "https://www.coursera.org/learn/visualize-data"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "cxli233/FriendsDontLetFriends",
+          "url": "https://github.com/cxli233/FriendsDontLetFriends"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Storytelling with Data (Knaflic)",
+          "url": "https://www.storytellingwithdata.com/books"
+        }
+      ],
+      "skills_gained": [
+        "Data storytelling",
+        "Audience-aware communication",
+        "Honest visualization"
+      ],
+      "expected_outcome": "You can turn analysis into a clear, honest, and persuasive data story."
+    },
+    {
+      "day": 34,
+      "title": "Interactive Dashboards with Plotly",
+      "objectives": [
+        "Create interactive visualizations",
+        "Build a simple dashboard",
+        "Understand when dashboards add value"
+      ],
+      "topics": [
+        "Interactive vs static charts",
+        "Plotly Express basics",
+        "Hover, zoom, and filtering interactivity",
+        "Building dashboards (Plotly Dash or Streamlit)",
+        "Dashboard design principles"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Data visualization",
+        "Data storytelling"
+      ],
+      "beginner_explanation": "Static charts tell a fixed story, but interactive visualizations let users explore the data themselves, hovering for details, zooming into regions, and filtering to the subset they care about. Plotly is the leading Python library for this: Plotly Express creates rich, interactive charts in a single line, and every chart supports hover tooltips, zoom, and pan out of the box. When stakeholders need to monitor metrics over time or explore many dimensions, you build a dashboard, a collection of linked visualizations, often with filters and controls, using tools like Plotly Dash or Streamlit. Good dashboards follow design principles: lead with the most important metric, group related charts, keep it uncluttered, and make interactions intuitive. But interactivity isn't always better: for a single clear message, a well-designed static chart is often more effective and less distracting. Learning to build dashboards lets you deliver self-service analytics that stakeholders can use daily without needing you to re-run an analysis each time.",
+      "practical_task": "Recreate several static charts as interactive Plotly Express figures, then combine three of them into a simple Streamlit or Dash dashboard with at least one interactive filter.",
+      "mini_project": "Build an interactive dashboard for a dataset that lets a user filter by a category and see multiple linked charts update, deployed locally with Streamlit.",
+      "assignment": "Take a static report and identify which two charts genuinely benefit from interactivity and which are better left static, with justification.",
+      "quiz": [
+        {
+          "question": "When is a static chart often better than an interactive one?",
+          "options": ["When exploring many dimensions", "When delivering a single clear message", "When many users need filters", "When monitoring live metrics"],
+          "answer": "When delivering a single clear message"
+        },
+        {
+          "question": "Which library creates interactive charts in Python with a single line via Express?",
+          "options": ["Matplotlib", "Seaborn", "Plotly", "NumPy"],
+          "answer": "Plotly"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Plotly Dash Full Tutorial",
+          "channel": "Charming Data",
+          "url": "https://www.youtube.com/watch?v=hSPmj7mK6ng"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Plotly Python Open Source Graphing Library",
+          "url": "https://plotly.com/python/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "plotly/plotly.py",
+          "url": "https://github.com/plotly/plotly.py"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "The Grammar of Graphics (Wilkinson)",
+          "url": "https://link.springer.com/book/10.1007/0-387-28695-0"
+        }
+      ],
+      "skills_gained": [
+        "Interactive visualization",
+        "Plotly",
+        "Dashboard building"
+      ],
+      "expected_outcome": "You can build interactive charts and simple dashboards for self-service analytics."
+    },
+    {
+      "day": 35,
+      "title": "Version Control and Reproducibility",
+      "objectives": [
+        "Use Git and GitHub for data science projects",
+        "Make analyses reproducible",
+        "Structure a professional project repository"
+      ],
+      "topics": [
+        "Git basics (add, commit, branch, merge)",
+        "GitHub and remote repositories",
+        "Reproducible environments (requirements.txt, virtual envs)",
+        "Project structure and README files",
+        "Notebooks vs scripts and .gitignore"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Python fundamentals"
+      ],
+      "beginner_explanation": "Reproducibility, the ability for you or someone else to re-run your analysis and get the same result, is a cornerstone of trustworthy data science, and version control is how you achieve it. Git is a system that tracks changes to your code over time: you 'commit' snapshots with messages, create 'branches' to try ideas without breaking your main work, and 'merge' them back when ready. GitHub hosts your Git repositories online, enabling backup, collaboration, and a public portfolio that employers can see. Reproducibility also requires capturing your environment: listing exact package versions in a requirements.txt and using virtual environments so your project runs the same on any machine. A professional repository has a clear structure (separate folders for data, notebooks, and source code), a README explaining what the project does and how to run it, and a .gitignore that keeps large data files and secrets out of version control. These practices transform a one-off notebook into a shareable, maintainable project, and they're expected in any real data science job.",
+      "practical_task": "Initialize a Git repository for an existing project, make several commits, create and merge a branch, add a requirements.txt and README, and push it all to a new GitHub repository.",
+      "mini_project": "Take one of your earlier projects and turn it into a professional, reproducible GitHub repository with proper structure, a documented README, pinned dependencies, and a clean commit history.",
+      "assignment": "Write a README for one of your projects that a stranger could follow to reproduce your results from scratch.",
+      "quiz": [
+        {
+          "question": "What is the purpose of a requirements.txt file?",
+          "options": ["To store the data", "To record exact package versions for a reproducible environment", "To document the results", "To ignore files in Git"],
+          "answer": "To record exact package versions for a reproducible environment"
+        },
+        {
+          "question": "What does a Git branch let you do?",
+          "options": ["Delete the repository", "Try changes without affecting the main line of work", "Speed up the code", "Compress the data"],
+          "answer": "Try changes without affecting the main line of work"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Git and GitHub for Beginners - Crash Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=RGOj5yH7evk"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Git Documentation",
+          "url": "https://git-scm.com/doc"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "drivendata/cookiecutter-data-science",
+          "url": "https://github.com/drivendata/cookiecutter-data-science"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Ten Simple Rules for Reproducible Computational Research (Sandve et al., 2013)",
+          "url": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285"
+        }
+      ],
+      "skills_gained": [
+        "Git and GitHub",
+        "Reproducibility",
+        "Project structure"
+      ],
+      "expected_outcome": "You can version, document, and share reproducible data science projects."
+    },
+    {
+      "day": 36,
+      "title": "Deploying Models with Streamlit",
+      "objectives": [
+        "Turn a model into an interactive web app",
+        "Build and run a Streamlit application",
+        "Share a deployed data product"
+      ],
+      "topics": [
+        "Why deployment matters",
+        "Saving and loading models (joblib/pickle)",
+        "Building a Streamlit app",
+        "Accepting user input and showing predictions",
+        "Deploying to Streamlit Community Cloud"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "scikit-learn pipelines",
+        "Git and GitHub"
+      ],
+      "beginner_explanation": "A model sitting in a notebook helps no one; deployment is how you put it in front of users so it delivers value, and Streamlit is the fastest way for a data scientist to do this without web development experience. The workflow is: train your model, save it to a file with joblib or pickle, then write a Streamlit app, a plain Python script where simple commands like st.slider, st.selectbox, and st.write create an interactive web interface. Your app loads the saved model, collects input from the user through widgets, runs a prediction, and displays the result, all in a browser. Because it's pure Python, you can go from model to working web app in an afternoon. Once it works locally, you can deploy it to Streamlit Community Cloud for free by connecting your GitHub repository, giving you a public URL to share. This is a transformative skill for beginners: it lets you build tangible, shareable data products (a price predictor, a churn calculator, a recommendation demo) that impress employers far more than a static notebook.",
+      "practical_task": "Save a trained model, build a Streamlit app that takes user inputs through widgets, loads the model, and displays a live prediction, then run it locally.",
+      "mini_project": "Deploy one of your models as a public Streamlit app: build the interface, connect it to your saved model, push it to GitHub, and deploy it to Streamlit Community Cloud with a shareable link.",
+      "assignment": "Add input validation and a clear explanation of the prediction to your Streamlit app so a non-technical user understands the result.",
+      "quiz": [
+        {
+          "question": "What is Streamlit used for?",
+          "options": ["Cleaning data", "Turning Python scripts into interactive web apps", "Training deep networks", "Querying databases"],
+          "answer": "Turning Python scripts into interactive web apps"
+        },
+        {
+          "question": "Why do you save a model to a file before deployment?",
+          "options": ["To retrain it faster", "So the app can load and reuse the trained model without retraining", "To reduce its accuracy", "To convert it to SQL"],
+          "answer": "So the app can load and reuse the trained model without retraining"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Streamlit Full Course - Build Data Apps in Python",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=yKTEC1Y5bEQ"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Streamlit Documentation",
+          "url": "https://docs.streamlit.io/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "streamlit/streamlit",
+          "url": "https://github.com/streamlit/streamlit"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Hidden Technical Debt in Machine Learning Systems (Sculley et al., 2015)",
+          "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "Model deployment",
+        "Streamlit apps",
+        "Building data products"
+      ],
+      "expected_outcome": "You can deploy a model as a shareable interactive web application."
+    },
+    {
+      "day": 37,
+      "title": "Big Data Concepts and Cloud Basics",
+      "objectives": [
+        "Understand when data becomes 'big data'",
+        "Grasp distributed processing concepts",
+        "Know the role of cloud platforms in data science"
+      ],
+      "topics": [
+        "The 3 Vs of big data (volume, velocity, variety)",
+        "Distributed computing intuition (MapReduce, Spark)",
+        "PySpark basics",
+        "Cloud platforms (AWS, GCP, Azure) overview",
+        "Data warehouses and lakes at a glance"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Pandas",
+        "SQL"
+      ],
+      "beginner_explanation": "Most beginner projects fit comfortably in Pandas on a laptop, but real organizations often have data too large for one machine's memory, and understanding how that's handled is important context even at the beginner level. Big data is often described by the 3 Vs: volume (sheer size), velocity (how fast it arrives), and variety (different formats). When data exceeds a single machine, you use distributed computing, splitting the work across a cluster of machines. The foundational idea is MapReduce (break the problem into pieces, process them in parallel, then combine results), and Apache Spark is the modern engine that does this fast and with a friendly API; PySpark lets you write Spark jobs in Python with DataFrame operations that feel similar to Pandas. All of this typically runs on cloud platforms, AWS, Google Cloud, or Azure, which provide on-demand storage and compute so you don't manage physical servers. You'll also hear about data warehouses (structured, query-optimized stores like BigQuery or Snowflake) and data lakes (raw storage for any format). You don't need to master these as a beginner, but knowing the landscape helps you understand how data science scales in industry.",
+      "practical_task": "Install PySpark locally, load a dataset into a Spark DataFrame, and perform basic operations (filter, groupBy, aggregate), noting how the API compares to Pandas.",
+      "mini_project": "Build a small PySpark analysis that reads a moderately large dataset, performs grouped aggregations, and writes results out, with a short write-up comparing the experience to doing it in Pandas.",
+      "assignment": "Write a one-page summary explaining, in your own words, when you would move from Pandas to Spark and what a data warehouse vs a data lake is used for.",
+      "quiz": [
+        {
+          "question": "Which is one of the classic 3 Vs of big data?",
+          "options": ["Validity", "Velocity", "Variance", "Version"],
+          "answer": "Velocity"
+        },
+        {
+          "question": "What is Apache Spark primarily used for?",
+          "options": ["Building web apps", "Distributed processing of large datasets", "Training small models", "Version control"],
+          "answer": "Distributed processing of large datasets"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "PySpark Full Course - Learn Apache Spark with Python",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=_C8kWso4ne4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Apache Spark Documentation",
+          "url": "https://spark.apache.org/docs/latest/api/python/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "apache/spark",
+          "url": "https://github.com/apache/spark"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "MapReduce: Simplified Data Processing on Large Clusters (Dean & Ghemawat, 2004)",
+          "url": "https://dl.acm.org/doi/10.1145/1327452.1327492"
+        }
+      ],
+      "skills_gained": [
+        "Big data concepts",
+        "PySpark basics",
+        "Cloud awareness"
+      ],
+      "expected_outcome": "You understand how data science scales beyond one machine and the role of the cloud."
+    },
+    {
+      "day": 38,
+      "title": "Ethics, Bias, and Responsible Data Science",
+      "objectives": [
+        "Recognize bias and fairness issues in data and models",
+        "Understand privacy and ethical responsibilities",
+        "Apply responsible practices to your work"
+      ],
+      "topics": [
+        "Sources of bias in data and models",
+        "Fairness metrics and disparate impact",
+        "Privacy, consent, and data protection (GDPR basics)",
+        "Transparency and model interpretability",
+        "Responsible data science practices"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Intro to ML",
+        "Model evaluation"
+      ],
+      "beginner_explanation": "Data science has real power over people's lives, deciding who gets a loan, a job interview, or medical attention, so doing it responsibly is not optional. A central concern is bias: models learn from historical data, and if that data reflects past discrimination, the model will reproduce and even amplify it, producing unfair outcomes for certain groups. This is why you check for disparate impact (whether a model performs differently across groups defined by protected attributes like gender or race) using fairness metrics, not just overall accuracy. Privacy is another duty: you must handle personal data lawfully and ethically, respecting consent and regulations like GDPR, minimizing what you collect, and protecting it. Transparency matters too, stakeholders and affected people deserve to understand how a model makes decisions, which is why interpretability tools are important, especially in high-stakes settings. Responsible practice means questioning your data's origins, testing for harm before deployment, documenting limitations, and being willing to say a model shouldn't be built. Building this mindset early makes you not just a skilled data scientist but a trustworthy one.",
+      "practical_task": "Take a model you built earlier, split its performance by a sensitive group attribute, and check whether accuracy or error rates differ across groups, then write up what you find.",
+      "mini_project": "Conduct a fairness audit of a model on a dataset with a sensitive attribute: measure group-wise performance, identify any disparate impact, and propose concrete mitigation steps.",
+      "assignment": "Find a real-world case where a data/AI system caused harm through bias or privacy failure and write a short analysis of what went wrong and how it could have been prevented.",
+      "quiz": [
+        {
+          "question": "Why can a model be biased even if the algorithm is neutral?",
+          "options": ["Because algorithms are always fair", "Because it learns from historical data that may reflect past discrimination", "Because of slow hardware", "Because of too few features"],
+          "answer": "Because it learns from historical data that may reflect past discrimination"
+        },
+        {
+          "question": "What does disparate impact refer to?",
+          "options": ["A model running slowly", "A model performing differently across protected groups", "A coding error", "Missing data"],
+          "answer": "A model performing differently across protected groups"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "The Ethics of AI and Machine Learning",
+          "channel": "CrashCourse",
+          "url": "https://www.youtube.com/watch?v=zeMU_tMhkbo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Fairlearn Documentation",
+          "url": "https://fairlearn.org/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "fairlearn/fairlearn",
+          "url": "https://github.com/fairlearn/fairlearn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Machine Bias (ProPublica, 2016)",
+          "url": "https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing"
+        }
+      ],
+      "skills_gained": [
+        "Fairness analysis",
+        "Data ethics",
+        "Responsible practice"
+      ],
+      "expected_outcome": "You can identify and mitigate bias, privacy, and fairness issues in your work."
+    },
+    {
+      "day": 39,
+      "title": "A/B Testing and Business Metrics",
+      "objectives": [
+        "Design and analyze A/B tests",
+        "Connect analysis to business metrics",
+        "Communicate experiment results",
+        "Avoid common experimentation pitfalls"
+      ],
+      "topics": [
+        "What A/B testing is and why companies use it",
+        "Designing an experiment (hypothesis, metric, sample size)",
+        "Analyzing results with hypothesis testing",
+        "Key business metrics (conversion, retention, revenue)",
+        "Pitfalls (peeking, multiple testing, novelty effect)"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Inferential statistics",
+        "Hypothesis testing"
+      ],
+      "beginner_explanation": "A/B testing is how data-driven companies make decisions: instead of guessing whether a new button, price, or feature is better, they run a controlled experiment. Users are randomly split into a control group (current version, A) and a treatment group (new version, B), and you compare a chosen metric between them. This is the practical application of the hypothesis testing you learned: the null hypothesis is 'no difference,' and you use a statistical test to decide whether the observed difference is real or just chance. Good design comes first: you define one primary metric tied to a business goal (like conversion rate or revenue per user), and you calculate the required sample size in advance so the test has enough power to detect a meaningful effect. Connecting to business metrics is key, a data scientist must translate statistical results into business impact ('this change would lift revenue ~3%'). Beware common pitfalls: 'peeking' at results early and stopping when they look good inflates false positives, testing many metrics at once causes spurious findings, and short-term 'novelty effects' can mislead. A/B testing is one of the most valued and widely-used skills in industry data science.",
+      "practical_task": "Design an A/B test for a hypothetical product change: state the hypothesis and primary metric, calculate the needed sample size, then simulate data and run the correct statistical test to reach a conclusion.",
+      "mini_project": "Analyze a real or simulated A/B test dataset end to end: check the setup, run the appropriate test, compute the effect size and confidence interval, and write a business-facing recommendation.",
+      "assignment": "Explain, with an example, why stopping an A/B test as soon as it looks significant ('peeking') leads to false positives.",
+      "quiz": [
+        {
+          "question": "In an A/B test, what is the control group?",
+          "options": ["The group seeing the new version", "The group seeing the current/existing version", "The group with missing data", "The largest group"],
+          "answer": "The group seeing the current/existing version"
+        },
+        {
+          "question": "Why do you calculate sample size before running a test?",
+          "options": ["To reduce the number of metrics", "To ensure enough power to detect a meaningful effect", "To speed up data cleaning", "To avoid using statistics"],
+          "answer": "To ensure enough power to detect a meaningful effect"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "A/B Testing Full Course",
+          "channel": "Data Science Dojo",
+          "url": "https://www.youtube.com/watch?v=zFMgpxG-chM"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "statsmodels Statistics and Power",
+          "url": "https://www.statsmodels.org/stable/stats.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "statsmodels/statsmodels",
+          "url": "https://github.com/statsmodels/statsmodels"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Trustworthy Online Controlled Experiments (Kohavi et al., 2020)",
+          "url": "https://experimentguide.com/"
+        }
+      ],
+      "skills_gained": [
+        "A/B testing",
+        "Experiment design",
+        "Business metrics"
+      ],
+      "expected_outcome": "You can design, analyze, and communicate controlled experiments tied to business goals."
+    },
+    {
+      "day": 40,
+      "title": "The Data Science Workflow End-to-End",
+      "objectives": [
+        "Integrate all skills into a coherent workflow",
+        "Frame a business problem as a data problem",
+        "Plan a complete project before the capstone"
+      ],
+      "topics": [
+        "CRISP-DM revisited with your new skills",
+        "From business question to data question",
+        "Choosing methods for each project stage",
+        "Managing scope and iterating",
+        "Planning your capstone project"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "All prior topics"
+      ],
+      "beginner_explanation": "Having learned many individual skills, this day steps back to connect them into the single coherent workflow that professional data scientists follow, so the capstone doesn't feel like a jumble of techniques. Revisiting the CRISP-DM framework (Business Understanding, Data Understanding, Data Preparation, Modeling, Evaluation, Deployment) now means something concrete because you have tools for every stage. The most underrated skill is the very first step: translating a fuzzy business question ('why are customers leaving?') into a precise, answerable data question ('can we predict which customers will churn next month, and what factors drive it?'), and defining what success looks like in measurable terms. From there you consciously choose methods for each stage, EDA and statistics to understand, feature engineering to prepare, the right model for the task, proper evaluation metrics, and a deployment approach. Just as important is managing scope: real projects iterate, start with a simple baseline, learn from it, and improve, rather than trying to build everything at once. This day is where you plan your capstone: pick a problem you care about, define the question and success metric, and sketch the workflow you'll execute over the next days.",
+      "practical_task": "Choose a capstone dataset and problem, then write a project plan that states the business question, the data question, the success metric, and which method you'll use at each CRISP-DM stage.",
+      "mini_project": "Produce a complete capstone proposal document: problem statement, data source, planned EDA and features, candidate models, evaluation plan, and intended deployment, ready to execute.",
+      "assignment": "Take a vague business question of your choice and rewrite it as a precise, measurable data science problem with a clear success criterion.",
+      "quiz": [
+        {
+          "question": "What is the first stage of the CRISP-DM framework?",
+          "options": ["Modeling", "Business Understanding", "Deployment", "Evaluation"],
+          "answer": "Business Understanding"
+        },
+        {
+          "question": "Why start a project with a simple baseline model?",
+          "options": ["Because complex models never work", "To learn quickly and give later models something to beat", "To avoid evaluation", "To skip data cleaning"],
+          "answer": "To learn quickly and give later models something to beat"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "The Data Science Process / Lifecycle Explained",
+          "channel": "Google Career Certificates",
+          "url": "https://www.youtube.com/watch?v=gDZ6czwuQ18"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "CRISP-DM Overview",
+          "url": "https://www.datascience-pm.com/crisp-dm-2/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "drivendata/cookiecutter-data-science",
+          "url": "https://github.com/drivendata/cookiecutter-data-science"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "CRISP-DM 1.0: Step-by-step data mining guide (Chapman et al., 2000)",
+          "url": "https://www.the-modeling-agency.com/crisp-dm.pdf"
+        }
+      ],
+      "skills_gained": [
+        "End-to-end workflow",
+        "Problem framing",
+        "Project planning"
+      ],
+      "expected_outcome": "You can plan and structure a complete data science project from question to deployment."
+    },
+    {
+      "day": 41,
+      "title": "Capstone Part 1: Data Acquisition and EDA",
+      "objectives": [
+        "Acquire and understand your capstone data",
+        "Perform thorough EDA",
+        "Clean and prepare the dataset"
+      ],
+      "topics": [
+        "Sourcing and loading your dataset",
+        "Comprehensive exploratory data analysis",
+        "Data cleaning and preparation",
+        "Documenting data understanding",
+        "Formulating hypotheses to test"
+      ],
+      "estimated_time": "6-8 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "EDA",
+        "Data cleaning",
+        "Data science workflow"
+      ],
+      "beginner_explanation": "The capstone is where everything comes together into one portfolio-worthy project, and Part 1 focuses on the foundation that determines whether the whole project succeeds: understanding and preparing your data. You start by acquiring your chosen dataset, whether from a source like Kaggle, a public API, or your own web scraping, and loading it reliably. Then you conduct a comprehensive EDA: examine every variable's distribution, understand relationships and correlations, identify missing values, outliers, and data quality issues, and, crucially, write down the insights and hypotheses you discover, because this analysis will guide your modeling choices. Next you clean and prepare the data: handle missing values thoughtfully, fix inconsistencies, and engineer initial features. Throughout, you document your data understanding clearly, this is what turns a notebook into a professional deliverable a reader can follow. Real practitioners spend the majority of their time on exactly this phase, because a model built on poorly understood, messy data will fail no matter how sophisticated the algorithm. By the end of Part 1 you should deeply understand your data and have a clean dataset ready for modeling.",
+      "practical_task": "Load your capstone dataset, run a full EDA with visualizations and summary statistics, document at least five key insights, and produce a cleaned, prepared version of the data.",
+      "mini_project": "Complete and commit Part 1 of your capstone: a well-documented notebook covering data acquisition, thorough EDA, data cleaning, initial feature engineering, and a written summary of findings and hypotheses.",
+      "assignment": "Write a 'data understanding' section for your capstone that describes the dataset, its quality issues, and the top insights from your EDA.",
+      "quiz": [
+        {
+          "question": "Why is thorough EDA critical before modeling in a capstone?",
+          "options": ["It replaces the model", "It reveals data quality issues and guides modeling choices", "It deploys the app", "It is optional"],
+          "answer": "It reveals data quality issues and guides modeling choices"
+        },
+        {
+          "question": "Where do practitioners typically spend the majority of project time?",
+          "options": ["Deployment", "Understanding and preparing the data", "Writing the README", "Choosing colors for charts"],
+          "answer": "Understanding and preparing the data"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Data Science Project From Scratch - Full Walkthrough",
+          "channel": "Ken Jee",
+          "url": "https://www.youtube.com/watch?v=MpF9HENQjDo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Kaggle Datasets",
+          "url": "https://www.kaggle.com/datasets"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "drivendata/cookiecutter-data-science",
+          "url": "https://github.com/drivendata/cookiecutter-data-science"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Tidy Data (Wickham, 2014)",
+          "url": "https://www.jstatsoft.org/article/view/v059i10"
+        }
+      ],
+      "skills_gained": [
+        "Data acquisition",
+        "Comprehensive EDA",
+        "Data preparation"
+      ],
+      "expected_outcome": "You have a deeply understood, cleaned dataset and documented insights for your capstone."
+    },
+    {
+      "day": 42,
+      "title": "Capstone Part 2: Modeling and Evaluation",
+      "objectives": [
+        "Build and compare models for your capstone",
+        "Tune and validate your best model",
+        "Interpret results honestly"
+      ],
+      "topics": [
+        "Establishing a baseline model",
+        "Training and comparing multiple models",
+        "Hyperparameter tuning and cross-validation",
+        "Rigorous evaluation with the right metrics",
+        "Interpreting and explaining the model"
+      ],
+      "estimated_time": "6-8 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Capstone Part 1",
+        "Model evaluation",
+        "scikit-learn pipelines"
+      ],
+      "beginner_explanation": "With clean, well-understood data from Part 1, Part 2 is where you build the predictive or analytical heart of your capstone. Follow the disciplined workflow you learned: start with a simple baseline model (like logistic or linear regression) so you have something to beat and a sanity check. Then train several candidate models, perhaps a Random Forest and a gradient boosting model, inside proper pipelines to prevent data leakage, and compare them using cross-validation for reliable estimates. Tune your most promising model's hyperparameters with grid or randomized search. Evaluate rigorously with the metrics appropriate to your problem (F1 or ROC-AUC for imbalanced classification, RMSE or MAE for regression), not just accuracy, and look at where the model makes mistakes via a confusion matrix or error analysis. Finally, interpret the model: use feature importances or coefficients to explain what drives predictions, connecting back to the hypotheses from your EDA. Honesty is essential, report the real performance and the model's limitations rather than overselling. By the end of Part 2 you have a validated, interpretable model and a clear story about what it can and cannot do.",
+      "practical_task": "Build a baseline and at least two stronger models for your capstone inside pipelines, tune the best one with cross-validation, evaluate with appropriate metrics, and interpret its key drivers.",
+      "mini_project": "Complete and commit Part 2 of your capstone: a modeling notebook with a baseline, model comparison, tuned final model, rigorous evaluation, error analysis, and model interpretation.",
+      "assignment": "Write a results section for your capstone that reports your final model's performance with the right metrics and honestly states its limitations.",
+      "quiz": [
+        {
+          "question": "Why start capstone modeling with a baseline?",
+          "options": ["To skip tuning", "To provide a benchmark that stronger models must beat", "To avoid cross-validation", "To reduce the dataset"],
+          "answer": "To provide a benchmark that stronger models must beat"
+        },
+        {
+          "question": "Why interpret your final model, not just report its score?",
+          "options": ["Scores are unimportant", "To explain what drives predictions and build trust", "To make it slower", "To increase overfitting"],
+          "answer": "To explain what drives predictions and build trust"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "End to End Machine Learning Project",
+          "channel": "Krish Naik",
+          "url": "https://www.youtube.com/watch?v=Rs_rAxEsAvI"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Model Selection",
+          "url": "https://scikit-learn.org/stable/model_selection.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn/scikit-learn",
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Random Search for Hyper-Parameter Optimization (Bergstra & Bengio, 2012)",
+          "url": "https://www.jmlr.org/papers/v13/bergstra12a.html"
+        }
+      ],
+      "skills_gained": [
+        "Model building",
+        "Hyperparameter tuning",
+        "Rigorous evaluation"
+      ],
+      "expected_outcome": "You have a validated, tuned, and interpretable model for your capstone."
+    },
+    {
+      "day": 43,
+      "title": "Capstone Part 3: Deployment and Reporting",
+      "objectives": [
+        "Deploy your capstone as a usable product",
+        "Write a clear project report",
+        "Communicate results to stakeholders"
+      ],
+      "topics": [
+        "Packaging the model for deployment",
+        "Building a Streamlit app or dashboard",
+        "Deploying to the cloud",
+        "Writing a professional project report",
+        "Presenting a data story"
+      ],
+      "estimated_time": "6-8 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Capstone Part 2",
+        "Streamlit deployment",
+        "Data storytelling"
+      ],
+      "beginner_explanation": "A model that only lives in your notebook can't demonstrate impact, so Part 3 turns your capstone into a shareable product and a compelling story, the parts that most impress employers and stakeholders. First, you package your trained model and build an interface: a Streamlit app where users enter inputs and get predictions, or an interactive dashboard that presents your analysis. You then deploy it to the cloud (for example, Streamlit Community Cloud) so it has a public URL anyone can visit, proving you can ship end-to-end. Equally important is communication: you write a professional project report that walks a reader through the business problem, your approach, key findings, model performance, limitations, and recommendations, structured as a narrative rather than a code dump. Finally, you prepare a concise presentation of your data story tailored to a non-technical audience, leading with the insight and recommendation. This combination, a live deployed app, a clear written report, and a crisp presentation, is exactly what turns a learning project into a portfolio centerpiece that showcases the full range of data science skills to potential employers.",
+      "practical_task": "Deploy your capstone model as a Streamlit app with a public URL, and draft a structured project report covering problem, data, methods, results, and recommendations.",
+      "mini_project": "Complete your capstone: a deployed, publicly accessible app plus a polished README/report and a short slide deck telling the data story, all committed to a professional GitHub repository.",
+      "assignment": "Write the executive summary of your capstone report: one page that states the problem, the key finding, and the recommendation for a non-technical decision-maker.",
+      "quiz": [
+        {
+          "question": "Why deploy your capstone model to a public URL?",
+          "options": ["To retrain it", "To prove you can ship an end-to-end usable product", "To hide the code", "To reduce accuracy"],
+          "answer": "To prove you can ship an end-to-end usable product"
+        },
+        {
+          "question": "How should a project report for stakeholders be structured?",
+          "options": ["As a raw code dump", "As a narrative leading with insights and recommendations", "As only charts with no text", "As a list of every function used"],
+          "answer": "As a narrative leading with insights and recommendations"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Deploy Machine Learning Model using Streamlit",
+          "channel": "Krish Naik",
+          "url": "https://www.youtube.com/watch?v=-IM3531b1XU"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Streamlit Community Cloud Deployment",
+          "url": "https://docs.streamlit.io/deploy/streamlit-community-cloud"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "streamlit/streamlit",
+          "url": "https://github.com/streamlit/streamlit"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Hidden Technical Debt in Machine Learning Systems (Sculley et al., 2015)",
+          "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "End-to-end deployment",
+        "Technical reporting",
+        "Stakeholder communication"
+      ],
+      "expected_outcome": "You have a deployed capstone product with a professional report and presentation."
+    },
+    {
+      "day": 44,
+      "title": "Building Your Data Science Portfolio",
+      "objectives": [
+        "Assemble a strong portfolio",
+        "Present projects effectively",
+        "Establish a professional online presence"
+      ],
+      "topics": [
+        "What makes a strong DS portfolio",
+        "Choosing and framing portfolio projects",
+        "Writing project READMEs and case studies",
+        "GitHub profile and personal branding",
+        "Optional: blogging and Kaggle presence"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Completed projects",
+        "Git and GitHub"
+      ],
+      "beginner_explanation": "Skills only get you hired if others can see them, and a portfolio is how a beginner data scientist proves capability without prior job experience. A strong portfolio isn't a pile of tutorials redone; it's a small set of two to four polished projects that each tell a clear story: a real problem, your approach, and a concrete result, ideally with at least one deployed app (like your capstone) that a recruiter can click and use. For each project you write a clear README or case study that frames the business question, summarizes your method, highlights key findings with a visual or two, and links to the live demo, because hiring managers skim and need the value in seconds. Your GitHub profile becomes your professional home: pin your best repositories, keep commit histories clean, and write a profile README introducing yourself. Optionally, writing short blog posts about your projects or participating in Kaggle demonstrates communication skills and initiative. The goal is that within a few minutes, anyone can see that you can take a problem from raw data all the way to a working, well-communicated solution, which is exactly what employers want to verify.",
+      "practical_task": "Curate your best two to four projects into a portfolio: write or improve each README as a mini case study, pin them on GitHub, and create a profile README introducing yourself and your skills.",
+      "mini_project": "Build a simple personal portfolio (a GitHub profile README or a lightweight portfolio site) that showcases your projects with descriptions, visuals, and links to live demos.",
+      "assignment": "Write a one-paragraph case study for your capstone suitable for the top of its README, framing the problem, approach, and result for a recruiter.",
+      "quiz": [
+        {
+          "question": "What makes a data science portfolio strong?",
+          "options": ["As many repeated tutorials as possible", "A few polished projects that each tell a clear problem-to-result story", "Only code with no explanations", "The largest datasets available"],
+          "answer": "A few polished projects that each tell a clear problem-to-result story"
+        },
+        {
+          "question": "Why include a deployed app in your portfolio?",
+          "options": ["To hide your code", "So recruiters can interact with a working end-to-end product", "To avoid writing a README", "To slow down the page"],
+          "answer": "So recruiters can interact with a working end-to-end product"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "How to Build a Data Science Portfolio That Gets You Hired",
+          "channel": "Ken Jee",
+          "url": "https://www.youtube.com/watch?v=xrhPjE7wHas"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "GitHub Profile README Documentation",
+          "url": "https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "abhisheknaiidu/awesome-github-profile-readme",
+          "url": "https://github.com/abhisheknaiidu/awesome-github-profile-readme"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Storytelling with Data (Knaflic)",
+          "url": "https://www.storytellingwithdata.com/books"
+        }
+      ],
+      "skills_gained": [
+        "Portfolio building",
+        "Project presentation",
+        "Personal branding"
+      ],
+      "expected_outcome": "You have a curated, well-presented portfolio that showcases your abilities to employers."
+    },
+    {
+      "day": 45,
+      "title": "Career Preparation and Next Steps",
+      "objectives": [
+        "Understand data science career paths",
+        "Prepare for interviews",
+        "Plan continued learning"
+      ],
+      "topics": [
+        "Data science roles and specializations",
+        "Resume and LinkedIn optimization",
+        "Technical and case interview preparation",
+        "Practicing SQL, ML, and behavioral questions",
+        "A continued learning roadmap"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Portfolio"
+      ],
+      "beginner_explanation": "The final day turns your new skills into a job search strategy and a plan for continued growth. First, understand the landscape: 'data science' spans several roles, data analyst (focused on SQL, dashboards, and business insight), data scientist (statistics, ML, and experimentation), ML engineer (productionizing models), and data engineer (building data pipelines), and knowing which fits your interests helps you target the right jobs and tailor your resume. Your resume and LinkedIn should emphasize projects and measurable results, not just a list of tools, and link to your portfolio and GitHub. Interview preparation is crucial because DS interviews are broad: expect SQL query challenges, statistics and probability questions, ML concept questions (like explaining the bias-variance tradeoff or how a Random Forest works), a take-home or case study where you analyze a problem, and behavioral questions about how you work. Practicing these deliberately, using platforms for SQL and ML questions and mock interviews, makes a big difference. Finally, data science is a field of continuous learning: plan your next steps, deepen a specialization, take on harder projects, contribute to open source, and keep learning, so this 45-day roadmap becomes the launchpad for a long, evolving career.",
+      "practical_task": "Update your resume and LinkedIn to highlight your projects and results, then complete a mock interview covering one SQL question, one ML concept question, and one behavioral question.",
+      "mini_project": "Create a personalized job-search kit: a targeted resume, an optimized LinkedIn summary, a list of 10 target roles/companies, and a 3-month continued-learning plan for your chosen specialization.",
+      "assignment": "Write out and answer five common data science interview questions (mixing SQL, statistics, ML, and behavioral) as if in a real interview.",
+      "quiz": [
+        {
+          "question": "Which role focuses most on productionizing and serving models?",
+          "options": ["Data analyst", "ML engineer", "Business analyst", "UX researcher"],
+          "answer": "ML engineer"
+        },
+        {
+          "question": "What should a data science resume emphasize most?",
+          "options": ["A long list of every tool", "Projects and measurable results", "Personal hobbies", "The number of courses watched"],
+          "answer": "Projects and measurable results"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Data Science Interview Preparation - Full Guide",
+          "channel": "Ken Jee",
+          "url": "https://www.youtube.com/watch?v=hM4tVfswUf8"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "StrataScratch Data Science Interview Questions",
+          "url": "https://www.stratascratch.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "alexeygrigorev/data-science-interviews",
+          "url": "https://github.com/alexeygrigorev/data-science-interviews"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "50 Years of Data Science (Donoho, 2017)",
+          "url": "https://www.tandfonline.com/doi/full/10.1080/10618600.2017.1384734"
+        }
+      ],
+      "skills_gained": [
+        "Career planning",
+        "Interview preparation",
+        "Continued learning"
+      ],
+      "expected_outcome": "You have a clear career plan, interview readiness, and a roadmap for continued growth."
+    }
+  ]
+}

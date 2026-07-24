@@ -1,0 +1,3189 @@
+{
+  "roadmap": {
+    "title": "45-Day AI Engineer Roadmap",
+    "role": "AI Engineer",
+    "level": "Beginner",
+    "total_days": 45,
+    "provider": "CalibiAI",
+    "description": "A structured 45-day beginner curriculum to become an AI Engineer, covering programming, data handling, math foundations, machine learning, deep learning, NLP, LLMs, model deployment, and MLOps to prepare students for entry-level AI Engineering roles.",
+    "outcome": "Ability to build, train, evaluate, and deploy machine learning and AI models into production applications."
+  },
+  "days": [
+    {
+      "day": 1,
+      "title": "The AI Engineer Landscape and Role",
+      "objectives": [
+        "Understand what an AI Engineer does",
+        "Differentiate AI, ML, DL, and Data Science roles",
+        "Map the skills and tools you will learn"
+      ],
+      "topics": [
+        "AI vs ML vs Deep Learning vs Data Science",
+        "AI Engineer responsibilities",
+        "The ML/AI project lifecycle",
+        "Industry tools overview",
+        "Career paths and expectations",
+        "Setting up a learning workflow"
+      ],
+      "estimated_time": "3-4 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Basic computer literacy",
+        "Curiosity about AI"
+      ],
+      "beginner_explanation": "An AI Engineer sits between data science and software engineering: they build, train, and ship AI models into real applications. Today you learn how AI, ML, deep learning, and data science relate, what an AI Engineer actually does day to day, and the end-to-end lifecycle of an AI project from data to deployment. This mental map guides everything you learn over the next 45 days.",
+      "practical_task": "Create a diagram of the AI/ML project lifecycle and label which tools apply at each stage.",
+      "mini_project": "Research three real AI Engineer job postings and produce a skills-gap analysis comparing them to this roadmap.",
+      "assignment": "Write a one-page personal learning plan defining your target role, goals, and how you will track progress.",
+      "quiz": [
+        {
+          "question": "Which best describes an AI Engineer's focus?",
+          "options": ["Only research papers", "Building and deploying AI models into applications", "Only cleaning data", "Only designing UIs"],
+          "answer": "Building and deploying AI models into applications"
+        },
+        {
+          "question": "Deep learning is a subset of...",
+          "options": ["Data visualization", "Machine learning", "Databases", "DevOps"],
+          "answer": "Machine learning"
+        },
+        {
+          "question": "The first stage of the ML lifecycle is usually...",
+          "options": ["Deployment", "Problem definition and data collection", "Monitoring", "UI design"],
+          "answer": "Problem definition and data collection"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "AI vs Machine Learning vs Deep Learning",
+          "channel": "IBM Technology",
+          "url": "https://www.youtube.com/watch?v=4RixMPF4xis"
+        },
+        {
+          "title": "How to Become an AI Engineer",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=i_LwzRVP7bg"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Google AI Overview",
+          "url": "https://ai.google/"
+        },
+        {
+          "title": "Microsoft AI Learning Paths",
+          "url": "https://learn.microsoft.com/en-us/training/browse/?products=azure&subjects=artificial-intelligence"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "microsoft/AI-For-Beginners",
+          "url": "https://github.com/microsoft/AI-For-Beginners"
+        },
+        {
+          "name": "AMAI-GmbH/AI-Expert-Roadmap",
+          "url": "https://github.com/AMAI-GmbH/AI-Expert-Roadmap"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Few Useful Things to Know About Machine Learning (Domingos, 2012)",
+          "url": "https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf"
+        }
+      ],
+      "skills_gained": [
+        "AI domain literacy",
+        "Role understanding",
+        "ML lifecycle awareness",
+        "Career planning"
+      ],
+      "expected_outcome": "You understand the AI Engineer role and have a clear personal learning plan."
+    },
+    {
+      "day": 2,
+      "title": "Python Fundamentals for AI",
+      "objectives": [
+        "Write basic Python programs",
+        "Use variables, loops, and functions",
+        "Set up a Python environment"
+      ],
+      "topics": [
+        "Variables and data types",
+        "Operators and expressions",
+        "Conditionals and loops",
+        "Functions and scope",
+        "Modules and imports",
+        "Virtual environments and pip"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 1: AI landscape"
+      ],
+      "beginner_explanation": "Python is the language of AI. Its readable syntax and vast library ecosystem make it the default for machine learning. Today you learn the core building blocks: storing data in variables, controlling flow with conditionals and loops, and packaging logic into functions. You also set up isolated virtual environments so each project's dependencies stay clean and reproducible.",
+      "practical_task": "Set up Python and a virtual environment, then write a script that classifies numbers as prime using a function and a loop.",
+      "mini_project": "Build a command-line grade calculator that takes scores, computes averages and letter grades, and handles invalid input.",
+      "assignment": "Write five small programs (temperature converter, FizzBuzz, factorial, palindrome check, simple calculator) and push them to GitHub.",
+      "quiz": [
+        {
+          "question": "Which keyword defines a function in Python?",
+          "options": ["function", "def", "func", "define"],
+          "answer": "def"
+        },
+        {
+          "question": "A virtual environment is used to...",
+          "options": ["Speed up the CPU", "Isolate project dependencies", "Store data", "Deploy models"],
+          "answer": "Isolate project dependencies"
+        },
+        {
+          "question": "Which loop repeats while a condition is true?",
+          "options": ["for", "while", "do", "repeat"],
+          "answer": "while"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Python Full Course for Beginners",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=rfscVS0vtbw"
+        },
+        {
+          "title": "Python for Beginners - Learn Python in 1 Hour",
+          "channel": "Programming with Mosh",
+          "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Python Official Tutorial",
+          "url": "https://docs.python.org/3/tutorial/"
+        },
+        {
+          "title": "Python venv documentation",
+          "url": "https://docs.python.org/3/library/venv.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "trekhleb/learn-python",
+          "url": "https://github.com/trekhleb/learn-python"
+        },
+        {
+          "name": "TheAlgorithms/Python",
+          "url": "https://github.com/TheAlgorithms/Python"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Python for Scientific Computing (Oliphant, 2007)",
+          "url": "https://ieeexplore.ieee.org/document/4160250"
+        }
+      ],
+      "skills_gained": [
+        "Python syntax",
+        "Control flow",
+        "Functions",
+        "Environment management"
+      ],
+      "expected_outcome": "You can write basic Python programs and manage project environments."
+    },
+    {
+      "day": 3,
+      "title": "Python Data Structures and OOP",
+      "objectives": [
+        "Master core data structures",
+        "Use comprehensions",
+        "Understand object-oriented programming"
+      ],
+      "topics": [
+        "Lists, tuples, sets, dictionaries",
+        "List and dict comprehensions",
+        "Classes and objects",
+        "Inheritance and methods",
+        "Exception handling",
+        "File I/O"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 2: Python Fundamentals"
+      ],
+      "beginner_explanation": "Data structures determine how you store and access information efficiently, while object-oriented programming lets you model real-world entities as reusable objects with data and behavior. Most AI libraries are built with OOP, so understanding classes, inheritance, and exception handling helps you both use those libraries and write clean, maintainable AI code.",
+      "practical_task": "Create a Dataset class that stores records in a list of dictionaries and offers add, filter, and summary methods with error handling.",
+      "mini_project": "Build a mini inventory system with Product and Inventory classes that reads from and writes to a JSON file.",
+      "assignment": "Refactor Day 2's grade calculator into an OOP design with a Student class and exception handling.",
+      "quiz": [
+        {
+          "question": "Which data structure is immutable?",
+          "options": ["list", "dict", "tuple", "set"],
+          "answer": "tuple"
+        },
+        {
+          "question": "What does 'self' refer to in a method?",
+          "options": ["The class", "The current instance", "A global", "The parent"],
+          "answer": "The current instance"
+        },
+        {
+          "question": "Which structure stores unique unordered items?",
+          "options": ["list", "set", "tuple", "dict"],
+          "answer": "set"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Python OOP Tutorial - Full Course",
+          "channel": "Programming with Mosh",
+          "url": "https://www.youtube.com/watch?v=Ej_02ICOIgs"
+        },
+        {
+          "title": "OOP in Python - Corey Schafer",
+          "channel": "Corey Schafer",
+          "url": "https://www.youtube.com/watch?v=ZDa-Z5JzLYM"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Python Data Structures",
+          "url": "https://docs.python.org/3/tutorial/datastructures.html"
+        },
+        {
+          "title": "Python Classes",
+          "url": "https://docs.python.org/3/tutorial/classes.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "faif/python-patterns",
+          "url": "https://github.com/faif/python-patterns"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Design Patterns: Elements of Reusable Object-Oriented Software (overview)",
+          "url": "https://dl.acm.org/doi/book/10.5555/186897"
+        }
+      ],
+      "skills_gained": [
+        "Data structures",
+        "OOP",
+        "Exception handling",
+        "File I/O"
+      ],
+      "expected_outcome": "You can model problems with classes and choose appropriate data structures."
+    },
+    {
+      "day": 4,
+      "title": "Git, GitHub, and Developer Workflow",
+      "objectives": [
+        "Use Git for version control",
+        "Collaborate via GitHub",
+        "Adopt a professional workflow"
+      ],
+      "topics": [
+        "Git basics (init, add, commit)",
+        "Branching and merging",
+        "Remote repositories",
+        "Pull requests",
+        "Merge conflicts",
+        "README and .gitignore"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 2-3: Python basics"
+      ],
+      "beginner_explanation": "Version control is a non-negotiable skill for any engineer. Git tracks every change to your code so you can experiment safely, revert mistakes, and collaborate without overwriting others' work. GitHub hosts your repositories and is also your public portfolio. Employers look at your GitHub, so learning a clean commit and branching workflow early pays off throughout your career.",
+      "practical_task": "Initialize a Git repo, make several commits on a feature branch, and merge it into main, resolving a deliberate conflict.",
+      "mini_project": "Publish your previous projects to a well-organized GitHub profile with READMEs and a .gitignore for Python.",
+      "assignment": "Fork an open-source repo, make a small improvement, and open a pull request following its contribution guidelines.",
+      "quiz": [
+        {
+          "question": "Which command saves a snapshot of staged changes?",
+          "options": ["git save", "git commit", "git snapshot", "git push"],
+          "answer": "git commit"
+        },
+        {
+          "question": "A branch is used to...",
+          "options": ["Delete history", "Develop changes in isolation", "Compress files", "Deploy code"],
+          "answer": "Develop changes in isolation"
+        },
+        {
+          "question": "A .gitignore file specifies...",
+          "options": ["Files to track", "Files Git should ignore", "Commit messages", "Branch names"],
+          "answer": "Files Git should ignore"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Git and GitHub for Beginners - Crash Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=RGOj5yH7evk"
+        },
+        {
+          "title": "Git Tutorial for Beginners",
+          "channel": "Programming with Mosh",
+          "url": "https://www.youtube.com/watch?v=8JJ101D3knE"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Git Documentation",
+          "url": "https://git-scm.com/doc"
+        },
+        {
+          "title": "GitHub Docs",
+          "url": "https://docs.github.com/en/get-started"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "git-guides",
+          "url": "https://github.com/git-guides"
+        },
+        {
+          "name": "firstcontributions/first-contributions",
+          "url": "https://github.com/firstcontributions/first-contributions"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Framework for Distributed Version Control (overview)",
+          "url": "https://dl.acm.org/doi/10.1145/1084805.1084806"
+        }
+      ],
+      "skills_gained": [
+        "Version control",
+        "Git",
+        "GitHub collaboration",
+        "Developer workflow"
+      ],
+      "expected_outcome": "You can version-control code and collaborate professionally on GitHub."
+    },
+    {
+      "day": 5,
+      "title": "NumPy for Numerical Computing",
+      "objectives": [
+        "Work with N-dimensional arrays",
+        "Use vectorized operations",
+        "Apply broadcasting and slicing"
+      ],
+      "topics": [
+        "ndarray creation",
+        "Indexing and slicing",
+        "Broadcasting",
+        "Vectorized math",
+        "Aggregations and axes",
+        "Random number generation"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 2-3: Python basics"
+      ],
+      "beginner_explanation": "NumPy is the foundation of scientific Python. It provides fast, memory-efficient arrays and vectorized operations implemented in C, so you avoid slow Python loops. Every ML dataset, image, and model weight is ultimately a NumPy-style array, making this the essential first step before machine learning and deep learning.",
+      "practical_task": "Create a random 5x5 matrix, compute row and column means, normalize it, and locate the maximum value's index.",
+      "mini_project": "Build a grayscale image editor using NumPy arrays to brighten, invert, and crop an image.",
+      "assignment": "Reimplement dot product, matrix multiplication, and mean squared error using only NumPy, without Python loops.",
+      "quiz": [
+        {
+          "question": "Broadcasting enables...",
+          "options": ["Network calls", "Operations on arrays of different shapes", "GPU access", "File I/O"],
+          "answer": "Operations on arrays of different shapes"
+        },
+        {
+          "question": "Which creates an array of zeros?",
+          "options": ["np.blank", "np.zeros", "np.null", "np.empty0"],
+          "answer": "np.zeros"
+        },
+        {
+          "question": "In a 2D array, axis=0 refers to...",
+          "options": ["Columns", "Rows", "Depth", "Diagonal"],
+          "answer": "Rows"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Python NumPy Tutorial for Beginners",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=QUT1VHiLmmI"
+        },
+        {
+          "title": "Complete NumPy Tutorial",
+          "channel": "Keith Galli",
+          "url": "https://www.youtube.com/watch?v=GB9ByFAIAH4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "NumPy Documentation",
+          "url": "https://numpy.org/doc/stable/"
+        },
+        {
+          "title": "NumPy Absolute Beginners Guide",
+          "url": "https://numpy.org/doc/stable/user/absolute_beginners.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "numpy/numpy",
+          "url": "https://github.com/numpy/numpy"
+        },
+        {
+          "name": "rougier/numpy-100",
+          "url": "https://github.com/rougier/numpy-100"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Array programming with NumPy (Harris et al., Nature 2020)",
+          "url": "https://www.nature.com/articles/s41586-020-2649-2"
+        }
+      ],
+      "skills_gained": [
+        "Vectorization",
+        "Array manipulation",
+        "Broadcasting",
+        "Numerical computing"
+      ],
+      "expected_outcome": "You can manipulate numerical data efficiently with NumPy."
+    },
+    {
+      "day": 6,
+      "title": "Pandas for Data Handling",
+      "objectives": [
+        "Load and inspect datasets",
+        "Clean and transform data",
+        "Group and aggregate data"
+      ],
+      "topics": [
+        "Series and DataFrames",
+        "Reading CSV/JSON/Excel",
+        "Filtering and selection",
+        "Handling missing data",
+        "GroupBy and aggregation",
+        "Merging and joining"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 5: NumPy"
+      ],
+      "beginner_explanation": "Pandas is the workhorse for loading, cleaning, and exploring tabular data, and data preparation is where AI engineers spend most of their time. DataFrames give you a spreadsheet-like interface backed by NumPy speed. Mastering filtering, missing-value handling, grouping, and joins lets you turn raw, messy data into model-ready datasets.",
+      "practical_task": "Load the Titanic dataset, handle missing values, and compute survival rates grouped by passenger class and gender.",
+      "mini_project": "Build a data-cleaning pipeline that standardizes columns, fills missing values, removes duplicates, and outputs a summary report.",
+      "assignment": "Pick a public dataset and produce five insights using groupby, filtering, and merging in a Jupyter notebook.",
+      "quiz": [
+        {
+          "question": "Which method shows the first rows?",
+          "options": ["df.top()", "df.head()", "df.first()", "df.begin()"],
+          "answer": "df.head()"
+        },
+        {
+          "question": "Which method fills missing values?",
+          "options": ["df.fillna()", "df.clean()", "df.reset()", "df.drop()"],
+          "answer": "df.fillna()"
+        },
+        {
+          "question": "groupby is used to...",
+          "options": ["Delete columns", "Split data into groups for aggregation", "Sort rows", "Rename columns"],
+          "answer": "Split data into groups for aggregation"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Pandas Tutorial - Complete Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=vmEHCJofslg"
+        },
+        {
+          "title": "Complete Pandas Tutorial for Beginners",
+          "channel": "Corey Schafer",
+          "url": "https://www.youtube.com/watch?v=ZyhVh-qRZPA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Pandas Documentation",
+          "url": "https://pandas.pydata.org/docs/"
+        },
+        {
+          "title": "10 Minutes to Pandas",
+          "url": "https://pandas.pydata.org/docs/user_guide/10min.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pandas-dev/pandas",
+          "url": "https://github.com/pandas-dev/pandas"
+        },
+        {
+          "name": "guipsamora/pandas_exercises",
+          "url": "https://github.com/guipsamora/pandas_exercises"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Data Structures for Statistical Computing in Python (McKinney, 2010)",
+          "url": "https://conference.scipy.org/proceedings/scipy2010/mckinney.html"
+        }
+      ],
+      "skills_gained": [
+        "Data wrangling",
+        "Data cleaning",
+        "Exploratory data analysis",
+        "Aggregation"
+      ],
+      "expected_outcome": "You can load, clean, and analyze real-world tabular datasets."
+    },
+    {
+      "day": 7,
+      "title": "Data Visualization",
+      "objectives": [
+        "Create plots with Matplotlib",
+        "Build statistical charts with Seaborn",
+        "Communicate insights visually"
+      ],
+      "topics": [
+        "Line, bar, scatter plots",
+        "Histograms and distributions",
+        "Subplots and figures",
+        "Seaborn statistical plots",
+        "Correlation heatmaps",
+        "Chart customization"
+      ],
+      "estimated_time": "4-5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 6: Pandas"
+      ],
+      "beginner_explanation": "Visualization turns numbers into understanding. AI engineers constantly inspect data distributions, correlations, and model results. Matplotlib gives you fine-grained control over every element of a chart, while Seaborn produces polished statistical visualizations with little code. Clear charts help you find data problems and communicate findings to stakeholders.",
+      "practical_task": "For a dataset, create a histogram, a scatter plot with a trend line, and a correlation heatmap, then interpret each.",
+      "mini_project": "Build an exploratory data analysis notebook with at least six visualizations and written insights for a dataset.",
+      "assignment": "Recreate three chart types from a data-journalism article and explain what makes each effective.",
+      "quiz": [
+        {
+          "question": "Which library is built on Matplotlib for statistics?",
+          "options": ["Plotly", "Seaborn", "Bokeh", "Dash"],
+          "answer": "Seaborn"
+        },
+        {
+          "question": "Which plot shows a single variable's distribution?",
+          "options": ["Scatter", "Histogram", "Heatmap", "Pie"],
+          "answer": "Histogram"
+        },
+        {
+          "question": "A correlation heatmap displays...",
+          "options": ["Time series", "Relationships between variables", "Geographic data", "Category counts"],
+          "answer": "Relationships between variables"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Matplotlib Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=3Xc3CA655Y4"
+        },
+        {
+          "title": "Matplotlib Tutorial Series",
+          "channel": "Corey Schafer",
+          "url": "https://www.youtube.com/watch?v=UO98lJQ3QGI"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Matplotlib Documentation",
+          "url": "https://matplotlib.org/stable/index.html"
+        },
+        {
+          "title": "Seaborn Documentation",
+          "url": "https://seaborn.pydata.org/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "matplotlib/matplotlib",
+          "url": "https://github.com/matplotlib/matplotlib"
+        },
+        {
+          "name": "mwaskom/seaborn",
+          "url": "https://github.com/mwaskom/seaborn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Matplotlib: A 2D Graphics Environment (Hunter, 2007)",
+          "url": "https://ieeexplore.ieee.org/document/4160265"
+        }
+      ],
+      "skills_gained": [
+        "Data visualization",
+        "EDA",
+        "Storytelling with data",
+        "Chart design"
+      ],
+      "expected_outcome": "You can visualize data and communicate insights through charts."
+    },
+    {
+      "day": 8,
+      "title": "SQL for AI and Data",
+      "objectives": [
+        "Query relational databases",
+        "Join and aggregate data",
+        "Extract datasets for ML"
+      ],
+      "topics": [
+        "SELECT, WHERE, ORDER BY",
+        "Aggregations and GROUP BY",
+        "JOINs",
+        "Subqueries",
+        "Window functions basics",
+        "Connecting SQL to Python"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": [
+        "Day 6: Pandas"
+      ],
+      "beginner_explanation": "Most real-world data lives in databases, so SQL is essential for AI engineers who need to fetch and shape training data. You learn to select, filter, aggregate, and join tables to produce clean datasets, then pull query results directly into pandas for modeling. SQL fluency also appears in almost every AI Engineer interview.",
+      "practical_task": "Write SQL queries to join two tables, aggregate results with GROUP BY, and filter with a subquery, then load them into pandas.",
+      "mini_project": "Design a small SQLite database for an app, populate it, and write analytical queries to produce a dataset for ML.",
+      "assignment": "Solve 15 SQL exercises covering joins, aggregation, and subqueries on a sample database.",
+      "quiz": [
+        {
+          "question": "Which clause filters rows?",
+          "options": ["ORDER BY", "WHERE", "GROUP BY", "SELECT"],
+          "answer": "WHERE"
+        },
+        {
+          "question": "A JOIN combines...",
+          "options": ["Columns of one table", "Rows from multiple tables by keys", "Databases", "Indexes"],
+          "answer": "Rows from multiple tables by keys"
+        },
+        {
+          "question": "GROUP BY is used with...",
+          "options": ["Aggregate functions", "Indexes", "Triggers", "Views only"],
+          "answer": "Aggregate functions"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "SQL Tutorial - Full Database Course for Beginners",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=HXV3zeQKqGY"
+        },
+        {
+          "title": "SQL for Data Analysis",
+          "channel": "Alex The Analyst",
+          "url": "https://www.youtube.com/watch?v=OT1RErkfLNQ"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PostgreSQL Tutorial",
+          "url": "https://www.postgresql.org/docs/current/tutorial.html"
+        },
+        {
+          "title": "SQLite Documentation",
+          "url": "https://www.sqlite.org/docs.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "NirantK/awesome-project-ideas",
+          "url": "https://github.com/NirantK/awesome-project-ideas"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Relational Model of Data for Large Shared Data Banks (Codd, 1970)",
+          "url": "https://dl.acm.org/doi/10.1145/362384.362685"
+        }
+      ],
+      "skills_gained": [
+        "SQL querying",
+        "Joins and aggregation",
+        "Data extraction",
+        "SQL-Python integration"
+      ],
+      "expected_outcome": "You can extract and shape datasets from relational databases with SQL."
+    },
+    {
+      "day": 9,
+      "title": "Linear Algebra for Machine Learning",
+      "objectives": [
+        "Understand vectors, matrices, and tensors",
+        "Perform core matrix operations",
+        "Grasp eigenvalues, eigenvectors, and their ML relevance"
+      ],
+      "topics": [
+        "Scalars, vectors, matrices, tensors",
+        "Matrix multiplication and transpose",
+        "Dot product and norms",
+        "Identity and inverse matrices",
+        "Eigenvalues and eigenvectors",
+        "Matrix decomposition (SVD basics)"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Basic algebra", "NumPy basics"],
+      "beginner_explanation": "Linear algebra is the language of machine learning. Data is represented as vectors and matrices, and nearly every ML operation - from a neural network layer to a recommendation engine - is a series of matrix multiplications. Understanding how these structures behave lets you reason about model shapes, dimensions, and transformations instead of treating them as black boxes.",
+      "practical_task": "Use NumPy to create matrices, multiply them, compute transposes and inverses, and calculate eigenvalues/eigenvectors of a 2x2 matrix.",
+      "mini_project": "Build a simple image transformation tool that applies matrix operations (rotation, scaling) to a small grayscale image represented as a NumPy array.",
+      "assignment": "Given two matrices, compute their product by hand, then verify with NumPy. Explain why matrix multiplication is not commutative.",
+      "quiz": [
+        {
+          "question": "For matrix multiplication A*B to be valid, what must be true?",
+          "options": ["A rows == B rows", "A columns == B rows", "A columns == B columns", "They must be square"],
+          "answer": "A columns == B rows"
+        },
+        {
+          "question": "What does an eigenvector of a matrix represent?",
+          "options": ["A vector that becomes zero", "A vector whose direction is unchanged under the transformation", "The largest row", "A random vector"],
+          "answer": "A vector whose direction is unchanged under the transformation"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "The Essence of Linear Algebra",
+          "channel": "3Blue1Brown",
+          "url": "https://www.youtube.com/watch?v=fNk_zzaMoSs"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "NumPy Linear Algebra",
+          "url": "https://numpy.org/doc/stable/reference/routines.linalg.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "fastai/numerical-linear-algebra",
+          "url": "https://github.com/fastai/numerical-linear-algebra"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Singularly Valuable Decomposition: The SVD of a Matrix",
+          "url": "https://www.jstor.org/stable/2691023"
+        }
+      ],
+      "skills_gained": [
+        "Vector and matrix operations",
+        "Eigen decomposition",
+        "Mathematical reasoning for ML"
+      ],
+      "expected_outcome": "You can manipulate vectors and matrices and understand their role in ML computations."
+    },
+    {
+      "day": 10,
+      "title": "Calculus and Optimization for ML",
+      "objectives": [
+        "Understand derivatives and gradients",
+        "Grasp the chain rule for backpropagation",
+        "Learn how gradient descent optimizes models"
+      ],
+      "topics": [
+        "Derivatives and slopes",
+        "Partial derivatives and gradients",
+        "The chain rule",
+        "Cost/loss functions",
+        "Gradient descent and learning rate",
+        "Local vs global minima"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Basic algebra", "Linear algebra basics"],
+      "beginner_explanation": "Training a model means minimizing a loss function - finding the parameter values that make predictions as accurate as possible. Calculus gives us gradients, which tell us the direction of steepest change. Gradient descent uses these gradients to iteratively nudge model parameters toward lower loss. This is the engine behind almost all model training.",
+      "practical_task": "Implement gradient descent from scratch in Python to minimize a simple quadratic function, and plot how the value converges over iterations.",
+      "mini_project": "Build a linear regression trainer using manual gradient descent (no scikit-learn) on a small dataset and visualize the fitted line improving each epoch.",
+      "assignment": "Experiment with three different learning rates on your gradient descent implementation. Document what happens with a rate that is too high, too low, and just right.",
+      "quiz": [
+        {
+          "question": "What does the gradient of a loss function tell you?",
+          "options": ["The final answer", "The direction of steepest increase", "The number of features", "The learning rate"],
+          "answer": "The direction of steepest increase"
+        },
+        {
+          "question": "What happens if the learning rate is too high?",
+          "options": ["Training is slow", "The model may overshoot and diverge", "Nothing changes", "It guarantees the global minimum"],
+          "answer": "The model may overshoot and diverge"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Gradient Descent, Step-by-Step",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=sDv4f4s2SB8"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "SciPy Optimization",
+          "url": "https://docs.scipy.org/doc/scipy/reference/optimize.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "mml-book/mml-book.github.io",
+          "url": "https://github.com/mml-book/mml-book.github.io"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "An Overview of Gradient Descent Optimization Algorithms (Ruder, 2016)",
+          "url": "https://arxiv.org/abs/1609.04747"
+        }
+      ],
+      "skills_gained": [
+        "Gradient computation",
+        "Optimization intuition",
+        "Gradient descent implementation"
+      ],
+      "expected_outcome": "You understand how models learn by minimizing loss through gradient descent."
+    },
+    {
+      "day": 11,
+      "title": "Probability and Statistics for AI",
+      "objectives": [
+        "Understand probability distributions",
+        "Learn descriptive and inferential statistics",
+        "Grasp Bayes' theorem and its ML uses"
+      ],
+      "topics": [
+        "Probability basics and conditional probability",
+        "Bayes' theorem",
+        "Random variables and distributions (normal, binomial)",
+        "Mean, variance, standard deviation",
+        "Correlation vs causation",
+        "Hypothesis testing basics"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Basic math"],
+      "beginner_explanation": "Machine learning is fundamentally about reasoning under uncertainty. Statistics helps you understand your data's distribution, spot patterns, and quantify confidence. Probability underpins models like Naive Bayes and concepts like likelihood. Knowing these fundamentals prevents common mistakes such as confusing correlation with causation or misreading noisy results.",
+      "practical_task": "Use NumPy and SciPy to generate samples from normal and binomial distributions, compute summary statistics, and visualize histograms.",
+      "mini_project": "Build a Naive Bayes spam classifier from scratch using probability to classify short text messages as spam or ham.",
+      "assignment": "Given a medical test with known accuracy, use Bayes' theorem to compute the probability that a positive result is a true positive. Explain the intuition.",
+      "quiz": [
+        {
+          "question": "Bayes' theorem lets you compute what?",
+          "options": ["The mean of data", "A posterior probability from a prior and likelihood", "The standard deviation", "A correlation coefficient"],
+          "answer": "A posterior probability from a prior and likelihood"
+        },
+        {
+          "question": "Which statement is true?",
+          "options": ["Correlation always implies causation", "Correlation does not imply causation", "Causation never involves correlation", "Variance measures central tendency"],
+          "answer": "Correlation does not imply causation"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Statistics - A Full University Course on Data Science Basics",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=xxpc-HPKN28"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "SciPy Statistics",
+          "url": "https://docs.scipy.org/doc/scipy/reference/stats.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "AllenDowney/ThinkStats2",
+          "url": "https://github.com/AllenDowney/ThinkStats2"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "An Essay towards solving a Problem in the Doctrine of Chances (Bayes, 1763)",
+          "url": "https://royalsocietypublishing.org/doi/10.1098/rstl.1763.0053"
+        }
+      ],
+      "skills_gained": [
+        "Statistical reasoning",
+        "Probability distributions",
+        "Bayesian thinking"
+      ],
+      "expected_outcome": "You can analyze data statistically and reason about uncertainty in models."
+    },
+    {
+      "day": 12,
+      "title": "Data Cleaning and Feature Engineering",
+      "objectives": [
+        "Handle missing data and outliers",
+        "Encode categorical variables",
+        "Create and scale features effectively"
+      ],
+      "topics": [
+        "Handling missing values (imputation)",
+        "Outlier detection and treatment",
+        "Encoding: one-hot, label, target encoding",
+        "Feature scaling (normalization, standardization)",
+        "Feature creation and binning",
+        "Train/test split and data leakage"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Pandas basics", "Statistics basics"],
+      "beginner_explanation": "Real-world data is messy - full of gaps, inconsistencies, and inappropriate formats. Feature engineering is the art of transforming raw data into inputs that models can learn from effectively. It is often said that data preparation determines model success more than the choice of algorithm. Avoiding data leakage - where test information sneaks into training - is critical for trustworthy results.",
+      "practical_task": "Take a messy dataset (e.g., Titanic), handle missing values, encode categoricals, scale numeric features, and prepare a clean train/test split.",
+      "mini_project": "Build a reusable data preprocessing pipeline that ingests raw CSV data and outputs a model-ready cleaned dataset with documented transformations.",
+      "assignment": "Explain what data leakage is with a concrete example, and describe how scaling must be fit only on training data to avoid it.",
+      "quiz": [
+        {
+          "question": "Why should feature scaling be fit only on training data?",
+          "options": ["To save memory", "To avoid data leakage from the test set", "Scaling never matters", "To speed up training"],
+          "answer": "To avoid data leakage from the test set"
+        },
+        {
+          "question": "One-hot encoding is used for what?",
+          "options": ["Scaling numbers", "Converting categorical variables into binary columns", "Removing outliers", "Filling missing values"],
+          "answer": "Converting categorical variables into binary columns"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Feature Engineering Full Course",
+          "channel": "Krish Naik",
+          "url": "https://www.youtube.com/watch?v=6WDFfaYtN6s"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Preprocessing",
+          "url": "https://scikit-learn.org/stable/modules/preprocessing.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "feature-engine/feature_engine",
+          "url": "https://github.com/feature-engine/feature_engine"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Few Useful Things to Know About Machine Learning (Domingos, 2012)",
+          "url": "https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf"
+        }
+      ],
+      "skills_gained": [
+        "Data cleaning",
+        "Feature engineering",
+        "Preventing data leakage"
+      ],
+      "expected_outcome": "You can transform messy raw data into clean, model-ready features."
+    },
+    {
+      "day": 13,
+      "title": "Introduction to Machine Learning",
+      "objectives": [
+        "Understand the ML workflow end to end",
+        "Distinguish supervised, unsupervised, and reinforcement learning",
+        "Grasp overfitting, underfitting, and generalization"
+      ],
+      "topics": [
+        "What is machine learning",
+        "Supervised vs unsupervised vs reinforcement learning",
+        "The ML workflow (data -> train -> evaluate -> deploy)",
+        "Training, validation, and test sets",
+        "Overfitting and underfitting",
+        "Bias-variance tradeoff"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Python", "Statistics basics"],
+      "beginner_explanation": "Machine learning enables computers to learn patterns from data rather than being explicitly programmed. Before diving into algorithms, it is vital to understand the overall workflow and core concepts like generalization - a model's ability to perform well on unseen data. The bias-variance tradeoff explains the central tension in ML: too simple a model underfits, too complex a model overfits.",
+      "practical_task": "Train your first model with scikit-learn on a built-in dataset (iris), then evaluate its accuracy on a held-out test set.",
+      "mini_project": "Create a comparison notebook that trains the same dataset with an underfit, well-fit, and overfit model, and visualizes the difference in train vs test performance.",
+      "assignment": "In your own words, explain the bias-variance tradeoff and give a real-world analogy for overfitting.",
+      "quiz": [
+        {
+          "question": "Overfitting means a model:",
+          "options": ["Performs poorly on training data", "Memorizes training data but fails on new data", "Is too simple", "Has no parameters"],
+          "answer": "Memorizes training data but fails on new data"
+        },
+        {
+          "question": "Which is an example of supervised learning?",
+          "options": ["Clustering customers", "Predicting house prices from labeled data", "Reducing dimensions", "Grouping images without labels"],
+          "answer": "Predicting house prices from labeled data"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Machine Learning for Everybody - Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=i_LwzRVP7bg"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Getting Started",
+          "url": "https://scikit-learn.org/stable/getting_started.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "ageron/handson-ml3",
+          "url": "https://github.com/ageron/handson-ml3"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Statistical Modeling: The Two Cultures (Breiman, 2001)",
+          "url": "https://projecteuclid.org/euclid.ss/1009213726"
+        }
+      ],
+      "skills_gained": [
+        "ML workflow understanding",
+        "Model evaluation basics",
+        "Bias-variance reasoning"
+      ],
+      "expected_outcome": "You understand the ML lifecycle and can train and evaluate a basic model."
+    },
+    {
+      "day": 14,
+      "title": "Regression Algorithms",
+      "objectives": [
+        "Understand linear and polynomial regression",
+        "Apply regularization (Ridge, Lasso)",
+        "Evaluate regression models properly"
+      ],
+      "topics": [
+        "Linear regression",
+        "Polynomial regression",
+        "Ridge and Lasso regularization",
+        "Regression metrics (MAE, MSE, RMSE, R2)",
+        "Assumptions of linear regression",
+        "Multicollinearity"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Statistics", "scikit-learn basics"],
+      "beginner_explanation": "Regression predicts continuous values - like prices, temperatures, or scores. Linear regression is the foundational algorithm and a great way to understand how models fit data by minimizing error. Regularization techniques like Ridge and Lasso prevent overfitting by penalizing large coefficients, and choosing the right evaluation metric ensures you measure what actually matters for your problem.",
+      "practical_task": "Train linear, polynomial, and Ridge regression models on a housing dataset and compare their RMSE and R2 scores.",
+      "mini_project": "Build a house price prediction model with feature engineering and regularization, and report which features most influence price.",
+      "assignment": "Compare Ridge and Lasso: explain how each handles coefficients and when you would choose one over the other.",
+      "quiz": [
+        {
+          "question": "Which metric penalizes large errors more heavily?",
+          "options": ["MAE", "RMSE", "R2 always", "Accuracy"],
+          "answer": "RMSE"
+        },
+        {
+          "question": "Lasso regularization can do what that Ridge cannot?",
+          "options": ["Increase all coefficients", "Drive some coefficients to exactly zero", "Prevent training", "Add features"],
+          "answer": "Drive some coefficients to exactly zero"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Linear Regression, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=nk2CQITm_eo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Linear Models",
+          "url": "https://scikit-learn.org/stable/modules/linear_model.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "ageron/handson-ml3",
+          "url": "https://github.com/ageron/handson-ml3"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Regression Shrinkage and Selection via the Lasso (Tibshirani, 1996)",
+          "url": "https://www.jstor.org/stable/2346178"
+        }
+      ],
+      "skills_gained": [
+        "Regression modeling",
+        "Regularization",
+        "Regression evaluation"
+      ],
+      "expected_outcome": "You can build and evaluate regression models with regularization."
+    },
+    {
+      "day": 15,
+      "title": "Classification Algorithms",
+      "objectives": [
+        "Understand logistic regression and decision trees",
+        "Apply KNN and SVM classifiers",
+        "Evaluate classifiers with proper metrics"
+      ],
+      "topics": [
+        "Logistic regression",
+        "Decision trees",
+        "K-Nearest Neighbors (KNN)",
+        "Support Vector Machines (SVM)",
+        "Confusion matrix, precision, recall, F1",
+        "ROC curve and AUC"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Regression basics", "scikit-learn"],
+      "beginner_explanation": "Classification predicts categories - spam or not, disease or healthy, which digit. Different algorithms make different assumptions: logistic regression draws linear boundaries, decision trees split on features, KNN uses proximity, and SVMs find optimal margins. Crucially, accuracy alone can mislead on imbalanced data, so precision, recall, and F1 give a fuller picture of performance.",
+      "practical_task": "Train logistic regression, a decision tree, KNN, and SVM on a classification dataset and compare their precision, recall, and F1 scores.",
+      "mini_project": "Build a customer churn predictor, handle class imbalance, and produce a confusion matrix and ROC curve to justify the chosen model.",
+      "assignment": "Explain the difference between precision and recall and give a scenario where recall matters more than precision.",
+      "quiz": [
+        {
+          "question": "In a cancer screening test, which metric is usually most important?",
+          "options": ["Precision", "Recall", "Training speed", "Number of features"],
+          "answer": "Recall"
+        },
+        {
+          "question": "What does the confusion matrix show?",
+          "options": ["Feature importance", "True/false positives and negatives", "Learning rate", "Model size"],
+          "answer": "True/false positives and negatives"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Logistic Regression, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=yIYKR4sgzI8"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Classification",
+          "url": "https://scikit-learn.org/stable/supervised_learning.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "ageron/handson-ml3",
+          "url": "https://github.com/ageron/handson-ml3"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Support-Vector Networks (Cortes & Vapnik, 1995)",
+          "url": "https://link.springer.com/article/10.1007/BF00994018"
+        }
+      ],
+      "skills_gained": [
+        "Classification modeling",
+        "Classifier evaluation",
+        "Handling imbalanced data"
+      ],
+      "expected_outcome": "You can build classifiers and evaluate them with appropriate metrics."
+    },
+    {
+      "day": 16,
+      "title": "Unsupervised Learning",
+      "objectives": [
+        "Understand clustering algorithms",
+        "Apply K-Means and hierarchical clustering",
+        "Grasp dimensionality reduction with PCA"
+      ],
+      "topics": [
+        "K-Means clustering",
+        "Hierarchical clustering",
+        "DBSCAN",
+        "Choosing the number of clusters (elbow, silhouette)",
+        "Principal Component Analysis (PCA)",
+        "Applications of unsupervised learning"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Linear algebra basics", "scikit-learn"],
+      "beginner_explanation": "Unsupervised learning finds structure in unlabeled data. Clustering groups similar data points - useful for customer segmentation or anomaly detection. Dimensionality reduction like PCA compresses many features into a few while retaining most information, which helps visualization and speeds up other models. Since there are no labels, evaluating results requires different techniques like the silhouette score.",
+      "practical_task": "Apply K-Means to a customer dataset, use the elbow method to pick k, then use PCA to visualize the clusters in 2D.",
+      "mini_project": "Build a customer segmentation tool that clusters shoppers by behavior and profiles each segment for a marketing team.",
+      "assignment": "Explain how PCA reduces dimensionality and what information is lost. When would you use it before training a model?",
+      "quiz": [
+        {
+          "question": "K-Means requires you to specify what in advance?",
+          "options": ["The labels", "The number of clusters k", "The learning rate", "The test set"],
+          "answer": "The number of clusters k"
+        },
+        {
+          "question": "PCA is primarily used for:",
+          "options": ["Classification", "Dimensionality reduction", "Text generation", "Data cleaning"],
+          "answer": "Dimensionality reduction"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "K-means Clustering, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=4b5d3muPQmA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Clustering",
+          "url": "https://scikit-learn.org/stable/modules/clustering.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "ageron/handson-ml3",
+          "url": "https://github.com/ageron/handson-ml3"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Density-Based Algorithm for Discovering Clusters (DBSCAN, Ester et al., 1996)",
+          "url": "https://dl.acm.org/doi/10.5555/3001460.3001507"
+        }
+      ],
+      "skills_gained": [
+        "Clustering",
+        "Dimensionality reduction",
+        "Unsupervised evaluation"
+      ],
+      "expected_outcome": "You can discover structure in unlabeled data and reduce dimensions with PCA."
+    },
+    {
+      "day": 17,
+      "title": "Scikit-learn Pipelines and Workflow",
+      "objectives": [
+        "Build reproducible ML pipelines",
+        "Use cross-validation properly",
+        "Tune hyperparameters systematically"
+      ],
+      "topics": [
+        "scikit-learn Pipeline and ColumnTransformer",
+        "Cross-validation strategies",
+        "Grid search and random search",
+        "Hyperparameter tuning",
+        "Saving and loading models (joblib)",
+        "Avoiding leakage with pipelines"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["scikit-learn", "Feature engineering"],
+      "beginner_explanation": "As projects grow, ad-hoc scripts become error-prone. Pipelines bundle preprocessing and modeling into a single reproducible object, ensuring the same transformations apply consistently and preventing data leakage. Cross-validation gives a more reliable performance estimate than a single split, and systematic hyperparameter tuning helps you find the best model configuration instead of guessing.",
+      "practical_task": "Build a scikit-learn Pipeline combining preprocessing and a classifier, then use GridSearchCV with cross-validation to tune hyperparameters.",
+      "mini_project": "Create an end-to-end reproducible ML pipeline that loads data, preprocesses, tunes, evaluates via cross-validation, and saves the best model to disk.",
+      "assignment": "Explain why wrapping preprocessing inside a pipeline (rather than doing it separately) prevents data leakage during cross-validation.",
+      "quiz": [
+        {
+          "question": "What is the main benefit of cross-validation over a single train/test split?",
+          "options": ["Faster training", "More reliable performance estimate", "Fewer features", "Smaller models"],
+          "answer": "More reliable performance estimate"
+        },
+        {
+          "question": "GridSearchCV is used to:",
+          "options": ["Clean data", "Systematically search hyperparameter combinations", "Deploy models", "Visualize data"],
+          "answer": "Systematically search hyperparameter combinations"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Scikit-learn Pipelines Tutorial",
+          "channel": "Data School",
+          "url": "https://www.youtube.com/watch?v=irHhDMbw3xo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Pipelines",
+          "url": "https://scikit-learn.org/stable/modules/compose.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn/scikit-learn",
+          "url": "https://github.com/scikit-learn/scikit-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Scikit-learn: Machine Learning in Python (Pedregosa et al., 2011)",
+          "url": "https://www.jmlr.org/papers/v12/pedregosa11a.html"
+        }
+      ],
+      "skills_gained": [
+        "ML pipelines",
+        "Cross-validation",
+        "Hyperparameter tuning"
+      ],
+      "expected_outcome": "You can build reproducible, leak-free ML pipelines with tuned hyperparameters."
+    },
+    {
+      "day": 18,
+      "title": "Model Evaluation and Validation",
+      "objectives": [
+        "Master evaluation metrics for different tasks",
+        "Understand validation strategies",
+        "Diagnose model problems with learning curves"
+      ],
+      "topics": [
+        "Classification metrics deep dive",
+        "Regression metrics deep dive",
+        "Stratified and k-fold cross-validation",
+        "Learning and validation curves",
+        "Handling class imbalance (SMOTE, class weights)",
+        "Model interpretation basics"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Classification", "Regression", "Pipelines"],
+      "beginner_explanation": "Choosing and interpreting the right evaluation strategy separates a reliable model from a misleading one. Different problems demand different metrics, and validation techniques ensure your performance estimates generalize. Learning curves reveal whether more data would help or whether your model is fundamentally over/underfitting, guiding your next steps intelligently rather than by trial and error.",
+      "practical_task": "Plot learning curves for a model to diagnose overfitting vs underfitting, and apply a technique to handle a class-imbalanced dataset.",
+      "mini_project": "Build an evaluation report generator that, given a trained model and dataset, outputs all relevant metrics, curves, and a plain-language diagnosis.",
+      "assignment": "Given a learning curve showing high training accuracy but low validation accuracy, diagnose the problem and propose three fixes.",
+      "quiz": [
+        {
+          "question": "A large gap between high training accuracy and low validation accuracy indicates:",
+          "options": ["Underfitting", "Overfitting", "Perfect model", "Data leakage only"],
+          "answer": "Overfitting"
+        },
+        {
+          "question": "SMOTE is used to address:",
+          "options": ["Slow training", "Class imbalance", "Missing values", "High dimensionality"],
+          "answer": "Class imbalance"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Machine Learning Fundamentals: Cross Validation",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=fSytzGwwBVw"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Model Evaluation",
+          "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn-contrib/imbalanced-learn",
+          "url": "https://github.com/scikit-learn-contrib/imbalanced-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "SMOTE: Synthetic Minority Over-sampling Technique (Chawla et al., 2002)",
+          "url": "https://arxiv.org/abs/1106.1813"
+        }
+      ],
+      "skills_gained": [
+        "Model evaluation",
+        "Validation strategies",
+        "Diagnosing model issues"
+      ],
+      "expected_outcome": "You can rigorously evaluate models and diagnose performance problems."
+    },
+    {
+      "day": 19,
+      "title": "Ensemble Methods: Random Forests and Gradient Boosting",
+      "objectives": [
+        "Understand bagging and boosting",
+        "Apply Random Forests and XGBoost",
+        "Interpret feature importance"
+      ],
+      "topics": [
+        "Bagging vs boosting",
+        "Random Forests",
+        "Gradient Boosting (XGBoost, LightGBM)",
+        "Feature importance",
+        "Hyperparameter tuning for ensembles",
+        "When ensembles win"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Decision trees", "Model evaluation"],
+      "beginner_explanation": "Ensemble methods combine many weak models into one strong predictor and dominate tabular data competitions. Random Forests average many decision trees (bagging) to reduce variance, while gradient boosting builds trees sequentially, each correcting the previous one's errors. XGBoost and LightGBM are the go-to tools for structured data problems in industry due to their accuracy and speed.",
+      "practical_task": "Train a Random Forest and an XGBoost model on the same dataset, compare performance, and plot feature importances.",
+      "mini_project": "Build a credit-risk or loan-default predictor using XGBoost, tune it, and produce a feature-importance report explaining the top drivers.",
+      "assignment": "Explain the difference between bagging and boosting, and why boosting can overfit if not regularized.",
+      "quiz": [
+        {
+          "question": "Random Forests reduce overfitting mainly by:",
+          "options": ["Using one deep tree", "Averaging many decorrelated trees", "Removing features", "Increasing learning rate"],
+          "answer": "Averaging many decorrelated trees"
+        },
+        {
+          "question": "Gradient boosting builds trees:",
+          "options": ["All at once independently", "Sequentially, each correcting prior errors", "Randomly", "Only two trees"],
+          "answer": "Sequentially, each correcting prior errors"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Random Forests, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=J4Wdy0Wc_xQ"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "XGBoost Documentation",
+          "url": "https://xgboost.readthedocs.io/en/stable/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "dmlc/xgboost",
+          "url": "https://github.com/dmlc/xgboost"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "XGBoost: A Scalable Tree Boosting System (Chen & Guestrin, 2016)",
+          "url": "https://arxiv.org/abs/1603.02754"
+        }
+      ],
+      "skills_gained": [
+        "Ensemble modeling",
+        "Gradient boosting",
+        "Feature importance analysis"
+      ],
+      "expected_outcome": "You can build high-performing ensemble models for tabular data."
+    },
+    {
+      "day": 20,
+      "title": "Feature Selection and Dimensionality Reduction",
+      "objectives": [
+        "Select the most informative features",
+        "Reduce dimensions while preserving signal",
+        "Combat the curse of dimensionality"
+      ],
+      "topics": [
+        "Filter, wrapper, and embedded methods",
+        "Recursive feature elimination",
+        "PCA in depth",
+        "t-SNE and UMAP for visualization",
+        "The curse of dimensionality",
+        "Feature importance-based selection"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["PCA basics", "Ensemble methods"],
+      "beginner_explanation": "More features are not always better - irrelevant or redundant features add noise, slow training, and can hurt accuracy. Feature selection keeps only what matters, while dimensionality reduction transforms features into a compact representation. Techniques like t-SNE and UMAP help you visualize high-dimensional data in 2D, revealing clusters and structure that would otherwise be invisible.",
+      "practical_task": "Apply recursive feature elimination and PCA to a high-dimensional dataset, then visualize it with t-SNE.",
+      "mini_project": "Build a feature-selection toolkit that ranks features by multiple methods and reports the smallest feature set that retains most accuracy.",
+      "assignment": "Explain the curse of dimensionality with an example and describe two strategies to mitigate it.",
+      "quiz": [
+        {
+          "question": "t-SNE is primarily used for:",
+          "options": ["Training classifiers", "Visualizing high-dimensional data", "Data cleaning", "Deployment"],
+          "answer": "Visualizing high-dimensional data"
+        },
+        {
+          "question": "The curse of dimensionality refers to:",
+          "options": ["Too few features", "Problems arising as feature count grows very large", "Slow disks", "Missing labels"],
+          "answer": "Problems arising as feature count grows very large"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "t-SNE, Clearly Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=NEaUSP4YerM"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Feature Selection",
+          "url": "https://scikit-learn.org/stable/modules/feature_selection.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "lmcinnes/umap",
+          "url": "https://github.com/lmcinnes/umap"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Visualizing Data using t-SNE (van der Maaten & Hinton, 2008)",
+          "url": "https://www.jmlr.org/papers/v9/vandermaaten08a.html"
+        }
+      ],
+      "skills_gained": [
+        "Feature selection",
+        "Dimensionality reduction",
+        "High-dimensional visualization"
+      ],
+      "expected_outcome": "You can reduce feature space intelligently to improve models and insight."
+    },
+    {
+      "day": 21,
+      "title": "Introduction to Neural Networks",
+      "objectives": [
+        "Understand neurons, layers, and activations",
+        "Grasp forward propagation",
+        "Understand how networks learn"
+      ],
+      "topics": [
+        "The perceptron and artificial neuron",
+        "Layers and network architecture",
+        "Activation functions (ReLU, sigmoid, tanh)",
+        "Forward propagation",
+        "Loss functions for networks",
+        "Why deep learning works"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Linear algebra", "Calculus basics"],
+      "beginner_explanation": "Neural networks are inspired by the brain: layers of simple units (neurons) each compute a weighted sum and apply an activation function to introduce non-linearity. Stacking layers lets networks learn increasingly abstract representations - edges, then shapes, then objects in an image. Understanding forward propagation - how input flows to output - is the first step before learning how networks train via backpropagation.",
+      "practical_task": "Implement a single neuron and a small 2-layer network from scratch in NumPy, computing the forward pass by hand.",
+      "mini_project": "Build a from-scratch neural network (NumPy only) that learns the XOR function, demonstrating why non-linear activations are needed.",
+      "assignment": "Explain why activation functions must be non-linear, and what happens if you stack only linear layers.",
+      "quiz": [
+        {
+          "question": "Why do neural networks need non-linear activation functions?",
+          "options": ["For speed", "So stacked layers can model non-linear relationships", "To save memory", "They do not need them"],
+          "answer": "So stacked layers can model non-linear relationships"
+        },
+        {
+          "question": "ReLU outputs:",
+          "options": ["Always zero", "max(0, x)", "The sigmoid of x", "A random value"],
+          "answer": "max(0, x)"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "But what is a neural network?",
+          "channel": "3Blue1Brown",
+          "url": "https://www.youtube.com/watch?v=aircAruvnKk"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Deep Learning Book (Goodfellow et al.)",
+          "url": "https://www.deeplearningbook.org/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "karpathy/micrograd",
+          "url": "https://github.com/karpathy/micrograd"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Learning representations by back-propagating errors (Rumelhart et al., 1986)",
+          "url": "https://www.nature.com/articles/323533a0"
+        }
+      ],
+      "skills_gained": [
+        "Neural network fundamentals",
+        "Forward propagation",
+        "Activation functions"
+      ],
+      "expected_outcome": "You understand how neural networks are structured and make predictions."
+    },
+    {
+      "day": 22,
+      "title": "Deep Learning Fundamentals and Backpropagation",
+      "objectives": [
+        "Understand backpropagation deeply",
+        "Learn optimizers and regularization",
+        "Handle common training problems"
+      ],
+      "topics": [
+        "Backpropagation and gradients",
+        "Optimizers (SGD, Adam)",
+        "Regularization (dropout, weight decay)",
+        "Batch normalization",
+        "Vanishing/exploding gradients",
+        "Learning rate scheduling"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Neural network basics", "Calculus"],
+      "beginner_explanation": "Backpropagation is the algorithm that makes deep learning possible - it efficiently computes how much each weight contributed to the error using the chain rule, then updates weights to reduce loss. Beyond the core algorithm, practical training relies on optimizers like Adam, regularization like dropout to prevent overfitting, and techniques like batch normalization to stabilize and speed up learning.",
+      "practical_task": "Extend your from-scratch network to implement backpropagation, then train it on a small dataset and watch the loss decrease.",
+      "mini_project": "Build a configurable neural network trainer (NumPy) supporting different optimizers and regularization, and compare their convergence.",
+      "assignment": "Explain the vanishing gradient problem and describe two techniques that help mitigate it.",
+      "quiz": [
+        {
+          "question": "Backpropagation uses which mathematical rule to compute gradients?",
+          "options": ["The product rule only", "The chain rule", "Bayes' theorem", "The power rule only"],
+          "answer": "The chain rule"
+        },
+        {
+          "question": "Dropout helps by:",
+          "options": ["Speeding up disks", "Randomly deactivating neurons to reduce overfitting", "Adding layers", "Increasing the learning rate"],
+          "answer": "Randomly deactivating neurons to reduce overfitting"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Backpropagation, step-by-step",
+          "channel": "3Blue1Brown",
+          "url": "https://www.youtube.com/watch?v=Ilg3gGewQ5U"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "CS231n Notes: Optimization",
+          "url": "https://cs231n.github.io/optimization-2/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "karpathy/nn-zero-to-hero",
+          "url": "https://github.com/karpathy/nn-zero-to-hero"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Adam: A Method for Stochastic Optimization (Kingma & Ba, 2014)",
+          "url": "https://arxiv.org/abs/1412.6980"
+        }
+      ],
+      "skills_gained": [
+        "Backpropagation",
+        "Optimization techniques",
+        "Regularization"
+      ],
+      "expected_outcome": "You understand how deep networks train and how to stabilize training."
+    },
+    {
+      "day": 23,
+      "title": "PyTorch Basics",
+      "objectives": [
+        "Understand tensors and autograd",
+        "Build and train networks in PyTorch",
+        "Use datasets and dataloaders"
+      ],
+      "topics": [
+        "PyTorch tensors and operations",
+        "Autograd and automatic differentiation",
+        "nn.Module and building models",
+        "Loss functions and optimizers",
+        "Dataset and DataLoader",
+        "Training loops"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Deep learning fundamentals", "Python OOP"],
+      "beginner_explanation": "PyTorch is the most popular deep learning framework for research and increasingly for production. It provides tensors (like NumPy arrays but GPU-accelerated) and autograd, which automatically computes gradients so you do not have to hand-code backpropagation. Learning to write clean training loops with nn.Module, DataLoaders, and optimizers is a core skill for any AI engineer.",
+      "practical_task": "Rebuild a neural network in PyTorch, define a training loop, and train it on MNIST or a similar dataset to reach good accuracy.",
+      "mini_project": "Build an image classifier in PyTorch with a custom Dataset/DataLoader, training loop, validation, and model checkpointing.",
+      "assignment": "Explain what autograd does and how requires_grad and .backward() work together in a training step.",
+      "quiz": [
+        {
+          "question": "In PyTorch, what does loss.backward() do?",
+          "options": ["Updates weights", "Computes gradients via autograd", "Loads data", "Saves the model"],
+          "answer": "Computes gradients via autograd"
+        },
+        {
+          "question": "What is the role of an optimizer.step()?",
+          "options": ["Computes the loss", "Updates parameters using computed gradients", "Loads a batch", "Defines the model"],
+          "answer": "Updates parameters using computed gradients"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "PyTorch for Deep Learning & Machine Learning - Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=V_xro1bcAuA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyTorch Tutorials",
+          "url": "https://pytorch.org/tutorials/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pytorch/pytorch",
+          "url": "https://github.com/pytorch/pytorch"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "PyTorch: An Imperative Style, High-Performance Deep Learning Library (Paszke et al., 2019)",
+          "url": "https://arxiv.org/abs/1912.01703"
+        }
+      ],
+      "skills_gained": [
+        "PyTorch tensors",
+        "Autograd",
+        "Training loops"
+      ],
+      "expected_outcome": "You can build and train neural networks end to end in PyTorch."
+    },
+    {
+      "day": 24,
+      "title": "TensorFlow and Keras",
+      "objectives": [
+        "Build models with the Keras API",
+        "Understand the TensorFlow ecosystem",
+        "Compare PyTorch and TensorFlow workflows"
+      ],
+      "topics": [
+        "Keras Sequential and Functional APIs",
+        "Compiling and fitting models",
+        "Callbacks (early stopping, checkpoints)",
+        "TensorFlow ecosystem overview",
+        "Saving and serving models",
+        "PyTorch vs TensorFlow"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Deep learning fundamentals"],
+      "beginner_explanation": "TensorFlow with Keras is the other major deep learning framework, widely used in production and on mobile/edge via TensorFlow Lite. Keras offers a clean, high-level API that lets you build and train models with very little code. Knowing both PyTorch and TensorFlow at a basic level makes you flexible, since teams and job postings vary in which they use.",
+      "practical_task": "Build the same image classifier from the PyTorch day using Keras, using callbacks for early stopping and checkpointing.",
+      "mini_project": "Build a Keras model for a tabular or image dataset, add callbacks, save the model, and reload it for inference.",
+      "assignment": "Compare PyTorch and TensorFlow/Keras in terms of API style, and describe a scenario where you might pick each.",
+      "quiz": [
+        {
+          "question": "The Keras Sequential API is best for:",
+          "options": ["Complex multi-input models", "Simple linear stacks of layers", "Only NLP", "Data cleaning"],
+          "answer": "Simple linear stacks of layers"
+        },
+        {
+          "question": "An EarlyStopping callback helps by:",
+          "options": ["Speeding up disks", "Halting training when validation stops improving", "Adding layers", "Cleaning data"],
+          "answer": "Halting training when validation stops improving"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "TensorFlow 2.0 Complete Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=tPYj3fFJGjk"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Keras Documentation",
+          "url": "https://keras.io/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "keras-team/keras",
+          "url": "https://github.com/keras-team/keras"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "TensorFlow: A System for Large-Scale Machine Learning (Abadi et al., 2016)",
+          "url": "https://arxiv.org/abs/1605.08695"
+        }
+      ],
+      "skills_gained": [
+        "Keras modeling",
+        "TensorFlow basics",
+        "Framework comparison"
+      ],
+      "expected_outcome": "You can build and train models with Keras and understand the TF ecosystem."
+    },
+    {
+      "day": 25,
+      "title": "Convolutional Neural Networks and Computer Vision",
+      "objectives": [
+        "Understand convolution and pooling",
+        "Build CNNs for image tasks",
+        "Apply data augmentation"
+      ],
+      "topics": [
+        "Convolution and filters",
+        "Pooling layers",
+        "CNN architectures (LeNet, ResNet)",
+        "Image data augmentation",
+        "Common CV tasks (classification, detection)",
+        "Interpreting CNN features"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["PyTorch or Keras", "Neural networks"],
+      "beginner_explanation": "Convolutional Neural Networks revolutionized computer vision by learning spatial features automatically. Convolution layers slide small filters over images to detect patterns like edges and textures, while pooling reduces spatial size and adds robustness. Modern architectures like ResNet stack many layers with skip connections. Data augmentation artificially expands your dataset, improving generalization for image tasks.",
+      "practical_task": "Build and train a CNN in PyTorch or Keras on CIFAR-10 with data augmentation, and evaluate its accuracy.",
+      "mini_project": "Build an image classifier (e.g., cats vs dogs, or plant disease detection) with a CNN and augmentation, and report performance.",
+      "assignment": "Explain how a convolution layer differs from a fully connected layer and why it is efficient for images.",
+      "quiz": [
+        {
+          "question": "What does a pooling layer do?",
+          "options": ["Increases image size", "Downsamples feature maps for robustness and efficiency", "Adds color", "Trains weights"],
+          "answer": "Downsamples feature maps for robustness and efficiency"
+        },
+        {
+          "question": "ResNet introduced which key idea?",
+          "options": ["Dropout", "Skip/residual connections", "One-hot encoding", "Batch gradient descent"],
+          "answer": "Skip/residual connections"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Convolutional Neural Networks Explained",
+          "channel": "3Blue1Brown",
+          "url": "https://www.youtube.com/watch?v=KuXjwB4LzSA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "CS231n: Convolutional Neural Networks",
+          "url": "https://cs231n.github.io/convolutional-networks/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pytorch/vision",
+          "url": "https://github.com/pytorch/vision"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Deep Residual Learning for Image Recognition (He et al., 2015)",
+          "url": "https://arxiv.org/abs/1512.03385"
+        }
+      ],
+      "skills_gained": [
+        "CNN architectures",
+        "Computer vision",
+        "Data augmentation"
+      ],
+      "expected_outcome": "You can build CNNs to solve image classification problems."
+    },
+    {
+      "day": 26,
+      "title": "Recurrent Networks and Sequence Models",
+      "objectives": [
+        "Understand RNNs, LSTMs, and GRUs",
+        "Model sequential data",
+        "Recognize limitations that led to transformers"
+      ],
+      "topics": [
+        "Recurrent neural networks (RNNs)",
+        "LSTM and GRU cells",
+        "Sequence-to-sequence models",
+        "Time series and text as sequences",
+        "Vanishing gradients in sequences",
+        "Why attention replaced RNNs"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Neural networks", "PyTorch or Keras"],
+      "beginner_explanation": "Many problems involve sequences - text, speech, time series - where order matters. Recurrent networks process sequences step by step, maintaining a hidden state that carries information forward. LSTMs and GRUs add gating to remember long-range dependencies. Understanding RNNs and their limitations (difficulty with long sequences) sets the stage for appreciating why transformers and attention took over.",
+      "practical_task": "Build an LSTM in PyTorch or Keras to forecast a simple time series or classify text sentiment.",
+      "mini_project": "Build a text sentiment classifier or a stock/weather time-series forecaster using an LSTM, and evaluate it.",
+      "assignment": "Explain how an LSTM's gates help it remember long-range dependencies compared to a vanilla RNN.",
+      "quiz": [
+        {
+          "question": "What problem do LSTMs address compared to vanilla RNNs?",
+          "options": ["Slow disks", "Difficulty learning long-range dependencies", "Too few parameters", "Overfitting only"],
+          "answer": "Difficulty learning long-range dependencies"
+        },
+        {
+          "question": "RNNs process sequences:",
+          "options": ["All at once in parallel", "Step by step maintaining a hidden state", "Randomly", "Backwards only"],
+          "answer": "Step by step maintaining a hidden state"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Illustrated Guide to LSTMs and GRUs",
+          "channel": "The AI Hacker",
+          "url": "https://www.youtube.com/watch?v=8HyCNIVRbSU"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyTorch RNN Documentation",
+          "url": "https://pytorch.org/docs/stable/nn.html#recurrent-layers"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pytorch/examples",
+          "url": "https://github.com/pytorch/examples"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Long Short-Term Memory (Hochreiter & Schmidhuber, 1997)",
+          "url": "https://www.bioinf.jku.at/publications/older/2604.pdf"
+        }
+      ],
+      "skills_gained": [
+        "Sequence modeling",
+        "LSTM/GRU",
+        "Time series and text modeling"
+      ],
+      "expected_outcome": "You can model sequential data and understand the motivation for attention."
+    },
+    {
+      "day": 27,
+      "title": "Natural Language Processing Fundamentals",
+      "objectives": [
+        "Preprocess and represent text",
+        "Understand embeddings",
+        "Build basic NLP models"
+      ],
+      "topics": [
+        "Text preprocessing (tokenization, stemming, lemmatization)",
+        "Bag-of-words and TF-IDF",
+        "Word embeddings (Word2Vec, GloVe)",
+        "Text classification",
+        "Named entity recognition basics",
+        "Evaluation of NLP models"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Python", "ML basics"],
+      "beginner_explanation": "Natural Language Processing lets machines work with human language. Since models need numbers, text must be converted into vectors - from simple counts (bag-of-words, TF-IDF) to dense word embeddings that capture meaning, where similar words sit close together in vector space. These fundamentals underpin everything from search to modern LLMs, giving you the vocabulary to understand what comes next.",
+      "practical_task": "Preprocess a text dataset, build TF-IDF and Word2Vec representations, and train a text classifier comparing both.",
+      "mini_project": "Build a news or review classifier that categorizes text, comparing TF-IDF + logistic regression against an embedding-based approach.",
+      "assignment": "Explain how word embeddings capture semantic meaning better than one-hot or bag-of-words representations.",
+      "quiz": [
+        {
+          "question": "What do word embeddings provide over one-hot encoding?",
+          "options": ["Larger vectors", "Dense vectors capturing semantic similarity", "Faster disks", "Exact word counts"],
+          "answer": "Dense vectors capturing semantic similarity"
+        },
+        {
+          "question": "TF-IDF gives higher weight to words that are:",
+          "options": ["Common in all documents", "Frequent in a document but rare across the corpus", "Always stopwords", "Numbers only"],
+          "answer": "Frequent in a document but rare across the corpus"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Natural Language Processing (NLP) Tutorial",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=dIUTsFT2MeQ"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "spaCy Documentation",
+          "url": "https://spacy.io/usage"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "explosion/spaCy",
+          "url": "https://github.com/explosion/spaCy"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Efficient Estimation of Word Representations in Vector Space (Word2Vec, Mikolov et al., 2013)",
+          "url": "https://arxiv.org/abs/1301.3781"
+        }
+      ],
+      "skills_gained": [
+        "Text preprocessing",
+        "Word embeddings",
+        "Text classification"
+      ],
+      "expected_outcome": "You can preprocess text and build fundamental NLP models."
+    },
+    {
+      "day": 28,
+      "title": "Transformers and Large Language Models Introduction",
+      "objectives": [
+        "Understand attention and the transformer",
+        "Grasp how LLMs are trained",
+        "Understand tokenization and context"
+      ],
+      "topics": [
+        "The attention mechanism",
+        "Transformer architecture overview",
+        "Pretraining and fine-tuning",
+        "Tokenization",
+        "What makes LLMs powerful",
+        "Popular models (GPT, BERT, Llama)"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["NLP fundamentals", "Neural networks"],
+      "beginner_explanation": "Transformers are the architecture behind virtually all modern AI breakthroughs, from ChatGPT to image generation. Their key innovation, self-attention, lets a model weigh the relevance of every word to every other word in parallel, capturing context far better than RNNs. Large Language Models are transformers trained on massive text corpora, then adapted to tasks. Understanding this conceptually is essential for any AI engineer today.",
+      "practical_task": "Read and run a minimal transformer/attention notebook to see how attention weights connect tokens, then use a pretrained model for a simple task.",
+      "mini_project": "Use a pretrained transformer (via Hugging Face) to build a text summarizer or sentiment analyzer and evaluate its outputs.",
+      "assignment": "In your own words, explain self-attention and why it enables parallel processing of sequences unlike RNNs.",
+      "quiz": [
+        {
+          "question": "The core innovation of transformers is:",
+          "options": ["Convolution", "Self-attention", "Pooling", "Recurrence"],
+          "answer": "Self-attention"
+        },
+        {
+          "question": "Compared to RNNs, transformers process sequence tokens:",
+          "options": ["Strictly one at a time", "In parallel using attention", "Backwards only", "Not at all"],
+          "answer": "In parallel using attention"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Transformers, explained visually",
+          "channel": "3Blue1Brown",
+          "url": "https://www.youtube.com/watch?v=wjZofJX0v4M"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "The Illustrated Transformer",
+          "url": "https://jalammar.github.io/illustrated-transformer/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "karpathy/nanoGPT",
+          "url": "https://github.com/karpathy/nanoGPT"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Attention Is All You Need (Vaswani et al., 2017)",
+          "url": "https://arxiv.org/abs/1706.03762"
+        }
+      ],
+      "skills_gained": [
+        "Attention mechanism",
+        "Transformer concepts",
+        "LLM fundamentals"
+      ],
+      "expected_outcome": "You understand transformers and how modern LLMs work at a conceptual level."
+    },
+    {
+      "day": 29,
+      "title": "Hugging Face Ecosystem",
+      "objectives": [
+        "Use the Transformers library",
+        "Load and run pretrained models",
+        "Work with datasets and pipelines"
+      ],
+      "topics": [
+        "Hugging Face Hub",
+        "transformers pipelines",
+        "Tokenizers",
+        "AutoModel and AutoTokenizer",
+        "datasets library",
+        "Inference with pretrained models"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Transformers intro", "PyTorch basics"],
+      "beginner_explanation": "Hugging Face is the GitHub of machine learning models, hosting hundreds of thousands of pretrained models you can use in a few lines of code. The transformers library provides a unified API to load models and tokenizers, and pipelines make common tasks (classification, summarization, QA) trivially easy. Mastering this ecosystem lets you leverage state-of-the-art models without training from scratch.",
+      "practical_task": "Use Hugging Face pipelines for sentiment analysis, summarization, and question answering, then load a model with AutoModel/AutoTokenizer manually.",
+      "mini_project": "Build a multi-task NLP demo app that offers summarization, translation, and sentiment analysis using Hugging Face pipelines.",
+      "assignment": "Explain the difference between using a high-level pipeline and manually loading a model with AutoModel/AutoTokenizer.",
+      "quiz": [
+        {
+          "question": "What is the Hugging Face Hub?",
+          "options": ["A cloud GPU service only", "A repository of pretrained models and datasets", "A database engine", "A code editor"],
+          "answer": "A repository of pretrained models and datasets"
+        },
+        {
+          "question": "A transformers 'pipeline' is:",
+          "options": ["A CI/CD tool", "A high-level API for common tasks", "A data cleaner", "A GPU driver"],
+          "answer": "A high-level API for common tasks"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Hugging Face Transformers Course",
+          "channel": "HuggingFace",
+          "url": "https://www.youtube.com/watch?v=00GKzGyWFEs"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face Transformers Docs",
+          "url": "https://huggingface.co/docs/transformers/index"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/transformers",
+          "url": "https://github.com/huggingface/transformers"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Transformers: State-of-the-Art Natural Language Processing (Wolf et al., 2020)",
+          "url": "https://arxiv.org/abs/1910.03771"
+        }
+      ],
+      "skills_gained": [
+        "Hugging Face Transformers",
+        "Using pretrained models",
+        "Tokenizers and datasets"
+      ],
+      "expected_outcome": "You can leverage the Hugging Face ecosystem to use state-of-the-art models."
+    },
+    {
+      "day": 30,
+      "title": "Transfer Learning and Fine-Tuning",
+      "objectives": [
+        "Understand transfer learning",
+        "Fine-tune pretrained models",
+        "Know when to fine-tune vs use as-is"
+      ],
+      "topics": [
+        "Transfer learning concept",
+        "Feature extraction vs fine-tuning",
+        "Fine-tuning a pretrained transformer",
+        "Fine-tuning a pretrained CNN",
+        "Freezing and unfreezing layers",
+        "Avoiding catastrophic forgetting"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Hugging Face", "CNNs"],
+      "beginner_explanation": "Training large models from scratch requires enormous data and compute. Transfer learning lets you start from a model already trained on huge datasets and adapt it to your specific task with far less data. You can either use it as a fixed feature extractor or fine-tune its weights. This is one of the most practical and powerful techniques in applied AI, and it is how most real projects get built.",
+      "practical_task": "Fine-tune a pretrained transformer (e.g., DistilBERT) on a custom text classification dataset using Hugging Face Trainer.",
+      "mini_project": "Fine-tune a pretrained model (text or image) for a domain-specific task and compare its performance to training from scratch.",
+      "assignment": "Explain the difference between feature extraction and full fine-tuning, and when you would choose each based on data size.",
+      "quiz": [
+        {
+          "question": "Transfer learning is most useful when:",
+          "options": ["You have unlimited data and compute", "You have limited data for your specific task", "You never want to reuse models", "Data is irrelevant"],
+          "answer": "You have limited data for your specific task"
+        },
+        {
+          "question": "Freezing early layers during fine-tuning means:",
+          "options": ["Deleting them", "Keeping their weights fixed while training later layers", "Doubling their size", "Randomizing them"],
+          "answer": "Keeping their weights fixed while training later layers"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Transfer Learning Explained",
+          "channel": "deeplizard",
+          "url": "https://www.youtube.com/watch?v=5T-iXNNiwIs"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face Fine-Tuning Guide",
+          "url": "https://huggingface.co/docs/transformers/training"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/transformers",
+          "url": "https://github.com/huggingface/transformers"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "How transferable are features in deep neural networks? (Yosinski et al., 2014)",
+          "url": "https://arxiv.org/abs/1411.1792"
+        }
+      ],
+      "skills_gained": [
+        "Transfer learning",
+        "Fine-tuning models",
+        "Layer freezing strategies"
+      ],
+      "expected_outcome": "You can adapt pretrained models to custom tasks with limited data."
+    },
+    {
+      "day": 31,
+      "title": "Working with LLM APIs",
+      "objectives": [
+        "Call commercial LLM APIs",
+        "Manage tokens, cost, and parameters",
+        "Handle responses robustly"
+      ],
+      "topics": [
+        "OpenAI, Anthropic, and other LLM APIs",
+        "API keys and environment security",
+        "Parameters (temperature, max tokens)",
+        "Token counting and cost management",
+        "Streaming responses",
+        "Error handling and rate limits"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Python", "APIs basics"],
+      "beginner_explanation": "Many AI applications are built not by training models but by calling powerful hosted LLMs through APIs. As an AI engineer, you need to call these services securely, control generation with parameters like temperature, count tokens to manage cost, and handle rate limits and errors gracefully. This skill lets you ship intelligent features quickly by standing on the shoulders of frontier models.",
+      "practical_task": "Write a Python script that calls an LLM API, experiments with temperature and max tokens, and streams the response to the console.",
+      "mini_project": "Build a command-line AI assistant that maintains conversation history, manages tokens, and handles API errors and retries gracefully.",
+      "assignment": "Explain how temperature affects output and why you would use low vs high values. Describe how to keep API keys secure.",
+      "quiz": [
+        {
+          "question": "A higher temperature value generally makes LLM output:",
+          "options": ["More deterministic", "More random/creative", "Shorter always", "Free of cost"],
+          "answer": "More random/creative"
+        },
+        {
+          "question": "API keys should be stored:",
+          "options": ["Hardcoded in the repo", "In environment variables or a secrets manager", "In a public gist", "In the README"],
+          "answer": "In environment variables or a secrets manager"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "OpenAI API Full Course for Beginners",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=c-g6epk3fFE"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Anthropic API Documentation",
+          "url": "https://docs.anthropic.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "openai/openai-python",
+          "url": "https://github.com/openai/openai-python"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Language Models are Few-Shot Learners (GPT-3, Brown et al., 2020)",
+          "url": "https://arxiv.org/abs/2005.14165"
+        }
+      ],
+      "skills_gained": [
+        "LLM API usage",
+        "Token and cost management",
+        "Robust API integration"
+      ],
+      "expected_outcome": "You can build applications powered by commercial LLM APIs securely and efficiently."
+    },
+    {
+      "day": 32,
+      "title": "Prompt Engineering",
+      "objectives": [
+        "Write effective prompts",
+        "Apply prompting techniques",
+        "Structure and constrain outputs"
+      ],
+      "topics": [
+        "Prompt anatomy and best practices",
+        "Zero-shot, few-shot prompting",
+        "Chain-of-thought prompting",
+        "System prompts and roles",
+        "Structured output (JSON)",
+        "Prompt iteration and evaluation"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["LLM APIs"],
+      "beginner_explanation": "Prompt engineering is the skill of communicating with LLMs to get reliable, high-quality results. Small changes in wording, examples, or structure can dramatically change outputs. Techniques like few-shot examples and chain-of-thought reasoning improve accuracy, while requesting structured output (like JSON) makes responses usable in software. It is the fastest lever for improving an AI feature without touching the model.",
+      "practical_task": "Take a task and iteratively improve a prompt using zero-shot, few-shot, and chain-of-thought approaches, comparing outputs.",
+      "mini_project": "Build a prompt-based tool (e.g., email drafter or code explainer) that uses system prompts and returns validated structured JSON output.",
+      "assignment": "Demonstrate how few-shot examples and chain-of-thought change the quality of an LLM's answer on a reasoning task.",
+      "quiz": [
+        {
+          "question": "Chain-of-thought prompting encourages the model to:",
+          "options": ["Answer instantly with no reasoning", "Show intermediate reasoning steps", "Use fewer tokens always", "Ignore the question"],
+          "answer": "Show intermediate reasoning steps"
+        },
+        {
+          "question": "Few-shot prompting means:",
+          "options": ["Giving no examples", "Providing a few examples in the prompt", "Training the model", "Reducing temperature to zero"],
+          "answer": "Providing a few examples in the prompt"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Prompt Engineering Tutorial",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=_ZvnD73m40o"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Anthropic Prompt Engineering Guide",
+          "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "dair-ai/Prompt-Engineering-Guide",
+          "url": "https://github.com/dair-ai/Prompt-Engineering-Guide"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Chain-of-Thought Prompting Elicits Reasoning in LLMs (Wei et al., 2022)",
+          "url": "https://arxiv.org/abs/2201.11903"
+        }
+      ],
+      "skills_gained": [
+        "Prompt engineering",
+        "Chain-of-thought",
+        "Structured output"
+      ],
+      "expected_outcome": "You can craft reliable prompts that produce high-quality, usable outputs."
+    },
+    {
+      "day": 33,
+      "title": "Retrieval-Augmented Generation (RAG) Basics",
+      "objectives": [
+        "Understand the RAG pattern",
+        "Use embeddings and vector search",
+        "Build a simple RAG pipeline"
+      ],
+      "topics": [
+        "Why RAG (grounding, reducing hallucination)",
+        "Embeddings for retrieval",
+        "Vector databases (Chroma, FAISS)",
+        "Chunking documents",
+        "Retrieval + generation flow",
+        "Evaluating RAG answers"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["LLM APIs", "Embeddings"],
+      "beginner_explanation": "LLMs do not know about your private documents and can hallucinate facts. Retrieval-Augmented Generation solves this by retrieving relevant text from your own data and injecting it into the prompt, so answers are grounded in real sources. It combines embeddings, a vector database for similarity search, and an LLM. RAG is the most common architecture for building enterprise AI assistants over private knowledge.",
+      "practical_task": "Build a minimal RAG pipeline: chunk documents, embed them into a vector store, retrieve relevant chunks for a query, and generate a grounded answer.",
+      "mini_project": "Build a 'chat with your documents' app that lets users ask questions about uploaded PDFs and returns answers with source citations.",
+      "assignment": "Explain how RAG reduces hallucination and why document chunking strategy affects retrieval quality.",
+      "quiz": [
+        {
+          "question": "The main purpose of RAG is to:",
+          "options": ["Train the model faster", "Ground LLM answers in retrieved external data", "Reduce token cost only", "Replace embeddings"],
+          "answer": "Ground LLM answers in retrieved external data"
+        },
+        {
+          "question": "A vector database is used to:",
+          "options": ["Store SQL tables", "Perform similarity search over embeddings", "Compile code", "Serve web pages"],
+          "answer": "Perform similarity search over embeddings"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "RAG from Scratch",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=sVcwVQRHIc8"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LangChain RAG Documentation",
+          "url": "https://python.langchain.com/docs/tutorials/rag/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "langchain-ai/langchain",
+          "url": "https://github.com/langchain-ai/langchain"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., 2020)",
+          "url": "https://arxiv.org/abs/2005.11401"
+        }
+      ],
+      "skills_gained": [
+        "RAG architecture",
+        "Vector search",
+        "Grounded generation"
+      ],
+      "expected_outcome": "You can build a RAG system that answers questions over your own documents."
+    },
+    {
+      "day": 34,
+      "title": "Building AI Applications",
+      "objectives": [
+        "Assemble LLM features into an app",
+        "Use frameworks like LangChain",
+        "Build a simple user interface"
+      ],
+      "topics": [
+        "LangChain and LlamaIndex overview",
+        "Chains and prompt templates",
+        "Building a UI with Streamlit or Gradio",
+        "Managing conversation state",
+        "Combining RAG with a UI",
+        "Basic app architecture"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["RAG basics", "Prompt engineering"],
+      "beginner_explanation": "Turning AI capabilities into a real product means wiring together models, data, and a user interface. Frameworks like LangChain help you compose LLM calls, tools, and retrieval into coherent flows, while Streamlit and Gradio let you build interactive UIs in pure Python with minimal effort. This day is about shipping something usable that ties together everything you have learned.",
+      "practical_task": "Build a Streamlit or Gradio app that wraps your RAG pipeline with a chat interface and conversation memory.",
+      "mini_project": "Build and polish a complete AI assistant web app (e.g., a study helper or support bot) combining RAG, memory, and a clean UI.",
+      "assignment": "Sketch the architecture of an AI app you would build, labeling the LLM, retrieval, state, and UI components.",
+      "quiz": [
+        {
+          "question": "Streamlit and Gradio are used to:",
+          "options": ["Train models", "Quickly build web UIs in Python", "Store vectors", "Manage GPUs"],
+          "answer": "Quickly build web UIs in Python"
+        },
+        {
+          "question": "LangChain primarily helps you:",
+          "options": ["Design databases", "Compose LLM calls, tools, and retrieval into flows", "Render 3D graphics", "Replace Python"],
+          "answer": "Compose LLM calls, tools, and retrieval into flows"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "LangChain Crash Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=lG7Uxts9SXs"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Streamlit Documentation",
+          "url": "https://docs.streamlit.io/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "streamlit/streamlit",
+          "url": "https://github.com/streamlit/streamlit"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al., 2022)",
+          "url": "https://arxiv.org/abs/2210.03629"
+        }
+      ],
+      "skills_gained": [
+        "AI app development",
+        "LangChain",
+        "UI with Streamlit/Gradio"
+      ],
+      "expected_outcome": "You can build and ship a functional AI application with a user interface."
+    },
+    {
+      "day": 35,
+      "title": "Experiment Tracking with MLflow and Weights & Biases",
+      "objectives": [
+        "Track experiments and metrics",
+        "Manage model versions",
+        "Compare runs systematically"
+      ],
+      "topics": [
+        "Why experiment tracking matters",
+        "MLflow tracking and model registry",
+        "Weights & Biases dashboards",
+        "Logging metrics, params, artifacts",
+        "Comparing and reproducing runs",
+        "Model versioning"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["ML training", "PyTorch or scikit-learn"],
+      "beginner_explanation": "When you train dozens of models with different settings, memory alone cannot track what worked. Experiment tracking tools like MLflow and Weights & Biases automatically log parameters, metrics, and artifacts, giving you dashboards to compare runs and reproduce results. This discipline is what separates hobby projects from professional ML work, and it is a core part of MLOps.",
+      "practical_task": "Instrument a training script with MLflow or W&B to log hyperparameters and metrics across several runs, then compare them in the dashboard.",
+      "mini_project": "Run a hyperparameter sweep on a model, track all runs with W&B or MLflow, and produce a report identifying the best configuration.",
+      "assignment": "Explain why experiment tracking is essential for reproducibility, and list what you should log for every training run.",
+      "quiz": [
+        {
+          "question": "Experiment tracking tools primarily help with:",
+          "options": ["Serving traffic", "Logging and comparing training runs reproducibly", "Compiling code", "Rendering UIs"],
+          "answer": "Logging and comparing training runs reproducibly"
+        },
+        {
+          "question": "A model registry is used to:",
+          "options": ["Store user passwords", "Version and manage trained models", "Clean data", "Host websites"],
+          "answer": "Version and manage trained models"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "MLflow Tutorial for Beginners",
+          "channel": "Krish Naik",
+          "url": "https://www.youtube.com/watch?v=r0do1KVEGqM"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "MLflow Documentation",
+          "url": "https://mlflow.org/docs/latest/index.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "mlflow/mlflow",
+          "url": "https://github.com/mlflow/mlflow"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Hidden Technical Debt in Machine Learning Systems (Sculley et al., 2015)",
+          "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "Experiment tracking",
+        "Model versioning",
+        "Reproducibility"
+      ],
+      "expected_outcome": "You can systematically track, compare, and reproduce ML experiments."
+    },
+    {
+      "day": 36,
+      "title": "Model Deployment with FastAPI",
+      "objectives": [
+        "Serve models via REST APIs",
+        "Build endpoints with FastAPI",
+        "Handle inference requests"
+      ],
+      "topics": [
+        "Why serve models as APIs",
+        "FastAPI basics",
+        "Request/response validation with Pydantic",
+        "Loading models for inference",
+        "Batching and async endpoints",
+        "Testing the API"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Python", "Trained model"],
+      "beginner_explanation": "A model is only useful when others can call it. FastAPI is a modern, high-performance Python framework for building REST APIs, ideal for serving ML models. You load your trained model once, expose a prediction endpoint, validate inputs with Pydantic, and return results as JSON. This is the standard way to put a model behind an interface that web and mobile apps can consume.",
+      "practical_task": "Wrap a trained model in a FastAPI app with a /predict endpoint, validate inputs with Pydantic, and test it with sample requests.",
+      "mini_project": "Deploy one of your earlier models as a FastAPI service with input validation, error handling, and interactive docs, tested end to end.",
+      "assignment": "Explain why input validation with Pydantic matters for a prediction API and what could go wrong without it.",
+      "quiz": [
+        {
+          "question": "FastAPI is used to:",
+          "options": ["Train models", "Build REST APIs to serve models", "Store embeddings", "Visualize data"],
+          "answer": "Build REST APIs to serve models"
+        },
+        {
+          "question": "Pydantic in FastAPI provides:",
+          "options": ["GPU acceleration", "Request/response data validation", "Model training", "Database migrations"],
+          "answer": "Request/response data validation"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "FastAPI Course for Beginners",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=tLKKmouUams"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "FastAPI Documentation",
+          "url": "https://fastapi.tiangolo.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "tiangolo/fastapi",
+          "url": "https://github.com/tiangolo/fastapi"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Hidden Technical Debt in Machine Learning Systems (Sculley et al., 2015)",
+          "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "Model serving",
+        "FastAPI",
+        "API design for ML"
+      ],
+      "expected_outcome": "You can serve trained models through a production-style REST API."
+    },
+    {
+      "day": 37,
+      "title": "Containerization with Docker",
+      "objectives": [
+        "Understand containers",
+        "Dockerize an ML application",
+        "Manage dependencies reproducibly"
+      ],
+      "topics": [
+        "Containers vs virtual machines",
+        "Dockerfile basics",
+        "Building and running images",
+        "Managing dependencies",
+        "Docker Compose",
+        "Dockerizing a FastAPI model service"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["FastAPI deployment", "Command line"],
+      "beginner_explanation": "It works on my machine is a classic problem. Docker solves it by packaging your app and all its dependencies into a portable container that runs identically anywhere. For ML, this means your model, code, and exact library versions travel together, making deployment reliable. Docker is a foundational DevOps and MLOps skill and the standard unit of deployment in the cloud.",
+      "practical_task": "Write a Dockerfile for your FastAPI model service, build the image, and run the container locally serving predictions.",
+      "mini_project": "Containerize a full ML app (model API plus a Streamlit UI) using Docker Compose so it starts with a single command.",
+      "assignment": "Explain the difference between a container and a VM, and why containers are lightweight and reproducible.",
+      "quiz": [
+        {
+          "question": "A Docker container packages:",
+          "options": ["Only the source code", "The app plus its dependencies and environment", "Just the OS kernel", "Only data"],
+          "answer": "The app plus its dependencies and environment"
+        },
+        {
+          "question": "Compared to a VM, a container:",
+          "options": ["Includes a full guest OS", "Shares the host kernel and is more lightweight", "Cannot run apps", "Is always slower"],
+          "answer": "Shares the host kernel and is more lightweight"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Docker Tutorial for Beginners",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=fqMOX6JJhGo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Docker Documentation",
+          "url": "https://docs.docker.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "docker/awesome-compose",
+          "url": "https://github.com/docker/awesome-compose"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture (Kreuzberger et al., 2022)",
+          "url": "https://arxiv.org/abs/2205.02302"
+        }
+      ],
+      "skills_gained": [
+        "Docker",
+        "Containerization",
+        "Reproducible deployment"
+      ],
+      "expected_outcome": "You can package ML applications into portable Docker containers."
+    },
+    {
+      "day": 38,
+      "title": "Introduction to MLOps",
+      "objectives": [
+        "Understand the MLOps lifecycle",
+        "Know key MLOps components",
+        "Grasp model and data versioning"
+      ],
+      "topics": [
+        "What is MLOps",
+        "The ML lifecycle in production",
+        "Data and model versioning (DVC)",
+        "Reproducible pipelines",
+        "Model registry and staging",
+        "MLOps maturity levels"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Docker", "Experiment tracking"],
+      "beginner_explanation": "MLOps applies DevOps principles to machine learning, addressing the unique challenges of data and models that change over time. It covers versioning data and models, building reproducible pipelines, automating training and deployment, and monitoring in production. Understanding the MLOps lifecycle helps you build systems that are reliable, reproducible, and maintainable rather than one-off notebooks that break.",
+      "practical_task": "Set up DVC to version a dataset and model alongside Git, and document a reproducible pipeline from data to trained model.",
+      "mini_project": "Create a reproducible ML project skeleton with versioned data (DVC), tracked experiments, and a documented pipeline others can rerun.",
+      "assignment": "Explain how MLOps differs from traditional DevOps, focusing on the added challenges of data and model drift.",
+      "quiz": [
+        {
+          "question": "MLOps adds which concerns beyond traditional DevOps?",
+          "options": ["Only faster servers", "Data and model versioning, drift, and retraining", "Nothing new", "Only UI design"],
+          "answer": "Data and model versioning, drift, and retraining"
+        },
+        {
+          "question": "DVC is primarily used to:",
+          "options": ["Serve APIs", "Version data and models with Git", "Render dashboards", "Train transformers"],
+          "answer": "Version data and models with Git"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "MLOps Course - Complete Guide",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=-dJPoLm_gtE"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "DVC Documentation",
+          "url": "https://dvc.org/doc"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "iterative/dvc",
+          "url": "https://github.com/iterative/dvc"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture (Kreuzberger et al., 2022)",
+          "url": "https://arxiv.org/abs/2205.02302"
+        }
+      ],
+      "skills_gained": [
+        "MLOps lifecycle",
+        "Data/model versioning",
+        "Reproducible pipelines"
+      ],
+      "expected_outcome": "You understand the MLOps lifecycle and can version data and models."
+    },
+    {
+      "day": 39,
+      "title": "CI/CD for Machine Learning",
+      "objectives": [
+        "Automate testing and deployment",
+        "Build ML CI/CD pipelines",
+        "Understand continuous training"
+      ],
+      "topics": [
+        "CI/CD concepts",
+        "GitHub Actions basics",
+        "Automated testing for ML code",
+        "Automated model deployment",
+        "Continuous training triggers",
+        "Pipeline orchestration overview"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Docker", "MLOps intro", "Git"],
+      "beginner_explanation": "Continuous Integration and Continuous Deployment automate the path from code change to running system. For ML, CI/CD tests your code and data, retrains or validates models, and deploys them automatically when checks pass. GitHub Actions is a popular tool to define these workflows. Automation reduces human error and lets you ship improvements safely and frequently instead of through risky manual steps.",
+      "practical_task": "Create a GitHub Actions workflow that runs tests and builds a Docker image for your model API on every push.",
+      "mini_project": "Set up an end-to-end CI/CD pipeline that tests, builds, and deploys your containerized model API automatically on push to main.",
+      "assignment": "Describe what a CI/CD pipeline for an ML project should test and automate, from code commit to deployment.",
+      "quiz": [
+        {
+          "question": "CI/CD primarily aims to:",
+          "options": ["Slow down releases", "Automate testing and deployment for safe, frequent releases", "Remove version control", "Replace models"],
+          "answer": "Automate testing and deployment for safe, frequent releases"
+        },
+        {
+          "question": "GitHub Actions is used to:",
+          "options": ["Train GPUs directly", "Define automated CI/CD workflows", "Store datasets", "Design UIs"],
+          "answer": "Define automated CI/CD workflows"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "GitHub Actions Tutorial",
+          "channel": "TechWorld with Nana",
+          "url": "https://www.youtube.com/watch?v=R8_veQiYBjI"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "GitHub Actions Documentation",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "actions/starter-workflows",
+          "url": "https://github.com/actions/starter-workflows"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture (Kreuzberger et al., 2022)",
+          "url": "https://arxiv.org/abs/2205.02302"
+        }
+      ],
+      "skills_gained": [
+        "CI/CD",
+        "GitHub Actions",
+        "Automated ML deployment"
+      ],
+      "expected_outcome": "You can automate testing and deployment of ML applications with CI/CD."
+    },
+    {
+      "day": 40,
+      "title": "Cloud Platforms for AI",
+      "objectives": [
+        "Understand cloud AI offerings",
+        "Deploy a model to the cloud",
+        "Use managed ML services"
+      ],
+      "topics": [
+        "AWS, GCP, Azure AI overview",
+        "Compute and GPU instances",
+        "Managed ML services (SageMaker, Vertex AI)",
+        "Cloud storage for data and models",
+        "Deploying a container to the cloud",
+        "Cost awareness in the cloud"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Docker", "Model deployment"],
+      "beginner_explanation": "Production AI usually runs in the cloud, which offers on-demand compute, GPUs, storage, and managed ML services. The big three (AWS, GCP, Azure) each provide platforms like SageMaker or Vertex AI that handle training, deployment, and scaling. You do not need to master every service, but you should be able to deploy a containerized model, use cloud storage, and understand cost implications of your choices.",
+      "practical_task": "Deploy your Dockerized model API to a cloud service (e.g., a container service or a managed endpoint) and call it over the internet.",
+      "mini_project": "Deploy a complete AI app to the cloud with proper storage and a public endpoint, and document the setup and estimated costs.",
+      "assignment": "Compare the three major cloud providers' AI offerings at a high level and describe when you would use a managed ML service.",
+      "quiz": [
+        {
+          "question": "Managed ML services like SageMaker/Vertex AI primarily:",
+          "options": ["Replace Python", "Handle training, deployment, and scaling for you", "Only store files", "Design logos"],
+          "answer": "Handle training, deployment, and scaling for you"
+        },
+        {
+          "question": "A key reason to use the cloud for AI is:",
+          "options": ["No internet needed", "On-demand compute and GPUs that scale", "It is always free", "It removes the need for models"],
+          "answer": "On-demand compute and GPUs that scale"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "AWS Machine Learning Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=Sh3surveps0"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Amazon SageMaker Documentation",
+          "url": "https://docs.aws.amazon.com/sagemaker/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "aws/amazon-sagemaker-examples",
+          "url": "https://github.com/aws/amazon-sagemaker-examples"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Hidden Technical Debt in Machine Learning Systems (Sculley et al., 2015)",
+          "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "Cloud AI platforms",
+        "Cloud deployment",
+        "Cost awareness"
+      ],
+      "expected_outcome": "You can deploy AI applications to the cloud using managed services."
+    },
+    {
+      "day": 41,
+      "title": "Model Monitoring and Maintenance",
+      "objectives": [
+        "Monitor models in production",
+        "Detect data and concept drift",
+        "Plan retraining strategies"
+      ],
+      "topics": [
+        "Why models degrade over time",
+        "Data drift vs concept drift",
+        "Monitoring metrics and logging",
+        "Alerting on performance drops",
+        "Retraining strategies",
+        "Feedback loops"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Deployment", "MLOps intro"],
+      "beginner_explanation": "A deployed model is not done - the world changes, and model performance drifts as incoming data diverges from training data. Monitoring tracks prediction quality, input distributions, and system health, alerting you when things degrade. Detecting data drift and concept drift lets you retrain before users are affected. Building feedback loops turns real-world usage into data that keeps your model accurate over time.",
+      "practical_task": "Add logging and a simple drift check to a deployed model, simulating drifted input and detecting the change.",
+      "mini_project": "Build a monitoring dashboard for a deployed model that tracks prediction distributions and flags drift with alerts.",
+      "assignment": "Explain the difference between data drift and concept drift with an example of each, and how you would respond to them.",
+      "quiz": [
+        {
+          "question": "Concept drift occurs when:",
+          "options": ["The server restarts", "The relationship between inputs and target changes over time", "You add a feature", "The model file is deleted"],
+          "answer": "The relationship between inputs and target changes over time"
+        },
+        {
+          "question": "Why monitor a model after deployment?",
+          "options": ["Models never change", "Performance can degrade as data drifts", "To increase cost", "It is not necessary"],
+          "answer": "Performance can degrade as data drifts"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "ML Model Monitoring Explained",
+          "channel": "Made With ML",
+          "url": "https://www.youtube.com/watch?v=QcevzK9ZuDg"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Evidently AI Documentation",
+          "url": "https://docs.evidentlyai.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "evidentlyai/evidently",
+          "url": "https://github.com/evidentlyai/evidently"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Survey on Concept Drift Adaptation (Gama et al., 2014)",
+          "url": "https://dl.acm.org/doi/10.1145/2523813"
+        }
+      ],
+      "skills_gained": [
+        "Model monitoring",
+        "Drift detection",
+        "Retraining strategy"
+      ],
+      "expected_outcome": "You can monitor deployed models and respond to performance degradation."
+    },
+    {
+      "day": 42,
+      "title": "Data Engineering Basics for AI",
+      "objectives": [
+        "Understand data pipelines",
+        "Work with batch and streaming data",
+        "Grasp storage and ETL basics"
+      ],
+      "topics": [
+        "Data pipelines and ETL/ELT",
+        "Batch vs streaming",
+        "Data warehouses and data lakes",
+        "Workflow orchestration (Airflow)",
+        "Data quality and validation",
+        "Feeding data to ML systems"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["SQL", "Python"],
+      "beginner_explanation": "AI systems are only as good as the data feeding them, and that data rarely arrives clean and ready. Data engineering builds the pipelines that collect, transform, and deliver data reliably. Understanding ETL, batch vs streaming, storage options like warehouses and lakes, and orchestration tools like Airflow helps you ensure your models always have fresh, high-quality data - a skill increasingly expected of AI engineers.",
+      "practical_task": "Build a simple ETL pipeline in Python that extracts data from a source, transforms it, and loads it into a database or file store.",
+      "mini_project": "Create a scheduled data pipeline (with Airflow or a simple scheduler) that ingests and cleans data daily to feed an ML model.",
+      "assignment": "Explain the difference between batch and streaming data processing and give a use case suited to each.",
+      "quiz": [
+        {
+          "question": "ETL stands for:",
+          "options": ["Extract, Transform, Load", "Evaluate, Test, Launch", "Encode, Train, Log", "Export, Trim, Link"],
+          "answer": "Extract, Transform, Load"
+        },
+        {
+          "question": "Apache Airflow is used for:",
+          "options": ["Training neural networks", "Orchestrating and scheduling data workflows", "Serving web pages", "Image editing"],
+          "answer": "Orchestrating and scheduling data workflows"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Data Engineering Course for Beginners",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=PHsC_t0j1dU"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Apache Airflow Documentation",
+          "url": "https://airflow.apache.org/docs/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "apache/airflow",
+          "url": "https://github.com/apache/airflow"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "The Dataflow Model (Akidau et al., 2015)",
+          "url": "https://research.google/pubs/pub43864/"
+        }
+      ],
+      "skills_gained": [
+        "Data pipelines",
+        "ETL",
+        "Workflow orchestration"
+      ],
+      "expected_outcome": "You can build basic data pipelines that reliably feed ML systems."
+    },
+    {
+      "day": 43,
+      "title": "Responsible AI and Ethics",
+      "objectives": [
+        "Understand bias and fairness",
+        "Grasp explainability and privacy",
+        "Apply responsible AI practices"
+      ],
+      "topics": [
+        "Bias and fairness in ML",
+        "Explainability (SHAP, LIME)",
+        "Privacy and data protection",
+        "Transparency and accountability",
+        "AI regulation and governance",
+        "Responsible deployment checklist"
+      ],
+      "estimated_time": "5 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["ML fundamentals"],
+      "beginner_explanation": "As AI makes decisions affecting people's lives, building it responsibly is not optional. Models can inherit and amplify bias from data, leading to unfair outcomes. Explainability tools like SHAP and LIME help you understand why a model made a decision, while privacy techniques protect sensitive data. Understanding fairness, transparency, and emerging regulation makes you a trustworthy engineer who builds systems people can rely on.",
+      "practical_task": "Use SHAP or LIME to explain a model's predictions, and audit a model for bias across a sensitive attribute.",
+      "mini_project": "Build a model fairness and explainability report for one of your earlier models, identifying any bias and proposing mitigations.",
+      "assignment": "Describe a real scenario where ML bias caused harm, and outline steps you would take to detect and mitigate it.",
+      "quiz": [
+        {
+          "question": "SHAP and LIME are tools for:",
+          "options": ["Training faster", "Explaining model predictions", "Storing data", "Deploying containers"],
+          "answer": "Explaining model predictions"
+        },
+        {
+          "question": "ML models can be biased because:",
+          "options": ["They are always fair", "They learn patterns, including biases, from training data", "Code has no effect", "Bias is impossible"],
+          "answer": "They learn patterns, including biases, from training data"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "AI Ethics and Responsible AI Explained",
+          "channel": "Google Cloud Tech",
+          "url": "https://www.youtube.com/watch?v=VqFqWIqOB1g"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "SHAP Documentation",
+          "url": "https://shap.readthedocs.io/en/latest/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "shap/shap",
+          "url": "https://github.com/shap/shap"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Unified Approach to Interpreting Model Predictions (SHAP, Lundberg & Lee, 2017)",
+          "url": "https://arxiv.org/abs/1705.07874"
+        }
+      ],
+      "skills_gained": [
+        "Fairness and bias auditing",
+        "Explainability",
+        "Responsible AI"
+      ],
+      "expected_outcome": "You can build and audit AI systems for fairness, transparency, and privacy."
+    },
+    {
+      "day": 44,
+      "title": "Capstone Project: Build and Deploy an End-to-End AI System",
+      "objectives": [
+        "Integrate the full AI engineering workflow",
+        "Build a production-ready application",
+        "Deploy and document the system"
+      ],
+      "topics": [
+        "Problem definition and data collection",
+        "Model building and evaluation",
+        "Serving with FastAPI and Docker",
+        "Deployment to the cloud",
+        "Monitoring and CI/CD",
+        "Documentation and demo"
+      ],
+      "estimated_time": "8-10 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["All prior days"],
+      "beginner_explanation": "The capstone ties everything together into one portfolio-worthy project. You will choose a real problem, gather and prepare data, train and evaluate a model (classical ML or an LLM-powered feature), then serve it via a FastAPI API, containerize it with Docker, deploy it to the cloud, and add basic monitoring and CI/CD. Completing a full end-to-end system is the single most convincing proof that you can work as an AI engineer.",
+      "practical_task": "Select a problem, build a working end-to-end solution from data to deployed model, and verify it runs in the cloud with a public endpoint.",
+      "mini_project": "Complete a full capstone: an end-to-end AI application (e.g., a document assistant, recommendation service, or image classifier) deployed and accessible online with monitoring.",
+      "assignment": "Write project documentation covering the problem, data, model choices, architecture, deployment, and known limitations.",
+      "quiz": [
+        {
+          "question": "A strong AI engineering capstone should demonstrate:",
+          "options": ["Only a trained notebook", "The full workflow from data to deployed, monitored system", "Only a UI mockup", "Just a research paper"],
+          "answer": "The full workflow from data to deployed, monitored system"
+        },
+        {
+          "question": "Why include monitoring in your capstone?",
+          "options": ["It is decorative", "To show you can maintain a model in production", "To slow it down", "It is never needed"],
+          "answer": "To show you can maintain a model in production"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "End to End Machine Learning Project",
+          "channel": "Krish Naik",
+          "url": "https://www.youtube.com/watch?v=Rj3jTh4vDbo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Full Stack Deep Learning",
+          "url": "https://fullstackdeeplearning.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "GokuMohandas/Made-With-ML",
+          "url": "https://github.com/GokuMohandas/Made-With-ML"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture (Kreuzberger et al., 2022)",
+          "url": "https://arxiv.org/abs/2205.02302"
+        }
+      ],
+      "skills_gained": [
+        "End-to-end AI engineering",
+        "System integration",
+        "Production deployment"
+      ],
+      "expected_outcome": "You have a complete, deployed AI system that showcases your full skill set."
+    },
+    {
+      "day": 45,
+      "title": "Portfolio, Career Preparation, and Next Steps",
+      "objectives": [
+        "Build a compelling portfolio",
+        "Prepare for AI engineer interviews",
+        "Plan continued learning"
+      ],
+      "topics": [
+        "Building a GitHub portfolio",
+        "Writing project READMEs and case studies",
+        "Resume and LinkedIn for AI roles",
+        "AI/ML interview preparation",
+        "Staying current (papers, communities)",
+        "Specialization paths (GenAI, CV, NLP, MLOps)"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Beginner",
+      "prerequisites": ["Capstone project"],
+      "beginner_explanation": "Skills get you hired only if others can see them. This final day focuses on presenting your work: a clean GitHub portfolio with well-documented projects, a resume and LinkedIn tuned for AI roles, and interview preparation covering ML concepts, coding, and system design. You will also map out how to keep learning and choose a specialization. The learning never stops in AI, but you will finish with a clear direction and momentum.",
+      "practical_task": "Polish your GitHub, write strong READMEs for your projects, and update your resume/LinkedIn to highlight AI engineering skills.",
+      "mini_project": "Assemble a portfolio website or curated GitHub profile featuring your capstone and 2-3 best projects with clear write-ups.",
+      "assignment": "Draft a 60-second self-introduction for an AI engineer interview and list 10 concepts you would review before interviewing.",
+      "quiz": [
+        {
+          "question": "The most convincing item in an AI engineer portfolio is usually:",
+          "options": ["A long resume", "Deployed end-to-end projects with clear documentation", "A list of course names", "A single notebook"],
+          "answer": "Deployed end-to-end projects with clear documentation"
+        },
+        {
+          "question": "Why keep learning after this roadmap?",
+          "options": ["AI never changes", "The field evolves rapidly with new models and tools", "To waste time", "Portfolios expire"],
+          "answer": "The field evolves rapidly with new models and tools"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "How to Build a Data Science / AI Portfolio",
+          "channel": "Ken Jee",
+          "url": "https://www.youtube.com/watch?v=xrbrN5Ng6Jk"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Google Machine Learning Guides",
+          "url": "https://developers.google.com/machine-learning/guides"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "GokuMohandas/Made-With-ML",
+          "url": "https://github.com/GokuMohandas/Made-With-ML"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Deep Learning (LeCun, Bengio & Hinton, 2015)",
+          "url": "https://www.nature.com/articles/nature14539"
+        }
+      ],
+      "skills_gained": [
+        "Portfolio building",
+        "Interview preparation",
+        "Career planning"
+      ],
+      "expected_outcome": "You have a job-ready portfolio and a clear plan to launch your AI engineer career."
+    }
+  ]
+}

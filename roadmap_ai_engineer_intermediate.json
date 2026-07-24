@@ -1,0 +1,3028 @@
+{
+  "roadmap": {
+    "title": "45-Day AI Engineer Roadmap",
+    "role": "AI Engineer",
+    "level": "Intermediate",
+    "total_days": 45,
+    "provider": "CalibiAI",
+    "description": "A rigorous 45-day intermediate curriculum for engineers who already know ML basics and want to build, optimize, and operate production-grade AI systems - spanning advanced ML, deep learning, LLMs, and full MLOps.",
+    "outcome": "Ability to design, train, optimize, serve, and monitor scalable machine learning and LLM systems in production environments."
+  },
+  "days": [
+    {
+      "day": 1,
+      "title": "Advanced Python for AI Engineering",
+      "objectives": [
+        "Write performant, idiomatic Python for ML systems",
+        "Master typing, decorators, and context managers",
+        "Use async and concurrency for I/O-bound AI workloads"
+      ],
+      "topics": [
+        "Type hints and static typing (mypy)",
+        "Decorators and context managers",
+        "Generators and iterators for streaming data",
+        "Concurrency: threading, multiprocessing, asyncio",
+        "Memory management and profiling",
+        "Packaging and virtual environments (poetry/uv)"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Python fundamentals", "OOP basics"],
+      "intermediate_explanation": "AI engineers write more than notebooks - they build libraries and services that must be fast, maintainable, and correct. This means moving beyond scripting into idiomatic Python: leveraging type hints for safer code, decorators and context managers for clean abstractions, generators for memory-efficient data streaming, and the right concurrency model for the workload (asyncio for I/O-bound LLM API calls, multiprocessing for CPU-bound preprocessing). Profiling and proper packaging round out the professional toolkit that separates production code from experiments.",
+      "practical_task": "Refactor a data-processing script to use generators for streaming, add full type hints checked by mypy, and profile it to find and fix a bottleneck.",
+      "mini_project": "Build a reusable, typed Python package (with poetry/uv) that concurrently fetches and processes data from multiple APIs using asyncio, complete with tests.",
+      "assignment": "Explain when to use asyncio vs multiprocessing vs threading in Python, using a concrete AI workload example for each.",
+      "quiz": [
+        {
+          "question": "For making many concurrent LLM API calls (I/O-bound), the best choice is:",
+          "options": ["multiprocessing", "asyncio", "A single thread loop", "GPU threads"],
+          "answer": "asyncio"
+        },
+        {
+          "question": "The Python GIL primarily limits:",
+          "options": ["I/O-bound async code", "True parallel execution of CPU-bound threads", "Memory usage", "Type checking"],
+          "answer": "True parallel execution of CPU-bound threads"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Python Asyncio - Full Tutorial",
+          "channel": "Tech With Tim",
+          "url": "https://www.youtube.com/watch?v=Qb9s3UiMSTA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Python asyncio Documentation",
+          "url": "https://docs.python.org/3/library/asyncio.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "python/mypy",
+          "url": "https://github.com/python/mypy"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Few Useful Things to Know About Machine Learning (Domingos, 2012)",
+          "url": "https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf"
+        }
+      ],
+      "skills_gained": [
+        "Idiomatic advanced Python",
+        "Concurrency and async",
+        "Profiling and packaging"
+      ],
+      "expected_outcome": "You can write performant, typed, concurrent Python suitable for production AI systems."
+    },
+    {
+      "day": 2,
+      "title": "Software Engineering Practices for ML",
+      "objectives": [
+        "Apply testing and clean architecture to ML code",
+        "Use design patterns for ML systems",
+        "Manage configuration and reproducibility"
+      ],
+      "topics": [
+        "Unit, integration, and data tests (pytest)",
+        "Clean code and SOLID for ML",
+        "Design patterns (factory, strategy, dependency injection)",
+        "Configuration management (Hydra, pydantic-settings)",
+        "Logging and error handling",
+        "Project structure for ML repos"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Advanced Python", "Git"],
+      "intermediate_explanation": "ML code notoriously rots into unmaintainable spaghetti. Applying software engineering discipline - testing, clean architecture, and design patterns - keeps systems reliable as they grow. Testing ML has unique twists: you test not just code but data schemas and model behavior. Configuration tools like Hydra let you manage the explosion of hyperparameters and environments cleanly, while structured logging and sensible project layout make debugging and collaboration far easier. These practices are what make ML systems trustworthy in production.",
+      "practical_task": "Add a pytest suite (unit + data validation tests) to an existing ML project and set up Hydra for configuration management.",
+      "mini_project": "Refactor a messy ML script into a clean, tested, config-driven package with proper structure, logging, and a strategy pattern for swappable models.",
+      "assignment": "Describe three types of tests specific to ML systems (beyond standard unit tests) and what each protects against.",
+      "quiz": [
+        {
+          "question": "A 'data test' in ML typically validates:",
+          "options": ["GPU temperature", "Schema, ranges, and distribution of input data", "Network latency", "UI rendering"],
+          "answer": "Schema, ranges, and distribution of input data"
+        },
+        {
+          "question": "The strategy pattern is useful in ML for:",
+          "options": ["Storing data", "Swapping interchangeable algorithms/models at runtime", "Rendering charts", "Compiling code"],
+          "answer": "Swapping interchangeable algorithms/models at runtime"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Pytest Tutorial - How to Test Python Code",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=cHYq1MRoyI0"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "pytest Documentation",
+          "url": "https://docs.pytest.org/en/stable/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "facebookresearch/hydra",
+          "url": "https://github.com/facebookresearch/hydra"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Hidden Technical Debt in Machine Learning Systems (Sculley et al., 2015)",
+          "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "ML testing",
+        "Clean architecture",
+        "Configuration management"
+      ],
+      "expected_outcome": "You can structure and test ML codebases to professional engineering standards."
+    },
+    {
+      "day": 3,
+      "title": "High-Performance NumPy and Vectorization",
+      "objectives": [
+        "Master vectorization and broadcasting",
+        "Optimize numerical code for speed",
+        "Understand memory layout and views"
+      ],
+      "topics": [
+        "Broadcasting rules in depth",
+        "Vectorization vs Python loops",
+        "Strides, views, and memory layout",
+        "einsum for tensor operations",
+        "Numba and JIT acceleration",
+        "Benchmarking numerical code"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["NumPy basics", "Linear algebra"],
+      "intermediate_explanation": "Numerical performance underpins all of ML, and naive Python loops can be orders of magnitude slower than vectorized NumPy. Understanding broadcasting deeply lets you express complex operations concisely, while knowing about strides, views, and memory layout helps you avoid costly copies. Tools like einsum express intricate tensor contractions elegantly, and Numba can JIT-compile hotspots to near-C speed. Mastering these lets you write preprocessing and custom operations that keep GPUs fed instead of bottlenecked on the CPU.",
+      "practical_task": "Take a loop-heavy numerical function, rewrite it with vectorization and einsum, then accelerate a remaining hotspot with Numba, benchmarking each step.",
+      "mini_project": "Implement a vectorized k-nearest-neighbors and a batched distance-matrix computation from scratch, benchmarking against a naive loop version.",
+      "assignment": "Explain broadcasting with a non-trivial example and describe how views differ from copies and why it matters for performance.",
+      "quiz": [
+        {
+          "question": "Vectorization improves performance mainly by:",
+          "options": ["Using more RAM", "Pushing loops into optimized compiled C routines", "Adding GPUs automatically", "Reducing accuracy"],
+          "answer": "Pushing loops into optimized compiled C routines"
+        },
+        {
+          "question": "A NumPy 'view' differs from a copy in that it:",
+          "options": ["Duplicates memory", "Shares the same underlying data buffer", "Is always slower", "Changes dtype"],
+          "answer": "Shares the same underlying data buffer"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "NumPy Broadcasting and Vectorization",
+          "channel": "sentdex",
+          "url": "https://www.youtube.com/watch?v=oG1t3qlzq14"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "NumPy Broadcasting",
+          "url": "https://numpy.org/doc/stable/user/basics.broadcasting.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "numba/numba",
+          "url": "https://github.com/numba/numba"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Array Programming with NumPy (Harris et al., 2020)",
+          "url": "https://www.nature.com/articles/s41586-020-2649-2"
+        }
+      ],
+      "skills_gained": [
+        "Vectorization",
+        "Numerical optimization",
+        "JIT acceleration"
+      ],
+      "expected_outcome": "You can write fast, memory-efficient numerical code for ML pipelines."
+    },
+    {
+      "day": 4,
+      "title": "Scalable Data Processing with Pandas, Polars, and Dask",
+      "objectives": [
+        "Optimize Pandas for large data",
+        "Use Polars for high performance",
+        "Scale out with Dask"
+      ],
+      "topics": [
+        "Pandas performance and dtypes optimization",
+        "Method chaining and vectorized ops",
+        "Polars lazy API",
+        "Out-of-core processing with Dask",
+        "Parquet and columnar formats",
+        "Handling datasets larger than memory"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Pandas basics", "Advanced Python"],
+      "intermediate_explanation": "Real datasets often exceed what naive Pandas can handle efficiently. This day is about scaling data work: optimizing Pandas with proper dtypes and vectorized method chains, adopting Polars for its blazing-fast lazy execution engine, and using Dask to process datasets larger than memory across cores or machines. Columnar formats like Parquet dramatically speed up I/O and reduce storage. These skills let you prepare large-scale training data without waiting hours or running out of memory.",
+      "practical_task": "Take a slow Pandas pipeline, optimize dtypes and chaining, then reimplement it in Polars lazy API and compare runtimes on a large dataset.",
+      "mini_project": "Build a data pipeline that processes a larger-than-memory dataset using Dask, writes optimized Parquet, and benchmarks it against a Pandas baseline.",
+      "assignment": "Compare Pandas, Polars, and Dask on axes of performance, memory, and use case. When would you reach for each?",
+      "quiz": [
+        {
+          "question": "Polars' lazy API improves performance by:",
+          "options": ["Running each op immediately", "Building a query plan and optimizing before execution", "Using only one core", "Avoiding columns"],
+          "answer": "Building a query plan and optimizing before execution"
+        },
+        {
+          "question": "Dask is primarily used to:",
+          "options": ["Render UIs", "Process data larger than memory / in parallel", "Train transformers", "Store secrets"],
+          "answer": "Process data larger than memory / in parallel"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Polars: The Fast DataFrame Library",
+          "channel": "Rob Mulla",
+          "url": "https://www.youtube.com/watch?v=CByx7XjYMhw"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Polars User Guide",
+          "url": "https://docs.pola.rs/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pola-rs/polars",
+          "url": "https://github.com/pola-rs/polars"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Dask: Parallel Computation with Blocked algorithms and Task Scheduling (Rocklin, 2015)",
+          "url": "https://conference.scipy.org/proceedings/scipy2015/pdfs/matthew_rocklin.pdf"
+        }
+      ],
+      "skills_gained": [
+        "Scalable data processing",
+        "Polars and Dask",
+        "Columnar formats"
+      ],
+      "expected_outcome": "You can process large datasets efficiently beyond single-machine Pandas limits."
+    },
+    {
+      "day": 5,
+      "title": "Advanced SQL and Analytical Databases",
+      "objectives": [
+        "Write complex analytical SQL",
+        "Optimize query performance",
+        "Use SQL for feature engineering at scale"
+      ],
+      "topics": [
+        "Window functions and CTEs",
+        "Query optimization and execution plans",
+        "Indexing strategies",
+        "Analytical databases (DuckDB, BigQuery)",
+        "SQL-based feature engineering",
+        "Working with semi-structured data (JSON)"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["SQL basics"],
+      "intermediate_explanation": "Much production feature engineering happens in SQL, close to where data lives, because it is faster and more scalable than pulling everything into Python. Intermediate AI engineers write complex analytical queries using window functions and CTEs, read execution plans to optimize slow queries, and design indexes wisely. Analytical engines like DuckDB and BigQuery process billions of rows efficiently. Being fluent in SQL lets you build features and datasets at scale without moving mountains of data.",
+      "practical_task": "Write analytical queries using window functions and CTEs to build time-based features, then optimize a slow query by reading its execution plan.",
+      "mini_project": "Use DuckDB to build a full feature-engineering pipeline in SQL over a large dataset, producing a model-ready table with rolling aggregates.",
+      "assignment": "Explain how window functions differ from GROUP BY aggregations, with an example where a window function is essential.",
+      "quiz": [
+        {
+          "question": "Window functions differ from GROUP BY in that they:",
+          "options": ["Always collapse rows", "Compute across rows while keeping individual rows", "Only work on strings", "Cannot use partitions"],
+          "answer": "Compute across rows while keeping individual rows"
+        },
+        {
+          "question": "Reading a query execution plan helps you:",
+          "options": ["Change the schema", "Identify slow operations like full scans", "Encrypt data", "Render charts"],
+          "answer": "Identify slow operations like full scans"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Advanced SQL Tutorial - Window Functions",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=NgH_jOpEUOg"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "DuckDB Documentation",
+          "url": "https://duckdb.org/docs/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "duckdb/duckdb",
+          "url": "https://github.com/duckdb/duckdb"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "DuckDB: an Embeddable Analytical Database (Raasveldt & Muhleisen, 2019)",
+          "url": "https://dl.acm.org/doi/10.1145/3299869.3320212"
+        }
+      ],
+      "skills_gained": [
+        "Advanced SQL",
+        "Query optimization",
+        "SQL feature engineering"
+      ],
+      "expected_outcome": "You can write and optimize complex SQL for large-scale feature engineering."
+    },
+    {
+      "day": 6,
+      "title": "Mathematical Foundations: Optimization and Matrix Calculus",
+      "objectives": [
+        "Understand matrix calculus for deep learning",
+        "Grasp convex and non-convex optimization",
+        "Connect math to modern optimizers"
+      ],
+      "topics": [
+        "Gradients, Jacobians, and Hessians",
+        "Matrix calculus for backprop",
+        "Convexity and optimization landscapes",
+        "Momentum, RMSProp, Adam, AdamW",
+        "Second-order methods overview",
+        "Learning rate schedules and warmup"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Calculus", "Linear algebra"],
+      "intermediate_explanation": "To debug and improve deep learning, you need more than intuition about gradient descent. Matrix calculus lets you reason about how gradients flow through layers, while understanding optimization landscapes explains why training can stall or diverge. Modern optimizers like Adam and AdamW combine momentum and adaptive learning rates; knowing how they work helps you choose hyperparameters and schedules (warmup, cosine decay) that make large models train stably. This mathematical grounding turns training from guesswork into engineering.",
+      "practical_task": "Derive the gradient of a small neural network layer by hand, then verify it numerically, and compare convergence of SGD, Adam, and AdamW on a problem.",
+      "mini_project": "Implement Adam and a cosine learning-rate schedule with warmup from scratch, and demonstrate their effect on training a small model.",
+      "assignment": "Explain the difference between Adam and AdamW (weight decay) and why AdamW is often preferred for transformers.",
+      "quiz": [
+        {
+          "question": "The Hessian matrix contains:",
+          "options": ["First derivatives", "Second-order partial derivatives", "Random values", "The loss value only"],
+          "answer": "Second-order partial derivatives"
+        },
+        {
+          "question": "AdamW differs from Adam by:",
+          "options": ["Removing momentum", "Decoupling weight decay from the gradient update", "Using no learning rate", "Being second-order"],
+          "answer": "Decoupling weight decay from the gradient update"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "The Matrix Calculus You Need For Deep Learning",
+          "channel": "Weights & Biases",
+          "url": "https://www.youtube.com/watch?v=mUpg5Exa5Vc"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "CS231n: Optimization Notes",
+          "url": "https://cs231n.github.io/neural-networks-3/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "mml-book/mml-book.github.io",
+          "url": "https://github.com/mml-book/mml-book.github.io"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Decoupled Weight Decay Regularization (AdamW, Loshchilov & Hutter, 2017)",
+          "url": "https://arxiv.org/abs/1711.05101"
+        }
+      ],
+      "skills_gained": [
+        "Matrix calculus",
+        "Optimization theory",
+        "Optimizer selection"
+      ],
+      "expected_outcome": "You can reason mathematically about training dynamics and optimizer behavior."
+    },
+    {
+      "day": 7,
+      "title": "Probabilistic Modeling and Bayesian Methods",
+      "objectives": [
+        "Apply Bayesian reasoning to ML",
+        "Understand probabilistic models",
+        "Quantify uncertainty in predictions"
+      ],
+      "topics": [
+        "Maximum likelihood vs MAP estimation",
+        "Bayesian inference and priors",
+        "Probabilistic graphical models overview",
+        "Uncertainty quantification",
+        "Monte Carlo methods and sampling",
+        "Bayesian optimization intuition"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Probability", "Statistics"],
+      "intermediate_explanation": "Point predictions are not enough for high-stakes AI - you often need to know how confident a model is. Bayesian methods provide a principled framework for reasoning about uncertainty, updating beliefs with data through priors and posteriors. Understanding MLE vs MAP clarifies what standard training actually optimizes, and Monte Carlo sampling underpins many modern techniques. Uncertainty quantification is increasingly demanded in production, from calibrated confidence scores to Bayesian optimization for tuning.",
+      "practical_task": "Implement Bayesian linear regression and produce predictive uncertainty intervals, comparing them to a standard point-estimate model.",
+      "mini_project": "Build an uncertainty-aware classifier (e.g., using MC dropout or an ensemble) and evaluate its calibration on out-of-distribution data.",
+      "assignment": "Explain the difference between MLE and MAP estimation and how MAP relates to regularization.",
+      "quiz": [
+        {
+          "question": "MAP estimation differs from MLE by:",
+          "options": ["Ignoring data", "Incorporating a prior over parameters", "Using no probability", "Removing the likelihood"],
+          "answer": "Incorporating a prior over parameters"
+        },
+        {
+          "question": "Uncertainty quantification is valuable because it:",
+          "options": ["Speeds training", "Tells you how confident a prediction is", "Reduces model size", "Removes the need for data"],
+          "answer": "Tells you how confident a prediction is"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Bayesian Statistics Explained",
+          "channel": "ritvikmath",
+          "url": "https://www.youtube.com/watch?v=9TDjifpGj-k"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyMC Documentation",
+          "url": "https://www.pymc.io/welcome.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pymc-devs/pymc",
+          "url": "https://github.com/pymc-devs/pymc"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Dropout as a Bayesian Approximation (Gal & Ghahramani, 2016)",
+          "url": "https://arxiv.org/abs/1506.02142"
+        }
+      ],
+      "skills_gained": [
+        "Bayesian inference",
+        "Uncertainty quantification",
+        "Probabilistic modeling"
+      ],
+      "expected_outcome": "You can build models that quantify and communicate predictive uncertainty."
+    },
+    {
+      "day": 8,
+      "title": "Advanced Feature Engineering and Feature Stores",
+      "objectives": [
+        "Engineer advanced features for ML",
+        "Handle time-series and categorical complexity",
+        "Understand feature stores"
+      ],
+      "topics": [
+        "Target and frequency encoding done safely",
+        "Time-series feature engineering (lags, rolling, windows)",
+        "Automated feature engineering",
+        "Feature scaling and transformation pipelines",
+        "Feature stores (Feast) concepts",
+        "Training/serving skew prevention"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Feature engineering basics", "Pipelines"],
+      "intermediate_explanation": "Feature engineering remains a top driver of model performance, and doing it correctly at scale is subtle. Encodings like target encoding must be cross-validated to avoid leakage; time-series features require careful handling of temporal order. A major production concern is training/serving skew - when features computed offline differ from those at inference. Feature stores like Feast solve this by providing a single source of truth for features across training and serving, ensuring consistency and reusability across teams.",
+      "practical_task": "Build a leakage-safe target-encoding transformer with cross-fitting, and engineer a set of time-series features (lags, rolling stats) for a forecasting dataset.",
+      "mini_project": "Set up a minimal feature store (Feast) that serves consistent features for both a training job and a live prediction endpoint, demonstrating no skew.",
+      "assignment": "Explain training/serving skew with an example and describe how a feature store prevents it.",
+      "quiz": [
+        {
+          "question": "Target encoding must be cross-fitted to avoid:",
+          "options": ["Slow training", "Data leakage from the target", "Missing values", "Large files"],
+          "answer": "Data leakage from the target"
+        },
+        {
+          "question": "A feature store primarily prevents:",
+          "options": ["GPU overheating", "Training/serving skew and feature duplication", "Slow disks", "UI bugs"],
+          "answer": "Training/serving skew and feature duplication"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Feature Stores Explained",
+          "channel": "MLOps.community",
+          "url": "https://www.youtube.com/watch?v=DaNv-Wf1Mer"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Feast Documentation",
+          "url": "https://docs.feast.dev/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "feast-dev/feast",
+          "url": "https://github.com/feast-dev/feast"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Hidden Technical Debt in Machine Learning Systems (Sculley et al., 2015)",
+          "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "Advanced feature engineering",
+        "Time-series features",
+        "Feature stores"
+      ],
+      "expected_outcome": "You can engineer robust features and serve them consistently via a feature store."
+    },
+    {
+      "day": 9,
+      "title": "Advanced Regression and Regularization",
+      "objectives": [
+        "Master regularization techniques deeply",
+        "Handle non-linear and robust regression",
+        "Diagnose regression assumptions"
+      ],
+      "topics": [
+        "Ridge, Lasso, and Elastic Net internals",
+        "Quantile and robust regression",
+        "Generalized linear models (GLMs)",
+        "Splines and non-linear features",
+        "Regularization path and coefficient analysis",
+        "Heteroscedasticity and diagnostics"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Regression basics", "Optimization"],
+      "intermediate_explanation": "Beyond fitting a line, advanced regression handles messy real-world targets: robust regression resists outliers, quantile regression predicts intervals rather than means, and GLMs extend linear models to counts and rates. Understanding the regularization path shows how coefficients shrink as penalties increase, and diagnostics reveal when assumptions like constant variance break. These tools let you build regression models that are both accurate and trustworthy in the presence of real data pathologies.",
+      "practical_task": "Fit Ridge, Lasso, and Elastic Net on a dataset, plot the regularization path, and apply quantile regression to produce prediction intervals.",
+      "mini_project": "Build a demand-forecasting or pricing model using GLMs and robust regression, with full diagnostics and prediction intervals.",
+      "assignment": "Explain when you would use quantile regression instead of ordinary least squares, and what it gives you.",
+      "quiz": [
+        {
+          "question": "Elastic Net combines the penalties of:",
+          "options": ["Only Ridge", "Ridge (L2) and Lasso (L1)", "Only Lasso", "No penalties"],
+          "answer": "Ridge (L2) and Lasso (L1)"
+        },
+        {
+          "question": "Quantile regression is used to:",
+          "options": ["Predict only the mean", "Predict specific quantiles / intervals of the target", "Classify data", "Reduce dimensions"],
+          "answer": "Predict specific quantiles / intervals of the target"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Regularization - Ridge, Lasso and Elastic Net",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=Q81RR3yKn30"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Linear Models",
+          "url": "https://scikit-learn.org/stable/modules/linear_model.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "statsmodels/statsmodels",
+          "url": "https://github.com/statsmodels/statsmodels"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Regularization and Variable Selection via the Elastic Net (Zou & Hastie, 2005)",
+          "url": "https://rss.onlinelibrary.wiley.com/doi/10.1111/j.1467-9868.2005.00503.x"
+        }
+      ],
+      "skills_gained": [
+        "Advanced regularization",
+        "Robust and quantile regression",
+        "Regression diagnostics"
+      ],
+      "expected_outcome": "You can build sophisticated regression models robust to real-world data issues."
+    },
+    {
+      "day": 10,
+      "title": "Advanced Classification and Imbalanced Learning",
+      "objectives": [
+        "Handle severe class imbalance",
+        "Calibrate classifier probabilities",
+        "Optimize decision thresholds"
+      ],
+      "topics": [
+        "Resampling (SMOTE variants, undersampling)",
+        "Cost-sensitive learning and class weights",
+        "Probability calibration (Platt, isotonic)",
+        "Threshold optimization for business metrics",
+        "Multi-class and multi-label strategies",
+        "Precision-recall vs ROC under imbalance"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Classification basics", "Model evaluation"],
+      "intermediate_explanation": "Production classification problems - fraud, churn, disease - are usually highly imbalanced, where accuracy is meaningless and naive models predict the majority class. Handling this requires resampling, cost-sensitive learning, and choosing the right metrics (precision-recall over ROC under heavy imbalance). Equally important is probability calibration: many models output scores that are not true probabilities, which matters when thresholds drive business decisions. Optimizing the decision threshold for the actual cost structure often beats swapping algorithms.",
+      "practical_task": "On an imbalanced dataset, apply SMOTE and class weights, calibrate probabilities with isotonic regression, and tune the threshold to maximize a business metric.",
+      "mini_project": "Build a fraud-detection classifier that handles extreme imbalance, is well-calibrated, and reports the optimal threshold with cost analysis.",
+      "assignment": "Explain why probability calibration matters and describe a scenario where an uncalibrated but accurate classifier causes harm.",
+      "quiz": [
+        {
+          "question": "Under severe class imbalance, the more informative curve is usually:",
+          "options": ["ROC curve", "Precision-Recall curve", "Learning curve", "Loss curve"],
+          "answer": "Precision-Recall curve"
+        },
+        {
+          "question": "Probability calibration ensures that:",
+          "options": ["The model is faster", "Predicted scores reflect true probabilities", "Classes are balanced", "Features are scaled"],
+          "answer": "Predicted scores reflect true probabilities"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Handling Imbalanced Datasets in Machine Learning",
+          "channel": "Krish Naik",
+          "url": "https://www.youtube.com/watch?v=JnlM4yLFNuo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "scikit-learn Probability Calibration",
+          "url": "https://scikit-learn.org/stable/modules/calibration.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "scikit-learn-contrib/imbalanced-learn",
+          "url": "https://github.com/scikit-learn-contrib/imbalanced-learn"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "SMOTE: Synthetic Minority Over-sampling Technique (Chawla et al., 2002)",
+          "url": "https://arxiv.org/abs/1106.1813"
+        }
+      ],
+      "skills_gained": [
+        "Imbalanced learning",
+        "Probability calibration",
+        "Threshold optimization"
+      ],
+      "expected_outcome": "You can build calibrated classifiers that perform well under real-world imbalance."
+    },
+    {
+      "day": 11,
+      "title": "Gradient Boosting Mastery: XGBoost, LightGBM, CatBoost",
+      "objectives": [
+        "Master modern gradient boosting libraries",
+        "Tune them effectively",
+        "Handle categorical features and large data"
+      ],
+      "topics": [
+        "How gradient boosting works internally",
+        "XGBoost vs LightGBM vs CatBoost",
+        "Handling categoricals (CatBoost, native)",
+        "Regularization and early stopping",
+        "GPU training and large datasets",
+        "SHAP with tree models"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Ensemble basics", "Feature engineering"],
+      "intermediate_explanation": "Gradient boosting still wins most tabular ML problems in industry, and mastering its three dominant libraries is a high-leverage skill. LightGBM is fast with histogram-based splits, CatBoost handles categorical features elegantly and resists overfitting, and XGBoost is a battle-tested standard. Knowing how they differ, how to tune them without overfitting, and how to interpret them with SHAP lets you extract maximum performance and insight from structured data - the bread and butter of many AI engineering roles.",
+      "practical_task": "Train and tune XGBoost, LightGBM, and CatBoost on the same dataset with early stopping, then compare performance and SHAP explanations.",
+      "mini_project": "Build a production-grade tabular model with the best boosting library for the data, with tuned hyperparameters, SHAP explanations, and a saved artifact.",
+      "assignment": "Compare XGBoost, LightGBM, and CatBoost across speed, categorical handling, and overfitting resistance, and recommend when to use each.",
+      "quiz": [
+        {
+          "question": "LightGBM achieves speed primarily through:",
+          "options": ["No trees", "Histogram-based split finding and leaf-wise growth", "Random guessing", "Removing regularization"],
+          "answer": "Histogram-based split finding and leaf-wise growth"
+        },
+        {
+          "question": "CatBoost is especially known for:",
+          "options": ["Only image data", "Strong native handling of categorical features", "No hyperparameters", "Being the slowest"],
+          "answer": "Strong native handling of categorical features"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "XGBoost in Python from Start to Finish",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=GrJP9FLV3FE"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LightGBM Documentation",
+          "url": "https://lightgbm.readthedocs.io/en/stable/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "microsoft/LightGBM",
+          "url": "https://github.com/microsoft/LightGBM"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "LightGBM: A Highly Efficient Gradient Boosting Decision Tree (Ke et al., 2017)",
+          "url": "https://papers.nips.cc/paper/2017/hash/6449f44a102fde848669bdd9eb6b76fa-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "Gradient boosting mastery",
+        "Hyperparameter tuning",
+        "Tree model interpretation"
+      ],
+      "expected_outcome": "You can build and tune state-of-the-art gradient boosting models for tabular data."
+    },
+    {
+      "day": 12,
+      "title": "Hyperparameter Optimization at Scale",
+      "objectives": [
+        "Apply advanced HPO methods",
+        "Use Optuna and Bayesian optimization",
+        "Parallelize and prune searches"
+      ],
+      "topics": [
+        "Grid vs random vs Bayesian search",
+        "Optuna study design and samplers",
+        "Pruning unpromising trials",
+        "Multi-objective optimization",
+        "Distributed HPO",
+        "Hyperband and successive halving"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Model training", "Experiment tracking"],
+      "intermediate_explanation": "Manual tuning does not scale to modern models with dozens of hyperparameters. Bayesian optimization, implemented in tools like Optuna, intelligently explores the search space by modeling which regions are promising, finding better configurations in far fewer trials than grid or random search. Pruning kills bad trials early to save compute, and methods like Hyperband allocate resources adaptively. Being able to run efficient, distributed HPO is essential when compute is expensive and models are large.",
+      "practical_task": "Use Optuna to tune a model with a Bayesian sampler and pruning, and compare the result and trial count against random search.",
+      "mini_project": "Build a reusable HPO framework with Optuna that tunes any model, supports pruning and multi-objective optimization, and logs to a dashboard.",
+      "assignment": "Explain how Bayesian optimization finds good hyperparameters in fewer trials than random search, and what a 'sampler' does in Optuna.",
+      "quiz": [
+        {
+          "question": "Bayesian optimization is more efficient than random search because it:",
+          "options": ["Tries every combination", "Models the objective to focus on promising regions", "Ignores past trials", "Uses no math"],
+          "answer": "Models the objective to focus on promising regions"
+        },
+        {
+          "question": "Pruning in Optuna is used to:",
+          "options": ["Delete data", "Stop unpromising trials early to save compute", "Increase trials", "Remove features"],
+          "answer": "Stop unpromising trials early to save compute"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Optuna Hyperparameter Optimization Tutorial",
+          "channel": "Abhishek Thakur",
+          "url": "https://www.youtube.com/watch?v=P6NwZVl8ttc"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Optuna Documentation",
+          "url": "https://optuna.readthedocs.io/en/stable/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "optuna/optuna",
+          "url": "https://github.com/optuna/optuna"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Optuna: A Next-generation Hyperparameter Optimization Framework (Akiba et al., 2019)",
+          "url": "https://arxiv.org/abs/1907.10902"
+        }
+      ],
+      "skills_gained": [
+        "Bayesian hyperparameter optimization",
+        "Optuna",
+        "Efficient search"
+      ],
+      "expected_outcome": "You can run efficient, scalable hyperparameter optimization for any model."
+    },
+    {
+      "day": 13,
+      "title": "Model Interpretability and Explainability",
+      "objectives": [
+        "Explain complex model predictions",
+        "Apply SHAP, LIME, and counterfactuals",
+        "Communicate model behavior to stakeholders"
+      ],
+      "topics": [
+        "Global vs local interpretability",
+        "SHAP values and theory",
+        "LIME for local explanations",
+        "Partial dependence and ICE plots",
+        "Counterfactual explanations",
+        "Interpreting deep models (attention, saliency)"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Model training", "Ensemble methods"],
+      "intermediate_explanation": "As models grow more complex, the ability to explain them becomes critical - for debugging, trust, compliance, and stakeholder buy-in. SHAP, grounded in game theory, fairly attributes predictions to features both globally and locally. LIME explains individual predictions with local surrogate models, and counterfactuals answer 'what would need to change to flip this decision?'. For deep models, attention and saliency maps offer insight. Mastering these tools lets you turn black boxes into systems people can understand and defend.",
+      "practical_task": "Explain a gradient-boosted model with global and local SHAP plots, generate LIME explanations for individual cases, and produce a counterfactual example.",
+      "mini_project": "Build an explainability dashboard for a deployed model that shows SHAP feature attributions and counterfactuals for any prediction on demand.",
+      "assignment": "Explain the difference between global and local interpretability and give a use case where each is required.",
+      "quiz": [
+        {
+          "question": "SHAP values are based on:",
+          "options": ["Random sampling only", "Cooperative game theory (Shapley values)", "Gradient descent", "SQL joins"],
+          "answer": "Cooperative game theory (Shapley values)"
+        },
+        {
+          "question": "A counterfactual explanation answers:",
+          "options": ["The average prediction", "What minimal change would alter the model's decision", "The training time", "The number of features"],
+          "answer": "What minimal change would alter the model's decision"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "SHAP Values Explained",
+          "channel": "StatQuest with Josh Starmer",
+          "url": "https://www.youtube.com/watch?v=L8_sVRhBDLU"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "SHAP Documentation",
+          "url": "https://shap.readthedocs.io/en/latest/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "shap/shap",
+          "url": "https://github.com/shap/shap"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Unified Approach to Interpreting Model Predictions (SHAP, Lundberg & Lee, 2017)",
+          "url": "https://arxiv.org/abs/1705.07874"
+        }
+      ],
+      "skills_gained": [
+        "Model interpretability",
+        "SHAP and LIME",
+        "Counterfactual reasoning"
+      ],
+      "expected_outcome": "You can explain and defend the behavior of complex models to any audience."
+    },
+    {
+      "day": 14,
+      "title": "Deep Learning Architectures Deep Dive",
+      "objectives": [
+        "Understand modern architectural building blocks",
+        "Design networks for different data types",
+        "Apply normalization and regularization deeply"
+      ],
+      "topics": [
+        "Residual and skip connections",
+        "Normalization (batch, layer, group)",
+        "Attention as a building block",
+        "Embeddings and representation learning",
+        "Regularization in deep nets",
+        "Architecture selection by data type"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Deep learning fundamentals", "PyTorch"],
+      "intermediate_explanation": "Modern deep learning is built from reusable components you can mix and match. Residual connections enable very deep networks by easing gradient flow; normalization layers stabilize training; attention lets models focus on relevant inputs; and learned embeddings turn discrete entities into meaningful vectors. Understanding these building blocks - rather than memorizing named architectures - lets you design or adapt networks for your specific data and debug why a given architecture trains well or poorly.",
+      "practical_task": "Implement residual blocks and compare batch vs layer normalization on a training task, observing their effect on stability and convergence.",
+      "mini_project": "Design and train a custom architecture combining embeddings, residual connections, and normalization for a tabular-plus-text dataset.",
+      "assignment": "Explain why residual connections help train very deep networks and how layer norm differs from batch norm.",
+      "quiz": [
+        {
+          "question": "Residual (skip) connections primarily help by:",
+          "options": ["Reducing parameters", "Easing gradient flow in deep networks", "Removing layers", "Adding noise"],
+          "answer": "Easing gradient flow in deep networks"
+        },
+        {
+          "question": "Layer normalization normalizes across:",
+          "options": ["The batch dimension", "The features of a single example", "The learning rate", "Nothing"],
+          "answer": "The features of a single example"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Deep Learning Architectures Explained",
+          "channel": "Yannic Kilcher",
+          "url": "https://www.youtube.com/watch?v=Cc4ENs6BbQw"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyTorch nn Documentation",
+          "url": "https://pytorch.org/docs/stable/nn.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "lucidrains/vit-pytorch",
+          "url": "https://github.com/lucidrains/vit-pytorch"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Deep Residual Learning for Image Recognition (He et al., 2015)",
+          "url": "https://arxiv.org/abs/1512.03385"
+        }
+      ],
+      "skills_gained": [
+        "Architecture design",
+        "Normalization techniques",
+        "Representation learning"
+      ],
+      "expected_outcome": "You can design and reason about modern deep learning architectures."
+    },
+    {
+      "day": 15,
+      "title": "Advanced PyTorch: Custom Components and Autograd",
+      "objectives": [
+        "Build custom layers, losses, and datasets",
+        "Understand autograd internals",
+        "Debug and profile PyTorch models"
+      ],
+      "topics": [
+        "Custom nn.Module and autograd.Function",
+        "Custom loss functions",
+        "Efficient Dataset and DataLoader (workers, pinning)",
+        "Hooks for inspection and debugging",
+        "torch.compile and TorchScript",
+        "Profiling with the PyTorch profiler"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["PyTorch basics", "Deep learning"],
+      "intermediate_explanation": "Real research and production work requires going beyond off-the-shelf layers. Advanced PyTorch means writing custom modules and even custom autograd Functions when you need novel operations, crafting task-specific loss functions, and building efficient data pipelines that keep the GPU busy. Hooks let you inspect activations and gradients for debugging, torch.compile speeds up models, and the profiler pinpoints bottlenecks. This mastery lets you implement papers, optimize training, and fix subtle bugs others cannot.",
+      "practical_task": "Implement a custom loss function and a custom nn.Module, use forward/backward hooks to inspect gradients, and profile a training loop to find a bottleneck.",
+      "mini_project": "Reimplement a model or layer from a recent paper in PyTorch with a custom component, optimized DataLoader, and torch.compile, benchmarking throughput.",
+      "assignment": "Explain when you need a custom autograd.Function versus just composing existing operations, and what backward() must return.",
+      "quiz": [
+        {
+          "question": "torch.compile is used to:",
+          "options": ["Train models slower", "Optimize/compile models for faster execution", "Delete gradients", "Store data"],
+          "answer": "Optimize/compile models for faster execution"
+        },
+        {
+          "question": "Setting num_workers>0 in a DataLoader:",
+          "options": ["Reduces accuracy", "Parallelizes data loading across processes", "Disables the GPU", "Removes batching"],
+          "answer": "Parallelizes data loading across processes"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "PyTorch Internals and Autograd",
+          "channel": "Aladdin Persson",
+          "url": "https://www.youtube.com/watch?v=MswxJw-8PvE"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyTorch Autograd Mechanics",
+          "url": "https://pytorch.org/docs/stable/notes/autograd.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "pytorch/pytorch",
+          "url": "https://github.com/pytorch/pytorch"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "PyTorch: An Imperative Style, High-Performance Deep Learning Library (Paszke et al., 2019)",
+          "url": "https://arxiv.org/abs/1912.01703"
+        }
+      ],
+      "skills_gained": [
+        "Custom PyTorch components",
+        "Autograd internals",
+        "Profiling and debugging"
+      ],
+      "expected_outcome": "You can build, debug, and optimize custom PyTorch models like a professional."
+    },
+    {
+      "day": 16,
+      "title": "Training Optimization: Mixed Precision and Efficiency",
+      "objectives": [
+        "Speed up and shrink training memory",
+        "Use mixed precision and gradient accumulation",
+        "Apply gradient checkpointing"
+      ],
+      "topics": [
+        "Mixed precision training (AMP, bf16/fp16)",
+        "Gradient accumulation for large batches",
+        "Gradient checkpointing to save memory",
+        "Gradient clipping",
+        "Efficient data loading and prefetching",
+        "Finding and fixing training bottlenecks"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Advanced PyTorch", "Optimization"],
+      "intermediate_explanation": "Training larger models on limited hardware demands efficiency tricks. Mixed precision uses 16-bit floats to nearly double throughput and halve memory with minimal accuracy loss. Gradient accumulation simulates large batch sizes when memory is tight, gradient checkpointing trades compute for memory by recomputing activations, and gradient clipping stabilizes training. Combined with efficient data loading, these techniques let you train models that would otherwise not fit, and train them faster - directly saving time and cloud cost.",
+      "practical_task": "Enable AMP mixed precision and gradient accumulation on a training loop, measure the speed and memory improvements, and add gradient clipping.",
+      "mini_project": "Take a model that barely fits in memory and apply mixed precision, gradient checkpointing, and accumulation to train it with a large effective batch size.",
+      "assignment": "Explain how gradient accumulation simulates a larger batch and what gradient checkpointing trades off.",
+      "quiz": [
+        {
+          "question": "Mixed precision training primarily provides:",
+          "options": ["Higher precision only", "Faster training and lower memory using 16-bit floats", "More layers", "No benefit"],
+          "answer": "Faster training and lower memory using 16-bit floats"
+        },
+        {
+          "question": "Gradient checkpointing trades:",
+          "options": ["Accuracy for speed", "Extra compute for lower memory", "Memory for accuracy", "Nothing"],
+          "answer": "Extra compute for lower memory"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Mixed Precision Training Explained",
+          "channel": "Weights & Biases",
+          "url": "https://www.youtube.com/watch?v=b5dAmcBKxHg"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyTorch Automatic Mixed Precision",
+          "url": "https://pytorch.org/docs/stable/amp.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "NVIDIA/apex",
+          "url": "https://github.com/NVIDIA/apex"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Mixed Precision Training (Micikevicius et al., 2017)",
+          "url": "https://arxiv.org/abs/1710.03740"
+        }
+      ],
+      "skills_gained": [
+        "Mixed precision training",
+        "Memory optimization",
+        "Training efficiency"
+      ],
+      "expected_outcome": "You can train larger models faster and cheaper through optimization techniques."
+    },
+    {
+      "day": 17,
+      "title": "Distributed Training",
+      "objectives": [
+        "Scale training across GPUs and nodes",
+        "Understand data and model parallelism",
+        "Use DDP and FSDP"
+      ],
+      "topics": [
+        "Data parallelism (DDP)",
+        "Model and tensor parallelism",
+        "Fully Sharded Data Parallel (FSDP)",
+        "Communication (all-reduce) and NCCL",
+        "Scaling efficiency and bottlenecks",
+        "Accelerate and DeepSpeed overview"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Advanced PyTorch", "Training optimization"],
+      "intermediate_explanation": "Modern models often cannot be trained on a single GPU in reasonable time or at all. Distributed training spreads work across devices: data parallelism replicates the model and splits the batch (DDP), while model and tensor parallelism split the model itself for very large networks. FSDP shards parameters, gradients, and optimizer states to fit huge models. Understanding the communication patterns and libraries like DeepSpeed and Accelerate lets you scale training efficiently instead of hitting a wall.",
+      "practical_task": "Convert a single-GPU training script to use PyTorch DDP (or Hugging Face Accelerate) and run it across multiple GPUs, measuring scaling efficiency.",
+      "mini_project": "Train a model with FSDP or DeepSpeed that does not fit on one GPU, documenting the sharding strategy and throughput gains.",
+      "assignment": "Explain the difference between data parallelism and model parallelism, and when FSDP is preferable to plain DDP.",
+      "quiz": [
+        {
+          "question": "Data parallelism (DDP) works by:",
+          "options": ["Splitting the model across GPUs", "Replicating the model and splitting the batch across GPUs", "Using one GPU only", "Removing gradients"],
+          "answer": "Replicating the model and splitting the batch across GPUs"
+        },
+        {
+          "question": "FSDP helps train very large models by:",
+          "options": ["Ignoring parameters", "Sharding parameters, gradients, and optimizer states across GPUs", "Using fp64", "Reducing layers"],
+          "answer": "Sharding parameters, gradients, and optimizer states across GPUs"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Distributed Training with PyTorch",
+          "channel": "PyTorch",
+          "url": "https://www.youtube.com/watch?v=toUSzwR0EV8"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "PyTorch Distributed Overview",
+          "url": "https://pytorch.org/tutorials/beginner/dist_overview.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "microsoft/DeepSpeed",
+          "url": "https://github.com/microsoft/DeepSpeed"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "ZeRO: Memory Optimizations Toward Training Trillion Parameter Models (Rajbhandari et al., 2019)",
+          "url": "https://arxiv.org/abs/1910.02054"
+        }
+      ],
+      "skills_gained": [
+        "Distributed training",
+        "DDP and FSDP",
+        "Scaling strategies"
+      ],
+      "expected_outcome": "You can scale model training across multiple GPUs and nodes efficiently."
+    },
+    {
+      "day": 18,
+      "title": "Modern Computer Vision Architectures",
+      "objectives": [
+        "Understand modern CNN and ViT designs",
+        "Apply transfer learning in vision",
+        "Handle high-resolution and augmentation"
+      ],
+      "topics": [
+        "EfficientNet and ConvNeXt",
+        "Vision Transformers (ViT)",
+        "Advanced augmentation (Mixup, CutMix)",
+        "Self-supervised pretraining overview",
+        "Fine-tuning vision backbones",
+        "timm library"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["CNNs", "Transfer learning"],
+      "intermediate_explanation": "Computer vision has moved well beyond basic CNNs. Modern convolutional designs like ConvNeXt and EfficientNet push accuracy-efficiency frontiers, while Vision Transformers apply attention to image patches and scale exceptionally well with data. Advanced augmentation like Mixup and CutMix and self-supervised pretraining squeeze more out of limited labels. The timm library gives you hundreds of pretrained backbones. Knowing this landscape lets you pick and fine-tune the right vision model for accuracy, speed, and data constraints.",
+      "practical_task": "Fine-tune a ViT and a ConvNeXt from timm on a custom image dataset with Mixup/CutMix augmentation, and compare their performance.",
+      "mini_project": "Build an image classification service using a fine-tuned modern backbone, with strong augmentation and a documented accuracy/latency tradeoff analysis.",
+      "assignment": "Compare Vision Transformers with CNNs in terms of inductive bias, data requirements, and when to choose each.",
+      "quiz": [
+        {
+          "question": "Vision Transformers process images by:",
+          "options": ["Sliding convolutions only", "Splitting images into patches and applying attention", "Using RNNs", "Ignoring spatial structure entirely with no patches"],
+          "answer": "Splitting images into patches and applying attention"
+        },
+        {
+          "question": "Mixup augmentation works by:",
+          "options": ["Rotating images", "Linearly blending pairs of images and their labels", "Removing pixels", "Adding text"],
+          "answer": "Linearly blending pairs of images and their labels"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Vision Transformer (ViT) Explained",
+          "channel": "Yannic Kilcher",
+          "url": "https://www.youtube.com/watch?v=TrdevFK_am4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "timm (PyTorch Image Models) Docs",
+          "url": "https://huggingface.co/docs/timm/index"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/pytorch-image-models",
+          "url": "https://github.com/huggingface/pytorch-image-models"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (Dosovitskiy et al., 2020)",
+          "url": "https://arxiv.org/abs/2010.11929"
+        }
+      ],
+      "skills_gained": [
+        "Modern vision architectures",
+        "Vision Transformers",
+        "Advanced augmentation"
+      ],
+      "expected_outcome": "You can select and fine-tune state-of-the-art vision models for real tasks."
+    },
+    {
+      "day": 19,
+      "title": "Object Detection and Segmentation",
+      "objectives": [
+        "Understand detection and segmentation tasks",
+        "Use modern detectors (YOLO, DETR)",
+        "Apply segmentation models (SAM, U-Net)"
+      ],
+      "topics": [
+        "Object detection fundamentals (anchors, IoU, NMS)",
+        "YOLO family and real-time detection",
+        "DETR (transformer-based detection)",
+        "Semantic vs instance segmentation",
+        "U-Net and Segment Anything (SAM)",
+        "Detection/segmentation metrics (mAP, IoU)"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["CNNs", "Modern vision architectures"],
+      "intermediate_explanation": "Many real vision applications need more than classification - they need to locate and delineate objects. Detection predicts bounding boxes (YOLO for real-time, DETR using transformers), while segmentation assigns class labels to every pixel (U-Net) or isolates individual objects (Segment Anything). Understanding concepts like IoU, non-max suppression, and mAP is essential to build and evaluate these systems. These skills unlock applications from autonomous driving to medical imaging and industrial inspection.",
+      "practical_task": "Fine-tune a YOLO model on a custom detection dataset, evaluate with mAP, and run zero-shot segmentation with SAM on sample images.",
+      "mini_project": "Build a detection or segmentation application (e.g., defect detection or object counting) with a fine-tuned model and an inference pipeline.",
+      "assignment": "Explain the difference between semantic and instance segmentation, and describe what non-max suppression does in detection.",
+      "quiz": [
+        {
+          "question": "Non-max suppression (NMS) is used to:",
+          "options": ["Add more boxes", "Remove overlapping duplicate detections", "Train faster", "Segment pixels"],
+          "answer": "Remove overlapping duplicate detections"
+        },
+        {
+          "question": "Instance segmentation differs from semantic segmentation by:",
+          "options": ["Ignoring pixels", "Distinguishing individual object instances", "Only drawing boxes", "Being classification"],
+          "answer": "Distinguishing individual object instances"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "YOLO Object Detection Explained",
+          "channel": "Computerphile",
+          "url": "https://www.youtube.com/watch?v=ag3DLKsl2vk"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Ultralytics YOLO Documentation",
+          "url": "https://docs.ultralytics.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "ultralytics/ultralytics",
+          "url": "https://github.com/ultralytics/ultralytics"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Segment Anything (Kirillov et al., 2023)",
+          "url": "https://arxiv.org/abs/2304.02643"
+        }
+      ],
+      "skills_gained": [
+        "Object detection",
+        "Image segmentation",
+        "Detection metrics"
+      ],
+      "expected_outcome": "You can build detection and segmentation systems for real-world vision tasks."
+    },
+    {
+      "day": 20,
+      "title": "Transformer Internals and Attention Deep Dive",
+      "objectives": [
+        "Understand transformer internals fully",
+        "Implement attention from scratch",
+        "Know positional encodings and variants"
+      ],
+      "topics": [
+        "Self-attention and multi-head attention math",
+        "Query, key, value projections",
+        "Positional encodings (sinusoidal, RoPE)",
+        "Encoder vs decoder vs encoder-decoder",
+        "Attention variants (causal, cross)",
+        "Flash Attention overview"
+      ],
+      "estimated_time": "7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Attention basics", "Advanced PyTorch"],
+      "intermediate_explanation": "To fine-tune, optimize, or debug transformer-based systems, you must understand them from the inside. Self-attention computes relationships between all tokens via query-key-value projections; multi-head attention runs several in parallel to capture different relationships. Positional encodings inject order information, with modern models favoring RoPE. Knowing the difference between encoder, decoder, and causal attention explains why BERT and GPT behave differently, and Flash Attention shows how these systems are made memory-efficient at scale.",
+      "practical_task": "Implement scaled dot-product and multi-head attention from scratch in PyTorch, verify against the built-in module, and add causal masking.",
+      "mini_project": "Build a small transformer (encoder or decoder) from scratch, train it on a toy task, and visualize its attention maps to interpret behavior.",
+      "assignment": "Explain the roles of query, key, and value in attention, and why the dot product is scaled by the square root of the dimension.",
+      "quiz": [
+        {
+          "question": "In self-attention, the attention scores are computed from:",
+          "options": ["Values only", "Query and key dot products", "Random weights", "The loss"],
+          "answer": "Query and key dot products"
+        },
+        {
+          "question": "Causal (masked) attention ensures a token can only attend to:",
+          "options": ["Future tokens", "Previous and current tokens", "All tokens", "No tokens"],
+          "answer": "Previous and current tokens"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Attention in Transformers, Visually Explained",
+          "channel": "3Blue1Brown",
+          "url": "https://www.youtube.com/watch?v=eMlx5fFNoYc"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "The Annotated Transformer",
+          "url": "https://nlp.seas.harvard.edu/annotated-transformer/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "karpathy/nanoGPT",
+          "url": "https://github.com/karpathy/nanoGPT"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Attention Is All You Need (Vaswani et al., 2017)",
+          "url": "https://arxiv.org/abs/1706.03762"
+        }
+      ],
+      "skills_gained": [
+        "Transformer internals",
+        "Attention implementation",
+        "Positional encodings"
+      ],
+      "expected_outcome": "You deeply understand and can implement transformer attention mechanisms."
+    },
+    {
+      "day": 21,
+      "title": "Fine-Tuning Transformers and PEFT/LoRA",
+      "objectives": [
+        "Fine-tune transformers efficiently",
+        "Apply LoRA and QLoRA",
+        "Manage compute and memory tradeoffs"
+      ],
+      "topics": [
+        "Full fine-tuning vs PEFT",
+        "LoRA and QLoRA",
+        "Adapters and prefix tuning",
+        "Quantized training (4-bit)",
+        "Hugging Face PEFT and TRL",
+        "Choosing what to fine-tune"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Transformer internals", "Fine-tuning basics"],
+      "intermediate_explanation": "Full fine-tuning of large transformers is expensive and memory-hungry. Parameter-Efficient Fine-Tuning (PEFT) methods like LoRA freeze the base model and train small low-rank adapter matrices, cutting trainable parameters by orders of magnitude with little quality loss. QLoRA goes further, fine-tuning quantized 4-bit models so even large LLMs fit on a single GPU. Mastering these techniques lets you adapt powerful models to your domain affordably - a core, highly demanded AI engineering skill.",
+      "practical_task": "Fine-tune a mid-sized LLM with LoRA using Hugging Face PEFT, then repeat with QLoRA (4-bit) and compare memory usage and quality.",
+      "mini_project": "Fine-tune an open LLM on a domain-specific instruction dataset with QLoRA, evaluate it, and package the adapter for reuse.",
+      "assignment": "Explain how LoRA reduces trainable parameters and why QLoRA enables fine-tuning large models on limited hardware.",
+      "quiz": [
+        {
+          "question": "LoRA reduces fine-tuning cost by:",
+          "options": ["Training the whole model", "Training small low-rank adapters while freezing the base", "Deleting layers", "Using no gradients"],
+          "answer": "Training small low-rank adapters while freezing the base"
+        },
+        {
+          "question": "QLoRA additionally uses:",
+          "options": ["fp64 weights", "4-bit quantization of the base model", "No adapters", "More GPUs always"],
+          "answer": "4-bit quantization of the base model"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "LoRA & QLoRA Fine-tuning Explained",
+          "channel": "AI Jason",
+          "url": "https://www.youtube.com/watch?v=t1caDsMzWBk"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face PEFT Documentation",
+          "url": "https://huggingface.co/docs/peft/index"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/peft",
+          "url": "https://github.com/huggingface/peft"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "LoRA: Low-Rank Adaptation of Large Language Models (Hu et al., 2021)",
+          "url": "https://arxiv.org/abs/2106.09685"
+        }
+      ],
+      "skills_gained": [
+        "PEFT and LoRA",
+        "QLoRA fine-tuning",
+        "Efficient adaptation"
+      ],
+      "expected_outcome": "You can efficiently fine-tune large transformers on modest hardware."
+    },
+    {
+      "day": 22,
+      "title": "LLM Fundamentals and Decoding Strategies",
+      "objectives": [
+        "Understand how LLMs generate text",
+        "Master decoding and sampling strategies",
+        "Control generation behavior"
+      ],
+      "topics": [
+        "Autoregressive generation",
+        "Greedy, beam search decoding",
+        "Temperature, top-k, top-p (nucleus) sampling",
+        "Repetition penalties and constraints",
+        "Context windows and KV cache",
+        "Tokenization effects on generation"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Transformer internals"],
+      "intermediate_explanation": "LLMs generate text one token at a time, and how you sample from their probability distribution profoundly shapes output. Greedy and beam search maximize likelihood but can be repetitive; temperature and nucleus (top-p) sampling introduce controlled randomness for creativity. Understanding the KV cache explains inference speed and memory, and tokenization quirks explain surprising model behaviors. Mastering decoding lets you tune outputs for the task - deterministic for extraction, diverse for brainstorming - without changing the model.",
+      "practical_task": "Generate text from an open LLM under different decoding settings (greedy, beam, temperature, top-p) and analyze how each changes the output.",
+      "mini_project": "Build a text-generation playground that exposes decoding parameters and visualizes token probabilities to teach how sampling affects results.",
+      "assignment": "Explain the difference between top-k and top-p (nucleus) sampling and when each is preferable.",
+      "quiz": [
+        {
+          "question": "Nucleus (top-p) sampling selects from:",
+          "options": ["A fixed number of tokens", "The smallest set of tokens whose cumulative probability exceeds p", "All tokens equally", "Only the top token"],
+          "answer": "The smallest set of tokens whose cumulative probability exceeds p"
+        },
+        {
+          "question": "The KV cache speeds up generation by:",
+          "options": ["Storing training data", "Reusing past key/value tensors instead of recomputing them", "Removing attention", "Lowering accuracy"],
+          "answer": "Reusing past key/value tensors instead of recomputing them"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "How LLMs Generate Text - Decoding Strategies",
+          "channel": "AI Coffee Break with Letitia",
+          "url": "https://www.youtube.com/watch?v=dOxUroR57xs"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face Text Generation Strategies",
+          "url": "https://huggingface.co/docs/transformers/generation_strategies"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "huggingface/transformers",
+          "url": "https://github.com/huggingface/transformers"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "The Curious Case of Neural Text Degeneration (Holtzman et al., 2019)",
+          "url": "https://arxiv.org/abs/1904.09751"
+        }
+      ],
+      "skills_gained": [
+        "LLM generation",
+        "Decoding strategies",
+        "Output control"
+      ],
+      "expected_outcome": "You can precisely control LLM text generation for different tasks."
+    },
+    {
+      "day": 23,
+      "title": "Advanced Prompt Engineering and Structured Output",
+      "objectives": [
+        "Apply advanced prompting patterns",
+        "Enforce structured, reliable outputs",
+        "Build robust prompt systems"
+      ],
+      "topics": [
+        "Few-shot, CoT, self-consistency, ReAct",
+        "Structured output (JSON schema, function calling)",
+        "Output validation and retries",
+        "Prompt templating and management",
+        "Guardrails against prompt injection",
+        "Prompt evaluation and versioning"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Prompt engineering basics", "LLM APIs"],
+      "intermediate_explanation": "Production LLM features need reliability, not clever one-off prompts. Advanced patterns like chain-of-thought, self-consistency, and ReAct improve reasoning and tool use. Crucially, software consuming LLM output needs structure - enforced via JSON schemas, function calling, and validation with automatic retries on malformed responses. You also must defend against prompt injection and manage prompts like code with versioning and evaluation. This discipline turns unpredictable LLMs into dependable software components.",
+      "practical_task": "Build a prompt that reliably returns schema-validated JSON using function calling, with automatic retry on validation failure, and test edge cases.",
+      "mini_project": "Build a structured extraction service that pulls typed fields from unstructured documents using LLMs, with schema validation, retries, and injection guards.",
+      "assignment": "Explain self-consistency prompting and how it improves reliability on reasoning tasks compared to a single chain-of-thought.",
+      "quiz": [
+        {
+          "question": "Function calling / JSON schema output is used to:",
+          "options": ["Slow the model", "Get reliable structured output consumable by code", "Remove reasoning", "Train the model"],
+          "answer": "Get reliable structured output consumable by code"
+        },
+        {
+          "question": "Self-consistency improves reasoning by:",
+          "options": ["Using one answer", "Sampling multiple reasoning paths and taking the majority", "Lowering temperature to zero always", "Removing examples"],
+          "answer": "Sampling multiple reasoning paths and taking the majority"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Advanced Prompt Engineering Techniques",
+          "channel": "Prompt Engineering",
+          "url": "https://www.youtube.com/watch?v=zTh719eXt2M"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "OpenAI Structured Outputs Guide",
+          "url": "https://platform.openai.com/docs/guides/structured-outputs"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "guidance-ai/guidance",
+          "url": "https://github.com/guidance-ai/guidance"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Self-Consistency Improves Chain of Thought Reasoning (Wang et al., 2022)",
+          "url": "https://arxiv.org/abs/2203.11171"
+        }
+      ],
+      "skills_gained": [
+        "Advanced prompting",
+        "Structured output",
+        "Prompt robustness"
+      ],
+      "expected_outcome": "You can build reliable LLM features with validated structured outputs."
+    },
+    {
+      "day": 24,
+      "title": "Advanced RAG: Hybrid Search and Reranking",
+      "objectives": [
+        "Build high-quality RAG systems",
+        "Combine dense and sparse retrieval",
+        "Improve results with reranking"
+      ],
+      "topics": [
+        "Chunking strategies and metadata",
+        "Dense vs sparse (BM25) retrieval",
+        "Hybrid search and fusion",
+        "Cross-encoder reranking",
+        "Query rewriting and expansion",
+        "RAG evaluation (faithfulness, relevance)"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["RAG basics", "Embeddings"],
+      "intermediate_explanation": "Basic RAG often retrieves mediocre context, producing weak answers. Advanced RAG dramatically improves quality: hybrid search combines dense embeddings (semantic) with sparse BM25 (keyword) to catch both meaning and exact terms; cross-encoder rerankers reorder candidates by true relevance; and query rewriting handles vague questions. Smart chunking with metadata improves retrieval precision. Systematic evaluation of faithfulness and relevance closes the loop. These techniques are what make enterprise RAG actually trustworthy.",
+      "practical_task": "Upgrade a basic RAG pipeline with hybrid (dense+BM25) retrieval and a cross-encoder reranker, then measure the improvement in answer quality.",
+      "mini_project": "Build a production-grade RAG system with hybrid search, reranking, query rewriting, and an evaluation harness measuring faithfulness and relevance.",
+      "assignment": "Explain why hybrid search outperforms pure dense retrieval, and what a cross-encoder reranker adds over the initial retrieval.",
+      "quiz": [
+        {
+          "question": "Hybrid search combines:",
+          "options": ["Two LLMs", "Dense (semantic) and sparse (keyword/BM25) retrieval", "Only images", "Two databases of the same type"],
+          "answer": "Dense (semantic) and sparse (keyword/BM25) retrieval"
+        },
+        {
+          "question": "A cross-encoder reranker improves RAG by:",
+          "options": ["Generating text", "Scoring query-document pairs jointly for better relevance ordering", "Storing vectors", "Chunking documents"],
+          "answer": "Scoring query-document pairs jointly for better relevance ordering"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Advanced RAG Techniques",
+          "channel": "LangChain",
+          "url": "https://www.youtube.com/watch?v=sVcwVQRHIc8"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LlamaIndex Advanced Retrieval",
+          "url": "https://docs.llamaindex.ai/en/stable/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "run-llama/llama_index",
+          "url": "https://github.com/run-llama/llama_index"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Dense Passage Retrieval for Open-Domain Question Answering (Karpukhin et al., 2020)",
+          "url": "https://arxiv.org/abs/2004.04906"
+        }
+      ],
+      "skills_gained": [
+        "Advanced RAG",
+        "Hybrid search and reranking",
+        "RAG evaluation"
+      ],
+      "expected_outcome": "You can build high-accuracy RAG systems with hybrid retrieval and reranking."
+    },
+    {
+      "day": 25,
+      "title": "Vector Databases at Scale",
+      "objectives": [
+        "Choose and operate vector databases",
+        "Understand ANN indexing",
+        "Scale and optimize vector search"
+      ],
+      "topics": [
+        "ANN algorithms (HNSW, IVF, PQ)",
+        "Vector DBs (Qdrant, Milvus, Weaviate, pgvector)",
+        "Indexing tradeoffs (recall vs speed)",
+        "Metadata filtering",
+        "Sharding and scaling",
+        "Embedding lifecycle management"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["RAG basics", "Databases"],
+      "intermediate_explanation": "As RAG and semantic search scale to millions of vectors, naive brute-force search becomes impossible. Vector databases use Approximate Nearest Neighbor indexes like HNSW and IVF to search huge collections in milliseconds, trading a little recall for enormous speed. Understanding these indexes and their parameters lets you tune the recall-latency-memory balance, while metadata filtering combines semantic and structured constraints. Knowing how to operate, shard, and maintain these systems is key to production-scale AI search.",
+      "practical_task": "Load a large embedding collection into a vector DB, benchmark HNSW vs IVF indexes for recall and latency, and add metadata filtering.",
+      "mini_project": "Build a scalable semantic search service over a large corpus with a chosen vector DB, tuned index, metadata filters, and a benchmark report.",
+      "assignment": "Explain how HNSW works at a high level and describe the tradeoff between recall and query speed when tuning ANN indexes.",
+      "quiz": [
+        {
+          "question": "ANN indexes like HNSW trade:",
+          "options": ["Nothing", "A small amount of recall for large speed gains", "Speed for accuracy always losing speed", "Memory for correctness only"],
+          "answer": "A small amount of recall for large speed gains"
+        },
+        {
+          "question": "Metadata filtering in a vector DB lets you:",
+          "options": ["Train models", "Combine semantic search with structured constraints", "Delete embeddings only", "Render UIs"],
+          "answer": "Combine semantic search with structured constraints"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Vector Databases Explained",
+          "channel": "Fireship",
+          "url": "https://www.youtube.com/watch?v=dN0lsF2cvm4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Qdrant Documentation",
+          "url": "https://qdrant.tech/documentation/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "qdrant/qdrant",
+          "url": "https://github.com/qdrant/qdrant"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Efficient and Robust ANN Search using HNSW Graphs (Malkov & Yashunin, 2016)",
+          "url": "https://arxiv.org/abs/1603.09320"
+        }
+      ],
+      "skills_gained": [
+        "Vector databases",
+        "ANN indexing",
+        "Scaling vector search"
+      ],
+      "expected_outcome": "You can operate and optimize vector databases for large-scale semantic search."
+    },
+    {
+      "day": 26,
+      "title": "LLM Agents and Tool Use",
+      "objectives": [
+        "Build agents that use tools",
+        "Understand the ReAct loop",
+        "Handle planning and function calling"
+      ],
+      "topics": [
+        "Agent architecture and the ReAct pattern",
+        "Tool/function calling",
+        "Planning and reasoning loops",
+        "Memory for agents",
+        "Frameworks (LangGraph, LlamaIndex agents)",
+        "Reliability and error handling"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Advanced prompting", "LLM APIs"],
+      "intermediate_explanation": "Agents extend LLMs from text generators to systems that take actions - calling APIs, searching, running code - to accomplish goals. The ReAct pattern interleaves reasoning and acting: the model thinks, chooses a tool, observes the result, and repeats. Building reliable agents requires well-defined tools, robust error handling, and memory. Frameworks like LangGraph model agents as controllable state machines. Agentic systems are the frontier of applied AI, powering assistants that actually do things rather than just answer.",
+      "practical_task": "Build a ReAct agent with two or three tools (e.g., search, calculator, API) that can chain steps to answer complex questions, with error handling.",
+      "mini_project": "Build a task-completing agent (e.g., a research or data-analysis assistant) using LangGraph with tools, memory, and graceful failure recovery.",
+      "assignment": "Explain the ReAct loop step by step and describe two failure modes of agents and how to mitigate them.",
+      "quiz": [
+        {
+          "question": "The ReAct pattern interleaves:",
+          "options": ["Only reasoning", "Reasoning and acting (tool use) with observations", "Only tool calls", "Training and inference"],
+          "answer": "Reasoning and acting (tool use) with observations"
+        },
+        {
+          "question": "Tool/function calling lets an agent:",
+          "options": ["Only chat", "Invoke external functions/APIs to take actions", "Train itself", "Avoid the LLM"],
+          "answer": "Invoke external functions/APIs to take actions"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Building LLM Agents with LangGraph",
+          "channel": "LangChain",
+          "url": "https://www.youtube.com/watch?v=hvAPnpSfSGo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "LangGraph Documentation",
+          "url": "https://langchain-ai.github.io/langgraph/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "langchain-ai/langgraph",
+          "url": "https://github.com/langchain-ai/langgraph"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al., 2022)",
+          "url": "https://arxiv.org/abs/2210.03629"
+        }
+      ],
+      "skills_gained": [
+        "LLM agents",
+        "Tool use",
+        "Agent frameworks"
+      ],
+      "expected_outcome": "You can build reliable tool-using LLM agents that accomplish real tasks."
+    },
+    {
+      "day": 27,
+      "title": "Multi-Agent Systems and Orchestration",
+      "objectives": [
+        "Design multi-agent workflows",
+        "Coordinate specialized agents",
+        "Manage state and communication"
+      ],
+      "topics": [
+        "Multi-agent architectures",
+        "Roles and specialization",
+        "Orchestration and handoffs",
+        "Shared state and message passing",
+        "Frameworks (CrewAI, AutoGen, LangGraph)",
+        "Cost and reliability at scale"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["LLM agents", "Orchestration basics"],
+      "intermediate_explanation": "Complex tasks often benefit from multiple specialized agents collaborating - a researcher, a coder, a reviewer - rather than one monolithic agent. Multi-agent systems assign roles, pass work between agents, and coordinate through shared state or messages. This modularity can improve quality and maintainability, but adds challenges in orchestration, cost, and reliability. Frameworks like CrewAI, AutoGen, and LangGraph provide patterns for building these systems, which increasingly power sophisticated automation and workflows.",
+      "practical_task": "Build a multi-agent workflow (e.g., planner + worker + reviewer) that collaborates to complete a task, with defined roles and handoffs.",
+      "mini_project": "Build a multi-agent content or code pipeline where specialized agents collaborate, with orchestration, shared state, and cost tracking.",
+      "assignment": "Discuss the tradeoffs of multi-agent vs single-agent designs, focusing on quality, cost, and reliability.",
+      "quiz": [
+        {
+          "question": "A key advantage of multi-agent systems is:",
+          "options": ["Always cheaper", "Modular specialization of roles", "No orchestration needed", "Removing the LLM"],
+          "answer": "Modular specialization of roles"
+        },
+        {
+          "question": "A key challenge of multi-agent systems is:",
+          "options": ["Too simple", "Orchestration, cost, and reliability overhead", "No use cases", "They cannot use tools"],
+          "answer": "Orchestration, cost, and reliability overhead"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Multi-Agent Systems with CrewAI",
+          "channel": "Matthew Berman",
+          "url": "https://www.youtube.com/watch?v=tnejrr-0a94"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "AutoGen Documentation",
+          "url": "https://microsoft.github.io/autogen/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "microsoft/autogen",
+          "url": "https://github.com/microsoft/autogen"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation (Wu et al., 2023)",
+          "url": "https://arxiv.org/abs/2308.08155"
+        }
+      ],
+      "skills_gained": [
+        "Multi-agent design",
+        "Agent orchestration",
+        "Workflow coordination"
+      ],
+      "expected_outcome": "You can design and orchestrate multi-agent systems for complex tasks."
+    },
+    {
+      "day": 28,
+      "title": "LLM Evaluation and Guardrails",
+      "objectives": [
+        "Evaluate LLM systems rigorously",
+        "Implement guardrails and safety",
+        "Detect hallucination and toxicity"
+      ],
+      "topics": [
+        "LLM eval methods (LLM-as-judge, benchmarks)",
+        "Evaluating RAG and agents",
+        "Hallucination detection",
+        "Guardrails (input/output filtering)",
+        "Toxicity, PII, and safety checks",
+        "Regression testing for prompts"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["LLM apps", "Advanced prompting"],
+      "intermediate_explanation": "Shipping LLM features without evaluation is flying blind. Because outputs are open-ended, evaluation blends automated metrics, benchmark datasets, and LLM-as-judge scoring, plus human review. Guardrails enforce safety at runtime - filtering toxic content, blocking PII leakage, detecting prompt injection, and catching hallucinations. Treating prompts and chains like code with regression tests prevents silent quality drops when you change models or prompts. This rigor is what makes LLM systems safe and reliable enough for production.",
+      "practical_task": "Build an evaluation harness using LLM-as-judge and reference metrics for a RAG system, and add input/output guardrails for PII and toxicity.",
+      "mini_project": "Create an evaluation and guardrail suite for an LLM application that scores quality, blocks unsafe content, and runs as a regression test in CI.",
+      "assignment": "Explain the strengths and pitfalls of LLM-as-judge evaluation and how you would mitigate its biases.",
+      "quiz": [
+        {
+          "question": "LLM-as-judge evaluation uses:",
+          "options": ["Only exact match", "An LLM to score outputs against criteria", "No model", "Human labels only"],
+          "answer": "An LLM to score outputs against criteria"
+        },
+        {
+          "question": "Guardrails in an LLM app primarily:",
+          "options": ["Train the model", "Filter/validate inputs and outputs for safety", "Increase latency intentionally", "Store vectors"],
+          "answer": "Filter/validate inputs and outputs for safety"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Evaluating LLM Applications",
+          "channel": "Weights & Biases",
+          "url": "https://www.youtube.com/watch?v=eLXF0VojuSs"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Ragas Documentation",
+          "url": "https://docs.ragas.io/en/stable/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "explodinggradients/ragas",
+          "url": "https://github.com/explodinggradients/ragas"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena (Zheng et al., 2023)",
+          "url": "https://arxiv.org/abs/2306.05685"
+        }
+      ],
+      "skills_gained": [
+        "LLM evaluation",
+        "Guardrails and safety",
+        "Regression testing"
+      ],
+      "expected_outcome": "You can rigorously evaluate and safeguard LLM systems for production."
+    },
+    {
+      "day": 29,
+      "title": "Model Optimization: Quantization, Pruning, Distillation",
+      "objectives": [
+        "Compress models for efficient inference",
+        "Apply quantization and pruning",
+        "Use knowledge distillation"
+      ],
+      "topics": [
+        "Post-training quantization vs QAT",
+        "INT8/4-bit quantization (GPTQ, AWQ, GGUF)",
+        "Structured and unstructured pruning",
+        "Knowledge distillation",
+        "Accuracy vs latency vs size tradeoffs",
+        "Hardware-aware optimization"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Deep learning", "Training optimization"],
+      "intermediate_explanation": "Deploying large models economically requires shrinking them. Quantization reduces weight precision (to INT8 or 4-bit) for large memory and speed savings with minimal accuracy loss; formats like GPTQ, AWQ, and GGUF make this practical for LLMs. Pruning removes redundant weights or structures, and knowledge distillation trains a small student model to mimic a large teacher. Balancing accuracy, latency, and size against your hardware is a core deployment skill that directly determines inference cost and feasibility.",
+      "practical_task": "Quantize an LLM to 4-bit (GPTQ or AWQ) and a smaller model to INT8, measuring the accuracy, latency, and memory changes for each.",
+      "mini_project": "Take a model and produce an optimized deployment variant via quantization and/or distillation, with a report on the accuracy-latency-size tradeoffs.",
+      "assignment": "Explain the difference between post-training quantization and quantization-aware training, and when you would choose each.",
+      "quiz": [
+        {
+          "question": "Quantization reduces model size by:",
+          "options": ["Adding layers", "Lowering the numerical precision of weights", "Increasing precision", "Removing the tokenizer"],
+          "answer": "Lowering the numerical precision of weights"
+        },
+        {
+          "question": "Knowledge distillation trains:",
+          "options": ["A larger student from a small teacher", "A small student to mimic a large teacher", "No models", "Only the teacher"],
+          "answer": "A small student to mimic a large teacher"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Quantization of LLMs Explained",
+          "channel": "Umar Jamil",
+          "url": "https://www.youtube.com/watch?v=0VdNflU08yA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Hugging Face Quantization Guide",
+          "url": "https://huggingface.co/docs/transformers/quantization"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "AutoGPTQ/AutoGPTQ",
+          "url": "https://github.com/AutoGPTQ/AutoGPTQ"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers (Frantar et al., 2022)",
+          "url": "https://arxiv.org/abs/2210.17323"
+        }
+      ],
+      "skills_gained": [
+        "Quantization",
+        "Pruning and distillation",
+        "Inference optimization"
+      ],
+      "expected_outcome": "You can compress models for efficient, cost-effective inference."
+    },
+    {
+      "day": 30,
+      "title": "High-Performance Model Serving",
+      "objectives": [
+        "Serve models at scale efficiently",
+        "Use inference servers (vLLM, Triton, TorchServe)",
+        "Optimize throughput and latency"
+      ],
+      "topics": [
+        "Inference servers overview",
+        "vLLM and PagedAttention for LLMs",
+        "Continuous/dynamic batching",
+        "NVIDIA Triton Inference Server",
+        "TorchServe and ONNX Runtime",
+        "Latency vs throughput tuning"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Model optimization", "FastAPI"],
+      "intermediate_explanation": "A model wrapped in a naive Flask endpoint wastes most of your GPU. Purpose-built inference servers maximize hardware utilization: vLLM uses PagedAttention and continuous batching to serve LLMs with far higher throughput; Triton serves many model types with dynamic batching and multi-framework support; ONNX Runtime and TorchServe optimize traditional models. Understanding batching, latency-throughput tradeoffs, and these tools lets you serve models to many users efficiently, which is often the largest ongoing cost in AI systems.",
+      "practical_task": "Deploy an LLM with vLLM and benchmark its throughput and latency against a naive FastAPI implementation under concurrent load.",
+      "mini_project": "Set up a production inference service (vLLM or Triton) with dynamic batching, load-test it, and produce a latency/throughput tuning report.",
+      "assignment": "Explain how continuous batching improves LLM serving throughput compared to static batching.",
+      "quiz": [
+        {
+          "question": "vLLM improves LLM serving mainly through:",
+          "options": ["Smaller models", "PagedAttention and continuous batching", "Removing the GPU", "Lower accuracy"],
+          "answer": "PagedAttention and continuous batching"
+        },
+        {
+          "question": "Increasing batch size generally:",
+          "options": ["Lowers throughput", "Improves throughput but can raise latency", "Has no effect", "Reduces GPU use"],
+          "answer": "Improves throughput but can raise latency"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "vLLM: Fast LLM Serving Explained",
+          "channel": "Trelis Research",
+          "url": "https://www.youtube.com/watch?v=5ZlavKF_98U"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "vLLM Documentation",
+          "url": "https://docs.vllm.ai/en/latest/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "vllm-project/vllm",
+          "url": "https://github.com/vllm-project/vllm"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Efficient Memory Management for LLM Serving with PagedAttention (Kwon et al., 2023)",
+          "url": "https://arxiv.org/abs/2309.06180"
+        }
+      ],
+      "skills_gained": [
+        "Model serving",
+        "Inference servers",
+        "Throughput optimization"
+      ],
+      "expected_outcome": "You can serve models at scale with high throughput and low latency."
+    },
+    {
+      "day": 31,
+      "title": "Production APIs: Async Serving and Streaming",
+      "objectives": [
+        "Build robust production ML APIs",
+        "Stream responses and handle concurrency",
+        "Add caching, rate limiting, and observability"
+      ],
+      "topics": [
+        "Async FastAPI for ML at scale",
+        "Streaming responses (SSE) for LLMs",
+        "Request batching and queuing",
+        "Caching and rate limiting",
+        "Timeouts, retries, and backpressure",
+        "API observability and tracing"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["FastAPI", "Advanced Python"],
+      "intermediate_explanation": "Serving the model is only half the battle; the API around it must be production-hardened. Async FastAPI handles many concurrent requests efficiently, streaming (server-sent events) delivers LLM tokens as they generate for responsive UX, and request batching maximizes GPU use. Caching cuts cost on repeated queries, rate limiting protects the service, and proper timeouts, retries, and backpressure keep it stable under load. Adding tracing and metrics makes issues debuggable. This is the layer users actually experience.",
+      "practical_task": "Build an async FastAPI service that streams LLM output via SSE, with caching, rate limiting, timeouts, and request tracing.",
+      "mini_project": "Build a production-ready LLM API gateway with streaming, batching, caching, rate limits, and full observability, then load-test it.",
+      "assignment": "Explain what backpressure is and why streaming and proper timeouts matter for an LLM-serving API.",
+      "quiz": [
+        {
+          "question": "Server-sent events (SSE) are used to:",
+          "options": ["Train models", "Stream tokens/results incrementally to the client", "Store vectors", "Batch data offline"],
+          "answer": "Stream tokens/results incrementally to the client"
+        },
+        {
+          "question": "Caching in an LLM API primarily:",
+          "options": ["Increases cost", "Reduces cost/latency on repeated queries", "Breaks streaming", "Trains the model"],
+          "answer": "Reduces cost/latency on repeated queries"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "FastAPI Async and Streaming Tutorial",
+          "channel": "ArjanCodes",
+          "url": "https://www.youtube.com/watch?v=0sOvCWFmrtA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "FastAPI Advanced Documentation",
+          "url": "https://fastapi.tiangolo.com/advanced/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "tiangolo/fastapi",
+          "url": "https://github.com/tiangolo/fastapi"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Hidden Technical Debt in Machine Learning Systems (Sculley et al., 2015)",
+          "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "Async ML APIs",
+        "Streaming",
+        "API resilience"
+      ],
+      "expected_outcome": "You can build resilient, streaming, observable production ML APIs."
+    },
+    {
+      "day": 32,
+      "title": "Kubernetes for Machine Learning",
+      "objectives": [
+        "Deploy ML workloads on Kubernetes",
+        "Manage GPUs and scaling",
+        "Understand ML-specific K8s patterns"
+      ],
+      "topics": [
+        "Kubernetes core concepts (pods, deployments, services)",
+        "GPU scheduling and node pools",
+        "Autoscaling (HPA, cluster autoscaler)",
+        "Helm and manifests for ML",
+        "KServe / model serving on K8s",
+        "Resource limits and cost control"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Docker", "Model serving"],
+      "intermediate_explanation": "Kubernetes is the standard for orchestrating containerized workloads at scale, including ML. It manages deployment, scaling, and healing of your services, schedules GPU resources, and autoscales based on load. For ML, tools like KServe add model-serving abstractions with autoscaling and canary rollouts. Understanding pods, deployments, services, and resource limits lets you run reliable, cost-controlled ML services in production. Kubernetes fluency is a frequent requirement for senior AI engineering roles.",
+      "practical_task": "Containerize a model service and deploy it to a Kubernetes cluster with a deployment, service, resource limits, and horizontal pod autoscaling.",
+      "mini_project": "Deploy an ML inference service on Kubernetes with GPU scheduling, autoscaling, and a Helm chart, demonstrating scaling under load.",
+      "assignment": "Explain how horizontal pod autoscaling works and why setting resource requests/limits matters for ML workloads.",
+      "quiz": [
+        {
+          "question": "A Kubernetes Deployment primarily manages:",
+          "options": ["A single container forever", "Replicas, rollouts, and self-healing of pods", "Only storage", "DNS records only"],
+          "answer": "Replicas, rollouts, and self-healing of pods"
+        },
+        {
+          "question": "Horizontal Pod Autoscaling scales:",
+          "options": ["CPU clock speed", "The number of pod replicas based on metrics", "The Docker image size", "The node OS"],
+          "answer": "The number of pod replicas based on metrics"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Kubernetes Course for Beginners",
+          "channel": "TechWorld with Nana",
+          "url": "https://www.youtube.com/watch?v=X48VuDVv0do"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Kubernetes Documentation",
+          "url": "https://kubernetes.io/docs/home/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "kserve/kserve",
+          "url": "https://github.com/kserve/kserve"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Borg, Omega, and Kubernetes (Burns et al., 2016)",
+          "url": "https://dl.acm.org/doi/10.1145/2890784"
+        }
+      ],
+      "skills_gained": [
+        "Kubernetes",
+        "GPU orchestration",
+        "Autoscaling ML"
+      ],
+      "expected_outcome": "You can deploy and scale ML services on Kubernetes with GPU support."
+    },
+    {
+      "day": 33,
+      "title": "MLOps Pipelines and Orchestration",
+      "objectives": [
+        "Build automated ML pipelines",
+        "Orchestrate training and deployment",
+        "Ensure reproducibility end to end"
+      ],
+      "topics": [
+        "Pipeline orchestration (Kubeflow, Metaflow, Airflow, Prefect)",
+        "DAGs for ML workflows",
+        "Artifact and lineage tracking",
+        "Reproducible, parameterized runs",
+        "Triggering retraining",
+        "Pipeline testing"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["MLOps basics", "Experiment tracking"],
+      "intermediate_explanation": "Production ML is not a one-off script but a repeatable pipeline: ingest data, validate, train, evaluate, and deploy - reproducibly and on a schedule or trigger. Orchestrators like Kubeflow, Metaflow, and Prefect model these steps as DAGs, tracking artifacts and lineage so any result can be reproduced. Automated pipelines eliminate manual, error-prone steps and enable continuous retraining as data evolves. Building them is central to operating ML reliably at scale.",
+      "practical_task": "Build an ML pipeline (with Prefect, Metaflow, or Kubeflow) that ingests data, trains, evaluates, and conditionally registers a model, all reproducibly.",
+      "mini_project": "Create an end-to-end orchestrated pipeline with artifact/lineage tracking that retrains and deploys a model on a schedule or data trigger.",
+      "assignment": "Explain why modeling ML workflows as DAGs improves reproducibility and how lineage tracking helps debugging.",
+      "quiz": [
+        {
+          "question": "An ML pipeline orchestrator models workflows as:",
+          "options": ["Random scripts", "A DAG of dependent steps", "A single function", "A database table"],
+          "answer": "A DAG of dependent steps"
+        },
+        {
+          "question": "Lineage tracking helps you:",
+          "options": ["Render UIs", "Trace which data/code produced a given model or result", "Train faster", "Reduce accuracy"],
+          "answer": "Trace which data/code produced a given model or result"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "MLOps Pipeline with Kubeflow",
+          "channel": "MLOps.community",
+          "url": "https://www.youtube.com/watch?v=6wWdNg0GMV4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Kubeflow Pipelines Documentation",
+          "url": "https://www.kubeflow.org/docs/components/pipelines/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "kubeflow/pipelines",
+          "url": "https://github.com/kubeflow/pipelines"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture (Kreuzberger et al., 2022)",
+          "url": "https://arxiv.org/abs/2205.02302"
+        }
+      ],
+      "skills_gained": [
+        "ML pipeline orchestration",
+        "Workflow DAGs",
+        "Lineage tracking"
+      ],
+      "expected_outcome": "You can build automated, reproducible ML pipelines from data to deployment."
+    },
+    {
+      "day": 34,
+      "title": "Advanced Experiment Tracking and Model Registry",
+      "objectives": [
+        "Operate experiment tracking at team scale",
+        "Manage a model registry and lifecycle",
+        "Govern model promotion and rollback"
+      ],
+      "topics": [
+        "MLflow / W&B at team scale",
+        "Model registry and stages",
+        "Model cards and metadata",
+        "Promotion, approval, and rollback",
+        "Reproducibility and comparison",
+        "Governance and audit trails"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Experiment tracking basics", "MLOps"],
+      "intermediate_explanation": "As teams train many models, you need systematic tracking and a governed path to production. A model registry versions trained models, moves them through stages (staging, production, archived), and records metadata like metrics, data version, and model cards. This enables safe promotion with approvals, quick rollback when a model misbehaves, and audit trails for compliance. These practices turn ad-hoc model handoffs into a reliable, governed lifecycle that scales across an organization.",
+      "practical_task": "Set up an MLflow model registry, log models with full metadata and a model card, and script promotion from staging to production with rollback.",
+      "mini_project": "Build a governed model lifecycle workflow: train, register with a model card, require approval to promote, and support one-click rollback.",
+      "assignment": "Explain what a model card contains and why staged promotion with rollback is important for production ML.",
+      "quiz": [
+        {
+          "question": "A model registry primarily provides:",
+          "options": ["Data cleaning", "Versioning, staging, and lifecycle management of models", "GPU scheduling", "UI rendering"],
+          "answer": "Versioning, staging, and lifecycle management of models"
+        },
+        {
+          "question": "A model card documents:",
+          "options": ["Only the file size", "Intended use, performance, limitations, and metadata", "The GPU model", "Nothing useful"],
+          "answer": "Intended use, performance, limitations, and metadata"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "MLflow Model Registry Tutorial",
+          "channel": "Databricks",
+          "url": "https://www.youtube.com/watch?v=x3cxvsUFVZA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "MLflow Model Registry",
+          "url": "https://mlflow.org/docs/latest/model-registry.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "mlflow/mlflow",
+          "url": "https://github.com/mlflow/mlflow"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Model Cards for Model Reporting (Mitchell et al., 2018)",
+          "url": "https://arxiv.org/abs/1810.03993"
+        }
+      ],
+      "skills_gained": [
+        "Model registry",
+        "Model lifecycle governance",
+        "Reproducibility"
+      ],
+      "expected_outcome": "You can govern the full model lifecycle from experiment to production and rollback."
+    },
+    {
+      "day": 35,
+      "title": "Model Monitoring and Observability in Production",
+      "objectives": [
+        "Monitor models and data in production",
+        "Detect drift and performance decay",
+        "Build observability and alerting"
+      ],
+      "topics": [
+        "Data drift and concept drift detection",
+        "Performance monitoring with delayed labels",
+        "Prediction and input logging",
+        "Metrics, dashboards, and alerting",
+        "LLM-specific monitoring (cost, latency, quality)",
+        "Automated retraining triggers"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Deployment", "MLOps"],
+      "intermediate_explanation": "Models silently degrade as the world changes, so production observability is essential. You monitor input data for drift, track prediction distributions, and measure performance even when true labels arrive late. For LLMs, you also watch cost, latency, and output quality. Dashboards and alerting surface problems before users are harmed, and drift signals can trigger automated retraining. Strong observability is what lets you trust a model in production and respond quickly when it starts to fail.",
+      "practical_task": "Instrument a deployed model with input/prediction logging and drift detection (e.g., Evidently), and set up alerts on drift and latency.",
+      "mini_project": "Build a full monitoring stack for a deployed model with drift detection, quality/cost dashboards, alerting, and an automated retraining trigger.",
+      "assignment": "Explain how you would monitor model performance when ground-truth labels are delayed by weeks.",
+      "quiz": [
+        {
+          "question": "Data drift refers to:",
+          "options": ["Code changes", "Change in the input data distribution over time", "GPU failure", "Slow disks"],
+          "answer": "Change in the input data distribution over time"
+        },
+        {
+          "question": "For LLMs in production you additionally monitor:",
+          "options": ["Only accuracy", "Cost, latency, and output quality", "Nothing extra", "Disk color"],
+          "answer": "Cost, latency, and output quality"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "ML Monitoring and Observability",
+          "channel": "Evidently AI",
+          "url": "https://www.youtube.com/watch?v=QcevzK9ZuDg"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Evidently AI Documentation",
+          "url": "https://docs.evidentlyai.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "evidentlyai/evidently",
+          "url": "https://github.com/evidentlyai/evidently"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "A Survey on Concept Drift Adaptation (Gama et al., 2014)",
+          "url": "https://dl.acm.org/doi/10.1145/2523813"
+        }
+      ],
+      "skills_gained": [
+        "Model monitoring",
+        "Drift detection",
+        "Observability and alerting"
+      ],
+      "expected_outcome": "You can build production observability that catches model failures early."
+    },
+    {
+      "day": 36,
+      "title": "CI/CD for Machine Learning Systems",
+      "objectives": [
+        "Automate ML testing and deployment",
+        "Build continuous training pipelines",
+        "Implement safe deployment strategies"
+      ],
+      "topics": [
+        "CI for ML (code, data, model tests)",
+        "CD for models (automated deployment)",
+        "Continuous training (CT)",
+        "Canary and blue-green deployment",
+        "Shadow deployment and A/B rollout",
+        "GitHub Actions / GitLab CI for ML"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["CI/CD basics", "MLOps pipelines"],
+      "intermediate_explanation": "MLOps extends CI/CD with continuous training and model-specific safeguards. CI runs code, data, and model quality tests; CD deploys models automatically once they pass. Safe rollout strategies - canary, blue-green, shadow, and A/B - let you release new models to a fraction of traffic and roll back instantly if metrics dip. Continuous training retrains as data drifts. Together these turn model updates from risky manual events into routine, automated, reversible operations.",
+      "practical_task": "Build a CI/CD workflow that tests, validates a model against a baseline, and deploys it via a canary rollout with automatic rollback on regression.",
+      "mini_project": "Create a full CI/CD/CT pipeline for a model service with automated tests, canary deployment, shadow testing, and rollback.",
+      "assignment": "Compare canary, blue-green, and shadow deployment strategies and when you would use each for a model.",
+      "quiz": [
+        {
+          "question": "Shadow deployment means:",
+          "options": ["Serving the new model to all users", "Running the new model on real traffic without affecting responses", "Deleting the old model", "No deployment"],
+          "answer": "Running the new model on real traffic without affecting responses"
+        },
+        {
+          "question": "Continuous Training (CT) adds to CI/CD the ability to:",
+          "options": ["Only test code", "Automatically retrain models as data changes", "Remove monitoring", "Disable deployment"],
+          "answer": "Automatically retrain models as data changes"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "CI/CD for Machine Learning",
+          "channel": "MLOps.community",
+          "url": "https://www.youtube.com/watch?v=Rj3jTh4vDbo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "GitHub Actions Documentation",
+          "url": "https://docs.github.com/en/actions"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "iterative/cml",
+          "url": "https://github.com/iterative/cml"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture (Kreuzberger et al., 2022)",
+          "url": "https://arxiv.org/abs/2205.02302"
+        }
+      ],
+      "skills_gained": [
+        "CI/CD/CT for ML",
+        "Safe deployment strategies",
+        "Automated rollback"
+      ],
+      "expected_outcome": "You can automate safe, reversible deployment of ML models with continuous training."
+    },
+    {
+      "day": 37,
+      "title": "Data Engineering for ML: Streaming and Spark",
+      "objectives": [
+        "Build scalable data pipelines for ML",
+        "Process batch and streaming data",
+        "Use Spark for large-scale processing"
+      ],
+      "topics": [
+        "Batch vs streaming architectures",
+        "Apache Spark and PySpark",
+        "Stream processing (Kafka, Flink concepts)",
+        "Data lakes and lakehouse (Delta)",
+        "Data quality and validation at scale",
+        "Feeding pipelines to training and serving"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["SQL", "Data processing"],
+      "intermediate_explanation": "ML at scale depends on robust data engineering. Spark processes massive datasets across clusters for batch feature computation and training data prep, while streaming systems like Kafka and Flink handle real-time features for online inference. Lakehouse formats like Delta bring reliability and versioning to data lakes. Ensuring data quality at scale prevents garbage-in-garbage-out failures. Understanding both batch and streaming lets you build pipelines that reliably feed both training and low-latency serving.",
+      "practical_task": "Use PySpark to build a large-scale batch feature pipeline, and prototype a streaming feature computation consuming from a message queue.",
+      "mini_project": "Build a lambda-style pipeline: Spark batch features plus a streaming path for real-time features, unified for a model, with data quality checks.",
+      "assignment": "Explain the difference between batch and stream processing for ML features, and give a use case that requires streaming.",
+      "quiz": [
+        {
+          "question": "Apache Spark is designed for:",
+          "options": ["Single-row queries", "Distributed large-scale data processing", "UI rendering", "GPU training only"],
+          "answer": "Distributed large-scale data processing"
+        },
+        {
+          "question": "Streaming features are needed when:",
+          "options": ["Data never changes", "Features must reflect events in real time", "You only train offline", "Latency is irrelevant"],
+          "answer": "Features must reflect events in real time"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Apache Spark / PySpark Full Course",
+          "channel": "freeCodeCamp.org",
+          "url": "https://www.youtube.com/watch?v=_C8kWso4ne4"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Apache Spark Documentation",
+          "url": "https://spark.apache.org/docs/latest/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "apache/spark",
+          "url": "https://github.com/apache/spark"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Spark: Cluster Computing with Working Sets (Zaharia et al., 2010)",
+          "url": "https://www.usenix.org/legacy/event/hotcloud10/tech/full_papers/Zaharia.pdf"
+        }
+      ],
+      "skills_gained": [
+        "Spark and PySpark",
+        "Streaming pipelines",
+        "Data quality at scale"
+      ],
+      "expected_outcome": "You can build scalable batch and streaming data pipelines for ML systems."
+    },
+    {
+      "day": 38,
+      "title": "Online Experimentation and A/B Testing for ML",
+      "objectives": [
+        "Design experiments to measure model impact",
+        "Run A/B tests correctly",
+        "Analyze results statistically"
+      ],
+      "topics": [
+        "Offline vs online evaluation gap",
+        "A/B test design and randomization",
+        "Metrics, power, and sample size",
+        "Statistical significance and pitfalls",
+        "Multi-armed bandits",
+        "Guardrail metrics and rollout"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Statistics", "Deployment"],
+      "intermediate_explanation": "Offline metrics do not always translate to real-world impact, so mature teams validate models with online experiments. A/B testing randomly splits traffic between the current and new model and measures business metrics, requiring careful design: enough sample size for statistical power, correct significance testing, and guardrail metrics to catch harm. Multi-armed bandits adaptively shift traffic to better variants. Understanding experimentation lets you prove a model actually helps before full rollout - the ultimate measure of success.",
+      "practical_task": "Design an A/B test for a model change: define metrics, compute required sample size, and analyze simulated results for significance.",
+      "mini_project": "Build an experimentation framework that assigns users to model variants, logs outcomes, and produces a statistically sound A/B analysis report.",
+      "assignment": "Explain statistical power and how insufficient sample size can lead to false conclusions in an A/B test.",
+      "quiz": [
+        {
+          "question": "The main purpose of an A/B test for a model is to:",
+          "options": ["Train faster", "Measure real-world impact by comparing variants on live traffic", "Reduce model size", "Avoid deployment"],
+          "answer": "Measure real-world impact by comparing variants on live traffic"
+        },
+        {
+          "question": "A multi-armed bandit differs from a fixed A/B test by:",
+          "options": ["Never changing allocation", "Adaptively shifting traffic toward better-performing variants", "Using no metrics", "Requiring no model"],
+          "answer": "Adaptively shifting traffic toward better-performing variants"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "A/B Testing Explained",
+          "channel": "Data Professor",
+          "url": "https://www.youtube.com/watch?v=zFMgpxG-chM"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Google Optimize / Experimentation Concepts",
+          "url": "https://developers.google.com/machine-learning/guides/good-data-analysis"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "facebook/Ax",
+          "url": "https://github.com/facebook/Ax"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Trustworthy Online Controlled Experiments (Kohavi et al., 2020)",
+          "url": "https://www.cambridge.org/core/books/trustworthy-online-controlled-experiments/D97B26382EB0EB2DC2019A7A7B518F59"
+        }
+      ],
+      "skills_gained": [
+        "A/B testing",
+        "Experiment design",
+        "Statistical analysis"
+      ],
+      "expected_outcome": "You can design and analyze online experiments to prove model impact."
+    },
+    {
+      "day": 39,
+      "title": "Cost Optimization and Scaling Strategies",
+      "objectives": [
+        "Optimize the cost of AI systems",
+        "Scale efficiently under load",
+        "Balance performance and spend"
+      ],
+      "topics": [
+        "GPU cost drivers and utilization",
+        "Autoscaling and spot instances",
+        "Model routing and caching for LLMs",
+        "Batching and quantization for cost",
+        "Right-sizing and load testing",
+        "Cost monitoring and FinOps for ML"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Model serving", "Kubernetes"],
+      "intermediate_explanation": "AI systems, especially LLMs, can be extremely expensive to run, and cost is a first-class engineering concern. Optimizing spend means maximizing GPU utilization, autoscaling to demand, using spot instances for fault-tolerant workloads, and routing simple requests to cheaper models. Caching, batching, and quantization all cut inference cost. FinOps practices - monitoring and attributing spend - keep budgets in check. An engineer who can deliver the same quality at a fraction of the cost is enormously valuable.",
+      "practical_task": "Analyze the cost of an LLM feature and reduce it using caching, a cheaper-model router for easy queries, and batching, quantifying the savings.",
+      "mini_project": "Build a cost-optimized LLM serving setup with model routing, semantic caching, and autoscaling, with a dashboard showing cost per request over time.",
+      "assignment": "Describe three concrete strategies to reduce LLM inference cost without materially hurting quality.",
+      "quiz": [
+        {
+          "question": "Model routing reduces cost by:",
+          "options": ["Using the biggest model always", "Sending easy requests to cheaper models and hard ones to bigger models", "Removing caching", "Disabling autoscaling"],
+          "answer": "Sending easy requests to cheaper models and hard ones to bigger models"
+        },
+        {
+          "question": "Spot instances are appropriate for:",
+          "options": ["Latency-critical single requests", "Fault-tolerant, interruptible workloads", "Nothing in ML", "Only databases"],
+          "answer": "Fault-tolerant, interruptible workloads"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Reducing LLM Costs in Production",
+          "channel": "AI Engineer",
+          "url": "https://www.youtube.com/watch?v=lHxl5SchjPA"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "AWS Cost Optimization for ML",
+          "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/cost-optimization.html"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "BerriAI/litellm",
+          "url": "https://github.com/BerriAI/litellm"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "FrugalGPT: How to Use LLMs While Reducing Cost (Chen et al., 2023)",
+          "url": "https://arxiv.org/abs/2305.05176"
+        }
+      ],
+      "skills_gained": [
+        "Cost optimization",
+        "Efficient scaling",
+        "FinOps for ML"
+      ],
+      "expected_outcome": "You can deliver AI systems that meet quality targets at minimized cost."
+    },
+    {
+      "day": 40,
+      "title": "Security and Privacy in ML Systems",
+      "objectives": [
+        "Secure ML systems and data",
+        "Defend against ML-specific attacks",
+        "Apply privacy-preserving techniques"
+      ],
+      "topics": [
+        "Adversarial attacks and defenses",
+        "Data poisoning and model extraction",
+        "Prompt injection and LLM security",
+        "PII handling and data privacy",
+        "Differential privacy and federated learning",
+        "Secure MLOps (secrets, access control)"
+      ],
+      "estimated_time": "6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["ML systems", "Deployment"],
+      "intermediate_explanation": "ML systems introduce unique security and privacy risks beyond traditional software. Adversarial examples can fool models, data poisoning corrupts training, and model extraction steals your IP. LLMs face prompt injection and data-leakage attacks. On privacy, you must handle PII responsibly, and techniques like differential privacy and federated learning let you learn from sensitive data with formal guarantees. Combined with secure MLOps - managing secrets and access - these practices protect both your systems and your users.",
+      "practical_task": "Craft an adversarial example against a model to see it fail, then add an input-validation and PII-redaction guardrail to an LLM pipeline.",
+      "mini_project": "Perform a security review of an ML service: test for prompt injection and PII leakage, and implement mitigations, documenting findings.",
+      "assignment": "Explain what differential privacy guarantees and describe a scenario where federated learning is the right choice.",
+      "quiz": [
+        {
+          "question": "Data poisoning attacks target:",
+          "options": ["The inference API only", "The training data to corrupt the model", "The UI", "Network cables"],
+          "answer": "The training data to corrupt the model"
+        },
+        {
+          "question": "Differential privacy provides:",
+          "options": ["Faster training", "A formal guarantee limiting what can be learned about any individual", "Larger models", "No privacy"],
+          "answer": "A formal guarantee limiting what can be learned about any individual"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Adversarial Attacks on Neural Networks",
+          "channel": "Two Minute Papers",
+          "url": "https://www.youtube.com/watch?v=SA4YEAWVpbk"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "OWASP Top 10 for LLM Applications",
+          "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "Trusted-AI/adversarial-robustness-toolbox",
+          "url": "https://github.com/Trusted-AI/adversarial-robustness-toolbox"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Explaining and Harnessing Adversarial Examples (Goodfellow et al., 2014)",
+          "url": "https://arxiv.org/abs/1412.6572"
+        }
+      ],
+      "skills_gained": [
+        "ML security",
+        "Privacy-preserving ML",
+        "Adversarial robustness"
+      ],
+      "expected_outcome": "You can secure ML systems and protect user privacy against real threats."
+    },
+    {
+      "day": 41,
+      "title": "Responsible AI, Fairness, and Governance",
+      "objectives": [
+        "Audit models for fairness and bias",
+        "Apply responsible AI frameworks",
+        "Understand AI regulation and governance"
+      ],
+      "topics": [
+        "Fairness metrics and definitions",
+        "Bias detection and mitigation",
+        "Explainability for accountability",
+        "AI governance frameworks",
+        "Regulation (EU AI Act, NIST AI RMF)",
+        "Documentation and audits"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Interpretability", "ML systems"],
+      "intermediate_explanation": "As AI is regulated and scrutinized, responsible AI is both an ethical duty and a business requirement. Fairness has multiple, sometimes conflicting mathematical definitions; you must choose and measure the right ones for your context, then mitigate bias in data and models. Governance frameworks and regulations like the EU AI Act and NIST AI RMF define obligations for high-risk systems, including documentation, audits, and human oversight. Building these practices in protects users and shields organizations from legal and reputational risk.",
+      "practical_task": "Audit a model for bias across a protected attribute using multiple fairness metrics, then apply a mitigation and re-measure the tradeoffs.",
+      "mini_project": "Produce a responsible-AI assessment for a model: fairness audit, explainability, risk classification under a governance framework, and mitigation plan.",
+      "assignment": "Explain why fairness definitions can conflict, using an example where satisfying one metric violates another.",
+      "quiz": [
+        {
+          "question": "Different fairness metrics can conflict because:",
+          "options": ["They are identical", "Satisfying one (e.g., equal opportunity) can violate another (e.g., demographic parity)", "Fairness is trivial", "Metrics do not matter"],
+          "answer": "Satisfying one (e.g., equal opportunity) can violate another (e.g., demographic parity)"
+        },
+        {
+          "question": "The EU AI Act primarily regulates AI based on:",
+          "options": ["Model size", "Risk level of the application", "Programming language", "Cloud provider"],
+          "answer": "Risk level of the application"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Fairness in Machine Learning",
+          "channel": "Google Cloud Tech",
+          "url": "https://www.youtube.com/watch?v=jIXIuYdnyyk"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "NIST AI Risk Management Framework",
+          "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "Trusted-AI/AIF360",
+          "url": "https://github.com/Trusted-AI/AIF360"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Fairness and Machine Learning: Limitations and Opportunities (Barocas et al., 2019)",
+          "url": "https://fairmlbook.org/"
+        }
+      ],
+      "skills_gained": [
+        "Fairness auditing",
+        "Responsible AI",
+        "AI governance"
+      ],
+      "expected_outcome": "You can audit, document, and govern AI systems for fairness and compliance."
+    },
+    {
+      "day": 42,
+      "title": "System Design for AI Applications",
+      "objectives": [
+        "Design end-to-end AI system architectures",
+        "Make sound architectural tradeoffs",
+        "Handle scale, latency, and reliability"
+      ],
+      "topics": [
+        "AI system design principles",
+        "Component architecture (ingest, train, serve, monitor)",
+        "Latency, throughput, and reliability tradeoffs",
+        "Batch vs real-time inference",
+        "Designing RAG and agent systems",
+        "Capacity planning and failure handling"
+      ],
+      "estimated_time": "6-7 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Serving", "MLOps", "Data engineering"],
+      "intermediate_explanation": "Senior AI engineers are judged on system design: the ability to architect complete solutions that meet requirements under real constraints. This means choosing between batch and real-time inference, designing data flow from ingestion to monitoring, and reasoning about latency, throughput, cost, and reliability tradeoffs. Designing RAG or agent systems end to end, planning capacity, and handling failures gracefully are frequent interview and on-the-job challenges. Strong system design ties together everything you have learned into coherent, scalable architectures.",
+      "practical_task": "Design (with a diagram and written tradeoffs) a complete architecture for a given AI product, e.g., a real-time recommendation or a document-QA assistant.",
+      "mini_project": "Produce a full system design document for a production AI application, covering components, data flow, scaling, latency budget, cost, and failure modes.",
+      "assignment": "Design an AI system for a scenario of your choice and justify your key tradeoffs (batch vs real-time, model choice, caching, scaling).",
+      "quiz": [
+        {
+          "question": "Real-time inference is preferred over batch when:",
+          "options": ["Latency does not matter", "Predictions are needed immediately per request", "Data is static", "Cost is the only concern"],
+          "answer": "Predictions are needed immediately per request"
+        },
+        {
+          "question": "A good AI system design explicitly reasons about:",
+          "options": ["Only accuracy", "Latency, throughput, cost, and reliability tradeoffs", "Font choices", "Nothing"],
+          "answer": "Latency, throughput, cost, and reliability tradeoffs"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Machine Learning System Design",
+          "channel": "ByteByteGo",
+          "url": "https://www.youtube.com/watch?v=UyEtTb1b1Bo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Google ML System Design Guides",
+          "url": "https://developers.google.com/machine-learning/guides/rules-of-ml"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "chiphuyen/machine-learning-systems-design",
+          "url": "https://github.com/chiphuyen/machine-learning-systems-design"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Rules of Machine Learning: Best Practices for ML Engineering (Zinkevich)",
+          "url": "https://developers.google.com/machine-learning/guides/rules-of-ml"
+        }
+      ],
+      "skills_gained": [
+        "AI system design",
+        "Architectural tradeoffs",
+        "Capacity planning"
+      ],
+      "expected_outcome": "You can architect complete, scalable AI systems and justify design tradeoffs."
+    },
+    {
+      "day": 43,
+      "title": "Capstone Part 1: Design and Build a Production AI System",
+      "objectives": [
+        "Scope and design a real AI system",
+        "Build the training and data pipeline",
+        "Implement the core model or LLM feature"
+      ],
+      "topics": [
+        "Problem framing and requirements",
+        "System architecture and design doc",
+        "Data pipeline and feature engineering",
+        "Model training or LLM/RAG implementation",
+        "Experiment tracking and evaluation",
+        "Versioned, reproducible components"
+      ],
+      "estimated_time": "8-10 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["All prior days"],
+      "intermediate_explanation": "The capstone brings the whole curriculum together into one substantial, portfolio-defining project. In part one you will scope a realistic problem, write a system design document, and build the foundation: a reproducible data pipeline, feature engineering, and either a trained model or an LLM/RAG feature, all tracked and evaluated. This mirrors how real AI projects start - with clear requirements, sound architecture, and solid data and modeling before any deployment - and produces the core you will operationalize in part two.",
+      "practical_task": "Choose a substantial project, write its design doc, and build the data pipeline plus core model/LLM feature with experiment tracking and evaluation.",
+      "mini_project": "Deliver the design document, data pipeline, and trained/evaluated core model (or RAG/agent) for your capstone, all versioned and reproducible.",
+      "assignment": "Write the capstone design document: problem, requirements, architecture, data, modeling approach, evaluation plan, and risks.",
+      "quiz": [
+        {
+          "question": "The first step in a strong AI project is:",
+          "options": ["Deploying immediately", "Framing the problem and requirements clearly", "Buying GPUs", "Writing the UI"],
+          "answer": "Framing the problem and requirements clearly"
+        },
+        {
+          "question": "Reproducibility in the capstone requires:",
+          "options": ["Manual, undocumented steps", "Versioned data, code, and tracked experiments", "No tracking", "Random seeds ignored"],
+          "answer": "Versioned data, code, and tracked experiments"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "End to End Machine Learning Project",
+          "channel": "Krish Naik",
+          "url": "https://www.youtube.com/watch?v=Rj3jTh4vDbo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Full Stack Deep Learning",
+          "url": "https://fullstackdeeplearning.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "GokuMohandas/Made-With-ML",
+          "url": "https://github.com/GokuMohandas/Made-With-ML"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture (Kreuzberger et al., 2022)",
+          "url": "https://arxiv.org/abs/2205.02302"
+        }
+      ],
+      "skills_gained": [
+        "System scoping and design",
+        "Pipeline and model building",
+        "Reproducible ML"
+      ],
+      "expected_outcome": "You have a designed, built, and evaluated core for a production AI system."
+    },
+    {
+      "day": 44,
+      "title": "Capstone Part 2: Deploy, Scale, and Operate",
+      "objectives": [
+        "Deploy the capstone to production",
+        "Add serving, monitoring, and CI/CD",
+        "Demonstrate scale and reliability"
+      ],
+      "topics": [
+        "Optimized model serving",
+        "Containerization and Kubernetes deployment",
+        "CI/CD and automated rollout",
+        "Monitoring, drift detection, alerting",
+        "Cost and performance optimization",
+        "Documentation and demo"
+      ],
+      "estimated_time": "8-10 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Capstone Part 1"],
+      "intermediate_explanation": "Part two operationalizes your capstone, proving you can run AI in production, not just build it. You will serve the model efficiently, containerize and deploy it (ideally on Kubernetes), wire up CI/CD for safe automated releases, and add monitoring with drift detection and alerting. You will optimize cost and performance and document the whole system with a demo. Completing a fully deployed, monitored, and documented AI system is the strongest possible signal of intermediate-to-senior AI engineering capability.",
+      "practical_task": "Deploy your capstone with optimized serving, containerization, CI/CD, and monitoring, then load-test it and tune for cost and latency.",
+      "mini_project": "Ship the complete capstone: a deployed, autoscaling, monitored AI system with CI/CD, a cost/performance report, documentation, and a demo.",
+      "assignment": "Write operational documentation for your capstone covering deployment, monitoring, alerting, rollback, and cost.",
+      "quiz": [
+        {
+          "question": "A production-ready capstone must include:",
+          "options": ["Only a notebook", "Serving, CI/CD, monitoring, and documentation", "Just a model file", "Only a UI"],
+          "answer": "Serving, CI/CD, monitoring, and documentation"
+        },
+        {
+          "question": "Monitoring the deployed capstone lets you:",
+          "options": ["Ignore drift", "Detect drift and performance issues and respond", "Skip alerting", "Avoid rollback"],
+          "answer": "Detect drift and performance issues and respond"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Deploying ML Models to Production",
+          "channel": "MLOps.community",
+          "url": "https://www.youtube.com/watch?v=Rj3jTh4vDbo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Kubernetes Documentation",
+          "url": "https://kubernetes.io/docs/home/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "GokuMohandas/Made-With-ML",
+          "url": "https://github.com/GokuMohandas/Made-With-ML"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Hidden Technical Debt in Machine Learning Systems (Sculley et al., 2015)",
+          "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+        }
+      ],
+      "skills_gained": [
+        "Production deployment",
+        "Operating ML at scale",
+        "End-to-end delivery"
+      ],
+      "expected_outcome": "You have a fully deployed, monitored, and documented production AI system."
+    },
+    {
+      "day": 45,
+      "title": "Career Growth, Interviews, and Staying Current",
+      "objectives": [
+        "Prepare for senior AI engineering interviews",
+        "Build a strong professional presence",
+        "Plan continuous growth and specialization"
+      ],
+      "topics": [
+        "AI/ML system design interviews",
+        "Coding and ML depth interviews",
+        "Portfolio and open-source contributions",
+        "Reading and reproducing papers",
+        "Specialization paths (LLMs, MLOps, CV, research)",
+        "Staying current with a fast field"
+      ],
+      "estimated_time": "5-6 hours",
+      "difficulty": "Intermediate",
+      "prerequisites": ["Capstone completed"],
+      "intermediate_explanation": "Reaching the intermediate-to-senior level is as much about growth strategy as raw skill. Interviews at this level test ML system design, coding, and depth in your specialty, so structured preparation matters. A strong portfolio - your capstone, open-source contributions, and clear write-ups - proves capability. In a field that moves this fast, a durable habit of reading and reproducing papers keeps you current. This final day helps you present your abilities, choose a specialization, and build the learning routine that sustains a long AI career.",
+      "practical_task": "Do a mock ML system design interview, publish a polished write-up of your capstone, and create a paper-reading plan with your first paper summarized.",
+      "mini_project": "Assemble a senior-ready portfolio: capstone case study, 2-3 strong projects, an open-source contribution, and a technical blog post.",
+      "assignment": "Outline your 6-month growth plan: chosen specialization, target roles, skills to deepen, and how you will stay current.",
+      "quiz": [
+        {
+          "question": "ML system design interviews primarily assess:",
+          "options": ["Typing speed", "Ability to architect end-to-end ML solutions under constraints", "Memorized trivia", "UI design"],
+          "answer": "Ability to architect end-to-end ML solutions under constraints"
+        },
+        {
+          "question": "The best way to stay current in fast-moving AI is:",
+          "options": ["Never learn again", "A durable habit of reading and reproducing papers/tools", "Ignoring new models", "Only watching ads"],
+          "answer": "A durable habit of reading and reproducing papers/tools"
+        }
+      ],
+      "youtube": [
+        {
+          "title": "Machine Learning System Design Interview",
+          "channel": "Exponent",
+          "url": "https://www.youtube.com/watch?v=UyEtTb1b1Bo"
+        }
+      ],
+      "official_docs": [
+        {
+          "title": "Papers with Code",
+          "url": "https://paperswithcode.com/"
+        }
+      ],
+      "github_repositories": [
+        {
+          "name": "chiphuyen/ml-interviews-book",
+          "url": "https://github.com/chiphuyen/ml-interviews-book"
+        }
+      ],
+      "research_papers": [
+        {
+          "title": "Deep Learning (LeCun, Bengio & Hinton, 2015)",
+          "url": "https://www.nature.com/articles/nature14539"
+        }
+      ],
+      "skills_gained": [
+        "Interview preparation",
+        "Professional portfolio",
+        "Continuous learning"
+      ],
+      "expected_outcome": "You are prepared to interview for and grow into senior AI engineering roles."
+    }
+  ]
+}
