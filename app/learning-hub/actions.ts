@@ -52,8 +52,8 @@ export async function saveModuleProgress(input: {
 
     // Light revalidation — avoid thrashing on every scroll tick
     if (completed || pct % 25 === 0) {
-      revalidatePath("/community/resources");
-      revalidatePath(`/community/resources/${parsed.data.phaseId}`);
+      revalidatePath("/learning-hub");
+      revalidatePath(`/learning-hub/${parsed.data.phaseId}`);
     }
 
     return { success: true, completed };

@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 
-export default function ProgramsPage() {
-  redirect("/academy");
+export default function ProgramsRedirectPage() {
+  permanentRedirect("/learning-hub");
 }

@@ -2,6 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { isLearningRole, ROLE_DETAILS, type LearningRole } from "@/lib/learning/content";
+import { parseRoadmapQuizContent } from "@/lib/learning/roadmap-quiz";
+import { parseRoadmapTaskContent } from "@/lib/learning/roadmap-task";
 import type { Result } from "@/lib/services/onboarding";
 
 type RoadmapDay = {
@@ -45,7 +47,12 @@ type WeeklyTarget = {
 function loadRoadmap(role: LearningRole, level: "beginner" | "intermediate") {
   const fileName = ROLE_DETAILS[role].roadmap[level];
   const filePath = path.join(process.cwd(), "content", "roadmap", fileName);
-  const content = JSON.parse(fs.readFileSync(filePath, "utf8")) as RoadmapContent;
+  const source = JSON.parse(fs.readFileSync(filePath, "utf8")) as unknown;
+  // Validate every daily quiz while assigning the roadmap so malformed source
+  // content cannot create a `has_quiz` link that later opens an empty runner.
+  parseRoadmapQuizContent(source);
+  parseRoadmapTaskContent(source);
+  const content = source as RoadmapContent;
 
   if (!content.roadmap || !Array.isArray(content.days) || content.days.length === 0) {
     throw new Error("The selected roadmap content is incomplete.");

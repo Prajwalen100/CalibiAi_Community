@@ -1,97 +1,211 @@
 import { NextResponse } from "next/server";
-import { deepseekChat, deepseekConfigured } from "@/lib/ai/deepseek";
+import { z } from "zod";
+import { reviewRoadmapTask } from "@/lib/ai/task-assessment";
+import { getStudentAccess } from "@/lib/auth/student-access";
+import { isLearningRole } from "@/lib/learning/content";
+import { getRoadmapTask } from "@/lib/learning/roadmap-task";
+import { LAB_LANGUAGES, ROADMAP_TASK_TYPES } from "@/lib/learning/task-types";
+import { pointsForTaskScore } from "@/lib/learning/task-scoring";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
-export async function POST(request: Request) {
-  try {
-    if (!deepseekConfigured()) {
-      return NextResponse.json({
-        score: 65,
-        feedback: "DeepSeek is not configured. This is a demo score based on submission completeness.",
-        strengths: ["Submission received"],
-        improvements: ["Configure DeepSeek for real-time AI scoring"],
-      }, { status: 200 });
-    }
+const RequestSchema = z.object({
+  mode: z.enum(["check", "submit"]).default("submit"),
+  taskType: z.enum(ROADMAP_TASK_TYPES),
+  dayNumber: z.number().int().min(1).max(45),
+  language: z.enum(LAB_LANGUAGES),
+  submission: z.string().trim().min(20).max(30_000),
+  explanation: z.string().trim().max(8_000).default(""),
+});
 
-    const body = await request.json().catch(() => ({}));
-    const { taskType, taskDescription, text, dayNumber } = body;
-
-    const prompt = `You are an AI assessment reviewer for CalibiAI. Evaluate the following student submission for Day ${dayNumber || "unknown"} (${taskType || "task"}).
-
-Task Description:
-${taskDescription || "No description provided."}
-
-Student Submission:
-${text || "No text submitted."}
-
-Return ONLY valid JSON with exactly this structure:
-{
-  "score": 0-100,
-  "feedback": "2-3 paragraph detailed feedback",
-  "strengths": ["2-4 specific strengths"],
-  "improvements": ["2-3 concrete improvements"]
+function errorResponse(message: string, status: number) {
+  return NextResponse.json({ error: { message } }, { status });
 }
 
-Scoring Rubric:
-- 80-100: Excellent depth, correct approach, well-documented, shows real-world understanding.
-- 60-79: Good work with minor gaps or missing documentation.
-- 40-59: Basic attempt with significant missing elements.
-- 0-39: Incomplete, incorrect approach, or missing submission.
+export async function POST(request: Request) {
+  try {
+    const parsed = RequestSchema.safeParse(await request.json().catch(() => null));
+    if (!parsed.success) {
+      return errorResponse(
+        parsed.error.issues[0]?.message ?? "The lab submission is invalid.",
+        422
+      );
+    }
 
-Be specific, constructive, and reference the task description directly.`;
+    const supabase = await createServerSupabaseClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) return errorResponse("Please sign in again.", 401);
 
-    const raw = await deepseekChat({
-      system: "You are a precise JSON-only evaluator. Always return valid JSON matching the requested schema. Be fair but rigorous.",
-      user: prompt,
-      maxTokens: 1200,
-      temperature: 0.3,
-      json: true,
+    const access = await getStudentAccess(supabase, user.id);
+    if (!access.canAccessStudentArea) {
+      return errorResponse("Complete onboarding and your placement assessment first.", 403);
+    }
+    const role = access.profile?.learning_role;
+    if (!isLearningRole(role)) {
+      return errorResponse("Your learning role could not be resolved.", 409);
+    }
+
+    const { data: assignment, error: assignmentError } = await supabase
+      .from("user_roadmaps")
+      .select("id,level")
+      .eq("user_id", user.id)
+      .eq("role", role)
+      .eq("status", "active")
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    if (assignmentError || !assignment) {
+      return errorResponse("Your active roadmap could not be loaded.", 409);
+    }
+    if (assignment.level !== "beginner" && assignment.level !== "intermediate") {
+      return errorResponse("Your roadmap level is invalid.", 409);
+    }
+
+    const task = getRoadmapTask(
+      role,
+      assignment.level,
+      parsed.data.dayNumber,
+      parsed.data.taskType
+    );
+    if (!task) return errorResponse("This roadmap task was not found.", 404);
+
+    const review = await reviewRoadmapTask({
+      task,
+      language: parsed.data.language,
+      submission: parsed.data.submission,
+      explanation: parsed.data.explanation,
     });
 
-    let result: { score: number; feedback?: string; strengths?: string[]; improvements?: string[] } | null = null;
-    try {
-      const jsonStart = raw.indexOf("{");
-      const jsonEnd = raw.lastIndexOf("}");
-      const candidate = jsonStart >= 0 && jsonEnd >= 0 ? raw.slice(jsonStart, jsonEnd + 1) : raw;
-      result = JSON.parse(candidate);
-    } catch {
-      result = {
-        score: 60,
-        feedback: "AI review completed with a fallback evaluation due to parsing issues.",
-        strengths: ["Submission received"],
-        improvements: ["Ensure submissions are clearly structured"],
-      };
+    if (parsed.data.mode === "check") {
+      return NextResponse.json({
+        ...review,
+        saved: false,
+        pointsEarned: 0,
+        bestTaskPoints: 0,
+        calibiPointsAdded: 0,
+      });
     }
 
-    // Validate
-    if (!result) {
-      result = {
-        score: 60,
-        feedback: "AI review completed with a fallback evaluation.",
-        strengths: ["Submission received"],
-        improvements: ["Continue practicing"],
-      };
-    }
-    if (typeof result.score !== "number" || result.score < 0 || result.score > 100) {
-      result.score = Math.min(100, Math.max(0, result.score ?? 60));
-    }
-    if (!Array.isArray(result.strengths)) result.strengths = ["Submission received"];
-    if (!Array.isArray(result.improvements)) result.improvements = ["Continue practicing"];
+    const potentialPoints = pointsForTaskScore(review.score);
+    const { data: priorAward, error: priorAwardError } = await supabase
+      .from("roadmap_task_awards")
+      .select("id,best_score,points_awarded")
+      .eq("user_roadmap_id", assignment.id)
+      .eq("day", task.dayNumber)
+      .eq("task_type", task.taskType)
+      .maybeSingle();
 
-    return NextResponse.json({
-      score: result.score,
-      feedback: result.feedback || "No detailed feedback available.",
-      strengths: result.strengths,
-      improvements: result.improvements,
+    if (priorAwardError) {
+      console.error("Roadmap task award lookup failed", priorAwardError);
+      return errorResponse(
+        "AI Lab storage is unavailable. Apply the latest Supabase migrations and retry.",
+        503
+      );
+    }
+
+    const priorPoints = priorAward?.points_awarded ?? 0;
+    const bestTaskPoints = Math.max(priorPoints, potentialPoints);
+    const pointsEarned = bestTaskPoints - priorPoints;
+
+    const { data: assessment, error: assessmentError } = await supabase
+      .from("roadmap_task_assessments")
+      .insert({
+        user_id: user.id,
+        user_roadmap_id: assignment.id,
+        role,
+        level: assignment.level,
+        day: task.dayNumber,
+        task_type: task.taskType,
+        task_description: task.taskDescription,
+        submission_language: parsed.data.language,
+        submission: parsed.data.submission,
+        explanation: parsed.data.explanation,
+        score: review.score,
+        passed: review.passed,
+        points_awarded: pointsEarned,
+        feedback: review.feedback,
+        strengths: review.strengths,
+        improvements: review.improvements,
+        correctness_issues: review.correctnessIssues,
+        ai_enriched: review.aiEnriched,
+      })
+      .select("id")
+      .single();
+
+    if (assessmentError || !assessment) {
+      console.error("Roadmap task assessment save failed", assessmentError);
+      return errorResponse("Your review completed, but it could not be saved. Please retry.", 500);
+    }
+
+    const bestScore = Math.max(priorAward?.best_score ?? 0, review.score);
+    const awardMutation = priorAward
+      ? supabase
+          .from("roadmap_task_awards")
+          .update({
+            best_score: bestScore,
+            points_awarded: bestTaskPoints,
+            latest_assessment_id: assessment.id,
+          })
+          .eq("id", priorAward.id)
+      : supabase.from("roadmap_task_awards").insert({
+          user_id: user.id,
+          user_roadmap_id: assignment.id,
+          day: task.dayNumber,
+          task_type: task.taskType,
+          best_score: bestScore,
+          points_awarded: bestTaskPoints,
+          latest_assessment_id: assessment.id,
+        });
+    const { error: awardError } = await awardMutation;
+    if (awardError) {
+      console.error("Roadmap task award save failed", awardError);
+      return errorResponse("The assessment was saved, but points could not be awarded. Retry once.", 500);
+    }
+
+    // The database function locks the award state and score rows together, so
+    // retries can neither lose nor double-count points.
+    const { data: scoreRows, error: scoreWriteError } = await supabase.rpc(
+      "apply_roadmap_lab_points",
+      { p_user_id: user.id }
+    );
+    if (scoreWriteError) {
+      console.error("AI Lab score write failed", scoreWriteError);
+      return errorResponse("The assessment was saved, but your CalibiAI score could not be updated.", 500);
+    }
+    const scoreResult = Array.isArray(scoreRows) ? scoreRows[0] : scoreRows;
+    const calibiPointsAdded = Number(scoreResult?.points_added ?? 0);
+    const total = Number(scoreResult?.total_score ?? 0);
+
+    await supabase.from("activity_logs").insert({
+      user_id: user.id,
+      action: "roadmap_task_assessed",
+      metadata: {
+        assessment_id: assessment.id,
+        role,
+        level: assignment.level,
+        day: task.dayNumber,
+        task_type: task.taskType,
+        score: review.score,
+        passed: review.passed,
+        points_earned: pointsEarned,
+      },
     });
-  } catch (err) {
-    console.error("Task review error:", err);
+
     return NextResponse.json({
-      score: 55,
-      feedback: "An error occurred during AI review. A fallback score was assigned.",
-      strengths: ["Attempt made"],
-      improvements: ["Retry submission when service is stable"],
-    }, { status: 200 });
+      ...review,
+      saved: true,
+      assessmentId: assessment.id,
+      pointsEarned,
+      bestTaskPoints,
+      calibiPointsAdded,
+      calibiScore: total,
+    });
+  } catch (error) {
+    console.error("Task review error", error);
+    return errorResponse("The AI Lab could not review this submission. Please retry.", 500);
   }
 }

@@ -4,6 +4,7 @@ import { getStudentAccess } from "@/lib/auth/student-access";
 
 const STUDENT_ONLY_PREFIXES = [
   "/academy",
+  "/learning-hub",
   "/programs",
   "/community",
   "/placements",

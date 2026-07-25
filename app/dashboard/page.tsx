@@ -77,12 +77,22 @@ export default async function DashboardPage({
     { data: roadmap },
     { data: projects },
     { data: recentProgress },
+    { data: roadmapMiniProjects },
   ] = await Promise.all([
     supabase.from("profiles").select("*").eq("user_id", user.id).single(),
     supabase.from("scores").select("*").eq("user_id", user.id).single(),
     supabase.from("roadmaps").select("*").eq("user_id", user.id).order("created_at", { ascending: false }).limit(1).single(),
     supabase.from("projects").select("id,title,ai_score,verified,complexity_tier,created_at").eq("user_id", user.id).order("created_at", { ascending: false }),
     supabase.from("roadmap_progress").select("module_id,day,status").eq("user_id", user.id).order("day", { ascending: true }).limit(5),
+    supabase
+      .from("roadmap_task_assessments")
+      .select("id,user_roadmap_id,day,task_description,submission_language,score,points_awarded,ai_enriched,created_at")
+      .eq("user_id", user.id)
+      .eq("task_type", "mini_project")
+      .eq("passed", true)
+      .order("score", { ascending: false })
+      .order("created_at", { ascending: false })
+      .limit(100),
   ]);
 
   const plan = roadmap?.generated_plan as StoredRoadmap | undefined;
@@ -91,6 +101,13 @@ export default async function DashboardPage({
   const totalDays = plan?.totalDays ?? days.length;
   const totalWeeks = plan?.totalWeeks ?? Math.ceil(days.length / 7);
   const assessmentScore = plan?.assessment_score ?? 0;
+  const miniProjectKeys = new Set<string>();
+  const bestRoadmapMiniProjects = (roadmapMiniProjects ?? []).filter((project) => {
+    const key = `${project.user_roadmap_id}:${project.day}`;
+    if (miniProjectKeys.has(key)) return false;
+    miniProjectKeys.add(key);
+    return true;
+  }).slice(0, 6);
 
   // Get current day's progress
   const currentDay = recentProgress?.find(p => p.status === "not_started")?.day ?? 
@@ -352,7 +369,7 @@ export default async function DashboardPage({
               </Link>
             </div>
             <div className="mt-4 grid gap-3">
-              {projects && projects.length > 0 ? projects.map((project) => (
+              {(projects ?? []).map((project) => (
                 <div key={project.id} className="rounded-2xl border border-slate-100 p-4 dark:border-slate-800">
                   <div className="flex items-center justify-between">
                     <p className="font-semibold">{project.title}</p>
@@ -367,10 +384,31 @@ export default async function DashboardPage({
                     <span className="capitalize text-slate-500">{String(project.complexity_tier ?? "beginner")}</span>
                   </div>
                 </div>
-              )) : (
+              ))}
+
+              {bestRoadmapMiniProjects.map((project) => (
+                <div key={project.id} className="rounded-2xl border border-violet-200 bg-violet-50/40 p-4 dark:border-violet-900 dark:bg-violet-950/20">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="text-xs font-black uppercase tracking-wide text-violet-600">AI Lab · Day {project.day}</p>
+                      <p className="mt-1 line-clamp-2 font-semibold">{project.task_description}</p>
+                    </div>
+                    <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-bold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300">
+                      Verified
+                    </span>
+                  </div>
+                  <div className="mt-2 flex flex-wrap items-center gap-3 text-sm">
+                    <span className="font-bold text-violet-700 dark:text-violet-300">AI Score: {project.score}/100</span>
+                    <span className="uppercase text-slate-500">{project.submission_language}</span>
+                    {project.points_awarded > 0 && <span className="font-bold text-amber-600">+{project.points_awarded} points</span>}
+                  </div>
+                </div>
+              ))}
+
+              {(projects?.length ?? 0) === 0 && bestRoadmapMiniProjects.length === 0 && (
                 <div className="rounded-2xl border border-dashed border-slate-200 p-4 text-center dark:border-slate-800">
                   <BookOpen className="mx-auto h-8 w-8 text-slate-400" />
-                  <p className="mt-2 text-sm text-slate-500">No projects yet. Complete daily tasks to submit your first project!</p>
+                  <p className="mt-2 text-sm text-slate-500">No projects yet. Complete a roadmap mini project in the AI Lab to publish your first project!</p>
                 </div>
               )}
             </div>

@@ -9,11 +9,12 @@
 - Article reader page at `app/articles/[slug]/page.tsx`.
 - Reading tracker at `app/api/reading/track/route.ts` records article engagement.
 
-### 2. AI Assessment for Tasks / Projects / Assignments
-- Component: `components/task-assessment-popup.tsx` (uses DeepSeek for dynamic scoring).
-- API route: `app/api/ai/task-review/route.ts` evaluates submission text and returns score + feedback.
-- Task page: `app/assessment/task/page.tsx` opens the assessment popup.
-- Links added on `app/roadmap/day/[day]/page.tsx` for Practical Task, Mini Project, and Assignment.
+### 2. AI Lab for Tasks / Projects / Assignments
+- Full LeetCode-style workspace: `components/ai-task-lab.tsx` with a line-numbered editor, language selector, local drafts, uploads, AI-check output, and detailed feedback.
+- API route: `app/api/ai/task-review/route.ts` securely resolves the authored role/level/day task, evaluates the submission with DeepSeek (or a conservative deterministic fallback), persists attempts, and awards idempotent points.
+- Task page: `app/assessment/task/page.tsx` opens the full-page lab without passing server callbacks into a client component.
+- Practical Tasks, Mini Projects, and Assignments are validated for all 360 roadmap days (1,080 assessable activities).
+- Persistence schema: `supabase/migrations/014_roadmap_ai_labs.sql`.
 
 ### 3. Quiz Functionality (Fixed)
 - Component: `components/quiz-popup.tsx` with Fisher-Yates shuffling logic.
@@ -43,7 +44,7 @@
 - Quiz scores are passed to the score update API.
 
 ### Note on DeepSeek
-The AI assessment and task review use DeepSeek. Ensure `DEEPSEEK_API_KEY` is set in `.env` (see `.env.example`). The code falls back to simulated scores if DeepSeek is unavailable.
+The AI assessment and task review use DeepSeek. Ensure `DEEPSEEK_API_KEY` is set in `.env` (see `.env.example`). If DeepSeek is unavailable, the AI Lab uses a conservative deterministic rubric and clearly identifies the result as a fallback instead of fabricating an AI response.
 
 ### How to Verify
 1. Visit `/roadmap` and click any day.

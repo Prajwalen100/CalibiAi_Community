@@ -1,68 +1,79 @@
-import { redirect } from "next/navigation";
-import { createServerSupabaseClient } from "@/lib/supabase/server";
-import { getStudentAccess } from "@/lib/auth/student-access";
-import { ArrowLeft, Sparkles } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { TaskAssessmentPopup } from "@/components/task-assessment-popup";
-
+import { notFound, redirect } from "next/navigation";
+import { AiTaskLab } from "@/components/ai-task-lab";
+import { getStudentAccess } from "@/lib/auth/student-access";
+import { isLearningRole } from "@/lib/learning/content";
+import { getRoadmapTask } from "@/lib/learning/roadmap-task";
+import {
+  ROADMAP_TASK_TYPES,
+  type RoadmapTaskType,
+} from "@/lib/learning/task-types";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
 export default async function TaskAssessmentPage({
   searchParams,
 }: {
-  searchParams: Promise<{ type?: string; day?: string; title?: string; open?: string }>;
+  searchParams: Promise<{ type?: string; day?: string }>;
 }) {
   const params = await searchParams;
-  const requestedType = params.type;
-  const type = requestedType === "mini_project" || requestedType === "assignment" || requestedType === "practical_task"
-    ? requestedType
+  const taskType = ROADMAP_TASK_TYPES.includes(params.type as RoadmapTaskType)
+    ? (params.type as RoadmapTaskType)
     : "practical_task";
-  const parsedDay = Number.parseInt(params.day ?? "", 10);
-  const dayNumber = Number.isSafeInteger(parsedDay) && parsedDay > 0 ? parsedDay : 1;
-  const title = params.title?.trim() || `Day ${dayNumber} ${type.replace("_", " ")}`;
+  const dayNumber = Number(params.day);
+  if (!Number.isInteger(dayNumber) || dayNumber < 1 || dayNumber > 45) notFound();
 
   const supabase = await createServerSupabaseClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   if (!user) redirect("/signin?mode=sign-in");
 
   const access = await getStudentAccess(supabase, user.id);
   if (access.isEmployer) redirect("/employer/dashboard");
   if (!access.canAccessStudentArea) redirect(access.nextPath);
 
+  const role = access.profile?.learning_role;
+  if (!isLearningRole(role)) redirect("/roadmap/assign");
+
+  const { data: assignment, error: assignmentError } = await supabase
+    .from("user_roadmaps")
+    .select("level")
+    .eq("user_id", user.id)
+    .eq("role", role)
+    .eq("status", "active")
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (assignmentError || !assignment) redirect("/roadmap/assign");
+  if (assignment.level !== "beginner" && assignment.level !== "intermediate") {
+    redirect("/roadmap/assign");
+  }
+
+  let task: ReturnType<typeof getRoadmapTask> = null;
+  try {
+    task = getRoadmapTask(role, assignment.level, dayNumber, taskType);
+  } catch (error) {
+    console.error(`Invalid roadmap task for ${role}/${assignment.level}/day-${dayNumber}`, error);
+  }
+  if (!task) notFound();
+
   return (
-    <section className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
-      <Link href={`/roadmap/day/${dayNumber}`} className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-brand-600">
-        <ArrowLeft className="h-4 w-4" />
-        Back to Day {dayNumber}
-      </Link>
-
-      <div className="mt-6 rounded-3xl border border-brand-200 bg-gradient-to-br from-brand-50 to-indigo-50 p-6 dark:border-brand-800 dark:from-brand-950/30 dark:to-indigo-950/30">
-        <div className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-600 text-white shadow-xl">
-            <Sparkles className="h-6 w-6" />
-          </div>
-          <div>
-            <p className="text-sm font-bold text-brand-700">AI Assessment</p>
-            <h1 className="text-2xl font-black">Submit Your {type.replace("_", " ")}</h1>
-          </div>
+    <main>
+      <div className="border-b border-slate-200 bg-white px-4 py-2 dark:border-slate-800 dark:bg-slate-950 sm:px-6">
+        <div className="mx-auto max-w-[1600px]">
+          <Link
+            href={`/roadmap/day/${dayNumber}`}
+            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-brand-600 dark:text-slate-300"
+          >
+            <ArrowLeft className="h-4 w-4" /> Back to Day {dayNumber}
+          </Link>
         </div>
-        <p className="mt-4 text-slate-600 dark:text-slate-300">
-          DeepSeek will evaluate your work for this task, calculate a dynamic score based on correctness and depth, and add points to your CalibiAI profile.
-        </p>
       </div>
-
-      <TaskAssessmentPopup
-        isOpen={true}
-        onClose={() => redirect(`/roadmap/day/${dayNumber}`)}
-        taskType={type}
-        taskDescription={title}
-        dayNumber={dayNumber}
-        onScoreCalculated={(score, feedback) => {
-          // In a real implementation, this would call an API to save the score to the user's profile
-          console.log("AI Score:", score, "Feedback:", feedback);
-        }}
-      />
-    </section>
+      <AiTaskLab task={task} />
+    </main>
   );
 }

@@ -1,5 +1,3 @@
-// Suppress TypeScript strict checks for data script
-// @ts-nocheck
 import fs from "fs";
 import path from "path";
 
@@ -15,12 +13,21 @@ const ROLES = [
 ];
 
 function generateArticle(dayData: Record<string, unknown>, role: string, level: string): Record<string, unknown> {
-  const title = dayData.title || `Day ${dayData.day}`;
-  const topics = (dayData.topics || []).join("; ");
-  const explanation = dayData.beginner_explanation || "This day covers essential concepts for building AI engineering skills.";
-  const practicalTask = dayData.practical_task || "Complete the hands-on exercise.";
-  const miniProject = dayData.mini_project || "Build a small project applying today's concepts.";
-  const assignment = dayData.assignment || "Write a brief explanation or code review.";
+  const title = typeof dayData.title === "string" ? dayData.title : `Day ${dayData.day}`;
+  const topicList = Array.isArray(dayData.topics) ? dayData.topics.map(String) : [];
+  const topics = topicList.join("; ");
+  const explanation = typeof dayData.beginner_explanation === "string"
+    ? dayData.beginner_explanation
+    : "This day covers essential concepts for building AI engineering skills.";
+  const practicalTask = typeof dayData.practical_task === "string"
+    ? dayData.practical_task
+    : "Complete the hands-on exercise.";
+  const miniProject = typeof dayData.mini_project === "string"
+    ? dayData.mini_project
+    : "Build a small project applying today's concepts.";
+  const assignment = typeof dayData.assignment === "string"
+    ? dayData.assignment
+    : "Write a brief explanation or code review.";
 
   // Generate a detailed article (approx 500-600 words)
   const content = `# ${title}

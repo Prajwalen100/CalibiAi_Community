@@ -231,7 +231,7 @@ export default async function DayPage({
           </h2>
           <p className="mt-2 text-slate-700 dark:text-slate-300">{currentDay.practical_task}</p>
           <Link
-            href={`/assessment/task?type=practical_task&day=${dayNumber}&title=${encodeURIComponent(currentDay.practical_task || "")}`}
+            href={`/assessment/task?type=practical_task&day=${dayNumber}`}
             className="btn-secondary mt-3 inline-flex items-center gap-2"
           >
             <Sparkles className="h-4 w-4" /> Open AI Assessment
@@ -248,7 +248,7 @@ export default async function DayPage({
           </h2>
           <p className="mt-2 text-slate-700 dark:text-slate-300">{currentDay.mini_project}</p>
           <Link
-            href={`/assessment/task?type=mini_project&day=${dayNumber}&title=${encodeURIComponent(currentDay.mini_project || "")}`}
+            href={`/assessment/task?type=mini_project&day=${dayNumber}`}
             className="btn-secondary mt-3 inline-flex items-center gap-2"
           >
             <Sparkles className="h-4 w-4" /> Submit Project for AI Review
@@ -265,7 +265,7 @@ export default async function DayPage({
           </h2>
           <p className="mt-2 text-slate-700 dark:text-slate-300">{currentDay.assignment}</p>
           <Link
-            href={`/assessment/task?type=assignment&day=${dayNumber}&title=${encodeURIComponent(currentDay.assignment || "")}`}
+            href={`/assessment/task?type=assignment&day=${dayNumber}`}
             className="btn-secondary mt-3 inline-flex items-center gap-2"
           >
             <Sparkles className="h-4 w-4" /> Submit Assignment for AI Review

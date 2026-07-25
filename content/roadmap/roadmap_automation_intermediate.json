@@ -1458,9 +1458,39 @@
       "mini_project": "Build a hybrid-search RAG API over a 200-document knowledge base with a cross-encoder re-ranker, and expose it as an endpoint your n8n workflow calls.",
       "assignment": "Run RAGAS on two chunking strategies for the same corpus and report which improves faithfulness and recall@5.",
       "quiz": [
-        "Why does hybrid search often beat pure vector search?",
-        "What problem does a cross-encoder re-ranker solve?",
-        "How can retrieved content become a prompt-injection vector?"
+        {
+          "question": "Why does hybrid search often beat pure vector search?",
+          "options": [
+            "It scores each query-document pair more deeply and reorders the initial retrieval candidates by relevance.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It combines semantic matching with exact keyword coverage, improving recall for names, codes, and rare terms.",
+            "Malicious instructions inside a retrieved document can enter the model context and hijack its response or tool use."
+          ],
+          "answer": "It combines semantic matching with exact keyword coverage, improving recall for names, codes, and rare terms.",
+          "explanation": "It combines semantic matching with exact keyword coverage, improving recall for names, codes, and rare terms."
+        },
+        {
+          "question": "What problem does a cross-encoder re-ranker solve?",
+          "options": [
+            "It combines semantic matching with exact keyword coverage, improving recall for names, codes, and rare terms.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It scores each query-document pair more deeply and reorders the initial retrieval candidates by relevance.",
+            "Malicious instructions inside a retrieved document can enter the model context and hijack its response or tool use."
+          ],
+          "answer": "It scores each query-document pair more deeply and reorders the initial retrieval candidates by relevance.",
+          "explanation": "It scores each query-document pair more deeply and reorders the initial retrieval candidates by relevance."
+        },
+        {
+          "question": "How can retrieved content become a prompt-injection vector?",
+          "options": [
+            "It combines semantic matching with exact keyword coverage, improving recall for names, codes, and rare terms.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Malicious instructions inside a retrieved document can enter the model context and hijack its response or tool use.",
+            "It scores each query-document pair more deeply and reorders the initial retrieval candidates by relevance."
+          ],
+          "answer": "Malicious instructions inside a retrieved document can enter the model context and hijack its response or tool use.",
+          "explanation": "Malicious instructions inside a retrieved document can enter the model context and hijack its response or tool use."
+        }
       ],
       "youtube": {
         "title": "Advanced RAG techniques walkthrough",
@@ -1535,9 +1565,39 @@
       "mini_project": "Build an inbox-triage agent that reads emails, decides reply/escalate/ignore, and executes the action via an n8n webhook tool, capped at 5 iterations.",
       "assignment": "Add a human-in-the-loop approval node before any action that sends an external message, and log every tool call.",
       "quiz": [
-        "What does the 'act' step add over a plain LLM completion?",
-        "Why does LangGraph's explicit state help reliability?",
-        "How do you prevent an agent from looping forever and burning cost?"
+        {
+          "question": "What does the 'act' step add over a plain LLM completion?",
+          "options": [
+            "It makes transitions, checkpoints, retries, and recovery explicit and observable instead of hiding them in a loop.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It lets the model call tools, interact with external systems, and change state based on its reasoning.",
+            "Set iteration, time, token, and cost limits, and stop when the agent repeats a state or fails to make progress."
+          ],
+          "answer": "It lets the model call tools, interact with external systems, and change state based on its reasoning.",
+          "explanation": "It lets the model call tools, interact with external systems, and change state based on its reasoning."
+        },
+        {
+          "question": "Why does LangGraph's explicit state help reliability?",
+          "options": [
+            "It lets the model call tools, interact with external systems, and change state based on its reasoning.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It makes transitions, checkpoints, retries, and recovery explicit and observable instead of hiding them in a loop.",
+            "Set iteration, time, token, and cost limits, and stop when the agent repeats a state or fails to make progress."
+          ],
+          "answer": "It makes transitions, checkpoints, retries, and recovery explicit and observable instead of hiding them in a loop.",
+          "explanation": "It makes transitions, checkpoints, retries, and recovery explicit and observable instead of hiding them in a loop."
+        },
+        {
+          "question": "How do you prevent an agent from looping forever and burning cost?",
+          "options": [
+            "It lets the model call tools, interact with external systems, and change state based on its reasoning.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Set iteration, time, token, and cost limits, and stop when the agent repeats a state or fails to make progress.",
+            "It makes transitions, checkpoints, retries, and recovery explicit and observable instead of hiding them in a loop."
+          ],
+          "answer": "Set iteration, time, token, and cost limits, and stop when the agent repeats a state or fails to make progress.",
+          "explanation": "Set iteration, time, token, and cost limits, and stop when the agent repeats a state or fails to make progress."
+        }
       ],
       "youtube": {
         "title": "Build AI agents with LangGraph",
@@ -1602,9 +1662,39 @@
       "mini_project": "Build a 3-agent content pipeline (researcher, writer, reviewer) in CrewAI or LangGraph that publishes an approved draft via a Make.com webhook.",
       "assignment": "Add a cost budget: abort the crew if total token spend exceeds a threshold, and log per-agent cost.",
       "quiz": [
-        "When is multi-agent worse than a single agent with more tools?",
-        "What does a supervisor pattern coordinate?",
-        "How do you stop two agents from delegating to each other endlessly?"
+        {
+          "question": "When is multi-agent worse than a single agent with more tools?",
+          "options": [
+            "It assigns work to specialist agents, tracks shared state, and combines their results.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "When coordination cost and failure modes exceed the benefit of specialized agents for the task.",
+            "Use a bounded delegation graph, prohibit reciprocal handoffs, and enforce per-agent handoff and iteration limits."
+          ],
+          "answer": "When coordination cost and failure modes exceed the benefit of specialized agents for the task.",
+          "explanation": "When coordination cost and failure modes exceed the benefit of specialized agents for the task."
+        },
+        {
+          "question": "What does a supervisor pattern coordinate?",
+          "options": [
+            "When coordination cost and failure modes exceed the benefit of specialized agents for the task.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It assigns work to specialist agents, tracks shared state, and combines their results.",
+            "Use a bounded delegation graph, prohibit reciprocal handoffs, and enforce per-agent handoff and iteration limits."
+          ],
+          "answer": "It assigns work to specialist agents, tracks shared state, and combines their results.",
+          "explanation": "It assigns work to specialist agents, tracks shared state, and combines their results."
+        },
+        {
+          "question": "How do you stop two agents from delegating to each other endlessly?",
+          "options": [
+            "When coordination cost and failure modes exceed the benefit of specialized agents for the task.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Use a bounded delegation graph, prohibit reciprocal handoffs, and enforce per-agent handoff and iteration limits.",
+            "It assigns work to specialist agents, tracks shared state, and combines their results."
+          ],
+          "answer": "Use a bounded delegation graph, prohibit reciprocal handoffs, and enforce per-agent handoff and iteration limits.",
+          "explanation": "Use a bounded delegation graph, prohibit reciprocal handoffs, and enforce per-agent handoff and iteration limits."
+        }
       ],
       "youtube": {
         "title": "Multi-agent systems with CrewAI",
@@ -1677,9 +1767,39 @@
       "mini_project": "Build an LLM classification step that returns validated JSON via a Pydantic schema, retrying up to 3 times on parse failure.",
       "assignment": "Create a 20-example eval set and score two prompt versions; keep the higher-accuracy prompt.",
       "quiz": [
-        "Why enforce a JSON schema on LLM output in a workflow?",
-        "Name two prompt-injection defenses.",
-        "What is prompt regression testing and why does it matter?"
+        {
+          "question": "Why enforce a JSON schema on LLM output in a workflow?",
+          "options": [
+            "Delimit untrusted content so it is never treated as instructions, and allowlist tools with least-privilege permissions.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It makes the output predictable and machine-validatable before downstream workflow steps consume it.",
+            "It runs a fixed evaluation set after prompt or model changes to detect quality, format, or safety regressions."
+          ],
+          "answer": "It makes the output predictable and machine-validatable before downstream workflow steps consume it.",
+          "explanation": "It makes the output predictable and machine-validatable before downstream workflow steps consume it."
+        },
+        {
+          "question": "Name two prompt-injection defenses.",
+          "options": [
+            "It makes the output predictable and machine-validatable before downstream workflow steps consume it.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Delimit untrusted content so it is never treated as instructions, and allowlist tools with least-privilege permissions.",
+            "It runs a fixed evaluation set after prompt or model changes to detect quality, format, or safety regressions."
+          ],
+          "answer": "Delimit untrusted content so it is never treated as instructions, and allowlist tools with least-privilege permissions.",
+          "explanation": "Delimit untrusted content so it is never treated as instructions, and allowlist tools with least-privilege permissions."
+        },
+        {
+          "question": "What is prompt regression testing and why does it matter?",
+          "options": [
+            "It makes the output predictable and machine-validatable before downstream workflow steps consume it.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It runs a fixed evaluation set after prompt or model changes to detect quality, format, or safety regressions.",
+            "Delimit untrusted content so it is never treated as instructions, and allowlist tools with least-privilege permissions."
+          ],
+          "answer": "It runs a fixed evaluation set after prompt or model changes to detect quality, format, or safety regressions.",
+          "explanation": "It runs a fixed evaluation set after prompt or model changes to detect quality, format, or safety regressions."
+        }
       ],
       "youtube": {
         "title": "Structured outputs and reliable LLM prompting",
@@ -1748,9 +1868,39 @@
       "mini_project": "Put an LLM gateway with Redis caching and a cheap-to-strong model fallback in front of an n8n workflow, and trace every call in Langfuse.",
       "assignment": "Measure cost and latency before and after caching over 100 repeated queries; report the savings.",
       "quiz": [
-        "How does semantic caching differ from exact caching?",
-        "Why route to a cheap model first?",
-        "What does an LLM observability tool trace?"
+        {
+          "question": "How does semantic caching differ from exact caching?",
+          "options": [
+            "It handles routine requests at lower cost and escalates only difficult or low-confidence requests to expensive models.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Semantic caching reuses results for meaningfully similar inputs, while exact caching requires an identical cache key.",
+            "It records prompts, model inputs and outputs, tokens, latency, errors, and tool calls across a request."
+          ],
+          "answer": "Semantic caching reuses results for meaningfully similar inputs, while exact caching requires an identical cache key.",
+          "explanation": "Semantic caching reuses results for meaningfully similar inputs, while exact caching requires an identical cache key."
+        },
+        {
+          "question": "Why route to a cheap model first?",
+          "options": [
+            "Semantic caching reuses results for meaningfully similar inputs, while exact caching requires an identical cache key.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It handles routine requests at lower cost and escalates only difficult or low-confidence requests to expensive models.",
+            "It records prompts, model inputs and outputs, tokens, latency, errors, and tool calls across a request."
+          ],
+          "answer": "It handles routine requests at lower cost and escalates only difficult or low-confidence requests to expensive models.",
+          "explanation": "It handles routine requests at lower cost and escalates only difficult or low-confidence requests to expensive models."
+        },
+        {
+          "question": "What does an LLM observability tool trace?",
+          "options": [
+            "Semantic caching reuses results for meaningfully similar inputs, while exact caching requires an identical cache key.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It records prompts, model inputs and outputs, tokens, latency, errors, and tool calls across a request.",
+            "It handles routine requests at lower cost and escalates only difficult or low-confidence requests to expensive models."
+          ],
+          "answer": "It records prompts, model inputs and outputs, tokens, latency, errors, and tool calls across a request.",
+          "explanation": "It records prompts, model inputs and outputs, tokens, latency, errors, and tool calls across a request."
+        }
       ],
       "youtube": {
         "title": "LLMOps and monitoring with Langfuse",
@@ -1815,9 +1965,39 @@
       "mini_project": "Scrape a JS-rendered product catalog by calling its hidden JSON API, with proxy rotation and incremental dedup, storing results in PostgreSQL.",
       "assignment": "Add checkpointing so an interrupted crawl resumes without re-fetching completed pages.",
       "quiz": [
-        "Why prefer a site's hidden JSON API over HTML parsing?",
-        "Name two anti-bot mitigations.",
-        "What legal signals should a scraper respect?"
+        {
+          "question": "Why prefer a site's hidden JSON API over HTML parsing?",
+          "options": [
+            "Use respectful rate limiting and backoff, and use a browser session only when the site legitimately requires it.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "A structured JSON API is usually more stable and precise than parsing presentation-oriented HTML.",
+            "Respect robots.txt, terms of service, rate limits, privacy requirements, copyright, and access restrictions."
+          ],
+          "answer": "A structured JSON API is usually more stable and precise than parsing presentation-oriented HTML.",
+          "explanation": "A structured JSON API is usually more stable and precise than parsing presentation-oriented HTML."
+        },
+        {
+          "question": "Name two anti-bot mitigations.",
+          "options": [
+            "A structured JSON API is usually more stable and precise than parsing presentation-oriented HTML.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Use respectful rate limiting and backoff, and use a browser session only when the site legitimately requires it.",
+            "Respect robots.txt, terms of service, rate limits, privacy requirements, copyright, and access restrictions."
+          ],
+          "answer": "Use respectful rate limiting and backoff, and use a browser session only when the site legitimately requires it.",
+          "explanation": "Use respectful rate limiting and backoff, and use a browser session only when the site legitimately requires it."
+        },
+        {
+          "question": "What legal signals should a scraper respect?",
+          "options": [
+            "A structured JSON API is usually more stable and precise than parsing presentation-oriented HTML.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Respect robots.txt, terms of service, rate limits, privacy requirements, copyright, and access restrictions.",
+            "Use respectful rate limiting and backoff, and use a browser session only when the site legitimately requires it."
+          ],
+          "answer": "Respect robots.txt, terms of service, rate limits, privacy requirements, copyright, and access restrictions.",
+          "explanation": "Respect robots.txt, terms of service, rate limits, privacy requirements, copyright, and access restrictions."
+        }
       ],
       "youtube": {
         "title": "Advanced Playwright scraping and anti-bot bypass",
@@ -1882,9 +2062,39 @@
       "mini_project": "Build a queue-based UiPath dispatcher/performer that reads invoices from a folder, keys them into a legacy app, and retries failed items via Orchestrator.",
       "assignment": "Separate business exceptions (bad data) from system exceptions (app crash) and route each differently.",
       "quiz": [
-        "When is RPA the right tool versus an API integration?",
-        "What does Orchestrator's queue give you over a plain loop?",
-        "What is the dispatcher/performer split in REFramework?"
+        {
+          "question": "When is RPA the right tool versus an API integration?",
+          "options": [
+            "It provides durable prioritized work items, ownership, retries, status tracking, and operational analytics.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Use RPA for stable, repetitive legacy-UI work when no reliable API or direct integration exists.",
+            "The dispatcher creates queue items, while independent performers claim and process each item."
+          ],
+          "answer": "Use RPA for stable, repetitive legacy-UI work when no reliable API or direct integration exists.",
+          "explanation": "Use RPA for stable, repetitive legacy-UI work when no reliable API or direct integration exists."
+        },
+        {
+          "question": "What does Orchestrator's queue give you over a plain loop?",
+          "options": [
+            "Use RPA for stable, repetitive legacy-UI work when no reliable API or direct integration exists.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It provides durable prioritized work items, ownership, retries, status tracking, and operational analytics.",
+            "The dispatcher creates queue items, while independent performers claim and process each item."
+          ],
+          "answer": "It provides durable prioritized work items, ownership, retries, status tracking, and operational analytics.",
+          "explanation": "It provides durable prioritized work items, ownership, retries, status tracking, and operational analytics."
+        },
+        {
+          "question": "What is the dispatcher/performer split in REFramework?",
+          "options": [
+            "Use RPA for stable, repetitive legacy-UI work when no reliable API or direct integration exists.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "The dispatcher creates queue items, while independent performers claim and process each item.",
+            "It provides durable prioritized work items, ownership, retries, status tracking, and operational analytics."
+          ],
+          "answer": "The dispatcher creates queue items, while independent performers claim and process each item.",
+          "explanation": "The dispatcher creates queue items, while independent performers claim and process each item."
+        }
       ],
       "youtube": {
         "title": "UiPath Orchestrator and REFramework tutorial",
@@ -1946,9 +2156,39 @@
       "mini_project": "Build an Airflow DAG that extracts from an API, transforms in Python, loads to PostgreSQL, and triggers an n8n notification workflow on success.",
       "assignment": "Reimplement one long-running step as a Temporal workflow that survives a simulated worker crash and resumes.",
       "quiz": [
-        "What is a DAG and why acyclic?",
-        "What does Temporal's durable execution guarantee?",
-        "When would you pick an orchestrator over n8n?"
+        {
+          "question": "What is a DAG and why acyclic?",
+          "options": [
+            "It persists workflow history and replays it so a failed worker resumes long-running work from the recorded state.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "A DAG models task dependencies without cycles so every run has a finite, schedulable execution order.",
+            "Choose one for long-running, dependency-heavy jobs that need durable state, scheduling, retries, and backfills at scale."
+          ],
+          "answer": "A DAG models task dependencies without cycles so every run has a finite, schedulable execution order.",
+          "explanation": "A DAG models task dependencies without cycles so every run has a finite, schedulable execution order."
+        },
+        {
+          "question": "What does Temporal's durable execution guarantee?",
+          "options": [
+            "A DAG models task dependencies without cycles so every run has a finite, schedulable execution order.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It persists workflow history and replays it so a failed worker resumes long-running work from the recorded state.",
+            "Choose one for long-running, dependency-heavy jobs that need durable state, scheduling, retries, and backfills at scale."
+          ],
+          "answer": "It persists workflow history and replays it so a failed worker resumes long-running work from the recorded state.",
+          "explanation": "It persists workflow history and replays it so a failed worker resumes long-running work from the recorded state."
+        },
+        {
+          "question": "When would you pick an orchestrator over n8n?",
+          "options": [
+            "A DAG models task dependencies without cycles so every run has a finite, schedulable execution order.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Choose one for long-running, dependency-heavy jobs that need durable state, scheduling, retries, and backfills at scale.",
+            "It persists workflow history and replays it so a failed worker resumes long-running work from the recorded state."
+          ],
+          "answer": "Choose one for long-running, dependency-heavy jobs that need durable state, scheduling, retries, and backfills at scale.",
+          "explanation": "Choose one for long-running, dependency-heavy jobs that need durable state, scheduling, retries, and backfills at scale."
+        }
       ],
       "youtube": {
         "title": "Apache Airflow full tutorial",
@@ -2014,9 +2254,39 @@
       "mini_project": "Write a docker-compose.yml running n8n (queue mode), PostgreSQL, Redis, and your FastAPI service, with persistent volumes and healthchecks.",
       "assignment": "Convert your FastAPI image to a multi-stage, non-root build and measure the image size reduction.",
       "quiz": [
-        "Why use multi-stage Docker builds?",
-        "What do named volumes protect against?",
-        "What does a Compose healthcheck enable?"
+        {
+          "question": "Why use multi-stage Docker builds?",
+          "options": [
+            "They keep persistent data outside a container so it survives container replacement and recreation.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "They keep compilers and build dependencies out of the runtime image, reducing image size and attack surface.",
+            "It lets dependent services wait until a service is actually healthy rather than merely started."
+          ],
+          "answer": "They keep compilers and build dependencies out of the runtime image, reducing image size and attack surface.",
+          "explanation": "They keep compilers and build dependencies out of the runtime image, reducing image size and attack surface."
+        },
+        {
+          "question": "What do named volumes protect against?",
+          "options": [
+            "They keep compilers and build dependencies out of the runtime image, reducing image size and attack surface.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "They keep persistent data outside a container so it survives container replacement and recreation.",
+            "It lets dependent services wait until a service is actually healthy rather than merely started."
+          ],
+          "answer": "They keep persistent data outside a container so it survives container replacement and recreation.",
+          "explanation": "They keep persistent data outside a container so it survives container replacement and recreation."
+        },
+        {
+          "question": "What does a Compose healthcheck enable?",
+          "options": [
+            "They keep compilers and build dependencies out of the runtime image, reducing image size and attack surface.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It lets dependent services wait until a service is actually healthy rather than merely started.",
+            "They keep persistent data outside a container so it survives container replacement and recreation."
+          ],
+          "answer": "It lets dependent services wait until a service is actually healthy rather than merely started.",
+          "explanation": "It lets dependent services wait until a service is actually healthy rather than merely started."
+        }
       ],
       "youtube": {
         "title": "Docker and Docker Compose crash course",
@@ -2082,9 +2352,39 @@
       "mini_project": "Deploy your FastAPI automation service to a local (kind/minikube) cluster with a Deployment, Service, Ingress, and a HorizontalPodAutoscaler.",
       "assignment": "Add liveness/readiness probes and trigger a rolling update, then a rollback, verifying zero downtime.",
       "quiz": [
-        "What does a Deployment manage that a bare Pod does not?",
-        "What do readiness probes control?",
-        "When is Kubernetes overkill for automation?"
+        {
+          "question": "What does a Deployment manage that a bare Pod does not?",
+          "options": [
+            "They determine whether a Pod is ready to receive service traffic.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "A Deployment maintains desired replicas and provides rolling updates, rollback, and self-healing replacement.",
+            "It is usually overkill for a small, low-volume workload without scaling needs or a team able to operate the cluster."
+          ],
+          "answer": "A Deployment maintains desired replicas and provides rolling updates, rollback, and self-healing replacement.",
+          "explanation": "A Deployment maintains desired replicas and provides rolling updates, rollback, and self-healing replacement."
+        },
+        {
+          "question": "What do readiness probes control?",
+          "options": [
+            "A Deployment maintains desired replicas and provides rolling updates, rollback, and self-healing replacement.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "They determine whether a Pod is ready to receive service traffic.",
+            "It is usually overkill for a small, low-volume workload without scaling needs or a team able to operate the cluster."
+          ],
+          "answer": "They determine whether a Pod is ready to receive service traffic.",
+          "explanation": "They determine whether a Pod is ready to receive service traffic."
+        },
+        {
+          "question": "When is Kubernetes overkill for automation?",
+          "options": [
+            "A Deployment maintains desired replicas and provides rolling updates, rollback, and self-healing replacement.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It is usually overkill for a small, low-volume workload without scaling needs or a team able to operate the cluster.",
+            "They determine whether a Pod is ready to receive service traffic."
+          ],
+          "answer": "It is usually overkill for a small, low-volume workload without scaling needs or a team able to operate the cluster.",
+          "explanation": "It is usually overkill for a small, low-volume workload without scaling needs or a team able to operate the cluster."
+        }
       ],
       "youtube": {
         "title": "Kubernetes tutorial for beginners",
@@ -2150,9 +2450,39 @@
       "mini_project": "Create a GitHub Actions pipeline that lints and tests a FastAPI service, builds its Docker image, and deploys on merge to main.",
       "assignment": "Add a production environment with a required manual approval before deploy.",
       "quiz": [
-        "Why version n8n workflow JSON in Git?",
-        "What does an environment protection rule enforce?",
-        "What belongs in GitHub Secrets versus the repo?"
+        {
+          "question": "Why version n8n workflow JSON in Git?",
+          "options": [
+            "It requires configured approvals and restrictions before a job can deploy to the protected environment.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Git provides reviewable history, diffs, automated tests, and a known version that can be rolled back.",
+            "Credentials and tokens belong in GitHub Secrets; source, workflow definitions, and non-sensitive config belong in the repository."
+          ],
+          "answer": "Git provides reviewable history, diffs, automated tests, and a known version that can be rolled back.",
+          "explanation": "Git provides reviewable history, diffs, automated tests, and a known version that can be rolled back."
+        },
+        {
+          "question": "What does an environment protection rule enforce?",
+          "options": [
+            "Git provides reviewable history, diffs, automated tests, and a known version that can be rolled back.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It requires configured approvals and restrictions before a job can deploy to the protected environment.",
+            "Credentials and tokens belong in GitHub Secrets; source, workflow definitions, and non-sensitive config belong in the repository."
+          ],
+          "answer": "It requires configured approvals and restrictions before a job can deploy to the protected environment.",
+          "explanation": "It requires configured approvals and restrictions before a job can deploy to the protected environment."
+        },
+        {
+          "question": "What belongs in GitHub Secrets versus the repo?",
+          "options": [
+            "Git provides reviewable history, diffs, automated tests, and a known version that can be rolled back.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Credentials and tokens belong in GitHub Secrets; source, workflow definitions, and non-sensitive config belong in the repository.",
+            "It requires configured approvals and restrictions before a job can deploy to the protected environment."
+          ],
+          "answer": "Credentials and tokens belong in GitHub Secrets; source, workflow definitions, and non-sensitive config belong in the repository.",
+          "explanation": "Credentials and tokens belong in GitHub Secrets; source, workflow definitions, and non-sensitive config belong in the repository."
+        }
       ],
       "youtube": {
         "title": "GitHub Actions CI/CD full course",
@@ -2214,9 +2544,39 @@
       "mini_project": "Write Terraform to provision a cloud VM, a managed PostgreSQL instance, and a DNS record for your self-hosted n8n.",
       "assignment": "Refactor the config into a reusable module and configure remote state with locking.",
       "quiz": [
-        "Why is remote state with locking important on a team?",
-        "What does terraform plan show before apply?",
-        "What is infrastructure drift?"
+        {
+          "question": "Why is remote state with locking important on a team?",
+          "options": [
+            "It previews the resources Terraform will create, change, replace, or destroy before anything is applied.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It gives the team one durable state source and locking prevents concurrent applies from corrupting it.",
+            "Drift is a difference between real infrastructure and the infrastructure declared in Terraform configuration and state."
+          ],
+          "answer": "It gives the team one durable state source and locking prevents concurrent applies from corrupting it.",
+          "explanation": "It gives the team one durable state source and locking prevents concurrent applies from corrupting it."
+        },
+        {
+          "question": "What does terraform plan show before apply?",
+          "options": [
+            "It gives the team one durable state source and locking prevents concurrent applies from corrupting it.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It previews the resources Terraform will create, change, replace, or destroy before anything is applied.",
+            "Drift is a difference between real infrastructure and the infrastructure declared in Terraform configuration and state."
+          ],
+          "answer": "It previews the resources Terraform will create, change, replace, or destroy before anything is applied.",
+          "explanation": "It previews the resources Terraform will create, change, replace, or destroy before anything is applied."
+        },
+        {
+          "question": "What is infrastructure drift?",
+          "options": [
+            "It gives the team one durable state source and locking prevents concurrent applies from corrupting it.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Drift is a difference between real infrastructure and the infrastructure declared in Terraform configuration and state.",
+            "It previews the resources Terraform will create, change, replace, or destroy before anything is applied."
+          ],
+          "answer": "Drift is a difference between real infrastructure and the infrastructure declared in Terraform configuration and state.",
+          "explanation": "Drift is a difference between real infrastructure and the infrastructure declared in Terraform configuration and state."
+        }
       ],
       "youtube": {
         "title": "Terraform course for beginners",
@@ -2278,9 +2638,39 @@
       "mini_project": "Write unit + integration tests for a webhook-driven automation: validate transformation logic and assert idempotent DB writes against a test Postgres.",
       "assignment": "Mock a third-party API with recorded responses so the e2e test runs offline and deterministically.",
       "quiz": [
-        "Why mock external APIs in tests?",
-        "What does an idempotency test verify?",
-        "How do you test a no-code n8n workflow?"
+        {
+          "question": "Why mock external APIs in tests?",
+          "options": [
+            "It verifies that processing the same event more than once does not create duplicate side effects.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Mocks make tests fast and deterministic while isolating the unit from unavailable, slow, costly, or destructive dependencies.",
+            "Export and version the workflow, test code or sub-workflows with fixtures, mock triggers and APIs, then run an end-to-end staging test."
+          ],
+          "answer": "Mocks make tests fast and deterministic while isolating the unit from unavailable, slow, costly, or destructive dependencies.",
+          "explanation": "Mocks make tests fast and deterministic while isolating the unit from unavailable, slow, costly, or destructive dependencies."
+        },
+        {
+          "question": "What does an idempotency test verify?",
+          "options": [
+            "Mocks make tests fast and deterministic while isolating the unit from unavailable, slow, costly, or destructive dependencies.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It verifies that processing the same event more than once does not create duplicate side effects.",
+            "Export and version the workflow, test code or sub-workflows with fixtures, mock triggers and APIs, then run an end-to-end staging test."
+          ],
+          "answer": "It verifies that processing the same event more than once does not create duplicate side effects.",
+          "explanation": "It verifies that processing the same event more than once does not create duplicate side effects."
+        },
+        {
+          "question": "How do you test a no-code n8n workflow?",
+          "options": [
+            "Mocks make tests fast and deterministic while isolating the unit from unavailable, slow, costly, or destructive dependencies.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Export and version the workflow, test code or sub-workflows with fixtures, mock triggers and APIs, then run an end-to-end staging test.",
+            "It verifies that processing the same event more than once does not create duplicate side effects."
+          ],
+          "answer": "Export and version the workflow, test code or sub-workflows with fixtures, mock triggers and APIs, then run an end-to-end staging test.",
+          "explanation": "Export and version the workflow, test code or sub-workflows with fixtures, mock triggers and APIs, then run an end-to-end staging test."
+        }
       ],
       "youtube": {
         "title": "pytest full tutorial",
@@ -2346,9 +2736,39 @@
       "mini_project": "Instrument a FastAPI automation service with Prometheus metrics and OpenTelemetry traces, and build a Grafana dashboard showing success rate and p95 latency.",
       "assignment": "Define one SLO and an Alertmanager rule that pings Slack when the failure rate breaches it.",
       "quiz": [
-        "What are the three pillars of observability?",
-        "What does a distributed trace let you correlate?",
-        "What is an SLO and how does it drive alerting?"
+        {
+          "question": "What are the three pillars of observability?",
+          "options": [
+            "It correlates one request across services, queues, database calls, and external APIs to find latency or failure causes.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Metrics, logs, and distributed traces.",
+            "An SLO is a measurable reliability target; alerts should fire when current behavior threatens its error budget."
+          ],
+          "answer": "Metrics, logs, and distributed traces.",
+          "explanation": "Metrics, logs, and distributed traces."
+        },
+        {
+          "question": "What does a distributed trace let you correlate?",
+          "options": [
+            "Metrics, logs, and distributed traces.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It correlates one request across services, queues, database calls, and external APIs to find latency or failure causes.",
+            "An SLO is a measurable reliability target; alerts should fire when current behavior threatens its error budget."
+          ],
+          "answer": "It correlates one request across services, queues, database calls, and external APIs to find latency or failure causes.",
+          "explanation": "It correlates one request across services, queues, database calls, and external APIs to find latency or failure causes."
+        },
+        {
+          "question": "What is an SLO and how does it drive alerting?",
+          "options": [
+            "Metrics, logs, and distributed traces.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "An SLO is a measurable reliability target; alerts should fire when current behavior threatens its error budget.",
+            "It correlates one request across services, queues, database calls, and external APIs to find latency or failure causes."
+          ],
+          "answer": "An SLO is a measurable reliability target; alerts should fire when current behavior threatens its error budget.",
+          "explanation": "An SLO is a measurable reliability target; alerts should fire when current behavior threatens its error budget."
+        }
       ],
       "youtube": {
         "title": "Prometheus and Grafana monitoring tutorial",
@@ -2419,9 +2839,39 @@
       "mini_project": "Move all automation credentials into Vault (or a cloud secret manager) with rotation, and have your FastAPI/n8n stack fetch them at runtime.",
       "assignment": "Add HMAC verification and least-privilege scopes to one production webhook and its service account.",
       "quiz": [
-        "Why use short-lived dynamic credentials?",
-        "How does PKCE harden the OAuth code flow?",
-        "How can a prompt-injection attack reach an agent's tools?"
+        {
+          "question": "Why use short-lived dynamic credentials?",
+          "options": [
+            "PKCE binds the authorization request to the token exchange with a verifier, making an intercepted code unusable.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "They reduce the exposure window and can be rotated or revoked automatically instead of remaining valid indefinitely.",
+            "Untrusted content can inject instructions that the model follows to invoke a privileged tool or expose protected data."
+          ],
+          "answer": "They reduce the exposure window and can be rotated or revoked automatically instead of remaining valid indefinitely.",
+          "explanation": "They reduce the exposure window and can be rotated or revoked automatically instead of remaining valid indefinitely."
+        },
+        {
+          "question": "How does PKCE harden the OAuth code flow?",
+          "options": [
+            "They reduce the exposure window and can be rotated or revoked automatically instead of remaining valid indefinitely.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "PKCE binds the authorization request to the token exchange with a verifier, making an intercepted code unusable.",
+            "Untrusted content can inject instructions that the model follows to invoke a privileged tool or expose protected data."
+          ],
+          "answer": "PKCE binds the authorization request to the token exchange with a verifier, making an intercepted code unusable.",
+          "explanation": "PKCE binds the authorization request to the token exchange with a verifier, making an intercepted code unusable."
+        },
+        {
+          "question": "How can a prompt-injection attack reach an agent's tools?",
+          "options": [
+            "They reduce the exposure window and can be rotated or revoked automatically instead of remaining valid indefinitely.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Untrusted content can inject instructions that the model follows to invoke a privileged tool or expose protected data.",
+            "PKCE binds the authorization request to the token exchange with a verifier, making an intercepted code unusable."
+          ],
+          "answer": "Untrusted content can inject instructions that the model follows to invoke a privileged tool or expose protected data.",
+          "explanation": "Untrusted content can inject instructions that the model follows to invoke a privileged tool or expose protected data."
+        }
       ],
       "youtube": {
         "title": "HashiCorp Vault secrets management tutorial",
@@ -2491,9 +2941,39 @@
       "mini_project": "Add a circuit breaker and dead-letter queue to a workflow calling a flaky API, and build a replay path for DLQ messages.",
       "assignment": "Implement a two-step saga (create order, charge payment) with a compensating cancel if the second step fails.",
       "quiz": [
-        "What does a circuit breaker prevent?",
-        "Why do retries require idempotency?",
-        "When do you need a saga instead of a DB transaction?"
+        {
+          "question": "What does a circuit breaker prevent?",
+          "options": [
+            "A retry may repeat a side effect, so the operation must safely produce the same result when executed more than once.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It stops repeated calls to a failing dependency, preventing resource exhaustion and cascading failure while recovery is tested.",
+            "Use a saga when distributed services cannot share one atomic database transaction and completed steps need compensating actions."
+          ],
+          "answer": "It stops repeated calls to a failing dependency, preventing resource exhaustion and cascading failure while recovery is tested.",
+          "explanation": "It stops repeated calls to a failing dependency, preventing resource exhaustion and cascading failure while recovery is tested."
+        },
+        {
+          "question": "Why do retries require idempotency?",
+          "options": [
+            "It stops repeated calls to a failing dependency, preventing resource exhaustion and cascading failure while recovery is tested.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "A retry may repeat a side effect, so the operation must safely produce the same result when executed more than once.",
+            "Use a saga when distributed services cannot share one atomic database transaction and completed steps need compensating actions."
+          ],
+          "answer": "A retry may repeat a side effect, so the operation must safely produce the same result when executed more than once.",
+          "explanation": "A retry may repeat a side effect, so the operation must safely produce the same result when executed more than once."
+        },
+        {
+          "question": "When do you need a saga instead of a DB transaction?",
+          "options": [
+            "It stops repeated calls to a failing dependency, preventing resource exhaustion and cascading failure while recovery is tested.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Use a saga when distributed services cannot share one atomic database transaction and completed steps need compensating actions.",
+            "A retry may repeat a side effect, so the operation must safely produce the same result when executed more than once."
+          ],
+          "answer": "Use a saga when distributed services cannot share one atomic database transaction and completed steps need compensating actions.",
+          "explanation": "Use a saga when distributed services cannot share one atomic database transaction and completed steps need compensating actions."
+        }
       ],
       "youtube": {
         "title": "Resilience patterns: circuit breaker, retry, bulkhead",
@@ -2559,9 +3039,39 @@
       "mini_project": "Load-test a workflow with k6, identify the bottleneck, then batch + parallelize it and measure the throughput/latency improvement.",
       "assignment": "Model the cost per 10,000 runs on Zapier vs Make vs self-hosted n8n for one real workflow and recommend the cheapest.",
       "quiz": [
-        "How does early filtering reduce Zapier/Make cost?",
-        "When does self-hosted n8n beat SaaS on cost?",
-        "What is an N+1 query and how do you fix it?"
+        {
+          "question": "How does early filtering reduce Zapier/Make cost?",
+          "options": [
+            "At sustained predictable volume, infrastructure savings can outweigh the hosting, maintenance, and operations effort.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It removes irrelevant items before paid downstream actions, reducing task runs, API calls, tokens, and compute.",
+            "It runs an extra query per item; fix it with a join, eager loading, or one batched query."
+          ],
+          "answer": "It removes irrelevant items before paid downstream actions, reducing task runs, API calls, tokens, and compute.",
+          "explanation": "It removes irrelevant items before paid downstream actions, reducing task runs, API calls, tokens, and compute."
+        },
+        {
+          "question": "When does self-hosted n8n beat SaaS on cost?",
+          "options": [
+            "It removes irrelevant items before paid downstream actions, reducing task runs, API calls, tokens, and compute.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "At sustained predictable volume, infrastructure savings can outweigh the hosting, maintenance, and operations effort.",
+            "It runs an extra query per item; fix it with a join, eager loading, or one batched query."
+          ],
+          "answer": "At sustained predictable volume, infrastructure savings can outweigh the hosting, maintenance, and operations effort.",
+          "explanation": "At sustained predictable volume, infrastructure savings can outweigh the hosting, maintenance, and operations effort."
+        },
+        {
+          "question": "What is an N+1 query and how do you fix it?",
+          "options": [
+            "It removes irrelevant items before paid downstream actions, reducing task runs, API calls, tokens, and compute.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It runs an extra query per item; fix it with a join, eager loading, or one batched query.",
+            "At sustained predictable volume, infrastructure savings can outweigh the hosting, maintenance, and operations effort."
+          ],
+          "answer": "It runs an extra query per item; fix it with a join, eager loading, or one batched query.",
+          "explanation": "It runs an extra query per item; fix it with a join, eager loading, or one batched query."
+        }
       ],
       "youtube": {
         "title": "Load testing with k6 tutorial",
@@ -2627,9 +3137,39 @@
       "mini_project": "Build a multi-tenant automation service with Postgres row-level security and per-tenant credential storage, provable to isolate two test tenants.",
       "assignment": "Add usage metering (runs per tenant per month) and expose it for billing.",
       "quiz": [
-        "Compare row vs schema vs instance multi-tenancy.",
-        "What does Postgres RLS enforce?",
-        "How do you keep one tenant's OAuth tokens from another?"
+        {
+          "question": "Compare row vs schema vs instance multi-tenancy.",
+          "options": [
+            "PostgreSQL RLS applies database-enforced policies that restrict which tenant rows each request may read or change.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Row tenancy shares tables with a tenant key, schema tenancy separates namespaces, and instance tenancy gives the strongest isolation.",
+            "Store encrypted, tenant-scoped credentials in a secret manager and authorize access using the current tenant identity."
+          ],
+          "answer": "Row tenancy shares tables with a tenant key, schema tenancy separates namespaces, and instance tenancy gives the strongest isolation.",
+          "explanation": "Row tenancy shares tables with a tenant key, schema tenancy separates namespaces, and instance tenancy gives the strongest isolation."
+        },
+        {
+          "question": "What does Postgres RLS enforce?",
+          "options": [
+            "Row tenancy shares tables with a tenant key, schema tenancy separates namespaces, and instance tenancy gives the strongest isolation.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "PostgreSQL RLS applies database-enforced policies that restrict which tenant rows each request may read or change.",
+            "Store encrypted, tenant-scoped credentials in a secret manager and authorize access using the current tenant identity."
+          ],
+          "answer": "PostgreSQL RLS applies database-enforced policies that restrict which tenant rows each request may read or change.",
+          "explanation": "PostgreSQL RLS applies database-enforced policies that restrict which tenant rows each request may read or change."
+        },
+        {
+          "question": "How do you keep one tenant's OAuth tokens from another?",
+          "options": [
+            "Row tenancy shares tables with a tenant key, schema tenancy separates namespaces, and instance tenancy gives the strongest isolation.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Store encrypted, tenant-scoped credentials in a secret manager and authorize access using the current tenant identity.",
+            "PostgreSQL RLS applies database-enforced policies that restrict which tenant rows each request may read or change."
+          ],
+          "answer": "Store encrypted, tenant-scoped credentials in a secret manager and authorize access using the current tenant identity.",
+          "explanation": "Store encrypted, tenant-scoped credentials in a secret manager and authorize access using the current tenant identity."
+        }
       ],
       "youtube": {
         "title": "Multi-tenant SaaS architecture explained",
@@ -2691,9 +3231,39 @@
       "mini_project": "Build an incremental ELT: Airbyte (or a custom n8n sync) loads a source into Postgres/warehouse, then dbt transforms it, with a data-quality check.",
       "assignment": "Add CDC-style incremental sync using a watermark so only changed rows load on each run.",
       "quiz": [
-        "Why does ELT dominate over ETL with modern warehouses?",
-        "What does a watermark enable in incremental loads?",
-        "When is a managed connector better than a custom n8n sync?"
+        {
+          "question": "Why does ELT dominate over ETL with modern warehouses?",
+          "options": [
+            "A watermark records the last timestamp or ID processed so the next load fetches only newer or changed records.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Modern warehouses scale storage and SQL transformation efficiently, so raw data can be loaded first and reused later.",
+            "Use a managed connector for a common source when its maintenance and schema-change handling cost less than custom requirements justify."
+          ],
+          "answer": "Modern warehouses scale storage and SQL transformation efficiently, so raw data can be loaded first and reused later.",
+          "explanation": "Modern warehouses scale storage and SQL transformation efficiently, so raw data can be loaded first and reused later."
+        },
+        {
+          "question": "What does a watermark enable in incremental loads?",
+          "options": [
+            "Modern warehouses scale storage and SQL transformation efficiently, so raw data can be loaded first and reused later.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "A watermark records the last timestamp or ID processed so the next load fetches only newer or changed records.",
+            "Use a managed connector for a common source when its maintenance and schema-change handling cost less than custom requirements justify."
+          ],
+          "answer": "A watermark records the last timestamp or ID processed so the next load fetches only newer or changed records.",
+          "explanation": "A watermark records the last timestamp or ID processed so the next load fetches only newer or changed records."
+        },
+        {
+          "question": "When is a managed connector better than a custom n8n sync?",
+          "options": [
+            "Modern warehouses scale storage and SQL transformation efficiently, so raw data can be loaded first and reused later.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Use a managed connector for a common source when its maintenance and schema-change handling cost less than custom requirements justify.",
+            "A watermark records the last timestamp or ID processed so the next load fetches only newer or changed records."
+          ],
+          "answer": "Use a managed connector for a common source when its maintenance and schema-change handling cost less than custom requirements justify.",
+          "explanation": "Use a managed connector for a common source when its maintenance and schema-change handling cost less than custom requirements justify."
+        }
       ],
       "youtube": {
         "title": "ETL vs ELT and modern data pipelines explained",
@@ -2759,9 +3329,39 @@
       "mini_project": "Build a full AI support automation: ticket webhook to RAG retrieval to agent draft to human approval to send + log, with a confidence-based human fallback.",
       "assignment": "Add quality logging: store every AI draft, the human edit, and a running accuracy metric.",
       "quiz": [
-        "When should low-confidence AI output fall back to a human?",
-        "Which steps belong in n8n vs custom code, and why?",
-        "How do you measure an AI automation's business value?"
+        {
+          "question": "When should low-confidence AI output fall back to a human?",
+          "options": [
+            "Use n8n for orchestration and standard integrations; use custom code for complex domain logic, strict testing, or performance-critical work.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Route it to a human when confidence is below a tested threshold or the decision has high financial, legal, or safety impact.",
+            "Compare a pre-automation baseline with cycle time, cost, error rate, throughput, revenue, and human effort after release."
+          ],
+          "answer": "Route it to a human when confidence is below a tested threshold or the decision has high financial, legal, or safety impact.",
+          "explanation": "Route it to a human when confidence is below a tested threshold or the decision has high financial, legal, or safety impact."
+        },
+        {
+          "question": "Which steps belong in n8n vs custom code, and why?",
+          "options": [
+            "Route it to a human when confidence is below a tested threshold or the decision has high financial, legal, or safety impact.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Use n8n for orchestration and standard integrations; use custom code for complex domain logic, strict testing, or performance-critical work.",
+            "Compare a pre-automation baseline with cycle time, cost, error rate, throughput, revenue, and human effort after release."
+          ],
+          "answer": "Use n8n for orchestration and standard integrations; use custom code for complex domain logic, strict testing, or performance-critical work.",
+          "explanation": "Use n8n for orchestration and standard integrations; use custom code for complex domain logic, strict testing, or performance-critical work."
+        },
+        {
+          "question": "How do you measure an AI automation's business value?",
+          "options": [
+            "Route it to a human when confidence is below a tested threshold or the decision has high financial, legal, or safety impact.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Compare a pre-automation baseline with cycle time, cost, error rate, throughput, revenue, and human effort after release.",
+            "Use n8n for orchestration and standard integrations; use custom code for complex domain logic, strict testing, or performance-critical work."
+          ],
+          "answer": "Compare a pre-automation baseline with cycle time, cost, error rate, throughput, revenue, and human effort after release.",
+          "explanation": "Compare a pre-automation baseline with cycle time, cost, error rate, throughput, revenue, and human effort after release."
+        }
       ],
       "youtube": {
         "title": "Build an end-to-end AI automation in n8n",
@@ -2827,9 +3427,39 @@
       "mini_project": "Design (diagram + config) a hub-and-spoke integration with a canonical data model connecting a CRM, billing, and support system through n8n and an API gateway.",
       "assignment": "Apply the strangler-fig pattern on paper to migrate one legacy point-to-point integration to the hub without downtime.",
       "quiz": [
-        "How does a canonical data model avoid N-squared mappings?",
-        "What does an API gateway centralize?",
-        "What problem does the strangler-fig pattern solve?"
+        {
+          "question": "How does a canonical data model avoid N-squared mappings?",
+          "options": [
+            "It centralizes authentication, authorization, routing, rate limits, policy enforcement, and API observability.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Each system maps once to a shared representation instead of maintaining a separate mapping for every system pair.",
+            "It incrementally replaces a legacy system by routing one capability at a time to new services."
+          ],
+          "answer": "Each system maps once to a shared representation instead of maintaining a separate mapping for every system pair.",
+          "explanation": "Each system maps once to a shared representation instead of maintaining a separate mapping for every system pair."
+        },
+        {
+          "question": "What does an API gateway centralize?",
+          "options": [
+            "Each system maps once to a shared representation instead of maintaining a separate mapping for every system pair.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It centralizes authentication, authorization, routing, rate limits, policy enforcement, and API observability.",
+            "It incrementally replaces a legacy system by routing one capability at a time to new services."
+          ],
+          "answer": "It centralizes authentication, authorization, routing, rate limits, policy enforcement, and API observability.",
+          "explanation": "It centralizes authentication, authorization, routing, rate limits, policy enforcement, and API observability."
+        },
+        {
+          "question": "What problem does the strangler-fig pattern solve?",
+          "options": [
+            "Each system maps once to a shared representation instead of maintaining a separate mapping for every system pair.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It incrementally replaces a legacy system by routing one capability at a time to new services.",
+            "It centralizes authentication, authorization, routing, rate limits, policy enforcement, and API observability."
+          ],
+          "answer": "It incrementally replaces a legacy system by routing one capability at a time to new services.",
+          "explanation": "It incrementally replaces a legacy system by routing one capability at a time to new services."
+        }
       ],
       "youtube": {
         "title": "Enterprise integration patterns explained",
@@ -2890,9 +3520,39 @@
       "mini_project": "Stand up an internal n8n platform with a template library, shared vault, RBAC, and dev/prod environments other teams can self-serve from.",
       "assignment": "Write the governance model: intake form, review checklist, naming convention, and a cost showback report.",
       "quiz": [
-        "What is a 'golden path' and why offer one?",
-        "What does the central platform team own vs citizen developers?",
-        "Why add cost showback to a shared platform?"
+        {
+          "question": "What is a 'golden path' and why offer one?",
+          "options": [
+            "The platform team owns infrastructure, guardrails, shared components, and support; citizen developers own business workflows within those boundaries.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "A golden path is an approved reusable template and toolchain that makes the secure, observable approach the easiest one.",
+            "Showback creates cost accountability, reveals expensive workflows, and helps teams optimize and allocate shared capacity."
+          ],
+          "answer": "A golden path is an approved reusable template and toolchain that makes the secure, observable approach the easiest one.",
+          "explanation": "A golden path is an approved reusable template and toolchain that makes the secure, observable approach the easiest one."
+        },
+        {
+          "question": "What does the central platform team own vs citizen developers?",
+          "options": [
+            "A golden path is an approved reusable template and toolchain that makes the secure, observable approach the easiest one.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "The platform team owns infrastructure, guardrails, shared components, and support; citizen developers own business workflows within those boundaries.",
+            "Showback creates cost accountability, reveals expensive workflows, and helps teams optimize and allocate shared capacity."
+          ],
+          "answer": "The platform team owns infrastructure, guardrails, shared components, and support; citizen developers own business workflows within those boundaries.",
+          "explanation": "The platform team owns infrastructure, guardrails, shared components, and support; citizen developers own business workflows within those boundaries."
+        },
+        {
+          "question": "Why add cost showback to a shared platform?",
+          "options": [
+            "A golden path is an approved reusable template and toolchain that makes the secure, observable approach the easiest one.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Showback creates cost accountability, reveals expensive workflows, and helps teams optimize and allocate shared capacity.",
+            "The platform team owns infrastructure, guardrails, shared components, and support; citizen developers own business workflows within those boundaries."
+          ],
+          "answer": "Showback creates cost accountability, reveals expensive workflows, and helps teams optimize and allocate shared capacity.",
+          "explanation": "Showback creates cost accountability, reveals expensive workflows, and helps teams optimize and allocate shared capacity."
+        }
       ],
       "youtube": {
         "title": "Building an internal developer/automation platform",
@@ -2957,9 +3617,39 @@
       "mini_project": "Produce a full design document with C4 diagrams, data model, tool-selection rationale, and cost/risk analysis for the capstone platform.",
       "assignment": "Write and defend three key architectural decisions using an ADR (Architecture Decision Record) format.",
       "quiz": [
-        "How do you decide n8n vs custom code for a component?",
-        "What does a C4 container diagram communicate?",
-        "What belongs in an ADR?"
+        {
+          "question": "How do you decide n8n vs custom code for a component?",
+          "options": [
+            "It shows deployable applications and data stores, their responsibilities, technology choices, users, and interactions.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Use n8n for integration-heavy orchestration and custom code for complex logic, performance, reusable services, or strict testability.",
+            "An ADR records context, the chosen decision, considered alternatives, and the consequences and tradeoffs."
+          ],
+          "answer": "Use n8n for integration-heavy orchestration and custom code for complex logic, performance, reusable services, or strict testability.",
+          "explanation": "Use n8n for integration-heavy orchestration and custom code for complex logic, performance, reusable services, or strict testability."
+        },
+        {
+          "question": "What does a C4 container diagram communicate?",
+          "options": [
+            "Use n8n for integration-heavy orchestration and custom code for complex logic, performance, reusable services, or strict testability.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It shows deployable applications and data stores, their responsibilities, technology choices, users, and interactions.",
+            "An ADR records context, the chosen decision, considered alternatives, and the consequences and tradeoffs."
+          ],
+          "answer": "It shows deployable applications and data stores, their responsibilities, technology choices, users, and interactions.",
+          "explanation": "It shows deployable applications and data stores, their responsibilities, technology choices, users, and interactions."
+        },
+        {
+          "question": "What belongs in an ADR?",
+          "options": [
+            "Use n8n for integration-heavy orchestration and custom code for complex logic, performance, reusable services, or strict testability.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "An ADR records context, the chosen decision, considered alternatives, and the consequences and tradeoffs.",
+            "It shows deployable applications and data stores, their responsibilities, technology choices, users, and interactions."
+          ],
+          "answer": "An ADR records context, the chosen decision, considered alternatives, and the consequences and tradeoffs.",
+          "explanation": "An ADR records context, the chosen decision, considered alternatives, and the consequences and tradeoffs."
+        }
       ],
       "youtube": {
         "title": "Software architecture and system design fundamentals",
@@ -3020,9 +3710,39 @@
       "mini_project": "Build the working core: integrations + event flows + RAG + agent + one custom node, all connected and executing end-to-end for one tenant.",
       "assignment": "Demonstrate the agent taking a real action behind a human-approval gate, with the action and approval logged.",
       "quiz": [
-        "Where did you place the message queue and why?",
-        "How does your agent enforce structured output?",
-        "What did building a custom node require that a built-in didn't?"
+        {
+          "question": "Where did you place the message queue and why?",
+          "options": [
+            "Require a schema, validate every response, and retry or reject invalid output while limiting tools and permissions.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Place it between producers and workers to decouple them, absorb bursts, provide durable delivery, and support controlled retries.",
+            "It requires node metadata, credentials and inputs, execution logic, packaging, tests, and installation in the n8n runtime."
+          ],
+          "answer": "Place it between producers and workers to decouple them, absorb bursts, provide durable delivery, and support controlled retries.",
+          "explanation": "Place it between producers and workers to decouple them, absorb bursts, provide durable delivery, and support controlled retries."
+        },
+        {
+          "question": "How does your agent enforce structured output?",
+          "options": [
+            "Place it between producers and workers to decouple them, absorb bursts, provide durable delivery, and support controlled retries.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Require a schema, validate every response, and retry or reject invalid output while limiting tools and permissions.",
+            "It requires node metadata, credentials and inputs, execution logic, packaging, tests, and installation in the n8n runtime."
+          ],
+          "answer": "Require a schema, validate every response, and retry or reject invalid output while limiting tools and permissions.",
+          "explanation": "Require a schema, validate every response, and retry or reject invalid output while limiting tools and permissions."
+        },
+        {
+          "question": "What did building a custom node require that a built-in didn't?",
+          "options": [
+            "Place it between producers and workers to decouple them, absorb bursts, provide durable delivery, and support controlled retries.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It requires node metadata, credentials and inputs, execution logic, packaging, tests, and installation in the n8n runtime.",
+            "Require a schema, validate every response, and retry or reject invalid output while limiting tools and permissions."
+          ],
+          "answer": "It requires node metadata, credentials and inputs, execution logic, packaging, tests, and installation in the n8n runtime.",
+          "explanation": "It requires node metadata, credentials and inputs, execution logic, packaging, tests, and installation in the n8n runtime."
+        }
       ],
       "youtube": {
         "title": "Full-stack automation build with n8n and code",
@@ -3087,9 +3807,39 @@
       "mini_project": "Deploy the capstone to production via CI/CD with Terraform-provisioned infra, vault secrets, resilience patterns, and a live Grafana dashboard + alerts.",
       "assignment": "Run a load test at target volume and prove autoscaling + alerting behave correctly under stress.",
       "quiz": [
-        "Which resilience patterns protect against data corruption on failure?",
-        "What does your CI/CD gate before production?",
-        "What SLO and alert prove the platform is operable?"
+        {
+          "question": "Which resilience patterns protect against data corruption on failure?",
+          "options": [
+            "Automated tests, security and policy checks, artifact verification, required approval, and rollout health checks.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Idempotency keys, transactions or atomic writes, deduplication, checkpoints, and a dead-letter queue protect state during retries and failure.",
+            "For example, 99.9% successful executions with latency targets, plus alerts based on error-budget burn and sustained queue delay."
+          ],
+          "answer": "Idempotency keys, transactions or atomic writes, deduplication, checkpoints, and a dead-letter queue protect state during retries and failure.",
+          "explanation": "Idempotency keys, transactions or atomic writes, deduplication, checkpoints, and a dead-letter queue protect state during retries and failure."
+        },
+        {
+          "question": "What does your CI/CD gate before production?",
+          "options": [
+            "Idempotency keys, transactions or atomic writes, deduplication, checkpoints, and a dead-letter queue protect state during retries and failure.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Automated tests, security and policy checks, artifact verification, required approval, and rollout health checks.",
+            "For example, 99.9% successful executions with latency targets, plus alerts based on error-budget burn and sustained queue delay."
+          ],
+          "answer": "Automated tests, security and policy checks, artifact verification, required approval, and rollout health checks.",
+          "explanation": "Automated tests, security and policy checks, artifact verification, required approval, and rollout health checks."
+        },
+        {
+          "question": "What SLO and alert prove the platform is operable?",
+          "options": [
+            "Idempotency keys, transactions or atomic writes, deduplication, checkpoints, and a dead-letter queue protect state during retries and failure.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "For example, 99.9% successful executions with latency targets, plus alerts based on error-budget burn and sustained queue delay.",
+            "Automated tests, security and policy checks, artifact verification, required approval, and rollout health checks."
+          ],
+          "answer": "For example, 99.9% successful executions with latency targets, plus alerts based on error-budget burn and sustained queue delay.",
+          "explanation": "For example, 99.9% successful executions with latency targets, plus alerts based on error-budget burn and sustained queue delay."
+        }
       ],
       "youtube": {
         "title": "Deploy and monitor a production app end-to-end",
@@ -3154,9 +3904,39 @@
       "mini_project": "Ship the platform's full test suite in CI plus complete docs: architecture, runbooks, API reference, and a backup/restore procedure.",
       "assignment": "Do a mock handover: have someone else (or your future self) deploy and recover the platform using only your docs, and fix any gaps.",
       "quiz": [
-        "What belongs in a runbook versus an architecture doc?",
-        "Why include AI eval sets in the CI suite?",
-        "What proves your backup/restore actually works?"
+        {
+          "question": "What belongs in a runbook versus an architecture doc?",
+          "options": [
+            "They catch model or prompt changes that regress task quality, structured output, grounding, or safety before deployment.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "A runbook contains operational diagnosis and recovery steps; architecture documentation explains system structure and design decisions.",
+            "A scheduled restore drill that recovers the data and verifies integrity and application behavior proves the backup is usable."
+          ],
+          "answer": "A runbook contains operational diagnosis and recovery steps; architecture documentation explains system structure and design decisions.",
+          "explanation": "A runbook contains operational diagnosis and recovery steps; architecture documentation explains system structure and design decisions."
+        },
+        {
+          "question": "Why include AI eval sets in the CI suite?",
+          "options": [
+            "A runbook contains operational diagnosis and recovery steps; architecture documentation explains system structure and design decisions.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "They catch model or prompt changes that regress task quality, structured output, grounding, or safety before deployment.",
+            "A scheduled restore drill that recovers the data and verifies integrity and application behavior proves the backup is usable."
+          ],
+          "answer": "They catch model or prompt changes that regress task quality, structured output, grounding, or safety before deployment.",
+          "explanation": "They catch model or prompt changes that regress task quality, structured output, grounding, or safety before deployment."
+        },
+        {
+          "question": "What proves your backup/restore actually works?",
+          "options": [
+            "A runbook contains operational diagnosis and recovery steps; architecture documentation explains system structure and design decisions.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "A scheduled restore drill that recovers the data and verifies integrity and application behavior proves the backup is usable.",
+            "They catch model or prompt changes that regress task quality, structured output, grounding, or safety before deployment."
+          ],
+          "answer": "A scheduled restore drill that recovers the data and verifies integrity and application behavior proves the backup is usable.",
+          "explanation": "A scheduled restore drill that recovers the data and verifies integrity and application behavior proves the backup is usable."
+        }
       ],
       "youtube": {
         "title": "Writing great technical documentation and runbooks",
@@ -3217,9 +3997,39 @@
       "mini_project": "Publish a senior-level case study of your capstone (architecture, decisions, metrics, cost savings) and a polished GitHub with your custom nodes and IaC.",
       "assignment": "Do a mock system-design interview: design a scalable multi-tenant automation platform in 45 minutes and self-critique against your capstone.",
       "quiz": [
-        "How would you defend n8n vs custom code in an interview?",
-        "What makes a senior automation portfolio stand out?",
-        "Value-based vs hourly pricing for automation consulting - when each?"
+        {
+          "question": "How would you defend n8n vs custom code in an interview?",
+          "options": [
+            "It demonstrates measurable business outcomes with production architecture, clean code, tests, security, monitoring, documentation, and tradeoff reasoning.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Compare integration fit, complexity, scalability, testability, maintainability, total cost, governance, and the team operating it.",
+            "Use value-based pricing for well-defined high-impact outcomes and hourly pricing for uncertain, exploratory, or changing scope."
+          ],
+          "answer": "Compare integration fit, complexity, scalability, testability, maintainability, total cost, governance, and the team operating it.",
+          "explanation": "Compare integration fit, complexity, scalability, testability, maintainability, total cost, governance, and the team operating it."
+        },
+        {
+          "question": "What makes a senior automation portfolio stand out?",
+          "options": [
+            "Compare integration fit, complexity, scalability, testability, maintainability, total cost, governance, and the team operating it.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "It demonstrates measurable business outcomes with production architecture, clean code, tests, security, monitoring, documentation, and tradeoff reasoning.",
+            "Use value-based pricing for well-defined high-impact outcomes and hourly pricing for uncertain, exploratory, or changing scope."
+          ],
+          "answer": "It demonstrates measurable business outcomes with production architecture, clean code, tests, security, monitoring, documentation, and tradeoff reasoning.",
+          "explanation": "It demonstrates measurable business outcomes with production architecture, clean code, tests, security, monitoring, documentation, and tradeoff reasoning."
+        },
+        {
+          "question": "Value-based vs hourly pricing for automation consulting - when each?",
+          "options": [
+            "Compare integration fit, complexity, scalability, testability, maintainability, total cost, governance, and the team operating it.",
+            "It only changes the workflow interface and has no effect on runtime behavior, reliability, security, or cost.",
+            "Use value-based pricing for well-defined high-impact outcomes and hourly pricing for uncertain, exploratory, or changing scope.",
+            "It demonstrates measurable business outcomes with production architecture, clean code, tests, security, monitoring, documentation, and tradeoff reasoning."
+          ],
+          "answer": "Use value-based pricing for well-defined high-impact outcomes and hourly pricing for uncertain, exploratory, or changing scope.",
+          "explanation": "Use value-based pricing for well-defined high-impact outcomes and hourly pricing for uncertain, exploratory, or changing scope."
+        }
       ],
       "youtube": {
         "title": "System design interview preparation guide",

@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { reviewProject } from "@/lib/ai/bedrock";
-import { calculateCalibiAiScore } from "@/lib/score/calculate";
+import { calculateCalibiAiScore, tierFor } from "@/lib/score/calculate";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 
@@ -96,43 +96,59 @@ export async function submitProject(formData: FormData) {
   // (admin client bypasses RLS so score update always works)
   const adminSupabase = createAdminSupabaseClient();
 
-  const { data: allProjects } = await adminSupabase
-    .from("projects")
-    .select("verified, points_awarded, originality_status")
-    .eq("user_id", user.id);
+  const [projectsResult, skillsResult, progressResult, currentScoreResult] = await Promise.all([
+    adminSupabase
+      .from("projects")
+      .select("verified,points_awarded,originality_status")
+      .eq("user_id", user.id),
+    adminSupabase
+      .from("user_skills")
+      .select("id", { count: "exact", head: true })
+      .eq("user_id", user.id)
+      .eq("verified", true),
+    adminSupabase
+      .from("roadmap_progress")
+      .select("status")
+      .eq("user_id", user.id),
+    adminSupabase
+      .from("scores")
+      .select("community_pts,completion_pts,recognition_pts,reading_pts,quizzes_pts")
+      .eq("user_id", user.id)
+      .maybeSingle(),
+  ]);
 
-  const { count: verifiedSkillsCount } = await adminSupabase
-    .from("user_skills")
-    .select("*", { count: "exact", head: true })
-    .eq("user_id", user.id)
-    .eq("verified", true);
-
-  const { data: roadmapRow } = await adminSupabase
-    .from("roadmaps")
-    .select("generated_plan")
-    .eq("user_id", user.id)
-    .order("created_at", { ascending: false })
-    .limit(1)
-    .single();
-
-  const modules = (roadmapRow?.generated_plan as { modules?: Array<{ id: string }> })?.modules ?? [];
-  const completedModules = modules.length > 0
-    ? (await adminSupabase.from("projects").select("module_id", { count: "exact", head: true }).eq("user_id", user.id).eq("verified", true).not("module_id", "is", null)).count ?? 0
-    : 0;
-
-  const breakdown = calculateCalibiAiScore({
-    projects: (allProjects ?? []).map((p) => ({
-      verified: p.verified,
-      pointsAwarded: p.points_awarded,
-      originalityStatus: p.originality_status,
+  const progress = progressResult.data ?? [];
+  const currentScore = currentScoreResult.data;
+  const calculated = calculateCalibiAiScore({
+    projects: (projectsResult.data ?? []).map((project) => ({
+      verified: project.verified,
+      pointsAwarded: project.points_awarded,
+      originalityStatus: project.originality_status,
     })),
-    verifiedSkillsCount: verifiedSkillsCount ?? 0,
-    completedModulesCount: completedModules,
-    totalModulesCount: modules.length,
-    communityRawPoints: 0,
-    recognitionRawPoints: 0,
+    verifiedSkillsCount: skillsResult.count ?? 0,
+    completedModulesCount: progress.filter((item) => item.status === "completed").length,
+    totalModulesCount: Math.max(progress.length, 1),
+    communityRawPoints: currentScore?.community_pts ?? 0,
+    recognitionRawPoints: currentScore?.recognition_pts ?? 0,
+    readingScore: currentScore?.reading_pts ?? 0,
+    quizAverage: currentScore?.quizzes_pts ?? 0,
+    lastActivityAt: new Date(),
     now: new Date(),
   });
+  const completionPoints = Math.max(
+    calculated.completion_pts,
+    currentScore?.completion_pts ?? 0
+  );
+  const total = Math.min(
+    1000,
+    calculated.total - calculated.completion_pts + completionPoints
+  );
+  const breakdown = {
+    ...calculated,
+    completion_pts: completionPoints,
+    total,
+    tier: tierFor(total),
+  };
 
   // Use admin client to ensure score update always succeeds
   await adminSupabase

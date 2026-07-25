@@ -15,7 +15,7 @@ const publicLinks = [
 ] as const;
 
 const studentLinks = [
-  ["Academy", "/academy"],
+  ["Learning Hub", "/learning-hub"],
   ["Community", "/community"],
   ["Opportunity", "/placements"],
   ["Blog", "/blog"],
@@ -95,7 +95,10 @@ export async function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/60 bg-white/70 backdrop-blur-2xl transition-all duration-300 dark:border-slate-800/80 dark:bg-slate-950/80 glass-panel-subtle">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
-        <Link href="/" className="group flex items-center gap-2">
+        <Link
+          href={!user ? "/" : isEmployer ? "/employer/dashboard" : studentDestination}
+          className="group flex items-center gap-2"
+        >
           <CompactBrandLogo />
         </Link>
 

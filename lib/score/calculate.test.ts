@@ -28,6 +28,8 @@ describe("calculateCalibiAiScore", () => {
       totalModulesCount: 10,
       communityRawPoints: 999,
       recognitionRawPoints: 999,
+      readingScore: 100,
+      quizAverage: 100,
       lastActivityAt: new Date("2026-07-18"),
       now: new Date("2026-07-18")
     });
