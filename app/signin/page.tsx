@@ -11,29 +11,8 @@ export default async function SignInPage({ searchParams }: { searchParams: Searc
   const { mode: rawMode } = await searchParams;
   const mode: "sign-up" | "sign-in" = rawMode === "sign-in" ? "sign-in" : "sign-up";
 
-  // Resolve the destination inside the try, then redirect outside it. Next's
-  // redirect() throws internally and must not be swallowed by this fallback.
-  let destination: string | null = null;
-  try {
-    const supabase = await createServerSupabaseClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    if (user) {
-      const access = await getStudentAccess(supabase, user.id);
-      if (access.isEmployer) {
-        const { data: employer } = await supabase
-          .from("employer_profiles")
-          .select("onboarding_complete")
-          .eq("user_id", user.id)
-          .maybeSingle();
-        destination = employer?.onboarding_complete ? "/employer/dashboard" : "/employer/onboarding";
-      } else {
-        destination = access.nextPath;
-      }
-    }
-  } catch {
-    // Supabase not configured or temporarily offline — render sign-in.
-  }
-
-  if (destination) redirect(destination);
+  // Always render the sign-in form so users can reach login even if a stale session exists.
+  // (Previously this auto-redirected logged-in users straight to the student dashboard/portal.)
+  // The client component + dashboard will handle post-login routing and onboarding redirects.
   return <SignInPageClient mode={mode} />;
 }

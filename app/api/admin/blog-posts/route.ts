@@ -69,8 +69,11 @@ export async function POST(request: Request) {
   const { supabase, user, role, error } = await getSessionContext();
   if (error === "SUPABASE_NOT_CONFIGURED") return errorResponse("SUPABASE_NOT_CONFIGURED", "Supabase env vars are missing.", 503);
   if (error || !user || !supabase) return errorResponse("UNAUTHENTICATED", "Sign in to create blog posts.", 401);
-  if (role !== "author" && role !== "admin") {
-    return errorResponse("FORBIDDEN", "Blog posting requires profiles.role = author or admin.", 403, { role });
+  // Allow students to create drafts (they will appear in Student Portal Blog tab once published by admin/author).
+  // Only authors/admins may publish directly.
+  const canCreate = ["author", "admin", "student"].includes(role || "");
+  if (!canCreate) {
+    return errorResponse("FORBIDDEN", "Sign in to create blog posts.", 403, { role });
   }
 
   let payload: z.infer<typeof blogPostSchema>;

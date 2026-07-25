@@ -6,10 +6,14 @@ import { STATIC_BLOG_POSTS, toBlogPost, type BlogPost } from "@/lib/blog/posts";
 
 export const dynamic = "force-dynamic";
 
-async function getPublishedBlogPosts(): Promise<{ posts: BlogPost[]; fromSupabase: boolean }> {
+async function getPublishedBlogPosts(): Promise<{ posts: BlogPost[]; fromSupabase: boolean; source: string }> {
   try {
     const supabase = await createServerSupabaseClient();
-    const { data, error } = await supabase
+
+    // === PRIMARY: Direct query on posts table (most reliable) ===
+    // This matches exactly how the Admin CMS writes blogs (type='blog', status='published')
+    // The RLS policy "published posts public" allows anyone to read published rows.
+    const { data: directData, error: directError } = await supabase
       .from("posts")
       .select("id,author_id,slug,title,excerpt,body,status,category,read_time_minutes,cover_image_url,tags,featured,published_at,created_at,updated_at")
       .eq("type", "blog")
@@ -18,10 +22,42 @@ async function getPublishedBlogPosts(): Promise<{ posts: BlogPost[]; fromSupabas
       .order("published_at", { ascending: false, nullsFirst: false })
       .order("created_at", { ascending: false });
 
-    if (error || !data || data.length === 0) return { posts: STATIC_BLOG_POSTS, fromSupabase: false };
-    return { posts: data.map((row) => toBlogPost(row)), fromSupabase: true };
-  } catch {
-    return { posts: STATIC_BLOG_POSTS, fromSupabase: false };
+    if (!directError && directData && directData.length > 0) {
+      return {
+        posts: directData.map((row) => toBlogPost(row)),
+        fromSupabase: true,
+        source: "Supabase CMS (admin posts)"
+      };
+    }
+
+    // === FALLBACK 1: Try the published view (if it exists) ===
+    const { data: viewData, error: viewError } = await supabase
+      .from("published_blog_posts")
+      .select("*")
+      .order("published_at", { ascending: false, nullsFirst: false })
+      .order("created_at", { ascending: false });
+
+    if (!viewError && viewData && viewData.length > 0) {
+      return {
+        posts: viewData.map((row) => toBlogPost(row)),
+        fromSupabase: true,
+        source: "published_blog_posts view"
+      };
+    }
+
+    // No published admin blogs yet → show helpful demo + guidance
+    return {
+      posts: STATIC_BLOG_POSTS,
+      fromSupabase: false,
+      source: "demo (no published admin blogs yet)"
+    };
+  } catch (e) {
+    console.error("[/blog] Supabase load error:", e);
+    return {
+      posts: STATIC_BLOG_POSTS,
+      fromSupabase: false,
+      source: "demo (connection issue)"
+    };
   }
 }
 
@@ -30,7 +66,7 @@ function colorForIndex(index: number): "brand" | "success" | "warning" | "purple
 }
 
 export default async function BlogPage() {
-  const { posts, fromSupabase } = await getPublishedBlogPosts();
+  const { posts, fromSupabase, source } = await getPublishedBlogPosts();
 
   return (
     <div className="relative py-16 sm:py-20 lg:py-24">
@@ -45,14 +81,17 @@ export default async function BlogPage() {
             Team-authored AI education and hiring insights.
           </h1>
           <p className="mx-auto mt-4 max-w-3xl text-secondary animate-fade-in-up delay-200">
-            Public articles are authored by CalibiAI educators and reviewed by admins before publishing.
-            {fromSupabase ? " These posts are served from the Supabase CMS." : " Demo articles show while the Supabase CMS is empty or offline."}
+            <strong>Navbar "Blog" tab</strong> shows every blog you publish from the Admin CMS.
+            {fromSupabase 
+              ? ` ✅ Live from Admin CMS via Supabase (${source}).` 
+              : " (Currently showing demo articles — publish one from /admin/blog to see it here)"}
           </p>
         </ScrollReveal>
 
         <StaggerReveal staggerDelay={150} direction="up" className="grid gap-6 md:grid-cols-2">
           {posts.map((article, index) => {
             const color = colorForIndex(index);
+            const isLiveFromAdmin = fromSupabase; // true = loaded directly from Admin CMS (posts table)
             return (
               <ScrollReveal key={article.id} direction="up" className="group">
                 <GlowOnHover color={color} intensity="subtle">
@@ -66,6 +105,12 @@ export default async function BlogPage() {
                       }`}>
                         {article.category}
                       </span>
+
+                      {isLiveFromAdmin && (
+                        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-black text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">
+                          LIVE FROM ADMIN
+                        </span>
+                      )}
                       <span className="inline-flex items-center gap-1 text-xs text-subtle">
                         <Clock className="h-3.5 w-3.5" /> {article.readTimeMinutes} min
                       </span>
@@ -76,6 +121,7 @@ export default async function BlogPage() {
 
                     <h2 className="mt-3 line-clamp-2 text-xl font-bold text-primary transition-colors group-hover:text-brand-600 dark:group-hover:text-brand-400">
                       {article.title}
+                      {isLiveFromAdmin && <span className="ml-2 align-middle text-[10px] font-black text-emerald-600">• LIVE</span>}
                     </h2>
 
                     <p className="mt-2 line-clamp-3 text-sm text-secondary">{article.excerpt}</p>

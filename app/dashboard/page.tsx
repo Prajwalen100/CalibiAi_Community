@@ -3,8 +3,9 @@ import { redirect } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import type { GeneratedRoadmap } from "@/lib/ai/schemas";
 import { getStudentAccess } from "@/lib/auth/student-access";
-import { Calendar, Target, Trophy, TrendingUp, Zap, BookOpen, CheckCircle2, Clock, ChevronRight, Sparkles } from "lucide-react";
+import { Calendar, Target, Trophy, TrendingUp, Zap, BookOpen, CheckCircle2, Clock, ChevronRight, Sparkles, FileText, ArrowRight } from "lucide-react";
 import { DashboardGreeting } from "@/components/dashboard-greeting";
+import { STATIC_BLOG_POSTS, toBlogPost, type BlogPost } from "@/lib/blog/posts";
 
 export const dynamic = "force-dynamic";
 
@@ -78,6 +79,7 @@ export default async function DashboardPage({
     { data: projects },
     { data: recentProgress },
     { data: roadmapMiniProjects },
+    { data: blogData },
   ] = await Promise.all([
     supabase.from("profiles").select("*").eq("user_id", user.id).single(),
     supabase.from("scores").select("*").eq("user_id", user.id).single(),
@@ -93,7 +95,19 @@ export default async function DashboardPage({
       .order("score", { ascending: false })
       .order("created_at", { ascending: false })
       .limit(100),
+    // Robust fetch for Admin CMS blogs — same logic as /blog page
+    supabase
+      .from("posts")
+      .select("id,author_id,slug,title,excerpt,body,status,category,read_time_minutes,cover_image_url,tags,featured,published_at,created_at,updated_at")
+      .eq("type", "blog")
+      .eq("status", "published")
+      .not("slug", "is", null)
+      .order("published_at", { ascending: false, nullsFirst: false })
+      .order("created_at", { ascending: false })
+      .limit(6),
   ]);
+
+  const publishedBlogs: BlogPost[] = (blogData ?? []).map((row: any) => toBlogPost(row));
 
   const plan = roadmap?.generated_plan as StoredRoadmap | undefined;
   const days = plan?.days ?? [];
@@ -483,6 +497,56 @@ export default async function DashboardPage({
             </Link>
           )}
         </div>
+      </div>
+
+      {/* Blog Tab / Latest Insights for Students */}
+      <div className="mt-8">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <FileText className="h-5 w-5 text-brand-600" />
+            <p className="text-sm font-semibold text-slate-500">Student Portal • Blog</p>
+          </div>
+          <Link href="/blog" className="inline-flex items-center gap-1 text-sm font-semibold text-brand-700 hover:text-brand-600">
+            View all blogs <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {publishedBlogs.length > 0 ? (
+            publishedBlogs.map((post) => (
+              <Link key={post.id} href={`/blog/${post.slug}`} className="group block rounded-2xl border border-slate-100 bg-white p-5 dark:border-slate-800 dark:bg-slate-950/60 hover:border-brand-200 hover:shadow-md transition-all">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="inline-flex items-center rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-700 dark:bg-brand-950 dark:text-brand-300">
+                    {post.category}
+                  </span>
+                  <span className="text-xs text-slate-500">{post.readTimeMinutes} min</span>
+                </div>
+                <h3 className="font-bold text-lg leading-tight line-clamp-2 group-hover:text-brand-700 transition-colors">{post.title}</h3>
+                <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-3">{post.excerpt}</p>
+                <div className="mt-3 flex items-center text-xs font-semibold text-brand-600 group-hover:gap-1 transition-all">
+                  Read article <ArrowRight className="h-3.5 w-3.5 ml-1" />
+                </div>
+              </Link>
+            ))
+          ) : (
+            STATIC_BLOG_POSTS.slice(0, 3).map((post, idx) => (
+              <Link key={idx} href={`/blog/${post.slug}`} className="group block rounded-2xl border border-slate-100 bg-white p-5 dark:border-slate-800 dark:bg-slate-950/60 hover:border-brand-200 hover:shadow-md transition-all">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="inline-flex items-center rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-700 dark:bg-brand-950 dark:text-brand-300">
+                    {post.category}
+                  </span>
+                  <span className="text-xs text-slate-500">{post.readTimeMinutes} min</span>
+                </div>
+                <h3 className="font-bold text-lg leading-tight line-clamp-2 group-hover:text-brand-700 transition-colors">{post.title}</h3>
+                <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-3">{post.excerpt}</p>
+                <div className="mt-3 flex items-center text-xs font-semibold text-brand-600 group-hover:gap-1 transition-all">
+                  Read article <ArrowRight className="h-3.5 w-3.5 ml-1" />
+                </div>
+              </Link>
+            ))
+          )}
+        </div>
+            <p className="mt-3 text-xs text-center text-slate-500">Latest published articles from the <strong>Admin CMS</strong> appear here in the Student Portal. All blogs posted via /admin/blog (when published) are automatically shown in the top navigation "Blog" link and here.</p>
       </div>
     </section>
   );
