@@ -23,6 +23,7 @@ A Next.js + Supabase implementation of the CalibiAI MVP: public conversion pages
    - `supabase/migrations/008_learning_engine_onboarding.sql` (Student onboarding state and learning roles)
    - `supabase/migrations/009_assessment_engine.sql` (Placement attempts, skill scores, and knowledge graph)
    - `supabase/migrations/010_learning_engine_core.sql` (Roadmap assignment and progress records)
+   - `supabase/migrations/016_admin_blog_and_student_export.sql` (Admin blog authoring fields and student-export indexes)
 
    If you skip any migration, you will get setup or feature errors (for example, saving an avatar requires migration 005, squads/events require migration 004, employer hiring requires migration 006, module reading progress requires migration 007, and the student onboarding-to-assessment flow requires migrations 008–010). If you are using the Supabase SQL Editor, paste and run each file separately in numerical order; if you are using the Supabase CLI, run `supabase db push`.
 3. Enable Google OAuth in Supabase Auth and set the callback URL to:
@@ -40,6 +41,19 @@ A Next.js + Supabase implementation of the CalibiAI MVP: public conversion pages
 - The top navigation → **Learning Hub** (`/learning-hub`) loads every lesson from the repo `phases/` folder (20 phases, 500+ modules).
 - Open a phase, then a module to read the full markdown lesson. A **top progress line** tracks scroll %; signed-in users persist progress in `curriculum_progress` (migration 007).
 - Routes: `/learning-hub`, `/learning-hub/[phaseId]`, `/learning-hub/[phaseId]/[moduleSlug]`. Legacy Community resource URLs redirect here.
+
+## Admin portal
+
+The admin portal is a standalone, light glassmorphism console at `/admin`. It has its own sign-in, separate from student and employer auth.
+
+- **Sign in:** `http://localhost:3000/admin/signin`
+  - Default testing account: `admin@calibiai.local` / `admin@90`
+  - Override with `ADMIN_EMAIL` and `ADMIN_PASSWORD` (and optionally `ADMIN_SESSION_SECRET`) in the environment. Always set these in production.
+- **Blog CMS** (`/admin/blog`) — write a post with title, authored by, reading time, excerpt, body, image URL, category, tags and links, then publish it. Published posts appear immediately under the **Blog** tab in the student navigation (`/blog` and `/blog/[slug]`).
+- **Student data & CSV export** (`/admin/students`) — every learner who signs in is listed with name, email, phone, college, role, score and active/inactive status. Filter by status, college, role, score range or free-text search, optionally tick individual rows, then **Download CSV**. `GET /api/admin/students/export` serves the same data server-side with the same query filters.
+
+Both features require migration `016_admin_blog_and_student_export.sql`. If Supabase is not configured, the Blog CMS falls back to a gitignored `.data/admin-blog-posts.json` file so the flow can still be demonstrated locally; student data requires `SUPABASE_SERVICE_ROLE_KEY`.
+
 4. Install and run:
 
 ```bash
