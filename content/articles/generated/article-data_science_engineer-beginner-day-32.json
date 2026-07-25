@@ -1,0 +1,57 @@
+{
+  "id": "data_science_engineer-day-32",
+  "role": "data_science_engineer",
+  "level": "beginner",
+  "day": 32,
+  "title": "Introduction to Deep Learning",
+  "summary": "Deep learning uses neural networks, models loosely inspired by the brain, that excel at complex patterns in images, text, and audio. The building block is a neuron that computes a weighted sum of its inputs, adds a bias, and passes the result through",
+  "content": "# Introduction to Deep Learning\n\n## Overview\nDeep learning uses neural networks, models loosely inspired by the brain, that excel at complex patterns in images, text, and audio. The building block is a neuron that computes a weighted sum of its inputs, adds a bias, and passes the result through a nonlinear activation function (like ReLU) that lets the network learn non-linear relationships. Neurons are organized into layers: an input layer, one or more hidden layers, and an output layer, and 'deep' just means many hidden layers. Training happens in two phases: the forward pass computes predictions, and backpropagation calculates how each weight contributed to the error and nudges it in the right direction using gradient descent, repeated over many epochs. Frameworks like Keras make building a network as simple as stacking layers. Because deep networks have many parameters, they overfit easily, so techniques like dropout (randomly disabling neurons during training) help them generalize. Crucially, deep learning isn't always the answer: for typical tabular data, gradient boosting usually wins, while deep learning shines on unstructured data like images and language. Knowing this tradeoff is a mark of a thoughtful data scientist.\n\n## Deep Dive\nThis module covers: Neurons, layers, weights, and activations; Forward pass and backpropagation intuition; Building a network with Keras; Overfitting and regularization (dropout); When to use deep learning vs classical ML. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Build a small feedforward neural network with Keras to classify a dataset (e.g., MNIST digits or a tabular problem), train it over several epochs, and plot the training vs validation accuracy.\n**Mini Project:** Build a deep learning notebook that trains a neural network on an image or tabular dataset, applies dropout to combat overfitting, and compares its performance to a classical ML baseline on the same data.\n**Assignment:** Train a neural network with and without dropout and write an explanation, backed by your loss curves, of how dropout affects overfitting.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Neurons, layers, weights, and activations",
+    "Forward pass and backpropagation intuition",
+    "Building a network with Keras",
+    "Overfitting and regularization (dropout)",
+    "When to use deep learning vs classical ML"
+  ],
+  "practical_task_reference": "Build a small feedforward neural network with Keras to classify a dataset (e.g., MNIST digits or a tabular problem), train it over several epochs, and plot the training vs validation accuracy.",
+  "mini_project_reference": "Build a deep learning notebook that trains a neural network on an image or tabular dataset, applies dropout to combat overfitting, and compares its performance to a classical ML baseline on the same data.",
+  "assignment_reference": "Train a neural network with and without dropout and write an explanation, backed by your loss curves, of how dropout affects overfitting.",
+  "skills_gained": [
+    "Neural network basics",
+    "Keras",
+    "Deep learning judgment"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Deep Learning for Beginners - Full Course",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=VyWAvY2CF9c"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Keras Documentation",
+        "url": "https://keras.io/getting_started/"
+      }
+    ],
+    "github": [
+      {
+        "name": "keras-team/keras",
+        "url": "https://github.com/keras-team/keras"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Deep Learning (LeCun, Bengio & Hinton, 2015)",
+        "url": "https://www.nature.com/articles/nature14539"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.272Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 32,
+  "estimated_words": 669
+}

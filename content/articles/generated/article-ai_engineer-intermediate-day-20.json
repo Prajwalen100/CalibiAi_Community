@@ -1,0 +1,58 @@
+{
+  "id": "ai_engineer-day-20",
+  "role": "ai_engineer",
+  "level": "intermediate",
+  "day": 20,
+  "title": "Transformer Internals and Attention Deep Dive",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Transformer Internals and Attention Deep Dive\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Self-attention and multi-head attention math; Query, key, value projections; Positional encodings (sinusoidal, RoPE); Encoder vs decoder vs encoder-decoder; Attention variants (causal, cross); Flash Attention overview. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Implement scaled dot-product and multi-head attention from scratch in PyTorch, verify against the built-in module, and add causal masking.\n**Mini Project:** Build a small transformer (encoder or decoder) from scratch, train it on a toy task, and visualize its attention maps to interpret behavior.\n**Assignment:** Explain the roles of query, key, and value in attention, and why the dot product is scaled by the square root of the dimension.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Self-attention and multi-head attention math",
+    "Query, key, value projections",
+    "Positional encodings (sinusoidal, RoPE)",
+    "Encoder vs decoder vs encoder-decoder",
+    "Attention variants (causal, cross)",
+    "Flash Attention overview"
+  ],
+  "practical_task_reference": "Implement scaled dot-product and multi-head attention from scratch in PyTorch, verify against the built-in module, and add causal masking.",
+  "mini_project_reference": "Build a small transformer (encoder or decoder) from scratch, train it on a toy task, and visualize its attention maps to interpret behavior.",
+  "assignment_reference": "Explain the roles of query, key, and value in attention, and why the dot product is scaled by the square root of the dimension.",
+  "skills_gained": [
+    "Transformer internals",
+    "Attention implementation",
+    "Positional encodings"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Attention in Transformers, Visually Explained",
+        "channel": "3Blue1Brown",
+        "url": "https://www.youtube.com/watch?v=eMlx5fFNoYc"
+      }
+    ],
+    "docs": [
+      {
+        "title": "The Annotated Transformer",
+        "url": "https://nlp.seas.harvard.edu/annotated-transformer/"
+      }
+    ],
+    "github": [
+      {
+        "name": "karpathy/nanoGPT",
+        "url": "https://github.com/karpathy/nanoGPT"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Attention Is All You Need (Vaswani et al., 2017)",
+        "url": "https://arxiv.org/abs/1706.03762"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.258Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 20,
+  "estimated_words": 474
+}

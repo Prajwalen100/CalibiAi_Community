@@ -1,0 +1,58 @@
+{
+  "id": "ai_engineer-day-26",
+  "role": "ai_engineer",
+  "level": "beginner",
+  "day": 26,
+  "title": "Recurrent Networks and Sequence Models",
+  "summary": "Many problems involve sequences - text, speech, time series - where order matters. Recurrent networks process sequences step by step, maintaining a hidden state that carries information forward. LSTMs and GRUs add gating to remember long-range depend",
+  "content": "# Recurrent Networks and Sequence Models\n\n## Overview\nMany problems involve sequences - text, speech, time series - where order matters. Recurrent networks process sequences step by step, maintaining a hidden state that carries information forward. LSTMs and GRUs add gating to remember long-range dependencies. Understanding RNNs and their limitations (difficulty with long sequences) sets the stage for appreciating why transformers and attention took over.\n\n## Deep Dive\nThis module covers: Recurrent neural networks (RNNs); LSTM and GRU cells; Sequence-to-sequence models; Time series and text as sequences; Vanishing gradients in sequences; Why attention replaced RNNs. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Build an LSTM in PyTorch or Keras to forecast a simple time series or classify text sentiment.\n**Mini Project:** Build a text sentiment classifier or a stock/weather time-series forecaster using an LSTM, and evaluate it.\n**Assignment:** Explain how an LSTM's gates help it remember long-range dependencies compared to a vanilla RNN.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Recurrent neural networks (RNNs)",
+    "LSTM and GRU cells",
+    "Sequence-to-sequence models",
+    "Time series and text as sequences",
+    "Vanishing gradients in sequences",
+    "Why attention replaced RNNs"
+  ],
+  "practical_task_reference": "Build an LSTM in PyTorch or Keras to forecast a simple time series or classify text sentiment.",
+  "mini_project_reference": "Build a text sentiment classifier or a stock/weather time-series forecaster using an LSTM, and evaluate it.",
+  "assignment_reference": "Explain how an LSTM's gates help it remember long-range dependencies compared to a vanilla RNN.",
+  "skills_gained": [
+    "Sequence modeling",
+    "LSTM/GRU",
+    "Time series and text modeling"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Illustrated Guide to LSTMs and GRUs",
+        "channel": "The AI Hacker",
+        "url": "https://www.youtube.com/watch?v=8HyCNIVRbSU"
+      }
+    ],
+    "docs": [
+      {
+        "title": "PyTorch RNN Documentation",
+        "url": "https://pytorch.org/docs/stable/nn.html#recurrent-layers"
+      }
+    ],
+    "github": [
+      {
+        "name": "pytorch/examples",
+        "url": "https://github.com/pytorch/examples"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Long Short-Term Memory (Hochreiter & Schmidhuber, 1997)",
+        "url": "https://www.bioinf.jku.at/publications/older/2604.pdf"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.242Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 26,
+  "estimated_words": 501
+}

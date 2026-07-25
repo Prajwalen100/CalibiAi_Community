@@ -1,0 +1,63 @@
+{
+  "id": "genai_engineer-day-27",
+  "role": "genai_engineer",
+  "level": "beginner",
+  "day": 27,
+  "title": "Pretraining vs Fine-tuning",
+  "summary": "Modern LLMs are built in stages: expensive pretraining on huge text corpora gives general knowledge, then fine-tuning adapts the model to specific tasks or behaviors. Instruction tuning and RLHF make models helpful and safe. Knowing this pipeline hel",
+  "content": "# Pretraining vs Fine-tuning\n\n## Overview\nModern LLMs are built in stages: expensive pretraining on huge text corpora gives general knowledge, then fine-tuning adapts the model to specific tasks or behaviors. Instruction tuning and RLHF make models helpful and safe. Knowing this pipeline helps you decide when to fine-tune versus simply prompt a model.\n\n## Deep Dive\nThis module covers: Pretraining objectives; Fine-tuning approaches; Instruction tuning; RLHF overview; Foundation models; When to fine-tune vs prompt. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Create a decision flowchart for when to use prompting, fine-tuning, or RAG for a given business problem.\n**Mini Project:** Write a comparative report on three real models (base, instruction-tuned, RLHF) and their intended uses.\n**Assignment:** Summarize how RLHF turns a base model into a helpful assistant, in under 500 words.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Pretraining objectives",
+    "Fine-tuning approaches",
+    "Instruction tuning",
+    "RLHF overview",
+    "Foundation models",
+    "When to fine-tune vs prompt"
+  ],
+  "practical_task_reference": "Create a decision flowchart for when to use prompting, fine-tuning, or RAG for a given business problem.",
+  "mini_project_reference": "Write a comparative report on three real models (base, instruction-tuned, RLHF) and their intended uses.",
+  "assignment_reference": "Summarize how RLHF turns a base model into a helpful assistant, in under 500 words.",
+  "skills_gained": [
+    "Transfer learning for LLMs",
+    "Instruction tuning",
+    "RLHF concepts"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Intro to Large Language Models",
+        "channel": "Andrej Karpathy",
+        "url": "https://www.youtube.com/watch?v=zjkBMFhNj_g"
+      },
+      {
+        "title": "Reinforcement Learning from Human Feedback (RLHF) Explained",
+        "channel": "HuggingFace",
+        "url": "https://www.youtube.com/watch?v=2MBJOuVq380"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Hugging Face RLHF Blog",
+        "url": "https://huggingface.co/blog/rlhf"
+      }
+    ],
+    "github": [
+      {
+        "name": "huggingface/trl",
+        "url": "https://github.com/huggingface/trl"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Training language models to follow instructions with human feedback (InstructGPT, Ouyang et al., 2022)",
+        "url": "https://arxiv.org/abs/2203.02155"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.294Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 27,
+  "estimated_words": 480
+}

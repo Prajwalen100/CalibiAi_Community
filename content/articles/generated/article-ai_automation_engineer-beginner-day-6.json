@@ -1,0 +1,57 @@
+{
+  "id": "ai_automation_engineer-day-6",
+  "role": "ai_automation_engineer",
+  "level": "beginner",
+  "day": 6,
+  "title": "Zapier Fundamentals",
+  "summary": "Zapier is the most popular no-code automation platform and the easiest place to build your first real automation, so it is where hands-on skills begin. Zapier connects over 6,000 apps and uses friendly language: an automation is a 'Zap', made of a tr",
+  "content": "# Zapier Fundamentals\n\n## Overview\nZapier is the most popular no-code automation platform and the easiest place to build your first real automation, so it is where hands-on skills begin. Zapier connects over 6,000 apps and uses friendly language: an automation is a 'Zap', made of a trigger step and one or more action steps. The workflow is always the same. First you choose a trigger app and event - for example, 'Gmail: New Email Matching Search' or 'Google Forms: New Response'. You authenticate by logging into that app once, which lets Zapier act on your behalf. Then you add an action - 'Google Sheets: Create Spreadsheet Row' - and you map the trigger's data into the action's fields by clicking to insert values (the email's subject goes into column A, the sender into column B). Zapier lets you test each step with real sample data so you can see exactly what will happen before going live. Once it works, you turn the Zap on and it runs automatically forever, and Zapier's task history shows you every run so you can monitor and debug. Zapier's strengths are its huge app library and its simplicity - you can build a genuinely useful automation in fifteen minutes with zero code. Its limitations (cost at scale, less flexibility for complex logic) are exactly why you will also learn Make.com and n8n later, but Zapier is the perfect on-ramp and is widely used in real jobs.\n\n## Deep Dive\nThis module covers: Zapier interface and core concepts; Connecting app accounts (authentication); Building a single trigger-action Zap; Mapping data between steps; Testing, turning on, and monitoring a Zap. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Create a free Zapier account and build a Zap that triggers on a new Google Form response (or new email) and creates a row in a Google Sheet, mapping at least three fields, then test and turn it on.\n**Mini Project:** Build a 'lead capture' Zap: when a form is submitted, add the lead to a Google Sheet and send yourself a notification email with the lead's details, fully tested and live.\n**Assignment:** Document your Zap step by step with screenshots or notes, explaining what each field maps to and one thing that could go wrong and how you would fix it.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Zapier interface and core concepts",
+    "Connecting app accounts (authentication)",
+    "Building a single trigger-action Zap",
+    "Mapping data between steps",
+    "Testing, turning on, and monitoring a Zap"
+  ],
+  "practical_task_reference": "Create a free Zapier account and build a Zap that triggers on a new Google Form response (or new email) and creates a row in a Google Sheet, mapping at least three fields, then test and turn it on.",
+  "mini_project_reference": "Build a 'lead capture' Zap: when a form is submitted, add the lead to a Google Sheet and send yourself a notification email with the lead's details, fully tested and live.",
+  "assignment_reference": "Document your Zap step by step with screenshots or notes, explaining what each field maps to and one thing that could go wrong and how you would fix it.",
+  "skills_gained": [
+    "Zapier basics",
+    "App authentication",
+    "Building and testing a live Zap"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Zapier Full Tutorial for Beginners",
+        "channel": "Zapier",
+        "url": "https://www.youtube.com/watch?v=ZAZgspZzZ7A"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Zapier - Create your first Zap",
+        "url": "https://help.zapier.com/hc/en-us/articles/8496309697421"
+      }
+    ],
+    "github": [
+      {
+        "name": "zapier/zapier-platform",
+        "url": "https://github.com/zapier/zapier-platform"
+      }
+    ],
+    "papers": [
+      {
+        "title": "End-User Development and No-Code Automation (Lieberman et al., 2006)",
+        "url": "https://link.springer.com/book/10.1007/1-4020-5386-X"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.308Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 6,
+  "estimated_words": 730
+}

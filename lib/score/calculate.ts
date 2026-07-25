@@ -7,6 +7,8 @@ export type ScoreInput = {
   totalModulesCount: number;
   communityRawPoints: number;
   recognitionRawPoints: number;
+  readingScore?: number; // 0-100 based on article engagement
+  quizAverage?: number; // 0-100 based on quiz performance
   lastActivityAt?: Date | string | null;
   now?: Date;
 };
@@ -17,6 +19,8 @@ export type ScoreBreakdown = {
   community_pts: number;
   completion_pts: number;
   recognition_pts: number;
+  reading_pts: number;
+  quizzes_pts: number;
   total: number;
   tier: ScoreTier;
   flagged: boolean;
@@ -49,6 +53,8 @@ export function calculateCalibiAiScore(input: ScoreInput): ScoreBreakdown {
   const completion_pts = clamp(completionRatio * SCORE_WEIGHTS.completion, SCORE_WEIGHTS.completion);
   const community_pts = clamp(input.communityRawPoints * communityDecayMultiplier(input.lastActivityAt, input.now), SCORE_WEIGHTS.community);
   const recognition_pts = clamp(input.recognitionRawPoints, SCORE_WEIGHTS.recognition);
-  const total = clamp(projects_pts + skills_pts + community_pts + completion_pts + recognition_pts, 1000);
-  return { projects_pts, skills_pts, community_pts, completion_pts, recognition_pts, total, tier: tierFor(total), flagged };
+  const reading_pts = clamp((input.readingScore ?? 0) * (SCORE_WEIGHTS.reading / 100), SCORE_WEIGHTS.reading);
+  const quizzes_pts = clamp((input.quizAverage ?? 0) * (SCORE_WEIGHTS.quizzes / 100), SCORE_WEIGHTS.quizzes);
+  const total = clamp(projects_pts + skills_pts + community_pts + completion_pts + recognition_pts + reading_pts + quizzes_pts, 1000);
+  return { projects_pts, skills_pts, community_pts, completion_pts, recognition_pts, reading_pts, quizzes_pts, total, tier: tierFor(total), flagged };
 }

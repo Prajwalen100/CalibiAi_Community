@@ -1,0 +1,57 @@
+{
+  "id": "data_science_engineer-day-9",
+  "role": "data_science_engineer",
+  "level": "beginner",
+  "day": 9,
+  "title": "Descriptive Statistics for Data Science",
+  "summary": "Descriptive statistics summarize a dataset with a few numbers so you can understand it without reading every row. Central tendency (mean, median, mode) tells you where the 'middle' of your data is: the mean is the average, the median is the middle va",
+  "content": "# Descriptive Statistics for Data Science\n\n## Overview\nDescriptive statistics summarize a dataset with a few numbers so you can understand it without reading every row. Central tendency (mean, median, mode) tells you where the 'middle' of your data is: the mean is the average, the median is the middle value when sorted (robust to outliers), and the mode is the most frequent value. Dispersion tells you how spread out the data is: variance and standard deviation measure average distance from the mean, while the IQR (interquartile range) captures the middle 50% and is used to detect outliers. Percentiles rank values (the 90th percentile is the value below which 90% of data falls). Skewness measures asymmetry and kurtosis measures tail-heaviness. Together these numbers let a data scientist quickly grasp a variable's typical value, variability, and outliers before doing deeper analysis.\n\n## Deep Dive\nThis module covers: Mean, median, mode; Range, variance, standard deviation; Quartiles, percentiles, IQR; Skewness and kurtosis; Five-number summary and box plots. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Take a numeric dataset (e.g., Titanic fares or house prices) and compute mean, median, mode, std, variance, and quartiles using Pandas .describe() and manual calculations; interpret what each number says about the data.\n**Mini Project:** Build a 'Dataset Summary Report' function that takes any DataFrame and prints a formatted statistical summary for every numeric column, flagging columns that are highly skewed or contain outliers based on the IQR rule.\n**Assignment:** Choose 3 numeric columns from a real dataset, compute the full five-number summary for each, and write 2-3 sentences per column explaining what the statistics reveal.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Mean, median, mode",
+    "Range, variance, standard deviation",
+    "Quartiles, percentiles, IQR",
+    "Skewness and kurtosis",
+    "Five-number summary and box plots"
+  ],
+  "practical_task_reference": "Take a numeric dataset (e.g., Titanic fares or house prices) and compute mean, median, mode, std, variance, and quartiles using Pandas .describe() and manual calculations; interpret what each number says about the data.",
+  "mini_project_reference": "Build a 'Dataset Summary Report' function that takes any DataFrame and prints a formatted statistical summary for every numeric column, flagging columns that are highly skewed or contain outliers based on the IQR rule.",
+  "assignment_reference": "Choose 3 numeric columns from a real dataset, compute the full five-number summary for each, and write 2-3 sentences per column explaining what the statistics reveal.",
+  "skills_gained": [
+    "Descriptive statistics",
+    "Summarizing data",
+    "Outlier awareness"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Statistics - A Full University Course on Data Science Basics",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=xxpc-HPKN28"
+      }
+    ],
+    "docs": [
+      {
+        "title": "pandas.DataFrame.describe",
+        "url": "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html"
+      }
+    ],
+    "github": [
+      {
+        "name": "scipy/scipy",
+        "url": "https://github.com/scipy/scipy"
+      }
+    ],
+    "papers": [
+      {
+        "title": "The Visual Display of Quantitative Information (Tufte)",
+        "url": "https://www.edwardtufte.com/tufte/books_vdqi"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.265Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 9,
+  "estimated_words": 615
+}

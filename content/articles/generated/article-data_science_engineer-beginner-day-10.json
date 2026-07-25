@@ -1,0 +1,57 @@
+{
+  "id": "data_science_engineer-day-10",
+  "role": "data_science_engineer",
+  "level": "beginner",
+  "day": 10,
+  "title": "Data Visualization with Matplotlib",
+  "summary": "Matplotlib is the foundational plotting library in Python, and almost every other visualization tool builds on it. It uses a Figure (the whole canvas) containing one or more Axes (individual plots). You choose a chart type based on your question: lin",
+  "content": "# Data Visualization with Matplotlib\n\n## Overview\nMatplotlib is the foundational plotting library in Python, and almost every other visualization tool builds on it. It uses a Figure (the whole canvas) containing one or more Axes (individual plots). You choose a chart type based on your question: line plots show trends over time, bar charts compare categories, scatter plots reveal relationships between two numeric variables, and histograms show the distribution of a single variable. Good visualization is about communication, not decoration, so you always add clear titles, axis labels, and legends so a viewer can understand the chart without explanation. Learning to control the Figure/Axes structure lets you build multi-panel dashboards and precisely customize every element. Visualization is one of a data scientist's most important skills because a well-chosen chart can reveal patterns, outliers, and trends that summary statistics alone would hide.\n\n## Deep Dive\nThis module covers: Figure and Axes objects; Line, bar, scatter, and histogram plots; Titles, labels, legends, and ticks; Subplots and figure layout; Saving figures. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Using a dataset of your choice, create a line plot, bar chart, scatter plot, and histogram, each with proper titles, axis labels, and legends, then arrange four of them in a 2x2 subplot grid.\n**Mini Project:** Build a visual EDA notebook for a dataset (e.g., Gapminder or Titanic) that uses at least five different Matplotlib chart types to tell a story about the data.\n**Assignment:** Recreate a chart you find in a news article or report using Matplotlib, matching the chart type and labeling as closely as you can.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Figure and Axes objects",
+    "Line, bar, scatter, and histogram plots",
+    "Titles, labels, legends, and ticks",
+    "Subplots and figure layout",
+    "Saving figures"
+  ],
+  "practical_task_reference": "Using a dataset of your choice, create a line plot, bar chart, scatter plot, and histogram, each with proper titles, axis labels, and legends, then arrange four of them in a 2x2 subplot grid.",
+  "mini_project_reference": "Build a visual EDA notebook for a dataset (e.g., Gapminder or Titanic) that uses at least five different Matplotlib chart types to tell a story about the data.",
+  "assignment_reference": "Recreate a chart you find in a news article or report using Matplotlib, matching the chart type and labeling as closely as you can.",
+  "skills_gained": [
+    "Data visualization",
+    "Matplotlib",
+    "Chart selection"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Matplotlib Tutorial (Full Course) - Corey Schafer",
+        "channel": "Corey Schafer",
+        "url": "https://www.youtube.com/watch?v=UO98lJQ3QGI"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Matplotlib Documentation",
+        "url": "https://matplotlib.org/stable/index.html"
+      }
+    ],
+    "github": [
+      {
+        "name": "matplotlib/matplotlib",
+        "url": "https://github.com/matplotlib/matplotlib"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Matplotlib: A 2D Graphics Environment (Hunter, 2007)",
+        "url": "https://ieeexplore.ieee.org/document/4160265"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.265Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 10,
+  "estimated_words": 613
+}

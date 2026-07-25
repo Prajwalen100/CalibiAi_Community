@@ -1,0 +1,57 @@
+{
+  "id": "ai_automation_engineer-day-8",
+  "role": "ai_automation_engineer",
+  "level": "beginner",
+  "day": 8,
+  "title": "Make.com (Integromat) Fundamentals",
+  "summary": "Make.com (formerly Integromat) is the second essential no-code platform, and it gives you a much more visual and flexible way to build automations than Zapier. Instead of a top-to-bottom list of steps, Make.com uses a canvas where each app step is a ",
+  "content": "# Make.com (Integromat) Fundamentals\n\n## Overview\nMake.com (formerly Integromat) is the second essential no-code platform, and it gives you a much more visual and flexible way to build automations than Zapier. Instead of a top-to-bottom list of steps, Make.com uses a canvas where each app step is a circular 'module' and you draw lines connecting them, so you literally see your automation as a flowchart. A complete flow is called a Scenario. Each module either triggers the scenario or performs an action, and the data that flows between them travels in 'bundles' - one bundle per item, so if a trigger returns ten new rows, ten bundles flow through and the scenario processes each. This visual model makes complex logic - branching, merging, looping - far easier to understand than in a linear tool, which is why power users love Make.com. You map data by clicking a field and picking values from previous modules, exactly like Zapier but shown visually. Make.com's pricing is based on 'operations' (each module run costs one operation) rather than tasks, which often makes it dramatically cheaper than Zapier for multi-step or high-volume automations - an important practical fact for real jobs. As a beginner, learning both Zapier and Make.com teaches you that the concepts (triggers, actions, data mapping) are universal while the interfaces differ, and knowing when to reach for Make.com's flexibility versus Zapier's simplicity is a genuinely valuable engineering judgment.\n\n## Deep Dive\nThis module covers: Make.com interface and the scenario canvas; Modules, connections, and bundles; Building and running a scenario; Mapping data between modules; Scheduling and operations/pricing model. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Create a free Make.com account and rebuild your lead-capture automation as a scenario: a trigger module plus at least two action modules, mapping data between them, then run it once and inspect the bundles.\n**Mini Project:** Build a Make.com scenario that watches for a new email (or webhook), extracts key fields, adds a row to Google Sheets, and posts a summary message to Slack or Discord, then schedule it to run automatically.\n**Assignment:** Write a short comparison of Zapier and Make.com covering interface, pricing model (tasks vs operations), and flexibility, and state which you would pick for a 10-step, high-volume workflow and why.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Make.com interface and the scenario canvas",
+    "Modules, connections, and bundles",
+    "Building and running a scenario",
+    "Mapping data between modules",
+    "Scheduling and operations/pricing model"
+  ],
+  "practical_task_reference": "Create a free Make.com account and rebuild your lead-capture automation as a scenario: a trigger module plus at least two action modules, mapping data between them, then run it once and inspect the bundles.",
+  "mini_project_reference": "Build a Make.com scenario that watches for a new email (or webhook), extracts key fields, adds a row to Google Sheets, and posts a summary message to Slack or Discord, then schedule it to run automatically.",
+  "assignment_reference": "Write a short comparison of Zapier and Make.com covering interface, pricing model (tasks vs operations), and flexibility, and state which you would pick for a 10-step, high-volume workflow and why.",
+  "skills_gained": [
+    "Make.com scenarios",
+    "Visual workflow building",
+    "Platform trade-off analysis"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Make.com (Integromat) Full Tutorial for Beginners",
+        "channel": "Make",
+        "url": "https://www.youtube.com/watch?v=X5Ec9FzR6zY"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Make.com - Getting started / Key concepts",
+        "url": "https://www.make.com/en/help/scenarios/creating-a-scenario"
+      }
+    ],
+    "github": [
+      {
+        "name": "integromat/apps-sdk-examples",
+        "url": "https://github.com/integromat/apps-examples"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Visual Programming Languages: A Survey (Myers, 1990)",
+        "url": "https://www.cs.cmu.edu/~bam/papers/chi86vltax.pdf"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.308Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 8,
+  "estimated_words": 723
+}

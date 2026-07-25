@@ -1,0 +1,57 @@
+{
+  "id": "ai_automation_engineer-day-17",
+  "role": "ai_automation_engineer",
+  "level": "beginner",
+  "day": 17,
+  "title": "Data Transformation, Mapping, and Formatting",
+  "summary": "The single most common real-world automation problem is that data from one system never quite matches what the next system expects, so data transformation is a core, everyday skill. Field mapping is the basic act of connecting the output of one step ",
+  "content": "# Data Transformation, Mapping, and Formatting\n\n## Overview\nThe single most common real-world automation problem is that data from one system never quite matches what the next system expects, so data transformation is a core, everyday skill. Field mapping is the basic act of connecting the output of one step to the input of another, but the hard part is that formats differ: one app gives a full name and the next needs first and last separately; one uses '2024-01-05' and another wants 'January 5, 2024'; one sends the price as '1,299.00 USD' and another needs the number 1299. You will master text operations - splitting a string on a delimiter, joining pieces, replacing characters, trimming whitespace, and changing case - which handle most cleaning tasks. Number formatting matters for currencies and calculations, and you must be careful with thousands separators and decimals. Dates are the classic trap: parsing an incoming date, reformatting it, and especially handling time zones (a '9 AM' event means different things in different zones) causes more automation bugs than almost anything else, so learning to standardize on a format and zone is vital. Finally, you will often need to build or restructure JSON payloads - taking scattered fields and assembling the exact object shape an API requires, or flattening a nested response into simple fields. Every platform has tools for this (Zapier Formatter, Make functions, n8n expressions and Code node), and being the person who can reliably bend messy data into the required shape is precisely what makes an automation engineer indispensable.\n\n## Deep Dive\nThis module covers: Field mapping between apps with different schemas; Text operations (split, join, replace, case); Number and currency formatting; Date/time parsing and time zones; Building and restructuring JSON payloads. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Given a messy sample record (full name in one field, a date like '05/01/2024', a price like '$1,299.00'), build a flow that splits the name, reformats the date to ISO, and converts the price to a clean number.\n**Mini Project:** Build a 'data normalizer' automation that accepts records from two differently-structured sources and outputs them in one consistent JSON schema (standardized names, dates in ISO, numeric prices, uppercase country codes).\n**Assignment:** Write a troubleshooting guide for date/time-zone issues in automations, explaining why they happen and three practices to avoid them.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Field mapping between apps with different schemas",
+    "Text operations (split, join, replace, case)",
+    "Number and currency formatting",
+    "Date/time parsing and time zones",
+    "Building and restructuring JSON payloads"
+  ],
+  "practical_task_reference": "Given a messy sample record (full name in one field, a date like '05/01/2024', a price like '$1,299.00'), build a flow that splits the name, reformats the date to ISO, and converts the price to a clean number.",
+  "mini_project_reference": "Build a 'data normalizer' automation that accepts records from two differently-structured sources and outputs them in one consistent JSON schema (standardized names, dates in ISO, numeric prices, uppercase country codes).",
+  "assignment_reference": "Write a troubleshooting guide for date/time-zone issues in automations, explaining why they happen and three practices to avoid them.",
+  "skills_gained": [
+    "Data mapping and cleaning",
+    "Text/number/date formatting",
+    "Payload restructuring"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Data Transformation in Make.com (Functions and Formatting)",
+        "channel": "Make",
+        "url": "https://www.youtube.com/watch?v=X5Ec9FzR6zY"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Zapier - Format and transform data with Formatter",
+        "url": "https://help.zapier.com/hc/en-us/articles/8496062820621-Modify-or-format-data-with-Formatter"
+      }
+    ],
+    "github": [
+      {
+        "name": "jqlang/jq",
+        "url": "https://github.com/jqlang/jq"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Data Wrangling: The Challenging Journey from the Wild to the Lake (Terrizzano et al., 2015)",
+        "url": "https://www.cidrdb.org/cidr2015/Papers/CIDR15_Paper2.pdf"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.310Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 17,
+  "estimated_words": 735
+}

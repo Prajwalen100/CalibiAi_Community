@@ -1,0 +1,57 @@
+{
+  "id": "ai_automation_engineer-day-35",
+  "role": "ai_automation_engineer",
+  "level": "beginner",
+  "day": 35,
+  "title": "Workflow Design Patterns and Best Practices",
+  "summary": "By now you can build automations; this day is about building them well - with the design sense and discipline that turns a collection of one-off hacks into professional, maintainable systems that others can trust and take over. Good design starts wit",
+  "content": "# Workflow Design Patterns and Best Practices\n\n## Overview\nBy now you can build automations; this day is about building them well - with the design sense and discipline that turns a collection of one-off hacks into professional, maintainable systems that others can trust and take over. Good design starts with clarity: name your workflows and steps descriptively, structure them logically, and keep each workflow focused on one job rather than cramming everything into a giant unreadable flow. Modularity is powerful - instead of duplicating the same sequence of steps in ten workflows, you build a reusable sub-workflow (n8n sub-workflows, Make scenarios called via webhook) and call it, applying the DRY principle (Don't Repeat Yourself) so a fix in one place fixes it everywhere. You will learn common design patterns that recur across automation: fan-out (split work into many parallel items, like the iterator), aggregate (combine results back), queueing (buffer work so you do not overload a downstream system or hit rate limits), and deduplication (track processed IDs so nothing is handled twice) - recognizing these patterns means you solve new problems with proven approaches instead of reinventing them each time. Documentation is a professional must: a good workflow has notes explaining what it does, what triggers it, what could break, and how to fix it, plus a README - so that a teammate (or future you) can understand and maintain it, which is exactly what employers mean by 'maintainable'. Finally, you optimize for performance and cost: reduce unnecessary steps (each costs tasks/operations/money), batch where sensible, cache lookups, and avoid needless polling. Internalizing these best practices is what elevates you from someone who can make an automation work to an engineer who builds automation systems that scale, survive handover, and keep costs sane - the mark of someone ready for real responsibility.\n\n## Deep Dive\nThis module covers: Naming, structure, and modularity; Reusable sub-workflows and DRY principles; Common patterns (fan-out, aggregate, queue, dedup); Documenting workflows for handover; Performance and cost optimization. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Refactor one of your existing automations: rename steps clearly, extract a repeated sequence into a reusable sub-workflow, add inline documentation notes, and remove or combine steps to cut unnecessary operations.\n**Mini Project:** Take a messy automation you built earlier and produce a professional version: modular structure with a reusable sub-workflow, applied patterns (dedup and aggregate), full documentation/README, and a note quantifying the operations/cost you saved.\n**Assignment:** Describe three automation design patterns (e.g., fan-out, dedup, queue) with an example use of each, and explain why documentation is essential for maintainability.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Naming, structure, and modularity",
+    "Reusable sub-workflows and DRY principles",
+    "Common patterns (fan-out, aggregate, queue, dedup)",
+    "Documenting workflows for handover",
+    "Performance and cost optimization"
+  ],
+  "practical_task_reference": "Refactor one of your existing automations: rename steps clearly, extract a repeated sequence into a reusable sub-workflow, add inline documentation notes, and remove or combine steps to cut unnecessary operations.",
+  "mini_project_reference": "Take a messy automation you built earlier and produce a professional version: modular structure with a reusable sub-workflow, applied patterns (dedup and aggregate), full documentation/README, and a note quantifying the operations/cost you saved.",
+  "assignment_reference": "Describe three automation design patterns (e.g., fan-out, dedup, queue) with an example use of each, and explain why documentation is essential for maintainability.",
+  "skills_gained": [
+    "Workflow design patterns",
+    "Modularity and documentation",
+    "Cost/performance optimization"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Automation Best Practices and Design Patterns",
+        "channel": "n8n",
+        "url": "https://www.youtube.com/watch?v=1MwSoB0gnM4"
+      }
+    ],
+    "docs": [
+      {
+        "title": "n8n - Sub-workflows and best practices",
+        "url": "https://docs.n8n.io/flow-logic/subworkflows/"
+      }
+    ],
+    "github": [
+      {
+        "name": "n8n-io/n8n",
+        "url": "https://github.com/n8n-io/n8n"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Workflow Patterns (van der Aalst et al., 2003)",
+        "url": "https://www.workflowpatterns.com/documentation/documents/wfs-pat-2003.pdf"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.314Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 35,
+  "estimated_words": 775
+}

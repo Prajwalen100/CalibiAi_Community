@@ -1,0 +1,58 @@
+{
+  "id": "ai_engineer-day-2",
+  "role": "ai_engineer",
+  "level": "intermediate",
+  "day": 2,
+  "title": "Software Engineering Practices for ML",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Software Engineering Practices for ML\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Unit, integration, and data tests (pytest); Clean code and SOLID for ML; Design patterns (factory, strategy, dependency injection); Configuration management (Hydra, pydantic-settings); Logging and error handling; Project structure for ML repos. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Add a pytest suite (unit + data validation tests) to an existing ML project and set up Hydra for configuration management.\n**Mini Project:** Refactor a messy ML script into a clean, tested, config-driven package with proper structure, logging, and a strategy pattern for swappable models.\n**Assignment:** Describe three types of tests specific to ML systems (beyond standard unit tests) and what each protects against.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Unit, integration, and data tests (pytest)",
+    "Clean code and SOLID for ML",
+    "Design patterns (factory, strategy, dependency injection)",
+    "Configuration management (Hydra, pydantic-settings)",
+    "Logging and error handling",
+    "Project structure for ML repos"
+  ],
+  "practical_task_reference": "Add a pytest suite (unit + data validation tests) to an existing ML project and set up Hydra for configuration management.",
+  "mini_project_reference": "Refactor a messy ML script into a clean, tested, config-driven package with proper structure, logging, and a strategy pattern for swappable models.",
+  "assignment_reference": "Describe three types of tests specific to ML systems (beyond standard unit tests) and what each protects against.",
+  "skills_gained": [
+    "ML testing",
+    "Clean architecture",
+    "Configuration management"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Pytest Tutorial - How to Test Python Code",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=cHYq1MRoyI0"
+      }
+    ],
+    "docs": [
+      {
+        "title": "pytest Documentation",
+        "url": "https://docs.pytest.org/en/stable/"
+      }
+    ],
+    "github": [
+      {
+        "name": "facebookresearch/hydra",
+        "url": "https://github.com/facebookresearch/hydra"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Hidden Technical Debt in Machine Learning Systems (Sculley et al., 2015)",
+        "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.249Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 2,
+  "estimated_words": 474
+}

@@ -1,0 +1,57 @@
+{
+  "id": "ai_automation_engineer-day-14",
+  "role": "ai_automation_engineer",
+  "level": "beginner",
+  "day": 14,
+  "title": "Google Workspace Automation (Sheets, Gmail, Drive, Calendar)",
+  "summary": "Google Workspace (Sheets, Gmail, Drive, Calendar) is the backbone of most small and medium businesses, so automating it is where you will deliver the most immediate value and where most beginner automation jobs start. Google Sheets is especially impo",
+  "content": "# Google Workspace Automation (Sheets, Gmail, Drive, Calendar)\n\n## Overview\nGoogle Workspace (Sheets, Gmail, Drive, Calendar) is the backbone of most small and medium businesses, so automating it is where you will deliver the most immediate value and where most beginner automation jobs start. Google Sheets is especially important because it is often used as a free, simple database in automations - you write incoming leads, orders, or logs as new rows, and read rows back to look things up or generate reports. You will learn to append rows, update existing rows (find the row for a customer and change a status), and read ranges to feed later steps. Gmail automation covers sending templated emails automatically, applying labels, and parsing incoming emails to extract data (like pulling an order number out of a confirmation email) - a hugely common request. Google Drive automation lets you create folders, move and rename files, and save attachments automatically, which powers document workflows. Google Calendar automation creates and updates events - for example, adding a calendar event whenever a booking form is submitted. Because these apps are so widely used, every platform (Zapier, Make, n8n) has deep, well-documented integrations for them, making them the perfect place to practice real, useful automations. Employers frequently ask automation engineers to 'connect our spreadsheet to X' or 'auto-file these emails', so being fluent in Google Workspace automation makes you immediately productive on the job.\n\n## Deep Dive\nThis module covers: Google Sheets as an automation database; Reading and writing rows dynamically; Gmail automation (send, label, parse); Google Drive file automation; Google Calendar event automation. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Build an automation where a new Google Form response adds a row to a Sheet, sends a personalized Gmail confirmation, and creates a Google Calendar event, using data mapped from the form.\n**Mini Project:** Create an 'order intake' automation: incoming order emails or form submissions are parsed, logged to a Google Sheet with a status column, a confirmation email is sent, and the attachment (if any) is saved to a dated Drive folder.\n**Assignment:** Explain how Google Sheets can act as a lightweight database in automations, including how you would update an existing record rather than always adding a new one.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Google Sheets as an automation database",
+    "Reading and writing rows dynamically",
+    "Gmail automation (send, label, parse)",
+    "Google Drive file automation",
+    "Google Calendar event automation"
+  ],
+  "practical_task_reference": "Build an automation where a new Google Form response adds a row to a Sheet, sends a personalized Gmail confirmation, and creates a Google Calendar event, using data mapped from the form.",
+  "mini_project_reference": "Create an 'order intake' automation: incoming order emails or form submissions are parsed, logged to a Google Sheet with a status column, a confirmation email is sent, and the attachment (if any) is saved to a dated Drive folder.",
+  "assignment_reference": "Explain how Google Sheets can act as a lightweight database in automations, including how you would update an existing record rather than always adding a new one.",
+  "skills_gained": [
+    "Google Sheets automation",
+    "Email and file automation",
+    "Calendar automation"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Automate Google Sheets and Gmail (No Code)",
+        "channel": "Make",
+        "url": "https://www.youtube.com/watch?v=Q7bqQ2n1yYI"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Google Sheets API - Overview",
+        "url": "https://developers.google.com/sheets/api/guides/concepts"
+      }
+    ],
+    "github": [
+      {
+        "name": "googleworkspace/apps-script-samples",
+        "url": "https://github.com/googleworkspace/apps-script-samples"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Spreadsheets as End-User Programming Environments (Nardi, 1993)",
+        "url": "https://dl.acm.org/doi/10.5555/153541"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.310Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 14,
+  "estimated_words": 722
+}

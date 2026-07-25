@@ -1,0 +1,57 @@
+{
+  "id": "ai_automation_engineer-day-4",
+  "role": "ai_automation_engineer",
+  "level": "beginner",
+  "day": 4,
+  "title": "JSON and Data Formats",
+  "summary": "JSON (JavaScript Object Notation) is the language that automations use to move data around, so being fluent in it is essential. It is just text organized in a very predictable way. The two building blocks are objects, written with curly braces { } an",
+  "content": "# JSON and Data Formats\n\n## Overview\nJSON (JavaScript Object Notation) is the language that automations use to move data around, so being fluent in it is essential. It is just text organized in a very predictable way. The two building blocks are objects, written with curly braces { } and made of key-value pairs like \"name\": \"Alice\", and arrays, written with square brackets [ ] and holding an ordered list of items. Values can be strings (text in quotes), numbers, booleans (true/false), null (empty), or another object or array nested inside - which is how JSON represents complex data like a customer with a list of orders, each order having its own items. When an API responds, it almost always sends JSON, and when you configure an automation step you are usually picking values out of that JSON (the customer's email is at data.customer.email) or building JSON to send. You will constantly navigate nested structures, so learning to read a path like results[0].address.city - meaning the city of the first result's address - becomes second nature. It helps to compare JSON with other formats: CSV is a flat spreadsheet-like format good for tabular data, and XML is an older tag-based format still used by some enterprise systems, but JSON's readability and simplicity made it the default for modern APIs and automation tools. Mastering JSON now means you will never be confused when a workflow shows you raw data.\n\n## Deep Dive\nThis module covers: What JSON is and why it is everywhere; Objects, arrays, and key-value pairs; Data types: string, number, boolean, null; Nested and array data; JSON vs CSV vs XML. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Take a real API response (from Day 3) and by hand write out the path to three different values inside it, including at least one that is inside an array and one that is deeply nested.\n**Mini Project:** Create a JSON document describing a small e-commerce order: a customer object, an array of products (each with name, price, quantity), and a nested shipping address, then validate it with an online JSON validator.\n**Assignment:** Convert a small table of data into both JSON and CSV, then write a few sentences on when you would choose each format.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "What JSON is and why it is everywhere",
+    "Objects, arrays, and key-value pairs",
+    "Data types: string, number, boolean, null",
+    "Nested and array data",
+    "JSON vs CSV vs XML"
+  ],
+  "practical_task_reference": "Take a real API response (from Day 3) and by hand write out the path to three different values inside it, including at least one that is inside an array and one that is deeply nested.",
+  "mini_project_reference": "Create a JSON document describing a small e-commerce order: a customer object, an array of products (each with name, price, quantity), and a nested shipping address, then validate it with an online JSON validator.",
+  "assignment_reference": "Convert a small table of data into both JSON and CSV, then write a few sentences on when you would choose each format.",
+  "skills_gained": [
+    "JSON literacy",
+    "Navigating nested data",
+    "Data format comparison"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "JSON Crash Course",
+        "channel": "Traversy Media",
+        "url": "https://www.youtube.com/watch?v=wI1CWzNtE-M"
+      }
+    ],
+    "docs": [
+      {
+        "title": "MDN - Working with JSON",
+        "url": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON"
+      }
+    ],
+    "github": [
+      {
+        "name": "stedolan/jq",
+        "url": "https://github.com/jqlang/jq"
+      }
+    ],
+    "papers": [
+      {
+        "title": "The JavaScript Object Notation (JSON) Data Interchange Format (RFC 8259)",
+        "url": "https://www.rfc-editor.org/rfc/rfc8259"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.308Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 4,
+  "estimated_words": 724
+}

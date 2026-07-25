@@ -1,0 +1,72 @@
+{
+  "id": "ai_engineer-day-2",
+  "role": "ai_engineer",
+  "level": "beginner",
+  "day": 2,
+  "title": "Python Fundamentals for AI",
+  "summary": "Python is the language of AI. Its readable syntax and vast library ecosystem make it the default for machine learning. Today you learn the core building blocks: storing data in variables, controlling flow with conditionals and loops, and packaging lo",
+  "content": "# Python Fundamentals for AI\n\n## Overview\nPython is the language of AI. Its readable syntax and vast library ecosystem make it the default for machine learning. Today you learn the core building blocks: storing data in variables, controlling flow with conditionals and loops, and packaging logic into functions. You also set up isolated virtual environments so each project's dependencies stay clean and reproducible.\n\n## Deep Dive\nThis module covers: Variables and data types; Operators and expressions; Conditionals and loops; Functions and scope; Modules and imports; Virtual environments and pip. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Set up Python and a virtual environment, then write a script that classifies numbers as prime using a function and a loop.\n**Mini Project:** Build a command-line grade calculator that takes scores, computes averages and letter grades, and handles invalid input.\n**Assignment:** Write five small programs (temperature converter, FizzBuzz, factorial, palindrome check, simple calculator) and push them to GitHub.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Variables and data types",
+    "Operators and expressions",
+    "Conditionals and loops",
+    "Functions and scope",
+    "Modules and imports",
+    "Virtual environments and pip"
+  ],
+  "practical_task_reference": "Set up Python and a virtual environment, then write a script that classifies numbers as prime using a function and a loop.",
+  "mini_project_reference": "Build a command-line grade calculator that takes scores, computes averages and letter grades, and handles invalid input.",
+  "assignment_reference": "Write five small programs (temperature converter, FizzBuzz, factorial, palindrome check, simple calculator) and push them to GitHub.",
+  "skills_gained": [
+    "Python syntax",
+    "Control flow",
+    "Functions",
+    "Environment management"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Python Full Course for Beginners",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=rfscVS0vtbw"
+      },
+      {
+        "title": "Python for Beginners - Learn Python in 1 Hour",
+        "channel": "Programming with Mosh",
+        "url": "https://www.youtube.com/watch?v=kqtD5dpn9C8"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Python Official Tutorial",
+        "url": "https://docs.python.org/3/tutorial/"
+      },
+      {
+        "title": "Python venv documentation",
+        "url": "https://docs.python.org/3/library/venv.html"
+      }
+    ],
+    "github": [
+      {
+        "name": "trekhleb/learn-python",
+        "url": "https://github.com/trekhleb/learn-python"
+      },
+      {
+        "name": "TheAlgorithms/Python",
+        "url": "https://github.com/TheAlgorithms/Python"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Python for Scientific Computing (Oliphant, 2007)",
+        "url": "https://ieeexplore.ieee.org/document/4160250"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.233Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 2,
+  "estimated_words": 504
+}

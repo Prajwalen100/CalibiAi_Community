@@ -1,0 +1,72 @@
+{
+  "id": "genai_engineer-day-36",
+  "role": "genai_engineer",
+  "level": "beginner",
+  "day": 36,
+  "title": "Building a Production RAG Pipeline",
+  "summary": "A production RAG system needs more than basic retrieval: careful chunking, hybrid keyword+vector search, reranking to surface the best chunks, and evaluation to measure quality. Today you assemble these into a robust pipeline and learn to measure whe",
+  "content": "# Building a Production RAG Pipeline\n\n## Overview\nA production RAG system needs more than basic retrieval: careful chunking, hybrid keyword+vector search, reranking to surface the best chunks, and evaluation to measure quality. Today you assemble these into a robust pipeline and learn to measure whether your RAG actually works.\n\n## Deep Dive\nThis module covers: Ingestion pipeline; Advanced chunking; Hybrid search; Reranking; RAG evaluation (RAGAS); Prompt design for RAG. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Add a reranker to your Day 35 RAG app and measure the improvement in answer relevance.\n**Mini Project:** Build a documentation Q&A assistant with hybrid search, reranking, citations, and a RAGAS evaluation report.\n**Assignment:** Evaluate your RAG system with RAGAS metrics and write recommendations to improve weak areas.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Ingestion pipeline",
+    "Advanced chunking",
+    "Hybrid search",
+    "Reranking",
+    "RAG evaluation (RAGAS)",
+    "Prompt design for RAG"
+  ],
+  "practical_task_reference": "Add a reranker to your Day 35 RAG app and measure the improvement in answer relevance.",
+  "mini_project_reference": "Build a documentation Q&A assistant with hybrid search, reranking, citations, and a RAGAS evaluation report.",
+  "assignment_reference": "Evaluate your RAG system with RAGAS metrics and write recommendations to improve weak areas.",
+  "skills_gained": [
+    "Production RAG",
+    "Reranking",
+    "Hybrid search",
+    "RAG evaluation"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Advanced RAG Techniques",
+        "channel": "LangChain",
+        "url": "https://www.youtube.com/watch?v=sVcwVQRHIc8"
+      },
+      {
+        "title": "Building Production-Ready RAG Applications",
+        "channel": "LlamaIndex",
+        "url": "https://www.youtube.com/watch?v=TRjq7t2Ms5I"
+      }
+    ],
+    "docs": [
+      {
+        "title": "RAGAS Documentation",
+        "url": "https://docs.ragas.io/"
+      },
+      {
+        "title": "LlamaIndex Docs",
+        "url": "https://docs.llamaindex.ai/"
+      }
+    ],
+    "github": [
+      {
+        "name": "explodinggradients/ragas",
+        "url": "https://github.com/explodinggradients/ragas"
+      },
+      {
+        "name": "run-llama/llama_index",
+        "url": "https://github.com/run-llama/llama_index"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Dense Passage Retrieval for Open-Domain QA (Karpukhin et al., 2020)",
+        "url": "https://arxiv.org/abs/2004.04906"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.296Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 36,
+  "estimated_words": 473
+}

@@ -1,0 +1,57 @@
+{
+  "id": "ai_automation_engineer-day-7",
+  "role": "ai_automation_engineer",
+  "level": "intermediate",
+  "day": 7,
+  "title": "Building Custom Zapier Integrations (Developer Platform)",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Building Custom Zapier Integrations (Developer Platform)\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Zapier Platform: UI builder vs CLI; Defining triggers, actions, and searches; Authentication schemes (API key, OAuth2); Input/output fields, dynamic dropdowns, and dedup; Testing, versioning, and publishing. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Using the Zapier Platform CLI, scaffold a custom integration for a public API: implement API-key authentication, one polling trigger with deduplication, and one create action with input/output fields, then test it locally.\n**Mini Project:** Build and test a custom Zapier integration for an API of your choice with OAuth2 authentication (auth flow + token refresh), at least one trigger, one action, one search, dynamic dropdowns, and a test suite.\n**Assignment:** Explain the difference between a polling trigger and a REST-hook trigger in a Zapier integration, and describe why deduplication and versioning matter for integration quality.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Zapier Platform: UI builder vs CLI",
+    "Defining triggers, actions, and searches",
+    "Authentication schemes (API key, OAuth2)",
+    "Input/output fields, dynamic dropdowns, and dedup",
+    "Testing, versioning, and publishing"
+  ],
+  "practical_task_reference": "Using the Zapier Platform CLI, scaffold a custom integration for a public API: implement API-key authentication, one polling trigger with deduplication, and one create action with input/output fields, then test it locally.",
+  "mini_project_reference": "Build and test a custom Zapier integration for an API of your choice with OAuth2 authentication (auth flow + token refresh), at least one trigger, one action, one search, dynamic dropdowns, and a test suite.",
+  "assignment_reference": "Explain the difference between a polling trigger and a REST-hook trigger in a Zapier integration, and describe why deduplication and versioning matter for integration quality.",
+  "skills_gained": [
+    "Custom integration development",
+    "OAuth2 implementation",
+    "Integration testing and versioning"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Build a Zapier Integration with the CLI",
+        "channel": "Zapier",
+        "url": "https://www.youtube.com/watch?v=ZAZgspZzZ7A"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Zapier Platform CLI Documentation",
+        "url": "https://docs.zapier.com/platform/home"
+      }
+    ],
+    "github": [
+      {
+        "name": "zapier/zapier-platform",
+        "url": "https://github.com/zapier/zapier-platform"
+      }
+    ],
+    "papers": [
+      {
+        "title": "API Design Practices and Integration Quality (industry study)",
+        "url": "https://ieeexplore.ieee.org/document/8611144"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.321Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 7,
+  "estimated_words": 501
+}

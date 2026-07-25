@@ -1,0 +1,58 @@
+{
+  "id": "ai_engineer-day-15",
+  "role": "ai_engineer",
+  "level": "beginner",
+  "day": 15,
+  "title": "Classification Algorithms",
+  "summary": "Classification predicts categories - spam or not, disease or healthy, which digit. Different algorithms make different assumptions: logistic regression draws linear boundaries, decision trees split on features, KNN uses proximity, and SVMs find optim",
+  "content": "# Classification Algorithms\n\n## Overview\nClassification predicts categories - spam or not, disease or healthy, which digit. Different algorithms make different assumptions: logistic regression draws linear boundaries, decision trees split on features, KNN uses proximity, and SVMs find optimal margins. Crucially, accuracy alone can mislead on imbalanced data, so precision, recall, and F1 give a fuller picture of performance.\n\n## Deep Dive\nThis module covers: Logistic regression; Decision trees; K-Nearest Neighbors (KNN); Support Vector Machines (SVM); Confusion matrix, precision, recall, F1; ROC curve and AUC. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Train logistic regression, a decision tree, KNN, and SVM on a classification dataset and compare their precision, recall, and F1 scores.\n**Mini Project:** Build a customer churn predictor, handle class imbalance, and produce a confusion matrix and ROC curve to justify the chosen model.\n**Assignment:** Explain the difference between precision and recall and give a scenario where recall matters more than precision.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Logistic regression",
+    "Decision trees",
+    "K-Nearest Neighbors (KNN)",
+    "Support Vector Machines (SVM)",
+    "Confusion matrix, precision, recall, F1",
+    "ROC curve and AUC"
+  ],
+  "practical_task_reference": "Train logistic regression, a decision tree, KNN, and SVM on a classification dataset and compare their precision, recall, and F1 scores.",
+  "mini_project_reference": "Build a customer churn predictor, handle class imbalance, and produce a confusion matrix and ROC curve to justify the chosen model.",
+  "assignment_reference": "Explain the difference between precision and recall and give a scenario where recall matters more than precision.",
+  "skills_gained": [
+    "Classification modeling",
+    "Classifier evaluation",
+    "Handling imbalanced data"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Logistic Regression, Clearly Explained",
+        "channel": "StatQuest with Josh Starmer",
+        "url": "https://www.youtube.com/watch?v=yIYKR4sgzI8"
+      }
+    ],
+    "docs": [
+      {
+        "title": "scikit-learn Classification",
+        "url": "https://scikit-learn.org/stable/supervised_learning.html"
+      }
+    ],
+    "github": [
+      {
+        "name": "ageron/handson-ml3",
+        "url": "https://github.com/ageron/handson-ml3"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Support-Vector Networks (Cortes & Vapnik, 1995)",
+        "url": "https://link.springer.com/article/10.1007/BF00994018"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.238Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 15,
+  "estimated_words": 502
+}

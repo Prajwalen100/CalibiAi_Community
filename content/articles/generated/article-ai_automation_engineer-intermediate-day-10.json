@@ -1,0 +1,57 @@
+{
+  "id": "ai_automation_engineer-day-10",
+  "role": "ai_automation_engineer",
+  "level": "intermediate",
+  "day": 10,
+  "title": "n8n Advanced: Self-Hosting, Environments, and Queue Mode Scaling",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# n8n Advanced: Self-Hosting, Environments, and Queue Mode Scaling\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Production self-hosting (Docker, Postgres, env config); Execution modes: main vs queue (workers + Redis); Scaling workers, concurrency, and webhooks; Environment variables, encryption key, and credential security; Backups, upgrades, and high availability. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Deploy n8n in queue mode with Docker Compose: n8n main + Postgres + Redis + at least one worker, set the encryption key via env vars, and run a workflow confirming a worker (not main) executed it.\n**Mini Project:** Stand up a production-style n8n cluster: Postgres-backed, HTTPS, queue mode with multiple workers and a dedicated webhook process, a backup routine for DB and encryption key, and a documented upgrade procedure - then load-test it with concurrent executions.\n**Assignment:** Explain the difference between n8n main mode and queue mode and how queue mode enables horizontal scaling, and describe why the encryption key must be preserved and backed up.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Production self-hosting (Docker, Postgres, env config)",
+    "Execution modes: main vs queue (workers + Redis)",
+    "Scaling workers, concurrency, and webhooks",
+    "Environment variables, encryption key, and credential security",
+    "Backups, upgrades, and high availability"
+  ],
+  "practical_task_reference": "Deploy n8n in queue mode with Docker Compose: n8n main + Postgres + Redis + at least one worker, set the encryption key via env vars, and run a workflow confirming a worker (not main) executed it.",
+  "mini_project_reference": "Stand up a production-style n8n cluster: Postgres-backed, HTTPS, queue mode with multiple workers and a dedicated webhook process, a backup routine for DB and encryption key, and a documented upgrade procedure - then load-test it with concurrent executions.",
+  "assignment_reference": "Explain the difference between n8n main mode and queue mode and how queue mode enables horizontal scaling, and describe why the encryption key must be preserved and backed up.",
+  "skills_gained": [
+    "Production n8n hosting",
+    "Queue-mode scaling",
+    "Backups and upgrades"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "n8n Self-Hosting and Scaling with Queue Mode",
+        "channel": "n8n",
+        "url": "https://www.youtube.com/watch?v=1MwSoB0gnM4"
+      }
+    ],
+    "docs": [
+      {
+        "title": "n8n - Scaling and Queue Mode",
+        "url": "https://docs.n8n.io/hosting/scaling/queue-mode/"
+      }
+    ],
+    "github": [
+      {
+        "name": "n8n-io/n8n",
+        "url": "https://github.com/n8n-io/n8n"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Scalable Distributed Job Processing (industry reference)",
+        "url": "https://sre.google/sre-book/table-of-contents/"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.322Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 10,
+  "estimated_words": 520
+}

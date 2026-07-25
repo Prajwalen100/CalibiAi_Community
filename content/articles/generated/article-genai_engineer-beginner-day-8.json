@@ -1,0 +1,63 @@
+{
+  "id": "genai_engineer-day-8",
+  "role": "genai_engineer",
+  "level": "beginner",
+  "day": 8,
+  "title": "Introduction to Machine Learning",
+  "summary": "Machine learning is teaching computers to find patterns in data instead of hard-coding rules. Today you learn the big picture: the three main paradigms, how data is split for honest evaluation, and the central challenge of building models that genera",
+  "content": "# Introduction to Machine Learning\n\n## Overview\nMachine learning is teaching computers to find patterns in data instead of hard-coding rules. Today you learn the big picture: the three main paradigms, how data is split for honest evaluation, and the central challenge of building models that generalize to new data rather than memorizing training examples.\n\n## Deep Dive\nThis module covers: What is machine learning; Supervised vs unsupervised vs RL; Features and labels; Training, validation, test sets; Overfitting and underfitting; The bias-variance tradeoff. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Split a dataset into train/validation/test sets and explain why each split matters using a simple example.\n**Mini Project:** Create an illustrated notebook that demonstrates overfitting vs underfitting by fitting polynomials of increasing degree to noisy data.\n**Assignment:** Write a one-page explainer classifying 10 real-world problems as supervised, unsupervised, or reinforcement learning, with justification.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "What is machine learning",
+    "Supervised vs unsupervised vs RL",
+    "Features and labels",
+    "Training, validation, test sets",
+    "Overfitting and underfitting",
+    "The bias-variance tradeoff"
+  ],
+  "practical_task_reference": "Split a dataset into train/validation/test sets and explain why each split matters using a simple example.",
+  "mini_project_reference": "Create an illustrated notebook that demonstrates overfitting vs underfitting by fitting polynomials of increasing degree to noisy data.",
+  "assignment_reference": "Write a one-page explainer classifying 10 real-world problems as supervised, unsupervised, or reinforcement learning, with justification.",
+  "skills_gained": [
+    "ML fundamentals",
+    "ML workflow",
+    "Model evaluation concepts"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Machine Learning for Everybody - Full Course",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=i_LwzRVP7bg"
+      },
+      {
+        "title": "Machine Learning Basics",
+        "channel": "StatQuest with Josh Starmer",
+        "url": "https://www.youtube.com/watch?v=Gv9_4yMHFhI"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Google Machine Learning Crash Course",
+        "url": "https://developers.google.com/machine-learning/crash-course"
+      }
+    ],
+    "github": [
+      {
+        "name": "microsoft/ML-For-Beginners",
+        "url": "https://github.com/microsoft/ML-For-Beginners"
+      }
+    ],
+    "papers": [
+      {
+        "title": "A Few Useful Things to Know About Machine Learning (Domingos, 2012)",
+        "url": "https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.291Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 8,
+  "estimated_words": 491
+}

@@ -1,9 +1,11 @@
 export const SCORE_WEIGHTS = {
-  projects: 400,
-  skills: 250,
-  community: 150,
+  projects: 350,
+  skills: 200,
+  community: 100,
   completion: 100,
-  recognition: 100
+  recognition: 50,
+  reading: 100,
+  quizzes: 100
 } as const;
 
 export const TIERS = [

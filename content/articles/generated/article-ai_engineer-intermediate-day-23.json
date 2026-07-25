@@ -1,0 +1,58 @@
+{
+  "id": "ai_engineer-day-23",
+  "role": "ai_engineer",
+  "level": "intermediate",
+  "day": 23,
+  "title": "Advanced Prompt Engineering and Structured Output",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Advanced Prompt Engineering and Structured Output\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Few-shot, CoT, self-consistency, ReAct; Structured output (JSON schema, function calling); Output validation and retries; Prompt templating and management; Guardrails against prompt injection; Prompt evaluation and versioning. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Build a prompt that reliably returns schema-validated JSON using function calling, with automatic retry on validation failure, and test edge cases.\n**Mini Project:** Build a structured extraction service that pulls typed fields from unstructured documents using LLMs, with schema validation, retries, and injection guards.\n**Assignment:** Explain self-consistency prompting and how it improves reliability on reasoning tasks compared to a single chain-of-thought.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Few-shot, CoT, self-consistency, ReAct",
+    "Structured output (JSON schema, function calling)",
+    "Output validation and retries",
+    "Prompt templating and management",
+    "Guardrails against prompt injection",
+    "Prompt evaluation and versioning"
+  ],
+  "practical_task_reference": "Build a prompt that reliably returns schema-validated JSON using function calling, with automatic retry on validation failure, and test edge cases.",
+  "mini_project_reference": "Build a structured extraction service that pulls typed fields from unstructured documents using LLMs, with schema validation, retries, and injection guards.",
+  "assignment_reference": "Explain self-consistency prompting and how it improves reliability on reasoning tasks compared to a single chain-of-thought.",
+  "skills_gained": [
+    "Advanced prompting",
+    "Structured output",
+    "Prompt robustness"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Advanced Prompt Engineering Techniques",
+        "channel": "Prompt Engineering",
+        "url": "https://www.youtube.com/watch?v=zTh719eXt2M"
+      }
+    ],
+    "docs": [
+      {
+        "title": "OpenAI Structured Outputs Guide",
+        "url": "https://platform.openai.com/docs/guides/structured-outputs"
+      }
+    ],
+    "github": [
+      {
+        "name": "guidance-ai/guidance",
+        "url": "https://github.com/guidance-ai/guidance"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Self-Consistency Improves Chain of Thought Reasoning (Wang et al., 2022)",
+        "url": "https://arxiv.org/abs/2203.11171"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.259Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 23,
+  "estimated_words": 467
+}

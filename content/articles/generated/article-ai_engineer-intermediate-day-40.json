@@ -1,0 +1,58 @@
+{
+  "id": "ai_engineer-day-40",
+  "role": "ai_engineer",
+  "level": "intermediate",
+  "day": 40,
+  "title": "Security and Privacy in ML Systems",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Security and Privacy in ML Systems\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Adversarial attacks and defenses; Data poisoning and model extraction; Prompt injection and LLM security; PII handling and data privacy; Differential privacy and federated learning; Secure MLOps (secrets, access control). Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Craft an adversarial example against a model to see it fail, then add an input-validation and PII-redaction guardrail to an LLM pipeline.\n**Mini Project:** Perform a security review of an ML service: test for prompt injection and PII leakage, and implement mitigations, documenting findings.\n**Assignment:** Explain what differential privacy guarantees and describe a scenario where federated learning is the right choice.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Adversarial attacks and defenses",
+    "Data poisoning and model extraction",
+    "Prompt injection and LLM security",
+    "PII handling and data privacy",
+    "Differential privacy and federated learning",
+    "Secure MLOps (secrets, access control)"
+  ],
+  "practical_task_reference": "Craft an adversarial example against a model to see it fail, then add an input-validation and PII-redaction guardrail to an LLM pipeline.",
+  "mini_project_reference": "Perform a security review of an ML service: test for prompt injection and PII leakage, and implement mitigations, documenting findings.",
+  "assignment_reference": "Explain what differential privacy guarantees and describe a scenario where federated learning is the right choice.",
+  "skills_gained": [
+    "ML security",
+    "Privacy-preserving ML",
+    "Adversarial robustness"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Adversarial Attacks on Neural Networks",
+        "channel": "Two Minute Papers",
+        "url": "https://www.youtube.com/watch?v=SA4YEAWVpbk"
+      }
+    ],
+    "docs": [
+      {
+        "title": "OWASP Top 10 for LLM Applications",
+        "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+      }
+    ],
+    "github": [
+      {
+        "name": "Trusted-AI/adversarial-robustness-toolbox",
+        "url": "https://github.com/Trusted-AI/adversarial-robustness-toolbox"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Explaining and Harnessing Adversarial Examples (Goodfellow et al., 2014)",
+        "url": "https://arxiv.org/abs/1412.6572"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.262Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 40,
+  "estimated_words": 470
+}

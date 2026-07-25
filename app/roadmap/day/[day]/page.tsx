@@ -228,6 +228,12 @@ export default async function DayPage({
             Practical Task
           </h2>
           <p className="mt-2 text-slate-700 dark:text-slate-300">{currentDay.practical_task}</p>
+          <Link
+            href={`/assessment/task?type=practical_task&day=${dayNumber}&title=${encodeURIComponent(currentDay.practical_task || "")}`}
+            className="btn-secondary mt-3 inline-flex items-center gap-2"
+          >
+            <Sparkles className="h-4 w-4" /> Open AI Assessment
+          </Link>
         </div>
       )}
 
@@ -239,6 +245,12 @@ export default async function DayPage({
             Mini Project
           </h2>
           <p className="mt-2 text-slate-700 dark:text-slate-300">{currentDay.mini_project}</p>
+          <Link
+            href={`/assessment/task?type=mini_project&day=${dayNumber}&title=${encodeURIComponent(currentDay.mini_project || "")}`}
+            className="btn-secondary mt-3 inline-flex items-center gap-2"
+          >
+            <Sparkles className="h-4 w-4" /> Submit Project for AI Review
+          </Link>
         </div>
       )}
 
@@ -250,6 +262,12 @@ export default async function DayPage({
             Assignment
           </h2>
           <p className="mt-2 text-slate-700 dark:text-slate-300">{currentDay.assignment}</p>
+          <Link
+            href={`/assessment/task?type=assignment&day=${dayNumber}&title=${encodeURIComponent(currentDay.assignment || "")}`}
+            className="btn-secondary mt-3 inline-flex items-center gap-2"
+          >
+            <Sparkles className="h-4 w-4" /> Submit Assignment for AI Review
+          </Link>
         </div>
       )}
 
@@ -315,6 +333,23 @@ export default async function DayPage({
         </div>
       )}
 
+      {/* Detailed Article Link */}
+      <div className="mt-6 rounded-2xl border border-violet-200 bg-violet-50 p-5 dark:border-violet-900 dark:bg-violet-950/20">
+        <h2 className="flex items-center gap-2 text-lg font-bold text-violet-700 dark:text-violet-300">
+          <BookOpen className="h-5 w-5" />
+          Detailed Article for This Day
+        </h2>
+        <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
+          Read the full 500-600 word article covering theory, real-world application, common pitfalls, and assessment notes.
+        </p>
+        <Link
+          href={`/articles/${plan?.roadmap?.role ?? "ai_engineer"}-${plan?.roadmap?.level ?? "beginner"}-${dayNumber}`}
+          className="btn-primary mt-3 inline-flex items-center gap-2"
+        >
+          Read Detailed Article <ExternalLink className="h-4 w-4" />
+        </Link>
+      </div>
+
       {/* Quiz Notice */}
       {currentDay?.has_quiz && (
         <div className="mt-6 rounded-2xl border border-indigo-200 bg-indigo-50 p-5 dark:border-indigo-900 dark:bg-indigo-950/20">
@@ -325,9 +360,9 @@ export default async function DayPage({
           <p className="mt-2 text-slate-700 dark:text-slate-300">
             Test your knowledge with the quiz at the end of this day&apos;s learning.
           </p>
-          <button className="btn-primary mt-3">
+          <Link href={`/quiz/${dayNumber}`} className="btn-primary mt-3">
             Take Quiz
-          </button>
+          </Link>
         </div>
       )}
 

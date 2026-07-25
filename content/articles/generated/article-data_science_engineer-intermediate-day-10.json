@@ -1,0 +1,57 @@
+{
+  "id": "data_science_engineer-day-10",
+  "role": "data_science_engineer",
+  "level": "intermediate",
+  "day": 10,
+  "title": "Statistical Inference and Resampling",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Statistical Inference and Resampling\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Sampling distributions and standard errors; Bootstrap confidence intervals; Permutation (randomization) tests; Multiple testing and corrections (Bonferroni, FDR); Effect size and statistical power. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Compute a bootstrap confidence interval for a statistic that lacks a simple closed form (e.g., the median or a correlation), and run a permutation test to compare two groups, comparing results to a classical test.\n**Mini Project:** Build a resampling-based inference toolkit notebook that provides bootstrap CIs and permutation tests, applies FDR correction across many comparisons on a real dataset, and reports effect sizes.\n**Assignment:** Explain why running 20 independent tests at alpha=0.05 tends to produce a false positive, and show how a correction fixes it.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Sampling distributions and standard errors",
+    "Bootstrap confidence intervals",
+    "Permutation (randomization) tests",
+    "Multiple testing and corrections (Bonferroni, FDR)",
+    "Effect size and statistical power"
+  ],
+  "practical_task_reference": "Compute a bootstrap confidence interval for a statistic that lacks a simple closed form (e.g., the median or a correlation), and run a permutation test to compare two groups, comparing results to a classical test.",
+  "mini_project_reference": "Build a resampling-based inference toolkit notebook that provides bootstrap CIs and permutation tests, applies FDR correction across many comparisons on a real dataset, and reports effect sizes.",
+  "assignment_reference": "Explain why running 20 independent tests at alpha=0.05 tends to produce a false positive, and show how a correction fixes it.",
+  "skills_gained": [
+    "Bootstrapping",
+    "Permutation tests",
+    "Multiple-comparison correction"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "The Bootstrap, clearly explained!!!",
+        "channel": "StatQuest with Josh Starmer",
+        "url": "https://www.youtube.com/watch?v=Xz0x-8-cgaQ"
+      }
+    ],
+    "docs": [
+      {
+        "title": "scipy.stats.bootstrap",
+        "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html"
+      }
+    ],
+    "github": [
+      {
+        "name": "scipy/scipy",
+        "url": "https://github.com/scipy/scipy"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Controlling the False Discovery Rate (Benjamini & Hochberg, 1995)",
+        "url": "https://www.jstor.org/stable/2346101"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.279Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 10,
+  "estimated_words": 486
+}

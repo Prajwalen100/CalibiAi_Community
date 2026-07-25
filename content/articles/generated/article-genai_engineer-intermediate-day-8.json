@@ -1,0 +1,76 @@
+{
+  "id": "genai_engineer-day-8",
+  "role": "genai_engineer",
+  "level": "intermediate",
+  "day": 8,
+  "title": "Data Curation and Preprocessing for LLMs",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Data Curation and Preprocessing for LLMs\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Web-scale data sources; Quality filtering and classifiers; Deduplication (MinHash, exact); Decontamination; Data mixtures and weighting; PII and safety filtering. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Build a data-cleaning pipeline that performs language detection, quality filtering, and MinHash deduplication on a raw text dump.\n**Mini Project:** Create a reproducible dataset preparation pipeline with a datasheet documenting sources, filters, and dedup statistics.\n**Assignment:** Design a data mixture for a coding-focused model and justify domain weights with expected effects.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Web-scale data sources",
+    "Quality filtering and classifiers",
+    "Deduplication (MinHash, exact)",
+    "Decontamination",
+    "Data mixtures and weighting",
+    "PII and safety filtering"
+  ],
+  "practical_task_reference": "Build a data-cleaning pipeline that performs language detection, quality filtering, and MinHash deduplication on a raw text dump.",
+  "mini_project_reference": "Create a reproducible dataset preparation pipeline with a datasheet documenting sources, filters, and dedup statistics.",
+  "assignment_reference": "Design a data mixture for a coding-focused model and justify domain weights with expected effects.",
+  "skills_gained": [
+    "Data curation",
+    "Deduplication",
+    "Quality filtering",
+    "Data pipelines"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Data Curation for LLMs",
+        "channel": "HuggingFace",
+        "url": "https://www.youtube.com/watch?v=8pgWzEjV0sw"
+      },
+      {
+        "title": "How to Build High-Quality Datasets",
+        "channel": "AI Coffee Break with Letitia",
+        "url": "https://www.youtube.com/watch?v=8pgWzEjV0sw"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Hugging Face Datasets Docs",
+        "url": "https://huggingface.co/docs/datasets/index"
+      },
+      {
+        "title": "DataTrove Docs",
+        "url": "https://github.com/huggingface/datatrove"
+      }
+    ],
+    "github": [
+      {
+        "name": "huggingface/datatrove",
+        "url": "https://github.com/huggingface/datatrove"
+      },
+      {
+        "name": "NVIDIA/NeMo-Curator",
+        "url": "https://github.com/NVIDIA/NeMo-Curator"
+      }
+    ],
+    "papers": [
+      {
+        "title": "The RefinedWeb Dataset for Falcon LLM (Penedo et al., 2023)",
+        "url": "https://arxiv.org/abs/2306.01116"
+      },
+      {
+        "title": "Deduplicating Training Data Makes Language Models Better (Lee et al., 2021)",
+        "url": "https://arxiv.org/abs/2107.06499"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.299Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 8,
+  "estimated_words": 450
+}

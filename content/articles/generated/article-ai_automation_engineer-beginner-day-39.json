@@ -1,0 +1,57 @@
+{
+  "id": "ai_automation_engineer-day-39",
+  "role": "ai_automation_engineer",
+  "level": "beginner",
+  "day": 39,
+  "title": "Capstone Part 3: Deploy, Monitor, and Document",
+  "summary": "Part 3 completes your capstone by taking the working build live and wrapping it in the operational and documentation polish that makes it a genuine, portfolio-worthy deliverable - because in the real world an automation is only finished when it runs ",
+  "content": "# Capstone Part 3: Deploy, Monitor, and Document\n\n## Overview\nPart 3 completes your capstone by taking the working build live and wrapping it in the operational and documentation polish that makes it a genuine, portfolio-worthy deliverable - because in the real world an automation is only finished when it runs reliably on its own and someone else can understand it. First you go live safely: you plan the cutover from test to production carefully, switching to real credentials and real triggers, ideally starting small (a limited rollout or close monitoring for the first runs) so that if something behaves unexpectedly on real data you catch it before it causes harm. Depending on your design, going live may mean turning on the cloud workflow or deploying your self-hosted n8n instance (Day 32) and setting its schedule. Next you add the production operations layer from Day 31: logging every run's outcome, a health summary or simple dashboard, and real-time alerts so you are notified the instant anything fails - plus backups of your workflow definitions and data and a short maintenance plan (what to check, how to update credentials, what to do if it breaks). Then you produce thorough documentation: a clear README and diagram explaining what the automation does, how it works, the tools and data involved, how to operate and troubleshoot it, and the results it achieves against the success metrics you set in Part 1 - ideally showing the before/after impact (time or money saved). Finally you prepare a demo: a short walkthrough or recording showing the automation working end to end. Completing all three capstone parts - planned, built, deployed, monitored, and documented - gives you a concrete, impressive project that proves to employers you can deliver real automation value, which is the single most persuasive item in a beginner's portfolio.\n\n## Deep Dive\nThis module covers: Going live safely (cutover from test to production); Deployment/hosting and scheduling; Monitoring, logging, and alerting in production; Backups and a maintenance plan; Full project documentation and demo. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Take your capstone live: switch to production credentials/triggers with a careful cutover, enable logging and failure alerts, set up a backup of the workflow and data, and confirm it runs correctly on real data.\n**Mini Project:** Finalize the capstone as a portfolio piece: a deployed, monitored, backed-up automation plus complete documentation (README, architecture diagram, operation/troubleshooting guide, and measured before/after impact) and a short recorded demo.\n**Assignment:** Write the results section of your capstone: state the success metrics from Part 1 and report the actual outcome (time/money saved, errors reduced), and describe your monitoring and maintenance plan.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Going live safely (cutover from test to production)",
+    "Deployment/hosting and scheduling",
+    "Monitoring, logging, and alerting in production",
+    "Backups and a maintenance plan",
+    "Full project documentation and demo"
+  ],
+  "practical_task_reference": "Take your capstone live: switch to production credentials/triggers with a careful cutover, enable logging and failure alerts, set up a backup of the workflow and data, and confirm it runs correctly on real data.",
+  "mini_project_reference": "Finalize the capstone as a portfolio piece: a deployed, monitored, backed-up automation plus complete documentation (README, architecture diagram, operation/troubleshooting guide, and measured before/after impact) and a short recorded demo.",
+  "assignment_reference": "Write the results section of your capstone: state the success metrics from Part 1 and report the actual outcome (time/money saved, errors reduced), and describe your monitoring and maintenance plan.",
+  "skills_gained": [
+    "Production deployment",
+    "Monitoring and backups",
+    "Project documentation"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Deploy and Monitor Your Automation in Production",
+        "channel": "n8n",
+        "url": "https://www.youtube.com/watch?v=1MwSoB0gnM4"
+      }
+    ],
+    "docs": [
+      {
+        "title": "n8n - Deployment and production considerations",
+        "url": "https://docs.n8n.io/hosting/"
+      }
+    ],
+    "github": [
+      {
+        "name": "n8n-io/n8n",
+        "url": "https://github.com/n8n-io/n8n"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Site Reliability Engineering (Beyer et al., 2016)",
+        "url": "https://sre.google/sre-book/table-of-contents/"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.316Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 39,
+  "estimated_words": 788
+}

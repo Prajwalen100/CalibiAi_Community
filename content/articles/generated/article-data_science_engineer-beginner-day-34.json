@@ -1,0 +1,57 @@
+{
+  "id": "data_science_engineer-day-34",
+  "role": "data_science_engineer",
+  "level": "beginner",
+  "day": 34,
+  "title": "Interactive Dashboards with Plotly",
+  "summary": "Static charts tell a fixed story, but interactive visualizations let users explore the data themselves, hovering for details, zooming into regions, and filtering to the subset they care about. Plotly is the leading Python library for this: Plotly Exp",
+  "content": "# Interactive Dashboards with Plotly\n\n## Overview\nStatic charts tell a fixed story, but interactive visualizations let users explore the data themselves, hovering for details, zooming into regions, and filtering to the subset they care about. Plotly is the leading Python library for this: Plotly Express creates rich, interactive charts in a single line, and every chart supports hover tooltips, zoom, and pan out of the box. When stakeholders need to monitor metrics over time or explore many dimensions, you build a dashboard, a collection of linked visualizations, often with filters and controls, using tools like Plotly Dash or Streamlit. Good dashboards follow design principles: lead with the most important metric, group related charts, keep it uncluttered, and make interactions intuitive. But interactivity isn't always better: for a single clear message, a well-designed static chart is often more effective and less distracting. Learning to build dashboards lets you deliver self-service analytics that stakeholders can use daily without needing you to re-run an analysis each time.\n\n## Deep Dive\nThis module covers: Interactive vs static charts; Plotly Express basics; Hover, zoom, and filtering interactivity; Building dashboards (Plotly Dash or Streamlit); Dashboard design principles. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Recreate several static charts as interactive Plotly Express figures, then combine three of them into a simple Streamlit or Dash dashboard with at least one interactive filter.\n**Mini Project:** Build an interactive dashboard for a dataset that lets a user filter by a category and see multiple linked charts update, deployed locally with Streamlit.\n**Assignment:** Take a static report and identify which two charts genuinely benefit from interactivity and which are better left static, with justification.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Interactive vs static charts",
+    "Plotly Express basics",
+    "Hover, zoom, and filtering interactivity",
+    "Building dashboards (Plotly Dash or Streamlit)",
+    "Dashboard design principles"
+  ],
+  "practical_task_reference": "Recreate several static charts as interactive Plotly Express figures, then combine three of them into a simple Streamlit or Dash dashboard with at least one interactive filter.",
+  "mini_project_reference": "Build an interactive dashboard for a dataset that lets a user filter by a category and see multiple linked charts update, deployed locally with Streamlit.",
+  "assignment_reference": "Take a static report and identify which two charts genuinely benefit from interactivity and which are better left static, with justification.",
+  "skills_gained": [
+    "Interactive visualization",
+    "Plotly",
+    "Dashboard building"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Plotly Dash Full Tutorial",
+        "channel": "Charming Data",
+        "url": "https://www.youtube.com/watch?v=hSPmj7mK6ng"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Plotly Python Open Source Graphing Library",
+        "url": "https://plotly.com/python/"
+      }
+    ],
+    "github": [
+      {
+        "name": "plotly/plotly.py",
+        "url": "https://github.com/plotly/plotly.py"
+      }
+    ],
+    "papers": [
+      {
+        "title": "The Grammar of Graphics (Wilkinson)",
+        "url": "https://link.springer.com/book/10.1007/0-387-28695-0"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.273Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 34,
+  "estimated_words": 623
+}

@@ -1,0 +1,69 @@
+{
+  "id": "ai_automation_engineer-day-22",
+  "role": "ai_automation_engineer",
+  "level": "intermediate",
+  "day": 22,
+  "title": "Prompt Engineering and LLM Reliability",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Prompt Engineering and LLM Reliability\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Structured outputs: JSON mode, function calling, Pydantic schemas; Retry-on-invalid and self-correction loops; Few-shot, chain-of-thought, delimiters, output constraints; Hallucination reduction and grounding; Prompt injection defense and input sanitization; Prompt regression testing with eval sets; Structured-output settings in Zapier/Make/n8n LLM nodes. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Wrap an LLM classification step so it returns Pydantic-validated JSON, retrying up to 3 times on parse failure, and score two prompt versions against a 20-example eval set.\n**Mini Project:** Build an LLM classification step that returns validated JSON via a Pydantic schema, retrying up to 3 times on parse failure.\n**Assignment:** Create a 20-example eval set and score two prompt versions; keep the higher-accuracy prompt.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Structured outputs: JSON mode, function calling, Pydantic schemas",
+    "Retry-on-invalid and self-correction loops",
+    "Few-shot, chain-of-thought, delimiters, output constraints",
+    "Hallucination reduction and grounding",
+    "Prompt injection defense and input sanitization",
+    "Prompt regression testing with eval sets",
+    "Structured-output settings in Zapier/Make/n8n LLM nodes"
+  ],
+  "practical_task_reference": "Wrap an LLM classification step so it returns Pydantic-validated JSON, retrying up to 3 times on parse failure, and score two prompt versions against a 20-example eval set.",
+  "mini_project_reference": "Build an LLM classification step that returns validated JSON via a Pydantic schema, retrying up to 3 times on parse failure.",
+  "assignment_reference": "Create a 20-example eval set and score two prompt versions; keep the higher-accuracy prompt.",
+  "skills_gained": [
+    "Structured, schema-validated LLM outputs",
+    "Prompt reliability and injection defense",
+    "Prompt evaluation and regression testing"
+  ],
+  "resources": {
+    "youtube": {
+      "title": "Structured outputs and reliable LLM prompting",
+      "url": "https://www.youtube.com/watch?v=jgpUPZ_zLpg",
+      "note": "Popular prompt-engineering tutorial; confirm view count on YouTube."
+    },
+    "docs": [
+      {
+        "title": "OpenAI Structured Outputs",
+        "url": "https://platform.openai.com/docs/guides/structured-outputs"
+      },
+      {
+        "title": "Anthropic prompt engineering guide",
+        "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview"
+      }
+    ],
+    "github": [
+      {
+        "name": "pydantic/pydantic",
+        "url": "https://github.com/pydantic/pydantic"
+      },
+      {
+        "name": "guardrails-ai/guardrails",
+        "url": "https://github.com/guardrails-ai/guardrails"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (Wei et al., 2022)",
+        "url": "https://arxiv.org/abs/2201.11903"
+      },
+      {
+        "title": "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection (Greshake et al., 2023)",
+        "url": "https://arxiv.org/abs/2302.12173"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.326Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 22,
+  "estimated_words": 484
+}

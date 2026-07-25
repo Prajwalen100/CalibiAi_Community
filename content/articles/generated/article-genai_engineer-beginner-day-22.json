@@ -1,0 +1,63 @@
+{
+  "id": "genai_engineer-day-22",
+  "role": "genai_engineer",
+  "level": "beginner",
+  "day": 22,
+  "title": "The Transformer Architecture",
+  "summary": "The transformer combines self-attention, positional encodings, and feedforward layers into a highly parallelizable architecture. Because it processes all tokens at once and scales well with data and compute, it became the backbone of GPT, BERT, and e",
+  "content": "# The Transformer Architecture\n\n## Overview\nThe transformer combines self-attention, positional encodings, and feedforward layers into a highly parallelizable architecture. Because it processes all tokens at once and scales well with data and compute, it became the backbone of GPT, BERT, and every modern LLM.\n\n## Deep Dive\nThis module covers: Encoder-decoder architecture; Positional encoding; Feedforward layers; Residual connections and layer norm; Multi-head attention stacks; Why transformers scale. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Read 'The Illustrated Transformer' and annotate a diagram labeling each component and its purpose.\n**Mini Project:** Follow Karpathy's nanoGPT lecture to build a tiny GPT that generates text character by character.\n**Assignment:** Write a technical summary of the 'Attention Is All You Need' paper in your own words.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Encoder-decoder architecture",
+    "Positional encoding",
+    "Feedforward layers",
+    "Residual connections and layer norm",
+    "Multi-head attention stacks",
+    "Why transformers scale"
+  ],
+  "practical_task_reference": "Read 'The Illustrated Transformer' and annotate a diagram labeling each component and its purpose.",
+  "mini_project_reference": "Follow Karpathy's nanoGPT lecture to build a tiny GPT that generates text character by character.",
+  "assignment_reference": "Write a technical summary of the 'Attention Is All You Need' paper in your own words.",
+  "skills_gained": [
+    "Transformer architecture",
+    "Positional encoding",
+    "nanoGPT"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Let's build GPT: from scratch, in code, spelled out",
+        "channel": "Andrej Karpathy",
+        "url": "https://www.youtube.com/watch?v=kCc8FmEb1nY"
+      },
+      {
+        "title": "Transformers, explained: Understand the model behind GPT",
+        "channel": "3Blue1Brown",
+        "url": "https://www.youtube.com/watch?v=wjZofJX0v4M"
+      }
+    ],
+    "docs": [
+      {
+        "title": "The Illustrated Transformer (Jay Alammar)",
+        "url": "https://jalammar.github.io/illustrated-transformer/"
+      }
+    ],
+    "github": [
+      {
+        "name": "karpathy/nanoGPT",
+        "url": "https://github.com/karpathy/nanoGPT"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Attention Is All You Need (Vaswani et al., 2017)",
+        "url": "https://arxiv.org/abs/1706.03762"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.293Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 22,
+  "estimated_words": 471
+}

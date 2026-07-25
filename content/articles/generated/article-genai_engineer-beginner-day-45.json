@@ -1,0 +1,72 @@
+{
+  "id": "genai_engineer-day-45",
+  "role": "genai_engineer",
+  "level": "beginner",
+  "day": 45,
+  "title": "Portfolio, Interview Prep, and Career Launch",
+  "summary": "Skills get you interviews only if people can see them. Today you polish your GitHub, write a targeted resume, and rehearse common GenAI interview questions covering transformers, RAG, fine-tuning, and system design. You also set up habits to keep lea",
+  "content": "# Portfolio, Interview Prep, and Career Launch\n\n## Overview\nSkills get you interviews only if people can see them. Today you polish your GitHub, write a targeted resume, and rehearse common GenAI interview questions covering transformers, RAG, fine-tuning, and system design. You also set up habits to keep learning as the field evolves rapidly.\n\n## Deep Dive\nThis module covers: Portfolio and GitHub presentation; Resume for GenAI roles; Common interview questions; System design for LLM apps; Staying current with research; Community and networking. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Polish your GitHub profile and pin your best projects with clear READMEs, then draft a GenAI-focused resume.\n**Mini Project:** Create a personal portfolio site showcasing your capstone and key projects with descriptions and live links.\n**Assignment:** Answer 20 GenAI interview questions in writing and complete one mock LLM system-design question.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Portfolio and GitHub presentation",
+    "Resume for GenAI roles",
+    "Common interview questions",
+    "System design for LLM apps",
+    "Staying current with research",
+    "Community and networking"
+  ],
+  "practical_task_reference": "Polish your GitHub profile and pin your best projects with clear READMEs, then draft a GenAI-focused resume.",
+  "mini_project_reference": "Create a personal portfolio site showcasing your capstone and key projects with descriptions and live links.",
+  "assignment_reference": "Answer 20 GenAI interview questions in writing and complete one mock LLM system-design question.",
+  "skills_gained": [
+    "Portfolio building",
+    "Interview readiness",
+    "System design",
+    "Continuous learning"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "How to Build a Developer Portfolio",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=u-RLu_8kwA0"
+      },
+      {
+        "title": "Machine Learning Interview Preparation",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=t6gOpFLt-Ks"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Hugging Face Blog (stay current)",
+        "url": "https://huggingface.co/blog"
+      },
+      {
+        "title": "Papers with Code",
+        "url": "https://paperswithcode.com/"
+      }
+    ],
+    "github": [
+      {
+        "name": "mlabonne/llm-course",
+        "url": "https://github.com/mlabonne/llm-course"
+      },
+      {
+        "name": "khangich/machine-learning-interview",
+        "url": "https://github.com/khangich/machine-learning-interview"
+      }
+    ],
+    "papers": [
+      {
+        "title": "A Survey of Large Language Models (Zhao et al., 2023)",
+        "url": "https://arxiv.org/abs/2303.18223"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.297Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 45,
+  "estimated_words": 488
+}

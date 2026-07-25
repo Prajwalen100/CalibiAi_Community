@@ -1,0 +1,72 @@
+{
+  "id": "genai_engineer-day-19",
+  "role": "genai_engineer",
+  "level": "intermediate",
+  "day": 19,
+  "title": "Advanced RAG Architectures",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Advanced RAG Architectures\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Naive vs advanced vs modular RAG; Pre-retrieval optimization; Post-retrieval compression; Sentence-window and parent-document; RAG failure taxonomy; Self-RAG and corrective RAG. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Implement parent-document retrieval and measure the answer-quality improvement over naive fixed-chunk RAG.\n**Mini Project:** Build a modular RAG system with query rewriting, reranking, and context compression, benchmarked with RAGAS.\n**Assignment:** Produce a RAG failure taxonomy for a real corpus and map each failure to a specific architectural fix.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Naive vs advanced vs modular RAG",
+    "Pre-retrieval optimization",
+    "Post-retrieval compression",
+    "Sentence-window and parent-document",
+    "RAG failure taxonomy",
+    "Self-RAG and corrective RAG"
+  ],
+  "practical_task_reference": "Implement parent-document retrieval and measure the answer-quality improvement over naive fixed-chunk RAG.",
+  "mini_project_reference": "Build a modular RAG system with query rewriting, reranking, and context compression, benchmarked with RAGAS.",
+  "assignment_reference": "Produce a RAG failure taxonomy for a real corpus and map each failure to a specific architectural fix.",
+  "skills_gained": [
+    "Advanced RAG",
+    "Modular RAG",
+    "Self-RAG",
+    "Failure analysis"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Advanced RAG Techniques",
+        "channel": "LangChain",
+        "url": "https://www.youtube.com/watch?v=sVcwVQRHIc8"
+      },
+      {
+        "title": "12 RAG Pain Points and Solutions",
+        "channel": "LlamaIndex",
+        "url": "https://www.youtube.com/watch?v=TRjq7t2Ms5I"
+      }
+    ],
+    "docs": [
+      {
+        "title": "LlamaIndex Advanced RAG",
+        "url": "https://docs.llamaindex.ai/en/stable/optimizing/production_rag/"
+      }
+    ],
+    "github": [
+      {
+        "name": "run-llama/llama_index",
+        "url": "https://github.com/run-llama/llama_index"
+      },
+      {
+        "name": "langchain-ai/langchain",
+        "url": "https://github.com/langchain-ai/langchain"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Self-RAG: Learning to Retrieve, Generate, and Critique (Asai et al., 2023)",
+        "url": "https://arxiv.org/abs/2310.11511"
+      },
+      {
+        "title": "Retrieval-Augmented Generation for LLMs: A Survey (Gao et al., 2023)",
+        "url": "https://arxiv.org/abs/2312.10997"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.301Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 19,
+  "estimated_words": 445
+}

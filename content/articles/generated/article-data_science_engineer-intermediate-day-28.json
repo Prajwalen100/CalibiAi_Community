@@ -1,0 +1,57 @@
+{
+  "id": "data_science_engineer-day-28",
+  "role": "data_science_engineer",
+  "level": "intermediate",
+  "day": 28,
+  "title": "Deep Learning Foundations with PyTorch",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Deep Learning Foundations with PyTorch\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Tensors and GPU acceleration; Autograd and computational graphs; Building models with nn.Module; The training loop, loss, and optimizers; Datasets, DataLoaders, and batching. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Implement a neural network in PyTorch from scratch: define an nn.Module, write the manual training loop with a DataLoader, train it on a dataset, and move the computation to a GPU if available.\n**Mini Project:** Build a PyTorch training framework with a reusable training/validation loop, checkpointing, and metric tracking, then use it to train a network on a real dataset and plot the learning curves.\n**Assignment:** Explain each line of a PyTorch training loop (zero_grad, forward, loss, backward, step) and what would break if you omitted zero_grad.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Tensors and GPU acceleration",
+    "Autograd and computational graphs",
+    "Building models with nn.Module",
+    "The training loop, loss, and optimizers",
+    "Datasets, DataLoaders, and batching"
+  ],
+  "practical_task_reference": "Implement a neural network in PyTorch from scratch: define an nn.Module, write the manual training loop with a DataLoader, train it on a dataset, and move the computation to a GPU if available.",
+  "mini_project_reference": "Build a PyTorch training framework with a reusable training/validation loop, checkpointing, and metric tracking, then use it to train a network on a real dataset and plot the learning curves.",
+  "assignment_reference": "Explain each line of a PyTorch training loop (zero_grad, forward, loss, backward, step) and what would break if you omitted zero_grad.",
+  "skills_gained": [
+    "PyTorch",
+    "Autograd and training loops",
+    "Deep learning code structure"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "PyTorch for Deep Learning - Full Course",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=V_xro1bcAuA"
+      }
+    ],
+    "docs": [
+      {
+        "title": "PyTorch Documentation",
+        "url": "https://pytorch.org/docs/stable/index.html"
+      }
+    ],
+    "github": [
+      {
+        "name": "pytorch/pytorch",
+        "url": "https://github.com/pytorch/pytorch"
+      }
+    ],
+    "papers": [
+      {
+        "title": "PyTorch: An Imperative Style, High-Performance Deep Learning Library (Paszke et al., 2019)",
+        "url": "https://papers.nips.cc/paper/2019/hash/bdbca288fee7f92f2bfa9f7012727740-Abstract.html"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.284Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 28,
+  "estimated_words": 488
+}

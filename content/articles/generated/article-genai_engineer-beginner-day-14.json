@@ -1,0 +1,63 @@
+{
+  "id": "genai_engineer-day-14",
+  "role": "genai_engineer",
+  "level": "beginner",
+  "day": 14,
+  "title": "Deep Learning Fundamentals",
+  "summary": "Deep learning is training multi-layer networks using backpropagation, which applies the chain rule to compute how each weight affects the loss. Optimizers like Adam use these gradients to update weights efficiently, while techniques like dropout prev",
+  "content": "# Deep Learning Fundamentals\n\n## Overview\nDeep learning is training multi-layer networks using backpropagation, which applies the chain rule to compute how each weight affects the loss. Optimizers like Adam use these gradients to update weights efficiently, while techniques like dropout prevent overfitting on large models.\n\n## Deep Dive\nThis module covers: Backpropagation; Gradient descent variants (SGD, Adam); Learning rate scheduling; Overfitting in deep nets; Dropout and batch norm; Epochs and batches. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Trace how backpropagation updates a single weight in a tiny network, computing the gradient step by step.\n**Mini Project:** Extend your NumPy network from Day 13 to include backpropagation and train it on a small dataset.\n**Assignment:** Experiment with three learning rates and two optimizers, then plot and compare training curves.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Backpropagation",
+    "Gradient descent variants (SGD, Adam)",
+    "Learning rate scheduling",
+    "Overfitting in deep nets",
+    "Dropout and batch norm",
+    "Epochs and batches"
+  ],
+  "practical_task_reference": "Trace how backpropagation updates a single weight in a tiny network, computing the gradient step by step.",
+  "mini_project_reference": "Extend your NumPy network from Day 13 to include backpropagation and train it on a small dataset.",
+  "assignment_reference": "Experiment with three learning rates and two optimizers, then plot and compare training curves.",
+  "skills_gained": [
+    "Backpropagation",
+    "Optimization",
+    "Regularization"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Backpropagation, step-by-step",
+        "channel": "3Blue1Brown",
+        "url": "https://www.youtube.com/watch?v=Ilg3gGewQ5U"
+      },
+      {
+        "title": "The spelled-out intro to neural networks and backpropagation (micrograd)",
+        "channel": "Andrej Karpathy",
+        "url": "https://www.youtube.com/watch?v=VMj-3S1tku0"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Deep Learning Book",
+        "url": "https://www.deeplearningbook.org/"
+      }
+    ],
+    "github": [
+      {
+        "name": "karpathy/micrograd",
+        "url": "https://github.com/karpathy/micrograd"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Adam: A Method for Stochastic Optimization (Kingma & Ba, 2014)",
+        "url": "https://arxiv.org/abs/1412.6980"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.291Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 14,
+  "estimated_words": 478
+}

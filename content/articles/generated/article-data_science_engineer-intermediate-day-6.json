@@ -1,0 +1,57 @@
+{
+  "id": "data_science_engineer-day-6",
+  "role": "data_science_engineer",
+  "level": "intermediate",
+  "day": 6,
+  "title": "Advanced SQL and Analytical Queries",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Advanced SQL and Analytical Queries\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Advanced joins and set operations; Window functions (partitioning, framing); Recursive CTEs; Query execution plans and indexing; Analytical SQL patterns (cohorts, funnels). Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Using a database, write queries that compute a running total and a rank within groups using window functions, build a cohort retention query, and inspect a query's execution plan to identify an indexing opportunity.\n**Mini Project:** Build an analytical SQL report suite for a sample database that includes a funnel analysis, a cohort/retention table, and period-over-period growth, all using window functions and CTEs.\n**Assignment:** Write a window-function query that computes each row's value as a percentage of its group total, and explain how PARTITION BY drives the result.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Advanced joins and set operations",
+    "Window functions (partitioning, framing)",
+    "Recursive CTEs",
+    "Query execution plans and indexing",
+    "Analytical SQL patterns (cohorts, funnels)"
+  ],
+  "practical_task_reference": "Using a database, write queries that compute a running total and a rank within groups using window functions, build a cohort retention query, and inspect a query's execution plan to identify an indexing opportunity.",
+  "mini_project_reference": "Build an analytical SQL report suite for a sample database that includes a funnel analysis, a cohort/retention table, and period-over-period growth, all using window functions and CTEs.",
+  "assignment_reference": "Write a window-function query that computes each row's value as a percentage of its group total, and explain how PARTITION BY drives the result.",
+  "skills_gained": [
+    "Advanced SQL",
+    "Window functions",
+    "Query optimization"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Advanced SQL Window Functions Tutorial",
+        "channel": "Alex The Analyst",
+        "url": "https://www.youtube.com/watch?v=Ww71knvhQ-s"
+      }
+    ],
+    "docs": [
+      {
+        "title": "PostgreSQL Window Functions",
+        "url": "https://www.postgresql.org/docs/current/tutorial-window.html"
+      }
+    ],
+    "github": [
+      {
+        "name": "postgres/postgres",
+        "url": "https://github.com/postgres/postgres"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Access Path Selection in a Relational Database Management System (Selinger et al., 1979)",
+        "url": "https://dl.acm.org/doi/10.1145/582095.582099"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.278Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 6,
+  "estimated_words": 488
+}

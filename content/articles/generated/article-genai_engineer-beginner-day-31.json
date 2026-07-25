@@ -1,0 +1,72 @@
+{
+  "id": "genai_engineer-day-31",
+  "role": "genai_engineer",
+  "level": "beginner",
+  "day": 31,
+  "title": "LLM APIs (OpenAI, Anthropic, Open Models)",
+  "summary": "Most GenAI products are built on hosted LLM APIs. You learn to authenticate securely, structure chat messages, control randomness with temperature, stream tokens for responsive UIs, and request structured JSON output. These are the concrete integrati",
+  "content": "# LLM APIs (OpenAI, Anthropic, Open Models)\n\n## Overview\nMost GenAI products are built on hosted LLM APIs. You learn to authenticate securely, structure chat messages, control randomness with temperature, stream tokens for responsive UIs, and request structured JSON output. These are the concrete integration skills interviewers expect.\n\n## Deep Dive\nThis module covers: OpenAI and Anthropic APIs; Chat completions; Temperature and top-p; Streaming responses; Structured output / JSON mode; API keys and security. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Write a Python script that calls an LLM API with a system prompt, streams the response, and returns structured JSON.\n**Mini Project:** Build a CLI chatbot with conversation memory using an LLM API, with streaming and token-cost tracking.\n**Assignment:** Implement robust API error handling with retries and rate-limit backoff, and document your approach.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "OpenAI and Anthropic APIs",
+    "Chat completions",
+    "Temperature and top-p",
+    "Streaming responses",
+    "Structured output / JSON mode",
+    "API keys and security"
+  ],
+  "practical_task_reference": "Write a Python script that calls an LLM API with a system prompt, streams the response, and returns structured JSON.",
+  "mini_project_reference": "Build a CLI chatbot with conversation memory using an LLM API, with streaming and token-cost tracking.",
+  "assignment_reference": "Implement robust API error handling with retries and rate-limit backoff, and document your approach.",
+  "skills_gained": [
+    "LLM API integration",
+    "Streaming",
+    "Structured output",
+    "Cost management"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "OpenAI API Full Course",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=c-g6epk3fFE"
+      },
+      {
+        "title": "Build with the Anthropic API",
+        "channel": "Anthropic",
+        "url": "https://www.youtube.com/watch?v=X3aG9gJ2Fme"
+      }
+    ],
+    "docs": [
+      {
+        "title": "OpenAI API Reference",
+        "url": "https://platform.openai.com/docs/api-reference"
+      },
+      {
+        "title": "Anthropic API Docs",
+        "url": "https://docs.anthropic.com/en/api/getting-started"
+      }
+    ],
+    "github": [
+      {
+        "name": "openai/openai-python",
+        "url": "https://github.com/openai/openai-python"
+      },
+      {
+        "name": "anthropics/anthropic-sdk-python",
+        "url": "https://github.com/anthropics/anthropic-sdk-python"
+      }
+    ],
+    "papers": [
+      {
+        "title": "GPT-4 Technical Report (OpenAI, 2023)",
+        "url": "https://arxiv.org/abs/2303.08774"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.295Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 31,
+  "estimated_words": 482
+}

@@ -1,0 +1,76 @@
+{
+  "id": "genai_engineer-day-16",
+  "role": "genai_engineer",
+  "level": "intermediate",
+  "day": 16,
+  "title": "LLM Evaluation and Benchmarks",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# LLM Evaluation and Benchmarks\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: MMLU, GSM8K, HumanEval, MT-Bench; LM Evaluation Harness; LLM-as-judge; Contamination and gaming; Task-specific evals; Statistical significance. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Evaluate a model on a benchmark using the LM Evaluation Harness and interpret the results critically.\n**Mini Project:** Build a domain-specific evaluation suite (with a golden dataset and LLM-as-judge) and score two candidate models.\n**Assignment:** Write a critique of a popular benchmark, identifying contamination or validity issues and proposing improvements.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "MMLU, GSM8K, HumanEval, MT-Bench",
+    "LM Evaluation Harness",
+    "LLM-as-judge",
+    "Contamination and gaming",
+    "Task-specific evals",
+    "Statistical significance"
+  ],
+  "practical_task_reference": "Evaluate a model on a benchmark using the LM Evaluation Harness and interpret the results critically.",
+  "mini_project_reference": "Build a domain-specific evaluation suite (with a golden dataset and LLM-as-judge) and score two candidate models.",
+  "assignment_reference": "Write a critique of a popular benchmark, identifying contamination or validity issues and proposing improvements.",
+  "skills_gained": [
+    "LLM benchmarking",
+    "Custom evaluation",
+    "LLM-as-judge",
+    "Contamination awareness"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "How to Evaluate LLMs",
+        "channel": "DeepLearningAI",
+        "url": "https://www.youtube.com/watch?v=fWC4VxolWAk"
+      },
+      {
+        "title": "LLM Benchmarks Explained",
+        "channel": "IBM Technology",
+        "url": "https://www.youtube.com/watch?v=lC_y_9Wj2xE"
+      }
+    ],
+    "docs": [
+      {
+        "title": "EleutherAI LM Evaluation Harness",
+        "url": "https://github.com/EleutherAI/lm-evaluation-harness"
+      },
+      {
+        "title": "Hugging Face Open LLM Leaderboard",
+        "url": "https://huggingface.co/open-llm-leaderboard"
+      }
+    ],
+    "github": [
+      {
+        "name": "EleutherAI/lm-evaluation-harness",
+        "url": "https://github.com/EleutherAI/lm-evaluation-harness"
+      },
+      {
+        "name": "confident-ai/deepeval",
+        "url": "https://github.com/confident-ai/deepeval"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Measuring Massive Multitask Language Understanding (MMLU, Hendrycks et al., 2020)",
+        "url": "https://arxiv.org/abs/2009.03300"
+      },
+      {
+        "title": "Judging LLM-as-a-Judge with MT-Bench (Zheng et al., 2023)",
+        "url": "https://arxiv.org/abs/2306.05685"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.301Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 16,
+  "estimated_words": 443
+}

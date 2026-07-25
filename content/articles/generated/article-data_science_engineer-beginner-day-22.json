@@ -1,0 +1,57 @@
+{
+  "id": "data_science_engineer-day-22",
+  "role": "data_science_engineer",
+  "level": "beginner",
+  "day": 22,
+  "title": "Linear and Logistic Regression",
+  "summary": "Linear and logistic regression are the two workhorse models every data scientist must know because they are simple, fast, and highly interpretable. Multiple linear regression extends the single-predictor line to many features, predicting a numeric ou",
+  "content": "# Linear and Logistic Regression\n\n## Overview\nLinear and logistic regression are the two workhorse models every data scientist must know because they are simple, fast, and highly interpretable. Multiple linear regression extends the single-predictor line to many features, predicting a numeric outcome as a weighted sum of inputs; each coefficient tells you how much the outcome changes when that feature increases by one unit, holding others constant. It relies on assumptions (linearity, independence, constant variance of errors) that you check with diagnostics. Logistic regression, despite its name, is a classification model: it passes a linear combination of features through the sigmoid function, which squashes any number into a probability between 0 and 1, then classifies based on a threshold (usually 0.5). Its coefficients relate to the odds of the positive class, so they're interpretable too. These models are often the first thing to try on a new problem: they set a strong baseline, run instantly, and their transparency helps you understand which features actually matter.\n\n## Deep Dive\nThis module covers: Multiple linear regression; Assumptions and diagnostics; The logistic (sigmoid) function; Logistic regression for binary classification; Interpreting coefficients and odds. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Fit a multiple linear regression to predict a numeric target and a logistic regression to predict a binary target, then interpret at least three coefficients from each in plain language.\n**Mini Project:** Build a dual-model notebook on a dataset that has both a numeric and a categorical target, comparing a linear regression and a logistic regression, and report the key drivers each model identifies.\n**Assignment:** Fit a logistic regression, extract the coefficients, and write an explanation of which features increase and which decrease the probability of the positive class.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Multiple linear regression",
+    "Assumptions and diagnostics",
+    "The logistic (sigmoid) function",
+    "Logistic regression for binary classification",
+    "Interpreting coefficients and odds"
+  ],
+  "practical_task_reference": "Fit a multiple linear regression to predict a numeric target and a logistic regression to predict a binary target, then interpret at least three coefficients from each in plain language.",
+  "mini_project_reference": "Build a dual-model notebook on a dataset that has both a numeric and a categorical target, comparing a linear regression and a logistic regression, and report the key drivers each model identifies.",
+  "assignment_reference": "Fit a logistic regression, extract the coefficients, and write an explanation of which features increase and which decrease the probability of the positive class.",
+  "skills_gained": [
+    "Multiple linear regression",
+    "Logistic regression",
+    "Coefficient interpretation"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Logistic Regression, Clearly Explained",
+        "channel": "StatQuest with Josh Starmer",
+        "url": "https://www.youtube.com/watch?v=yIYKR4sgzI8"
+      }
+    ],
+    "docs": [
+      {
+        "title": "scikit-learn Linear Models",
+        "url": "https://scikit-learn.org/stable/modules/linear_model.html"
+      }
+    ],
+    "github": [
+      {
+        "name": "scikit-learn/scikit-learn",
+        "url": "https://github.com/scikit-learn/scikit-learn"
+      }
+    ],
+    "papers": [
+      {
+        "title": "The Regression Analysis of Binary Sequences (Cox, 1958)",
+        "url": "https://www.jstor.org/stable/2983890"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.269Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 22,
+  "estimated_words": 635
+}

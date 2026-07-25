@@ -1,0 +1,57 @@
+{
+  "id": "data_science_engineer-day-31",
+  "role": "data_science_engineer",
+  "level": "intermediate",
+  "day": 31,
+  "title": "Sequence Models: RNNs and LSTMs",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Sequence Models: RNNs and LSTMs\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Sequential data and recurrence; Vanilla RNNs and their limitations; LSTM and GRU gating mechanisms; Sequence tasks (classification, forecasting, seq2seq); Limitations that motivate transformers. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Build an LSTM in PyTorch for a sequence task (e.g., text sentiment or univariate forecasting), train it, and compare its performance to a non-sequential baseline.\n**Mini Project:** Build a sequence-modeling project (sentiment classification or forecasting) using an LSTM/GRU, experiment with sequence length and hidden size, and write an analysis of where the model succeeds and fails.\n**Assignment:** Explain how LSTM gates mitigate the vanishing gradient problem that limits vanilla RNNs.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Sequential data and recurrence",
+    "Vanilla RNNs and their limitations",
+    "LSTM and GRU gating mechanisms",
+    "Sequence tasks (classification, forecasting, seq2seq)",
+    "Limitations that motivate transformers"
+  ],
+  "practical_task_reference": "Build an LSTM in PyTorch for a sequence task (e.g., text sentiment or univariate forecasting), train it, and compare its performance to a non-sequential baseline.",
+  "mini_project_reference": "Build a sequence-modeling project (sentiment classification or forecasting) using an LSTM/GRU, experiment with sequence length and hidden size, and write an analysis of where the model succeeds and fails.",
+  "assignment_reference": "Explain how LSTM gates mitigate the vanishing gradient problem that limits vanilla RNNs.",
+  "skills_gained": [
+    "Sequence modeling",
+    "LSTMs and GRUs",
+    "Seq2seq tasks"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Recurrent Neural Networks (RNNs) and LSTMs, Clearly Explained",
+        "channel": "StatQuest with Josh Starmer",
+        "url": "https://www.youtube.com/watch?v=YCzL96nL7j0"
+      }
+    ],
+    "docs": [
+      {
+        "title": "PyTorch Recurrent Layers",
+        "url": "https://pytorch.org/docs/stable/nn.html#recurrent-layers"
+      }
+    ],
+    "github": [
+      {
+        "name": "pytorch/pytorch",
+        "url": "https://github.com/pytorch/pytorch"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Long Short-Term Memory (Hochreiter & Schmidhuber, 1997)",
+        "url": "https://www.bioinf.jku.at/publications/older/2604.pdf"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.285Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 31,
+  "estimated_words": 472
+}

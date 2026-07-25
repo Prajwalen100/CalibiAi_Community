@@ -1,0 +1,57 @@
+{
+  "id": "data_science_engineer-day-31",
+  "role": "data_science_engineer",
+  "level": "beginner",
+  "day": 31,
+  "title": "Working with Text Data (NLP Basics)",
+  "summary": "A huge amount of real-world data is unstructured text, reviews, tweets, support tickets, and Natural Language Processing (NLP) lets you analyze it. Since models need numbers, the first job is to clean and vectorize text. Cleaning includes lowercasing",
+  "content": "# Working with Text Data (NLP Basics)\n\n## Overview\nA huge amount of real-world data is unstructured text, reviews, tweets, support tickets, and Natural Language Processing (NLP) lets you analyze it. Since models need numbers, the first job is to clean and vectorize text. Cleaning includes lowercasing, removing punctuation and stopwords (common words like 'the' that carry little meaning), and tokenizing (splitting into words). Then you convert text to numbers: the bag-of-words model counts how often each word appears, while TF-IDF (Term Frequency-Inverse Document Frequency) weights words by how distinctive they are, downweighting words common across all documents and highlighting rare, informative ones. With these numeric features you can train a standard classifier, for example, to predict whether a review is positive or negative (sentiment analysis). Finally, word embeddings are a more modern approach that represents words as dense vectors capturing meaning, so similar words sit close together, which is the foundation of the deep learning NLP you'd study later. These basics let you turn raw text into insight and predictions.\n\n## Deep Dive\nThis module covers: Text cleaning (lowercasing, stopwords, tokenization); Bag-of-words and TF-IDF; Building a text classification model; Sentiment analysis basics; Intro to word embeddings. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Clean a set of text documents, vectorize them with TF-IDF, and train a classifier (e.g., logistic regression or Naive Bayes) to predict a label such as sentiment, then evaluate it.\n**Mini Project:** Build a sentiment analysis project on a review dataset that cleans text, uses TF-IDF, trains and evaluates a classifier, and shows the most predictive words for each class.\n**Assignment:** Compare bag-of-words vs TF-IDF features on the same text classification task and write an explanation of why TF-IDF often performs better.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Text cleaning (lowercasing, stopwords, tokenization)",
+    "Bag-of-words and TF-IDF",
+    "Building a text classification model",
+    "Sentiment analysis basics",
+    "Intro to word embeddings"
+  ],
+  "practical_task_reference": "Clean a set of text documents, vectorize them with TF-IDF, and train a classifier (e.g., logistic regression or Naive Bayes) to predict a label such as sentiment, then evaluate it.",
+  "mini_project_reference": "Build a sentiment analysis project on a review dataset that cleans text, uses TF-IDF, trains and evaluates a classifier, and shows the most predictive words for each class.",
+  "assignment_reference": "Compare bag-of-words vs TF-IDF features on the same text classification task and write an explanation of why TF-IDF often performs better.",
+  "skills_gained": [
+    "Text preprocessing",
+    "TF-IDF vectorization",
+    "Text classification"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Natural Language Processing (NLP) Tutorial with Python",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=M7SWr5xObkA"
+      }
+    ],
+    "docs": [
+      {
+        "title": "scikit-learn Text Feature Extraction",
+        "url": "https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction"
+      }
+    ],
+    "github": [
+      {
+        "name": "nltk/nltk",
+        "url": "https://github.com/nltk/nltk"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Efficient Estimation of Word Representations in Vector Space (Mikolov et al., 2013)",
+        "url": "https://arxiv.org/abs/1301.3781"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.272Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 31,
+  "estimated_words": 634
+}

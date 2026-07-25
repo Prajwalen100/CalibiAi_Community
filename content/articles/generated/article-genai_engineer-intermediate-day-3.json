@@ -1,0 +1,67 @@
+{
+  "id": "genai_engineer-day-3",
+  "role": "genai_engineer",
+  "level": "intermediate",
+  "day": 3,
+  "title": "Positional Encodings: RoPE and ALiBi",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Positional Encodings: RoPE and ALiBi\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Absolute vs relative positions; Rotary Position Embeddings (RoPE); ALiBi; Context length extrapolation; RoPE scaling (NTK, YaRN); Position encoding tradeoffs. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Implement RoPE in PyTorch and verify that relative position information is preserved under rotation.\n**Mini Project:** Take a small RoPE model and apply NTK-aware scaling to extend its usable context, measuring perplexity across lengths.\n**Assignment:** Write a comparison of RoPE vs ALiBi for long-context tasks with an experiment on extrapolation behavior.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Absolute vs relative positions",
+    "Rotary Position Embeddings (RoPE)",
+    "ALiBi",
+    "Context length extrapolation",
+    "RoPE scaling (NTK, YaRN)",
+    "Position encoding tradeoffs"
+  ],
+  "practical_task_reference": "Implement RoPE in PyTorch and verify that relative position information is preserved under rotation.",
+  "mini_project_reference": "Take a small RoPE model and apply NTK-aware scaling to extend its usable context, measuring perplexity across lengths.",
+  "assignment_reference": "Write a comparison of RoPE vs ALiBi for long-context tasks with an experiment on extrapolation behavior.",
+  "skills_gained": [
+    "Positional encodings",
+    "RoPE",
+    "Context extension"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Rotary Positional Embeddings (RoPE) Explained",
+        "channel": "Umar Jamil",
+        "url": "https://www.youtube.com/watch?v=o29P0Kpobz0"
+      },
+      {
+        "title": "Positional Encoding in Transformers",
+        "channel": "CodeEmporium",
+        "url": "https://www.youtube.com/watch?v=1biZfFLPRSY"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Hugging Face RoPE Scaling Docs",
+        "url": "https://huggingface.co/docs/transformers/main/en/model_doc/llama"
+      }
+    ],
+    "github": [
+      {
+        "name": "jquesnelle/yarn",
+        "url": "https://github.com/jquesnelle/yarn"
+      }
+    ],
+    "papers": [
+      {
+        "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding (Su et al., 2021)",
+        "url": "https://arxiv.org/abs/2104.09864"
+      },
+      {
+        "title": "YaRN: Efficient Context Window Extension of LLMs (Peng et al., 2023)",
+        "url": "https://arxiv.org/abs/2309.00071"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.298Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 3,
+  "estimated_words": 449
+}

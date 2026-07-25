@@ -1,0 +1,72 @@
+{
+  "id": "genai_engineer-day-21",
+  "role": "genai_engineer",
+  "level": "intermediate",
+  "day": 21,
+  "title": "Hybrid Search and Reranking",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Hybrid Search and Reranking\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: BM25 and sparse retrieval; Dense retrieval; Hybrid fusion (RRF); Cross-encoder rerankers; ColBERT and late interaction; Reranker latency tradeoffs. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Build a hybrid retriever (BM25 + dense) with RRF and add a cross-encoder reranker, measuring nDCG improvements.\n**Mini Project:** Create a retrieval-quality benchmark comparing dense-only, hybrid, and hybrid+rerank on a labeled query set.\n**Assignment:** Analyze the latency vs quality tradeoff of reranking top-k values and recommend a production setting.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "BM25 and sparse retrieval",
+    "Dense retrieval",
+    "Hybrid fusion (RRF)",
+    "Cross-encoder rerankers",
+    "ColBERT and late interaction",
+    "Reranker latency tradeoffs"
+  ],
+  "practical_task_reference": "Build a hybrid retriever (BM25 + dense) with RRF and add a cross-encoder reranker, measuring nDCG improvements.",
+  "mini_project_reference": "Create a retrieval-quality benchmark comparing dense-only, hybrid, and hybrid+rerank on a labeled query set.",
+  "assignment_reference": "Analyze the latency vs quality tradeoff of reranking top-k values and recommend a production setting.",
+  "skills_gained": [
+    "Hybrid search",
+    "Reranking",
+    "Rank fusion",
+    "Retrieval tuning"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Hybrid Search Explained",
+        "channel": "James Briggs",
+        "url": "https://www.youtube.com/watch?v=ySus5ZS0b94"
+      },
+      {
+        "title": "Rerankers for RAG",
+        "channel": "Cohere",
+        "url": "https://www.youtube.com/watch?v=Uh9bYiVrW_s"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Cohere Rerank Docs",
+        "url": "https://docs.cohere.com/docs/rerank-overview"
+      },
+      {
+        "title": "Sentence Transformers Cross-Encoders",
+        "url": "https://www.sbert.net/examples/applications/cross-encoder/README.html"
+      }
+    ],
+    "github": [
+      {
+        "name": "stanford-futuredata/ColBERT",
+        "url": "https://github.com/stanford-futuredata/ColBERT"
+      },
+      {
+        "name": "AnswerDotAI/rerankers",
+        "url": "https://github.com/AnswerDotAI/rerankers"
+      }
+    ],
+    "papers": [
+      {
+        "title": "ColBERT: Efficient and Effective Passage Search via Late Interaction (Khattab & Zaharia, 2020)",
+        "url": "https://arxiv.org/abs/2004.12832"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.302Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 21,
+  "estimated_words": 445
+}

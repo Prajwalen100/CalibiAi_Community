@@ -1,0 +1,61 @@
+{
+  "id": "ai_automation_engineer-day-25",
+  "role": "ai_automation_engineer",
+  "level": "intermediate",
+  "day": 25,
+  "title": "Advanced RPA (UiPath Orchestrator and Enterprise Automation)",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Advanced RPA (UiPath Orchestrator and Enterprise Automation)\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Robust selectors and UI resilience in UiPath; Attended vs unattended bots; UiPath Orchestrator: queues, assets, scheduling, credentials; REFramework: dispatcher/performer and transactional retries; Exception handling and business vs system exceptions; Power Automate Desktop and Automation Anywhere alternatives; Hybrid RPA + API: use RPA only where no API exists. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Build a UiPath dispatcher/performer over an Orchestrator queue that processes invoices, retries failed items, and routes business vs system exceptions differently.\n**Mini Project:** Build a queue-based UiPath dispatcher/performer that reads invoices from a folder, keys them into a legacy app, and retries failed items via Orchestrator.\n**Assignment:** Separate business exceptions (bad data) from system exceptions (app crash) and route each differently.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Robust selectors and UI resilience in UiPath",
+    "Attended vs unattended bots",
+    "UiPath Orchestrator: queues, assets, scheduling, credentials",
+    "REFramework: dispatcher/performer and transactional retries",
+    "Exception handling and business vs system exceptions",
+    "Power Automate Desktop and Automation Anywhere alternatives",
+    "Hybrid RPA + API: use RPA only where no API exists"
+  ],
+  "practical_task_reference": "Build a UiPath dispatcher/performer over an Orchestrator queue that processes invoices, retries failed items, and routes business vs system exceptions differently.",
+  "mini_project_reference": "Build a queue-based UiPath dispatcher/performer that reads invoices from a folder, keys them into a legacy app, and retries failed items via Orchestrator.",
+  "assignment_reference": "Separate business exceptions (bad data) from system exceptions (app crash) and route each differently.",
+  "skills_gained": [
+    "Enterprise-grade RPA design",
+    "Orchestrator queue management",
+    "Hybrid RPA + API architecture"
+  ],
+  "resources": {
+    "youtube": {
+      "title": "UiPath Orchestrator and REFramework tutorial",
+      "url": "https://www.youtube.com/watch?v=E5Bl1wjWjMc",
+      "note": "Widely viewed UiPath tutorial; verify view count on YouTube."
+    },
+    "docs": [
+      {
+        "title": "UiPath Orchestrator documentation",
+        "url": "https://docs.uipath.com/orchestrator"
+      },
+      {
+        "title": "Power Automate Desktop documentation",
+        "url": "https://learn.microsoft.com/en-us/power-automate/desktop-flows/introduction"
+      }
+    ],
+    "github": [
+      {
+        "name": "UiPath/uipath-python",
+        "url": "https://github.com/UiPath/uipath-python"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Robotic Process Automation: Contemporary Themes and Challenges (Syed et al., 2020)",
+        "url": "https://arxiv.org/abs/2105.14572"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Advanced",
+  "generated_at": "2026-07-25T09:20:59.326Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 25,
+  "estimated_words": 489
+}

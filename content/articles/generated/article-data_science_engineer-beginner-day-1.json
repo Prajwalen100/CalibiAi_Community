@@ -1,0 +1,58 @@
+{
+  "id": "data_science_engineer-day-1",
+  "role": "data_science_engineer",
+  "level": "beginner",
+  "day": 1,
+  "title": "What is Data Science and the Data Scientist Role",
+  "summary": "Data science is the practice of extracting insights and building predictions from data to support decisions. A data scientist blends three skill sets: statistics to reason about data, programming to manipulate it, and domain and communication skills ",
+  "content": "# What is Data Science and the Data Scientist Role\n\n## Overview\nData science is the practice of extracting insights and building predictions from data to support decisions. A data scientist blends three skill sets: statistics to reason about data, programming to manipulate it, and domain and communication skills to turn results into action. Before writing any code, it helps to understand the full lifecycle - from framing a business question, gathering and cleaning data, exploring and modeling it, to communicating findings. Knowing this map keeps you oriented as you learn each individual skill over the coming weeks.\n\n## Deep Dive\nThis module covers: Definition and scope of data science; Data science vs data analytics vs ML engineering; The data science lifecycle (CRISP-DM); Types of data (structured, unstructured); Core skills: stats, coding, communication; Common tools and career paths. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Research three real data science job postings and list the tools, skills, and responsibilities they share. Map each to a stage of the data science lifecycle.\n**Mini Project:** Create a one-page written overview of a data science problem in a domain you like (e.g., sports, healthcare), describing the question, data needed, and how you would approach it.\n**Assignment:** Explain the difference between data science, data analytics, and machine learning engineering in your own words with an example of each.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Definition and scope of data science",
+    "Data science vs data analytics vs ML engineering",
+    "The data science lifecycle (CRISP-DM)",
+    "Types of data (structured, unstructured)",
+    "Core skills: stats, coding, communication",
+    "Common tools and career paths"
+  ],
+  "practical_task_reference": "Research three real data science job postings and list the tools, skills, and responsibilities they share. Map each to a stage of the data science lifecycle.",
+  "mini_project_reference": "Create a one-page written overview of a data science problem in a domain you like (e.g., sports, healthcare), describing the question, data needed, and how you would approach it.",
+  "assignment_reference": "Explain the difference between data science, data analytics, and machine learning engineering in your own words with an example of each.",
+  "skills_gained": [
+    "Data science fundamentals",
+    "Understanding the DS lifecycle",
+    "Career awareness"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Data Science In 5 Minutes",
+        "channel": "Simplilearn",
+        "url": "https://www.youtube.com/watch?v=X3paOmcrTjQ"
+      }
+    ],
+    "docs": [
+      {
+        "title": "CRISP-DM Overview (IBM)",
+        "url": "https://www.ibm.com/docs/en/spss-modeler/saas?topic=dm-crisp-help-overview"
+      }
+    ],
+    "github": [
+      {
+        "name": "academic/awesome-datascience",
+        "url": "https://github.com/academic/awesome-datascience"
+      }
+    ],
+    "papers": [
+      {
+        "title": "50 Years of Data Science (Donoho, 2017)",
+        "url": "https://www.tandfonline.com/doi/full/10.1080/10618600.2017.1384734"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.264Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 1,
+  "estimated_words": 572
+}
