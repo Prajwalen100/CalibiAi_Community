@@ -79,9 +79,15 @@ export default async function DayPage({
 
   const plan = roadmap?.generated_plan as StoredRoadmap | undefined;
   const days = plan?.days ?? [];
-  const totalDays = plan?.totalDays ?? days.length;
+  const totalDays = plan?.totalDays ?? (plan?.days?.length ?? 0);
 
-  if (dayNumber > totalDays) {
+  // If no roadmap exists or days array is empty/invalid, redirect to get one assigned
+  if (!plan || !Array.isArray(days) || days.length === 0) {
+    redirect("/roadmap/assign");
+  }
+
+  // Check if day number is valid AFTER we know days array is not empty
+  if (dayNumber > totalDays || dayNumber < 1) {
     redirect("/roadmap");
   }
 
