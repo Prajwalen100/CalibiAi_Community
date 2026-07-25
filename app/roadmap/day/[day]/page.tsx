@@ -13,7 +13,8 @@ import {
   PlayCircle,
   ExternalLink,
   Video,
-  FileText
+  FileText,
+  Sparkles
 } from "lucide-react";
 
 export const dynamic = "force-dynamic";

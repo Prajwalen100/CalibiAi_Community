@@ -144,7 +144,7 @@ export default async function DashboardPage({
         <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, white 2px, transparent 2px), radial-gradient(circle at 80% 20%, white 1.5px, transparent 1.5px)', backgroundSize: '40px 40px' }} />
         <div className="relative">
           <h2 className="text-2xl font-black">Good morning, {profile?.full_name?.split(" ")[0] ?? profile?.username ?? "Student"}</h2>
-          <p className="mt-2 text-brand-100 max-w-xl">"Every expert was once a beginner. The only way to learn is to build, fail, and iterate."</p>
+          <p className="mt-2 text-brand-100 max-w-xl">&quot;Every expert was once a beginner. The only way to learn is to build, fail, and iterate.&quot;</p>
           <div className="mt-4 flex items-center gap-3">
             <Link href="/roadmap" className="inline-flex items-center gap-2 rounded-xl bg-white/15 px-4 py-2 text-sm font-bold hover:bg-white/25 transition backdrop-blur-sm">
               Continue Learning <Zap className="h-4 w-4" />

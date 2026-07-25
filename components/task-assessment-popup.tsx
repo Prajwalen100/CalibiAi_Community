@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { X, Upload, Sparkles, Loader2, CheckCircle2, AlertCircle, FileText } from "lucide-react";
-import { deepseekChat } from "@/lib/ai/deepseek"; // We'll import if available; otherwise implement inline
+import { X, Upload, Sparkles, Loader2, CheckCircle2, FileText } from "lucide-react";
 
 export function TaskAssessmentPopup({
   isOpen,
@@ -42,37 +41,6 @@ export function TaskAssessmentPopup({
     setLoading(true);
     setResult(null);
     try {
-      // Use DeepSeek AI to evaluate the submission
-      const prompt = `You are an AI assessment reviewer for CalibiAI. Evaluate the following student submission for Day ${dayNumber} (${taskType}).
-
-Task Description:
-${taskDescription}
-
-Student Submission:
-${text || "No text submitted."}
-
-Return ONLY valid JSON with exactly this structure:
-{
-  "score": 0-100,
-  "feedback": "2-3 paragraph detailed feedback",
-  "strengths": ["2-4 specific strengths"],
-  "improvements": ["2-3 concrete improvements"]
-}
-
-Scoring Rubric:
-- 80-100: Excellent depth, correct approach, well-documented, shows real-world understanding.
-- 60-79: Good work with minor gaps or missing documentation.
-- 40-59: Basic attempt with significant missing elements.
-- 0-39: Incomplete, incorrect approach, or missing submission.
-
-Be specific, constructive, and reference the task description directly.`;
-
-      // Since deepseekChat may not be directly importable in all contexts, we'll use fetch
-      const apiKey = process.env.NEXT_PUBLIC_DEEPSEEK_API_KEY || (typeof window !== "undefined" ? "" : process.env.DEEPSEEK_API_KEY);
-      // In production, this should go through an API route to protect the key
-      // For this demo, we'll simulate with a structured evaluation
-      // In a real environment, call /api/ai/assessment or server-side DeepSeek
-      
       // Given security best practices, we'll use the server-side endpoint
       const res = await fetch("/api/ai/task-review", {
         method: "POST",
@@ -187,7 +155,7 @@ Be specific, constructive, and reference the task description directly.`;
               </div>
 
               <div className="mt-4 rounded-2xl border border-amber-100 bg-amber-50 p-3 text-xs text-amber-800 dark:border-amber-900 dark:bg-amber-950/20 dark:text-amber-200">
-                <p><strong>How AI scoring works:</strong> DeepSeek evaluates your submission for completeness, correctness, depth, and connection to the day's objectives. Scores are dynamic — longer, more detailed submissions with clear explanations typically score higher.</p>
+                <p><strong>How AI scoring works:</strong> DeepSeek evaluates your submission for completeness, correctness, depth, and connection to the day&apos;s objectives. Scores are dynamic — longer, more detailed submissions with clear explanations typically score higher.</p>
               </div>
             </>
           )}

@@ -2,8 +2,11 @@
  * Generate detailed daily articles from roadmap JSON files.
  * Each article contains ~500-600 words linking to practical tasks,
  * assignments, quizzes, and resources.
+ * eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-explicit-any
  */
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const fs = require("fs");
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const path = require("path");
 
 const ROLES = [
