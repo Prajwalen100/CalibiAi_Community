@@ -1,0 +1,57 @@
+{
+  "id": "ai_automation_engineer-day-37",
+  "role": "ai_automation_engineer",
+  "level": "beginner",
+  "day": 37,
+  "title": "Capstone Part 1: Discovery, Design, and Planning",
+  "summary": "The three-part capstone is where you prove you can deliver a real, end-to-end automation like a working engineer, and Part 1 is about the crucial thinking that must happen before you build - because the best automation is worthless if it solves the w",
+  "content": "# Capstone Part 1: Discovery, Design, and Planning\n\n## Overview\nThe three-part capstone is where you prove you can deliver a real, end-to-end automation like a working engineer, and Part 1 is about the crucial thinking that must happen before you build - because the best automation is worthless if it solves the wrong problem. You begin with discovery: choose a genuinely valuable process to automate, ideally something real (a task you, a friend, a club, or a small business does manually and repeatedly). You quantify why it matters - how much time or money it wastes, how error-prone it is - so success is measurable. Next you map the process: document the as-is (current manual) steps exactly as they happen today, including who does what, what data is involved, and where the pain points and edge cases are; then design the to-be process - how it will work once automated, as a clear diagram. With the process understood, you make deliberate engineering choices from everything you have learned: which platform(s) fit best and why (applying your Day 12 tool-selection judgment), what architecture (single workflow or orchestrated sub-workflows), what data model and storage (sheet vs database), which integrations and APIs are needed, and how authentication will work. You define success metrics up front (e.g., 'processes each order in under a minute with zero manual steps' or 'saves five hours per week') so you can later prove the project worked. Finally you do a risk assessment: what could break, what edge cases exist, where are the security and reliability concerns, and how will you handle them. Producing a clear plan - problem, current process, designed solution, tools, data model, metrics, and risks - is exactly what a professional does before touching a build, and it makes the actual construction in Part 2 far smoother.\n\n## Deep Dive\nThis module covers: Identifying a high-value automation opportunity; Process mapping (as-is vs to-be); Choosing tools and architecture; Defining data model and integrations; Success metrics and risk assessment. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Select your capstone process and produce a one-to-two page project brief: the problem and its cost, an as-is process map, a to-be design diagram, chosen tools with justification, the data model, success metrics, and key risks.\n**Mini Project:** Deliver the complete Part 1 planning package for your capstone: process maps (as-is and to-be), architecture and tool decisions with rationale, integration and data-model plan, defined success metrics, and a risk-and-mitigation table - all in a documented format.\n**Assignment:** Justify your tool and architecture choices for your capstone in writing, referencing cost, complexity, data privacy, and volume, and explain how you will measure whether the automation succeeded.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Identifying a high-value automation opportunity",
+    "Process mapping (as-is vs to-be)",
+    "Choosing tools and architecture",
+    "Defining data model and integrations",
+    "Success metrics and risk assessment"
+  ],
+  "practical_task_reference": "Select your capstone process and produce a one-to-two page project brief: the problem and its cost, an as-is process map, a to-be design diagram, chosen tools with justification, the data model, success metrics, and key risks.",
+  "mini_project_reference": "Deliver the complete Part 1 planning package for your capstone: process maps (as-is and to-be), architecture and tool decisions with rationale, integration and data-model plan, defined success metrics, and a risk-and-mitigation table - all in a documented format.",
+  "assignment_reference": "Justify your tool and architecture choices for your capstone in writing, referencing cost, complexity, data privacy, and volume, and explain how you will measure whether the automation succeeded.",
+  "skills_gained": [
+    "Process mapping",
+    "Solution design",
+    "Metrics and risk planning"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "How to Plan and Scope an Automation Project",
+        "channel": "Zapier",
+        "url": "https://www.youtube.com/watch?v=ZAZgspZzZ7A"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Make.com - Planning your scenarios",
+        "url": "https://www.make.com/en/help/scenarios/creating-a-scenario"
+      }
+    ],
+    "github": [
+      {
+        "name": "n8n-io/n8n",
+        "url": "https://github.com/n8n-io/n8n"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Business Process Management: A Survey (van der Aalst et al., 2003)",
+        "url": "https://link.springer.com/chapter/10.1007/3-540-44895-0_1"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.316Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 37,
+  "estimated_words": 793
+}

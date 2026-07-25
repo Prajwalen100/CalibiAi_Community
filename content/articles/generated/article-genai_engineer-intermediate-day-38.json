@@ -1,0 +1,63 @@
+{
+  "id": "genai_engineer-day-38",
+  "role": "genai_engineer",
+  "level": "intermediate",
+  "day": 38,
+  "title": "Fine-Tuning Vision-Language Models",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Fine-Tuning Vision-Language Models\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: VLM architecture (vision encoder + LLM); Image-text alignment; Fine-tuning VLMs (LLaVA); Visual instruction tuning; Document and chart understanding; Multimodal evaluation. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Fine-tune a small VLM with LoRA on a visual-instruction dataset for a specific image-understanding task.\n**Mini Project:** Build a document-understanding assistant by fine-tuning a VLM to extract structured data from images.\n**Assignment:** Write an explainer of VLM architecture and a plan for fine-tuning one on a chosen visual domain.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "VLM architecture (vision encoder + LLM)",
+    "Image-text alignment",
+    "Fine-tuning VLMs (LLaVA)",
+    "Visual instruction tuning",
+    "Document and chart understanding",
+    "Multimodal evaluation"
+  ],
+  "practical_task_reference": "Fine-tune a small VLM with LoRA on a visual-instruction dataset for a specific image-understanding task.",
+  "mini_project_reference": "Build a document-understanding assistant by fine-tuning a VLM to extract structured data from images.",
+  "assignment_reference": "Write an explainer of VLM architecture and a plan for fine-tuning one on a chosen visual domain.",
+  "skills_gained": [
+    "Vision-language models",
+    "Multimodal fine-tuning",
+    "Visual instruction tuning"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "LLaVA and Vision-Language Models Explained",
+        "channel": "Umar Jamil",
+        "url": "https://www.youtube.com/watch?v=vAmKB7iPkWw"
+      },
+      {
+        "title": "Fine-tuning Multimodal Models",
+        "channel": "Trelis Research",
+        "url": "https://www.youtube.com/watch?v=iamXy03zdPk"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Hugging Face Vision-Language Models",
+        "url": "https://huggingface.co/docs/transformers/tasks/image_text_to_text"
+      }
+    ],
+    "github": [
+      {
+        "name": "haotian-liu/LLaVA",
+        "url": "https://github.com/haotian-liu/LLaVA"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Visual Instruction Tuning (LLaVA, Liu et al., 2023)",
+        "url": "https://arxiv.org/abs/2304.08485"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Advanced",
+  "generated_at": "2026-07-25T09:20:59.304Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 38,
+  "estimated_words": 446
+}

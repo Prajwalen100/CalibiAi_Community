@@ -1,0 +1,57 @@
+{
+  "id": "data_science_engineer-day-1",
+  "role": "data_science_engineer",
+  "level": "intermediate",
+  "day": 1,
+  "title": "Advanced Python for Data Science",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Advanced Python for Data Science\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Object-oriented programming and dataclasses; Decorators and context managers; Generators and iterators for memory efficiency; Type hints and static typing (mypy); Comprehensions, functools, and itertools. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Refactor a procedural data-processing script into a class-based module with type hints, use a decorator to time functions, and rewrite one data-loading step as a generator to reduce memory use.\n**Mini Project:** Build a small reusable data science utility package (with classes, decorators, generators, and full type hints) that you can import across projects, and run mypy to verify it type-checks cleanly.\n**Assignment:** Implement a caching decorator and a context manager for a database connection, then write a short note explaining when each pattern is appropriate.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Object-oriented programming and dataclasses",
+    "Decorators and context managers",
+    "Generators and iterators for memory efficiency",
+    "Type hints and static typing (mypy)",
+    "Comprehensions, functools, and itertools"
+  ],
+  "practical_task_reference": "Refactor a procedural data-processing script into a class-based module with type hints, use a decorator to time functions, and rewrite one data-loading step as a generator to reduce memory use.",
+  "mini_project_reference": "Build a small reusable data science utility package (with classes, decorators, generators, and full type hints) that you can import across projects, and run mypy to verify it type-checks cleanly.",
+  "assignment_reference": "Implement a caching decorator and a context manager for a database connection, then write a short note explaining when each pattern is appropriate.",
+  "skills_gained": [
+    "Advanced Python",
+    "OOP and decorators",
+    "Type-safe code"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Python OOP Tutorial - Corey Schafer (Full Series)",
+        "channel": "Corey Schafer",
+        "url": "https://www.youtube.com/watch?v=ZDa-Z5JzLYM"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Python Data Model and Language Reference",
+        "url": "https://docs.python.org/3/reference/datamodel.html"
+      }
+    ],
+    "github": [
+      {
+        "name": "python/mypy",
+        "url": "https://github.com/python/mypy"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Python for Scientific Computing (Oliphant, 2007)",
+        "url": "https://ieeexplore.ieee.org/document/4160250"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.277Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 1,
+  "estimated_words": 489
+}

@@ -1,0 +1,61 @@
+{
+  "id": "ai_automation_engineer-day-36",
+  "role": "ai_automation_engineer",
+  "level": "intermediate",
+  "day": 36,
+  "title": "Multi-Tenant and Client-Facing Automation Systems",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Multi-Tenant and Client-Facing Automation Systems\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Multi-tenancy models: row (RLS) vs schema vs instance; Per-tenant configuration and isolated credentials; Postgres row-level security for tenant isolation; Per-tenant rate limits, quotas, and usage metering; Templated/blueprint workflows instantiated per client; Client self-service onboarding via OAuth; Tenant security boundaries and data leakage prevention. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Build a multi-tenant automation service using Postgres row-level security and per-tenant isolated credentials, prove two test tenants cannot see each other, and add per-tenant usage metering.\n**Mini Project:** Build a multi-tenant automation service with Postgres row-level security and per-tenant credential storage, provable to isolate two test tenants.\n**Assignment:** Add usage metering (runs per tenant per month) and expose it for billing.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Multi-tenancy models: row (RLS) vs schema vs instance",
+    "Per-tenant configuration and isolated credentials",
+    "Postgres row-level security for tenant isolation",
+    "Per-tenant rate limits, quotas, and usage metering",
+    "Templated/blueprint workflows instantiated per client",
+    "Client self-service onboarding via OAuth",
+    "Tenant security boundaries and data leakage prevention"
+  ],
+  "practical_task_reference": "Build a multi-tenant automation service using Postgres row-level security and per-tenant isolated credentials, prove two test tenants cannot see each other, and add per-tenant usage metering.",
+  "mini_project_reference": "Build a multi-tenant automation service with Postgres row-level security and per-tenant credential storage, provable to isolate two test tenants.",
+  "assignment_reference": "Add usage metering (runs per tenant per month) and expose it for billing.",
+  "skills_gained": [
+    "Multi-tenant architecture",
+    "Tenant isolation and RLS",
+    "Usage metering and self-service"
+  ],
+  "resources": {
+    "youtube": {
+      "title": "Multi-tenant SaaS architecture explained",
+      "url": "https://www.youtube.com/watch?v=hVXFXjPUmwc",
+      "note": "Popular multi-tenancy architecture video; confirm view count on YouTube."
+    },
+    "docs": [
+      {
+        "title": "PostgreSQL Row Security Policies",
+        "url": "https://www.postgresql.org/docs/current/ddl-rowsecurity.html"
+      },
+      {
+        "title": "n8n workflow templates",
+        "url": "https://docs.n8n.io/workflows/templates/"
+      }
+    ],
+    "github": [
+      {
+        "name": "dotnet/aspnetcore",
+        "url": "https://github.com/dotnet/aspnetcore"
+      }
+    ],
+    "papers": [
+      {
+        "title": "A Framework for Native Multi-Tenancy Application Development and Management",
+        "url": "https://arxiv.org/abs/1904.02710"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Advanced",
+  "generated_at": "2026-07-25T09:20:59.330Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 36,
+  "estimated_words": 483
+}

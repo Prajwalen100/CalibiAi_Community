@@ -1,0 +1,57 @@
+{
+  "id": "data_science_engineer-day-12",
+  "role": "data_science_engineer",
+  "level": "beginner",
+  "day": 12,
+  "title": "Exploratory Data Analysis (EDA)",
+  "summary": "Exploratory Data Analysis (EDA) is the detective phase of data science where you investigate a dataset to understand its structure, spot problems, and discover patterns before building models. A systematic EDA moves through three levels: univariate a",
+  "content": "# Exploratory Data Analysis (EDA)\n\n## Overview\nExploratory Data Analysis (EDA) is the detective phase of data science where you investigate a dataset to understand its structure, spot problems, and discover patterns before building models. A systematic EDA moves through three levels: univariate analysis looks at one variable at a time (its distribution, central tendency, and outliers), bivariate analysis examines relationships between two variables (like how price relates to size), and multivariate analysis considers several variables together. Throughout, you're asking questions: Are there missing values or outliers? Which variables are correlated? Are there surprising groupings or trends? Good EDA combines summary statistics with visualization because charts reveal patterns numbers can hide. Tools like ydata-profiling can auto-generate a full report, but the real skill is asking the right questions and forming hypotheses that guide the rest of the project. EDA is where most of a data scientist's insight and intuition is built.\n\n## Deep Dive\nThis module covers: The EDA process and mindset; Univariate, bivariate, and multivariate analysis; Detecting outliers and anomalies; Examining relationships and correlations; Automated EDA tools (ydata-profiling). Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Perform a complete EDA on an unfamiliar dataset: examine each variable's distribution, check for missing values and outliers, explore correlations, and write down at least five insights you discover.\n**Mini Project:** Create a full EDA report notebook on a real dataset (e.g., a Kaggle dataset) that includes data overview, univariate/bivariate/multivariate analysis, outlier detection, and a summary of key findings and hypotheses.\n**Assignment:** Run ydata-profiling on a dataset and compare its automated report to your own manual EDA, noting what the tool missed that your judgment caught.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "The EDA process and mindset",
+    "Univariate, bivariate, and multivariate analysis",
+    "Detecting outliers and anomalies",
+    "Examining relationships and correlations",
+    "Automated EDA tools (ydata-profiling)"
+  ],
+  "practical_task_reference": "Perform a complete EDA on an unfamiliar dataset: examine each variable's distribution, check for missing values and outliers, explore correlations, and write down at least five insights you discover.",
+  "mini_project_reference": "Create a full EDA report notebook on a real dataset (e.g., a Kaggle dataset) that includes data overview, univariate/bivariate/multivariate analysis, outlier detection, and a summary of key findings and hypotheses.",
+  "assignment_reference": "Run ydata-profiling on a dataset and compare its automated report to your own manual EDA, noting what the tool missed that your judgment caught.",
+  "skills_gained": [
+    "Exploratory data analysis",
+    "Pattern discovery",
+    "Hypothesis generation"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Exploratory Data Analysis with Pandas Python",
+        "channel": "Rob Mulla",
+        "url": "https://www.youtube.com/watch?v=xi0vhXFPegw"
+      }
+    ],
+    "docs": [
+      {
+        "title": "ydata-profiling Documentation",
+        "url": "https://docs.profiling.ydata.ai/"
+      }
+    ],
+    "github": [
+      {
+        "name": "ydataai/ydata-profiling",
+        "url": "https://github.com/ydataai/ydata-profiling"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Exploratory Data Analysis (Tukey, 1977)",
+        "url": "https://archive.org/details/exploratorydataa0000tuke"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.267Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 12,
+  "estimated_words": 620
+}

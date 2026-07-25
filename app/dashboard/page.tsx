@@ -3,7 +3,8 @@ import { redirect } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import type { GeneratedRoadmap } from "@/lib/ai/schemas";
 import { getStudentAccess } from "@/lib/auth/student-access";
-import { Calendar, Target, Trophy, TrendingUp, Zap, BookOpen, CheckCircle2, Clock, ChevronRight } from "lucide-react";
+import { Calendar, Target, Trophy, TrendingUp, Zap, BookOpen, CheckCircle2, Clock, ChevronRight, Sparkles } from "lucide-react";
+import { DynamicMotivationQuote } from "@/components/dynamic-motivation-quote";
 
 export const dynamic = "force-dynamic";
 
@@ -138,6 +139,28 @@ export default async function DashboardPage({
         </div>
       )}
 
+      {/* Personalized Greeting + Motivation */}
+      <div className="mt-6 rounded-3xl bg-gradient-to-r from-brand-600 via-indigo-600 to-violet-600 p-6 text-white shadow-xl sm:p-8 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, white 2px, transparent 2px), radial-gradient(circle at 80% 20%, white 1.5px, transparent 1.5px)', backgroundSize: '40px 40px' }} />
+        <div className="relative">
+          <h2 className="text-2xl font-black">Good morning, {profile?.full_name?.split(" ")[0] ?? profile?.username ?? "Student"}</h2>
+          <p className="mt-2 text-brand-100 max-w-xl">"Every expert was once a beginner. The only way to learn is to build, fail, and iterate."</p>
+          <div className="mt-4 flex items-center gap-3">
+            <Link href="/roadmap" className="inline-flex items-center gap-2 rounded-xl bg-white/15 px-4 py-2 text-sm font-bold hover:bg-white/25 transition backdrop-blur-sm">
+              Continue Learning <Zap className="h-4 w-4" />
+            </Link>
+            <Link href="/dashboard/submit" className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-bold text-brand-700 hover:bg-brand-50 transition">
+              Submit Project <Sparkles className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Dynamic Motivation Quote */}
+      <div className="mt-4">
+        <DynamicMotivationQuote userName={profile?.full_name || profile?.username || undefined} />
+      </div>
+
       {/* Score and Assessment Result */}
       {submitted === "1" && (
         <div className="mt-4 rounded-2xl border border-signal/30 bg-green-50 p-4 text-sm text-green-800">
@@ -185,6 +208,26 @@ export default async function DashboardPage({
           <div>
             <p className="text-sm text-slate-500">Current Week</p>
             <p className="text-2xl font-black">Week {currentWeek} of {totalWeeks}</p>
+          </div>
+        </div>
+
+        <div className="card flex items-center gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-violet-600">
+            <BookOpen className="h-6 w-6" />
+          </div>
+          <div>
+            <p className="text-sm text-slate-500">Reading Engagement</p>
+            <p className="text-2xl font-black">{Math.round((score?.reading_pts ?? 0) / 1)}%</p>
+          </div>
+        </div>
+
+        <div className="card flex items-center gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-rose-600">
+            <Zap className="h-6 w-6" />
+          </div>
+          <div>
+            <p className="text-sm text-slate-500">Quiz Performance</p>
+            <p className="text-2xl font-black">{Math.round((score?.quizzes_pts ?? 0) / 1)}%</p>
           </div>
         </div>
       </div>

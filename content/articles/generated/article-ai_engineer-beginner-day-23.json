@@ -1,0 +1,58 @@
+{
+  "id": "ai_engineer-day-23",
+  "role": "ai_engineer",
+  "level": "beginner",
+  "day": 23,
+  "title": "PyTorch Basics",
+  "summary": "PyTorch is the most popular deep learning framework for research and increasingly for production. It provides tensors (like NumPy arrays but GPU-accelerated) and autograd, which automatically computes gradients so you do not have to hand-code backpro",
+  "content": "# PyTorch Basics\n\n## Overview\nPyTorch is the most popular deep learning framework for research and increasingly for production. It provides tensors (like NumPy arrays but GPU-accelerated) and autograd, which automatically computes gradients so you do not have to hand-code backpropagation. Learning to write clean training loops with nn.Module, DataLoaders, and optimizers is a core skill for any AI engineer.\n\n## Deep Dive\nThis module covers: PyTorch tensors and operations; Autograd and automatic differentiation; nn.Module and building models; Loss functions and optimizers; Dataset and DataLoader; Training loops. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Rebuild a neural network in PyTorch, define a training loop, and train it on MNIST or a similar dataset to reach good accuracy.\n**Mini Project:** Build an image classifier in PyTorch with a custom Dataset/DataLoader, training loop, validation, and model checkpointing.\n**Assignment:** Explain what autograd does and how requires_grad and .backward() work together in a training step.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "PyTorch tensors and operations",
+    "Autograd and automatic differentiation",
+    "nn.Module and building models",
+    "Loss functions and optimizers",
+    "Dataset and DataLoader",
+    "Training loops"
+  ],
+  "practical_task_reference": "Rebuild a neural network in PyTorch, define a training loop, and train it on MNIST or a similar dataset to reach good accuracy.",
+  "mini_project_reference": "Build an image classifier in PyTorch with a custom Dataset/DataLoader, training loop, validation, and model checkpointing.",
+  "assignment_reference": "Explain what autograd does and how requires_grad and .backward() work together in a training step.",
+  "skills_gained": [
+    "PyTorch tensors",
+    "Autograd",
+    "Training loops"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "PyTorch for Deep Learning & Machine Learning - Full Course",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=V_xro1bcAuA"
+      }
+    ],
+    "docs": [
+      {
+        "title": "PyTorch Tutorials",
+        "url": "https://pytorch.org/tutorials/"
+      }
+    ],
+    "github": [
+      {
+        "name": "pytorch/pytorch",
+        "url": "https://github.com/pytorch/pytorch"
+      }
+    ],
+    "papers": [
+      {
+        "title": "PyTorch: An Imperative Style, High-Performance Deep Learning Library (Paszke et al., 2019)",
+        "url": "https://arxiv.org/abs/1912.01703"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.241Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 23,
+  "estimated_words": 499
+}

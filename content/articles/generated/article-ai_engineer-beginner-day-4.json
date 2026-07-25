@@ -1,0 +1,72 @@
+{
+  "id": "ai_engineer-day-4",
+  "role": "ai_engineer",
+  "level": "beginner",
+  "day": 4,
+  "title": "Git, GitHub, and Developer Workflow",
+  "summary": "Version control is a non-negotiable skill for any engineer. Git tracks every change to your code so you can experiment safely, revert mistakes, and collaborate without overwriting others' work. GitHub hosts your repositories and is also your public p",
+  "content": "# Git, GitHub, and Developer Workflow\n\n## Overview\nVersion control is a non-negotiable skill for any engineer. Git tracks every change to your code so you can experiment safely, revert mistakes, and collaborate without overwriting others' work. GitHub hosts your repositories and is also your public portfolio. Employers look at your GitHub, so learning a clean commit and branching workflow early pays off throughout your career.\n\n## Deep Dive\nThis module covers: Git basics (init, add, commit); Branching and merging; Remote repositories; Pull requests; Merge conflicts; README and .gitignore. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Initialize a Git repo, make several commits on a feature branch, and merge it into main, resolving a deliberate conflict.\n**Mini Project:** Publish your previous projects to a well-organized GitHub profile with READMEs and a .gitignore for Python.\n**Assignment:** Fork an open-source repo, make a small improvement, and open a pull request following its contribution guidelines.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Git basics (init, add, commit)",
+    "Branching and merging",
+    "Remote repositories",
+    "Pull requests",
+    "Merge conflicts",
+    "README and .gitignore"
+  ],
+  "practical_task_reference": "Initialize a Git repo, make several commits on a feature branch, and merge it into main, resolving a deliberate conflict.",
+  "mini_project_reference": "Publish your previous projects to a well-organized GitHub profile with READMEs and a .gitignore for Python.",
+  "assignment_reference": "Fork an open-source repo, make a small improvement, and open a pull request following its contribution guidelines.",
+  "skills_gained": [
+    "Version control",
+    "Git",
+    "GitHub collaboration",
+    "Developer workflow"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Git and GitHub for Beginners - Crash Course",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=RGOj5yH7evk"
+      },
+      {
+        "title": "Git Tutorial for Beginners",
+        "channel": "Programming with Mosh",
+        "url": "https://www.youtube.com/watch?v=8JJ101D3knE"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Git Documentation",
+        "url": "https://git-scm.com/doc"
+      },
+      {
+        "title": "GitHub Docs",
+        "url": "https://docs.github.com/en/get-started"
+      }
+    ],
+    "github": [
+      {
+        "name": "git-guides",
+        "url": "https://github.com/git-guides"
+      },
+      {
+        "name": "firstcontributions/first-contributions",
+        "url": "https://github.com/firstcontributions/first-contributions"
+      }
+    ],
+    "papers": [
+      {
+        "title": "A Framework for Distributed Version Control (overview)",
+        "url": "https://dl.acm.org/doi/10.1145/1084805.1084806"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.234Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 4,
+  "estimated_words": 500
+}

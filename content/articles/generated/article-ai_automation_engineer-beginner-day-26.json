@@ -1,0 +1,57 @@
+{
+  "id": "ai_automation_engineer-day-26",
+  "role": "ai_automation_engineer",
+  "level": "beginner",
+  "day": 26,
+  "title": "AI in Automation: Adding ChatGPT and OpenAI to Workflows",
+  "summary": "Adding AI to automations is the most in-demand skill in the field right now, and it is surprisingly approachable because the automation tools you know already have built-in AI steps. Large language models (LLMs) like OpenAI's GPT and Anthropic's Clau",
+  "content": "# AI in Automation: Adding ChatGPT and OpenAI to Workflows\n\n## Overview\nAdding AI to automations is the most in-demand skill in the field right now, and it is surprisingly approachable because the automation tools you know already have built-in AI steps. Large language models (LLMs) like OpenAI's GPT and Anthropic's Claude can read and write text intelligently, which unlocks tasks that were impossible with rule-based logic: summarizing a long email, classifying a support ticket by topic and urgency, extracting structured fields from messy free text, translating, drafting personalized replies, and answering questions. In Zapier, Make, and n8n there are dedicated OpenAI/AI nodes (and you can call any AI API via HTTP), so you simply feed the AI some data and a prompt and use its response in the next step. The key skill is prompt engineering: writing clear instructions so the model produces consistent, useful output. You learn to be specific, give examples, state the format you want, and set constraints. A particularly important technique for automation is asking the AI to return structured JSON (e.g., {\"category\": \"...\", \"urgency\": \"...\"}) so the rest of your workflow can reliably use the fields - free-form text is hard to route, but structured output plugs straight into your existing logic. You also learn practical realities: AI calls cost money per use, add latency, and can occasionally produce wrong or unexpected output, so you validate results, handle errors, and avoid using AI where simple rules would do. Combining your solid automation foundation with AI - turning unstructured, human data into structured actions - is exactly the capability employers are racing to hire for.\n\n## Deep Dive\nThis module covers: What LLMs can do in automations; OpenAI/Anthropic API integration in Zapier/Make/n8n; Prompt engineering basics for consistent results; Structured output (JSON) from AI; Cost, latency, and reliability considerations. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Add an OpenAI/AI step to an automation that takes an incoming message, classifies it (e.g., category and urgency), and returns structured JSON, then use those fields to route the message with a filter or path.\n**Mini Project:** Build an AI-powered support triage automation: incoming emails/tickets are summarized and classified by the AI into JSON (category, priority, suggested reply), logged to a database, and routed - urgent items alerted to Slack, others queued.\n**Assignment:** Write three versions of a prompt (vague, better, best) for extracting structured data from a message, explain why the best one is more reliable, and note two risks of using AI in automations.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "What LLMs can do in automations",
+    "OpenAI/Anthropic API integration in Zapier/Make/n8n",
+    "Prompt engineering basics for consistent results",
+    "Structured output (JSON) from AI",
+    "Cost, latency, and reliability considerations"
+  ],
+  "practical_task_reference": "Add an OpenAI/AI step to an automation that takes an incoming message, classifies it (e.g., category and urgency), and returns structured JSON, then use those fields to route the message with a filter or path.",
+  "mini_project_reference": "Build an AI-powered support triage automation: incoming emails/tickets are summarized and classified by the AI into JSON (category, priority, suggested reply), logged to a database, and routed - urgent items alerted to Slack, others queued.",
+  "assignment_reference": "Write three versions of a prompt (vague, better, best) for extracting structured data from a message, explain why the best one is more reliable, and note two risks of using AI in automations.",
+  "skills_gained": [
+    "LLM integration",
+    "Prompt engineering",
+    "Structured AI output"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Using ChatGPT/OpenAI in Make and n8n Automations",
+        "channel": "Make",
+        "url": "https://www.youtube.com/watch?v=Q7bqQ2n1yYI"
+      }
+    ],
+    "docs": [
+      {
+        "title": "OpenAI API Documentation",
+        "url": "https://platform.openai.com/docs/overview"
+      }
+    ],
+    "github": [
+      {
+        "name": "openai/openai-cookbook",
+        "url": "https://github.com/openai/openai-cookbook"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Language Models are Few-Shot Learners (Brown et al., 2020)",
+        "url": "https://arxiv.org/abs/2005.14165"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.312Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 26,
+  "estimated_words": 764
+}

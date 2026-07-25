@@ -1,0 +1,63 @@
+{
+  "id": "genai_engineer-day-44",
+  "role": "genai_engineer",
+  "level": "intermediate",
+  "day": 44,
+  "title": "Capstone Part 1: Architect a Production GenAI System",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Capstone Part 1: Architect a Production GenAI System\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Requirements and constraints; System architecture design; RAG/agent core implementation; Fine-tuned or optimized model; Evaluation harness; Observability wiring. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Write a system design doc (requirements, architecture, data flow, SLAs, cost model) and scaffold the repository.\n**Mini Project:** Build the core of a production GenAI application, for example an enterprise knowledge platform with agentic RAG.\n**Assignment:** Implement the core pipeline with an evaluation harness and tracing wired in, under version control.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Requirements and constraints",
+    "System architecture design",
+    "RAG/agent core implementation",
+    "Fine-tuned or optimized model",
+    "Evaluation harness",
+    "Observability wiring"
+  ],
+  "practical_task_reference": "Write a system design doc (requirements, architecture, data flow, SLAs, cost model) and scaffold the repository.",
+  "mini_project_reference": "Build the core of a production GenAI application, for example an enterprise knowledge platform with agentic RAG.",
+  "assignment_reference": "Implement the core pipeline with an evaluation harness and tracing wired in, under version control.",
+  "skills_gained": [
+    "System design",
+    "Production architecture",
+    "End-to-end implementation"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "End to End GenAI Project",
+        "channel": "Krish Naik",
+        "url": "https://www.youtube.com/watch?v=x0AnCE9SE4A"
+      },
+      {
+        "title": "Building Production LLM Applications",
+        "channel": "LangChain",
+        "url": "https://www.youtube.com/watch?v=sVcwVQRHIc8"
+      }
+    ],
+    "docs": [
+      {
+        "title": "LangGraph Production Docs",
+        "url": "https://langchain-ai.github.io/langgraph/"
+      }
+    ],
+    "github": [
+      {
+        "name": "langchain-ai/langgraph",
+        "url": "https://github.com/langchain-ai/langgraph"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Retrieval-Augmented Generation for LLMs: A Survey (Gao et al., 2023)",
+        "url": "https://arxiv.org/abs/2312.10997"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Advanced",
+  "generated_at": "2026-07-25T09:20:59.306Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 44,
+  "estimated_words": 450
+}

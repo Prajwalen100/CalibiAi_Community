@@ -1,0 +1,58 @@
+{
+  "id": "ai_engineer-day-45",
+  "role": "ai_engineer",
+  "level": "beginner",
+  "day": 45,
+  "title": "Portfolio, Career Preparation, and Next Steps",
+  "summary": "Skills get you hired only if others can see them. This final day focuses on presenting your work: a clean GitHub portfolio with well-documented projects, a resume and LinkedIn tuned for AI roles, and interview preparation covering ML concepts, coding",
+  "content": "# Portfolio, Career Preparation, and Next Steps\n\n## Overview\nSkills get you hired only if others can see them. This final day focuses on presenting your work: a clean GitHub portfolio with well-documented projects, a resume and LinkedIn tuned for AI roles, and interview preparation covering ML concepts, coding, and system design. You will also map out how to keep learning and choose a specialization. The learning never stops in AI, but you will finish with a clear direction and momentum.\n\n## Deep Dive\nThis module covers: Building a GitHub portfolio; Writing project READMEs and case studies; Resume and LinkedIn for AI roles; AI/ML interview preparation; Staying current (papers, communities); Specialization paths (GenAI, CV, NLP, MLOps). Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Polish your GitHub, write strong READMEs for your projects, and update your resume/LinkedIn to highlight AI engineering skills.\n**Mini Project:** Assemble a portfolio website or curated GitHub profile featuring your capstone and 2-3 best projects with clear write-ups.\n**Assignment:** Draft a 60-second self-introduction for an AI engineer interview and list 10 concepts you would review before interviewing.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Building a GitHub portfolio",
+    "Writing project READMEs and case studies",
+    "Resume and LinkedIn for AI roles",
+    "AI/ML interview preparation",
+    "Staying current (papers, communities)",
+    "Specialization paths (GenAI, CV, NLP, MLOps)"
+  ],
+  "practical_task_reference": "Polish your GitHub, write strong READMEs for your projects, and update your resume/LinkedIn to highlight AI engineering skills.",
+  "mini_project_reference": "Assemble a portfolio website or curated GitHub profile featuring your capstone and 2-3 best projects with clear write-ups.",
+  "assignment_reference": "Draft a 60-second self-introduction for an AI engineer interview and list 10 concepts you would review before interviewing.",
+  "skills_gained": [
+    "Portfolio building",
+    "Interview preparation",
+    "Career planning"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "How to Build a Data Science / AI Portfolio",
+        "channel": "Ken Jee",
+        "url": "https://www.youtube.com/watch?v=xrbrN5Ng6Jk"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Google Machine Learning Guides",
+        "url": "https://developers.google.com/machine-learning/guides"
+      }
+    ],
+    "github": [
+      {
+        "name": "GokuMohandas/Made-With-ML",
+        "url": "https://github.com/GokuMohandas/Made-With-ML"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Deep Learning (LeCun, Bengio & Hinton, 2015)",
+        "url": "https://www.nature.com/articles/nature14539"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.248Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 45,
+  "estimated_words": 528
+}

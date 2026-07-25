@@ -1,0 +1,57 @@
+{
+  "id": "data_science_engineer-day-14",
+  "role": "data_science_engineer",
+  "level": "beginner",
+  "day": 14,
+  "title": "Probability Distributions and Sampling",
+  "summary": "Probability distributions describe how likely different values of a random variable are. Discrete distributions (like the binomial, for counts of successes, and the Poisson, for counts of events in a time window) apply to countable outcomes, while co",
+  "content": "# Probability Distributions and Sampling\n\n## Overview\nProbability distributions describe how likely different values of a random variable are. Discrete distributions (like the binomial, for counts of successes, and the Poisson, for counts of events in a time window) apply to countable outcomes, while continuous distributions (like the normal) apply to measurements. The normal (bell-curve) distribution is central to statistics: it's symmetric around its mean, and the 68-95-99.7 rule says about 68% of values fall within one standard deviation, 95% within two, and 99.7% within three. Sampling is the act of drawing a subset from a population, and a sampling distribution describes how a statistic (like the sample mean) varies across many samples. The Central Limit Theorem is the powerful result that the distribution of sample means approaches a normal distribution as sample size grows, regardless of the population's shape. This is why so many statistical methods assume normality and why the normal distribution appears everywhere in data science.\n\n## Deep Dive\nThis module covers: Discrete vs continuous distributions; Normal, binomial, and Poisson distributions; The normal distribution and the 68-95-99.7 rule; Sampling and sampling distributions; The Central Limit Theorem. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Use scipy.stats and NumPy to generate and plot normal, binomial, and Poisson distributions, then demonstrate the Central Limit Theorem by repeatedly sampling from a skewed distribution and plotting the distribution of sample means.\n**Mini Project:** Build an interactive notebook that lets you vary distribution parameters (mean, std, n) and visualizes how the shape changes, plus a demonstration of the CLT with adjustable sample sizes.\n**Assignment:** Given a real dataset column, determine which distribution best describes it and justify your choice with a histogram overlaid with the theoretical distribution.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Discrete vs continuous distributions",
+    "Normal, binomial, and Poisson distributions",
+    "The normal distribution and the 68-95-99.7 rule",
+    "Sampling and sampling distributions",
+    "The Central Limit Theorem"
+  ],
+  "practical_task_reference": "Use scipy.stats and NumPy to generate and plot normal, binomial, and Poisson distributions, then demonstrate the Central Limit Theorem by repeatedly sampling from a skewed distribution and plotting the distribution of sample means.",
+  "mini_project_reference": "Build an interactive notebook that lets you vary distribution parameters (mean, std, n) and visualizes how the shape changes, plus a demonstration of the CLT with adjustable sample sizes.",
+  "assignment_reference": "Given a real dataset column, determine which distribution best describes it and justify your choice with a histogram overlaid with the theoretical distribution.",
+  "skills_gained": [
+    "Probability distributions",
+    "Sampling",
+    "Central Limit Theorem"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Statistics and Probability Full Course",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=xxpc-HPKN28"
+      }
+    ],
+    "docs": [
+      {
+        "title": "scipy.stats Documentation",
+        "url": "https://docs.scipy.org/doc/scipy/reference/stats.html"
+      }
+    ],
+    "github": [
+      {
+        "name": "scipy/scipy",
+        "url": "https://github.com/scipy/scipy"
+      }
+    ],
+    "papers": [
+      {
+        "title": "The Central Limit Theorem: A Historical Note",
+        "url": "https://www.jstor.org/stable/2683143"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.267Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 14,
+  "estimated_words": 632
+}

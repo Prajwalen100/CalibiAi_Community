@@ -1,0 +1,58 @@
+{
+  "id": "ai_engineer-day-8",
+  "role": "ai_engineer",
+  "level": "intermediate",
+  "day": 8,
+  "title": "Advanced Feature Engineering and Feature Stores",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Advanced Feature Engineering and Feature Stores\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Target and frequency encoding done safely; Time-series feature engineering (lags, rolling, windows); Automated feature engineering; Feature scaling and transformation pipelines; Feature stores (Feast) concepts; Training/serving skew prevention. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Build a leakage-safe target-encoding transformer with cross-fitting, and engineer a set of time-series features (lags, rolling stats) for a forecasting dataset.\n**Mini Project:** Set up a minimal feature store (Feast) that serves consistent features for both a training job and a live prediction endpoint, demonstrating no skew.\n**Assignment:** Explain training/serving skew with an example and describe how a feature store prevents it.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Target and frequency encoding done safely",
+    "Time-series feature engineering (lags, rolling, windows)",
+    "Automated feature engineering",
+    "Feature scaling and transformation pipelines",
+    "Feature stores (Feast) concepts",
+    "Training/serving skew prevention"
+  ],
+  "practical_task_reference": "Build a leakage-safe target-encoding transformer with cross-fitting, and engineer a set of time-series features (lags, rolling stats) for a forecasting dataset.",
+  "mini_project_reference": "Set up a minimal feature store (Feast) that serves consistent features for both a training job and a live prediction endpoint, demonstrating no skew.",
+  "assignment_reference": "Explain training/serving skew with an example and describe how a feature store prevents it.",
+  "skills_gained": [
+    "Advanced feature engineering",
+    "Time-series features",
+    "Feature stores"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Feature Stores Explained",
+        "channel": "MLOps.community",
+        "url": "https://www.youtube.com/watch?v=DaNv-Wf1Mer"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Feast Documentation",
+        "url": "https://docs.feast.dev/"
+      }
+    ],
+    "github": [
+      {
+        "name": "feast-dev/feast",
+        "url": "https://github.com/feast-dev/feast"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Hidden Technical Debt in Machine Learning Systems (Sculley et al., 2015)",
+        "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.255Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 8,
+  "estimated_words": 469
+}

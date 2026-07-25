@@ -1,0 +1,57 @@
+{
+  "id": "ai_automation_engineer-day-2",
+  "role": "ai_automation_engineer",
+  "level": "beginner",
+  "day": 2,
+  "title": "Core Automation Concepts: Triggers, Actions, and Workflows",
+  "summary": "Every automation, no matter the tool, is built from the same handful of concepts, so learning them once means you can pick up Zapier, Make.com, or n8n quickly. A trigger is the event that kicks things off - a new email arrives, a form is submitted, a",
+  "content": "# Core Automation Concepts: Triggers, Actions, and Workflows\n\n## Overview\nEvery automation, no matter the tool, is built from the same handful of concepts, so learning them once means you can pick up Zapier, Make.com, or n8n quickly. A trigger is the event that kicks things off - a new email arrives, a form is submitted, a row is added to a spreadsheet. An action is a step the automation performs in response - send a message, create a record, update a file. A search (or 'find') step looks something up, like finding a customer by email before updating them. When you chain these together you get a workflow (Zapier calls it a Zap, Make.com calls it a Scenario, n8n calls it a Workflow). The magic that makes workflows useful is data passing: the output of one step becomes the input of the next. For example, the trigger 'new form submission' outputs the person's name and email, and the next action 'send email' uses that email address. There are two ways triggers detect events: instant triggers use webhooks so the app pushes the event the moment it happens, while polling triggers check the app every few minutes to see if something new appeared. Finally, filters and conditions let a workflow make decisions - only continue if the order total is over $100, or branch down different paths depending on the data. Understanding these primitives deeply is the single most transferable skill in automation.\n\n## Deep Dive\nThis module covers: Triggers, actions, and searches; Workflows/scenarios/zaps as a chain of steps; Data passing between steps (input and output); Instant (webhook) vs polling triggers; Conditions, filters, and branching basics. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Take one of the repetitive tasks from Day 1 and diagram it on paper as trigger -> action -> action, labeling exactly what data moves from each step to the next.\n**Mini Project:** Design (on paper or a diagramming tool) three different workflows for a small online store, each clearly labeling the trigger, the actions, and one filter/condition that changes what happens.\n**Assignment:** Explain in your own words the difference between an instant (webhook) trigger and a polling trigger, and give one situation where each is the better choice.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Triggers, actions, and searches",
+    "Workflows/scenarios/zaps as a chain of steps",
+    "Data passing between steps (input and output)",
+    "Instant (webhook) vs polling triggers",
+    "Conditions, filters, and branching basics"
+  ],
+  "practical_task_reference": "Take one of the repetitive tasks from Day 1 and diagram it on paper as trigger -> action -> action, labeling exactly what data moves from each step to the next.",
+  "mini_project_reference": "Design (on paper or a diagramming tool) three different workflows for a small online store, each clearly labeling the trigger, the actions, and one filter/condition that changes what happens.",
+  "assignment_reference": "Explain in your own words the difference between an instant (webhook) trigger and a polling trigger, and give one situation where each is the better choice.",
+  "skills_gained": [
+    "Trigger/action modeling",
+    "Data flow understanding",
+    "Workflow design basics"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Zapier Tutorial for Beginners (Triggers and Actions Explained)",
+        "channel": "Zapier",
+        "url": "https://www.youtube.com/watch?v=ZAZgspZzZ7A"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Zapier - Learn key concepts (triggers, actions, searches)",
+        "url": "https://help.zapier.com/hc/en-us/articles/8496288690317-Learn-key-concepts-in-Zapier"
+      }
+    ],
+    "github": [
+      {
+        "name": "n8n-io/n8n",
+        "url": "https://github.com/n8n-io/n8n"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Workflow Management: Models, Methods, and Systems (van der Aalst, 2004)",
+        "url": "https://mitpress.mit.edu/9780262720465/workflow-management/"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.307Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 2,
+  "estimated_words": 720
+}

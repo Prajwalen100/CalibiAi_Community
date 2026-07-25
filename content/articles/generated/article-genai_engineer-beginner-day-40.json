@@ -1,0 +1,72 @@
+{
+  "id": "genai_engineer-day-40",
+  "role": "genai_engineer",
+  "level": "beginner",
+  "day": 40,
+  "title": "LLM Evaluation and Guardrails",
+  "summary": "Shipping GenAI safely requires measuring quality and preventing harm. You learn evaluation methods including LLM-as-judge, plus guardrails that block unsafe content and defend against prompt injection. Employers increasingly demand these responsible-",
+  "content": "# LLM Evaluation and Guardrails\n\n## Overview\nShipping GenAI safely requires measuring quality and preventing harm. You learn evaluation methods including LLM-as-judge, plus guardrails that block unsafe content and defend against prompt injection. Employers increasingly demand these responsible-AI skills before deployment.\n\n## Deep Dive\nThis module covers: Evaluation metrics (BLEU, ROUGE, LLM-as-judge); Benchmark datasets; Hallucination detection; Content moderation; Prompt injection defense; Guardrail frameworks. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Set up an LLM-as-judge evaluation for a set of model outputs and add an input/output moderation guardrail.\n**Mini Project:** Build an evaluation harness that scores your RAG app's answers and flags hallucinations and unsafe content.\n**Assignment:** Design a test suite of adversarial prompts (including injection attempts) and report how your guardrails respond.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Evaluation metrics (BLEU, ROUGE, LLM-as-judge)",
+    "Benchmark datasets",
+    "Hallucination detection",
+    "Content moderation",
+    "Prompt injection defense",
+    "Guardrail frameworks"
+  ],
+  "practical_task_reference": "Set up an LLM-as-judge evaluation for a set of model outputs and add an input/output moderation guardrail.",
+  "mini_project_reference": "Build an evaluation harness that scores your RAG app's answers and flags hallucinations and unsafe content.",
+  "assignment_reference": "Design a test suite of adversarial prompts (including injection attempts) and report how your guardrails respond.",
+  "skills_gained": [
+    "LLM evaluation",
+    "Guardrails",
+    "Safety",
+    "Prompt injection defense"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Evaluating LLMs",
+        "channel": "DeepLearningAI",
+        "url": "https://www.youtube.com/watch?v=fWC4VxolWAk"
+      },
+      {
+        "title": "LLM Guardrails Explained",
+        "channel": "IBM Technology",
+        "url": "https://www.youtube.com/watch?v=lMBUgxfXCsc"
+      }
+    ],
+    "docs": [
+      {
+        "title": "OpenAI Safety Best Practices",
+        "url": "https://platform.openai.com/docs/guides/safety-best-practices"
+      },
+      {
+        "title": "Guardrails AI Docs",
+        "url": "https://www.guardrailsai.com/docs"
+      }
+    ],
+    "github": [
+      {
+        "name": "guardrails-ai/guardrails",
+        "url": "https://github.com/guardrails-ai/guardrails"
+      },
+      {
+        "name": "confident-ai/deepeval",
+        "url": "https://github.com/confident-ai/deepeval"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena (Zheng et al., 2023)",
+        "url": "https://arxiv.org/abs/2306.05685"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.297Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 40,
+  "estimated_words": 470
+}

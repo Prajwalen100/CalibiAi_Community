@@ -1,0 +1,57 @@
+{
+  "id": "data_science_engineer-day-21",
+  "role": "data_science_engineer",
+  "level": "beginner",
+  "day": 21,
+  "title": "Introduction to Machine Learning",
+  "summary": "Machine learning is the practice of building systems that learn patterns from data to make predictions or decisions, rather than being explicitly programmed with rules. There are three broad types: supervised learning, where the model learns from lab",
+  "content": "# Introduction to Machine Learning\n\n## Overview\nMachine learning is the practice of building systems that learn patterns from data to make predictions or decisions, rather than being explicitly programmed with rules. There are three broad types: supervised learning, where the model learns from labeled examples (inputs paired with known outputs) to predict labels for new data; unsupervised learning, where the model finds structure in unlabeled data (like grouping similar customers); and reinforcement learning, where an agent learns by trial and error through rewards. Supervised problems split into classification (predicting a category, like spam or not-spam) and regression (predicting a number, like price). The core workflow is to split your data into a training set (used to fit the model) and a test set (held back to estimate how well the model generalizes to unseen data), because a model that memorizes training data but fails on new data is useless. Scikit-learn provides a consistent API for all of this: every model has .fit() to train and .predict() to make predictions, which makes experimenting with different algorithms easy.\n\n## Deep Dive\nThis module covers: Supervised vs unsupervised vs reinforcement learning; Classification vs regression; Features, labels, and training; Train/test split and generalization; The scikit-learn estimator API. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Load a built-in scikit-learn dataset, split it into train and test sets, fit a simple model, and evaluate its accuracy on the test set, observing the difference between training and test performance.\n**Mini Project:** Build your first end-to-end ML notebook: load data, split it, train a baseline model, evaluate it, and write a short reflection on whether it generalized well.\n**Assignment:** For three real-world problems of your choice, classify each as supervised or unsupervised and, if supervised, as classification or regression, with justification.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Supervised vs unsupervised vs reinforcement learning",
+    "Classification vs regression",
+    "Features, labels, and training",
+    "Train/test split and generalization",
+    "The scikit-learn estimator API"
+  ],
+  "practical_task_reference": "Load a built-in scikit-learn dataset, split it into train and test sets, fit a simple model, and evaluate its accuracy on the test set, observing the difference between training and test performance.",
+  "mini_project_reference": "Build your first end-to-end ML notebook: load data, split it, train a baseline model, evaluate it, and write a short reflection on whether it generalized well.",
+  "assignment_reference": "For three real-world problems of your choice, classify each as supervised or unsupervised and, if supervised, as classification or regression, with justification.",
+  "skills_gained": [
+    "ML fundamentals",
+    "Train/test workflow",
+    "scikit-learn API"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Machine Learning for Everybody - Full Course",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=i_LwzRVP7bg"
+      }
+    ],
+    "docs": [
+      {
+        "title": "scikit-learn Getting Started",
+        "url": "https://scikit-learn.org/stable/getting_started.html"
+      }
+    ],
+    "github": [
+      {
+        "name": "scikit-learn/scikit-learn",
+        "url": "https://github.com/scikit-learn/scikit-learn"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Scikit-learn: Machine Learning in Python (Pedregosa et al., 2011)",
+        "url": "https://www.jmlr.org/papers/v12/pedregosa11a.html"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.269Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 21,
+  "estimated_words": 642
+}

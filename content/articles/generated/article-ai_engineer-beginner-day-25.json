@@ -1,0 +1,58 @@
+{
+  "id": "ai_engineer-day-25",
+  "role": "ai_engineer",
+  "level": "beginner",
+  "day": 25,
+  "title": "Convolutional Neural Networks and Computer Vision",
+  "summary": "Convolutional Neural Networks revolutionized computer vision by learning spatial features automatically. Convolution layers slide small filters over images to detect patterns like edges and textures, while pooling reduces spatial size and adds robust",
+  "content": "# Convolutional Neural Networks and Computer Vision\n\n## Overview\nConvolutional Neural Networks revolutionized computer vision by learning spatial features automatically. Convolution layers slide small filters over images to detect patterns like edges and textures, while pooling reduces spatial size and adds robustness. Modern architectures like ResNet stack many layers with skip connections. Data augmentation artificially expands your dataset, improving generalization for image tasks.\n\n## Deep Dive\nThis module covers: Convolution and filters; Pooling layers; CNN architectures (LeNet, ResNet); Image data augmentation; Common CV tasks (classification, detection); Interpreting CNN features. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Build and train a CNN in PyTorch or Keras on CIFAR-10 with data augmentation, and evaluate its accuracy.\n**Mini Project:** Build an image classifier (e.g., cats vs dogs, or plant disease detection) with a CNN and augmentation, and report performance.\n**Assignment:** Explain how a convolution layer differs from a fully connected layer and why it is efficient for images.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Convolution and filters",
+    "Pooling layers",
+    "CNN architectures (LeNet, ResNet)",
+    "Image data augmentation",
+    "Common CV tasks (classification, detection)",
+    "Interpreting CNN features"
+  ],
+  "practical_task_reference": "Build and train a CNN in PyTorch or Keras on CIFAR-10 with data augmentation, and evaluate its accuracy.",
+  "mini_project_reference": "Build an image classifier (e.g., cats vs dogs, or plant disease detection) with a CNN and augmentation, and report performance.",
+  "assignment_reference": "Explain how a convolution layer differs from a fully connected layer and why it is efficient for images.",
+  "skills_gained": [
+    "CNN architectures",
+    "Computer vision",
+    "Data augmentation"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Convolutional Neural Networks Explained",
+        "channel": "3Blue1Brown",
+        "url": "https://www.youtube.com/watch?v=KuXjwB4LzSA"
+      }
+    ],
+    "docs": [
+      {
+        "title": "CS231n: Convolutional Neural Networks",
+        "url": "https://cs231n.github.io/convolutional-networks/"
+      }
+    ],
+    "github": [
+      {
+        "name": "pytorch/vision",
+        "url": "https://github.com/pytorch/vision"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Deep Residual Learning for Image Recognition (He et al., 2015)",
+        "url": "https://arxiv.org/abs/1512.03385"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.242Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 25,
+  "estimated_words": 503
+}

@@ -1,0 +1,41 @@
+{
+  "article_schema_version": "1.0",
+  "description": "Schema for daily learning articles linked to roadmap days",
+  "fields": {
+    "id": "string, unique article identifier (e.g., ai-engineer-day-12)",
+    "role": "string, learning role (ai_engineer, data_science_engineer, genai_engineer, ai_automation_engineer)",
+    "level": "string, beginner | intermediate",
+    "day": "integer, day number in roadmap",
+    "title": "string, article title",
+    "summary": "string, short summary",
+    "content": "string, full article text (500-600 words recommended)",
+    "topics": ["string"],
+    "practical_task_reference": "string",
+    "mini_project_reference": "string",
+    "assignment_reference": "string",
+    "skills_gained": ["string"],
+    "resources": {
+      "youtube": [{ "title": "string", "channel": "string", "url": "string" }],
+      "docs": [{ "title": "string", "url": "string" }],
+      "github": [{ "name": "string", "url": "string" }],
+      "papers": [{ "title": "string", "url": "string" }]
+    },
+    "reading_time_minutes": "integer",
+    "difficulty": "string",
+    "generated_at": "ISO datetime",
+    "ai_model_used": "string",
+    "related_roadmap_day": "integer",
+    "reading_score_contribution": "integer (0-100), how reading this article affects user score",
+    "quiz_reference": "object { id, title, questions[] } linking to quiz for this day",
+    "assessment_references": ["string"],
+    "keywords": ["string"],
+    "ai_generated_flags": { "content_verified": "boolean", "score_calibrated": "boolean" },
+    "updated_at": "ISO datetime"
+  },
+  "requirements": {
+    "min_word_count": 500,
+    "max_word_count": 600,
+    "must_include": ["detailed explanation", "practical context", "real-world application", "resources"],
+    "ai_assessment_link": "link to practical task / assignment / project assessment popup"
+  }
+}

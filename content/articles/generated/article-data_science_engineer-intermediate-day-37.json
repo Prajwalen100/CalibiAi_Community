@@ -1,0 +1,57 @@
+{
+  "id": "data_science_engineer-day-37",
+  "role": "data_science_engineer",
+  "level": "intermediate",
+  "day": 37,
+  "title": "ML Pipelines and Orchestration",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# ML Pipelines and Orchestration\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Why orchestration matters; DAGs and task dependencies; Airflow (or Prefect/Dagster) fundamentals; Scheduling, retries, and monitoring; Automating training and batch inference. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Build a simple pipeline (extract -> validate -> transform -> train -> evaluate) as a DAG in Airflow or Prefect, schedule it, and configure retries and a failure alert.\n**Mini Project:** Build an orchestrated end-to-end ML pipeline that ingests data, trains and evaluates a model on a schedule, logs to MLflow, and handles failures with retries and notifications, with a monitoring view.\n**Assignment:** Explain the advantages of an orchestrator like Airflow over a plain cron job for a multi-step ML workflow.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Why orchestration matters",
+    "DAGs and task dependencies",
+    "Airflow (or Prefect/Dagster) fundamentals",
+    "Scheduling, retries, and monitoring",
+    "Automating training and batch inference"
+  ],
+  "practical_task_reference": "Build a simple pipeline (extract -> validate -> transform -> train -> evaluate) as a DAG in Airflow or Prefect, schedule it, and configure retries and a failure alert.",
+  "mini_project_reference": "Build an orchestrated end-to-end ML pipeline that ingests data, trains and evaluates a model on a schedule, logs to MLflow, and handles failures with retries and notifications, with a monitoring view.",
+  "assignment_reference": "Explain the advantages of an orchestrator like Airflow over a plain cron job for a multi-step ML workflow.",
+  "skills_gained": [
+    "Workflow orchestration",
+    "Airflow/Prefect",
+    "Pipeline automation"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Apache Airflow Tutorial for Beginners",
+        "channel": "coder2j",
+        "url": "https://www.youtube.com/watch?v=K9AnJ9_ZAXE"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Apache Airflow Documentation",
+        "url": "https://airflow.apache.org/docs/"
+      }
+    ],
+    "github": [
+      {
+        "name": "apache/airflow",
+        "url": "https://github.com/apache/airflow"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture (Kreuzberger et al., 2023)",
+        "url": "https://arxiv.org/abs/2205.02302"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.286Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 37,
+  "estimated_words": 479
+}

@@ -1,0 +1,57 @@
+{
+  "id": "ai_automation_engineer-day-10",
+  "role": "ai_automation_engineer",
+  "level": "beginner",
+  "day": 10,
+  "title": "n8n Fundamentals and the Open-Source Advantage",
+  "summary": "n8n is the third major tool you must know, and it is the favorite of technically minded automation engineers because it is open-source and self-hostable. Unlike Zapier and Make.com, which are paid cloud services, n8n can run on your own computer or s",
+  "content": "# n8n Fundamentals and the Open-Source Advantage\n\n## Overview\nn8n is the third major tool you must know, and it is the favorite of technically minded automation engineers because it is open-source and self-hostable. Unlike Zapier and Make.com, which are paid cloud services, n8n can run on your own computer or server for free, meaning no per-task fees and complete control over your data - a huge deal for companies with privacy requirements or high volumes. Its interface is a visual canvas like Make.com, where each step is a 'node' and you connect nodes with lines to define the flow. There are trigger nodes (start the workflow - a webhook, a schedule, an app event) and regular nodes (perform actions - call an API, transform data, send a message). n8n has hundreds of built-in app integrations, but its real superpower is that it is developer-friendly: it exposes raw data freely, lets you write small snippets of JavaScript or Python right inside a Code node, and makes calling any API easy. This means when a no-code tool hits a wall, n8n usually keeps going. You can use n8n Cloud (managed, quick to start) or self-host it with Docker (free, more setup). As a beginner you will start on n8n Cloud or a simple local install to learn the concepts, and later learn to deploy it yourself. Knowing n8n alongside Zapier and Make.com makes you versatile: you can recommend the free, flexible, self-hosted option when it fits, which employers value highly.\n\n## Deep Dive\nThis module covers: What n8n is (open-source, self-hostable automation); Nodes, connections, and the workflow canvas; Cloud vs self-hosted n8n; Trigger nodes and regular nodes; Executing and inspecting workflows. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Sign up for n8n Cloud (or run n8n locally) and build a workflow with a manual/webhook trigger node plus at least two nodes that fetch and transform data, then execute it and inspect the output of each node.\n**Mini Project:** Recreate your lead-capture automation in n8n: a webhook trigger receives lead data, a node writes it to a Google Sheet (or a database), and a node sends a notification, then test it with sample data.\n**Assignment:** Write a comparison of n8n versus Zapier and Make.com focusing on cost, hosting, data control, and flexibility, and describe a scenario where self-hosted n8n is clearly the best choice.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "What n8n is (open-source, self-hostable automation)",
+    "Nodes, connections, and the workflow canvas",
+    "Cloud vs self-hosted n8n",
+    "Trigger nodes and regular nodes",
+    "Executing and inspecting workflows"
+  ],
+  "practical_task_reference": "Sign up for n8n Cloud (or run n8n locally) and build a workflow with a manual/webhook trigger node plus at least two nodes that fetch and transform data, then execute it and inspect the output of each node.",
+  "mini_project_reference": "Recreate your lead-capture automation in n8n: a webhook trigger receives lead data, a node writes it to a Google Sheet (or a database), and a node sends a notification, then test it with sample data.",
+  "assignment_reference": "Write a comparison of n8n versus Zapier and Make.com focusing on cost, hosting, data control, and flexibility, and describe a scenario where self-hosted n8n is clearly the best choice.",
+  "skills_gained": [
+    "n8n basics",
+    "Node-based workflow building",
+    "Cloud vs self-hosted awareness"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "n8n Full Beginner Tutorial",
+        "channel": "n8n",
+        "url": "https://www.youtube.com/watch?v=1MwSoB0gnM4"
+      }
+    ],
+    "docs": [
+      {
+        "title": "n8n - Quickstart and Key Concepts",
+        "url": "https://docs.n8n.io/try-it-out/"
+      }
+    ],
+    "github": [
+      {
+        "name": "n8n-io/n8n",
+        "url": "https://github.com/n8n-io/n8n"
+      }
+    ],
+    "papers": [
+      {
+        "title": "The Cathedral and the Bazaar (Raymond, 1999) - open-source model",
+        "url": "https://www.catb.org/~esr/writings/cathedral-bazaar/"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.309Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 10,
+  "estimated_words": 740
+}

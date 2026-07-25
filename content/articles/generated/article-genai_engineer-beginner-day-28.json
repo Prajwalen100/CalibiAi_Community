@@ -1,0 +1,63 @@
+{
+  "id": "genai_engineer-day-28",
+  "role": "genai_engineer",
+  "level": "beginner",
+  "day": 28,
+  "title": "Fine-tuning LLMs",
+  "summary": "Fine-tuning adapts a pretrained model to your specific data or style. You format examples, run supervised training with the Hugging Face Trainer, and evaluate the results. Even small fine-tunes can dramatically improve performance on niche tasks, a h",
+  "content": "# Fine-tuning LLMs\n\n## Overview\nFine-tuning adapts a pretrained model to your specific data or style. You format examples, run supervised training with the Hugging Face Trainer, and evaluate the results. Even small fine-tunes can dramatically improve performance on niche tasks, a highly marketable GenAI skill.\n\n## Deep Dive\nThis module covers: Dataset formatting; Supervised fine-tuning (SFT); Training arguments; Hugging Face Trainer; Evaluating generations; Common pitfalls. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Fine-tune DistilGPT-2 on a small custom text dataset and generate samples before and after.\n**Mini Project:** Fine-tune a small model to answer questions in a specific tone or domain and demonstrate the improvement.\n**Assignment:** Document a full fine-tuning experiment including dataset prep, config, metrics, and lessons learned.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Dataset formatting",
+    "Supervised fine-tuning (SFT)",
+    "Training arguments",
+    "Hugging Face Trainer",
+    "Evaluating generations",
+    "Common pitfalls"
+  ],
+  "practical_task_reference": "Fine-tune DistilGPT-2 on a small custom text dataset and generate samples before and after.",
+  "mini_project_reference": "Fine-tune a small model to answer questions in a specific tone or domain and demonstrate the improvement.",
+  "assignment_reference": "Document a full fine-tuning experiment including dataset prep, config, metrics, and lessons learned.",
+  "skills_gained": [
+    "Fine-tuning",
+    "Dataset preparation",
+    "Hugging Face Trainer"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Fine-tuning LLMs Tutorial",
+        "channel": "HuggingFace",
+        "url": "https://www.youtube.com/watch?v=eC6Hd1hFvos"
+      },
+      {
+        "title": "Fine Tuning LLM Models",
+        "channel": "Krish Naik",
+        "url": "https://www.youtube.com/watch?v=iOdFUJiB0Zc"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Hugging Face Fine-tuning Guide",
+        "url": "https://huggingface.co/docs/transformers/training"
+      }
+    ],
+    "github": [
+      {
+        "name": "huggingface/transformers",
+        "url": "https://github.com/huggingface/transformers"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Universal Language Model Fine-tuning for Text Classification (ULMFiT, Howard & Ruder, 2018)",
+        "url": "https://arxiv.org/abs/1801.06146"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.294Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 28,
+  "estimated_words": 468
+}

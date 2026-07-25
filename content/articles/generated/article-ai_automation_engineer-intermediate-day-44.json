@@ -1,0 +1,61 @@
+{
+  "id": "ai_automation_engineer-day-44",
+  "role": "ai_automation_engineer",
+  "level": "intermediate",
+  "day": 44,
+  "title": "Capstone Part 4 - Testing, Documentation, and Handover",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Capstone Part 4 - Testing, Documentation, and Handover\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Full test suite in CI: unit/integration/e2e + AI evals; Architecture docs and diagrams; Runbooks: deploy, rollback, incident response; API reference and workflow catalog; Backup/restore and disaster recovery; Versioned release notes; Handover walkthrough and checklist. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Ship the platform's full test suite in CI plus complete docs (architecture, runbooks, API reference, backup/restore), then do a mock handover where someone else deploys and recovers it.\n**Mini Project:** Ship the platform's full test suite in CI plus complete docs: architecture, runbooks, API reference, and a backup/restore procedure.\n**Assignment:** Do a mock handover: have someone else (or your future self) deploy and recover the platform using only your docs, and fix any gaps.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Full test suite in CI: unit/integration/e2e + AI evals",
+    "Architecture docs and diagrams",
+    "Runbooks: deploy, rollback, incident response",
+    "API reference and workflow catalog",
+    "Backup/restore and disaster recovery",
+    "Versioned release notes",
+    "Handover walkthrough and checklist"
+  ],
+  "practical_task_reference": "Ship the platform's full test suite in CI plus complete docs (architecture, runbooks, API reference, backup/restore), then do a mock handover where someone else deploys and recovers it.",
+  "mini_project_reference": "Ship the platform's full test suite in CI plus complete docs: architecture, runbooks, API reference, and a backup/restore procedure.",
+  "assignment_reference": "Do a mock handover: have someone else (or your future self) deploy and recover the platform using only your docs, and fix any gaps.",
+  "skills_gained": [
+    "Comprehensive testing in CI",
+    "Professional documentation and runbooks",
+    "Backup/DR and handover"
+  ],
+  "resources": {
+    "youtube": {
+      "title": "Writing great technical documentation and runbooks",
+      "url": "https://www.youtube.com/watch?v=t4vKPhjcMZg",
+      "note": "Popular documentation tutorial; confirm view count on YouTube."
+    },
+    "docs": [
+      {
+        "title": "Diataxis documentation framework",
+        "url": "https://diataxis.fr/"
+      },
+      {
+        "title": "n8n backup and restore",
+        "url": "https://docs.n8n.io/hosting/cli-commands/"
+      }
+    ],
+    "github": [
+      {
+        "name": "google/styleguide",
+        "url": "https://github.com/google/styleguide"
+      }
+    ],
+    "papers": [
+      {
+        "title": "What Makes a Good Documentation? An Empirical Study (Aghajani et al., 2019)",
+        "url": "https://arxiv.org/abs/1906.05827"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Advanced",
+  "generated_at": "2026-07-25T09:20:59.332Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 44,
+  "estimated_words": 490
+}

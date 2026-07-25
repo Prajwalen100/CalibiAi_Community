@@ -1,0 +1,72 @@
+{
+  "id": "ai_engineer-day-1",
+  "role": "ai_engineer",
+  "level": "beginner",
+  "day": 1,
+  "title": "The AI Engineer Landscape and Role",
+  "summary": "An AI Engineer sits between data science and software engineering: they build, train, and ship AI models into real applications. Today you learn how AI, ML, deep learning, and data science relate, what an AI Engineer actually does day to day, and the",
+  "content": "# The AI Engineer Landscape and Role\n\n## Overview\nAn AI Engineer sits between data science and software engineering: they build, train, and ship AI models into real applications. Today you learn how AI, ML, deep learning, and data science relate, what an AI Engineer actually does day to day, and the end-to-end lifecycle of an AI project from data to deployment. This mental map guides everything you learn over the next 45 days.\n\n## Deep Dive\nThis module covers: AI vs ML vs Deep Learning vs Data Science; AI Engineer responsibilities; The ML/AI project lifecycle; Industry tools overview; Career paths and expectations; Setting up a learning workflow. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Create a diagram of the AI/ML project lifecycle and label which tools apply at each stage.\n**Mini Project:** Research three real AI Engineer job postings and produce a skills-gap analysis comparing them to this roadmap.\n**Assignment:** Write a one-page personal learning plan defining your target role, goals, and how you will track progress.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "AI vs ML vs Deep Learning vs Data Science",
+    "AI Engineer responsibilities",
+    "The ML/AI project lifecycle",
+    "Industry tools overview",
+    "Career paths and expectations",
+    "Setting up a learning workflow"
+  ],
+  "practical_task_reference": "Create a diagram of the AI/ML project lifecycle and label which tools apply at each stage.",
+  "mini_project_reference": "Research three real AI Engineer job postings and produce a skills-gap analysis comparing them to this roadmap.",
+  "assignment_reference": "Write a one-page personal learning plan defining your target role, goals, and how you will track progress.",
+  "skills_gained": [
+    "AI domain literacy",
+    "Role understanding",
+    "ML lifecycle awareness",
+    "Career planning"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "AI vs Machine Learning vs Deep Learning",
+        "channel": "IBM Technology",
+        "url": "https://www.youtube.com/watch?v=4RixMPF4xis"
+      },
+      {
+        "title": "How to Become an AI Engineer",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=i_LwzRVP7bg"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Google AI Overview",
+        "url": "https://ai.google/"
+      },
+      {
+        "title": "Microsoft AI Learning Paths",
+        "url": "https://learn.microsoft.com/en-us/training/browse/?products=azure&subjects=artificial-intelligence"
+      }
+    ],
+    "github": [
+      {
+        "name": "microsoft/AI-For-Beginners",
+        "url": "https://github.com/microsoft/AI-For-Beginners"
+      },
+      {
+        "name": "AMAI-GmbH/AI-Expert-Roadmap",
+        "url": "https://github.com/AMAI-GmbH/AI-Expert-Roadmap"
+      }
+    ],
+    "papers": [
+      {
+        "title": "A Few Useful Things to Know About Machine Learning (Domingos, 2012)",
+        "url": "https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.232Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 1,
+  "estimated_words": 516
+}

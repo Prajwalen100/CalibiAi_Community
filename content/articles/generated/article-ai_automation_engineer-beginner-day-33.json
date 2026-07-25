@@ -1,0 +1,57 @@
+{
+  "id": "ai_automation_engineer-day-33",
+  "role": "ai_automation_engineer",
+  "level": "beginner",
+  "day": 33,
+  "title": "Document Automation (PDFs, Invoices, and E-signatures)",
+  "summary": "A large chunk of business work revolves around documents - invoices, contracts, reports, certificates - and automating their creation and processing is a high-value, very common request, so document automation is a practical skill that quickly pays o",
+  "content": "# Document Automation (PDFs, Invoices, and E-signatures)\n\n## Overview\nA large chunk of business work revolves around documents - invoices, contracts, reports, certificates - and automating their creation and processing is a high-value, very common request, so document automation is a practical skill that quickly pays off. On the generation side, you learn to turn data into finished documents: you build a template (a Google Doc, a PDF template, or a tool like DocuPilot or PDFMonkey) with placeholders like {{customer_name}} and {{total}}, and your automation fills those placeholders from your data to produce a polished PDF - generating a personalized invoice for every order, a contract for every new client, or a certificate for every course completion, automatically. On the processing side, you learn extraction: pulling structured data out of incoming documents. For digital PDFs you can read the text directly, and for scanned or image-based documents you use OCR (Optical Character Recognition) to convert the image into text, then parse out the fields you need (invoice number, amount, date) - and here AI (Day 26) shines, because an LLM can reliably extract structured JSON from messy document text. You will also integrate e-signatures: tools like DocuSign let you send a document for signing and fire a webhook when it is signed, so you can automate the whole contract lifecycle - generate, send for signature, and on completion file it and update your records. Putting these together, you can build end-to-end flows like: order placed -> generate invoice PDF -> email it -> log it, or new client -> generate contract -> send for e-signature -> on signature, create their account. These document workflows eliminate hours of tedious manual work and are exactly the kind of tangible, money-saving automation that makes clients and employers value an automation engineer.\n\n## Deep Dive\nThis module covers: Generating PDFs from templates; Merging data into documents (Google Docs, DocuPilot, PDF tools); Extracting text/data from PDFs (OCR basics); E-signature integration (DocuSign); Invoice and contract automation. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Build an automation that takes data (from a form or sheet) and generates a personalized PDF from a template, then emails it to the recipient and saves a copy to Drive.\n**Mini Project:** Create an end-to-end invoice automation: when an order is recorded, generate a branded invoice PDF from a template with the order details, email it to the customer, save it to a dated folder, and log the invoice number and amount to a database.\n**Assignment:** Explain the difference between generating documents and extracting data from them, describe when OCR is needed, and outline how AI can improve data extraction from messy PDFs.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Generating PDFs from templates",
+    "Merging data into documents (Google Docs, DocuPilot, PDF tools)",
+    "Extracting text/data from PDFs (OCR basics)",
+    "E-signature integration (DocuSign)",
+    "Invoice and contract automation"
+  ],
+  "practical_task_reference": "Build an automation that takes data (from a form or sheet) and generates a personalized PDF from a template, then emails it to the recipient and saves a copy to Drive.",
+  "mini_project_reference": "Create an end-to-end invoice automation: when an order is recorded, generate a branded invoice PDF from a template with the order details, email it to the customer, save it to a dated folder, and log the invoice number and amount to a database.",
+  "assignment_reference": "Explain the difference between generating documents and extracting data from them, describe when OCR is needed, and outline how AI can improve data extraction from messy PDFs.",
+  "skills_gained": [
+    "Document generation",
+    "PDF/OCR data extraction",
+    "E-signature workflows"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Automate PDF and Document Generation (No-Code)",
+        "channel": "Make",
+        "url": "https://www.youtube.com/watch?v=Q7bqQ2n1yYI"
+      }
+    ],
+    "docs": [
+      {
+        "title": "DocuSign Developer Documentation",
+        "url": "https://developers.docusign.com/"
+      }
+    ],
+    "github": [
+      {
+        "name": "tesseract-ocr/tesseract",
+        "url": "https://github.com/tesseract-ocr/tesseract"
+      }
+    ],
+    "papers": [
+      {
+        "title": "An Overview of the Tesseract OCR Engine (Smith, 2007)",
+        "url": "https://ieeexplore.ieee.org/document/4376991"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.314Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 33,
+  "estimated_words": 789
+}

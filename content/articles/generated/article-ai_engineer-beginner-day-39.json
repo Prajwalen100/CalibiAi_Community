@@ -1,0 +1,58 @@
+{
+  "id": "ai_engineer-day-39",
+  "role": "ai_engineer",
+  "level": "beginner",
+  "day": 39,
+  "title": "CI/CD for Machine Learning",
+  "summary": "Continuous Integration and Continuous Deployment automate the path from code change to running system. For ML, CI/CD tests your code and data, retrains or validates models, and deploys them automatically when checks pass. GitHub Actions is a popular ",
+  "content": "# CI/CD for Machine Learning\n\n## Overview\nContinuous Integration and Continuous Deployment automate the path from code change to running system. For ML, CI/CD tests your code and data, retrains or validates models, and deploys them automatically when checks pass. GitHub Actions is a popular tool to define these workflows. Automation reduces human error and lets you ship improvements safely and frequently instead of through risky manual steps.\n\n## Deep Dive\nThis module covers: CI/CD concepts; GitHub Actions basics; Automated testing for ML code; Automated model deployment; Continuous training triggers; Pipeline orchestration overview. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Create a GitHub Actions workflow that runs tests and builds a Docker image for your model API on every push.\n**Mini Project:** Set up an end-to-end CI/CD pipeline that tests, builds, and deploys your containerized model API automatically on push to main.\n**Assignment:** Describe what a CI/CD pipeline for an ML project should test and automate, from code commit to deployment.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "CI/CD concepts",
+    "GitHub Actions basics",
+    "Automated testing for ML code",
+    "Automated model deployment",
+    "Continuous training triggers",
+    "Pipeline orchestration overview"
+  ],
+  "practical_task_reference": "Create a GitHub Actions workflow that runs tests and builds a Docker image for your model API on every push.",
+  "mini_project_reference": "Set up an end-to-end CI/CD pipeline that tests, builds, and deploys your containerized model API automatically on push to main.",
+  "assignment_reference": "Describe what a CI/CD pipeline for an ML project should test and automate, from code commit to deployment.",
+  "skills_gained": [
+    "CI/CD",
+    "GitHub Actions",
+    "Automated ML deployment"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "GitHub Actions Tutorial",
+        "channel": "TechWorld with Nana",
+        "url": "https://www.youtube.com/watch?v=R8_veQiYBjI"
+      }
+    ],
+    "docs": [
+      {
+        "title": "GitHub Actions Documentation",
+        "url": "https://docs.github.com/en/actions"
+      }
+    ],
+    "github": [
+      {
+        "name": "actions/starter-workflows",
+        "url": "https://github.com/actions/starter-workflows"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Machine Learning Operations (MLOps): Overview, Definition, and Architecture (Kreuzberger et al., 2022)",
+        "url": "https://arxiv.org/abs/2205.02302"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.246Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 39,
+  "estimated_words": 509
+}

@@ -1,0 +1,57 @@
+{
+  "id": "data_science_engineer-day-32",
+  "role": "data_science_engineer",
+  "level": "intermediate",
+  "day": 32,
+  "title": "NLP: Text Processing and Embeddings",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# NLP: Text Processing and Embeddings\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Tokenization (word, subword, BPE); Word embeddings (Word2Vec, GloVe); Contextual embeddings intuition; Sentence embeddings and semantic similarity; Text classification and clustering with embeddings. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Generate word and sentence embeddings for a text corpus, use cosine similarity to find semantically similar items, and train a classifier on sentence embeddings, comparing to a TF-IDF baseline.\n**Mini Project:** Build a semantic search or document-clustering system using sentence embeddings that lets you query by meaning, evaluate its retrieval quality, and compare it to a keyword-based approach.\n**Assignment:** Explain the difference between static (Word2Vec) and contextual (BERT) embeddings with an example word whose meaning depends on context.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Tokenization (word, subword, BPE)",
+    "Word embeddings (Word2Vec, GloVe)",
+    "Contextual embeddings intuition",
+    "Sentence embeddings and semantic similarity",
+    "Text classification and clustering with embeddings"
+  ],
+  "practical_task_reference": "Generate word and sentence embeddings for a text corpus, use cosine similarity to find semantically similar items, and train a classifier on sentence embeddings, comparing to a TF-IDF baseline.",
+  "mini_project_reference": "Build a semantic search or document-clustering system using sentence embeddings that lets you query by meaning, evaluate its retrieval quality, and compare it to a keyword-based approach.",
+  "assignment_reference": "Explain the difference between static (Word2Vec) and contextual (BERT) embeddings with an example word whose meaning depends on context.",
+  "skills_gained": [
+    "Tokenization",
+    "Word and sentence embeddings",
+    "Semantic similarity"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Word Embeddings and Word2Vec, Clearly Explained",
+        "channel": "StatQuest with Josh Starmer",
+        "url": "https://www.youtube.com/watch?v=viZrOnJclY0"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Sentence-Transformers Documentation",
+        "url": "https://www.sbert.net/"
+      }
+    ],
+    "github": [
+      {
+        "name": "UKPLab/sentence-transformers",
+        "url": "https://github.com/UKPLab/sentence-transformers"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Efficient Estimation of Word Representations in Vector Space (Mikolov et al., 2013)",
+        "url": "https://arxiv.org/abs/1301.3781"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.285Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 32,
+  "estimated_words": 479
+}

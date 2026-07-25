@@ -1,0 +1,58 @@
+{
+  "id": "ai_engineer-day-40",
+  "role": "ai_engineer",
+  "level": "beginner",
+  "day": 40,
+  "title": "Cloud Platforms for AI",
+  "summary": "Production AI usually runs in the cloud, which offers on-demand compute, GPUs, storage, and managed ML services. The big three (AWS, GCP, Azure) each provide platforms like SageMaker or Vertex AI that handle training, deployment, and scaling. You do ",
+  "content": "# Cloud Platforms for AI\n\n## Overview\nProduction AI usually runs in the cloud, which offers on-demand compute, GPUs, storage, and managed ML services. The big three (AWS, GCP, Azure) each provide platforms like SageMaker or Vertex AI that handle training, deployment, and scaling. You do not need to master every service, but you should be able to deploy a containerized model, use cloud storage, and understand cost implications of your choices.\n\n## Deep Dive\nThis module covers: AWS, GCP, Azure AI overview; Compute and GPU instances; Managed ML services (SageMaker, Vertex AI); Cloud storage for data and models; Deploying a container to the cloud; Cost awareness in the cloud. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Deploy your Dockerized model API to a cloud service (e.g., a container service or a managed endpoint) and call it over the internet.\n**Mini Project:** Deploy a complete AI app to the cloud with proper storage and a public endpoint, and document the setup and estimated costs.\n**Assignment:** Compare the three major cloud providers' AI offerings at a high level and describe when you would use a managed ML service.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "AWS, GCP, Azure AI overview",
+    "Compute and GPU instances",
+    "Managed ML services (SageMaker, Vertex AI)",
+    "Cloud storage for data and models",
+    "Deploying a container to the cloud",
+    "Cost awareness in the cloud"
+  ],
+  "practical_task_reference": "Deploy your Dockerized model API to a cloud service (e.g., a container service or a managed endpoint) and call it over the internet.",
+  "mini_project_reference": "Deploy a complete AI app to the cloud with proper storage and a public endpoint, and document the setup and estimated costs.",
+  "assignment_reference": "Compare the three major cloud providers' AI offerings at a high level and describe when you would use a managed ML service.",
+  "skills_gained": [
+    "Cloud AI platforms",
+    "Cloud deployment",
+    "Cost awareness"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "AWS Machine Learning Full Course",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=Sh3surveps0"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Amazon SageMaker Documentation",
+        "url": "https://docs.aws.amazon.com/sagemaker/"
+      }
+    ],
+    "github": [
+      {
+        "name": "aws/amazon-sagemaker-examples",
+        "url": "https://github.com/aws/amazon-sagemaker-examples"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Hidden Technical Debt in Machine Learning Systems (Sculley et al., 2015)",
+        "url": "https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.247Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 40,
+  "estimated_words": 535
+}

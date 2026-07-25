@@ -1,0 +1,58 @@
+{
+  "id": "ai_engineer-day-5",
+  "role": "ai_engineer",
+  "level": "intermediate",
+  "day": 5,
+  "title": "Advanced SQL and Analytical Databases",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Advanced SQL and Analytical Databases\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Window functions and CTEs; Query optimization and execution plans; Indexing strategies; Analytical databases (DuckDB, BigQuery); SQL-based feature engineering; Working with semi-structured data (JSON). Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Write analytical queries using window functions and CTEs to build time-based features, then optimize a slow query by reading its execution plan.\n**Mini Project:** Use DuckDB to build a full feature-engineering pipeline in SQL over a large dataset, producing a model-ready table with rolling aggregates.\n**Assignment:** Explain how window functions differ from GROUP BY aggregations, with an example where a window function is essential.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Window functions and CTEs",
+    "Query optimization and execution plans",
+    "Indexing strategies",
+    "Analytical databases (DuckDB, BigQuery)",
+    "SQL-based feature engineering",
+    "Working with semi-structured data (JSON)"
+  ],
+  "practical_task_reference": "Write analytical queries using window functions and CTEs to build time-based features, then optimize a slow query by reading its execution plan.",
+  "mini_project_reference": "Use DuckDB to build a full feature-engineering pipeline in SQL over a large dataset, producing a model-ready table with rolling aggregates.",
+  "assignment_reference": "Explain how window functions differ from GROUP BY aggregations, with an example where a window function is essential.",
+  "skills_gained": [
+    "Advanced SQL",
+    "Query optimization",
+    "SQL feature engineering"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Advanced SQL Tutorial - Window Functions",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=NgH_jOpEUOg"
+      }
+    ],
+    "docs": [
+      {
+        "title": "DuckDB Documentation",
+        "url": "https://duckdb.org/docs/"
+      }
+    ],
+    "github": [
+      {
+        "name": "duckdb/duckdb",
+        "url": "https://github.com/duckdb/duckdb"
+      }
+    ],
+    "papers": [
+      {
+        "title": "DuckDB: an Embeddable Analytical Database (Raasveldt & Muhleisen, 2019)",
+        "url": "https://dl.acm.org/doi/10.1145/3299869.3320212"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.250Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 5,
+  "estimated_words": 466
+}

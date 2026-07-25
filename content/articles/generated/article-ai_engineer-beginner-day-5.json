@@ -1,0 +1,72 @@
+{
+  "id": "ai_engineer-day-5",
+  "role": "ai_engineer",
+  "level": "beginner",
+  "day": 5,
+  "title": "NumPy for Numerical Computing",
+  "summary": "NumPy is the foundation of scientific Python. It provides fast, memory-efficient arrays and vectorized operations implemented in C, so you avoid slow Python loops. Every ML dataset, image, and model weight is ultimately a NumPy-style array, making th",
+  "content": "# NumPy for Numerical Computing\n\n## Overview\nNumPy is the foundation of scientific Python. It provides fast, memory-efficient arrays and vectorized operations implemented in C, so you avoid slow Python loops. Every ML dataset, image, and model weight is ultimately a NumPy-style array, making this the essential first step before machine learning and deep learning.\n\n## Deep Dive\nThis module covers: ndarray creation; Indexing and slicing; Broadcasting; Vectorized math; Aggregations and axes; Random number generation. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Create a random 5x5 matrix, compute row and column means, normalize it, and locate the maximum value's index.\n**Mini Project:** Build a grayscale image editor using NumPy arrays to brighten, invert, and crop an image.\n**Assignment:** Reimplement dot product, matrix multiplication, and mean squared error using only NumPy, without Python loops.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "ndarray creation",
+    "Indexing and slicing",
+    "Broadcasting",
+    "Vectorized math",
+    "Aggregations and axes",
+    "Random number generation"
+  ],
+  "practical_task_reference": "Create a random 5x5 matrix, compute row and column means, normalize it, and locate the maximum value's index.",
+  "mini_project_reference": "Build a grayscale image editor using NumPy arrays to brighten, invert, and crop an image.",
+  "assignment_reference": "Reimplement dot product, matrix multiplication, and mean squared error using only NumPy, without Python loops.",
+  "skills_gained": [
+    "Vectorization",
+    "Array manipulation",
+    "Broadcasting",
+    "Numerical computing"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Python NumPy Tutorial for Beginners",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=QUT1VHiLmmI"
+      },
+      {
+        "title": "Complete NumPy Tutorial",
+        "channel": "Keith Galli",
+        "url": "https://www.youtube.com/watch?v=GB9ByFAIAH4"
+      }
+    ],
+    "docs": [
+      {
+        "title": "NumPy Documentation",
+        "url": "https://numpy.org/doc/stable/"
+      },
+      {
+        "title": "NumPy Absolute Beginners Guide",
+        "url": "https://numpy.org/doc/stable/user/absolute_beginners.html"
+      }
+    ],
+    "github": [
+      {
+        "name": "numpy/numpy",
+        "url": "https://github.com/numpy/numpy"
+      },
+      {
+        "name": "rougier/numpy-100",
+        "url": "https://github.com/rougier/numpy-100"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Array programming with NumPy (Harris et al., Nature 2020)",
+        "url": "https://www.nature.com/articles/s41586-020-2649-2"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.234Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 5,
+  "estimated_words": 481
+}

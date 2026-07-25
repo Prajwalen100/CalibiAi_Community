@@ -1,0 +1,57 @@
+{
+  "id": "ai_automation_engineer-day-19",
+  "role": "ai_automation_engineer",
+  "level": "beginner",
+  "day": 19,
+  "title": "Scheduling, Cron, and Polling Triggers",
+  "summary": "Not every automation should react to an instant event - many should run on a schedule, and controlling timing precisely is a core skill. A scheduled (or cron) trigger fires at set times: every hour, every weekday at 9 AM, on the first of the month. T",
+  "content": "# Scheduling, Cron, and Polling Triggers\n\n## Overview\nNot every automation should react to an instant event - many should run on a schedule, and controlling timing precisely is a core skill. A scheduled (or cron) trigger fires at set times: every hour, every weekday at 9 AM, on the first of the month. This powers recurring reports, daily digests, periodic data syncs, reminders, and cleanup jobs. All three platforms offer schedule triggers, and to configure precise timing you will meet cron expressions - a compact five-field syntax (minute, hour, day-of-month, month, day-of-week) where, for example, '0 9 * * 1-5' means 9:00 AM Monday through Friday. Learning to read and write basic cron is genuinely useful because it appears everywhere in tech, not just automation. You must always mind time zones when scheduling - '9 AM' in the tool's zone may not match your users' zone, a frequent source of confusion. Polling triggers are a related concept: rather than a webhook pushing events instantly, the tool checks an app every few minutes; you should understand that shorter polling intervals feel more real-time but consume more tasks/operations and API calls, so you balance freshness against cost. Finally, you will learn the difference between batch processing (gather many items and process them together on a schedule - efficient for reports and bulk syncs) and real-time processing (handle each event the moment it arrives - needed for urgent actions). Knowing when to schedule, how to express the schedule, and how to weigh batch vs real-time is exactly the timing judgment a professional applies to every workflow.\n\n## Deep Dive\nThis module covers: Schedule/cron triggers in Zapier, Make, n8n; Cron expression syntax; Polling intervals and their trade-offs; Time zones in scheduling; Batch vs real-time processing. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Build a scheduled automation that runs every weekday morning, pulls yesterday's records from a sheet or API, and sends a summary - configuring the schedule with the correct time zone and, where possible, a cron expression.\n**Mini Project:** Create a daily digest automation: on a weekday-morning cron schedule, gather new items from the past 24 hours across a couple of sources, format them into one report, and deliver it via email and Slack.\n**Assignment:** Write out five cron expressions in plain English (e.g., every 15 minutes, every Monday at 8 AM) and explain the trade-off between a 1-minute and a 15-minute polling interval.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Schedule/cron triggers in Zapier, Make, n8n",
+    "Cron expression syntax",
+    "Polling intervals and their trade-offs",
+    "Time zones in scheduling",
+    "Batch vs real-time processing"
+  ],
+  "practical_task_reference": "Build a scheduled automation that runs every weekday morning, pulls yesterday's records from a sheet or API, and sends a summary - configuring the schedule with the correct time zone and, where possible, a cron expression.",
+  "mini_project_reference": "Create a daily digest automation: on a weekday-morning cron schedule, gather new items from the past 24 hours across a couple of sources, format them into one report, and deliver it via email and Slack.",
+  "assignment_reference": "Write out five cron expressions in plain English (e.g., every 15 minutes, every Monday at 8 AM) and explain the trade-off between a 1-minute and a 15-minute polling interval.",
+  "skills_gained": [
+    "Scheduling and cron",
+    "Polling trade-offs",
+    "Batch vs real-time design"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Cron Jobs and Scheduling Explained for Beginners",
+        "channel": "Fireship",
+        "url": "https://www.youtube.com/watch?v=butCXhY_s0Q"
+      }
+    ],
+    "docs": [
+      {
+        "title": "n8n - Schedule Trigger node",
+        "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/"
+      }
+    ],
+    "github": [
+      {
+        "name": "node-cron/node-cron",
+        "url": "https://github.com/node-cron/node-cron"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Batch vs Stream Processing: A Comparative Study (industry survey)",
+        "url": "https://dl.acm.org/doi/10.1145/2723372.2742788"
+      }
+    ]
+  },
+  "reading_time_minutes": 4,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.311Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 19,
+  "estimated_words": 750
+}

@@ -1,0 +1,64 @@
+{
+  "id": "genai_engineer-day-11",
+  "role": "genai_engineer",
+  "level": "beginner",
+  "day": 11,
+  "title": "Scikit-learn End-to-End",
+  "summary": "Scikit-learn is the standard toolkit for classical ML. Its consistent API (fit/predict) and pipelines let you chain preprocessing and modeling into a single reproducible object. Learning proper cross-validation and hyperparameter tuning here builds d",
+  "content": "# Scikit-learn End-to-End\n\n## Overview\nScikit-learn is the standard toolkit for classical ML. Its consistent API (fit/predict) and pipelines let you chain preprocessing and modeling into a single reproducible object. Learning proper cross-validation and hyperparameter tuning here builds discipline you will carry into deep learning.\n\n## Deep Dive\nThis module covers: Estimators and transformers; Pipelines; Feature scaling and encoding; Cross-validation; Grid and random search; Model persistence. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Build a scikit-learn Pipeline that scales features, encodes categoricals, and trains a classifier, evaluated with cross-validation.\n**Mini Project:** Create a complete ML project on a Kaggle-style dataset: EDA, pipeline, tuning, evaluation, and saved model.\n**Assignment:** Use GridSearchCV to tune a model and report how tuning changed performance, with a confusion matrix.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Estimators and transformers",
+    "Pipelines",
+    "Feature scaling and encoding",
+    "Cross-validation",
+    "Grid and random search",
+    "Model persistence"
+  ],
+  "practical_task_reference": "Build a scikit-learn Pipeline that scales features, encodes categoricals, and trains a classifier, evaluated with cross-validation.",
+  "mini_project_reference": "Create a complete ML project on a Kaggle-style dataset: EDA, pipeline, tuning, evaluation, and saved model.",
+  "assignment_reference": "Use GridSearchCV to tune a model and report how tuning changed performance, with a confusion matrix.",
+  "skills_gained": [
+    "ML pipelines",
+    "Feature engineering",
+    "Hyperparameter tuning",
+    "Cross-validation"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "Scikit-learn Crash Course",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=0B5eIE_1vpU"
+      },
+      {
+        "title": "Machine Learning with scikit-learn",
+        "channel": "Data School",
+        "url": "https://www.youtube.com/watch?v=elojMnjn4kk"
+      }
+    ],
+    "docs": [
+      {
+        "title": "scikit-learn User Guide",
+        "url": "https://scikit-learn.org/stable/user_guide.html"
+      }
+    ],
+    "github": [
+      {
+        "name": "justmarkham/scikit-learn-videos",
+        "url": "https://github.com/justmarkham/scikit-learn-videos"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Scikit-learn: Machine Learning in Python (Pedregosa et al., 2011)",
+        "url": "https://www.jmlr.org/papers/v12/pedregosa11a.html"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Beginner",
+  "generated_at": "2026-07-25T09:20:59.291Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 11,
+  "estimated_words": 472
+}

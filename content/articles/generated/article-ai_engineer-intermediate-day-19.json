@@ -1,0 +1,58 @@
+{
+  "id": "ai_engineer-day-19",
+  "role": "ai_engineer",
+  "level": "intermediate",
+  "day": 19,
+  "title": "Object Detection and Segmentation",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Object Detection and Segmentation\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Object detection fundamentals (anchors, IoU, NMS); YOLO family and real-time detection; DETR (transformer-based detection); Semantic vs instance segmentation; U-Net and Segment Anything (SAM); Detection/segmentation metrics (mAP, IoU). Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Fine-tune a YOLO model on a custom detection dataset, evaluate with mAP, and run zero-shot segmentation with SAM on sample images.\n**Mini Project:** Build a detection or segmentation application (e.g., defect detection or object counting) with a fine-tuned model and an inference pipeline.\n**Assignment:** Explain the difference between semantic and instance segmentation, and describe what non-max suppression does in detection.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Object detection fundamentals (anchors, IoU, NMS)",
+    "YOLO family and real-time detection",
+    "DETR (transformer-based detection)",
+    "Semantic vs instance segmentation",
+    "U-Net and Segment Anything (SAM)",
+    "Detection/segmentation metrics (mAP, IoU)"
+  ],
+  "practical_task_reference": "Fine-tune a YOLO model on a custom detection dataset, evaluate with mAP, and run zero-shot segmentation with SAM on sample images.",
+  "mini_project_reference": "Build a detection or segmentation application (e.g., defect detection or object counting) with a fine-tuned model and an inference pipeline.",
+  "assignment_reference": "Explain the difference between semantic and instance segmentation, and describe what non-max suppression does in detection.",
+  "skills_gained": [
+    "Object detection",
+    "Image segmentation",
+    "Detection metrics"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "YOLO Object Detection Explained",
+        "channel": "Computerphile",
+        "url": "https://www.youtube.com/watch?v=ag3DLKsl2vk"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Ultralytics YOLO Documentation",
+        "url": "https://docs.ultralytics.com/"
+      }
+    ],
+    "github": [
+      {
+        "name": "ultralytics/ultralytics",
+        "url": "https://github.com/ultralytics/ultralytics"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Segment Anything (Kirillov et al., 2023)",
+        "url": "https://arxiv.org/abs/2304.02643"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.258Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 19,
+  "estimated_words": 465
+}

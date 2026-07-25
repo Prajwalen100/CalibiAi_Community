@@ -1,0 +1,66 @@
+{
+  "id": "ai_automation_engineer-day-28",
+  "role": "ai_automation_engineer",
+  "level": "intermediate",
+  "day": 28,
+  "title": "Kubernetes Basics for Scaling Automation Workloads",
+  "summary": "This day covers essential concepts for building AI engineering skills.",
+  "content": "# Kubernetes Basics for Scaling Automation Workloads\n\n## Overview\nThis day covers essential concepts for building AI engineering skills.\n\n## Deep Dive\nThis module covers: Pods, Deployments, Services, Ingress; ConfigMaps and Secrets; Rolling updates and rollbacks; HorizontalPodAutoscaler and resource requests/limits; Liveness/readiness probes; CronJobs for scheduled automation; Scaling n8n queue-mode workers on K8s; Managed K8s (GKE/EKS/AKS) and when K8s is overkill. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Deploy your FastAPI service to a kind/minikube cluster with a Deployment, Service, Ingress, and HorizontalPodAutoscaler, then perform a rolling update and rollback with zero downtime.\n**Mini Project:** Deploy your FastAPI automation service to a local (kind/minikube) cluster with a Deployment, Service, Ingress, and a HorizontalPodAutoscaler.\n**Assignment:** Add liveness/readiness probes and trigger a rolling update, then a rollback, verifying zero downtime.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Pods, Deployments, Services, Ingress",
+    "ConfigMaps and Secrets",
+    "Rolling updates and rollbacks",
+    "HorizontalPodAutoscaler and resource requests/limits",
+    "Liveness/readiness probes",
+    "CronJobs for scheduled automation",
+    "Scaling n8n queue-mode workers on K8s",
+    "Managed K8s (GKE/EKS/AKS) and when K8s is overkill"
+  ],
+  "practical_task_reference": "Deploy your FastAPI service to a kind/minikube cluster with a Deployment, Service, Ingress, and HorizontalPodAutoscaler, then perform a rolling update and rollback with zero downtime.",
+  "mini_project_reference": "Deploy your FastAPI automation service to a local (kind/minikube) cluster with a Deployment, Service, Ingress, and a HorizontalPodAutoscaler.",
+  "assignment_reference": "Add liveness/readiness probes and trigger a rolling update, then a rollback, verifying zero downtime.",
+  "skills_gained": [
+    "Core Kubernetes objects",
+    "Autoscaling and rolling updates",
+    "Scaling n8n and services on K8s"
+  ],
+  "resources": {
+    "youtube": {
+      "title": "Kubernetes tutorial for beginners",
+      "url": "https://www.youtube.com/watch?v=X48VuDVv0do",
+      "note": "Very high-view Kubernetes course; confirm view count on YouTube."
+    },
+    "docs": [
+      {
+        "title": "Kubernetes documentation",
+        "url": "https://kubernetes.io/docs/home/"
+      },
+      {
+        "title": "n8n on Kubernetes",
+        "url": "https://docs.n8n.io/hosting/installation/server-setups/kubernetes/"
+      }
+    ],
+    "github": [
+      {
+        "name": "kubernetes/kubernetes",
+        "url": "https://github.com/kubernetes/kubernetes"
+      },
+      {
+        "name": "kubernetes-sigs/kind",
+        "url": "https://github.com/kubernetes-sigs/kind"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Borg, Omega, and Kubernetes (Burns et al., Google, 2016)",
+        "url": "https://dl.acm.org/doi/10.1145/2890784"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Advanced",
+  "generated_at": "2026-07-25T09:20:59.327Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 28,
+  "estimated_words": 475
+}

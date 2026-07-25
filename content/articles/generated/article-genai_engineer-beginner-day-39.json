@@ -1,0 +1,72 @@
+{
+  "id": "genai_engineer-day-39",
+  "role": "genai_engineer",
+  "level": "beginner",
+  "day": 39,
+  "title": "Multimodal Models",
+  "summary": "Multimodal models understand more than one type of data at once, such as images and text together. CLIP aligns images and text in a shared space, and vision-language models can describe images or answer questions about them. Whisper transcribes speec",
+  "content": "# Multimodal Models\n\n## Overview\nMultimodal models understand more than one type of data at once, such as images and text together. CLIP aligns images and text in a shared space, and vision-language models can describe images or answer questions about them. Whisper transcribes speech. These unlock rich, real-world GenAI applications.\n\n## Deep Dive\nThis module covers: Multimodal concepts; CLIP and contrastive learning; Vision-language models (GPT-4V, LLaVA); Image captioning and VQA; Audio and speech models (Whisper); Multimodal use cases. Mastering these ideas is essential because they appear repeatedly in production AI systems.\n\n### What You Will Learn\n- The core theory behind today's topic.\n- How to apply it using Python, NumPy, Pandas, or the relevant framework.\n- How to evaluate results and avoid common mistakes.\n- Where to find authoritative references when you need deeper detail.\n\n### Real-World Context\nIn industry, these skills are used daily: data scientists clean messy survey data, AI engineers deploy models to REST APIs, and automation engineers orchestrate pipelines. Today's practical task simulates one of these real-world scenarios.\n\n## Hands-On Practice\n**Practical Task:** Use CLIP to match images to text captions and a vision-language model to answer questions about an image.\n**Mini Project:** Build a multimodal assistant that accepts an image and a question and returns a grounded answer, plus Whisper voice input.\n**Assignment:** Explain how CLIP's contrastive training aligns images and text, with a diagram.\n\nComplete all three sections. Each completed section earns points toward your CalibiAI Score. If you are unsure about any part, use the AI assessment popup to submit your work and receive dynamic feedback from DeepSeek.\n\n## Common Mistakes to Avoid\nMany beginners rush into coding before fully understanding the data. Others skip validation steps and overestimate model performance. This module helps you build the discipline of checking assumptions first, then applying algorithms systematically.\n\n## Career Impact\nThe skills covered today are frequently tested in technical interviews and required in entry-level AI engineering roles. Building a portfolio that demonstrates mastery of these concepts will significantly improve your job prospects.\n\n## Key Takeaways\n1. Theory guides practice — understand before coding.\n2. Clean data and clear metrics are more valuable than complex models.\n3. Document your steps for reproducibility.\n4. Communication matters: explain results to non-technical stakeholders.\n\n## Next Steps After Today\n- Complete the practical task and submit it for AI review.\n- Read any research papers linked for deeper theory.\n- Prepare questions for tomorrow's module.\n\n## Resources\n- Use the linked videos and documentation as reference material.\n- Read the research papers for theoretical depth.\n- Check the GitHub repositories for working code examples.\n\n## Assessment\nAfter finishing the work, open the AI Assessment popup to submit your practical results. DeepSeek will evaluate your submission, calculate a dynamic score based on correctness and depth, and add the points to your CalibiAI profile.",
+  "topics": [
+    "Multimodal concepts",
+    "CLIP and contrastive learning",
+    "Vision-language models (GPT-4V, LLaVA)",
+    "Image captioning and VQA",
+    "Audio and speech models (Whisper)",
+    "Multimodal use cases"
+  ],
+  "practical_task_reference": "Use CLIP to match images to text captions and a vision-language model to answer questions about an image.",
+  "mini_project_reference": "Build a multimodal assistant that accepts an image and a question and returns a grounded answer, plus Whisper voice input.",
+  "assignment_reference": "Explain how CLIP's contrastive training aligns images and text, with a diagram.",
+  "skills_gained": [
+    "Multimodal AI",
+    "CLIP",
+    "Vision-language models",
+    "Speech models"
+  ],
+  "resources": {
+    "youtube": [
+      {
+        "title": "OpenAI CLIP Explained",
+        "channel": "AssemblyAI",
+        "url": "https://www.youtube.com/watch?v=fGwH2YoQkDM"
+      },
+      {
+        "title": "Multimodal AI Explained",
+        "channel": "IBM Technology",
+        "url": "https://www.youtube.com/watch?v=WkoytlA3MoQ"
+      }
+    ],
+    "docs": [
+      {
+        "title": "Hugging Face CLIP Docs",
+        "url": "https://huggingface.co/docs/transformers/model_doc/clip"
+      },
+      {
+        "title": "OpenAI Whisper",
+        "url": "https://github.com/openai/whisper"
+      }
+    ],
+    "github": [
+      {
+        "name": "openai/CLIP",
+        "url": "https://github.com/openai/CLIP"
+      },
+      {
+        "name": "haotian-liu/LLaVA",
+        "url": "https://github.com/haotian-liu/LLaVA"
+      }
+    ],
+    "papers": [
+      {
+        "title": "Learning Transferable Visual Models From Natural Language Supervision (CLIP, Radford et al., 2021)",
+        "url": "https://arxiv.org/abs/2103.00020"
+      }
+    ]
+  },
+  "reading_time_minutes": 3,
+  "difficulty": "Intermediate",
+  "generated_at": "2026-07-25T09:20:59.296Z",
+  "ai_model_used": "deepseek-chat",
+  "related_roadmap_day": 39,
+  "estimated_words": 487
+}
