@@ -26,7 +26,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     skills_gained: string[];
     reading_time_minutes: number;
     difficulty: string;
-    resources: any;
+    resources: { youtube?: Array<{ title: string; channel: string; url: string }>; docs?: Array<{ title: string; url: string }>; github?: Array<{ title: string; url: string }>; papers?: Array<{ title: string; url: string }>; };
   };
 
   const roleTitle = article.role.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
@@ -97,13 +97,13 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               <BookOpen className="h-5 w-5 text-brand-600" /> Related Resources
             </h3>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              {article.resources.youtube?.map((v: any, i: number) => (
+              {article.resources.youtube?.map((v: { title: string; channel: string; url: string }, i: number) => (
                 <a key={i} href={v.url} target="_blank" rel="noopener noreferrer" className="rounded-xl border border-slate-200 bg-white p-4 transition hover:border-brand-500 hover:shadow-sm dark:border-slate-700 dark:bg-slate-900">
                   <p className="font-semibold text-brand-700">{v.title}</p>
                   <p className="text-sm text-slate-500">{v.channel}</p>
                 </a>
               ))}
-              {article.resources.docs?.map((d: any, i: number) => (
+              {article.resources.docs?.map((d: { title: string; url: string }, i: number) => (
                 <a key={i + (article.resources.youtube?.length || 0)} href={d.url} target="_blank" rel="noopener noreferrer" className="rounded-xl border border-slate-200 bg-white p-4 transition hover:border-brand-500 hover:shadow-sm dark:border-slate-700 dark:bg-slate-900">
                   <p className="font-semibold text-brand-700">{d.title}</p>
                   <p className="text-sm text-slate-500">Official Docs</p>

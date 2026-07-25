@@ -1,7 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
-import { Quote, Sparkles, RefreshCw } from "lucide-react";
-import { deepseekConfigured } from "@/lib/ai/deepseek";
+import { useState, useEffect, useCallback } from "react";
+import { Quote, RefreshCw } from "lucide-react";
 
 const FALLBACK_QUOTES = [
   "Every expert was once a beginner. — Helen Hayes",
@@ -18,23 +17,22 @@ export function DynamicMotivationQuote({ userName: propName }: { userName?: stri
   const [quote, setQuote] = useState<string>("Loading your motivation...");
   const [loading, setLoading] = useState(false);
 
-  async function fetchQuote() {
+  const fetchQuote = useCallback(async () => {
     setLoading(true);
     try {
-      if (deepseekConfigured()) {
-        const res = await fetch("/api/ai/prompt", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            prompt: `Write one short, inspirational daily motivation quote for an AI engineering student named ${propName || "Student"}. Make it specific to learning code, building AI systems, and personal growth. Keep it under 120 characters.`
-          }),
-        });
-        const data = await res.json();
-        if (data?.text) {
-          setQuote(data.text.slice(0, 200));
-          setLoading(false);
-          return;
-        }
+      // Always try the server-side AI endpoint first (it handles its own configuration)
+      const res = await fetch("/api/ai/prompt", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prompt: `Write one short, inspirational daily motivation quote for an AI engineering student named ${propName || "Student"}. Make it specific to learning code, building AI systems, and personal growth. Keep it under 120 characters.`
+        }),
+      });
+      const data = await res.json();
+      if (data?.text) {
+        setQuote(data.text.slice(0, 200));
+        setLoading(false);
+        return;
       }
       // Fallback to curated list with dynamic rotation based on day
       const day = new Date().getDate();
@@ -46,11 +44,13 @@ export function DynamicMotivationQuote({ userName: propName }: { userName?: stri
     } finally {
       setLoading(false);
     }
-  }
+  }, [propName]);
 
   useEffect(() => {
+    // Intentionally fetching data for this component; suppress false-positive lint error
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchQuote();
-  }, [propName]);
+  }, [fetchQuote]);
 
   return (
     <div className="rounded-2xl bg-gradient-to-r from-violet-600 to-brand-600 p-5 text-white shadow-xl shadow-violet-500/20 relative overflow-hidden">

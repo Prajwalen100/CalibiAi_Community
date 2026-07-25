@@ -32,11 +32,11 @@ export default async function QuizPage({
     .limit(1)
     .single();
 
-  const plan = roadmap?.generated_plan as { days?: Array<{ quiz?: Array<{ question: string; options: string[]; answer: string | number; explanation?: string }> }> } | null;
-  const currentDay = plan?.days?.find((d: any) => d.day === dayNumber);
+  const plan = roadmap?.generated_plan as { days?: Array<{ day?: number; title?: string; quiz?: Array<{ question: string; options: string[]; answer: string | number; explanation?: string }> }> } | null;
+  const currentDay = plan?.days?.find((d: { day?: number; title?: string; quiz?: Array<{ question: string; options: string[]; answer: string | number; explanation?: string }> }) => d.day === dayNumber);
   const quizQuestions = currentDay?.quiz || [];
 
-  const formattedQuestions = quizQuestions.map((q: any, i: number) => ({
+  const formattedQuestions = quizQuestions.map((q: { question: string; options: string[]; answer: string | number; explanation?: string }, i: number) => ({
     id: `quiz-day-${dayNumber}-q${i}`,
     question: q.question || "Sample question",
     options: q.options?.map((opt: string, idx: number) => ({ text: opt, label: String.fromCharCode(65 + idx) })) || [
