@@ -1,8 +1,8 @@
 import Link from "next/link";
 import {
   Home, MessageSquare, Lightbulb, Rocket, Trophy, Calendar,
-  Users, BookOpen, GraduationCap, Search, Bell,
-  LayoutGrid, Star, Target, ChevronRight, Smile,
+  Users, GraduationCap, Search, Bell,
+  LayoutGrid, Target, ChevronRight, Smile,
 } from "lucide-react";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { attachCommunityProfiles } from "@/lib/community/public-profiles";
@@ -22,7 +22,6 @@ const communityNav = [
   { label: "Leaderboard", href: "/community/leaderboard", icon: Trophy },
   { label: "Events", href: "/community/events", icon: Calendar },
   { label: "Team Finder", href: "/community/team-finder", icon: Users },
-  { label: "Resources", href: "/community/resources", icon: BookOpen },
   { label: "Mentors", href: "/community/mentors", icon: GraduationCap },
   { label: "Choose avatar", href: "/community/profile/avatar", icon: Smile },
 ];

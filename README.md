@@ -35,11 +35,11 @@ A Next.js + Supabase implementation of the CalibiAI MVP: public conversion pages
 - **Employer login** (`/employer/signin`) — company profile (name, logo, email, location type, PAN, website, size), dashboard with applications inbox, candidate profiles, notifications, and job/gig posting.
 - Jobs posted by employers appear on `/placements` (Opportunity) and `/community/jobs/opportunities`. Students apply; employers manage the pipeline and can send offers.
 
-## Resource Hub (Phases curriculum)
+## Learning Hub (Phases curriculum)
 
-- Community → **Resource Hub** (`/community/resources`) loads every lesson from the repo `phases/` folder (20 phases, 500+ modules).
+- The top navigation → **Learning Hub** (`/learning-hub`) loads every lesson from the repo `phases/` folder (20 phases, 500+ modules).
 - Open a phase, then a module to read the full markdown lesson. A **top progress line** tracks scroll %; signed-in users persist progress in `curriculum_progress` (migration 007).
-- Routes: `/community/resources`, `/community/resources/[phaseId]`, `/community/resources/[phaseId]/[moduleSlug]`.
+- Routes: `/learning-hub`, `/learning-hub/[phaseId]`, `/learning-hub/[phaseId]/[moduleSlug]`. Legacy Community resource URLs redirect here.
 4. Install and run:
 
 ```bash

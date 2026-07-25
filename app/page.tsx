@@ -1,14 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
+import { redirect } from "next/navigation";
+import { getStudentAccess } from "@/lib/auth/student-access";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
 import {
   ArrowRight,
   Building2,
   GraduationCap,
-  Heart,
   Quote,
-  Rocket,
   Sparkles,
-  Target,
   Users,
   Shield,
   Zap,
@@ -22,7 +22,9 @@ import {
   Lightbulb,
   Globe,
 } from "lucide-react";
-import { ScrollReveal, StaggerReveal, GlowOnHover, Floating } from "@/components/scroll-reveal";
+import { ScrollReveal, StaggerReveal } from "@/components/scroll-reveal";
+
+export const dynamic = "force-dynamic";
 
 const testimonials = [
   {
@@ -67,7 +69,27 @@ const testimonials = [
   },
 ] as const;
 
-export default function HomePage() {
+export default async function HomePage() {
+  // The marketing landing page is anonymous-only. Returning users should land
+  // in their durable student/employer journey instead of seeing sign-up CTAs
+  // again after logging in.
+  let authenticatedDestination: string | null = null;
+  try {
+    const supabase = await createServerSupabaseClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (user) {
+      const access = await getStudentAccess(supabase, user.id);
+      authenticatedDestination = access.isEmployer
+        ? "/employer/dashboard"
+        : access.nextPath;
+    }
+  } catch {
+    // Keep the public landing page available during an auth service outage.
+  }
+  if (authenticatedDestination) redirect(authenticatedDestination);
+
   return (
     <div className="relative overflow-hidden">
       <div className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[900px] w-full max-w-7xl -translate-x-1/2 overflow-hidden opacity-50 dark:opacity-30">
