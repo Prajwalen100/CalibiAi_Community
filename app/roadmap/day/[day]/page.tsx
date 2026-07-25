@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { getStudentAccess } from "@/lib/auth/student-access";
+import { getArticleSlug } from "@/lib/learning/article-link";
 import { 
   Calendar, 
   Clock, 
@@ -344,7 +345,7 @@ export default async function DayPage({
           Read the full 500-600 word article covering theory, real-world application, common pitfalls, and assessment notes.
         </p>
         <Link
-          href={`/articles/${plan?.roadmap?.role ?? "ai_engineer"}-${plan?.roadmap?.level ?? "beginner"}-${dayNumber}`}
+          href={`/articles/${getArticleSlug(plan?.roadmap?.role, plan?.roadmap?.level, dayNumber)}`}
           className="btn-primary mt-3 inline-flex items-center gap-2"
         >
           Read Detailed Article <ExternalLink className="h-4 w-4" />

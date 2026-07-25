@@ -45,7 +45,10 @@ export default async function QuizPage({
       { text: "Option C", label: "C" },
       { text: "Option D", label: "D" },
     ],
-    correctIndex: typeof q.answer === "number" ? q.answer : 0,
+    // Content may store the correct answer as either an option index or option text.
+    correctIndex: typeof q.answer === "number"
+      ? q.answer
+      : Math.max(0, q.options?.findIndex((option: string) => option === q.answer) ?? 0),
     explanation: q.explanation || "Review the material for this day.",
   }));
 

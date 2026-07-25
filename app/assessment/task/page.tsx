@@ -4,7 +4,7 @@ import { getStudentAccess } from "@/lib/auth/student-access";
 import { ArrowLeft, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { TaskAssessmentPopup } from "@/components/task-assessment-popup";
-import { CodeEditor } from "@/components/code-editor";
+
 
 export const dynamic = "force-dynamic";
 
@@ -14,7 +14,13 @@ export default async function TaskAssessmentPage({
   searchParams: Promise<{ type?: string; day?: string; title?: string; open?: string }>;
 }) {
   const params = await searchParams;
-  const { type = "practical_task", day = "", title = "" } = params;
+  const requestedType = params.type;
+  const type = requestedType === "mini_project" || requestedType === "assignment" || requestedType === "practical_task"
+    ? requestedType
+    : "practical_task";
+  const parsedDay = Number.parseInt(params.day ?? "", 10);
+  const dayNumber = Number.isSafeInteger(parsedDay) && parsedDay > 0 ? parsedDay : 1;
+  const title = params.title?.trim() || `Day ${dayNumber} ${type.replace("_", " ")}`;
 
   const supabase = await createServerSupabaseClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -26,9 +32,9 @@ export default async function TaskAssessmentPage({
 
   return (
     <section className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
-      <Link href={`/roadmap/day/${day || 1}`} className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-brand-600">
+      <Link href={`/roadmap/day/${dayNumber}`} className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-brand-600">
         <ArrowLeft className="h-4 w-4" />
-        Back to Day {day || 1}
+        Back to Day {dayNumber}
       </Link>
 
       <div className="mt-6 rounded-3xl border border-brand-200 bg-gradient-to-br from-brand-50 to-indigo-50 p-6 dark:border-brand-800 dark:from-brand-950/30 dark:to-indigo-950/30">
@@ -46,14 +52,12 @@ export default async function TaskAssessmentPage({
         </p>
       </div>
 
-      <CodeEditor taskType={type} dayNumber={parseInt(day || "1", 10)} taskTitle={title} />
-
       <TaskAssessmentPopup
         isOpen={true}
-        onClose={() => redirect(`/roadmap/day/${day || 1}`)}
-        taskType={type as "practical_task" | "mini_project" | "assignment"}
+        onClose={() => redirect(`/roadmap/day/${dayNumber}`)}
+        taskType={type}
         taskDescription={title}
-        dayNumber={parseInt(day || "1", 10)}
+        dayNumber={dayNumber}
         onScoreCalculated={(score, feedback) => {
           // In a real implementation, this would call an API to save the score to the user's profile
           console.log("AI Score:", score, "Feedback:", feedback);
