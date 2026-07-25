@@ -87,9 +87,14 @@ export default async function RoadmapPage() {
   const plan = roadmap?.generated_plan as StoredRoadmap | undefined;
   const days = plan?.days ?? [];
   const weeklyTargets = plan?.weeklyTargets ?? [];
-  const totalDays = plan?.totalDays ?? days.length;
+  const totalDays = plan?.totalDays ?? (plan?.days?.length ?? 0);
   const totalWeeks = plan?.totalWeeks ?? Math.ceil(days.length / 7);
   const assessmentScore = plan?.assessment_score ?? 0;
+
+  // If no roadmap exists or days array is empty/invalid, redirect to get one assigned
+  if (!plan || !Array.isArray(days) || days.length === 0) {
+    redirect("/roadmap/assign");
+  }
 
   // Calculate progress stats
   const completedDays = progress?.filter(p => p.status === "completed").length ?? 0;

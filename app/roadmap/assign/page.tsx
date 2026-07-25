@@ -12,8 +12,21 @@ export default async function AssignRoadmapPage() {
 
   const access = await getStudentAccess(supabase, user.id);
   if (access.isEmployer) redirect("/employer/dashboard");
-  if (access.canAccessStudentArea) redirect("/dashboard");
   if (!access.hasCompletedAssessment) redirect(access.nextPath);
 
+  // Check if user already has a roadmap assigned
+  const { data: existingRoadmap } = await supabase
+    .from("roadmaps")
+    .select("id")
+    .eq("user_id", user.id)
+    .limit(1)
+    .maybeSingle();
+
+  // If user already has a roadmap, redirect to dashboard
+  if (existingRoadmap) {
+    redirect("/dashboard");
+  }
+
+  // User needs a roadmap but doesn't have one - show assignment page
   return <AssigningRoadmap />;
 }
