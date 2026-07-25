@@ -11,6 +11,8 @@ type Params = Promise<{ slug: string }>;
 async function getBlogPost(slug: string): Promise<BlogPost | null> {
   try {
     const supabase = await createServerSupabaseClient();
+
+    // Primary: direct table query (matches how Admin publishes blogs)
     const { data, error } = await supabase
       .from("posts")
       .select("id,author_id,slug,title,excerpt,body,status,category,read_time_minutes,cover_image_url,tags,featured,published_at,created_at,updated_at")
@@ -19,11 +21,23 @@ async function getBlogPost(slug: string): Promise<BlogPost | null> {
       .eq("slug", slug)
       .maybeSingle();
 
-    if (!error && data) return toBlogPost(data);
+    if (!error && data) {
+      return toBlogPost(data);
+    }
+
+    // Fallback to published view
+    const { data: viewData } = await supabase
+      .from("published_blog_posts")
+      .select("*")
+      .eq("slug", slug)
+      .maybeSingle();
+
+    if (viewData) return toBlogPost(viewData);
   } catch {
-    // Fall through to static fallback.
+    // ignore
   }
 
+  // Last resort: static demo content
   return STATIC_BLOG_POSTS.find((post) => post.slug === slug) ?? null;
 }
 
