@@ -21,6 +21,7 @@ type Bank = { assessment: { skills_assessed: string[] }; questions: Question[] }
 type Attempt = {
   id: string;
   role: LearningRole;
+  status: "in_progress" | "submitted" | "abandoned";
   seed: string;
   question_ids: string[];
   answers: Record<string, number>;
@@ -238,6 +239,9 @@ export async function finishAttempt(attemptId: string): Promise<Result<{
   if (!row || !isLearningRole(row.role)) {
     return { data: null, error: { message: "Assessment not found.", status: 404 } };
   }
+  if (row.status === "abandoned") {
+    return { data: null, error: { message: "This assessment is no longer active.", status: 409 } };
+  }
 
   const qs = (row.question_ids).map(id => bank(row.role).questions.find(q => q.id === id)!);
 
@@ -285,20 +289,33 @@ export async function finishAttempt(attemptId: string): Promise<Result<{
     generated_at: new Date().toISOString(),
   };
 
-  await supabase
-    .from("assessment_results")
-    .update({ status: "submitted", overall_score: overall, level, submitted_at: new Date().toISOString() })
-    .eq("id", attemptId);
-
-  await supabase.from("skill_scores").upsert(
+  const { error: skillsError } = await supabase.from("skill_scores").upsert(
     skillScores.map(s => ({ assessment_result_id: attemptId, user_id: user.id, ...s })),
     { onConflict: "assessment_result_id,skill" }
   );
+  if (skillsError) {
+    return { data: null, error: { message: "Could not save your skill scores. Please retry.", status: 500 } };
+  }
 
-  await supabase.from("knowledge_graph").upsert(
+  const { error: graphError } = await supabase.from("knowledge_graph").upsert(
     { assessment_result_id: attemptId, user_id: user.id, graph },
     { onConflict: "assessment_result_id" }
   );
+  if (graphError) {
+    return { data: null, error: { message: "Could not save your assessment profile. Please retry.", status: 500 } };
+  }
+
+  const submittedAt = new Date().toISOString();
+  const { data: submitted, error: submitError } = await supabase
+    .from("assessment_results")
+    .update({ status: "submitted", overall_score: overall, aggregate_score: overall, level, submitted_at: submittedAt })
+    .eq("id", attemptId)
+    .eq("user_id", user.id)
+    .select("id")
+    .maybeSingle();
+  if (submitError || !submitted) {
+    return { data: null, error: { message: "Could not finish your assessment. Please retry.", status: 500 } };
+  }
 
   return { data: { overall, level, skillScores }, error: null };
 }

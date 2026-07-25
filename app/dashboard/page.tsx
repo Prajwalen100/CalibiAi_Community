@@ -2,8 +2,22 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import type { GeneratedRoadmap } from "@/lib/ai/schemas";
+import { getStudentAccess } from "@/lib/auth/student-access";
 
 export const dynamic = "force-dynamic";
+
+type AssignedRoadmapDay = {
+  day: number;
+  title: string;
+  practical_task?: string;
+  assignment?: string;
+  expected_outcome?: string;
+  estimated_time?: string;
+};
+
+type StoredRoadmap = Partial<GeneratedRoadmap> & {
+  days?: AssignedRoadmapDay[];
+};
 
 export default async function DashboardPage({
   searchParams,
@@ -13,16 +27,29 @@ export default async function DashboardPage({
   const { submitted } = await searchParams;
   const supabase = await createServerSupabaseClient();
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) redirect("/");
+  if (!user) redirect("/signin?mode=sign-in");
+
+  const access = await getStudentAccess(supabase, user.id);
+  if (access.isEmployer) redirect("/employer/dashboard");
+  if (!access.canAccessStudentArea) redirect(access.nextPath);
+
   const [{ data: profile }, { data: score }, { data: roadmap }, { data: projects }] = await Promise.all([
     supabase.from("profiles").select("*").eq("user_id", user.id).single(),
     supabase.from("scores").select("*").eq("user_id", user.id).single(),
     supabase.from("roadmaps").select("*").eq("user_id", user.id).order("created_at", { ascending: false }).limit(1).single(),
     supabase.from("projects").select("id,title,ai_score,verified,complexity_tier,created_at").eq("user_id", user.id).order("created_at", { ascending: false }),
   ]);
-  if (profile?.role === "employer") redirect("/employer/dashboard");
-  if (!profile?.target_role) redirect("/onboarding");
-  const plan = roadmap?.generated_plan as GeneratedRoadmap | undefined;
+  const plan = roadmap?.generated_plan as StoredRoadmap | undefined;
+  const modules = plan?.modules ?? plan?.days?.slice(0, 8).map((day) => ({
+    id: `day-${day.day}`,
+    title: `Day ${day.day}: ${day.title}`,
+    outcome: day.expected_outcome ?? `Complete day ${day.day} of your assigned roadmap.`,
+    build_task: day.assignment ?? day.practical_task ?? `Study and practice ${day.title}.`,
+    verification_artifact: "github_repo" as const,
+    estimated_hours: Math.max(1, Number.parseInt(day.estimated_time ?? "2", 10) || 2),
+  }));
+  const nextAction = plan?.next_action ?? modules?.[0]?.build_task ?? "Start your first verified build task.";
+
   return (
     <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
@@ -85,9 +112,9 @@ export default async function DashboardPage({
             <p className="text-sm font-semibold text-slate-500">Recommended next action</p>
             <Link href="/dashboard/submit" className="text-sm font-semibold text-brand-700 hover:text-brand-600">Submit a project</Link>
           </div>
-          <h2 className="mt-2 text-2xl font-black">{plan?.next_action ?? "Start your first verified build task."}</h2>
+          <h2 className="mt-2 text-2xl font-black">{nextAction}</h2>
           <div className="mt-6 grid gap-3">
-            {plan?.modules?.map((module, index) => (
+            {modules?.map((module, index) => (
               <Link
                 key={module.id}
                 href={`/dashboard/submit?module_id=${encodeURIComponent(module.id)}&module_title=${encodeURIComponent(module.title)}&build_task=${encodeURIComponent(module.build_task)}`}

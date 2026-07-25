@@ -57,7 +57,7 @@ npm test
 npm run typecheck
 ```
 
-The repository currently contains standalone TypeScript examples under `phases/` that are included by the root TypeScript configuration and cause unrelated global-name/dependency errors. Validate changed app code separately until that training-content configuration is excluded from root typechecking.
+Standalone TypeScript examples under `phases/` are intentionally excluded from the app's root TypeScript and Vitest configurations; they have their own lesson-specific runtimes and dependencies.
 
 ## 5. Production checklist
 

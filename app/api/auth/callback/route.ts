@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { getStudentAccess } from "@/lib/auth/student-access";
 
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
@@ -78,12 +79,11 @@ export async function GET(request: Request) {
         return NextResponse.redirect(new URL("/employer/onboarding", request.url));
       }
 
-      // Student flow
+      // Student flow. A selected target role alone must never unlock the app;
+      // resume onboarding/assessment/assignment from durable state.
       clearIntent();
-      if (profile?.target_role && profile.role !== "employer") {
-        return NextResponse.redirect(new URL("/dashboard", request.url));
-      }
-      return NextResponse.redirect(new URL("/onboarding", request.url));
+      const access = await getStudentAccess(supabase, user.id);
+      return NextResponse.redirect(new URL(access.nextPath, request.url));
     }
   }
 
@@ -116,10 +116,8 @@ export async function GET(request: Request) {
       }
 
       clearIntent();
-      if (profile?.target_role) {
-        return NextResponse.redirect(new URL("/dashboard", request.url));
-      }
-      return NextResponse.redirect(new URL("/onboarding", request.url));
+      const access = await getStudentAccess(supabase, user.id);
+      return NextResponse.redirect(new URL(access.nextPath, request.url));
     }
   } catch {
     /* fall through */

@@ -20,8 +20,11 @@ A Next.js + Supabase implementation of the CalibiAI MVP: public conversion pages
    - `supabase/migrations/005_profile_avatars.sql` (Adds `avatar_id` to profiles table & updates community public views)
    - `supabase/migrations/006_employer.sql` (Employer role, company profiles, job offers, employer-only job posting)
    - `supabase/migrations/007_curriculum_progress.sql` (Per-user reading progress for Resource Hub / phases curriculum)
+   - `supabase/migrations/008_learning_engine_onboarding.sql` (Student onboarding state and learning roles)
+   - `supabase/migrations/009_assessment_engine.sql` (Placement attempts, skill scores, and knowledge graph)
+   - `supabase/migrations/010_learning_engine_core.sql` (Roadmap assignment and progress records)
 
-   If you skip any migration, you will get setup or feature errors (for example, saving an avatar requires migration 005, squads/events require migration 004, employer hiring requires migration 006, and module reading progress requires migration 007). If you are using the Supabase SQL Editor, paste and run each file separately in numerical order; if you are using the Supabase CLI, run `supabase db push`.
+   If you skip any migration, you will get setup or feature errors (for example, saving an avatar requires migration 005, squads/events require migration 004, employer hiring requires migration 006, module reading progress requires migration 007, and the student onboarding-to-assessment flow requires migrations 008–010). If you are using the Supabase SQL Editor, paste and run each file separately in numerical order; if you are using the Supabase CLI, run `supabase db push`.
 3. Enable Google OAuth in Supabase Auth and set the callback URL to:
    - Local: `http://localhost:3000/api/auth/callback`
    - Vercel: `https://YOUR_DOMAIN/api/auth/callback`
