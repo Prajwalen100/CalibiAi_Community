@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { getStudentAccess } from "@/lib/auth/student-access";
+import { recordLoginActivity } from "@/lib/admin/activity";
 
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
@@ -82,6 +83,8 @@ export async function GET(request: Request) {
       // Student flow. A selected target role alone must never unlock the app;
       // resume onboarding/assessment/assignment from durable state.
       clearIntent();
+      // Track the login so the admin Student Data view can report active users.
+      await recordLoginActivity(supabase, user.id);
       const access = await getStudentAccess(supabase, user.id);
       return NextResponse.redirect(new URL(access.nextPath, request.url));
     }
@@ -116,6 +119,7 @@ export async function GET(request: Request) {
       }
 
       clearIntent();
+      await recordLoginActivity(supabase, user.id);
       const access = await getStudentAccess(supabase, user.id);
       return NextResponse.redirect(new URL(access.nextPath, request.url));
     }

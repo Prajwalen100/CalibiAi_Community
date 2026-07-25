@@ -1,5 +1,10 @@
 export type BlogStatus = "draft" | "in_review" | "published";
 
+export type BlogLink = {
+  label: string;
+  url: string;
+};
+
 export type BlogPost = {
   id: string;
   slug: string;
@@ -11,12 +16,16 @@ export type BlogPost = {
   status: BlogStatus;
   featured: boolean;
   tags: string[];
+  links: BlogLink[];
+  authorName: string | null;
   coverImageUrl: string | null;
   publishedAt: string | null;
   createdAt: string;
   updatedAt: string | null;
   authorId?: string;
 };
+
+export const BLOG_STATUSES: BlogStatus[] = ["draft", "in_review", "published"];
 
 export const STATIC_BLOG_POSTS: BlogPost[] = [
   {
@@ -32,6 +41,8 @@ export const STATIC_BLOG_POSTS: BlogPost[] = [
     status: "published",
     featured: true,
     tags: ["Hiring", "Profiles", "Talent Score"],
+    links: [],
+    authorName: "CalibiAI Team",
     coverImageUrl: null,
     publishedAt: "2024-01-15T00:00:00.000Z",
     createdAt: "2024-01-15T00:00:00.000Z",
@@ -50,6 +61,8 @@ export const STATIC_BLOG_POSTS: BlogPost[] = [
     status: "published",
     featured: false,
     tags: ["RAG", "LLM", "Evaluation"],
+    links: [],
+    authorName: "CalibiAI Team",
     coverImageUrl: null,
     publishedAt: "2024-01-10T00:00:00.000Z",
     createdAt: "2024-01-10T00:00:00.000Z",
@@ -68,6 +81,8 @@ export const STATIC_BLOG_POSTS: BlogPost[] = [
     status: "published",
     featured: false,
     tags: ["Students", "Placement", "Portfolio"],
+    links: [],
+    authorName: "CalibiAI Team",
     coverImageUrl: null,
     publishedAt: "2024-01-05T00:00:00.000Z",
     createdAt: "2024-01-05T00:00:00.000Z",
@@ -86,6 +101,8 @@ export const STATIC_BLOG_POSTS: BlogPost[] = [
     status: "published",
     featured: false,
     tags: ["Prompt Engineering", "Evaluation", "Testing"],
+    links: [],
+    authorName: "CalibiAI Team",
     coverImageUrl: null,
     publishedAt: "2023-12-28T00:00:00.000Z",
     createdAt: "2023-12-28T00:00:00.000Z",
@@ -94,44 +111,118 @@ export const STATIC_BLOG_POSTS: BlogPost[] = [
 ];
 
 export function slugifyBlogTitle(title: string) {
-  return title
-    .toLowerCase()
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 90) || "untitled-post";
+  return (
+    title
+      .toLowerCase()
+      .normalize("NFKD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 90) || "untitled-post"
+  );
 }
 
 export function estimateReadTimeMinutes(body: string) {
   const words = body.trim().split(/\s+/).filter(Boolean).length;
-  return Math.max(1, Math.ceil(words / 220));
+  return Math.max(1, Math.min(120, Math.ceil(words / 220)));
 }
 
 export function normalizeTags(value: string | string[] | null | undefined) {
   const raw = Array.isArray(value) ? value : String(value ?? "").split(",");
-  return [...new Set(raw.map((tag) => tag.trim()).filter(Boolean))].slice(0, 12);
+  return [...new Set(raw.map((tag) => String(tag).trim()).filter(Boolean))].slice(0, 12);
+}
+
+function isHttpUrl(value: string) {
+  return /^https?:\/\/\S+$/i.test(value.trim());
+}
+
+/**
+ * Accepts the shapes the admin editor and the database can produce:
+ * - [{ label, url }]
+ * - ["https://..."]
+ * - "Label | https://...\nhttps://..." (one link per line)
+ */
+export function normalizeLinks(value: unknown): BlogLink[] {
+  const entries: BlogLink[] = [];
+
+  const pushRaw = (raw: string) => {
+    const line = raw.trim();
+    if (!line) return;
+    const [first, ...rest] = line.split("|");
+    const maybeUrl = rest.join("|").trim();
+    if (maybeUrl && isHttpUrl(maybeUrl)) {
+      entries.push({ label: first.trim() || maybeUrl, url: maybeUrl.trim() });
+      return;
+    }
+    if (isHttpUrl(line)) entries.push({ label: line.trim(), url: line.trim() });
+  };
+
+  if (typeof value === "string") {
+    value.split(/\r?\n/).forEach(pushRaw);
+  } else if (Array.isArray(value)) {
+    for (const item of value) {
+      if (typeof item === "string") {
+        pushRaw(item);
+        continue;
+      }
+      if (item && typeof item === "object") {
+        const record = item as Record<string, unknown>;
+        const url = typeof record.url === "string" ? record.url.trim() : "";
+        if (!isHttpUrl(url)) continue;
+        const label = typeof record.label === "string" && record.label.trim().length > 0 ? record.label.trim() : url;
+        entries.push({ label: label.slice(0, 120), url });
+      }
+    }
+  }
+
+  const seen = new Set<string>();
+  return entries
+    .filter((link) => {
+      const key = link.url.toLowerCase();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0, 12);
 }
 
 export function toBlogPost(row: Record<string, unknown>): BlogPost {
+  const body = String(row.body ?? "");
   return {
     id: String(row.id),
-    slug: typeof row.slug === "string" && row.slug.length > 0 ? row.slug : slugifyBlogTitle(String(row.title ?? "Untitled")),
+    slug:
+      typeof row.slug === "string" && row.slug.length > 0
+        ? row.slug
+        : slugifyBlogTitle(String(row.title ?? "Untitled")),
     title: String(row.title ?? "Untitled"),
     excerpt: String(row.excerpt ?? ""),
-    body: String(row.body ?? ""),
+    body,
     category: String(row.category ?? "Education"),
     readTimeMinutes:
       typeof row.read_time_minutes === "number" && Number.isFinite(row.read_time_minutes)
         ? row.read_time_minutes
-        : estimateReadTimeMinutes(String(row.body ?? "")),
+        : estimateReadTimeMinutes(body),
     status: row.status === "draft" || row.status === "in_review" || row.status === "published" ? row.status : "draft",
     featured: Boolean(row.featured),
-    tags: normalizeTags(Array.isArray(row.tags) ? row.tags.filter((tag): tag is string => typeof tag === "string") : []),
-    coverImageUrl: typeof row.cover_image_url === "string" && row.cover_image_url.length > 0 ? row.cover_image_url : null,
+    tags: normalizeTags(
+      Array.isArray(row.tags) ? row.tags.filter((tag): tag is string => typeof tag === "string") : []
+    ),
+    links: normalizeLinks(row.links),
+    authorName:
+      typeof row.author_name === "string" && row.author_name.trim().length > 0 ? row.author_name.trim() : null,
+    coverImageUrl:
+      typeof row.cover_image_url === "string" && row.cover_image_url.length > 0 ? row.cover_image_url : null,
     publishedAt: typeof row.published_at === "string" ? row.published_at : null,
     createdAt: typeof row.created_at === "string" ? row.created_at : new Date().toISOString(),
     updatedAt: typeof row.updated_at === "string" ? row.updated_at : null,
     authorId: typeof row.author_id === "string" ? row.author_id : undefined,
   };
+}
+
+export function sortBlogPosts(posts: BlogPost[]) {
+  return [...posts].sort((a, b) => {
+    const left = a.publishedAt ?? a.updatedAt ?? a.createdAt;
+    const right = b.publishedAt ?? b.updatedAt ?? b.createdAt;
+    return new Date(right).getTime() - new Date(left).getTime();
+  });
 }
