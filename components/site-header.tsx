@@ -6,6 +6,7 @@ import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { Bell } from "lucide-react";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { CompactBrandLogo } from "@/components/brand-logo";
+import { getStudentAccess } from "@/lib/auth/student-access";
 
 const publicLinks = [
   ["Story", "/#story"],
@@ -44,6 +45,8 @@ export async function SiteHeader() {
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   let user = null;
   let isEmployer = false;
+  let canAccessStudentArea = false;
+  let studentDestination: "/onboarding" | "/assessment" | "/roadmap/assign" | "/dashboard" = "/onboarding";
 
   if (url && key) {
     try {
@@ -51,19 +54,19 @@ export async function SiteHeader() {
       const { data } = await withTimeout(supabase.auth.getUser(), 2000);
       user = data?.user ?? null;
       if (user) {
-        const { data: profile } = await withTimeout(
-          supabase.from("profiles").select("role").eq("user_id", user.id).maybeSingle(),
-          2000
-        );
-        isEmployer = profile?.role === "employer";
+        const access = await withTimeout(getStudentAccess(supabase, user.id), 2500);
+        isEmployer = access.isEmployer;
+        canAccessStudentArea = access.canAccessStudentArea;
+        studentDestination = access.nextPath;
       }
     } catch {
-      // Ignore during build or timeout
+      // Fail closed: never expose protected student navigation when auth or
+      // onboarding state cannot be verified.
     }
   }
 
   let unreadCount = 0;
-  if (user && url && key) {
+  if (user && (isEmployer || canAccessStudentArea) && url && key) {
     try {
       const supabase = await createServerSupabaseClient();
       const result = await withTimeout(
@@ -85,7 +88,9 @@ export async function SiteHeader() {
     ? publicLinks
     : isEmployer
       ? employerLinks
-      : studentLinks;
+      : canAccessStudentArea
+        ? studentLinks
+        : [];
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/60 bg-white/70 backdrop-blur-2xl transition-all duration-300 dark:border-slate-800/80 dark:bg-slate-950/80 glass-panel-subtle">
@@ -113,23 +118,26 @@ export async function SiteHeader() {
 
           {user ? (
             <>
-              <Link
-                href={isEmployer ? "/employer/dashboard/notifications" : "/community/notifications"}
-                className="relative flex h-9 w-9 items-center justify-center rounded-full border border-slate-200/80 bg-white/80 backdrop-blur-md text-secondary shadow-sm transition-all duration-200 hover:border-brand-500 hover:text-brand-600 hover:bg-white/90 dark:border-slate-800/80 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:border-brand-400 dark:hover:text-brand-400"
-              >
-                <Bell className="h-4 w-4" />
-                {unreadCount > 0 && (
-                  <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white shadow-sm animate-pulse-soft">
-                    {unreadCount > 9 ? "9+" : unreadCount}
-                  </span>
-                )}
-              </Link>
+              {(isEmployer || canAccessStudentArea) && (
+                <Link
+                  href={isEmployer ? "/employer/dashboard/notifications" : "/community/notifications"}
+                  aria-label="Notifications"
+                  className="relative flex h-9 w-9 items-center justify-center rounded-full border border-slate-200/80 bg-white/80 backdrop-blur-md text-secondary shadow-sm transition-all duration-200 hover:border-brand-500 hover:text-brand-600 hover:bg-white/90 dark:border-slate-800/80 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:border-brand-400 dark:hover:text-brand-400"
+                >
+                  <Bell className="h-4 w-4" />
+                  {unreadCount > 0 && (
+                    <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white shadow-sm animate-pulse-soft">
+                      {unreadCount > 9 ? "9+" : unreadCount}
+                    </span>
+                  )}
+                </Link>
+              )}
 
               <Link
-                href={isEmployer ? "/employer/dashboard" : "/dashboard"}
+                href={isEmployer ? "/employer/dashboard" : studentDestination}
                 className="rounded-full border border-slate-200/80 bg-white/80 backdrop-blur-md px-4 py-2 text-xs font-bold text-secondary shadow-sm transition-all duration-200 hover:border-brand-500 hover:text-brand-600 hover:bg-white/90 dark:border-slate-800/80 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:border-brand-400"
               >
-                {isEmployer ? "Employer hub" : "Student hub"}
+                {isEmployer ? "Employer hub" : canAccessStudentArea ? "Student hub" : "Continue setup"}
               </Link>
 
               <form

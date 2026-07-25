@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { getStudentAccess } from "@/lib/auth/student-access";
 import { SignInPageClient } from "./sign-in-client";
 
 export const dynamic = "force-dynamic";
@@ -10,30 +11,29 @@ export default async function SignInPage({ searchParams }: { searchParams: Searc
   const { mode: rawMode } = await searchParams;
   const mode: "sign-up" | "sign-in" = rawMode === "sign-in" ? "sign-in" : "sign-up";
 
-  // Redirect already-authenticated users to the right dashboard.
+  // Resolve the destination inside the try, then redirect outside it. Next's
+  // redirect() throws internally and must not be swallowed by this fallback.
+  let destination: string | null = null;
   try {
     const supabase = await createServerSupabaseClient();
-    const { data } = await supabase.auth.getUser();
-    if (data?.user) {
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("role, target_role")
-        .eq("user_id", data.user.id)
-        .maybeSingle();
-      if (profile?.role === "employer") {
-        const { data: emp } = await supabase
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      const access = await getStudentAccess(supabase, user.id);
+      if (access.isEmployer) {
+        const { data: employer } = await supabase
           .from("employer_profiles")
           .select("onboarding_complete")
-          .eq("user_id", data.user.id)
+          .eq("user_id", user.id)
           .maybeSingle();
-        redirect(emp?.onboarding_complete ? "/employer/dashboard" : "/employer/onboarding");
+        destination = employer?.onboarding_complete ? "/employer/dashboard" : "/employer/onboarding";
+      } else {
+        destination = access.nextPath;
       }
-      if (profile?.target_role) redirect("/dashboard");
-      redirect("/onboarding");
     }
   } catch {
-    // Supabase not configured or offline — render the page anyway.
+    // Supabase not configured or temporarily offline — render sign-in.
   }
 
+  if (destination) redirect(destination);
   return <SignInPageClient mode={mode} />;
 }

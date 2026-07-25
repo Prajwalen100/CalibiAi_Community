@@ -25,11 +25,11 @@ type Params = Promise<{ phaseId: string; moduleSlug: string }>;
 
 export default async function ModuleReaderPage({ params }: { params: Params }) {
   const { phaseId, moduleSlug } = await params;
-  const module = getModuleDetail(phaseId, moduleSlug);
-  if (!module) notFound();
+  const lessonModule = getModuleDetail(phaseId, moduleSlug);
+  if (!lessonModule) notFound();
 
   const phase = getPhase(phaseId);
-  const html = renderLessonMarkdown(module.content);
+  const html = renderLessonMarkdown(lessonModule.content);
 
   let userId: string | null = null;
   try {
@@ -43,11 +43,11 @@ export default async function ModuleReaderPage({ params }: { params: Params }) {
   }
 
   const progressMap = userId ? await getUserProgressMap(userId) : new Map();
-  const initialPct = progressMap.get(module.id)?.progressPct ?? 0;
+  const initialPct = progressMap.get(lessonModule.id)?.progressPct ?? 0;
   const completed = initialPct >= 95;
 
   // Extract TOC from headings
-  const toc = [...module.content.matchAll(/^#{2,3}\s+(.+)$/gm)].map((m) => {
+  const toc = [...lessonModule.content.matchAll(/^#{2,3}\s+(.+)$/gm)].map((m) => {
     const text = m[1]!.trim();
     const id = text
       .toLowerCase()
@@ -60,8 +60,8 @@ export default async function ModuleReaderPage({ params }: { params: Params }) {
   return (
     <div className="relative pb-16">
       <ModuleScrollProgress
-        moduleId={module.id}
-        phaseId={module.phaseId}
+        moduleId={lessonModule.id}
+        phaseId={lessonModule.phaseId}
         initialPct={initialPct}
         isAuthenticated={!!userId}
       />
@@ -97,22 +97,22 @@ export default async function ModuleReaderPage({ params }: { params: Params }) {
               <span className="rounded-full bg-brand-50 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-brand-700 dark:bg-brand-950/40 dark:text-brand-300">
                 {phase?.title ?? phaseId}
               </span>
-              {module.type && (
+              {lessonModule.type && (
                 <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-bold uppercase text-slate-600 dark:bg-slate-800 dark:text-slate-300">
-                  {module.type}
+                  {lessonModule.type}
                 </span>
               )}
-              {module.time && (
+              {lessonModule.time && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-bold text-slate-600 dark:bg-slate-800 dark:text-slate-300">
-                  <Clock className="h-3 w-3" /> {module.time}
+                  <Clock className="h-3 w-3" /> {lessonModule.time}
                 </span>
               )}
-              {module.hasCode && (
+              {lessonModule.hasCode && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-indigo-50 px-2.5 py-1 text-[11px] font-bold text-indigo-700 dark:bg-indigo-950/40 dark:text-indigo-300">
                   <Code2 className="h-3 w-3" /> Code
                 </span>
               )}
-              {module.hasQuiz && (
+              {lessonModule.hasQuiz && (
                 <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-1 text-[11px] font-bold text-amber-800 dark:bg-amber-950/30 dark:text-amber-200">
                   <HelpCircle className="h-3 w-3" /> Quiz
                 </span>
@@ -120,19 +120,19 @@ export default async function ModuleReaderPage({ params }: { params: Params }) {
             </div>
 
             <h1 className="mt-4 text-3xl font-black tracking-tight text-primary sm:text-4xl">
-              {module.title}
+              {lessonModule.title}
             </h1>
-            {module.summary && (
-              <p className="mt-3 text-base leading-relaxed text-secondary">{module.summary}</p>
+            {lessonModule.summary && (
+              <p className="mt-3 text-base leading-relaxed text-secondary">{lessonModule.summary}</p>
             )}
 
-            {module.objectives.length > 0 && (
+            {lessonModule.objectives.length > 0 && (
               <div className="mt-6 rounded-2xl border border-brand-100 bg-brand-50/60 p-4 dark:border-brand-900/40 dark:bg-brand-950/20">
                 <p className="text-xs font-bold uppercase tracking-wide text-brand-700 dark:text-brand-300">
                   Learning objectives
                 </p>
                 <ul className="mt-2 space-y-1.5 text-sm text-brand-950 dark:text-brand-100">
-                  {module.objectives.map((o) => (
+                  {lessonModule.objectives.map((o) => (
                     <li key={o} className="flex gap-2">
                       <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
                       <span>{o}</span>
@@ -162,28 +162,28 @@ export default async function ModuleReaderPage({ params }: { params: Params }) {
           />
 
           <nav className="mt-8 grid gap-3 sm:grid-cols-2">
-            {module.prev ? (
+            {lessonModule.prev ? (
               <Link
-                href={`/community/resources/${module.prev.phaseId}/${module.prev.slug}`}
+                href={`/community/resources/${lessonModule.prev.phaseId}/${lessonModule.prev.slug}`}
                 className="group rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-brand-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
               >
                 <p className="text-xs font-bold uppercase text-subtle">Previous</p>
                 <p className="mt-1 flex items-center gap-2 font-bold text-primary group-hover:text-brand-700">
                   <ArrowLeft className="h-4 w-4 shrink-0" />
-                  <span className="line-clamp-2">{module.prev.title}</span>
+                  <span className="line-clamp-2">{lessonModule.prev.title}</span>
                 </p>
               </Link>
             ) : (
               <div />
             )}
-            {module.next ? (
+            {lessonModule.next ? (
               <Link
-                href={`/community/resources/${module.next.phaseId}/${module.next.slug}`}
+                href={`/community/resources/${lessonModule.next.phaseId}/${lessonModule.next.slug}`}
                 className="group rounded-2xl border border-slate-200 bg-white p-4 text-right transition hover:border-brand-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 sm:justify-self-end"
               >
                 <p className="text-xs font-bold uppercase text-subtle">Next</p>
                 <p className="mt-1 flex items-center justify-end gap-2 font-bold text-primary group-hover:text-brand-700">
-                  <span className="line-clamp-2">{module.next.title}</span>
+                  <span className="line-clamp-2">{lessonModule.next.title}</span>
                   <ArrowRight className="h-4 w-4 shrink-0" />
                 </p>
               </Link>
