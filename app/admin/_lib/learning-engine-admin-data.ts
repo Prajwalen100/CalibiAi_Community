@@ -227,7 +227,7 @@ export const ROLE_DEFINITIONS: RoleDefinition[] = [
 export const SPEC_DETAILS = {
   title: "CalibiAI Personalized Learning Engine",
   version: "1.0",
-  stack: "Next.js 15/16 App Router · Supabase DB/Auth · Amazon Bedrock · JSON Knowledge Base",
+  stack: "Next.js 15/16 App Router · Supabase DB/Auth · CalibiAI Assistant · JSON Knowledge Base",
   scope:
     "Personalized Learning Engine only: onboarding, assessment, scoring, knowledge graph, roadmap assignment, daily missions, progress, Talent Score, and weekly review.",
   sourceFile: "CalibiAI_Personalized_Learning_Engine_Spec.pdf",
@@ -241,7 +241,7 @@ export const SUCCESS_METRICS = [
   { metric: "D1 / D7 activation", target: ">= 60% / >= 35%", detail: "Users completing at least one mission" },
   { metric: "Weekly review delivery", target: ">= 99%", detail: "Eligible users receive a review within 24h" },
   { metric: "Assessment latency", target: "< 1.5s", detail: "Submit to score and graph persisted, p95" },
-  { metric: "Bedrock personalization", target: "< 8s", detail: "Assignment to overlay ready, async p95" },
+  { metric: "CalibiAI Assistant personalization", target: "< 8s", detail: "Assignment to overlay ready, async p95" },
 ] as const;
 
 export const USER_JOURNEY = [
@@ -251,7 +251,7 @@ export const USER_JOURNEY = [
   "Server computes deterministic skill_scores and stores a knowledge_graph row; AI does not score.",
   "Overall score + weak/strong skill breadth classify the learner as Beginner or Intermediate.",
   "Role + level selects one immutable 45-day roadmap JSON and expands progress rows.",
-  "Bedrock may add a personalization overlay, but fallback raw JSON order always works.",
+  "CalibiAI Assistant may add a personalization overlay, but fallback raw JSON order always works.",
   "Dashboard surfaces Today's Mission, roadmap %, streak, Talent Score and next project.",
   "Daily task completion writes progress, sessions, XP, streak updates and activity logs.",
   "Every 7 active days, Weekly Review runs and can re-sequence only future content.",
@@ -400,7 +400,7 @@ export const DEMO_LEARNERS = [
 export const ADMIN_QUEUES = [
   { label: "Onboarding drop-offs", count: 18, tone: "warn", detail: "Users paused before Step 5 / Start Assessment" },
   { label: "Assessments to resume", count: 11, tone: "warn", detail: "In-progress attempts with no activity in 24h" },
-  { label: "Roadmaps pending overlay", count: 6, tone: "info", detail: "Raw order active; Bedrock overlay can retry async" },
+  { label: "Roadmaps pending overlay", count: 6, tone: "info", detail: "Raw order active; CalibiAI Assistant overlay can retry async" },
   { label: "Weekly reviews due", count: 9, tone: "ok", detail: "Eligible after 7 active learning days" },
   { label: "AI fallback reports", count: 2, tone: "danger", detail: "Lite reviews awaiting enrichment retry" },
   { label: "Project reviews queued", count: 14, tone: "info", detail: "Submissions waiting for rubric feedback" },

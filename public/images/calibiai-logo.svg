@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 540" fill="none" role="img" aria-label="CalibiAI">
+  <g stroke="currentColor" fill="currentColor">
+    <!-- C bracket -->
+    <path d="M292 28 H115 A87 87 0 0 0 28 115 V417 A87 87 0 0 0 115 504 H292"
+          fill="none" stroke-width="52" stroke-linecap="butt" stroke-linejoin="miter" />
+
+    <!-- A: left leg, right leg, crossbar -->
+    <path d="M545 24 L600 24 L536 516 L470 516 Z" stroke="none" />
+    <path d="M545 24 L600 24 L752 516 L672 516 Z" stroke="none" />
+    <rect x="512" y="390" width="190" height="46" stroke="none" />
+
+    <!-- Neural network edges -->
+    <g stroke-width="11" stroke-linecap="round">
+      <line x1="357" y1="38"  x2="171" y2="168" />
+      <line x1="357" y1="38"  x2="171" y2="353" />
+      <line x1="357" y1="38"  x2="526" y2="272" />
+      <line x1="357" y1="492" x2="171" y2="168" />
+      <line x1="357" y1="492" x2="171" y2="353" />
+      <line x1="357" y1="492" x2="526" y2="272" />
+      <line x1="171" y1="168" x2="357" y2="202" />
+      <line x1="171" y1="168" x2="357" y2="327" />
+      <line x1="171" y1="353" x2="357" y2="202" />
+      <line x1="171" y1="353" x2="357" y2="327" />
+      <line x1="357" y1="202" x2="526" y2="272" />
+      <line x1="357" y1="327" x2="526" y2="272" />
+    </g>
+
+    <!-- Neural network nodes -->
+    <g stroke="none">
+      <circle cx="357" cy="38"  r="42" />
+      <circle cx="171" cy="168" r="42" />
+      <circle cx="357" cy="202" r="40" />
+      <circle cx="526" cy="272" r="42" />
+      <circle cx="357" cy="327" r="40" />
+      <circle cx="171" cy="353" r="42" />
+      <circle cx="357" cy="492" r="42" />
+    </g>
+  </g>
+</svg>

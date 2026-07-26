@@ -38,7 +38,7 @@ export function CandidateActions({
 
   return (
     <div className="space-y-2">
-      {error && <p className="text-xs text-rose-600">{error}</p>}
+      {error && <p className="text-xs text-rose-600 dark:text-rose-400">{error}</p>}
       {statuses.map((s) => (
         <button
           key={s.value}
@@ -47,8 +47,8 @@ export function CandidateActions({
           onClick={() => update(s.value)}
           className={`flex w-full items-center justify-center gap-1 rounded-xl px-3 py-2 text-xs font-bold transition ${
             currentStatus === s.value
-              ? "bg-ink text-white"
-              : "border border-slate-200 bg-white text-secondary hover:border-brand-400 hover:text-brand-700 dark:border-slate-700 dark:bg-slate-950"
+              ? "bg-ink text-white dark:bg-brand-600"
+              : "border border-slate-200 bg-white text-secondary hover:border-brand-400 hover:text-brand-700 dark:border-slate-700 dark:bg-slate-950 dark:hover:text-brand-300"
           } disabled:opacity-60`}
         >
           {pending ? <Loader2 className="h-3 w-3 animate-spin" /> : s.label}

@@ -121,7 +121,7 @@ export function SubmitProjectForm({
       <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 text-sm text-slate-600">
         <p className="font-semibold text-ink">AI-Powered Review</p>
         <p className="mt-1">
-          After submission, Amazon Bedrock will review your project for completeness, technical depth,
+          After submission, CalibiAI Assistant will review your project for completeness, technical depth,
           and originality. A verified score (0–100) will be assigned and added to your CalibiAI profile.
           Projects scoring 50+ are automatically marked as verified.
         </p>

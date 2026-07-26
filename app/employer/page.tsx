@@ -34,7 +34,7 @@ export default async function EmployerLandingPage() {
   return (
     <main className="container py-12 sm:py-16">
       <div className="max-w-3xl">
-        <p className="font-bold text-brand-600">Employer workspace</p>
+        <p className="font-bold text-brand-700 dark:text-brand-300">Employer workspace</p>
         <h1 className="mt-2 heading-1 text-primary">Hire with verified signal.</h1>
         <p className="mt-4 body-lg text-secondary">
           Post roles, review matched student profiles, and keep every application and notification in one focused
@@ -52,21 +52,21 @@ export default async function EmployerLandingPage() {
 
       <div className="mt-12 grid gap-5 md:grid-cols-3">
         <div className="card">
-          <Inbox className="h-6 w-6 text-brand-500" />
+          <Inbox className="h-6 w-6 text-brand-600 dark:text-brand-400" />
           <h2 className="mt-4 text-lg font-bold text-primary">Applications inbox</h2>
           <p className="mt-2 text-sm text-secondary">
             Get messages when students apply and move candidates through your pipeline.
           </p>
         </div>
         <div className="card">
-          <ShieldCheck className="h-6 w-6 text-emerald-500" />
+          <ShieldCheck className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
           <h2 className="mt-4 text-lg font-bold text-primary">Full candidate profile</h2>
           <p className="mt-2 text-sm text-secondary">
             See score, verified skills, projects, assessment proof, experience and capability for your job.
           </p>
         </div>
         <div className="card">
-          <Bell className="h-6 w-6 text-amber-500" />
+          <Bell className="h-6 w-6 text-amber-600 dark:text-amber-400" />
           <h2 className="mt-4 text-lg font-bold text-primary">Notifications</h2>
           <p className="mt-2 text-sm text-secondary">
             Stay on top of new applications, offers, messages and interview activity.
@@ -78,7 +78,7 @@ export default async function EmployerLandingPage() {
         <h2 className="text-xl font-bold text-primary">What you can do</h2>
         <div className="mt-4 grid gap-3 text-sm text-secondary sm:grid-cols-2">
           <span className="inline-flex items-center gap-2">
-            <Plus className="h-4 w-4 text-brand-500" /> Post full-time, internship, contract & freelance gigs
+            <Plus className="h-4 w-4 text-brand-600 dark:text-brand-400" /> Post full-time, internship, contract & freelance gigs
           </span>
           <span>• Compensation and employment type</span>
           <span>• Location and remote policy</span>

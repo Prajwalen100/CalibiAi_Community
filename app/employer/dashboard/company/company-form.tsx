@@ -107,8 +107,8 @@ export function CompanyEditForm({ employer }: { employer: Employer }) {
         </div>
       </div>
 
-      {error && <p className="rounded-xl border border-rose-200 bg-rose-50 p-3 text-sm text-rose-700">{error}</p>}
-      {ok && <p className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-800">Company profile updated.</p>}
+      {error && <p className="rounded-xl border border-rose-200 bg-rose-50 p-3 text-sm text-rose-700 dark:border-rose-900/60 dark:bg-rose-950/40 dark:text-rose-200">{error}</p>}
+      {ok && <p className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-800 dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-200">Company profile updated.</p>}
 
       <button className="btn-primary w-full sm:w-auto" type="submit" disabled={loading}>
         {loading ? (

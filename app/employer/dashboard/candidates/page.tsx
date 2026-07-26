@@ -25,7 +25,7 @@ export default async function EmployerCandidatesPage() {
           See score, verified skills, projects, assessment proof, experience and capability for your jobs.
         </p>
         <div className="mt-6 card text-center">
-          <Users className="mx-auto h-10 w-10 text-slate-400" />
+          <Users className="mx-auto h-10 w-10 text-slate-400 dark:text-slate-500" />
           <p className="mt-3 font-bold">No candidates yet</p>
           <p className="mt-1 text-sm text-secondary">Post a job to start receiving applications.</p>
           <Link href="/employer/dashboard/post" className="btn-primary mt-4 inline-flex">
@@ -108,14 +108,14 @@ export default async function EmployerCandidatesPage() {
                   </p>
                 </div>
                 <div className="rounded-xl bg-brand-50 px-3 py-2 text-center dark:bg-brand-950/40">
-                  <p className="text-lg font-black text-brand-700">{s?.total ?? "—"}</p>
-                  <p className="text-[10px] font-bold uppercase text-brand-600">{s?.tier ?? "n/a"}</p>
+                  <p className="text-lg font-black text-brand-700 dark:text-brand-300">{s?.total ?? "—"}</p>
+                  <p className="text-[10px] font-bold uppercase text-brand-700 dark:text-brand-400">{s?.tier ?? "n/a"}</p>
                 </div>
               </div>
               <p className="mt-3 text-xs text-secondary">
                 Applied to <span className="font-semibold">{jobTitle.get(a.job_id)}</span>
               </p>
-              <span className="mt-2 inline-block rounded-full bg-slate-100 px-2.5 py-1 text-xs font-bold capitalize text-slate-700 dark:bg-slate-800">
+              <span className="mt-2 inline-block rounded-full bg-slate-100 px-2.5 py-1 text-xs font-bold capitalize text-slate-700 dark:bg-slate-800 dark:text-slate-200">
                 {a.status.replace(/_/g, " ")}
               </span>
             </Link>

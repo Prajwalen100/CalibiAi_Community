@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { createPost } from "@/app/community/actions";
-import { Loader2, ArrowLeft, Bot, Users, Sparkles, RefreshCw, MessageSquarePlus } from "lucide-react";
+import { Loader2, ArrowLeft, Bot, Users, Sparkles, RefreshCw, MessageSquarePlus, Copy, Check } from "lucide-react";
+import { AiMarkdown } from "@/components/ai/ai-markdown";
 
 const postTypes = [
   { key: "discussion", label: "💬 Discussion", desc: "Start a conversation" },
@@ -43,6 +44,7 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity }: P
   const [aiLoading, setAiLoading] = useState(false);
   const [aiResponse, setAiResponse] = useState<string | null>(null);
   const [aiError, setAiError] = useState<string | null>(null);
+  const [aiCopied, setAiCopied] = useState(false);
 
   function handleSelectPostType(typeKey: string) {
     setPostType(typeKey);
@@ -74,6 +76,7 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity }: P
     setAiLoading(true);
     setAiError(null);
     setAiResponse(null);
+    setAiCopied(false);
 
     try {
       const res = await fetch("/api/ai/prompt", {
@@ -91,6 +94,17 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity }: P
       setAiError("Network error while reaching AI assistant.");
     } finally {
       setAiLoading(false);
+    }
+  }
+
+  async function handleCopyAiResponse() {
+    if (!aiResponse) return;
+    try {
+      await navigator.clipboard.writeText(aiResponse);
+      setAiCopied(true);
+      setTimeout(() => setAiCopied(false), 2000);
+    } catch {
+      // Clipboard permission denied — silently ignore.
     }
   }
 
@@ -178,7 +192,7 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity }: P
                   ASK to AI
                 </h3>
                 <p className="mt-2 text-xs text-slate-600 leading-relaxed">
-                  Get an immediate, intelligent answer from CalibiAI Assistant powered by Amazon Bedrock right now without waiting for replies.
+                  Get an immediate, intelligent answer from CalibiAI Assistant right now without waiting for replies.
                 </p>
               </div>
               <div className="mt-6 flex items-center gap-1.5 text-xs font-bold text-purple-700 group-hover:underline">
@@ -198,8 +212,8 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity }: P
                 <Bot className="h-5 w-5" />
               </div>
               <div>
-                <h2 className="text-base font-bold text-purple-950">Asking CalibiAI Assistant</h2>
-                <p className="text-xs text-purple-700">Powered by Amazon Bedrock AI</p>
+                <h2 className="text-base font-bold text-purple-950">Ask AI</h2>
+                <p className="text-xs text-purple-700">CalibiAI Assistant</p>
               </div>
             </div>
             <button
@@ -249,14 +263,25 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity }: P
 
           {aiResponse && (
             <div className="mt-6 rounded-2xl border border-purple-200 bg-white p-5 shadow-sm">
-              <div className="flex items-center gap-2 font-bold text-purple-900 text-sm">
-                <Sparkles className="h-4 w-4 text-purple-600" /> CalibiAI Assistant Response
-              </div>
-              <div className="mt-3 whitespace-pre-wrap text-sm text-slate-800 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-100 font-mono">
-                {aiResponse}
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-purple-100 pb-3">
+                <div className="flex items-center gap-2 text-sm font-bold text-purple-900">
+                  <Sparkles className="h-4 w-4 text-purple-600" /> CalibiAI Assistant Response
+                </div>
+                <button
+                  type="button"
+                  onClick={handleCopyAiResponse}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-2.5 py-1 text-[11px] font-semibold text-slate-600 hover:bg-slate-50"
+                >
+                  {aiCopied ? <Check className="h-3.5 w-3.5 text-emerald-600" /> : <Copy className="h-3.5 w-3.5" />}
+                  {aiCopied ? "Copied" : "Copy"}
+                </button>
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-3">
+              <article className="mt-4">
+                <AiMarkdown content={aiResponse} />
+              </article>
+
+              <div className="mt-5 flex flex-wrap gap-3 border-t border-slate-100 pt-4">
                 <button
                   type="button"
                   onClick={handleTransferAiToCommunity}

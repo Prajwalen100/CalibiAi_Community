@@ -32,12 +32,12 @@ export function JobStatusToggle({
         type="button"
         onClick={toggle}
         disabled={pending}
-        className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-secondary hover:border-brand-400 hover:text-brand-700 disabled:opacity-60 dark:border-slate-700 dark:bg-slate-900"
+        className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-secondary hover:border-brand-400 hover:text-brand-700 disabled:opacity-60 dark:border-slate-700 dark:bg-slate-900 dark:hover:text-brand-300"
       >
         {pending && <Loader2 className="h-3 w-3 animate-spin" />}
         {status === "open" ? "Close posting" : "Reopen"}
       </button>
-      {error && <span className="text-[10px] text-rose-600">{error}</span>}
+      {error && <span className="text-[10px] text-rose-600 dark:text-rose-400">{error}</span>}
     </div>
   );
 }
