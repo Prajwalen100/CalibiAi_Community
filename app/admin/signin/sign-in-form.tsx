@@ -11,9 +11,9 @@ import {
   KeyRound,
   Loader2,
   Mail,
-  ShieldCheck,
   Sparkles,
 } from "lucide-react";
+import { CalibiAiMark } from "@/components/calibiai-mark";
 
 export function AdminSignInForm({
   next,
@@ -65,9 +65,9 @@ export function AdminSignInForm({
         <div className="admin-glass-strong relative hidden flex-col justify-between p-10 lg:flex">
           <div>
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 via-indigo-500 to-violet-500 text-white shadow-lg">
-                <ShieldCheck className="h-6 w-6" />
-              </div>
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-[#111C38] shadow-lg ring-1 ring-slate-900/10">
+                <CalibiAiMark className="h-7" compact />
+              </span>
               <div>
                 <p className="text-lg font-black admin-title">CalibiAI</p>
                 <p className="admin-eyebrow">Admin portal</p>
@@ -104,9 +104,9 @@ export function AdminSignInForm({
         {/* Form side */}
         <div className="admin-glass-strong p-7 sm:p-10">
           <div className="flex items-center gap-3 lg:hidden">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 via-indigo-500 to-violet-500 text-white shadow-lg">
-              <ShieldCheck className="h-5 w-5" />
-            </div>
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white text-[#111C38] shadow-lg ring-1 ring-slate-900/10">
+              <CalibiAiMark className="h-6" compact />
+            </span>
             <div>
               <p className="font-black admin-title">CalibiAI Admin</p>
               <p className="admin-eyebrow">Sign in</p>

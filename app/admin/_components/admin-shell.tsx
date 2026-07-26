@@ -2,11 +2,11 @@ import Link from "next/link";
 import {
   Download,
   FileText,
-  ShieldCheck,
   Users,
   type LucideIcon,
 } from "lucide-react";
 import { AdminSignOutButton } from "./sign-out-button";
+import { CalibiAiMark } from "@/components/calibiai-mark";
 
 export type AdminNavKey = "overview" | "blog" | "students" | "content" | "system";
 
@@ -58,9 +58,9 @@ export function AdminShell({
       <aside className="lg:sticky lg:top-0 lg:h-screen lg:w-[272px] lg:shrink-0 lg:py-5 lg:pl-5">
         <div className="admin-glass flex h-full flex-col gap-4 p-4 max-lg:rounded-none max-lg:border-x-0 max-lg:border-t-0">
           <Link href="/admin/blog" className="flex items-center gap-3 rounded-2xl p-1.5 transition hover:bg-white/60">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 via-indigo-500 to-violet-500 text-white shadow-lg">
-              <ShieldCheck className="h-5 w-5" />
-            </div>
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white text-[#111C38] shadow-lg ring-1 ring-slate-900/10">
+              <CalibiAiMark className="h-6" compact />
+            </span>
             <div className="min-w-0">
               <p className="truncate text-sm font-black admin-title">CalibiAI Admin</p>
               <p className="truncate text-[11px] font-semibold admin-faint">Control room</p>

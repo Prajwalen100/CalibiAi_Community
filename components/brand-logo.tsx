@@ -1,7 +1,5 @@
-"use client";
-
-import { ShieldCheck, Zap, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { CalibiAiMark } from "@/components/calibiai-mark";
 
 interface BrandLogoProps {
   className?: string;
@@ -10,12 +8,24 @@ interface BrandLogoProps {
   showGlow?: boolean;
 }
 
+/**
+ * Sizing is driven by the mark's height. The wordmark is optically matched to
+ * it and the gap scales with the size so the lockup stays balanced.
+ *
+ * The mark is deep navy (#111C38) on light backgrounds. That colour is almost
+ * invisible on the dark theme, so in dark mode it flips to near-white via
+ * `dark:text-white` — the SVG uses `currentColor` throughout.
+ */
 const sizeClasses = {
-  sm: { icon: "h-5 w-5", text: "text-base", container: "h-8 w-8" },
-  md: { icon: "h-6 w-6", text: "text-lg", container: "h-10 w-10" },
-  lg: { icon: "h-8 w-8", text: "text-xl", container: "h-12 w-12" },
-  xl: { icon: "h-10 w-10", text: "text-2xl", container: "h-16 w-16" },
+  sm: { mark: "h-6", text: "text-base", gap: "gap-1.5" },
+  md: { mark: "h-8", text: "text-lg", gap: "gap-2" },
+  lg: { mark: "h-10", text: "text-xl", gap: "gap-2.5" },
+  xl: { mark: "h-14", text: "text-3xl", gap: "gap-3" },
 };
+
+const MARK_COLOR = "text-[#111C38] dark:text-white";
+const WORDMARK =
+  "font-black tracking-tight leading-none text-[#111C38] dark:text-white";
 
 export function BrandLogo({
   className,
@@ -27,99 +37,103 @@ export function BrandLogo({
 
   if (variant === "icon-only") {
     return (
-      <div
+      <span
         className={cn(
-          "flex items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 via-indigo-600 to-purple-600 text-white shadow-lg",
-          sizes.container,
+          "inline-flex items-center justify-center",
+          sizes.mark,
+          MARK_COLOR,
           showGlow && "animate-pulse-glow",
           className
         )}
-        aria-hidden="true"
       >
-        <ShieldCheck className={sizes.icon} />
-      </div>
+        <CalibiAiMark compact={size === "sm" || size === "md"} />
+      </span>
     );
   }
 
   if (variant === "text-only") {
     return (
-      <span className={cn("bg-gradient-to-r from-slate-900 via-brand-600 to-indigo-600 bg-clip-text text-transparent dark:from-white dark:via-brand-300 dark:to-indigo-300 font-black", sizes.text, className)}>
-        CalibiAI
-      </span>
+      <span className={cn(WORDMARK, sizes.text, className)}>CalibiAI</span>
     );
   }
 
   if (variant === "gradient") {
     return (
-      <div className={cn("inline-flex items-center gap-2", className)}>
-        <div className={cn(
-          "flex items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 via-indigo-600 to-purple-600 text-white shadow-lg",
-          sizes.container,
-          showGlow && "animate-pulse-glow"
-        )}>
-          <ShieldCheck className={sizes.icon} />
-        </div>
-        <span className={cn("bg-gradient-to-r from-slate-900 via-brand-600 to-indigo-600 bg-clip-text text-transparent dark:from-white dark:via-brand-300 dark:to-indigo-300 font-black", sizes.text)}>
+      <span className={cn("inline-flex items-center", sizes.gap, className)}>
+        <span
+          className={cn(
+            "inline-flex items-center",
+            sizes.mark,
+            MARK_COLOR,
+            showGlow && "animate-pulse-glow"
+          )}
+        >
+          <CalibiAiMark compact={size === "sm" || size === "md"} />
+        </span>
+        <span
+          className={cn(
+            "bg-gradient-to-r from-slate-900 via-brand-700 to-indigo-700 bg-clip-text font-black leading-none tracking-tight text-transparent dark:from-white dark:via-brand-200 dark:to-indigo-200",
+            sizes.text
+          )}
+        >
           CalibiAI
         </span>
-      </div>
+      </span>
     );
   }
 
   return (
-    <div className={cn("flex items-center gap-2", className)}>
-      <div className={cn(
-        "flex items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 via-indigo-600 to-purple-600 text-white shadow-md transition-all duration-300 hover:scale-105 hover:shadow-brand-500/30",
-        sizes.container,
-        showGlow && "animate-pulse-glow"
-      )}>
-        <ShieldCheck className={sizes.icon} />
-      </div>
-      <span className={cn("bg-gradient-to-r from-slate-900 via-brand-600 to-indigo-600 bg-clip-text text-transparent dark:from-white dark:via-brand-300 dark:to-indigo-300 font-black", sizes.text)}>
-        CalibiAI
+    <span className={cn("inline-flex items-center", sizes.gap, className)}>
+      <span
+        className={cn(
+          "inline-flex items-center transition-transform duration-300 hover:scale-105",
+          sizes.mark,
+          MARK_COLOR,
+          showGlow && "animate-pulse-glow"
+        )}
+      >
+        <CalibiAiMark compact={size === "sm" || size === "md"} />
       </span>
-    </div>
+      <span className={cn(WORDMARK, sizes.text)}>CalibiAI</span>
+    </span>
   );
 }
 
-/* Animated Brand Logo for Hero sections */
+/* Animated brand logo for hero / auth sections. */
 export function AnimatedBrandLogo({
   className,
   size = "xl",
-}: { className?: string; size?: "sm" | "md" | "lg" | "xl" }) {
+}: {
+  className?: string;
+  size?: "sm" | "md" | "lg" | "xl";
+}) {
+  const sizes = sizeClasses[size];
+
   return (
-    <div className={cn("relative inline-flex items-center gap-3", className)}>
-      <div className="relative">
-        {/* Glow rings */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-brand-500/30 via-indigo-500/20 to-purple-500/30 blur-2xl opacity-50 animate-pulse-glow -z-10" />
-        
-        <div className={cn(
-          "relative flex items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 via-indigo-600 to-purple-600 text-white shadow-xl",
-          sizeClasses[size].container
-        )}>
-          <ShieldCheck className={cn(sizeClasses[size].icon, "animate-float-slow")} />
-        </div>
-      </div>
-      
-      <span className="bg-gradient-to-r from-slate-900 via-brand-600 to-indigo-600 bg-clip-text text-transparent dark:from-white dark:via-brand-300 dark:to-indigo-300 font-black">
-        CalibiAI
+    <span className={cn("relative inline-flex items-center", sizes.gap, className)}>
+      <span className="relative inline-flex items-center">
+        {/* Soft glow behind the mark */}
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-brand-500/25 via-indigo-500/20 to-purple-500/25 blur-2xl"
+        />
+        <span className={cn("inline-flex items-center", sizes.mark, MARK_COLOR)}>
+          <CalibiAiMark className="animate-float-slow" compact={size === "sm" || size === "md"} />
+        </span>
       </span>
-    </div>
+      <span className={cn(WORDMARK, sizes.text)}>CalibiAI</span>
+    </span>
   );
 }
 
-/* Compact logo for headers/footers */
-export function CompactBrandLogo({
-  className,
-}: { className?: string } = {}) {
+/* Compact logo for headers and footers. */
+export function CompactBrandLogo({ className }: { className?: string } = {}) {
   return (
-    <div className={cn("flex items-center gap-1.5", className)}>
-      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 via-indigo-600 to-purple-600 text-white shadow-sm">
-        <ShieldCheck className="h-4 w-4" />
-      </div>
-      <span className="bg-gradient-to-r from-slate-900 via-brand-600 to-indigo-600 bg-clip-text text-transparent dark:from-white dark:via-brand-300 dark:to-indigo-300 font-black text-base">
-        CalibiAI
+    <span className={cn("inline-flex items-center gap-2", className)}>
+      <span className={cn("inline-flex h-8 items-center", MARK_COLOR)}>
+        <CalibiAiMark compact />
       </span>
-    </div>
+      <span className={cn(WORDMARK, "text-lg")}>CalibiAI</span>
+    </span>
   );
 }
