@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Calendar, Clock, Sparkles, User } from "lucide-react";
+import { SafeBlogImage } from "@/components/blog/safe-blog-image";
 import { ScrollReveal, StaggerReveal, GlowOnHover, Floating } from "@/components/scroll-reveal";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { listLocalPublishedPosts } from "@/lib/admin/blog-store";
@@ -90,15 +91,7 @@ export default async function BlogPage() {
               <ScrollReveal key={article.id} direction="up" className="group">
                 <GlowOnHover color={color} intensity="subtle">
                   <article className="glass-panel flex h-full flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group-hover:border-brand-500/50">
-                    {article.coverImageUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={article.coverImageUrl}
-                        alt=""
-                        className="h-44 w-full object-cover"
-                        loading="lazy"
-                      />
-                    ) : null}
+                    <SafeBlogImage src={article.coverImageUrl} alt={article.title} className="h-44 w-full object-cover" />
 
                     <div className="flex flex-1 flex-col p-6">
                       <div className="flex flex-wrap items-center gap-2">

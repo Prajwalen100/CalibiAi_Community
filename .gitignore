@@ -9,3 +9,6 @@ tsconfig.tsbuildinfo
 
 # Local admin-portal fallback store (blog drafts when Supabase is not configured)
 .data
+
+# Runtime-uploaded blog images for local development
+public/uploads

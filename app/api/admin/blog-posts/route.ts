@@ -19,7 +19,7 @@ const blogPostSchema = z.object({
   category: z.string().trim().min(2).max(80).optional(),
   tags: z.union([z.string(), z.array(z.string())]).optional(),
   links: z.union([z.string(), z.array(z.union([z.string(), linkSchema]))]).optional(),
-  coverImageUrl: z.string().trim().url("Image must be a valid URL").optional().or(z.literal("")),
+  coverImageUrl: z.string().trim().max(2048, "Image URL is too long").optional().or(z.literal("")),
   readTimeMinutes: z.coerce.number().int().min(1).max(120).optional(),
   featured: z.boolean().optional(),
   status: z.enum(["draft", "in_review", "published"]).optional(),

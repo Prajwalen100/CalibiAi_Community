@@ -136,6 +136,44 @@ function isHttpUrl(value: string) {
   return /^https?:\/\/\S+$/i.test(value.trim());
 }
 
+export function normalizeCoverImageUrl(value: string | null | undefined) {
+  let raw = String(value ?? "").trim();
+  if (!raw) return null;
+
+  // Accept pasted Markdown image syntax from generated drafts: ![alt](https://...)
+  const markdownImage = raw.match(/^!\[[^\]]*\]\(([^)]+)\)$/);
+  if (markdownImage) raw = markdownImage[1].trim();
+
+  // Local images returned by the admin upload endpoint.
+  if (raw.startsWith("/uploads/")) return raw;
+
+  try {
+    const url = new URL(raw);
+
+    // Convert common sharing URLs into direct image URLs that <img> can render.
+    if (url.hostname.includes("drive.google.com")) {
+      const fileId = url.pathname.match(/\/file\/d\/([^/]+)/)?.[1] ?? url.searchParams.get("id");
+      if (fileId) return `https://drive.google.com/uc?export=view&id=${fileId}`;
+    }
+
+    if (url.hostname === "www.dropbox.com" || url.hostname === "dropbox.com") {
+      url.hostname = "dl.dropboxusercontent.com";
+      url.search = "";
+      return url.toString();
+    }
+
+    if (url.hostname === "github.com" && url.pathname.includes("/blob/")) {
+      url.hostname = "raw.githubusercontent.com";
+      url.pathname = url.pathname.replace("/blob/", "/");
+      return url.toString();
+    }
+
+    return url.protocol === "http:" || url.protocol === "https:" ? url.toString() : null;
+  } catch {
+    return null;
+  }
+}
+
 /**
  * Accepts the shapes the admin editor and the database can produce:
  * - [{ label, url }]
@@ -210,8 +248,7 @@ export function toBlogPost(row: Record<string, unknown>): BlogPost {
     links: normalizeLinks(row.links),
     authorName:
       typeof row.author_name === "string" && row.author_name.trim().length > 0 ? row.author_name.trim() : null,
-    coverImageUrl:
-      typeof row.cover_image_url === "string" && row.cover_image_url.length > 0 ? row.cover_image_url : null,
+    coverImageUrl: normalizeCoverImageUrl(typeof row.cover_image_url === "string" ? row.cover_image_url : null),
     publishedAt: typeof row.published_at === "string" ? row.published_at : null,
     createdAt: typeof row.created_at === "string" ? row.created_at : new Date().toISOString(),
     updatedAt: typeof row.updated_at === "string" ? row.updated_at : null,

@@ -12,8 +12,18 @@ const profileSchema = z.object({
     .max(60)
     .refine((value) => /[\p{L}\p{N}]/u.test(value), "Enter your name using letters or numbers."),
   display_name: z.string().trim().max(60).optional(),
+  phone: z
+    .string()
+    .trim()
+    .min(7, "Enter a valid phone number.")
+    .max(30, "Phone number is too long."),
+  college: z
+    .string()
+    .trim()
+    .min(2, "Enter your college or university name.")
+    .max(160, "College name is too long."),
   country: z.enum(["IN", "US", "GB", "CA", "AU", "OTHER"]),
-  timezone: z.string().min(1).max(100),
+  timezone: z.string().trim().min(1).max(100),
   education_level: z.enum(["High School", "Undergraduate", "Graduate", "Professional"]),
   experience_level: z.enum(["New to tech", "Some coding", "Experienced"]),
   weekly_hours: z.number().int().min(3).max(40),
