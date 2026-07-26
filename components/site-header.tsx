@@ -4,14 +4,12 @@ import { SignInButton } from "@/components/sign-in-button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { Bell } from "lucide-react";
-import { ScrollReveal } from "@/components/scroll-reveal";
 import { CompactBrandLogo } from "@/components/brand-logo";
 import { getStudentAccess } from "@/lib/auth/student-access";
 
 const publicLinks = [
-  ["Story", "/#story"],
+  ["How It Works", "/#how-it-works"],
   ["Testimonials", "/#testimonials"],
-  ["Get Started", "/#motto"],
 ] as const;
 
 const studentLinks = [
@@ -60,8 +58,7 @@ export async function SiteHeader() {
         studentDestination = access.nextPath;
       }
     } catch {
-      // Fail closed: never expose protected student navigation when auth or
-      // onboarding state cannot be verified.
+      // Fail closed
     }
   }
 
@@ -80,7 +77,7 @@ export async function SiteHeader() {
       );
       unreadCount = (result as { count?: number | null }).count ?? 0;
     } catch {
-      // Ignore missing notifications table or timeout
+      // Ignore
     }
   }
 
@@ -93,7 +90,7 @@ export async function SiteHeader() {
         : [];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/60 bg-white/70 backdrop-blur-2xl transition-all duration-300 dark:border-slate-800/80 dark:bg-slate-950/80 glass-panel-subtle">
+    <header className="sticky top-0 z-50 glass-panel-subtle transition-all duration-300">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
         <Link
           href={!user ? "/" : isEmployer ? "/employer/dashboard" : studentDestination}
@@ -102,21 +99,19 @@ export async function SiteHeader() {
           <CompactBrandLogo />
         </Link>
 
-        <ScrollReveal direction="down" delay={100} className="hidden lg:flex">
-          <nav className="flex items-center gap-6 text-sm font-semibold text-secondary">
-            {navLinks.map(([label, href]) => (
-              <Link
-                key={href}
-                href={href}
-                className="relative transition-colors duration-200 hover:text-brand-600 dark:hover:text-brand-400 after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 after:bg-brand-500 after:transition-all after:duration-300 hover:after:w-full dark:after:bg-brand-400"
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-        </ScrollReveal>
+        <nav className="hidden lg:flex items-center gap-8 text-sm font-semibold text-white/60">
+          {navLinks.map(([label, href]) => (
+            <Link
+              key={href}
+              href={href}
+              className="relative transition-colors duration-200 hover:text-white after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 after:bg-blue-400 after:transition-all after:duration-300 hover:after:w-full"
+            >
+              {label}
+            </Link>
+          ))}
+        </nav>
 
-        <ScrollReveal direction="down" delay={200} className="flex items-center gap-3">
+        <div className="flex items-center gap-3">
           <ThemeToggle />
 
           {user ? (
@@ -125,11 +120,15 @@ export async function SiteHeader() {
                 <Link
                   href={isEmployer ? "/employer/dashboard/notifications" : "/community/notifications"}
                   aria-label="Notifications"
-                  className="relative flex h-9 w-9 items-center justify-center rounded-full border border-slate-200/80 bg-white/80 backdrop-blur-md text-secondary shadow-sm transition-all duration-200 hover:border-brand-500 hover:text-brand-600 hover:bg-white/90 dark:border-slate-800/80 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:border-brand-400 dark:hover:text-brand-400"
+                  className="relative flex h-9 w-9 items-center justify-center rounded-full bg-white/8 text-white/70 border border-white/10 transition-all duration-200 hover:bg-white/12 hover:text-white"
+                  style={{
+                    backdropFilter: "blur(12px)",
+                    WebkitBackdropFilter: "blur(12px)",
+                  }}
                 >
                   <Bell className="h-4 w-4" />
                   {unreadCount > 0 && (
-                    <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white shadow-sm animate-pulse-soft">
+                    <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white shadow-sm animate-pulse">
                       {unreadCount > 9 ? "9+" : unreadCount}
                     </span>
                   )}
@@ -138,7 +137,11 @@ export async function SiteHeader() {
 
               <Link
                 href={isEmployer ? "/employer/dashboard" : studentDestination}
-                className="rounded-full border border-slate-200/80 bg-white/80 backdrop-blur-md px-4 py-2 text-xs font-bold text-secondary shadow-sm transition-all duration-200 hover:border-brand-500 hover:text-brand-600 hover:bg-white/90 dark:border-slate-800/80 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:border-brand-400"
+                className="rounded-full bg-white/8 border border-white/10 px-4 py-2 text-xs font-bold text-white/70 transition-all duration-200 hover:bg-white/12 hover:text-white"
+                style={{
+                  backdropFilter: "blur(12px)",
+                  WebkitBackdropFilter: "blur(12px)",
+                }}
               >
                 {isEmployer ? "Employer hub" : canAccessStudentArea ? "Student hub" : "Continue setup"}
               </Link>
@@ -153,7 +156,7 @@ export async function SiteHeader() {
               >
                 <button
                   type="submit"
-                  className="px-3 py-2 text-xs font-bold text-danger transition-colors duration-200 hover:text-rose-700 dark:hover:text-rose-300"
+                  className="px-3 py-2 text-xs font-bold text-white/40 transition-colors duration-200 hover:text-rose-400"
                 >
                   Logout
                 </button>
@@ -162,7 +165,7 @@ export async function SiteHeader() {
           ) : (
             <SignInButton />
           )}
-        </ScrollReveal>
+        </div>
       </div>
     </header>
   );
