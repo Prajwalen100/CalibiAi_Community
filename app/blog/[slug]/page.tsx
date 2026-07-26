@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Calendar, Clock, ExternalLink, FileText, LinkIcon, User } from "lucide-react";
+import { BlogMarkdown } from "@/components/blog/blog-markdown";
+import { SafeBlogImage } from "@/components/blog/safe-blog-image";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { listLocalPublishedPosts } from "@/lib/admin/blog-store";
 import { STATIC_BLOG_POSTS, toBlogPost, type BlogPost } from "@/lib/blog/posts";
@@ -68,10 +70,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       </Link>
 
       <article className="mt-6 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl dark:border-slate-800 dark:bg-slate-900">
-        {post.coverImageUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={post.coverImageUrl} alt="" className="h-64 w-full object-cover sm:h-80" />
-        ) : null}
+        <SafeBlogImage src={post.coverImageUrl} alt={post.title} className="h-64 w-full object-cover sm:h-80" loading="eager" />
 
         <div className="border-b border-slate-100 bg-gradient-to-br from-brand-50 via-white to-indigo-50 p-6 dark:border-slate-800 dark:from-slate-950 dark:via-slate-900 dark:to-brand-950/40 sm:p-10">
           <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400">
@@ -114,16 +113,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         </div>
 
         <div className="p-6 sm:p-10">
-          <div className="prose prose-slate max-w-none dark:prose-invert prose-headings:font-black prose-a:text-brand-600 dark:prose-a:text-brand-400">
-            {post.body.split("\n").map((line, index) => {
-              if (line.startsWith("### ")) return <h3 key={index}>{line.replace("### ", "")}</h3>;
-              if (line.startsWith("## ")) return <h2 key={index}>{line.replace("## ", "")}</h2>;
-              if (line.startsWith("# ")) return <h2 key={index}>{line.replace("# ", "")}</h2>;
-              if (line.trim().startsWith("- ")) return <li key={index}>{line.trim().replace("- ", "")}</li>;
-              if (line.trim() === "") return <br key={index} />;
-              return <p key={index}>{line}</p>;
-            })}
-          </div>
+          <BlogMarkdown body={post.body} />
 
           {post.links.length > 0 ? (
             <div className="mt-10 rounded-2xl border border-slate-200 bg-slate-50/70 p-5 dark:border-slate-800 dark:bg-slate-950/50">

@@ -5,6 +5,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 import {
   estimateReadTimeMinutes,
+  normalizeCoverImageUrl,
   normalizeLinks,
   normalizeTags,
   slugifyBlogTitle,
@@ -114,7 +115,7 @@ function buildRow(input: BlogPostInput, existing?: BlogPost) {
     status,
     category: input.category?.trim() || existing?.category || "Education",
     read_time_minutes: readTime,
-    cover_image_url: input.coverImageUrl?.trim() || existing?.coverImageUrl || null,
+    cover_image_url: normalizeCoverImageUrl(input.coverImageUrl) ?? existing?.coverImageUrl ?? null,
     tags: input.tags !== undefined ? normalizeTags(input.tags) : existing?.tags ?? [],
     links: input.links !== undefined ? normalizeLinks(input.links) : existing?.links ?? [],
     featured: input.featured ?? existing?.featured ?? false,

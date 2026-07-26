@@ -1,10 +1,7 @@
 import Link from "next/link";
 import {
-  BookOpenCheck,
-  Database,
   Download,
   FileText,
-  LayoutDashboard,
   ShieldCheck,
   Users,
   type LucideIcon,
@@ -23,13 +20,6 @@ type NavItem = {
 
 export const ADMIN_NAV: NavItem[] = [
   {
-    key: "overview",
-    label: "Overview",
-    href: "/admin",
-    description: "Portal health at a glance",
-    icon: LayoutDashboard,
-  },
-  {
     key: "blog",
     label: "Blog CMS",
     href: "/admin/blog",
@@ -42,20 +32,6 @@ export const ADMIN_NAV: NavItem[] = [
     href: "/admin/students",
     description: "Filter learners and download CSV",
     icon: Users,
-  },
-  {
-    key: "content",
-    label: "Content Audit",
-    href: "/admin/content",
-    description: "Assessment and roadmap JSON checks",
-    icon: BookOpenCheck,
-  },
-  {
-    key: "system",
-    label: "System",
-    href: "/admin/system",
-    description: "APIs, tables and scoring contracts",
-    icon: Database,
   },
 ];
 
@@ -81,7 +57,7 @@ export function AdminShell({
       {/* Sidebar */}
       <aside className="lg:sticky lg:top-0 lg:h-screen lg:w-[272px] lg:shrink-0 lg:py-5 lg:pl-5">
         <div className="admin-glass flex h-full flex-col gap-4 p-4 max-lg:rounded-none max-lg:border-x-0 max-lg:border-t-0">
-          <Link href="/admin" className="flex items-center gap-3 rounded-2xl p-1.5 transition hover:bg-white/60">
+          <Link href="/admin/blog" className="flex items-center gap-3 rounded-2xl p-1.5 transition hover:bg-white/60">
             <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 via-indigo-500 to-violet-500 text-white shadow-lg">
               <ShieldCheck className="h-5 w-5" />
             </div>

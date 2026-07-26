@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState, useTransition } from "react";
+import { ChangeEvent, FormEvent, useMemo, useState, useTransition } from "react";
 import Link from "next/link";
 import {
   AlertTriangle,
@@ -11,6 +11,7 @@ import {
   FileText,
   ImageIcon,
   Link2,
+  Upload,
   Loader2,
   Pencil,
   PenLine,
@@ -23,6 +24,7 @@ import {
   User,
   X,
 } from "lucide-react";
+import { BlogMarkdown } from "@/components/blog/blog-markdown";
 import { estimateReadTimeMinutes, slugifyBlogTitle, type BlogPost, type BlogStatus } from "@/lib/blog/posts";
 import { Panel, Pill, StatCard, EmptyState, formatDate } from "./ui";
 
@@ -108,6 +110,7 @@ export function BlogPostManager({
   const [filter, setFilter] = useState<"all" | BlogStatus>("all");
   const [search, setSearch] = useState("");
   const [showPreview, setShowPreview] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [isPending, startTransition] = useTransition();
 
   const counts = useMemo(
@@ -215,6 +218,34 @@ export function BlogPostManager({
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     void submitForm(form.status);
+  }
+
+  async function handleImageUpload(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+
+    setMessage(null);
+    setUploadingImage(true);
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const response = await fetch("/api/admin/blog-posts/upload-image", { method: "POST", body: formData });
+      const payload = await response.json().catch(() => null);
+      if (!response.ok) throw new Error(payload?.error?.message ?? "Could not upload the image.");
+      const uploadedUrl = payload?.data?.url;
+      if (typeof uploadedUrl !== "string" || !uploadedUrl) throw new Error("Upload finished but no image URL was returned.");
+      setForm((current) => ({ ...current, coverImageUrl: uploadedUrl }));
+      setMessage({ tone: "success", text: "Image uploaded and attached to this blog post." });
+    } catch (error) {
+      setMessage({ tone: "error", text: error instanceof Error ? error.message : "Could not upload the image." });
+    } finally {
+      setUploadingImage(false);
+    }
+  }
+
+  function removeAsterisksFromBody() {
+    setForm((current) => ({ ...current, body: current.body.replace(/\*/g, "") }));
   }
 
   function updateStatus(post: BlogPost, status: BlogStatus) {
@@ -389,21 +420,26 @@ export function BlogPostManager({
             </div>
 
             <div>
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <label className="admin-label" htmlFor="post-body">
                   Body <span className="text-rose-500">*</span>
                 </label>
-                <button
-                  type="button"
-                  onClick={() => setShowPreview((current) => !current)}
-                  className="admin-btn admin-btn-ghost admin-btn-sm mb-1"
-                >
-                  <Eye className="h-3.5 w-3.5" /> {showPreview ? "Hide preview" : "Preview"}
-                </button>
+                <div className="mb-1 flex flex-wrap gap-2">
+                  <button type="button" onClick={removeAsterisksFromBody} className="admin-btn admin-btn-ghost admin-btn-sm">
+                    Remove *
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowPreview((current) => !current)}
+                    className="admin-btn admin-btn-ghost admin-btn-sm"
+                  >
+                    <Eye className="h-3.5 w-3.5" /> {showPreview ? "Hide preview" : "Preview"}
+                  </button>
+                </div>
               </div>
               {showPreview ? (
                 <div className="admin-glass-soft max-h-[420px] overflow-y-auto p-4 admin-scroll">
-                  <BodyPreview body={form.body} />
+                  <BlogMarkdown body={form.body} mode="admin" />
                 </div>
               ) : (
                 <textarea
@@ -417,14 +453,21 @@ export function BlogPostManager({
                 />
               )}
               <p className="mt-1.5 text-[11px] admin-faint">
-                Markdown-style headings (#, ##, ###) and “- ” bullets are rendered on the public page.
+                Markdown-style headings (#, ##, ###), bullets and bold text are rendered on the public page. Use “Remove *” to clean AI-generated asterisks from the body.
               </p>
             </div>
 
             <div>
-              <label className="admin-label" htmlFor="post-image">
-                Image URL
-              </label>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <label className="admin-label" htmlFor="post-image">
+                  Cover image
+                </label>
+                <label className={`admin-btn admin-btn-ghost admin-btn-sm ${uploadingImage ? "pointer-events-none opacity-60" : ""}`}>
+                  {uploadingImage ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Upload className="h-3.5 w-3.5" />}
+                  Upload image
+                  <input className="sr-only" type="file" accept="image/jpeg,image/png,image/webp,image/gif" onChange={handleImageUpload} disabled={uploadingImage} />
+                </label>
+              </div>
               <div className="relative">
                 <ImageIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                 <input
@@ -432,7 +475,7 @@ export function BlogPostManager({
                   className="admin-input pl-9"
                   value={form.coverImageUrl}
                   onChange={(event) => setForm({ ...form, coverImageUrl: event.target.value })}
-                  placeholder="https://images.example.com/cover.jpg"
+                  placeholder="Upload an image or paste https://images.example.com/cover.jpg"
                 />
               </div>
               {form.coverImageUrl.trim() ? (
@@ -688,46 +731,3 @@ function StatusBadge({ status }: { status: BlogStatus }) {
   return <Pill tone="warn">Draft</Pill>;
 }
 
-function BodyPreview({ body }: { body: string }) {
-  if (!body.trim()) {
-    return <p className="text-sm admin-faint">Nothing to preview yet — start writing the body.</p>;
-  }
-
-  return (
-    <div className="space-y-2 text-sm leading-7 admin-muted">
-      {body.split("\n").map((line, index) => {
-        const trimmed = line.trim();
-        if (trimmed.startsWith("### ")) {
-          return (
-            <h4 key={index} className="pt-2 text-base font-black admin-title">
-              {trimmed.slice(4)}
-            </h4>
-          );
-        }
-        if (trimmed.startsWith("## ")) {
-          return (
-            <h3 key={index} className="pt-2 text-lg font-black admin-title">
-              {trimmed.slice(3)}
-            </h3>
-          );
-        }
-        if (trimmed.startsWith("# ")) {
-          return (
-            <h2 key={index} className="pt-2 text-xl font-black admin-title">
-              {trimmed.slice(2)}
-            </h2>
-          );
-        }
-        if (trimmed.startsWith("- ")) {
-          return (
-            <li key={index} className="ml-5 list-disc">
-              {trimmed.slice(2)}
-            </li>
-          );
-        }
-        if (!trimmed) return <div key={index} className="h-2" />;
-        return <p key={index}>{trimmed}</p>;
-      })}
-    </div>
-  );
-}

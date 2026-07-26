@@ -10,6 +10,7 @@ function student(overrides: Partial<StudentRecord> = {}): StudentRecord {
     email: "asha@example.com",
     phone: "9876543210",
     college: "COEP",
+    country: "IN",
     branch: "CSE",
     gradYear: 2026,
     location: "Pune",
@@ -44,6 +45,7 @@ const roster: StudentRecord[] = [
     email: "vikram@example.com",
     phone: null,
     college: "VIT",
+    country: "US",
     learningRole: "genai_engineer",
     targetRole: "genai_engineer",
     scoreTotal: 310,
@@ -57,6 +59,7 @@ const roster: StudentRecord[] = [
     email: "meera@college.edu",
     phone: "9000000000",
     college: "COEP",
+    country: "IN",
     learningRole: "data_science_engineer",
     targetRole: "data_science_engineer",
     scoreTotal: 880,
@@ -80,6 +83,12 @@ describe("filterStudents", () => {
     expect(filterStudents(roster, { college: "all" })).toHaveLength(3);
   });
 
+  it("filters by country", () => {
+    expect(filterStudents(roster, { country: "IN" }).map((s) => s.userId)).toEqual(["user-1", "user-3"]);
+    expect(filterStudents(roster, { country: "US" }).map((s) => s.userId)).toEqual(["user-2"]);
+    expect(filterStudents(roster, { country: "all" })).toHaveLength(3);
+  });
+
   it("filters by learning role", () => {
     expect(filterStudents(roster, { role: "genai_engineer" }).map((s) => s.userId)).toEqual(["user-2"]);
   });
@@ -93,11 +102,12 @@ describe("filterStudents", () => {
     ]);
   });
 
-  it("searches across name, email, phone and college", () => {
+  it("searches across name, email, phone, college and country", () => {
     expect(filterStudents(roster, { search: "meera" }).map((s) => s.userId)).toEqual(["user-3"]);
     expect(filterStudents(roster, { search: "9876543210" }).map((s) => s.userId)).toEqual(["user-1"]);
     expect(filterStudents(roster, { search: "college.edu" }).map((s) => s.userId)).toEqual(["user-3"]);
     expect(filterStudents(roster, { search: "coep" })).toHaveLength(2);
+    expect(filterStudents(roster, { search: "us" }).map((s) => s.userId)).toEqual(["user-2"]);
   });
 
   it("combines filters", () => {
@@ -109,7 +119,7 @@ describe("filterStudents", () => {
 describe("student CSV export", () => {
   it("includes the fields an admin needs on every row", () => {
     const headers = STUDENT_CSV_COLUMNS.map((column) => column.header);
-    expect(headers).toEqual(expect.arrayContaining(["Name", "Email", "Phone Number", "College", "CalibiAI Score", "Status"]));
+    expect(headers).toEqual(expect.arrayContaining(["Name", "Email", "Phone Number", "College", "Country", "CalibiAI Score", "Status"]));
   });
 
   it("serialises filtered students to CSV", () => {

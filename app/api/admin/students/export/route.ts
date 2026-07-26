@@ -42,6 +42,7 @@ export async function GET(request: Request) {
     search: url.searchParams.get("search") ?? undefined,
     activity: parseActivity(url.searchParams.get("activity")),
     college: url.searchParams.get("college") ?? undefined,
+    country: url.searchParams.get("country") ?? undefined,
     role: url.searchParams.get("role") ?? undefined,
     minScore: parseNumber(url.searchParams.get("minScore")),
     maxScore: parseNumber(url.searchParams.get("maxScore")),

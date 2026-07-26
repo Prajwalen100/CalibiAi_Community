@@ -9,6 +9,7 @@ import {
   Download,
   Filter,
   Gauge,
+  Globe2,
   Mail,
   Phone,
   RotateCcw,
@@ -28,12 +29,13 @@ import {
 import { toCsv, csvFileName } from "@/lib/admin/csv";
 import { EmptyState, Panel, Pill, StatCard, formatDate } from "./ui";
 
-type SortKey = "name" | "score" | "college" | "lastActive" | "joined";
+type SortKey = "name" | "score" | "college" | "country" | "lastActive" | "joined";
 
 export function StudentDataExplorer({ dataset }: { dataset: StudentDataset }) {
   const [search, setSearch] = useState("");
   const [activity, setActivity] = useState<StudentActivity | "all">("all");
   const [college, setCollege] = useState("all");
+  const [country, setCountry] = useState("all");
   const [role, setRole] = useState("all");
   const [minScore, setMinScore] = useState("");
   const [maxScore, setMaxScore] = useState("");
@@ -48,6 +50,7 @@ export function StudentDataExplorer({ dataset }: { dataset: StudentDataset }) {
       search,
       activity,
       college,
+      country,
       role,
       minScore: minScore === "" ? undefined : Number(minScore),
       maxScore: maxScore === "" ? undefined : Number(maxScore),
@@ -62,6 +65,8 @@ export function StudentDataExplorer({ dataset }: { dataset: StudentDataset }) {
           return (a.scoreTotal - b.scoreTotal) * direction;
         case "college":
           return (a.college ?? "").localeCompare(b.college ?? "") * direction;
+        case "country":
+          return (a.country ?? "").localeCompare(b.country ?? "") * direction;
         case "joined":
           return (new Date(a.createdAt ?? 0).getTime() - new Date(b.createdAt ?? 0).getTime()) * direction;
         case "lastActive":
@@ -69,7 +74,7 @@ export function StudentDataExplorer({ dataset }: { dataset: StudentDataset }) {
           return (new Date(a.lastActiveAt ?? 0).getTime() - new Date(b.lastActiveAt ?? 0).getTime()) * direction;
       }
     });
-  }, [dataset.students, search, activity, college, role, minScore, maxScore, sortKey, sortAsc]);
+  }, [dataset.students, search, activity, college, country, role, minScore, maxScore, sortKey, sortAsc]);
 
   const selectedRows = filtered.filter((student) => selected.has(student.userId));
   const exportRows = selectedRows.length > 0 ? selectedRows : filtered;
@@ -81,7 +86,7 @@ export function StudentDataExplorer({ dataset }: { dataset: StudentDataset }) {
       return;
     }
     setSortKey(key);
-    setSortAsc(key === "name" || key === "college");
+    setSortAsc(key === "name" || key === "college" || key === "country");
   }
 
   function toggleAll() {
@@ -110,6 +115,7 @@ export function StudentDataExplorer({ dataset }: { dataset: StudentDataset }) {
     setSearch("");
     setActivity("all");
     setCollege("all");
+    setCountry("all");
     setRole("all");
     setMinScore("");
     setMaxScore("");
@@ -150,6 +156,7 @@ export function StudentDataExplorer({ dataset }: { dataset: StudentDataset }) {
     if (search.trim()) params.set("search", search.trim());
     if (activity !== "all") params.set("activity", activity);
     if (college !== "all") params.set("college", college);
+    if (country !== "all") params.set("country", country);
     if (role !== "all") params.set("role", role);
     if (minScore) params.set("minScore", minScore);
     if (maxScore) params.set("maxScore", maxScore);
@@ -160,8 +167,9 @@ export function StudentDataExplorer({ dataset }: { dataset: StudentDataset }) {
 
   return (
     <div className="space-y-5">
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
         <StatCard icon={Users} label="Total students" value={dataset.totals.all} detail="Profiles with a login" accent="brand" />
+        <StatCard icon={Phone} label="Phone captured" value={dataset.totals.withPhone} detail="Students with phone numbers" accent="emerald" />
         <StatCard icon={UserCheck} label="Active" value={dataset.totals.active} detail="Seen in the last 30 days" accent="emerald" />
         <StatCard icon={UserX} label="Inactive" value={dataset.totals.inactive} detail="No activity in 30 days" accent="amber" />
         <StatCard icon={Trophy} label="Average score" value={dataset.totals.averageScore} detail="CalibiAI Score across learners" accent="violet" />
@@ -186,7 +194,7 @@ export function StudentDataExplorer({ dataset }: { dataset: StudentDataset }) {
 
       <Panel
         title="Filters"
-        description="Narrow the list by status, college, role, score or free-text search. The export always matches what you see."
+        description="Narrow the list by status, college, country, role, score or free-text search. The export always matches what you see."
         icon={Filter}
         action={
           <button type="button" onClick={resetFilters} className="admin-btn admin-btn-ghost admin-btn-sm">
@@ -195,7 +203,7 @@ export function StudentDataExplorer({ dataset }: { dataset: StudentDataset }) {
         }
       >
         <div className="grid gap-4 lg:grid-cols-12">
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-3">
             <label className="admin-label" htmlFor="student-search">
               Search
             </label>
@@ -206,7 +214,7 @@ export function StudentDataExplorer({ dataset }: { dataset: StudentDataset }) {
                 className="admin-input pl-9"
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
-                placeholder="Name, email, phone, college…"
+                placeholder="Name, email, phone, college, country…"
               />
             </div>
           </div>
@@ -230,7 +238,26 @@ export function StudentDataExplorer({ dataset }: { dataset: StudentDataset }) {
             </select>
           </div>
 
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-2">
+            <label className="admin-label" htmlFor="student-country">
+              Country
+            </label>
+            <select
+              id="student-country"
+              className="admin-select"
+              value={country}
+              onChange={(event) => setCountry(event.target.value)}
+            >
+              <option value="all">All countries</option>
+              {dataset.countries.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="lg:col-span-2">
             <label className="admin-label" htmlFor="student-role">
               Role
             </label>
@@ -249,7 +276,7 @@ export function StudentDataExplorer({ dataset }: { dataset: StudentDataset }) {
             </select>
           </div>
 
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-1">
             <label className="admin-label">Score range</label>
             <div className="flex items-center gap-2">
               <input
@@ -326,8 +353,8 @@ export function StudentDataExplorer({ dataset }: { dataset: StudentDataset }) {
             title={dataset.students.length === 0 ? "No students yet" : "No students match these filters"}
             description={
               dataset.students.length === 0
-                ? "As soon as learners sign in and complete their profile, their name, email, phone, college and score appear here."
-                : "Adjust the status, college, role or score filters to widen the result set."
+                ? "As soon as learners sign in and complete their profile, their name, email, phone, college, country and score appear here."
+                : "Adjust the status, college, country, role or score filters to widen the result set."
             }
             action={
               dataset.students.length > 0 ? (
@@ -352,12 +379,19 @@ export function StudentDataExplorer({ dataset }: { dataset: StudentDataset }) {
                     />
                   </th>
                   <SortableHeader label="Name" active={sortKey === "name"} asc={sortAsc} onClick={() => toggleSort("name")} />
-                  <th>Contact</th>
+                  <th>Email</th>
+                  <th>Phone</th>
                   <SortableHeader
                     label="College"
                     active={sortKey === "college"}
                     asc={sortAsc}
                     onClick={() => toggleSort("college")}
+                  />
+                  <SortableHeader
+                    label="Country"
+                    active={sortKey === "country"}
+                    asc={sortAsc}
+                    onClick={() => toggleSort("country")}
                   />
                   <th>Role</th>
                   <SortableHeader label="Score" active={sortKey === "score"} asc={sortAsc} onClick={() => toggleSort("score")} />
@@ -393,6 +427,9 @@ export function StudentDataExplorer({ dataset }: { dataset: StudentDataset }) {
           </span>
           <span className="inline-flex items-center gap-1.5">
             <Building2 className="h-3.5 w-3.5" /> {new Set(filtered.map((s) => s.college).filter(Boolean)).size} colleges
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <Globe2 className="h-3.5 w-3.5" /> {new Set(filtered.map((s) => s.country).filter(Boolean)).size} countries
           </span>
           <span className="inline-flex items-center gap-1.5">
             <Gauge className="h-3.5 w-3.5" /> {STUDENT_CSV_COLUMNS.length} columns per CSV row
@@ -451,12 +488,15 @@ function StudentRow({
       </td>
       <td>
         <p className="truncate">{student.email ?? "—"}</p>
-        <p className="text-[11px] admin-faint">{student.phone ?? "no phone"}</p>
+      </td>
+      <td className="whitespace-nowrap">
+        <p className="font-semibold admin-title">{student.phone ?? "—"}</p>
       </td>
       <td>
         <p className="truncate">{student.college ?? "—"}</p>
         {student.branch ? <p className="text-[11px] admin-faint">{student.branch}</p> : null}
       </td>
+      <td className="whitespace-nowrap">{student.country ?? "—"}</td>
       <td className="whitespace-nowrap capitalize">
         {(student.learningRole ?? student.targetRole ?? "—").replace(/_/g, " ")}
       </td>

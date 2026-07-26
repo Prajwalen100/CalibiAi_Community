@@ -11,6 +11,7 @@ export type StudentRecord = {
   email: string | null;
   phone: string | null;
   college: string | null;
+  country: string | null;
   branch: string | null;
   gradYear: number | null;
   location: string | null;
@@ -38,6 +39,7 @@ export type StudentFilters = {
   search?: string;
   activity?: StudentActivity | "all";
   college?: string;
+  country?: string;
   role?: string;
   minScore?: number;
   maxScore?: number;
@@ -47,12 +49,14 @@ export type StudentFilters = {
 export type StudentDataset = {
   students: StudentRecord[];
   colleges: string[];
+  countries: string[];
   roles: string[];
   totals: {
     all: number;
     active: number;
     inactive: number;
     withPhone: number;
+    withCountry: number;
     averageScore: number;
   };
   error: string | null;
@@ -63,7 +67,7 @@ export type StudentDataset = {
 export const DEFAULT_ACTIVE_WINDOW_DAYS = 30;
 
 const PROFILE_COLUMNS =
-  "user_id,username,full_name,display_name,email,phone,college,branch,grad_year,location,target_role,learning_role,role,onboarding_completed,onboarding_step,github_url,linkedin_url,portfolio_url,created_at,updated_at";
+  "user_id,username,full_name,display_name,email,phone,college,country,branch,grad_year,location,target_role,learning_role,role,onboarding_completed,onboarding_step,github_url,linkedin_url,portfolio_url,created_at,updated_at";
 
 function asString(value: unknown): string | null {
   return typeof value === "string" && value.trim().length > 0 ? value.trim() : null;
@@ -126,8 +130,9 @@ export async function getStudentDataset(
   const empty: StudentDataset = {
     students: [],
     colleges: [],
+    countries: [],
     roles: [],
-    totals: { all: 0, active: 0, inactive: 0, withPhone: 0, averageScore: 0 },
+    totals: { all: 0, active: 0, inactive: 0, withPhone: 0, withCountry: 0, averageScore: 0 },
     error: null,
     source: "unavailable",
   };
@@ -190,6 +195,7 @@ export async function getStudentDataset(
         email: asString(row.email),
         phone: asString(row.phone),
         college: asString(row.college),
+        country: asString(row.country),
         branch: asString(row.branch),
         gradYear: typeof row.grad_year === "number" ? row.grad_year : null,
         location: asString(row.location),
@@ -217,6 +223,9 @@ export async function getStudentDataset(
   const colleges = [...new Set(students.map((student) => student.college).filter((v): v is string => Boolean(v)))].sort(
     (a, b) => a.localeCompare(b)
   );
+  const countries = [...new Set(students.map((student) => student.country).filter((v): v is string => Boolean(v)))].sort(
+    (a, b) => a.localeCompare(b)
+  );
   const roles = [
     ...new Set(
       students
@@ -227,6 +236,7 @@ export async function getStudentDataset(
 
   const active = students.filter((student) => student.activity === "active").length;
   const withPhone = students.filter((student) => Boolean(student.phone)).length;
+  const withCountry = students.filter((student) => Boolean(student.country)).length;
   const averageScore =
     students.length > 0
       ? Math.round(students.reduce((sum, student) => sum + student.scoreTotal, 0) / students.length)
@@ -235,12 +245,14 @@ export async function getStudentDataset(
   return {
     students,
     colleges,
+    countries,
     roles,
     totals: {
       all: students.length,
       active,
       inactive: students.length - active,
       withPhone,
+      withCountry,
       averageScore,
     },
     error: null,
@@ -252,6 +264,7 @@ export function filterStudents(students: StudentRecord[], filters: StudentFilter
   const search = filters.search?.trim().toLowerCase() ?? "";
   const activity = filters.activity ?? "all";
   const college = filters.college?.trim() ?? "";
+  const country = filters.country?.trim() ?? "";
   const role = filters.role?.trim() ?? "";
   const minScore = Number.isFinite(filters.minScore) ? Number(filters.minScore) : null;
   const maxScore = Number.isFinite(filters.maxScore) ? Number(filters.maxScore) : null;
@@ -259,6 +272,7 @@ export function filterStudents(students: StudentRecord[], filters: StudentFilter
   return students.filter((student) => {
     if (activity !== "all" && student.activity !== activity) return false;
     if (college && college !== "all" && (student.college ?? "") !== college) return false;
+    if (country && country !== "all" && (student.country ?? "") !== country) return false;
     if (role && role !== "all" && (student.learningRole ?? student.targetRole ?? "") !== role) return false;
     if (minScore !== null && student.scoreTotal < minScore) return false;
     if (maxScore !== null && student.scoreTotal > maxScore) return false;
@@ -270,6 +284,7 @@ export function filterStudents(students: StudentRecord[], filters: StudentFilter
         student.email,
         student.phone,
         student.college,
+        student.country,
         student.branch,
         student.location,
         student.targetRole,
@@ -291,6 +306,7 @@ export const STUDENT_CSV_COLUMNS: CsvColumn<StudentRecord>[] = [
   { key: "phone", header: "Phone Number", value: (s) => s.phone },
   { key: "username", header: "Username", value: (s) => s.username },
   { key: "college", header: "College", value: (s) => s.college },
+  { key: "country", header: "Country", value: (s) => s.country },
   { key: "branch", header: "Branch", value: (s) => s.branch },
   { key: "gradYear", header: "Graduation Year", value: (s) => s.gradYear },
   { key: "location", header: "Location", value: (s) => s.location },
