@@ -99,12 +99,12 @@ export async function SiteHeader() {
           <CompactBrandLogo />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-8 text-sm font-semibold text-white/60">
+        <nav className="hidden items-center gap-8 text-sm font-semibold text-slate-600 dark:text-white/60 lg:flex">
           {navLinks.map(([label, href]) => (
             <Link
               key={href}
               href={href}
-              className="relative transition-colors duration-200 hover:text-white after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 after:bg-blue-400 after:transition-all after:duration-300 hover:after:w-full"
+              className="relative transition-colors duration-200 hover:text-slate-950 after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-full dark:hover:text-white dark:after:bg-blue-400"
             >
               {label}
             </Link>
@@ -120,7 +120,7 @@ export async function SiteHeader() {
                 <Link
                   href={isEmployer ? "/employer/dashboard/notifications" : "/community/notifications"}
                   aria-label="Notifications"
-                  className="relative flex h-9 w-9 items-center justify-center rounded-full bg-white/8 text-white/70 border border-white/10 transition-all duration-200 hover:bg-white/12 hover:text-white"
+                  className="relative flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/80 text-slate-600 shadow-sm transition-all duration-200 hover:bg-white hover:text-slate-950 dark:border-white/10 dark:bg-white/8 dark:text-white/70 dark:hover:bg-white/12 dark:hover:text-white"
                   style={{
                     backdropFilter: "blur(12px)",
                     WebkitBackdropFilter: "blur(12px)",
@@ -137,7 +137,7 @@ export async function SiteHeader() {
 
               <Link
                 href={isEmployer ? "/employer/dashboard" : studentDestination}
-                className="rounded-full bg-white/8 border border-white/10 px-4 py-2 text-xs font-bold text-white/70 transition-all duration-200 hover:bg-white/12 hover:text-white"
+                className="rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-xs font-bold text-slate-700 shadow-sm transition-all duration-200 hover:bg-white hover:text-slate-950 dark:border-white/10 dark:bg-white/8 dark:text-white/70 dark:hover:bg-white/12 dark:hover:text-white"
                 style={{
                   backdropFilter: "blur(12px)",
                   WebkitBackdropFilter: "blur(12px)",
@@ -156,7 +156,7 @@ export async function SiteHeader() {
               >
                 <button
                   type="submit"
-                  className="px-3 py-2 text-xs font-bold text-white/40 transition-colors duration-200 hover:text-rose-400"
+                  className="px-3 py-2 text-xs font-bold text-slate-500 transition-colors duration-200 hover:text-rose-600 dark:text-white/40 dark:hover:text-rose-400"
                 >
                   Logout
                 </button>

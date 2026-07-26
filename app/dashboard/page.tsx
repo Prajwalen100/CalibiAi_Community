@@ -107,7 +107,7 @@ export default async function DashboardPage({
       .limit(6),
   ]);
 
-  const publishedBlogs: BlogPost[] = (blogData ?? []).map((row: any) => toBlogPost(row));
+  const publishedBlogs: BlogPost[] = (blogData ?? []).map((row) => toBlogPost(row as Record<string, unknown>));
 
   const plan = roadmap?.generated_plan as StoredRoadmap | undefined;
   const days = plan?.days ?? [];
@@ -546,7 +546,7 @@ export default async function DashboardPage({
             ))
           )}
         </div>
-            <p className="mt-3 text-xs text-center text-slate-500">Latest published articles from the <strong>Admin CMS</strong> appear here in the Student Portal. All blogs posted via /admin/blog (when published) are automatically shown in the top navigation "Blog" link and here.</p>
+            <p className="mt-3 text-xs text-center text-slate-500">Latest published articles from the <strong>Admin CMS</strong> appear here in the Student Portal. All blogs posted via /admin/blog (when published) are automatically shown in the top navigation &quot;Blog&quot; link and here.</p>
       </div>
     </section>
   );

@@ -342,18 +342,19 @@ html {
 
 body {
   @apply antialiased;
-  background: linear-gradient(135deg, #050816 0%, #0a0f1e 30%, #0d1025 60%, #060a18 100%);
-  color: rgb(226, 232, 240);
+  background:
+    radial-gradient(900px 500px at 10% -10%, rgb(59 130 246 / 0.16), transparent 65%),
+    radial-gradient(800px 520px at 100% 0%, rgb(147 51 234 / 0.14), transparent 65%),
+    linear-gradient(135deg, #f8fbff 0%, #eef4ff 34%, #f4f1ff 68%, #f0f9ff 100%);
+  color: rgb(15, 23, 42);
   transition: background-color 240ms ease, color 240ms ease;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   min-height: 100vh;
 }
 
-/* Light mode override for glassmorphism */
-:root:not(.dark) body {
-  @apply antialiased;
-  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 30%, #ede9fe 60%, #f0f9ff 100%);
-  color: rgb(15, 23, 42);
+.dark body {
+  background: linear-gradient(135deg, #050816 0%, #0a0f1e 30%, #0d1025 60%, #060a18 100%);
+  color: rgb(226, 232, 240);
 }
 
 a { 
@@ -1143,16 +1144,18 @@ a {
 .glass {
   backdrop-filter: blur(18px) saturate(200%);
   -webkit-backdrop-filter: blur(18px) saturate(200%);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.30);
+  box-shadow: 0 18px 55px rgba(15, 23, 42, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.85);
   border-radius: 20px;
+  color: rgb(15 23 42);
 }
 
 .dark .glass {
   background: rgba(15, 23, 42, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  color: rgb(248 250 252);
 }
 
 .glass-light {
@@ -1172,14 +1175,16 @@ a {
 .glass-subtle {
   backdrop-filter: blur(12px) saturate(150%);
   -webkit-backdrop-filter: blur(12px) saturate(150%);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(248, 250, 252, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.28);
   border-radius: 16px;
+  color: rgb(15 23 42);
 }
 
 .dark .glass-subtle {
   background: rgba(15, 23, 42, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgb(248 250 252);
 }
 
 .glass-panel-subtle {
@@ -1268,16 +1273,18 @@ a {
 .modal-glass {
   backdrop-filter: blur(32px) saturate(200%);
   -webkit-backdrop-filter: blur(32px) saturate(200%);
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.36);
+  box-shadow: 0 25px 80px rgba(15, 23, 42, 0.18);
   border-radius: 24px;
+  color: rgb(15 23 42);
 }
 
 .dark .modal-glass {
   background: rgba(15, 23, 42, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+  color: rgb(248 250 252);
 }
 
 /* ── Avatar Gentle Float ──────────────────────────────────── */
@@ -1320,4 +1327,95 @@ a {
 
 .icon-glow-purple {
   box-shadow: 0 0 20px rgba(147, 51, 234, 0.2), 0 0 40px rgba(147, 51, 234, 0.1);
+}
+
+
+/* ── Light Theme Contrast Compatibility Layer ─────────────────
+   Several marketing/glass sections intentionally use translucent utility
+   classes. In light mode, make those legacy dark-surface utilities resolve to
+   readable slate colors only inside glass/chrome surfaces so solid brand CTAs
+   can keep white text. */
+:root:not(.dark) .glass .text-white\/90,
+:root:not(.dark) .glass-subtle .text-white\/90,
+:root:not(.dark) .modal-glass .text-white\/90 { color: rgb(30 41 59 / 0.92); }
+:root:not(.dark) .glass .text-white\/85,
+:root:not(.dark) .glass-subtle .text-white\/85,
+:root:not(.dark) .modal-glass .text-white\/85 { color: rgb(30 41 59 / 0.88); }
+:root:not(.dark) .glass .text-white\/80,
+:root:not(.dark) .glass-subtle .text-white\/80,
+:root:not(.dark) .modal-glass .text-white\/80 { color: rgb(51 65 85 / 0.95); }
+:root:not(.dark) .glass .text-white\/70,
+:root:not(.dark) .glass-subtle .text-white\/70,
+:root:not(.dark) .modal-glass .text-white\/70 { color: rgb(51 65 85 / 0.88); }
+:root:not(.dark) .glass .text-white\/60,
+:root:not(.dark) .glass-subtle .text-white\/60,
+:root:not(.dark) .modal-glass .text-white\/60 { color: rgb(71 85 105 / 0.92); }
+:root:not(.dark) .glass .text-white\/50,
+:root:not(.dark) .glass-subtle .text-white\/50,
+:root:not(.dark) .modal-glass .text-white\/50 { color: rgb(71 85 105 / 0.84); }
+:root:not(.dark) .glass .text-white\/40,
+:root:not(.dark) .glass-subtle .text-white\/40,
+:root:not(.dark) .modal-glass .text-white\/40 { color: rgb(100 116 139 / 0.88); }
+:root:not(.dark) .glass .text-white\/30,
+:root:not(.dark) .glass-subtle .text-white\/30,
+:root:not(.dark) .modal-glass .text-white\/30 { color: rgb(100 116 139 / 0.72); }
+
+:root:not(.dark) .glass .border-white\/10,
+:root:not(.dark) .glass .border-white\/8,
+:root:not(.dark) .glass .border-white\/6,
+:root:not(.dark) .glass-subtle .border-white\/10,
+:root:not(.dark) .modal-glass .border-white\/10 { border-color: rgb(203 213 225 / 0.82); }
+:root:not(.dark) .glass .bg-white\/5,
+:root:not(.dark) .glass .bg-white\/8,
+:root:not(.dark) .glass .bg-white\/10,
+:root:not(.dark) .glass-subtle .bg-white\/5,
+:root:not(.dark) .glass-subtle .bg-white\/8,
+:root:not(.dark) .glass-subtle .bg-white\/10,
+:root:not(.dark) .modal-glass .bg-white\/10 { background-color: rgb(248 250 252 / 0.78); }
+:root:not(.dark) .glass .hover\:bg-white\/8:hover,
+:root:not(.dark) .glass .hover\:bg-white\/10:hover,
+:root:not(.dark) .glass .hover\:bg-white\/12:hover,
+:root:not(.dark) .modal-glass .hover\:bg-white\/20:hover { background-color: rgb(241 245 249 / 0.92); }
+
+:root:not(.dark) .icon-glow-amber { box-shadow: 0 0 20px rgba(217, 119, 6, 0.14), 0 0 40px rgba(217, 119, 6, 0.08); }
+:root:not(.dark) .icon-glow-blue { box-shadow: 0 0 20px rgba(37, 99, 235, 0.16), 0 0 40px rgba(37, 99, 235, 0.08); }
+:root:not(.dark) .icon-glow-purple { box-shadow: 0 0 20px rgba(126, 34, 206, 0.14), 0 0 40px rgba(126, 34, 206, 0.08); }
+
+/* ── Public Student Profile Polish ─────────────────────────── */
+@keyframes profile-score-fill {
+  from { width: 0; }
+  to { width: var(--score-width, 0%); }
+}
+
+.profile-score-fill {
+  width: var(--score-width, 0%);
+  animation: profile-score-fill 1.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.profile-metal-badge {
+  position: relative;
+  isolation: isolate;
+}
+
+.profile-metal-badge::after {
+  content: "";
+  position: absolute;
+  inset: -40% -70%;
+  z-index: -1;
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.75) 50%, transparent 65%);
+  transform: translateX(-65%) rotate(8deg);
+  animation: profile-badge-shine 3.8s ease-in-out infinite;
+}
+
+@keyframes profile-badge-shine {
+  0%, 48% { transform: translateX(-65%) rotate(8deg); opacity: 0; }
+  58% { opacity: 0.9; }
+  78%, 100% { transform: translateX(65%) rotate(8deg); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-score-fill,
+  .profile-metal-badge::after {
+    animation: none;
+  }
 }

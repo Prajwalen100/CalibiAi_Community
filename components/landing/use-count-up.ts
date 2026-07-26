@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface UseCountUpOptions {
   end: number;
@@ -22,6 +22,28 @@ export function useCountUp({
   const [count, setCount] = useState(start);
   const ref = useRef<HTMLSpanElement>(null);
   const hasAnimated = useRef(false);
+
+  const animateCount = useCallback(() => {
+    const startTime = performance.now();
+    const range = end - start;
+
+    function step(currentTime: number) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(start + range * eased);
+
+      setCount(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    }
+
+    requestAnimationFrame(step);
+  }, [duration, end, start]);
 
   useEffect(() => {
     if (!startOnView) {
@@ -47,29 +69,7 @@ export function useCountUp({
 
     observer.observe(element);
     return () => observer.disconnect();
-  }, [end, start, duration, startOnView]);
-
-  function animateCount() {
-    const startTime = performance.now();
-    const range = end - start;
-
-    function step(currentTime: number) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-
-      // Ease out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = Math.round(start + range * eased);
-
-      setCount(current);
-
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      }
-    }
-
-    requestAnimationFrame(step);
-  }
+  }, [animateCount, startOnView]);
 
   const display = `${prefix}${count}${suffix}`;
 

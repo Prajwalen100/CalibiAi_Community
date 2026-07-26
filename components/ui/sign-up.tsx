@@ -580,7 +580,7 @@ export const AuthComponent = ({
                   </BlurFade>
                 )}
                 <BlurFade delay={0.5}>
-                  <p className={`text-sm font-medium text-center ${compact ? 'text-slate-400' : 'text-secondary'}`}>Continue with</p>
+                  <p className={`text-sm font-medium text-center ${compact ? 'text-slate-600 dark:text-slate-400' : 'text-secondary'}`}>Continue with</p>
                 </BlurFade>
                 <BlurFade delay={0.75}>
                   <div className="flex items-center justify-center gap-3 w-full">
@@ -634,7 +634,7 @@ export const AuthComponent = ({
                   </BlurFade>
                 )}
                 <BlurFade delay={0.25}>
-                  <p className={`text-sm font-medium ${compact ? 'text-slate-400' : 'text-secondary'}`}>{titles.passwordHint}</p>
+                  <p className={`text-sm font-medium ${compact ? 'text-slate-600 dark:text-slate-400' : 'text-secondary'}`}>{titles.passwordHint}</p>
                 </BlurFade>
               </motion.div>
             )}
@@ -657,7 +657,7 @@ export const AuthComponent = ({
                   </BlurFade>
                 )}
                 <BlurFade delay={0.25}>
-                  <p className={`text-sm font-medium ${compact ? 'text-slate-400' : 'text-secondary'}`}>{titles.confirmHint}</p>
+                  <p className={`text-sm font-medium ${compact ? 'text-slate-600 dark:text-slate-400' : 'text-secondary'}`}>{titles.confirmHint}</p>
                 </BlurFade>
               </motion.div>
             )}
@@ -682,7 +682,7 @@ export const AuthComponent = ({
                             transition={{ duration: 0.3, delay: 0.4 }}
                             className="absolute -top-6 left-4 z-10"
                           >
-                            <label className={`text-xs font-semibold ${compact ? 'text-slate-500' : 'text-muted-foreground'}`}>Email</label>
+                            <label className={`text-xs font-semibold ${compact ? 'text-slate-600 dark:text-slate-500' : 'text-muted-foreground'}`}>Email</label>
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -724,7 +724,7 @@ export const AuthComponent = ({
                                 transition={{ duration: 0.3 }}
                                 className="absolute -top-6 left-4 z-10"
                               >
-                                <label className={`text-xs font-semibold ${compact ? 'text-slate-500' : 'text-muted-foreground'}`}>Password</label>
+                                <label className={`text-xs font-semibold ${compact ? 'text-slate-600 dark:text-slate-500' : 'text-muted-foreground'}`}>Password</label>
                               </motion.div>
                             )}
                           </AnimatePresence>
@@ -765,7 +765,7 @@ export const AuthComponent = ({
                           <button
                             type="button"
                             onClick={handleGoBack}
-                            className={`mt-4 flex items-center gap-2 text-sm transition-colors ${compact ? 'text-slate-400 hover:text-white' : 'text-secondary hover:text-primary'}`}
+                            className={`mt-4 flex items-center gap-2 text-sm transition-colors ${compact ? 'text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white' : 'text-secondary hover:text-primary'}`}
                           >
                             <ArrowLeft className="w-4 h-4" /> Go back
                           </button>
@@ -789,7 +789,7 @@ export const AuthComponent = ({
                           transition={{ duration: 0.3 }}
                           className="absolute -top-6 left-4 z-10"
                         >
-                          <label className={`text-xs font-semibold ${compact ? 'text-slate-500' : 'text-muted-foreground'}`}>Confirm Password</label>
+                          <label className={`text-xs font-semibold ${compact ? 'text-slate-600 dark:text-slate-500' : 'text-muted-foreground'}`}>Confirm Password</label>
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -828,7 +828,7 @@ export const AuthComponent = ({
                     <button
                       type="button"
                       onClick={handleGoBack}
-                      className={`mt-4 flex items-center gap-2 text-sm transition-colors ${compact ? 'text-slate-400 hover:text-white' : 'text-secondary hover:text-primary'}`}
+                      className={`mt-4 flex items-center gap-2 text-sm transition-colors ${compact ? 'text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white' : 'text-secondary hover:text-primary'}`}
                     >
                       <ArrowLeft className="w-4 h-4" /> Go back
                     </button>
@@ -839,9 +839,9 @@ export const AuthComponent = ({
           </form>
 
           {switchHref && (
-            <p className={`text-sm text-center ${compact ? 'text-slate-400' : 'text-secondary'}`}>
+            <p className={`text-sm text-center ${compact ? 'text-slate-600 dark:text-slate-400' : 'text-secondary'}`}>
               {isSignUp ? "Already have an account? " : "New here? "}
-              <a href={switchHref} className={`font-semibold transition-colors ${compact ? 'text-brand-400 hover:text-brand-300' : 'text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300'}`}>
+              <a href={switchHref} className={`font-semibold transition-colors ${compact ? 'text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300' : 'text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300'}`}>
                 {isSignUp ? "Sign in" : "Create an account"}
               </a>
             </p>
