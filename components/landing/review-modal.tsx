@@ -48,7 +48,7 @@ export function ReviewModal({ testimonial, isOpen, onClose }: ReviewModalProps) 
       }}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm dark:bg-black/70" />
+      <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm dark:bg-black/70" />
 
       {/* Modal */}
       <div
@@ -58,7 +58,7 @@ export function ReviewModal({ testimonial, isOpen, onClose }: ReviewModalProps) 
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/70 backdrop-blur-md transition-all hover:bg-white/20 hover:text-white hover:scale-110"
+          className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600 backdrop-blur-md transition-all hover:scale-110 hover:bg-slate-200 hover:text-slate-950 dark:bg-white/10 dark:text-white/70 dark:hover:bg-white/20 dark:hover:text-white"
           aria-label="Close review"
         >
           <X className="h-5 w-5" />
@@ -68,7 +68,7 @@ export function ReviewModal({ testimonial, isOpen, onClose }: ReviewModalProps) 
         <div className="flex justify-center mb-6">
           <div className="relative">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/30 via-purple-500/30 to-indigo-500/30 blur-xl scale-150" />
-            <div className="relative h-28 w-28 sm:h-32 sm:w-32 rounded-full overflow-hidden border-2 border-white/20 shadow-2xl animate-avatar-breathe">
+            <div className="relative h-28 w-28 overflow-hidden rounded-full border-2 border-white shadow-2xl animate-avatar-breathe sm:h-32 sm:w-32 dark:border-white/20">
               <AvatarSVG id={testimonial.avatarId} gender={testimonial.gender} size={128} />
             </div>
           </div>
@@ -76,10 +76,10 @@ export function ReviewModal({ testimonial, isOpen, onClose }: ReviewModalProps) 
 
         {/* Name & Role */}
         <div className="text-center mb-6">
-          <h3 className="text-2xl font-black text-white sm:text-3xl">
+          <h3 className="text-2xl font-black text-slate-950 dark:text-white sm:text-3xl">
             {testimonial.name}
           </h3>
-          <p className="mt-1 text-sm font-semibold text-white/60">
+          <p className="mt-1 text-sm font-semibold text-slate-600 dark:text-white/60">
             {testimonial.role}
           </p>
         </div>
@@ -91,10 +91,10 @@ export function ReviewModal({ testimonial, isOpen, onClose }: ReviewModalProps) 
               key={metric.label}
               className="glass-subtle rounded-xl p-3 text-center"
             >
-              <div className="text-lg font-black text-white">
+              <div className="text-lg font-black text-slate-950 dark:text-white">
                 {metric.value}
               </div>
-              <div className="text-[10px] font-bold uppercase tracking-wider text-white/50">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-white/50">
                 {metric.label}
               </div>
             </div>
@@ -104,7 +104,7 @@ export function ReviewModal({ testimonial, isOpen, onClose }: ReviewModalProps) 
         {/* Full Narrative */}
         <div className="relative">
           <Quote className="absolute -top-2 -left-2 h-8 w-8 text-blue-400/30" />
-          <p className="relative z-10 text-base leading-relaxed text-white/85 sm:text-lg pl-4">
+          <p className="relative z-10 pl-4 text-base leading-relaxed text-slate-700 dark:text-white/85 sm:text-lg">
             {testimonial.fullNarrative}
           </p>
         </div>
@@ -126,7 +126,6 @@ export function ReviewModal({ testimonial, isOpen, onClose }: ReviewModalProps) 
 /* ── Inline SVG Avatar Component ──────────────────────────── */
 function AvatarSVG({
   id,
-  gender,
   size = 128,
 }: {
   id: string;

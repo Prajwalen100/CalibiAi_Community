@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Quote, Star } from "lucide-react";
+import { Quote } from "lucide-react";
 import { ReviewModal, AvatarSVG, type TestimonialData } from "./review-modal";
 
 const testimonials: TestimonialData[] = [
@@ -110,16 +110,16 @@ export function TestimonialsSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <p className="text-sm font-bold uppercase tracking-widest text-purple-400">
+          <p className="text-sm font-bold uppercase tracking-widest text-purple-600 dark:text-purple-400">
             Testimonials
           </p>
-          <h2 className="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 dark:text-white sm:text-4xl lg:text-5xl">
             Voices from the{" "}
-            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 bg-clip-text text-transparent dark:from-purple-400 dark:via-pink-400 dark:to-rose-400">
               community
             </span>
           </h2>
-          <p className="mt-4 text-base text-white/50 max-w-xl mx-auto">
+          <p className="mt-4 text-base text-slate-600 dark:text-white/50 max-w-xl mx-auto">
             Real students, real results. See how CalibiAI transforms careers.
           </p>
         </div>
@@ -132,31 +132,31 @@ export function TestimonialsSection() {
               className="glass group relative flex h-full flex-col p-6 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl"
             >
               {/* Quote icon */}
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500/15 border border-purple-500/20">
-                <Quote className="h-5 w-5 text-purple-400" />
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl border border-purple-200 bg-purple-50 dark:border-purple-500/20 dark:bg-purple-500/15">
+                <Quote className="h-5 w-5 text-purple-600 dark:text-purple-400" />
               </div>
 
               {/* Quote text */}
-              <p className="flex-1 text-sm font-semibold leading-relaxed text-white/80">
+              <p className="flex-1 text-sm font-semibold leading-relaxed text-slate-700 dark:text-white/80">
                 &ldquo;{t.shortQuote}&rdquo;
               </p>
 
               {/* Read full review link */}
               <button
                 onClick={() => openModal(t)}
-                className="mt-3 text-xs font-bold text-blue-400 hover:text-blue-300 transition-colors opacity-0 group-hover:opacity-100 duration-300 text-left"
+                className="mt-3 text-left text-xs font-bold text-blue-600 opacity-0 transition-colors duration-300 hover:text-blue-700 group-hover:opacity-100 dark:text-blue-400 dark:hover:text-blue-300"
               >
                 Read full review →
               </button>
 
               {/* Author with 3D Avatar */}
-              <div className="mt-6 flex items-center gap-4 border-t border-white/10 pt-5">
-                <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full border border-white/15 shadow-lg animate-avatar-breathe">
+              <div className="mt-6 flex items-center gap-4 border-t border-slate-200/80 pt-5 dark:border-white/10">
+                <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full border border-slate-200 shadow-lg animate-avatar-breathe dark:border-white/15">
                   <AvatarSVG id={t.avatarId} gender={t.gender} size={56} />
                 </div>
                 <div>
-                  <p className="font-bold text-white text-sm">{t.name}</p>
-                  <p className="mt-0.5 text-xs font-medium text-white/40">
+                  <p className="font-bold text-slate-950 dark:text-white text-sm">{t.name}</p>
+                  <p className="mt-0.5 text-xs font-medium text-slate-500 dark:text-white/40">
                     {t.role}
                   </p>
                 </div>
