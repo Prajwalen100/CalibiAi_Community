@@ -341,9 +341,19 @@ html {
 }
 
 body {
-  @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-50;
+  @apply antialiased;
+  background: linear-gradient(135deg, #050816 0%, #0a0f1e 30%, #0d1025 60%, #060a18 100%);
+  color: rgb(226, 232, 240);
   transition: background-color 240ms ease, color 240ms ease;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  min-height: 100vh;
+}
+
+/* Light mode override for glassmorphism */
+:root:not(.dark) body {
+  @apply antialiased;
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 30%, #ede9fe 60%, #f0f9ff 100%);
+  color: rgb(15, 23, 42);
 }
 
 a { 
@@ -1127,4 +1137,187 @@ a {
 }
 .lesson-prose .md-table tr:last-child td {
   border-bottom: 0;
+}
+
+/* ── Glassmorphism Design System ──────────────────────────── */
+.glass {
+  backdrop-filter: blur(18px) saturate(200%);
+  -webkit-backdrop-filter: blur(18px) saturate(200%);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.dark .glass {
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.glass-light {
+  backdrop-filter: blur(18px) saturate(200%);
+  -webkit-backdrop-filter: blur(18px) saturate(200%);
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+}
+
+.dark .glass-light {
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-subtle {
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.dark .glass-subtle {
+  background: rgba(15, 23, 42, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-panel-subtle {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background: rgba(255, 255, 255, 0.72);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-panel-subtle {
+  background: rgba(2, 6, 23, 0.78);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ── Animated Mesh Gradient Background ────────────────────── */
+@keyframes mesh-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(60px, -40px) scale(1.08); }
+  50% { transform: translate(-30px, 50px) scale(0.95); }
+  75% { transform: translate(40px, 20px) scale(1.05); }
+}
+
+@keyframes mesh-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-50px, 40px) scale(1.06); }
+  50% { transform: translate(60px, -30px) scale(0.97); }
+  75% { transform: translate(-20px, -50px) scale(1.03); }
+}
+
+@keyframes mesh-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, 30px) scale(1.1); }
+  66% { transform: translate(-50px, -20px) scale(0.93); }
+}
+
+@keyframes mesh-drift-4 {
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  25% { transform: translate(-30px, 60px) scale(1.04) rotate(2deg); }
+  50% { transform: translate(50px, -40px) scale(0.96) rotate(-1deg); }
+  75% { transform: translate(20px, 30px) scale(1.07) rotate(1deg); }
+}
+
+.mesh-blob-1 {
+  animation: mesh-drift-1 18s ease-in-out infinite;
+}
+
+.mesh-blob-2 {
+  animation: mesh-drift-2 22s ease-in-out infinite;
+}
+
+.mesh-blob-3 {
+  animation: mesh-drift-3 20s ease-in-out infinite;
+}
+
+.mesh-blob-4 {
+  animation: mesh-drift-4 25s ease-in-out infinite;
+}
+
+/* ── Count-Up Animation ───────────────────────────────────── */
+@keyframes count-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* ── Spotlight Hover for Trusted-By Logos ─────────────────── */
+.trusted-logo-group:hover .trusted-logo-item {
+  opacity: 0.3;
+}
+
+.trusted-logo-group .trusted-logo-item:hover {
+  opacity: 1 !important;
+  transform: scale(1.05);
+}
+
+/* ── Bounce animation for scroll icon ─────────────────────── */
+@keyframes gentle-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+.animate-bounce-gentle {
+  animation: gentle-bounce 2s ease-in-out infinite;
+}
+
+/* ── Review Modal Glass ───────────────────────────────────── */
+.modal-glass {
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+  border-radius: 24px;
+}
+
+.dark .modal-glass {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Avatar Gentle Float ──────────────────────────────────── */
+@keyframes avatar-breathe {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-4px) scale(1.01); }
+}
+
+.animate-avatar-breathe {
+  animation: avatar-breathe 4s ease-in-out infinite;
+}
+
+/* ── Solid CTA Button ─────────────────────────────────────── */
+.btn-cta-solid {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  color: white;
+  font-weight: 700;
+  border-radius: 9999px;
+  padding: 0.875rem 2rem;
+  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.35);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-cta-solid:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 40px rgba(37, 99, 235, 0.45);
+}
+
+/* ── Ambient Glow for Icons ───────────────────────────────── */
+.icon-glow-amber {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.2), 0 0 40px rgba(245, 158, 11, 0.1);
+}
+
+.icon-glow-blue {
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.2), 0 0 40px rgba(37, 99, 235, 0.1);
+}
+
+.icon-glow-purple {
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.2), 0 0 40px rgba(147, 51, 234, 0.1);
 }
