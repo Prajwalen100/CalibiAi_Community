@@ -123,7 +123,7 @@ export default async function EmployerApplicationsInboxPage({
                   <div>
                     <Link
                       href={`/community/jobs/${job.id}`}
-                      className="text-lg font-bold text-primary hover:text-brand-700"
+                      className="text-lg font-bold text-primary hover:text-brand-700 dark:hover:text-brand-300"
                     >
                       {job.title}
                     </Link>
@@ -136,12 +136,12 @@ export default async function EmployerApplicationsInboxPage({
                       className={`rounded-full px-2.5 py-1 font-bold capitalize ${
                         job.status === "open"
                           ? "bg-green-100 text-green-700"
-                          : "bg-slate-100 text-slate-600"
+                          : "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200"
                       }`}
                     >
                       {job.status}
                     </span>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-brand-50 px-2.5 py-1 font-bold text-brand-700">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-brand-50 px-2.5 py-1 font-bold text-brand-700 dark:bg-brand-950/50 dark:text-brand-200">
                       <Users className="h-3.5 w-3.5" /> {jobApps.length} applicant
                       {jobApps.length === 1 ? "" : "s"}
                     </span>
@@ -157,7 +157,7 @@ export default async function EmployerApplicationsInboxPage({
                       <Link
                         key={a.id}
                         href={`/employer/dashboard/applications/${a.id}`}
-                        className="text-xs font-bold text-brand-600 hover:underline"
+                        className="text-xs font-bold text-brand-700 hover:underline dark:text-brand-300"
                       >
                         Full profile → {a.applicant?.full_name || a.applicant?.username || "candidate"}
                       </Link>

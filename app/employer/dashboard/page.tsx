@@ -69,7 +69,7 @@ export default async function EmployerDashboardPage() {
     <div className="space-y-8">
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <p className="font-bold text-brand-600">Employer dashboard</p>
+          <p className="font-bold text-brand-700 dark:text-brand-300">Employer dashboard</p>
           <h1 className="mt-1 text-3xl font-black text-primary">
             Welcome{employer?.company_name ? `, ${employer.company_name}` : ""}
           </h1>
@@ -90,10 +90,10 @@ export default async function EmployerDashboardPage() {
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {[
-          { label: "Open postings", value: openJobs, icon: Briefcase, color: "text-brand-600 bg-brand-50" },
-          { label: "Total applications", value: apps.length, icon: Inbox, color: "text-indigo-600 bg-indigo-50" },
-          { label: "New to review", value: newApps, icon: Users, color: "text-amber-600 bg-amber-50" },
-          { label: "In pipeline", value: shortlisted, icon: ShieldCheck, color: "text-emerald-600 bg-emerald-50" },
+          { label: "Open postings", value: openJobs, icon: Briefcase, color: "text-brand-700 bg-brand-50 dark:text-brand-300 dark:bg-brand-950/50" },
+          { label: "Total applications", value: apps.length, icon: Inbox, color: "text-indigo-700 bg-indigo-50 dark:text-indigo-300 dark:bg-indigo-950/50" },
+          { label: "New to review", value: newApps, icon: Users, color: "text-amber-700 bg-amber-50 dark:text-amber-300 dark:bg-amber-950/50" },
+          { label: "In pipeline", value: shortlisted, icon: ShieldCheck, color: "text-emerald-700 bg-emerald-50 dark:text-emerald-300 dark:bg-emerald-950/50" },
         ].map((s) => (
           <div key={s.label} className="card">
             <div className={`inline-flex h-9 w-9 items-center justify-center rounded-xl ${s.color}`}>
@@ -107,32 +107,32 @@ export default async function EmployerDashboardPage() {
 
       <div className="grid gap-5 md:grid-cols-3">
         <Link href="/employer/dashboard/applications" className="card transition hover:border-brand-300 hover:shadow-md">
-          <Inbox className="h-6 w-6 text-brand-500" />
+          <Inbox className="h-6 w-6 text-brand-600 dark:text-brand-400" />
           <h2 className="mt-4 text-lg font-bold text-primary">Applications inbox</h2>
           <p className="mt-2 text-sm text-secondary">
             Get messages when students apply and move candidates through your pipeline.
           </p>
-          <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-brand-600">
+          <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-brand-700 dark:text-brand-300">
             Open inbox <ArrowRight className="h-4 w-4" />
           </span>
         </Link>
         <Link href="/employer/dashboard/candidates" className="card transition hover:border-emerald-300 hover:shadow-md">
-          <ShieldCheck className="h-6 w-6 text-emerald-500" />
+          <ShieldCheck className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
           <h2 className="mt-4 text-lg font-bold text-primary">Full candidate profile</h2>
           <p className="mt-2 text-sm text-secondary">
             See score, verified skills, projects, assessment proof, experience and capability for your job.
           </p>
-          <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-emerald-600">
+          <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-emerald-700 dark:text-emerald-300">
             View candidates <ArrowRight className="h-4 w-4" />
           </span>
         </Link>
         <Link href="/employer/dashboard/notifications" className="card transition hover:border-amber-300 hover:shadow-md">
-          <Bell className="h-6 w-6 text-amber-500" />
+          <Bell className="h-6 w-6 text-amber-600 dark:text-amber-400" />
           <h2 className="mt-4 text-lg font-bold text-primary">Notifications</h2>
           <p className="mt-2 text-sm text-secondary">
             Stay on top of new applications, offers, messages and interview activity.
           </p>
-          <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-amber-700">
+          <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-amber-700 dark:text-amber-300">
             {unread > 0 ? `${unread} unread` : "View all"} <ArrowRight className="h-4 w-4" />
           </span>
         </Link>
@@ -142,7 +142,7 @@ export default async function EmployerDashboardPage() {
         <section className="card">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-bold text-primary">Recent applications</h2>
-            <Link href="/employer/dashboard/applications" className="text-sm font-bold text-brand-600">
+            <Link href="/employer/dashboard/applications" className="text-sm font-bold text-brand-700 dark:text-brand-300">
               View all
             </Link>
           </div>
@@ -156,7 +156,7 @@ export default async function EmployerDashboardPage() {
               <Link
                 key={a.id}
                 href={`/employer/dashboard/applications/${a.id}`}
-                className="flex items-center justify-between rounded-xl border border-slate-100 p-3 transition hover:border-brand-200 hover:bg-brand-50/40 dark:border-slate-800"
+                className="flex items-center justify-between rounded-xl border border-slate-100 p-3 transition hover:border-brand-200 hover:bg-brand-50/40 dark:border-slate-800 dark:hover:border-brand-800 dark:hover:bg-brand-950/30"
               >
                 <div>
                   <p className="font-semibold text-primary">{jobTitle.get(a.job_id) ?? "Role"}</p>
@@ -173,14 +173,14 @@ export default async function EmployerDashboardPage() {
         <section className="card">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-bold text-primary">Your postings</h2>
-            <Link href="/employer/dashboard/jobs" className="text-sm font-bold text-brand-600">
+            <Link href="/employer/dashboard/jobs" className="text-sm font-bold text-brand-700 dark:text-brand-300">
               Manage
             </Link>
           </div>
           <div className="mt-4 space-y-3">
             {jobList.length === 0 && (
               <div className="rounded-xl bg-slate-50 p-4 text-center dark:bg-slate-900">
-                <Building2 className="mx-auto h-8 w-8 text-slate-400" />
+                <Building2 className="mx-auto h-8 w-8 text-slate-400 dark:text-slate-500" />
                 <p className="mt-2 text-sm text-secondary">No jobs posted yet.</p>
                 <Link href="/employer/dashboard/post" className="btn-primary mt-3 inline-flex">
                   Post your first job
@@ -193,7 +193,7 @@ export default async function EmployerDashboardPage() {
                 className="flex items-center justify-between rounded-xl border border-slate-100 p-3 dark:border-slate-800"
               >
                 <div>
-                  <Link href={`/community/jobs/${j.id}`} className="font-semibold text-primary hover:text-brand-600">
+                  <Link href={`/community/jobs/${j.id}`} className="font-semibold text-primary hover:text-brand-700 dark:hover:text-brand-300">
                     {j.title}
                   </Link>
                   <p className="text-xs capitalize text-subtle">{j.employment_type.replace(/_/g, " ")}</p>

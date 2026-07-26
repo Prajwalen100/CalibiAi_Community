@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { CompactBrandLogo } from "@/components/brand-logo";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const dynamic = "force-dynamic";
 
@@ -79,9 +80,12 @@ export default async function EmployerDashboardLayout({
             </span>
           </div>
           <div className="flex items-center gap-3">
+            {/* The global site header is hidden on employer routes, so the
+                employer portal needs its own light/dark switch. */}
+            <ThemeToggle />
             <div className="hidden text-right sm:block">
               <p className="text-sm font-bold text-primary">{employer.company_name}</p>
-              <p className="text-xs text-subtle">{profile?.full_name || user.email}</p>
+              <p className="text-xs text-secondary">{profile?.full_name || user.email}</p>
             </div>
             {employer.company_logo_url ? (
               // eslint-disable-next-line @next/next/no-img-element
@@ -105,7 +109,7 @@ export default async function EmployerDashboardLayout({
             >
               <button
                 type="submit"
-                className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 px-3 py-1.5 text-xs font-bold text-secondary hover:border-rose-300 hover:text-rose-600 dark:border-slate-700"
+                className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 px-3 py-1.5 text-xs font-bold text-secondary transition hover:border-rose-300 hover:bg-rose-50 hover:text-rose-600 dark:border-slate-700 dark:hover:border-rose-500/60 dark:hover:bg-rose-950/40 dark:hover:text-rose-300"
               >
                 <LogOut className="h-3.5 w-3.5" /> Logout
               </button>
@@ -123,7 +127,7 @@ export default async function EmployerDashboardLayout({
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-transparent px-3 py-2.5 text-sm font-semibold text-secondary transition hover:border-slate-200 hover:bg-white hover:text-primary dark:hover:border-slate-800 dark:hover:bg-slate-900"
+                  className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-transparent px-3 py-2.5 text-sm font-semibold text-secondary transition hover:border-slate-200 hover:bg-white hover:text-primary dark:hover:border-slate-700 dark:hover:bg-slate-900 dark:hover:text-white"
                 >
                   <Icon className="h-4 w-4" />
                   {item.label}

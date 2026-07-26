@@ -121,7 +121,7 @@ export default async function CandidateApplicationPage({ params }: { params: Par
                   </p>
                 )}
               </div>
-              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold capitalize text-slate-700 dark:bg-slate-800">
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold capitalize text-slate-700 dark:bg-slate-800 dark:text-slate-200">
                 {app.status.replace(/_/g, " ")}
               </span>
             </div>
@@ -130,20 +130,20 @@ export default async function CandidateApplicationPage({ params }: { params: Par
 
             <div className="mt-5 grid gap-3 sm:grid-cols-3">
               <div className="rounded-2xl bg-brand-50 p-4 dark:bg-brand-950/30">
-                <p className="text-xs font-bold uppercase text-brand-700">CalibiAI score</p>
+                <p className="text-xs font-bold uppercase text-brand-700 dark:text-brand-300">CalibiAI score</p>
                 <p className="mt-1 text-3xl font-black text-brand-900 dark:text-brand-100">
                   {score?.total ?? "—"}
                 </p>
-                <p className="text-xs capitalize text-brand-700">{score?.tier ?? "unscored"}</p>
+                <p className="text-xs capitalize text-brand-700 dark:text-brand-300">{score?.tier ?? "unscored"}</p>
               </div>
               <div className="rounded-2xl bg-emerald-50 p-4 dark:bg-emerald-950/20">
-                <p className="text-xs font-bold uppercase text-emerald-700">Verified projects</p>
+                <p className="text-xs font-bold uppercase text-emerald-700 dark:text-emerald-300">Verified projects</p>
                 <p className="mt-1 text-3xl font-black text-emerald-900 dark:text-emerald-100">
                   {(projects ?? []).filter((p) => p.verified).length}
                 </p>
               </div>
               <div className="rounded-2xl bg-indigo-50 p-4 dark:bg-indigo-950/20">
-                <p className="text-xs font-bold uppercase text-indigo-700">Skills listed</p>
+                <p className="text-xs font-bold uppercase text-indigo-700 dark:text-indigo-300">Skills listed</p>
                 <p className="mt-1 text-3xl font-black text-indigo-900 dark:text-indigo-100">
                   {skillRows.length}
                 </p>
@@ -157,7 +157,7 @@ export default async function CandidateApplicationPage({ params }: { params: Par
             <div className="mt-4 flex flex-wrap gap-3 text-sm">
               <a
                 href={`mailto:${app.contact_email}?subject=${encodeURIComponent(`Re: ${job.title}`)}`}
-                className="inline-flex items-center gap-1 font-semibold text-brand-700 hover:underline"
+                className="inline-flex items-center gap-1 font-semibold text-brand-700 hover:underline dark:text-brand-300"
               >
                 <Mail className="h-4 w-4" /> {app.contact_email}
               </a>
@@ -186,7 +186,7 @@ export default async function CandidateApplicationPage({ params }: { params: Par
 
           <section className="card">
             <div className="flex items-center gap-2">
-              <ShieldCheck className="h-5 w-5 text-emerald-500" />
+              <ShieldCheck className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
               <h2 className="text-lg font-bold text-primary">Verified skills &amp; capability</h2>
             </div>
             {skillRows.length === 0 ? (
@@ -198,7 +198,7 @@ export default async function CandidateApplicationPage({ params }: { params: Par
                     key={s.name + s.category}
                     className={`rounded-full px-3 py-1.5 text-xs font-semibold ${
                       s.verified
-                        ? "bg-emerald-50 text-emerald-800"
+                        ? "bg-emerald-50 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-200"
                         : "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200"
                     }`}
                   >
@@ -212,7 +212,7 @@ export default async function CandidateApplicationPage({ params }: { params: Par
 
           <section className="card">
             <div className="flex items-center gap-2">
-              <FolderGit2 className="h-5 w-5 text-brand-500" />
+              <FolderGit2 className="h-5 w-5 text-brand-600 dark:text-brand-400" />
               <h2 className="text-lg font-bold text-primary">Projects &amp; assessment proof</h2>
             </div>
             <div className="mt-4 space-y-3">
@@ -227,7 +227,7 @@ export default async function CandidateApplicationPage({ params }: { params: Par
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <p className="font-bold text-primary">{p.title}</p>
                     {p.verified && (
-                      <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-bold text-emerald-700">
+                      <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-bold text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">
                         Verified
                       </span>
                     )}
@@ -237,12 +237,12 @@ export default async function CandidateApplicationPage({ params }: { params: Par
                   )}
                   <div className="mt-2 flex flex-wrap gap-3 text-xs font-semibold">
                     {p.repo_url && (
-                      <a href={p.repo_url} target="_blank" rel="noopener noreferrer" className="text-brand-600">
+                      <a href={p.repo_url} target="_blank" rel="noopener noreferrer" className="text-brand-700 dark:text-brand-300">
                         Repo
                       </a>
                     )}
                     {p.live_url && (
-                      <a href={p.live_url} target="_blank" rel="noopener noreferrer" className="text-brand-600">
+                      <a href={p.live_url} target="_blank" rel="noopener noreferrer" className="text-brand-700 dark:text-brand-300">
                         Live
                       </a>
                     )}
@@ -255,7 +255,7 @@ export default async function CandidateApplicationPage({ params }: { params: Par
           {profile?.username && (
             <Link
               href={`/community/members/${profile.username}`}
-              className="inline-flex items-center gap-2 text-sm font-bold text-brand-600 hover:underline"
+              className="inline-flex items-center gap-2 text-sm font-bold text-brand-700 hover:underline dark:text-brand-300"
             >
               <Trophy className="h-4 w-4" /> Open full community profile
             </Link>

@@ -28,7 +28,7 @@ export function OfferForm({ applicationId }: { applicationId: string }) {
 
   if (done) {
     return (
-      <p className="mt-3 rounded-xl bg-emerald-50 p-3 text-sm font-semibold text-emerald-800">
+      <p className="mt-3 rounded-xl bg-emerald-50 p-3 text-sm font-semibold text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-200">
         Offer sent. The candidate has been notified.
       </p>
     );
@@ -50,7 +50,7 @@ export function OfferForm({ applicationId }: { applicationId: string }) {
         placeholder="Compensation (optional)"
       />
       <input name="start_date" className="input" type="date" />
-      {error && <p className="text-xs text-rose-600">{error}</p>}
+      {error && <p className="text-xs text-rose-600 dark:text-rose-400">{error}</p>}
       <button type="submit" className="btn-primary w-full py-2.5 text-xs" disabled={loading}>
         {loading ? (
           <span className="inline-flex items-center gap-1">

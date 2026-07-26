@@ -57,7 +57,7 @@ export default async function EmployerJobsPage({
       </div>
 
       {posted === "1" && (
-        <div className="mt-4 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800">
+        <div className="mt-4 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800 dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-200">
           Posting published. Students can now find it under Jobs &amp; Opportunities and apply.
         </div>
       )}
@@ -65,7 +65,7 @@ export default async function EmployerJobsPage({
       <div className="mt-6 space-y-4">
         {jobs.length === 0 && (
           <div className="card text-center">
-            <Building2 className="mx-auto h-10 w-10 text-slate-400" />
+            <Building2 className="mx-auto h-10 w-10 text-slate-400 dark:text-slate-500" />
             <h2 className="mt-3 font-bold text-primary">No postings yet</h2>
             <p className="mt-1 text-sm text-secondary">Create your first job or freelance gig.</p>
             <Link href="/employer/dashboard/post" className="btn-primary mt-4 inline-flex">
@@ -86,13 +86,13 @@ export default async function EmployerJobsPage({
                   <span
                     className={`rounded-full px-2.5 py-1 text-xs font-bold capitalize ${
                       job.status === "open"
-                        ? "bg-emerald-50 text-emerald-700"
-                        : "bg-slate-100 text-slate-600"
+                        ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300"
+                        : "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200"
                     }`}
                   >
                     {job.status}
                   </span>
-                  <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold capitalize text-slate-600 dark:bg-slate-800">
+                  <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold capitalize text-slate-700 dark:bg-slate-800 dark:text-slate-200">
                     {String(job.employment_type).replace(/_/g, " ")}
                   </span>
                 </div>
@@ -100,7 +100,7 @@ export default async function EmployerJobsPage({
                 <p className="mt-1 text-sm text-secondary">
                   {job.location || "Location n/a"} · {job.compensation}
                 </p>
-                <p className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-brand-700">
+                <p className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-brand-700 dark:text-brand-300">
                   <Users className="h-3.5 w-3.5" /> {apps} application{apps === 1 ? "" : "s"}
                 </p>
               </div>
