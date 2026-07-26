@@ -631,6 +631,12 @@ a {
     0%, 50% { border-color: transparent; }
     51%, 100% { border-color: hsl(var(--primary)); }
   }
+
+  /* Text caret for the typing headline (opacity based, works on any element). */
+  @keyframes caret-blink {
+    0%, 45% { opacity: 1; }
+    55%, 100% { opacity: 0; }
+  }
   
   @keyframes wiggle {
     0%, 100% { transform: rotate(-3deg); }
@@ -688,6 +694,7 @@ a {
   }
   .animate-border-glow { animation: border-glow 2s ease-in-out infinite; }
   .animate-wiggle { animation: wiggle 1s ease-in-out infinite; }
+  .animate-caret-blink { animation: caret-blink 1s steps(1, end) infinite; }
   
   /* Delay Utilities */
   .delay-100 { animation-delay: 100ms; }

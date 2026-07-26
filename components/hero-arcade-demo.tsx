@@ -111,7 +111,7 @@ export function HeroArcadeDemo() {
                   </div>
 
                   <p className="mt-2 text-xs text-slate-600 leading-relaxed dark:text-slate-300">
-                    Deployed vector search, exact citation tracing, and Bedrock Sonnet orchestration.
+                    Deployed vector search, exact citation tracing, and CalibiAI Assistant orchestration.
                   </p>
 
                   <div className="mt-3 flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
@@ -207,7 +207,7 @@ export function HeroArcadeDemo() {
               >
                 <div className="flex items-center justify-between border-b border-slate-800 pb-2 text-[11px] text-slate-400">
                   <span className="flex items-center gap-1.5 font-bold text-brand-400">
-                    <Terminal className="h-3.5 w-3.5" /> Amazon Bedrock Reviewer
+                    <Terminal className="h-3.5 w-3.5" /> CalibiAI Assistant Reviewer
                   </span>
                   <span>Latency: 280ms</span>
                 </div>
@@ -218,7 +218,7 @@ export function HeroArcadeDemo() {
                   <p className="text-purple-300">✔ Live Demo URL: PASS (HTTPS endpoint responding 200 OK)</p>
                   <div className="mt-3 rounded-xl bg-slate-950 p-3 text-slate-400 text-[11px] border border-slate-800">
                     <p className="font-bold text-white mb-1">Feedback Summary:</p>
-                    &quot;Clean modular TypeScript implementation with clear error boundaries and Bedrock client invocation.&quot;
+                    &quot;Clean modular TypeScript implementation with clear error boundaries and resilient AI client invocation.&quot;
                   </div>
                 </div>
               </motion.div>

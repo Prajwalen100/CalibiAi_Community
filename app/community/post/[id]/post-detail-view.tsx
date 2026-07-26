@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowBigUp, ArrowBigDown, MessageSquare, Bookmark, Share2, UserPlus, CheckCircle2, Github, Globe, Calendar, MapPin, Loader2, Lightbulb, Zap, Trophy } from "lucide-react";
+import { AiMarkdown } from "@/components/ai/ai-markdown";
 import { votePost, savePost, followUser, createComment, acceptAnswer, rsvpEvent, submitChallengeEntry } from "@/app/community/actions";
 
 type CommentData = {
@@ -132,7 +133,7 @@ export function PostDetailView({
       const res = await fetch("/api/ai/prompt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: `You are an AI mentor on CalibiAI Community. A student asked: "${title} - ${content}". Provide a helpful, concise answer with actionable advice. Keep it under 200 words.` }),
+        body: JSON.stringify({ prompt: `A student asked this on the CalibiAI Community feed.\n\nTitle: ${title}\n\nDetails: ${content}\n\nGive a focused, actionable answer with a short summary, the key steps, and a code example if relevant.` }),
       });
       if (res.ok) { const data = await res.json(); setAiAnswer(data.answer); }
     } catch { /* ignore */ }
@@ -270,8 +271,10 @@ export function PostDetailView({
           <div className="mt-6">
             {aiAnswer ? (
               <div className="rounded-2xl border border-purple-100 bg-purple-50 p-4">
-                <p className="flex items-center gap-2 text-sm font-bold text-purple-700"><Lightbulb className="h-4 w-4" /> AI Suggested Answer</p>
-                <p className="mt-2 text-sm text-purple-800 whitespace-pre-wrap">{aiAnswer}</p>
+                <p className="flex items-center gap-2 text-sm font-bold text-purple-700"><Lightbulb className="h-4 w-4" /> CalibiAI Assistant Answer</p>
+                <div className="mt-3 rounded-xl bg-white p-4">
+                  <AiMarkdown content={aiAnswer} />
+                </div>
               </div>
             ) : (
               <button onClick={handleAiSuggestion} disabled={loadingAi} className="inline-flex items-center gap-2 rounded-lg border border-purple-200 bg-purple-50 px-4 py-2 text-sm font-semibold text-purple-700 hover:bg-purple-100">

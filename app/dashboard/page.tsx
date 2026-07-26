@@ -192,7 +192,7 @@ export default async function DashboardPage({
       {submitted === "1" && (
         <div className="mt-4 rounded-2xl border border-signal/30 bg-green-50 p-4 text-sm text-green-800">
           <p className="font-semibold">Project submitted successfully!</p>
-          <p className="mt-1">Amazon Bedrock has reviewed your project. Your updated score is reflected below.</p>
+          <p className="mt-1">CalibiAI Assistant has reviewed your project. Your updated score is reflected below.</p>
         </div>
       )}
 

@@ -27,7 +27,7 @@ export default async function SubmitProjectPage({
         <p className="font-semibold text-brand-700">Submit a Project</p>
         <h1 className="mt-2 text-3xl font-black">Get your project verified & scored by AI</h1>
         <p className="mt-3 text-slate-600">
-          Fill in the details below. Amazon Bedrock will review your submission and assign a verified score
+          Fill in the details below. CalibiAI Assistant will review your submission and assign a verified score
           that contributes to your CalibiAI profile.
         </p>
       </div>

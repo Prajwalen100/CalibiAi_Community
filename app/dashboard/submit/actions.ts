@@ -25,7 +25,7 @@ export async function submitProject(formData: FormData) {
   const { data: { user }, error: authError } = await supabase.auth.getUser();
   if (authError || !user) redirect("/");
 
-  // Run AI review via Amazon Bedrock
+  // Run AI review via CalibiAI Assistant
   const review = await reviewProject({
     title: parsed.title,
     description: parsed.description,

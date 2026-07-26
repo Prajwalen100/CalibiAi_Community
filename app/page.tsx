@@ -17,6 +17,7 @@ import { MetricsBar } from "@/components/landing/metrics-bar";
 import { HowItWorks } from "@/components/landing/how-it-works";
 import { TestimonialsSection } from "@/components/landing/testimonials-section";
 import { TrustedByBanner } from "@/components/landing/trusted-by";
+import { TypingHeadline } from "@/components/landing/typing-headline";
 
 export const dynamic = "force-dynamic";
 
@@ -59,13 +60,12 @@ export default async function HomePage() {
               The Trusted AI Talent Ecosystem
             </div>
 
-            {/* Headline */}
-            <h1 className="mt-6 text-4xl font-black tracking-tight text-slate-950 dark:text-white sm:text-5xl lg:text-6xl">
-              The trusted ecosystem for{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400">
-                applied AI talent
-              </span>
-            </h1>
+            {/* Headline (typed on load, replays on a loop) */}
+            <TypingHeadline
+              prefix="The trusted ecosystem for "
+              highlight="applied AI talent"
+              className="mt-6 text-4xl font-black tracking-tight text-slate-950 dark:text-white sm:text-5xl lg:text-6xl min-h-[2.4em] sm:min-h-[2.2em] lg:min-h-[2em]"
+            />
 
             {/* Subheadline */}
             <p className="mt-5 text-base leading-relaxed text-slate-600 dark:text-white/55 sm:text-lg lg:text-xl">
