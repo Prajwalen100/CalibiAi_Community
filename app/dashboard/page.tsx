@@ -5,6 +5,7 @@ import type { GeneratedRoadmap } from "@/lib/ai/schemas";
 import { getStudentAccess } from "@/lib/auth/student-access";
 import { Calendar, Target, Trophy, TrendingUp, Zap, BookOpen, CheckCircle2, Clock, ChevronRight, Sparkles, FileText, ArrowRight } from "lucide-react";
 import { DashboardGreeting } from "@/components/dashboard-greeting";
+import { ProjectCard, type ProjectDetail } from "@/components/project-detail-modal";
 import { STATIC_BLOG_POSTS, toBlogPost, type BlogPost } from "@/lib/blog/posts";
 
 export const dynamic = "force-dynamic";
@@ -84,7 +85,7 @@ export default async function DashboardPage({
     supabase.from("profiles").select("*").eq("user_id", user.id).single(),
     supabase.from("scores").select("*").eq("user_id", user.id).single(),
     supabase.from("roadmaps").select("*").eq("user_id", user.id).order("created_at", { ascending: false }).limit(1).single(),
-    supabase.from("projects").select("id,title,ai_score,verified,complexity_tier,created_at").eq("user_id", user.id).order("created_at", { ascending: false }),
+    supabase.from("projects").select("id,title,description,repo_url,live_url,ai_score,verified,complexity_tier,points_awarded,created_at,how_it_works,tech_stack,ai_feedback,ai_strengths,ai_improvements").eq("user_id", user.id).order("created_at", { ascending: false }),
     supabase.from("roadmap_progress").select("module_id,day,status").eq("user_id", user.id).order("day", { ascending: true }).limit(5),
     supabase
       .from("roadmap_task_assessments")
@@ -379,20 +380,7 @@ export default async function DashboardPage({
             </div>
             <div className="mt-4 grid gap-3">
               {(projects ?? []).map((project) => (
-                <div key={project.id} className="rounded-2xl border border-slate-100 p-4 dark:border-slate-800">
-                  <div className="flex items-center justify-between">
-                    <p className="font-semibold">{project.title}</p>
-                    {project.verified && (
-                      <span className="rounded-full bg-green-50 px-2 py-0.5 text-xs font-bold text-green-700 dark:bg-green-950/30 dark:text-green-300">
-                        Verified
-                      </span>
-                    )}
-                  </div>
-                  <div className="mt-2 flex items-center gap-3 text-sm">
-                    <span className="font-medium text-brand-700">AI Score: {project.ai_score ?? "—"}</span>
-                    <span className="capitalize text-slate-500">{String(project.complexity_tier ?? "beginner")}</span>
-                  </div>
-                </div>
+                <ProjectCard key={project.id} variant="dashboard" project={project as ProjectDetail} />
               ))}
 
               {bestRoadmapMiniProjects.map((project) => (

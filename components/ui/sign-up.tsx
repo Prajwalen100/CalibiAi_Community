@@ -304,7 +304,7 @@ const GradientBackground = () => (
 
 // ── ICONS ──────────────────────────────────────────────────────
 const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" className="w-6 h-6">
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" className="w-5 h-5">
     <g fillRule="evenodd" fill="none">
       <g fillRule="nonzero" transform="translate(3, 2)">
         <path fill="#4285F4" d="M57.8123233,30.1515267 C57.8123233,27.7263183 57.6155321,25.9565533 57.1896408,24.1212666 L29.4960833,24.1212666 L29.4960833,35.0674653 L45.7515771,35.0674653 C45.4239683,37.7877475 43.6542033,41.8844383 39.7213169,44.6372555 L39.6661883,45.0037254 L48.4223791,51.7870338 L49.0290201,51.8475849 C54.6004021,46.7020943 57.8123233,39.1313952 57.8123233,30.1515267" />
@@ -317,7 +317,7 @@ const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const GitHubIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" className="w-6 h-6">
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" className="w-5 h-5">
     <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
   </svg>
 );
@@ -582,24 +582,24 @@ export const AuthComponent = ({
                 <BlurFade delay={0.5}>
                   <p className={`text-sm font-medium text-center ${compact ? 'text-slate-600 dark:text-slate-400' : 'text-secondary'}`}>Continue with</p>
                 </BlurFade>
-                <BlurFade delay={0.75}>
-                  <div className="flex w-full items-stretch justify-center gap-3">
+                <BlurFade delay={0.75} className="w-full">
+                  <div className="flex w-full flex-col gap-3">
                     <GlassButton
                       type="button"
-                      contentClassName="flex h-20 w-full items-center justify-center gap-3 whitespace-nowrap text-sm sm:h-24 sm:text-base"
+                      contentClassName="flex h-12 w-full items-center justify-center gap-2.5 text-sm"
                       size="sm"
                       onClick={() => onOAuth?.("google")}
-                      className="min-w-0 flex-1"
+                      className="w-full"
                     >
                       <GoogleIcon />
                       <span className="font-semibold">Continue with Google</span>
                     </GlassButton>
                     <GlassButton
                       type="button"
-                      contentClassName="flex h-20 w-full items-center justify-center gap-3 whitespace-nowrap text-sm sm:h-24 sm:text-base"
+                      contentClassName="flex h-12 w-full items-center justify-center gap-2.5 text-sm"
                       size="sm"
                       onClick={() => onOAuth?.("github")}
-                      className="min-w-0 flex-1"
+                      className="w-full"
                     >
                       <GitHubIcon />
                       <span className="font-semibold">Continue with GitHub</span>
