@@ -21,7 +21,7 @@ Article JSONs live in `content/articles/generated/`.
 4. Next file.
 
 ## Article requirements (EVERY file)
-- Length ~2000 words (accept 1900–2200). Hard target — never under-write.
+- Length ~1500 words (accept 1300–1500). Hard target — never under-write.
 - Topic-driven: thoroughly cover EVERY item in the `topics` array; `title` is the headline.
   Write specifically about THIS day's subject — no generic filler.
 - Tone by `level`:
