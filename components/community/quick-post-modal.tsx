@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import { CreatePostForm } from "@/app/community/create/create-form";
 
@@ -23,16 +24,25 @@ export function QuickPostModal({ open, onClose, communities }: Props) {
     // Reset the form each time the modal is opened fresh.
     setFormKey((k) => k + 1);
     document.body.style.overflow = "hidden";
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", closeOnEscape);
     return () => {
       document.body.style.overflow = "";
+      document.removeEventListener("keydown", closeOnEscape);
     };
   }, [open]);
 
-  if (!open) return null;
+  if (!open || typeof document === "undefined") return null;
 
-  return (
+  // The feed is inside animated containers that use CSS transforms. A fixed
+  // element nested there is positioned/clipped by that container instead of
+  // the viewport. Rendering the overlay at document.body avoids that and keeps
+  // the full form visible above every sidebar and animation.
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-slate-900/50 px-4 py-8 backdrop-blur-sm"
+      className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-slate-900/50 px-4 py-8 backdrop-blur-sm"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -62,6 +72,7 @@ export function QuickPostModal({ open, onClose, communities }: Props) {
           />
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
