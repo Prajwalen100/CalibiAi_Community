@@ -1260,14 +1260,32 @@ a {
   50% { opacity: 0.7; }
 }
 
-/* ── Spotlight Hover for Trusted-By Logos ─────────────────── */
-.trusted-logo-group:hover .trusted-logo-item {
-  opacity: 0.3;
+/* ── Trusted-by partner marquee ───────────────────────────── */
+@keyframes trusted-marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
-.trusted-logo-group .trusted-logo-item:hover {
-  opacity: 1 !important;
-  transform: scale(1.05);
+.trusted-marquee-track {
+  animation: trusted-marquee-scroll 28s linear infinite;
+  will-change: transform;
+}
+
+.trusted-marquee:hover .trusted-marquee-track {
+  animation-play-state: paused;
+}
+
+.trusted-logo-item {
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.trusted-logo-item:hover {
+  color: rgb(37 99 235);
+  transform: scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trusted-marquee-track { animation: none; }
 }
 
 /* ── Bounce animation for scroll icon ─────────────────────── */
