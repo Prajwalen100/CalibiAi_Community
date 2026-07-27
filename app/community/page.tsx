@@ -3,27 +3,15 @@ import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { PostCard } from "@/components/community/post-card";
 import { mapPostToCardData } from "@/lib/community/mappers";
 import { attachCommunityProfiles } from "@/lib/community/public-profiles";
-import { CommunityCreatePostButton } from "./create-post-button";
+import { CommunityComposer } from "@/components/community/community-composer";
 import { ScrollReveal, StaggerReveal } from "@/components/scroll-reveal";
 
 export const dynamic = "force-dynamic";
 
-const pinnedSections = [
-  { icon: "🔥", label: "Trending Discussions", href: "/community?tab=discussion", color: "bg-orange-50 border-orange-200 dark:bg-orange-950/30 dark:border-orange-900/30", gradient: "from-orange-500/20 to-transparent" },
-  { icon: "🚀", label: "Featured AI Projects", href: "/community/showcase", color: "bg-green-50 border-green-200 dark:bg-green-950/30 dark:border-green-900/30", gradient: "from-emerald-500/20 to-transparent" },
-  { icon: "🏆", label: "Weekly Challenge", href: "/community/challenges", color: "bg-amber-50 border-amber-200 dark:bg-amber-950/30 dark:border-amber-900/30", gradient: "from-amber-500/20 to-transparent" },
-  { icon: "📅", label: "Upcoming Events", href: "/community/events", color: "bg-rose-50 border-rose-200 dark:bg-rose-950/30 dark:border-rose-900/30", gradient: "from-rose-500/20 to-transparent" },
-  { icon: "📰", label: "AI News", href: "/community?tab=research", color: "bg-indigo-50 border-indigo-200 dark:bg-indigo-950/30 dark:border-indigo-900/30", gradient: "from-indigo-500/20 to-transparent" },
-] as const;
-
 const feedTabs = [
-  { key: "all", label: "For You" },
-  { key: "showcase", label: "🚀 Showcase" },
-  { key: "discussion", label: "💬 Discussion" },
-  { key: "question", label: "❓ Question" },
-  { key: "research", label: "📄 Research" },
-  { key: "tutorial", label: "📚 Tutorial" },
-  { key: "career", label: "💼 Career" },
+  { key: "all", label: "Feed" },
+  { key: "showcase", label: "Showcase" },
+  { key: "question", label: "Q&A" },
 ];
 
 export default async function CommunityHomePage({
@@ -44,15 +32,17 @@ export default async function CommunityHomePage({
     // Do not embed profiles here. comm_posts.user_id references auth.users and
     // PostgREST cannot infer a comm_posts -> profiles relationship through it.
     .select(`id, title, content, post_type, upvotes, downvotes, comment_count, save_count,
-      is_pinned, is_featured, is_solved, repo_url, live_url, tech_stack,
+      is_pinned, is_featured, is_solved, repo_url, live_url, tech_stack, image_url,
       created_at, user_id, comm_communities(slug, name, emoji)`)
     .neq("post_type", "job")
     .order("is_pinned", { ascending: false })
     .order("created_at", { ascending: false })
     .limit(30);
 
-  if (tab !== "all") {
-    postQuery.eq("post_type", tab);
+  if (tab === "showcase") {
+    postQuery.eq("post_type", "showcase");
+  } else if (tab === "question") {
+    postQuery.eq("post_type", "question");
   }
 
   const [postResult, communitiesResult] = await Promise.all([
@@ -72,30 +62,10 @@ export default async function CommunityHomePage({
 
   return (
     <div className="space-y-8">
-      {/* Pinned Section */}
-      <ScrollReveal direction="up" className="mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-bold text-primary">🔥 Trending Today</h2>
-        </div>
-        <StaggerReveal staggerDelay={80} direction="up" className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-          {pinnedSections.map((s) => (
-            <Link 
-              key={s.label} 
-              href={s.href} 
-              className={`relative overflow-hidden rounded-2xl border p-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${s.color} group`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: `var(--tw-gradient-from, ${s.gradient})` }} />
-              <span className="relative text-2xl animate-float-slow">{s.icon}</span>
-              <p className="relative mt-2 text-sm font-bold text-primary">{s.label}</p>
-            </Link>
-          ))}
-        </StaggerReveal>
-      </ScrollReveal>
-
-      {/* Create a Post */}
+      {/* Pinned composer */}
       <ScrollReveal direction="up" delay={100}>
         {user ? (
-          <CommunityCreatePostButton username={user.email?.split("@")[0] ?? ""} />
+          <CommunityComposer username={user.email?.split("@")[0] ?? ""} />
         ) : (
           <div className="glass-panel mb-6 flex items-center justify-between p-6">
             <p className="text-sm text-secondary">Login to join the conversation and post in the community.</p>
@@ -112,8 +82,8 @@ export default async function CommunityHomePage({
               key={t.key}
               href={`/community${t.key === "all" ? "" : `?tab=${t.key}`}`}
               className={`whitespace-nowrap rounded-t-lg px-4 py-2.5 text-sm font-semibold transition-all duration-200 ${
-                tab === t.key 
-                  ? "border-b-2 border-brand-500 text-brand-700 dark:text-brand-300" 
+                tab === t.key
+                  ? "border-b-2 border-brand-500 text-brand-700 dark:text-brand-300"
                   : "text-secondary hover:text-primary dark:hover:text-primary"
               }`}
             >

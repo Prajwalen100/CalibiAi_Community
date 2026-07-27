@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ChromeSlot } from "@/components/site-chrome";
 import { ThemeProvider } from "@/components/theme-provider";
+import { GlobalAiAssistant } from "@/components/global-ai-assistant";
 
 export const metadata: Metadata = {
   title: "CalibiAI — verified, hire-ready applied-AI engineers",
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ChromeSlot>
             <SiteFooter />
           </ChromeSlot>
+          <GlobalAiAssistant />
         </ThemeProvider>
       </body>
     </html>

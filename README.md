@@ -24,6 +24,9 @@ A Next.js + Supabase implementation of the CalibiAI MVP: public conversion pages
    - `supabase/migrations/009_assessment_engine.sql` (Placement attempts, skill scores, and knowledge graph)
    - `supabase/migrations/010_learning_engine_core.sql` (Roadmap assignment and progress records)
    - `supabase/migrations/016_admin_blog_and_student_export.sql` (Admin blog authoring fields and student-export indexes)
+   - `supabase/migrations/017_student_ai_qa.sql` (Persists each "ASK to AI" question + answer so students can revisit them; powers the saved-question count on "My AI Q&A")
+   - `supabase/migrations/018_notification_application_link.sql` (Adds `application_id` to `comm_notifications` so job-application notifications link to the candidate's profile)
+   - `supabase/migrations/019_avatar_url.sql` (Adds `avatar_url` to `profiles` + the public view, powering the AI-generated avatar studio)
 
    If you skip any migration, you will get setup or feature errors (for example, saving an avatar requires migration 005, squads/events require migration 004, employer hiring requires migration 006, module reading progress requires migration 007, and the student onboarding-to-assessment flow requires migrations 008–010). If you are using the Supabase SQL Editor, paste and run each file separately in numerical order; if you are using the Supabase CLI, run `supabase db push`.
 3. Enable Google OAuth in Supabase Auth and set the callback URL to:

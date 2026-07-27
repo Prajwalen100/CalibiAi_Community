@@ -50,10 +50,18 @@ export default async function CommunityDetailPage({ params }: { params: Params }
         <span className="text-4xl">{community.emoji as string}</span>
         <h1 className="mt-3 text-3xl font-black">{community.name as string}</h1>
         <p className="mt-2 text-slate-300">{community.description as string}</p>
-        <div className="mt-4 flex items-center gap-4">
-          <span className="rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold">👥 {community.member_count as number} members</span>
+        <div className="mt-4 flex flex-wrap items-center gap-3">
           <span className="rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold">📝 {community.post_count as number} posts</span>
-          {user && <CommunityJoinButton communityId={community.id as string} isMember={isMember} />}
+          {user && (
+            <CommunityJoinButton
+              communityId={community.id as string}
+              isMember={isMember}
+              memberCount={community.member_count as number}
+            />
+          )}
+          {!user && (
+            <span className="rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold">👥 {community.member_count as number} members</span>
+          )}
         </div>
       </div>
 

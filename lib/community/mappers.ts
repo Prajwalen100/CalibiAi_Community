@@ -31,6 +31,7 @@ export function mapPostToCardData(
     repoUrl: p.repo_url ? String(p.repo_url) : null,
     liveUrl: p.live_url ? String(p.live_url) : null,
     techStack: Array.isArray(p.tech_stack) ? (p.tech_stack as string[]) : null,
+    imageUrl: p.image_url ? String(p.image_url) : null,
     jobType: p.job_type ? String(p.job_type) : null,
     jobCompany: p.job_company ? String(p.job_company) : null,
     createdAt: String(p.created_at ?? new Date().toISOString()),

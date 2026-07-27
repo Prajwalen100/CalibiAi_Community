@@ -1,8 +1,8 @@
 import Link from "next/link";
 import {
-  Home, MessageSquare, Lightbulb, Rocket, Trophy, Calendar,
-  Users, GraduationCap, Search, Bell,
-  LayoutGrid, Target, ChevronRight, Smile,
+  Home, MessageSquare, Lightbulb, Rocket,
+  Search, Bell,
+  LayoutGrid, Target, ChevronRight, Bot, Zap,
 } from "lucide-react";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { attachCommunityProfiles } from "@/lib/community/public-profiles";
@@ -15,18 +15,14 @@ export const dynamic = "force-dynamic";
 const communityNav = [
   { label: "Home", href: "/community", icon: Home },
   { label: "Ask AI", href: "/community/ask", icon: Lightbulb },
+  { label: "My AI Q&A", href: "/community/ask/history", icon: Bot },
   { label: "Showcase", href: "/community/showcase", icon: Rocket },
   { label: "Discussions", href: "/community?tab=discussion", icon: MessageSquare },
   { label: "Communities", href: "/community/communities", icon: LayoutGrid },
   { label: "Challenges", href: "/community/challenges", icon: Target },
-  { label: "Leaderboard", href: "/community/leaderboard", icon: Trophy },
-  { label: "Events", href: "/community/events", icon: Calendar },
-  { label: "Team Finder", href: "/community/team-finder", icon: Users },
-  { label: "Mentors", href: "/community/mentors", icon: GraduationCap },
-  { label: "Choose avatar", href: "/community/profile/avatar", icon: Smile },
 ];
 
-type LeaderboardEntry = { user_id: string; xp: number; level: number; profiles: { full_name: string; username: string } | null };
+type LeaderboardEntry = { user_id: string; xp: number; level: number; profiles: { full_name: string; username: string; avatar_id: number | null; avatar_url: string | null } | null };
 type EventEntry = { id: string; title: string; event_date: string };
 type ChallengeEntry = { id: string; title: string; challenge_deadline: string };
 type JoinedCommunity = { comm_communities: { id: string; slug: string; name: string; emoji: string } | null };
@@ -39,16 +35,16 @@ async function getSidebarData() {
   let upcomingEvents: EventEntry[] = [];
   let activeChallenge: ChallengeEntry[] = [];
   let joinedCommunities: JoinedCommunity[] = [];
-  let currentProfile: { full_name: string | null; username: string | null; avatar_id: number | null } | null = null;
+  let currentProfile: { full_name: string | null; username: string | null; avatar_id: number | null; avatar_url: string | null } | null = null;
 
   if (user) {
     try {
       let profileResp = await supabase
         .from("profiles")
-        .select("full_name, username, avatar_id")
+        .select("full_name, username, avatar_id, avatar_url")
         .eq("user_id", user.id)
         .maybeSingle();
-      if (profileResp.error && /avatar_id/.test(profileResp.error.message)) {
+      if (profileResp.error && /avatar_(id|url)/.test(profileResp.error.message)) {
         profileResp = await supabase
           .from("profiles")
           .select("full_name, username")
@@ -61,9 +57,10 @@ async function getSidebarData() {
           full_name: (raw.full_name as string | null) ?? null,
           username: (raw.username as string | null) ?? null,
           avatar_id: (raw.avatar_id as number | null) ?? null,
+          avatar_url: (raw.avatar_url as string | null) ?? null,
         };
       }
-    } catch { /* avatar_id column might not exist yet */ }
+    } catch { /* avatar columns might not exist yet */ }
   }
 
   try {
@@ -82,32 +79,49 @@ async function getSidebarData() {
     // Tables might not exist yet
   }
 
-  return { leaderboard, upcomingEvents, activeChallenge, joinedCommunities, user, currentProfile };
+  let aiQaCount = 0;
+  try {
+    const { count } = await supabase
+      .from("student_ai_qa")
+      .select("id", { count: "exact", head: true })
+      .eq("user_id", user?.id ?? "");
+    aiQaCount = count ?? 0;
+  } catch {
+    // Table might not exist yet
+  }
+
+  return { leaderboard, upcomingEvents, activeChallenge, joinedCommunities, user, currentProfile, aiQaCount };
 }
 
-function NavLink({ label, href, icon: Icon, isActive = false }: { 
-  label: string; 
-  href: string; 
-  icon: React.ComponentType<{ className?: string }>; 
-  isActive?: boolean; 
+function NavLink({ label, href, icon: Icon, isActive = false, badge }: {
+  label: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+  isActive?: boolean;
+  badge?: number | null;
 }) {
   return (
-    <Link 
-      href={href} 
+    <Link
+      href={href}
       className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
-        isActive 
-          ? "bg-brand-50 text-brand-700 dark:bg-brand-950/50 dark:text-brand-300 shadow-sm" 
+        isActive
+          ? "bg-brand-50 text-brand-700 dark:bg-brand-950/50 dark:text-brand-300"
           : "text-secondary hover:bg-slate-100 hover:text-primary dark:hover:bg-slate-800/50 dark:hover:text-primary"
       }`}
     >
       <Icon className="h-4 w-4" />
-      {label}
+      <span className="flex-1">{label}</span>
+      {!!badge && badge > 0 && (
+        <span className="rounded-full bg-purple-600 px-2 py-0.5 text-[10px] font-bold text-white">
+          {badge}
+        </span>
+      )}
     </Link>
   );
 }
 
 export default async function CommunityLayout({ children }: { children: ReactNode }) {
-  const { leaderboard, upcomingEvents, activeChallenge, joinedCommunities, user, currentProfile } = await getSidebarData();
+  const { leaderboard, upcomingEvents, activeChallenge, joinedCommunities, user, currentProfile, aiQaCount } = await getSidebarData();
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -118,13 +132,19 @@ export default async function CommunityLayout({ children }: { children: ReactNod
       </ScrollReveal>
 
       <div className="flex gap-6 lg:flex-row">
-        {/* Left Nav Sidebar */}
+        {/* Left Nav Sidebar — transparent so it recedes from the feed */}
         <ScrollReveal direction="left" delay={100} className="hidden w-56 shrink-0 lg:block">
           <aside>
-            <nav className="sticky top-24 space-y-1 glass-panel-subtle p-3 rounded-2xl">
+            <nav className="sticky top-24 space-y-1">
               <StaggerReveal staggerDelay={50} direction="right" className="space-y-1">
                 {communityNav.map(({ label, href, icon: Icon }) => (
-                  <NavLink key={href} label={label} href={href} icon={Icon} />
+                  <NavLink
+                    key={href}
+                    label={label}
+                    href={href}
+                    icon={Icon}
+                    badge={href === "/community/ask/history" ? aiQaCount : null}
+                  />
                 ))}
               </StaggerReveal>
               <div className="my-3 border-t border-slate-200/60 dark:border-slate-800/60" />
@@ -135,13 +155,13 @@ export default async function CommunityLayout({ children }: { children: ReactNod
             </nav>
 
             {joinedCommunities.length > 0 && (
-              <ScrollReveal direction="left" delay={300} className="mt-6 glass-panel-subtle p-3 rounded-2xl">
+              <ScrollReveal direction="left" delay={300} className="mt-6">
                 <p className="px-3 text-xs font-bold uppercase tracking-wide text-subtle">Your Communities</p>
                 <div className="mt-2 space-y-1">
                   {joinedCommunities.map((jc, i) => (
-                    <Link 
-                      key={i} 
-                      href={`/community/community/${jc.comm_communities?.slug}`} 
+                    <Link
+                      key={i}
+                      href={`/community/community/${jc.comm_communities?.slug}`}
                       className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-secondary hover:bg-slate-100 hover:text-primary dark:hover:bg-slate-800/50 dark:hover:text-primary transition-all duration-200"
                     >
                       <span>{jc.comm_communities?.emoji}</span>
@@ -160,7 +180,7 @@ export default async function CommunityLayout({ children }: { children: ReactNod
           </ScrollReveal>
         </main>
 
-        {/* Right Sidebar */}
+        {/* Right Sidebar — gamification & daily hooks */}
         <ScrollReveal direction="right" delay={150} className="hidden w-72 shrink-0 xl:block">
           <aside>
             <div className="sticky top-24 space-y-4">
@@ -168,19 +188,42 @@ export default async function CommunityLayout({ children }: { children: ReactNod
               <ScrollReveal direction="right" className="card-interactive glass-panel p-4 transition-all duration-300 hover:border-brand-500/50 hover:shadow-xl">
                 <div className="flex items-center gap-3 w-full">
                   <Link href="/community/profile/avatar" className="flex items-center gap-3 w-full">
-                    <ProfileAvatar avatarId={currentProfile?.avatar_id ?? null} size={48} />
+                    <ProfileAvatar
+                      avatarId={currentProfile?.avatar_id ?? null}
+                      avatarUrl={currentProfile?.avatar_url ?? null}
+                      size={48}
+                    />
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-sm font-bold text-primary">{currentProfile?.full_name ?? "Your profile"}</p>
                       <p className="mt-0.5 truncate text-xs text-subtle">
-                        {currentProfile?.avatar_id ? "Change your avatar" : "Choose your avatar →"}
+                        Customize your avatar →
                       </p>
                     </div>
                   </Link>
                 </div>
               </ScrollReveal>
 
+              {/* Daily Quest — above the leaderboard */}
+              <ScrollReveal direction="right" delay={80} className="glass-panel-subtle rounded-2xl border-brand-200/40 bg-brand-50/40 p-4 dark:border-brand-900/40 dark:bg-brand-950/30">
+                <div className="flex items-center gap-2">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-100 text-amber-600 dark:bg-amber-950/50">
+                    <Zap className="h-4 w-4" />
+                  </span>
+                  <p className="text-sm font-bold text-primary">Daily Quest</p>
+                </div>
+                <p className="mt-2 text-xs text-secondary">
+                  <span className="font-bold text-brand-700 dark:text-brand-300">+50 XP:</span> Answer a question in the RAG community.
+                </p>
+                <Link
+                  href="/community?tab=question"
+                  className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-500 dark:text-brand-300 transition-colors"
+                >
+                  Start quest <ArrowRightSmall />
+                </Link>
+              </ScrollReveal>
+
               {/* Leaderboard */}
-              <ScrollReveal direction="right" delay={100} className="glass-panel p-4">
+              <ScrollReveal direction="right" delay={100} className="glass-panel-subtle rounded-2xl p-4">
                 <div className="flex items-center justify-between">
                   <p className="text-sm font-bold text-primary">🏆 Leaderboard</p>
                   <Link href="/community/leaderboard" className="text-xs font-semibold text-brand-600 hover:text-brand-500 transition-colors">View all</Link>
@@ -190,6 +233,11 @@ export default async function CommunityLayout({ children }: { children: ReactNod
                     <div key={entry.user_id} className="flex items-center justify-between text-sm">
                       <div className="flex items-center gap-2">
                         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-50 text-xs font-bold text-brand-700 dark:bg-brand-950/50 dark:text-brand-300">{i + 1}</span>
+                        <ProfileAvatar
+                          avatarId={entry.profiles?.avatar_id ?? null}
+                          avatarUrl={entry.profiles?.avatar_url ?? null}
+                          size={22}
+                        />
                         <span className="font-medium truncate text-primary">{entry.profiles?.full_name ?? "User"}</span>
                       </div>
                       <span className="text-xs font-semibold text-brand-600 dark:text-brand-400">{entry.xp} XP</span>
@@ -200,27 +248,27 @@ export default async function CommunityLayout({ children }: { children: ReactNod
                 </div>
               </ScrollReveal>
 
-              {/* Upcoming Events */}
-              <ScrollReveal direction="right" delay={200} className="glass-panel p-4">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-bold text-primary">📅 Upcoming Events</p>
-                  <Link href="/community/events" className="text-xs font-semibold text-brand-600 hover:text-brand-500 transition-colors">View all</Link>
-                </div>
-                <div className="mt-3 space-y-2">
-                  {upcomingEvents.length ? upcomingEvents.map((ev) => (
-                    <Link key={ev.id} href={`/community/events/${ev.id}`} className="block rounded-lg p-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors">
-                      <p className="font-medium truncate text-primary">{ev.title}</p>
-                      <p className="text-xs text-subtle">{new Date(ev.event_date).toLocaleDateString()}</p>
-                    </Link>
-                  )) : (
-                    <p className="text-xs text-subtle">No upcoming events.</p>
-                  )}
-                </div>
-              </ScrollReveal>
+              {/* Upcoming Events — hidden entirely when empty (no zero-state) */}
+              {upcomingEvents.length > 0 && (
+                <ScrollReveal direction="right" delay={200} className="glass-panel-subtle rounded-2xl p-4">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-bold text-primary">📅 Upcoming Events</p>
+                    <Link href="/community/events" className="text-xs font-semibold text-brand-600 hover:text-brand-500 transition-colors">View all</Link>
+                  </div>
+                  <div className="mt-3 space-y-2">
+                    {upcomingEvents.map((ev) => (
+                      <Link key={ev.id} href={`/community/events/${ev.id}`} className="block rounded-lg p-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors">
+                        <p className="font-medium truncate text-primary">{ev.title}</p>
+                        <p className="text-xs text-subtle">{new Date(ev.event_date).toLocaleDateString()}</p>
+                      </Link>
+                    ))}
+                  </div>
+                </ScrollReveal>
+              )}
 
               {/* Active Challenge */}
               {activeChallenge.length > 0 && (
-                <ScrollReveal direction="right" delay={400} className="glass-panel p-4 border-brand-200/50 bg-brand-50/30 dark:border-brand-900/30 dark:bg-brand-950/30">
+                <ScrollReveal direction="right" delay={400} className="glass-panel-subtle rounded-2xl border-brand-200/50 bg-brand-50/30 p-4 dark:border-brand-900/30 dark:bg-brand-950/30">
                   <p className="text-sm font-bold text-brand-700 dark:text-brand-300">🔥 Weekly Challenge</p>
                   {activeChallenge.map((ch) => (
                     <Link key={ch.id} href={`/community/post/${ch.id}`} className="mt-2 block">
@@ -230,17 +278,14 @@ export default async function CommunityLayout({ children }: { children: ReactNod
                   ))}
                 </ScrollReveal>
               )}
-
-              {/* Suggested Mentors */}
-              <ScrollReveal direction="right" delay={500} className="glass-panel p-4">
-                <p className="text-sm font-bold text-primary">⭐ Suggested Mentors</p>
-                <p className="mt-2 text-xs text-subtle">Mentors will appear here once they join.</p>
-                <Link href="/community/mentors" className="mt-2 block text-xs font-semibold text-brand-600 hover:text-brand-500 transition-colors">Browse mentors →</Link>
-              </ScrollReveal>
             </div>
           </aside>
         </ScrollReveal>
       </div>
     </div>
   );
+}
+
+function ArrowRightSmall() {
+  return <span aria-hidden>→</span>;
 }
