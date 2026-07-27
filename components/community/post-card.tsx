@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowBigUp, ArrowBigDown, MessageSquare, Share2, Bookmark, Github, Globe } from "lucide-react";
 import { votePost, savePost, followUser } from "@/app/community/actions";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { ProfileAvatar } from "@/components/ui/profile-avatar";
 
 export type PostCardData = {
   id: string;
@@ -14,6 +15,8 @@ export type PostCardData = {
   authorName: string;
   authorUsername?: string;
   authorId: string;
+  authorAvatarId?: number | null;
+  authorAvatarUrl?: string | null;
   upvotes: number;
   downvotes: number;
   commentCount: number;
@@ -69,6 +72,7 @@ const statusColors = {
 
 export function PostCard({
   id, title, content, postType, authorName, authorUsername, authorId,
+  authorAvatarId, authorAvatarUrl,
   upvotes, downvotes, commentCount, isSolved, isFeatured, isPinned,
   communityName, communityEmoji, communitySlug,
   repoUrl, liveUrl, techStack, imageUrl, jobType, jobCompany,
@@ -201,9 +205,9 @@ export function PostCard({
         <div className="flex items-center gap-2">
           <Link
             href={`/community/members/${authorUsername ?? authorId}`}
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-50 text-sm font-bold text-brand-700 dark:bg-brand-950/50 dark:text-brand-300"
+            className="shrink-0 overflow-hidden rounded-full"
           >
-            {authorName?.charAt(0)?.toUpperCase() ?? "?"}
+            <ProfileAvatar avatarId={authorAvatarId} avatarUrl={authorAvatarUrl} size={32} />
           </Link>
           <div className="leading-tight">
             <Link

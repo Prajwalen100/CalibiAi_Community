@@ -74,19 +74,24 @@ export default async function PostPage({ params }: { params: Params }) {
     notFound();
   }
 
-  const authorProfile = (post.profiles ?? {}) as Record<string, string | null>;
+  const authorProfile = (post.profiles ?? {}) as Record<string, string | number | null>;
   const community = (post.comm_communities ?? {}) as Record<string, string | null>;
 
   // Map comments to typed structure
   const comments = rawComments.map((c) => {
-    const cp = (c.profiles ?? {}) as Record<string, string | null>;
+    const cp = (c.profiles ?? {}) as Record<string, string | number | null>;
     return {
       id: String(c.id),
       content: String(c.content),
       is_best_answer: Boolean(c.is_best_answer),
       created_at: String(c.created_at),
       user_id: String(c.user_id),
-      profiles: { full_name: cp.full_name, username: cp.username },
+      profiles: {
+        full_name: cp.full_name as string | null,
+        username: cp.username as string | null,
+        avatar_id: cp.avatar_id != null ? Number(cp.avatar_id) : null,
+        avatar_url: (cp.avatar_url as string | null) ?? null,
+      },
     };
   });
 
@@ -133,6 +138,8 @@ export default async function PostPage({ params }: { params: Params }) {
       authorId={String(post.user_id)}
       authorName={String(authorProfile.full_name ?? "Anonymous")}
       authorUsername={authorProfile.username ? String(authorProfile.username) : undefined}
+      authorAvatarId={authorProfile.avatar_id != null ? Number(authorProfile.avatar_id) : null}
+      authorAvatarUrl={authorProfile.avatar_url ? String(authorProfile.avatar_url) : null}
       communityName={community.name ? String(community.name) : null}
       communityEmoji={community.emoji ? String(community.emoji) : null}
       communitySlug={community.slug ? String(community.slug) : null}

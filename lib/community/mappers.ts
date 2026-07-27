@@ -8,7 +8,7 @@ export function mapPostToCardData(
   p: Record<string, unknown>,
   opts?: { currentUserId?: string }
 ): PostCardData {
-  const profile = (p.profiles ?? {}) as Record<string, string | null>;
+  const profile = (p.profiles ?? {}) as Record<string, string | number | null>;
   const community = (p.comm_communities ?? {}) as Record<string, string | null>;
   return {
     id: String(p.id ?? ""),
@@ -18,6 +18,8 @@ export function mapPostToCardData(
     authorName: String(profile.full_name ?? "Anonymous"),
     authorUsername: profile.username ? String(profile.username) : undefined,
     authorId: String(p.user_id ?? ""),
+    authorAvatarId: profile.avatar_id != null ? Number(profile.avatar_id) : null,
+    authorAvatarUrl: profile.avatar_url ? String(profile.avatar_url) : null,
     upvotes: Number(p.upvotes ?? 0),
     downvotes: Number(p.downvotes ?? 0),
     commentCount: Number(p.comment_count ?? 0),

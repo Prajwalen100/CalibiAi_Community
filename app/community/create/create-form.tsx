@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { createPost } from "@/app/community/actions";
 import { Loader2, ArrowLeft, Bot, Users, Sparkles, RefreshCw, MessageSquarePlus, Copy, Check, History } from "lucide-react";
 import { AiMarkdown } from "@/components/ai/ai-markdown";
@@ -27,6 +28,7 @@ type Props = {
 };
 
 export function CreatePostForm({ communities, defaultType, defaultCommunity }: Props) {
+  const router = useRouter();
   const [postType, setPostType] = useState(defaultType || "discussion");
   const [questionSubMode, setQuestionSubMode] = useState<"choice" | "community" | "ai">(
     defaultType === "question" ? "choice" : "community"
@@ -66,7 +68,8 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity }: P
       setLoading(false);
     } else {
       setSuccess(true);
-      setLoading(false);
+      router.push("/community");
+      router.refresh();
     }
   }
 
