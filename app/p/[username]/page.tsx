@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { notFound } from "next/navigation";
 import { ProfileAvatar } from "@/components/ui/profile-avatar";
+import { ProjectCard, type ProjectDetail } from "@/components/project-detail-modal";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 import { recalculateAndPersistScore } from "@/lib/score/recalculate";
 import { WhyScoreButton } from "@/components/profile/why-score-button";
@@ -63,15 +64,6 @@ type LabProjectRow = {
 export const dynamic = "force-dynamic";
 
 type Params = Promise<{ username: string }>;
-
-function getInitials(name?: string | null) {
-  return String(name ?? "AI")
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0]?.toUpperCase())
-    .join("") || "AI";
-}
 
 function normalizeTier(tier?: string | null) {
   return String(tier ?? "bronze").replace(/[_-]/g, " ");
@@ -163,7 +155,7 @@ export default async function ProfilePage({ params }: { params: Params }) {
       .maybeSingle(),
     supabase
       .from("projects")
-      .select("title,description,repo_url,live_url,complexity_tier,verified,points_awarded,ai_score")
+      .select("id,title,description,repo_url,live_url,complexity_tier,verified,points_awarded,ai_score,created_at,how_it_works,tech_stack,ai_feedback,ai_strengths,ai_improvements")
       .eq("user_id", profile.user_id)
       .eq("verified", true),
     supabase
@@ -316,30 +308,7 @@ export default async function ProfilePage({ params }: { params: Params }) {
 
           <div className="mt-5 grid gap-4">
             {projects?.length ? projects.map((project) => (
-              <article key={project.title} className="group overflow-hidden rounded-2xl border border-slate-200/70 bg-white/70 p-4 backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-lg dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-brand-300/40">
-                <div className="flex gap-4">
-                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 via-brand-700 to-violet-700 font-mono text-lg font-black text-white shadow-lg shadow-brand-500/15">
-                    {getInitials(project.title)}
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-start justify-between gap-2">
-                      <h3 className="text-base font-black text-slate-950 dark:text-white">{project.title}</h3>
-                      {project.verified && (
-                        <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-300/60 bg-emerald-50 px-2.5 py-1 text-[11px] font-black text-emerald-700 shadow-[0_0_18px_rgba(16,185,129,0.18)] dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-200">
-                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.9)]" />
-                          Verified
-                        </span>
-                      )}
-                    </div>
-                    <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{project.description}</p>
-                    <div className="mt-3 flex flex-wrap items-center gap-3 text-xs font-bold">
-                      {project.repo_url ? <Link href={project.repo_url} target="_blank" className="inline-flex items-center gap-1 text-brand-700 hover:text-brand-600 dark:text-brand-300"><Github className="h-3.5 w-3.5" /> GitHub</Link> : null}
-                      {project.live_url ? <Link href={project.live_url} target="_blank" className="inline-flex items-center gap-1 text-indigo-700 hover:text-indigo-600 dark:text-indigo-300">Live <ExternalLink className="h-3.5 w-3.5" /></Link> : null}
-                      {project.ai_score != null && <span className="rounded-lg bg-slate-950 px-2.5 py-1 font-mono text-sky-100 dark:bg-white/10">AI Score: {project.ai_score}/100</span>}
-                    </div>
-                  </div>
-                </div>
-              </article>
+              <ProjectCard key={project.id ?? project.title} variant="profile" project={project as ProjectDetail} />
             )) : (
               <div className="rounded-2xl border border-dashed border-slate-300/70 p-8 text-center dark:border-white/10">
                 <Sparkles className="mx-auto h-9 w-9 text-slate-300 dark:text-slate-600" />
