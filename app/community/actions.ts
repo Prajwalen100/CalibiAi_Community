@@ -3,6 +3,7 @@
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { recalculateAndPersistScore } from "@/lib/score/recalculate";
 
 // ── Helpers ──────────────────────────────────────────────────
 
@@ -41,7 +42,18 @@ async function addXp(userId: string, amount: number) {
   } catch {
     // XP table might not exist yet
   }
+
+  // Community activity feeds the "Community Activity" pillar of the public
+  // Talent Score, so keep it live instead of waiting for the next unrelated
+  // score recalculation. Best-effort — a failure here must never block the
+  // action (vote/comment/post) that triggered it.
+  try {
+    await recalculateAndPersistScore(userId);
+  } catch {
+    // Ignore — the profile page recomputes on read as a fallback.
+  }
 }
+
 
 async function createNotification(userId: string, actorId: string, type: string, postId?: string, commentId?: string, applicationId?: string) {
   const supabase = await createServerSupabaseClient();
