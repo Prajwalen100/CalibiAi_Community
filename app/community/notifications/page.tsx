@@ -127,7 +127,9 @@ export default async function NotificationsPage() {
     if (APPLICATION_TYPES.has(n.type)) return "/community/jobs/applications";
     if (n.type === "follow") {
       const actor = n.actor_id ? actorMap.get(n.actor_id) : null;
-      if (actor?.username) return `/community/members/${actor.username}`;
+      // Followers should open their public portfolio, not a non-existent
+      // community-member route.
+      if (actor?.username) return `/p/${actor.username}`;
     }
     return null;
   }
@@ -144,7 +146,7 @@ export default async function NotificationsPage() {
         {unread.length > 0 && <MarkAllReadButton />}
       </div>
 
-      <div className="mt-6 space-y-2">
+      <div className="mt-6 space-y-3">
         {notifications.length > 0 ? (
           notifications.map((n) => {
             const actor = n.actor_id ? actorMap.get(n.actor_id) : null;
@@ -154,24 +156,30 @@ export default async function NotificationsPage() {
             const href = hrefFor(n);
 
             const body = (
-              <div className="flex items-start gap-3 rounded-xl border p-4 transition hover:border-brand-200 hover:bg-brand-50/40">
-                <span className="text-xl">{icon}</span>
-                <div className="flex-1">
-                  <p className="text-sm">
+              <div className={`group flex items-center gap-4 rounded-2xl border p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md dark:hover:border-brand-700 ${
+                isRead
+                  ? "border-slate-200/80 bg-white/70 dark:border-slate-800 dark:bg-slate-900/50"
+                  : "border-brand-200 bg-brand-50/60 dark:border-brand-900/70 dark:bg-brand-950/25"
+              }`}>
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-xl shadow-sm ring-1 ring-slate-100 dark:bg-slate-800 dark:ring-slate-700">
+                  {icon}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-medium text-primary">
                     {sentenceFor(n.type, actorName)}
                   </p>
-                  <div className="mt-1 flex items-center gap-3">
-                    <span className="text-xs text-slate-400">
+                  <div className="mt-1.5 flex items-center gap-3">
+                    <span className="text-xs text-subtle">
                       {new Date(n.created_at).toLocaleString()}
                     </span>
                     {href && (
-                      <span className="text-xs font-semibold text-brand-700 hover:underline">
-                        View →
+                      <span className="text-xs font-bold text-brand-700 transition-colors group-hover:text-brand-600 dark:text-brand-300">
+                        {n.type === "follow" ? "View profile" : "View activity"} →
                       </span>
                     )}
                   </div>
                 </div>
-                {!isRead && <span className="mt-1 h-2.5 w-2.5 rounded-full bg-brand-500" />}
+                {!isRead && <span aria-label="Unread" className="h-2.5 w-2.5 shrink-0 rounded-full bg-brand-500 shadow-[0_0_0_4px_rgba(59,130,246,0.12)]" />}
               </div>
             );
 
