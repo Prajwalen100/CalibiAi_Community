@@ -246,17 +246,15 @@ export function GlobalAiAssistant() {
 
       {/* Drawer */}
       <aside
-        className={`fixed right-0 top-0 z-50 flex h-full w-full max-w-[400px] flex-col transition-transform duration-300 ease-out ${
+        className={`fixed right-0 top-0 z-50 flex h-full w-full max-w-[400px] flex-col border-l border-slate-200/80 bg-white/95 text-slate-900 transition-transform duration-300 ease-out dark:border-slate-800/80 dark:bg-slate-950/95 dark:text-slate-100 shadow-2xl ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
         style={{
-          background: "rgba(15, 23, 42, 0.85)",
           backdropFilter: "blur(24px)",
-          borderLeft: "1px solid rgba(255, 255, 255, 0.1)",
         }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+        <div className="flex items-center justify-between border-b border-slate-200/80 dark:border-white/10 px-4 py-3">
           <div className="flex items-center gap-2">
             <span
               className="flex h-8 w-8 items-center justify-center rounded-xl text-white"
@@ -265,8 +263,8 @@ export function GlobalAiAssistant() {
               <Bot className="h-4 w-4" />
             </span>
             <div>
-              <p className="text-sm font-bold text-white">Calibi AI Assistant</p>
-              <p className="text-[10px] text-white/50">Powered by Deepseek</p>
+              <p className="text-sm font-bold text-primary dark:text-white">Calibi AI Assistant</p>
+              <p className="text-[10px] text-slate-500 dark:text-white/50">Powered by Deepseek</p>
             </div>
           </div>
           <div className="flex items-center gap-1">
@@ -274,8 +272,8 @@ export function GlobalAiAssistant() {
               type="button"
               aria-label="Chat history"
               onClick={() => setView((v) => (v === "history" ? "chat" : "history"))}
-              className={`rounded-lg p-2 text-white/70 transition hover:bg-white/10 hover:text-white ${
-                view === "history" ? "bg-white/10 text-white" : ""
+              className={`rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-white/70 transition dark:hover:bg-white/10 dark:hover:text-white ${
+                view === "history" ? "bg-slate-100 text-primary dark:bg-white/10 dark:text-white" : ""
               }`}
             >
               <History className="h-4 w-4" />
@@ -284,7 +282,7 @@ export function GlobalAiAssistant() {
               type="button"
               aria-label="New chat"
               onClick={newChat}
-              className="rounded-lg p-2 text-white/70 transition hover:bg-white/10 hover:text-white"
+              className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-white/70 transition dark:hover:bg-white/10 dark:hover:text-white"
             >
               <Plus className="h-4 w-4" />
             </button>
@@ -292,7 +290,7 @@ export function GlobalAiAssistant() {
               type="button"
               aria-label="Close"
               onClick={() => setOpen(false)}
-              className="rounded-lg p-2 text-white/70 transition hover:bg-white/10 hover:text-white"
+              className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-white/70 transition dark:hover:bg-white/10 dark:hover:text-white"
             >
               <X className="h-4 w-4" />
             </button>
@@ -302,7 +300,7 @@ export function GlobalAiAssistant() {
         {/* Body */}
         {view === "history" ? (
           <div className="flex-1 space-y-2 overflow-y-auto px-4 py-4">
-            <p className="px-1 text-xs font-semibold uppercase tracking-wide text-white/40">
+            <p className="px-1 text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-white/40">
               Saved conversations
             </p>
             {MOCK_HISTORY.map((t) => (
@@ -310,13 +308,13 @@ export function GlobalAiAssistant() {
                 key={t.id}
                 type="button"
                 onClick={() => loadThread(t)}
-                className="block w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left transition hover:border-brand-400/50 hover:bg-white/10"
+                className="block w-full rounded-xl border border-slate-200/60 bg-slate-50/50 px-4 py-3 text-left transition hover:border-brand-400/50 hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
               >
-                <p className="flex items-center gap-2 text-sm font-semibold text-white">
-                  <History className="h-3.5 w-3.5 text-brand-300" />
+                <p className="flex items-center gap-2 text-sm font-semibold text-primary dark:text-white">
+                  <History className="h-3.5 w-3.5 text-brand-500 dark:text-brand-300" />
                   {t.title}
                 </p>
-                <p className="mt-1 line-clamp-2 text-xs text-white/50">
+                <p className="mt-1 line-clamp-2 text-xs text-slate-500 dark:text-white/50">
                   {t.messages[0]?.content?.slice(0, 90)}…
                 </p>
               </button>
@@ -326,13 +324,13 @@ export function GlobalAiAssistant() {
           <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto px-4 py-4">
             {showEmpty && (
               <div className="mt-2">
-                <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-3">
-                  <Sparkles className="h-4 w-4 text-brand-300" />
-                  <p className="text-sm text-white/80">
+                <div className="flex items-center gap-2 rounded-2xl border border-slate-200/80 bg-slate-50/50 dark:border-white/10 dark:bg-white/5 p-3">
+                  <Sparkles className="h-4 w-4 text-brand-500 dark:text-brand-300" />
+                  <p className="text-sm text-slate-800 dark:text-white/80">
                     Hi, I&apos;m Calibi AI. Ask me anything about AI engineering, careers, or your build.
                   </p>
                 </div>
-                <p className="mt-4 px-1 text-xs font-semibold uppercase tracking-wide text-white/40">
+                <p className="mt-4 px-1 text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-white/40">
                   Try a prompt
                 </p>
                 <div className="mt-2 flex flex-wrap gap-2">
@@ -341,7 +339,7 @@ export function GlobalAiAssistant() {
                       key={p}
                       type="button"
                       onClick={() => send(p)}
-                      className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-left text-xs text-white/80 transition hover:border-brand-400/60 hover:bg-white/10"
+                      className="rounded-full border border-slate-200/80 bg-slate-50/50 px-3 py-1.5 text-left text-xs text-slate-700 hover:bg-slate-100 dark:border-white/15 dark:bg-white/5 dark:text-white/80 dark:hover:bg-white/10 transition hover:border-brand-400/60"
                     >
                       {p}
                     </button>
@@ -359,14 +357,14 @@ export function GlobalAiAssistant() {
                 </div>
               ) : (
                 <div key={m.id} className="flex justify-start">
-                  <div className="max-w-[90%] rounded-2xl rounded-bl-sm border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white/90 shadow-lg">
+                  <div className="max-w-[90%] rounded-2xl rounded-bl-sm border border-slate-200/60 bg-slate-50/50 dark:border-white/10 dark:bg-white/5 px-3.5 py-2.5 text-sm text-slate-800 dark:text-white/90 shadow-lg">
                     {m.content ? (
                       <AiMarkdown content={m.content} />
                     ) : (
-                      <span className="inline-flex items-center gap-2 text-white/50">
-                        <span className="h-2 w-2 animate-bounce rounded-full bg-brand-300 [animation-delay:-0.2s]" />
-                        <span className="h-2 w-2 animate-bounce rounded-full bg-brand-300 [animation-delay:-0.1s]" />
-                        <span className="h-2 w-2 animate-bounce rounded-full bg-brand-300" />
+                      <span className="inline-flex items-center gap-2 text-slate-500 dark:text-white/50">
+                        <span className="h-2 w-2 animate-bounce rounded-full bg-brand-500 dark:bg-brand-300 [animation-delay:-0.2s]" />
+                        <span className="h-2 w-2 animate-bounce rounded-full bg-brand-500 dark:bg-brand-300 [animation-delay:-0.1s]" />
+                        <span className="h-2 w-2 animate-bounce rounded-full bg-brand-500 dark:bg-brand-300" />
                       </span>
                     )}
                   </div>
@@ -375,7 +373,7 @@ export function GlobalAiAssistant() {
             )}
 
             {error && (
-              <div className="rounded-xl border border-rose-400/30 bg-rose-500/10 px-3 py-2 text-xs text-rose-200">
+              <div className="rounded-xl border border-rose-200 bg-rose-50 px-3 py-2 text-xs text-rose-800 dark:border-rose-400/30 dark:bg-rose-500/10 dark:text-rose-200">
                 {error}
               </div>
             )}
@@ -384,9 +382,9 @@ export function GlobalAiAssistant() {
 
         {/* Input (only in chat view) */}
         {view === "chat" && (
-          <div className="border-t border-white/10 p-3">
+          <div className="border-t border-slate-200/80 dark:border-white/10 p-3">
             <div
-              className="flex items-end gap-2 rounded-2xl border border-white/10 bg-white/5 p-2 transition focus-within:border-brand-400/60"
+              className="flex items-end gap-2 rounded-2xl border border-slate-200/80 bg-slate-50/50 dark:border-white/10 dark:bg-white/5 p-2 transition focus-within:border-brand-400/60"
             >
               <textarea
                 ref={textareaRef}
@@ -403,7 +401,7 @@ export function GlobalAiAssistant() {
                 }}
                 rows={1}
                 placeholder="Ask anything about AI engineering…"
-                className="max-h-40 flex-1 resize-none bg-transparent px-2 py-1.5 text-sm text-white placeholder-white/40 outline-none"
+                className="max-h-40 flex-1 resize-none bg-transparent px-2 py-1.5 text-sm text-primary dark:text-white placeholder-slate-400 dark:placeholder-white/40 outline-none"
               />
               <button
                 type="button"
@@ -413,13 +411,13 @@ export function GlobalAiAssistant() {
                 className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition ${
                   input.trim() && !loading
                     ? "bg-brand-600 text-white shadow-lg shadow-brand-500/40"
-                    : "bg-white/10 text-white/40"
+                    : "bg-slate-100 text-slate-400 dark:bg-white/10 dark:text-white/40"
                 }`}
               >
                 <Send className="h-4 w-4" />
               </button>
             </div>
-            <div className="mt-2 flex items-center gap-3 px-1 text-[10px] text-white/40">
+            <div className="mt-2 flex items-center gap-3 px-1 text-[10px] text-slate-400 dark:text-white/40">
               <span className="inline-flex items-center gap-1">
                 <Code2 className="h-3 w-3" /> Code
               </span>

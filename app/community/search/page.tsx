@@ -18,10 +18,12 @@ export default async function SearchPage({
   let members: Array<Record<string, unknown>> = [];
 
   if (q && q.trim().length > 0) {
+    const escapedQ = q.replace(/[%_]/g, "\\$&").replace(/"/g, "");
+    const likePattern = `"%${escapedQ}%"`;
     const [postsResult, communitiesResult, membersResult] = await Promise.all([
-      supabase.from("comm_posts").select("*, comm_communities(slug, name, emoji)").or(`title.ilike.%${q}%,content.ilike.%${q}%`).order("upvotes", { ascending: false }).limit(20),
-      supabase.from("comm_communities").select("*").or(`name.ilike.%${q}%,description.ilike.%${q}%`).limit(10),
-      supabase.from("comm_public_profiles").select("user_id, full_name, username, target_role").or(`full_name.ilike.%${q}%,username.ilike.%${q}%`).limit(10),
+      supabase.from("comm_posts").select("*, comm_communities(slug, name, emoji)").or(`title.ilike.${likePattern},content.ilike.${likePattern}`).order("upvotes", { ascending: false }).limit(20),
+      supabase.from("comm_communities").select("*").or(`name.ilike.${likePattern},description.ilike.${likePattern}`).limit(10),
+      supabase.from("comm_public_profiles").select("user_id, full_name, username, target_role").or(`full_name.ilike.${likePattern},username.ilike.${likePattern}`).limit(10),
     ]);
     if (!postsResult.error) posts = await attachCommunityProfiles(supabase, (postsResult.data ?? []) as Array<Record<string, unknown>>);
     if (!communitiesResult.error) communities = (communitiesResult.data ?? []) as Array<Record<string, unknown>>;

@@ -11,15 +11,23 @@ export default async function CommunitiesPage() {
 
   let communities: Array<Record<string, unknown>> = [];
   let joinedIds: Set<string> = new Set();
+  let memberCounts: Record<string, number> = {};
 
   try {
-    const [commResult, memberResult] = await Promise.all([
+    const [commResult, memberResult, allMembersResult] = await Promise.all([
       supabase.from("comm_communities").select("*").order("sort_order"),
       user ? supabase.from("comm_members").select("community_id").eq("user_id", user.id) : { data: [] as Array<Record<string, string>> | null },
+      supabase.from("comm_members").select("community_id"),
     ]);
     communities = commResult.data ?? [];
     if (memberResult.data) {
       joinedIds = new Set((memberResult.data as Array<Record<string, string>>).map((m) => m.community_id));
+    }
+    if (allMembersResult.data) {
+      for (const m of allMembersResult.data) {
+        const cid = m.community_id as string;
+        memberCounts[cid] = (memberCounts[cid] || 0) + 1;
+      }
     }
   } catch { /* table might not exist */ }
 
@@ -103,36 +111,14 @@ export default async function CommunitiesPage() {
           <p className="mt-2 text-secondary">Join communities that match your interests. Post, learn, and grow together.</p>
         </div>
         <div className="flex items-center gap-2">
-          <button className="btn-secondary">
+          <Link href="/community/search" className="btn-secondary">
             <Search className="h-4 w-4" />
             Search
-          </button>
+          </Link>
         </div>
       </ScrollReveal>
 
-      {/* Stats */}
-      <ScrollReveal direction="up" delay={100} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="glass-panel p-4 text-center">
-          <p className="text-2xl font-black text-primary">{communities.length}</p>
-          <p className="text-xs text-subtle">Total Communities</p>
-        </div>
-        <div className="glass-panel p-4 text-center">
-          <p className="text-2xl font-black text-primary">
-            {communities.reduce((acc, c) => acc + ((c.member_count as number) || 0), 0)}
-          </p>
-          <p className="text-xs text-subtle">Total Members</p>
-        </div>
-        <div className="glass-panel p-4 text-center">
-          <p className="text-2xl font-black text-primary">
-            {communities.reduce((acc, c) => acc + ((c.post_count as number) || 0), 0)}
-          </p>
-          <p className="text-xs text-subtle">Total Posts</p>
-        </div>
-        <div className="glass-panel p-4 text-center">
-          <p className="text-2xl font-black text-primary">{joinedIds.size}</p>
-          <p className="text-xs text-subtle">Your Communities</p>
-        </div>
-      </ScrollReveal>
+
 
       {/* Categories */}
       <div className="space-y-8">
@@ -155,7 +141,7 @@ export default async function CommunitiesPage() {
                     name={c.name as string}
                     emoji={c.emoji as string}
                     description={c.description as string}
-                    memberCount={c.member_count as number}
+                    memberCount={memberCounts[c.id as string] ?? (c.member_count as number)}
                     postCount={c.post_count as number}
                     isJoined={joinedIds.has(c.id as string)}
                     userId={user?.id}

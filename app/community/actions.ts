@@ -622,7 +622,7 @@ export async function searchCommunityUsers(query: string) {
   const q = query.trim();
   if (q.length < 2) return { results: [] as Row[] };
   const supabase = await createServerSupabaseClient();
-  const like = `%${q.replace(/[%_]/g, "\\$&")}%`;
+  const like = `"%${q.replace(/[%_]/g, "\\$&").replace(/"/g, "")}%"`;
   let response = await supabase
     .from("comm_public_profiles")
     .select("user_id, full_name, username, target_role, avatar_id")

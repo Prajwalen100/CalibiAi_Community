@@ -96,21 +96,35 @@ function profileSelect(includeAvatar = true) {
 
 async function getProfile(username: string): Promise<ProfileRow | null> {
   const supabase = createAdminSupabaseClient();
-  const response = await supabase
+  const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(username);
+  
+  let query = supabase
     .from("profiles")
-    .select(profileSelect(true))
-    .eq("username", username)
-    .single();
+    .select(profileSelect(true));
+    
+  if (isUuid) {
+    query = query.eq("user_id", username);
+  } else {
+    query = query.ilike("username", username);
+  }
+  
+  const response = await query.single();
 
   if (response.data) return response.data as unknown as ProfileRow;
 
   // Older databases may not have avatar_id yet. Keep public profiles available.
   if (response.error && /avatar_id/i.test(response.error.message)) {
-    const fallback = await supabase
+    let fallbackQuery = supabase
       .from("profiles")
-      .select(profileSelect(false))
-      .eq("username", username)
-      .single();
+      .select(profileSelect(false));
+      
+    if (isUuid) {
+      fallbackQuery = fallbackQuery.eq("user_id", username);
+    } else {
+      fallbackQuery = fallbackQuery.ilike("username", username);
+    }
+    
+    const fallback = await fallbackQuery.single();
     return (fallback.data as ProfileRow | null) ?? null;
   }
 

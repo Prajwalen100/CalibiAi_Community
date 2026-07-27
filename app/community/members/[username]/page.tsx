@@ -22,10 +22,24 @@ export default async function MemberProfilePage({ params }: { params: Params }) 
   let profile: ProfileData;
 
   try {
-    let profileResult = await supabase.from("profiles").select("user_id, full_name, username, target_role, college, bio, github_url, linkedin_url, portfolio_url, avatar_id").eq("username", username).single();
+    const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(username);
+    let query = supabase.from("profiles").select("user_id, full_name, username, target_role, college, bio, github_url, linkedin_url, portfolio_url, avatar_id");
+    if (isUuid) {
+      query = query.eq("user_id", username);
+    } else {
+      query = query.ilike("username", username);
+    }
+    let profileResult = await query.single();
+
     if (profileResult.error && /avatar_id/.test(profileResult.error.message)) {
       // Migration 005_profile_avatars.sql has not been applied yet — fall back.
-      profileResult = await supabase.from("profiles").select("user_id, full_name, username, target_role, college, bio, github_url, linkedin_url, portfolio_url").eq("username", username).single();
+      let fallbackQuery = supabase.from("profiles").select("user_id, full_name, username, target_role, college, bio, github_url, linkedin_url, portfolio_url");
+      if (isUuid) {
+        fallbackQuery = fallbackQuery.eq("user_id", username);
+      } else {
+        fallbackQuery = fallbackQuery.ilike("username", username);
+      }
+      profileResult = await fallbackQuery.single();
     }
     if (!profileResult.data) notFound();
     const pd = profileResult.data as Record<string, unknown>;

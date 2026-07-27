@@ -17,6 +17,7 @@ export default async function CommunityDetailPage({ params }: { params: Params }
   let community: Record<string, unknown> | null = null;
   let posts: Array<Record<string, unknown>> = [];
   let isMember = false;
+  let realMemberCount = 0;
 
   try {
     const communityResult = await supabase.from("comm_communities").select("*").eq("slug", slug).single();
@@ -25,7 +26,7 @@ export default async function CommunityDetailPage({ params }: { params: Params }
 
     const communityId = community.id as string;
 
-    const [postsResult, memberResult] = await Promise.all([
+    const [postsResult, memberResult, membersCountResult] = await Promise.all([
       supabase
         .from("comm_posts")
         .select("*, comm_communities(slug, name, emoji)")
@@ -34,11 +35,13 @@ export default async function CommunityDetailPage({ params }: { params: Params }
         .order("created_at", { ascending: false })
         .limit(30),
       user ? supabase.from("comm_members").select("id").eq("user_id", user.id).eq("community_id", communityId).single() : { data: null },
+      supabase.from("comm_members").select("id", { count: "exact", head: true }).eq("community_id", communityId),
     ]);
 
     if (postsResult.error) throw postsResult.error;
     posts = await attachCommunityProfiles(supabase, (postsResult.data ?? []) as Array<Record<string, unknown>>);
     isMember = !!memberResult.data;
+    realMemberCount = membersCountResult.count ?? (community.member_count as number);
   } catch {
     notFound();
   }
@@ -56,11 +59,11 @@ export default async function CommunityDetailPage({ params }: { params: Params }
             <CommunityJoinButton
               communityId={community.id as string}
               isMember={isMember}
-              memberCount={community.member_count as number}
+              memberCount={realMemberCount}
             />
           )}
           {!user && (
-            <span className="rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold">👥 {community.member_count as number} members</span>
+            <span className="rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold">👥 {realMemberCount} members</span>
           )}
         </div>
       </div>
