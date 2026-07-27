@@ -155,11 +155,6 @@ export default async function DashboardPage({
             </p>
           )}
         </div>
-        {profile?.username ? (
-          <Link href={`/p/${profile.username}`} className="btn-secondary">
-            View public profile
-          </Link>
-        ) : null}
       </div>
 
       {/* Success banner for completed onboarding */}

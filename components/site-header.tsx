@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { SignInButton } from "@/components/sign-in-button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { Bell } from "lucide-react";
 import { CompactBrandLogo } from "@/components/brand-logo";
 import { getStudentAccess } from "@/lib/auth/student-access";
+import { ProfileMenu } from "@/components/profile-menu";
+import { signOut } from "@/app/auth-actions";
 
 const publicLinks = [
   ["How It Works", "/#how-it-works"],
@@ -45,6 +46,7 @@ export async function SiteHeader() {
   let isEmployer = false;
   let canAccessStudentArea = false;
   let studentDestination: "/onboarding" | "/assessment" | "/roadmap/assign" | "/dashboard" = "/onboarding";
+  let profile: { full_name: string | null; username: string | null; avatar_id: number | null; avatar_url: string | null } | null = null;
 
   if (url && key) {
     try {
@@ -56,6 +58,26 @@ export async function SiteHeader() {
         isEmployer = access.isEmployer;
         canAccessStudentArea = access.canAccessStudentArea;
         studentDestination = access.nextPath;
+
+        // This query is deliberately optional so a missing avatar migration never
+        // prevents the navigation from rendering.
+        const profileResult = await supabase
+          .from("profiles")
+          .select("full_name, username, avatar_id, avatar_url")
+          .eq("user_id", user.id)
+          .maybeSingle();
+        if (profileResult.data) {
+          profile = profileResult.data;
+        } else if (profileResult.error && /avatar_(id|url)/.test(profileResult.error.message)) {
+          const fallback = await supabase
+            .from("profiles")
+            .select("full_name, username")
+            .eq("user_id", user.id)
+            .maybeSingle();
+          if (fallback.data) {
+            profile = { ...fallback.data, avatar_id: null, avatar_url: null };
+          }
+        }
       }
     } catch {
       // Fail closed
@@ -146,21 +168,14 @@ export async function SiteHeader() {
                 {isEmployer ? "Employer hub" : canAccessStudentArea ? "Student hub" : "Continue setup"}
               </Link>
 
-              <form
-                action={async () => {
-                  "use server";
-                  const supabase = await createServerSupabaseClient();
-                  await supabase.auth.signOut();
-                  redirect("/");
-                }}
-              >
-                <button
-                  type="submit"
-                  className="px-3 py-2 text-xs font-bold text-slate-500 transition-colors duration-200 hover:text-rose-600 dark:text-white/40 dark:hover:text-rose-400"
-                >
-                  Logout
-                </button>
-              </form>
+              <ProfileMenu
+                fullName={profile?.full_name}
+                username={profile?.username}
+                avatarId={profile?.avatar_id}
+                avatarUrl={profile?.avatar_url}
+                profileHref={profile?.username ? `/p/${profile.username}` : (isEmployer ? "/employer/dashboard" : studentDestination)}
+                signOut={signOut}
+              />
             </>
           ) : (
             <SignInButton />
