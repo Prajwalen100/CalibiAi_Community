@@ -46,7 +46,11 @@ export default async function OpportunitiesPage({ searchParams }: { searchParams
 
   if (type) query = query.eq("employment_type", type);
   if (workplace) query = query.eq("workplace_type", workplace);
-  if (q && q.trim()) query = query.or(`title.ilike.%${q}%,company_name.ilike.%${q}%,description.ilike.%${q}%`);
+  if (q && q.trim()) {
+    const escapedQ = q.replace(/[%_]/g, "\\$&").replace(/"/g, "");
+    const likePattern = `"%${escapedQ}%"`;
+    query = query.or(`title.ilike.${likePattern},company_name.ilike.${likePattern},description.ilike.${likePattern}`);
+  }
 
   const { data, error } = await query;
   const jobs = (data ?? []) as JobRow[];

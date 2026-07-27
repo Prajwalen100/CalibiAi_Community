@@ -14,7 +14,6 @@ export const dynamic = "force-dynamic";
 
 const communityNav = [
   { label: "Home", href: "/community", icon: Home },
-  { label: "Ask AI", href: "/community/ask", icon: Lightbulb },
   { label: "My AI Q&A", href: "/community/ask/history", icon: Bot },
   { label: "Showcase", href: "/community/showcase", icon: Rocket },
   { label: "Discussions", href: "/community?tab=discussion", icon: MessageSquare },
@@ -134,8 +133,8 @@ export default async function CommunityLayout({ children }: { children: ReactNod
       <div className="flex gap-6 lg:flex-row">
         {/* Left Nav Sidebar — transparent so it recedes from the feed */}
         <ScrollReveal direction="left" delay={100} className="hidden w-56 shrink-0 lg:block">
-          <aside>
-            <nav className="sticky top-24 space-y-1">
+          <aside className="sticky top-24 space-y-6">
+            <nav className="space-y-1">
               <StaggerReveal staggerDelay={50} direction="right" className="space-y-1">
                 {communityNav.map(({ label, href, icon: Icon }) => (
                   <NavLink
@@ -155,7 +154,7 @@ export default async function CommunityLayout({ children }: { children: ReactNod
             </nav>
 
             {joinedCommunities.length > 0 && (
-              <ScrollReveal direction="left" delay={300} className="mt-6">
+              <ScrollReveal direction="left" delay={300} className="">
                 <p className="px-3 text-xs font-bold uppercase tracking-wide text-subtle">Your Communities</p>
                 <div className="mt-2 space-y-1">
                   {joinedCommunities.map((jc, i) => (
