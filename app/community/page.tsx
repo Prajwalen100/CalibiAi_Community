@@ -26,6 +26,31 @@ export default async function CommunityHomePage({
   let posts: Array<Record<string, unknown>> = [];
   let trendingCommunities: Array<{ id: string; slug: string; name: string; emoji: string; member_count: number }> = [];
   let feedError: string | null = null;
+  let currentUserAvatar: { avatar_id: number | null; avatar_url: string | null } = { avatar_id: null, avatar_url: null };
+
+  if (user) {
+    try {
+      let profileResp = await supabase
+        .from("profiles")
+        .select("avatar_id, avatar_url")
+        .eq("user_id", user.id)
+        .maybeSingle();
+      if (profileResp.error && /avatar_(id|url)/.test(profileResp.error.message)) {
+        profileResp = await supabase
+          .from("profiles")
+          .select("avatar_id")
+          .eq("user_id", user.id)
+          .maybeSingle() as unknown as typeof profileResp;
+      }
+      if (profileResp.data) {
+        const raw = profileResp.data as Record<string, unknown>;
+        currentUserAvatar = {
+          avatar_id: (raw.avatar_id as number | null) ?? null,
+          avatar_url: (raw.avatar_url as string | null) ?? null,
+        };
+      }
+    } catch { /* avatar columns might not exist yet */ }
+  }
 
   const postQuery = supabase
     .from("comm_posts")
@@ -65,7 +90,12 @@ export default async function CommunityHomePage({
       {/* Pinned composer */}
       <ScrollReveal direction="up" delay={100}>
         {user ? (
-          <CommunityComposer username={user.email?.split("@")[0] ?? ""} />
+          <CommunityComposer
+            username={user.email?.split("@")[0] ?? ""}
+            avatarId={currentUserAvatar.avatar_id}
+            avatarUrl={currentUserAvatar.avatar_url}
+            communities={trendingCommunities}
+          />
         ) : (
           <div className="glass-panel mb-6 flex items-center justify-between p-6">
             <p className="text-sm text-secondary">Login to join the conversation and post in the community.</p>

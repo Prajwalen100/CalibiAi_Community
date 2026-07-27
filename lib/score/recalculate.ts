@@ -1,0 +1,91 @@
+import "server-only";
+
+import { calculateCalibiAiScore, tierFor, type ScoreBreakdown } from "@/lib/score/calculate";
+import { createAdminSupabaseClient } from "@/lib/supabase/admin";
+
+type RecalculateOverrides = {
+  /** 0-100 reading engagement percentage. Falls back to the last stored reading_pts. */
+  readingScore?: number;
+  /** 0-100 quiz average percentage. Falls back to the last stored quizzes_pts. */
+  quizAverage?: number;
+};
+
+/**
+ * Recomputes a user's Talent Score from their live data (verified projects,
+ * verified skills, roadmap completion, community XP) and persists it to the
+ * `scores` table using the admin client so it always succeeds regardless of
+ * RLS. Used both right after score-affecting actions (community activity,
+ * project verification, quiz/reading tracking) and as a self-healing
+ * recompute-on-read fallback on the public profile page, so the number never
+ * silently drifts out of date.
+ *
+ * Returns null (without writing anything) if the required tables are
+ * unavailable — callers should fall back to whatever is already stored.
+ */
+export async function recalculateAndPersistScore(
+  userId: string,
+  overrides?: RecalculateOverrides,
+): Promise<ScoreBreakdown | null> {
+  const supabase = createAdminSupabaseClient();
+
+  const [projectsResult, skillsResult, progressResult, xpResult, currentScoreResult] = await Promise.all([
+    supabase.from("projects").select("verified,points_awarded,originality_status").eq("user_id", userId),
+    supabase.from("user_skills").select("id", { count: "exact", head: true }).eq("user_id", userId).eq("verified", true),
+    supabase.from("roadmap_progress").select("status").eq("user_id", userId),
+    supabase.from("comm_xp").select("xp, last_active_date, updated_at").eq("user_id", userId).maybeSingle(),
+    supabase.from("scores").select("completion_pts,recognition_pts,reading_pts,quizzes_pts").eq("user_id", userId).maybeSingle(),
+  ]);
+
+  if (projectsResult.error || progressResult.error) return null;
+
+  const progress = progressResult.data ?? [];
+  const currentScore = currentScoreResult.data as
+    | { completion_pts?: number; recognition_pts?: number; reading_pts?: number; quizzes_pts?: number }
+    | null;
+  const xpRow = xpResult.data as { xp?: number; last_active_date?: string | null; updated_at?: string | null } | null;
+
+  const calculated = calculateCalibiAiScore({
+    projects: (projectsResult.data ?? []).map((project) => ({
+      verified: project.verified,
+      pointsAwarded: project.points_awarded,
+      originalityStatus: project.originality_status,
+    })),
+    verifiedSkillsCount: skillsResult.count ?? 0,
+    completedModulesCount: progress.filter((item) => item.status === "completed").length,
+    totalModulesCount: Math.max(progress.length, 1),
+    // Community points are sourced from the live comm_xp ledger (posts,
+    // comments, upvotes received, etc.), not a stale copy — this is what
+    // makes community activity actually move the Talent Score.
+    communityRawPoints: xpRow?.xp ?? 0,
+    recognitionRawPoints: currentScore?.recognition_pts ?? 0,
+    readingScore: overrides?.readingScore ?? currentScore?.reading_pts ?? 0,
+    quizAverage: overrides?.quizAverage ?? currentScore?.quizzes_pts ?? 0,
+    lastActivityAt: xpRow?.last_active_date ?? xpRow?.updated_at ?? null,
+    now: new Date(),
+  });
+
+  // AI Lab / roadmap completion points only ever grow from verified work;
+  // never let a recalculation erase points already earned.
+  const completionPoints = Math.max(calculated.completion_pts, currentScore?.completion_pts ?? 0);
+  const total = Math.min(1000, calculated.total - calculated.completion_pts + completionPoints);
+  const breakdown: ScoreBreakdown = { ...calculated, completion_pts: completionPoints, total, tier: tierFor(total) };
+
+  await supabase.from("scores").upsert(
+    {
+      user_id: userId,
+      projects_pts: breakdown.projects_pts,
+      skills_pts: breakdown.skills_pts,
+      community_pts: breakdown.community_pts,
+      completion_pts: breakdown.completion_pts,
+      recognition_pts: breakdown.recognition_pts,
+      reading_pts: breakdown.reading_pts,
+      quizzes_pts: breakdown.quizzes_pts,
+      total: breakdown.total,
+      tier: breakdown.tier,
+      last_calculated_at: new Date().toISOString(),
+    },
+    { onConflict: "user_id" },
+  );
+
+  return breakdown;
+}

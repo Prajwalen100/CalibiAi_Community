@@ -5,6 +5,8 @@ import Link from "next/link";
 import { ArrowLeft, ArrowBigUp, ArrowBigDown, MessageSquare, Bookmark, Share2, UserPlus, CheckCircle2, Github, Globe, Calendar, MapPin, Loader2, Lightbulb, Zap, Trophy } from "lucide-react";
 import { AiMarkdown } from "@/components/ai/ai-markdown";
 import { votePost, savePost, followUser, createComment, acceptAnswer, rsvpEvent, submitChallengeEntry } from "@/app/community/actions";
+import { ProfileAvatar } from "@/components/ui/profile-avatar";
+import { ImproveWithAiButton } from "@/components/ai/improve-with-ai-button";
 
 type CommentData = {
   id: string;
@@ -12,7 +14,7 @@ type CommentData = {
   is_best_answer: boolean;
   created_at: string;
   user_id: string;
-  profiles: { full_name: string | null; username: string | null } | null;
+  profiles: { full_name: string | null; username: string | null; avatar_id?: number | null; avatar_url?: string | null } | null;
 };
 
 type ChallengeEntry = {
@@ -53,6 +55,8 @@ type Props = {
   authorId: string;
   authorName: string;
   authorUsername?: string;
+  authorAvatarId?: number | null;
+  authorAvatarUrl?: string | null;
   communityName: string | null;
   communityEmoji: string | null;
   communitySlug: string | null;
@@ -82,7 +86,8 @@ export function PostDetailView({
   isSolved, isFeatured, isPinned, repoUrl, liveUrl, demoVideoUrl, techStack,
   jobType, jobCompany, jobLocation, eventType, eventDate, eventLocation,
   challengeDeadline, resourceType, resourceUrl, linkUrl, tags, createdAt,
-  authorId, authorName, authorUsername, communityName, communityEmoji, communitySlug,
+  authorId, authorName, authorUsername, authorAvatarId, authorAvatarUrl,
+  communityName, communityEmoji, communitySlug,
   authorXpLevel, authorXpXp, isFollowing: initialFollowing, userVote: initialVote,
   isSaved: initialSaved, rsvpCount, isRsvped: initialRsvped, challengeEntries, comments, currentUserId,
 }: Props) {
@@ -163,8 +168,8 @@ export function PostDetailView({
 
         {/* Author */}
         <div className="mt-4 flex items-center gap-3">
-          <Link href={`/community/members/${authorUsername ?? authorId}`} className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-50 text-sm font-bold text-brand-700">
-            {authorName?.charAt(0)?.toUpperCase() ?? "?"}
+          <Link href={`/community/members/${authorUsername ?? authorId}`} className="shrink-0 overflow-hidden rounded-full">
+            <ProfileAvatar avatarId={authorAvatarId} avatarUrl={authorAvatarUrl} size={40} />
           </Link>
           <div>
             <Link href={`/community/members/${authorUsername ?? authorId}`} className="font-semibold hover:text-brand-700">{authorName}</Link>
@@ -324,7 +329,10 @@ export function PostDetailView({
           <div className="mt-4">
             {replyTo && <p className="mb-2 text-xs text-slate-500">Replying to a comment · <button onClick={() => setReplyTo(null)} className="text-brand-700 underline">Cancel</button></p>}
             <textarea value={commentText} onChange={(e) => setCommentText(e.target.value)} className="input" rows={3} placeholder="Write a comment..." />
-            <button onClick={handleComment} disabled={submitting || !commentText.trim()} className="btn-primary mt-2">{submitting ? "Posting..." : "Post Comment"}</button>
+            <div className="mt-2 flex items-center gap-2">
+              <button onClick={handleComment} disabled={submitting || !commentText.trim()} className="btn-primary">{submitting ? "Posting..." : "Post Comment"}</button>
+              <ImproveWithAiButton text={commentText} context="comment" onApply={(improved) => setCommentText(improved)} />
+            </div>
           </div>
         ) : (
           <p className="mt-4 text-sm text-slate-500">Login to comment on this post.</p>
@@ -336,9 +344,7 @@ export function PostDetailView({
             return (
               <div key={comment.id} className={`rounded-2xl border p-4 ${isBest ? "border-green-200 bg-green-50" : "border-slate-100"}`}>
                 <div className="flex items-center gap-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-50 text-xs font-bold text-brand-700">
-                    {comment.profiles?.full_name?.charAt(0)?.toUpperCase() ?? "?"}
-                  </div>
+                  <ProfileAvatar avatarId={comment.profiles?.avatar_id} avatarUrl={comment.profiles?.avatar_url} size={32} />
                   <div>
                     <Link href={`/community/members/${comment.profiles?.username ?? ""}`} className="text-sm font-semibold hover:text-brand-700">{comment.profiles?.full_name ?? "Anonymous"}</Link>
                     <span className="ml-2 text-xs text-slate-400">{getTimeAgo(comment.created_at)}</span>

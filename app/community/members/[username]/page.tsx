@@ -12,6 +12,7 @@ type ProfileData = {
   user_id: string; full_name: string; username: string; target_role: string;
   college: string; bio: string; github_url: string; linkedin_url: string; portfolio_url: string;
   avatar_id: number | null;
+  avatar_url: string | null;
 };
 
 export default async function MemberProfilePage({ params }: { params: Params }) {
@@ -23,7 +24,7 @@ export default async function MemberProfilePage({ params }: { params: Params }) 
 
   try {
     const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(username);
-    let query = supabase.from("profiles").select("user_id, full_name, username, target_role, college, bio, github_url, linkedin_url, portfolio_url, avatar_id");
+    let query = supabase.from("profiles").select("user_id, full_name, username, target_role, college, bio, github_url, linkedin_url, portfolio_url, avatar_id, avatar_url");
     if (isUuid) {
       query = query.eq("user_id", username);
     } else {
@@ -31,15 +32,24 @@ export default async function MemberProfilePage({ params }: { params: Params }) 
     }
     let profileResult = await query.single();
 
-    if (profileResult.error && /avatar_id/.test(profileResult.error.message)) {
-      // Migration 005_profile_avatars.sql has not been applied yet — fall back.
-      let fallbackQuery = supabase.from("profiles").select("user_id, full_name, username, target_role, college, bio, github_url, linkedin_url, portfolio_url");
+    if (profileResult.error && /avatar_(id|url)/.test(profileResult.error.message)) {
+      // Migration 005_profile_avatars.sql / 019_avatar_url.sql has not been applied yet — fall back.
+      let fallbackQuery = supabase.from("profiles").select("user_id, full_name, username, target_role, college, bio, github_url, linkedin_url, portfolio_url, avatar_id");
       if (isUuid) {
         fallbackQuery = fallbackQuery.eq("user_id", username);
       } else {
         fallbackQuery = fallbackQuery.ilike("username", username);
       }
       profileResult = await fallbackQuery.single();
+    }
+    if (profileResult.error && /avatar_id/.test(profileResult.error.message)) {
+      let fallbackQuery2 = supabase.from("profiles").select("user_id, full_name, username, target_role, college, bio, github_url, linkedin_url, portfolio_url");
+      if (isUuid) {
+        fallbackQuery2 = fallbackQuery2.eq("user_id", username);
+      } else {
+        fallbackQuery2 = fallbackQuery2.ilike("username", username);
+      }
+      profileResult = await fallbackQuery2.single();
     }
     if (!profileResult.data) notFound();
     const pd = profileResult.data as Record<string, unknown>;
@@ -54,6 +64,7 @@ export default async function MemberProfilePage({ params }: { params: Params }) 
       linkedin_url: String(pd.linkedin_url ?? ""),
       portfolio_url: String(pd.portfolio_url ?? ""),
       avatar_id: (pd.avatar_id as number | null) ?? null,
+      avatar_url: (pd.avatar_url as string | null) ?? null,
     };
   } catch {
     notFound();
@@ -132,6 +143,7 @@ export default async function MemberProfilePage({ params }: { params: Params }) 
           <div className="flex items-center gap-4">
             <ProfileAvatar
               avatarId={profile.avatar_id}
+              avatarUrl={profile.avatar_url}
               size={64}
               className="border-white/20 bg-white/10"
             />

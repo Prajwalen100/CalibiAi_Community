@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { createPost } from "@/app/community/actions";
 import { Loader2, ArrowLeft, Bot, Users, Sparkles, RefreshCw, MessageSquarePlus, Copy, Check, History } from "lucide-react";
 import { AiMarkdown } from "@/components/ai/ai-markdown";
+import { ImproveWithAiButton } from "@/components/ai/improve-with-ai-button";
 
 const postTypes = [
   { key: "discussion", label: "💬 Discussion", desc: "Start a conversation" },
@@ -24,9 +26,14 @@ type Props = {
   communities: Array<{ id: string; name: string; emoji: string; slug: string }>;
   defaultType?: string;
   defaultCommunity?: string;
+  /** Called after a successful post instead of redirecting to /community — used by the quick-post modal. */
+  onSuccess?: () => void;
+  /** Hides the "Back to Community" link — used when the form is embedded in a modal. */
+  hideBackLink?: boolean;
 };
 
-export function CreatePostForm({ communities, defaultType, defaultCommunity }: Props) {
+export function CreatePostForm({ communities, defaultType, defaultCommunity, onSuccess, hideBackLink }: Props) {
+  const router = useRouter();
   const [postType, setPostType] = useState(defaultType || "discussion");
   const [questionSubMode, setQuestionSubMode] = useState<"choice" | "community" | "ai">(
     defaultType === "question" ? "choice" : "community"
@@ -46,15 +53,6 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity }: P
   const [aiError, setAiError] = useState<string | null>(null);
   const [aiCopied, setAiCopied] = useState(false);
 
-  function handleSelectPostType(typeKey: string) {
-    setPostType(typeKey);
-    if (typeKey === "question") {
-      setQuestionSubMode("choice");
-    } else {
-      setQuestionSubMode("community");
-    }
-  }
-
   async function handleSubmitCommunity(formData: FormData) {
     setLoading(true);
     setError(null);
@@ -66,9 +64,15 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity }: P
       setLoading(false);
     } else {
       setSuccess(true);
-      setLoading(false);
+      router.refresh();
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        router.push("/community");
+      }
     }
   }
+
 
   async function handleAskAi(e: React.FormEvent) {
     e.preventDefault();
@@ -118,29 +122,11 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity }: P
 
   return (
     <div className="mt-6">
-      <Link href="/community" className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-ink">
-        <ArrowLeft className="h-4 w-4" /> Back to Community
-      </Link>
-
-      {/* Post Type Selector */}
-      <div className="mt-6">
-        <label className="label">What are you posting?</label>
-        <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
-          {postTypes.map((t) => (
-            <button
-              key={t.key}
-              type="button"
-              onClick={() => handleSelectPostType(t.key)}
-              className={`rounded-xl border p-3 text-left transition ${
-                postType === t.key ? "border-brand-500 bg-brand-50" : "border-slate-200 hover:border-slate-300"
-              }`}
-            >
-              <p className="text-sm font-bold">{t.label}</p>
-              <p className="mt-0.5 text-xs text-slate-500">{t.desc}</p>
-            </button>
-          ))}
-        </div>
-      </div>
+      {!hideBackLink && (
+        <Link href="/community" className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-ink">
+          <ArrowLeft className="h-4 w-4" /> Back to Community
+        </Link>
+      )}
 
       {/* QUESTION CHOICE SCREEN */}
       {postType === "question" && questionSubMode === "choice" && (
@@ -319,6 +305,11 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity }: P
       {/* STANDARD COMMUNITY COMPOSER FORM (used for all non-question posts, and for question posts when Community option is chosen) */}
       {(postType !== "question" || questionSubMode === "community") && (
         <form action={handleSubmitCommunity} className="mt-6 grid gap-5 rounded-3xl border border-slate-200 p-6">
+          {postType !== "question" && selectedType && (
+            <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
+              Posting as <span className="rounded-full bg-slate-100 px-2.5 py-1 text-slate-700">{selectedType.label}</span>
+            </div>
+          )}
           {postType === "question" && (
             <div className="flex items-center justify-between rounded-2xl border border-brand-200 bg-brand-50/50 p-3 text-xs">
               <span className="font-bold text-brand-800">👥 Posting Question to Community Feed</span>
@@ -366,7 +357,9 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity }: P
 
           {/* Content */}
           <div>
-            <label className="label">Content *</label>
+            <div className="flex items-center justify-between">
+              <label className="label">Content *</label>
+            </div>
             <textarea
               className="input mt-1"
               name="content"
@@ -381,6 +374,12 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity }: P
                 postType === "challenge" ? "Describe the challenge, rules, judging criteria, and deadline..." :
                 "Share your thoughts, ideas, or findings..."
               }
+            />
+            <ImproveWithAiButton
+              text={questionContent}
+              context="community post"
+              className="mt-2"
+              onApply={(improved) => setQuestionContent(improved)}
             />
           </div>
 

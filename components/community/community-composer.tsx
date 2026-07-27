@@ -1,21 +1,32 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { Code2, Image as ImageIcon, Github, PenLine } from "lucide-react";
+import { ProfileAvatar } from "@/components/ui/profile-avatar";
+import { QuickPostModal } from "@/components/community/quick-post-modal";
 
-export function CommunityComposer({ username }: { username: string }) {
+type Props = {
+  username: string;
+  avatarId?: number | null;
+  avatarUrl?: string | null;
+  communities: Array<{ id: string; name: string; emoji: string; slug: string }>;
+};
+
+export function CommunityComposer({ username, avatarId, avatarUrl, communities }: Props) {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="glass-panel-subtle rounded-2xl p-3 transition-all duration-300 hover:border-brand-500/40">
-      <Link
-        href="/community/create"
-        className="flex items-center gap-3 rounded-xl border border-slate-200/70 bg-white/70 px-4 py-3 text-sm text-slate-400 transition hover:border-brand-300 hover:text-slate-600 dark:border-slate-700 dark:bg-slate-900/60 dark:hover:text-slate-200"
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="flex w-full items-center gap-3 rounded-xl border border-slate-200/70 bg-white/70 px-4 py-3 text-left text-sm text-slate-400 transition hover:border-brand-300 hover:text-slate-600 dark:border-slate-700 dark:bg-slate-900/60 dark:hover:text-slate-200"
       >
-        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-50 text-sm font-bold text-brand-700 dark:bg-brand-950/50 dark:text-brand-300">
-          {username.charAt(0).toUpperCase() || "?"}
-        </span>
+        <ProfileAvatar avatarId={avatarId} avatarUrl={avatarUrl} size={36} />
         <span className="flex-1">Share your AI workflow…</span>
         <PenLine className="h-4 w-4 text-slate-300" />
-      </Link>
+      </button>
 
       <div className="mt-2 flex items-center gap-2 px-1">
         <Link
@@ -37,6 +48,8 @@ export function CommunityComposer({ username }: { username: string }) {
           <Github className="h-3.5 w-3.5" /> GitHub
         </Link>
       </div>
+
+      <QuickPostModal open={open} onClose={() => setOpen(false)} communities={communities} />
     </div>
   );
 }

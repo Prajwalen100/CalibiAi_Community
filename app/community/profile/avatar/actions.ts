@@ -45,8 +45,24 @@ export async function saveProfileAvatar(formData: FormData) {
     return { error: error.message };
   }
 
+  // Look up the username so the public profile pages (which are keyed by
+  // username, not user id) also refresh immediately instead of showing the
+  // previous avatar until their next unrelated revalidation.
+  const { data: usernameRow } = await supabase
+    .from("profiles")
+    .select("username")
+    .eq("user_id", user.id)
+    .maybeSingle();
+  const username = (usernameRow as { username?: string | null } | null)?.username;
+
   revalidatePath("/community");
   revalidatePath("/community/profile/avatar");
   revalidatePath("/dashboard");
+  if (username) {
+    revalidatePath(`/p/${username}`);
+    revalidatePath(`/community/members/${username}`);
+  }
+  revalidatePath(`/p/${user.id}`);
+  revalidatePath(`/community/members/${user.id}`);
   return { success: true, avatar_url: parsed.data.avatar_url ?? null, avatar_id: parsed.data.avatar_id ?? null };
 }

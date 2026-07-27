@@ -15,6 +15,8 @@ import {
 import { notFound } from "next/navigation";
 import { ProfileAvatar } from "@/components/ui/profile-avatar";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
+import { recalculateAndPersistScore } from "@/lib/score/recalculate";
+import { WhyScoreButton } from "@/components/profile/why-score-button";
 
 const PROFILE_MAX_SCORE = 1000;
 
@@ -37,6 +39,7 @@ type ProfileRow = {
   portfolio_url: string | null;
   bio: string | null;
   avatar_id?: number | null;
+  avatar_url?: string | null;
 };
 
 type VerifiedSkillRow = { skills: { name: string; category: string } | null };
@@ -90,7 +93,7 @@ function getTierClasses(tier?: string | null) {
 
 function profileSelect(includeAvatar = true) {
   return includeAvatar
-    ? "user_id, username, full_name, college, target_role, github_url, linkedin_url, portfolio_url, bio, avatar_id"
+    ? "user_id, username, full_name, college, target_role, github_url, linkedin_url, portfolio_url, bio, avatar_id, avatar_url"
     : "user_id, username, full_name, college, target_role, github_url, linkedin_url, portfolio_url, bio";
 }
 
@@ -112,20 +115,34 @@ async function getProfile(username: string): Promise<ProfileRow | null> {
 
   if (response.data) return response.data as unknown as ProfileRow;
 
-  // Older databases may not have avatar_id yet. Keep public profiles available.
-  if (response.error && /avatar_id/i.test(response.error.message)) {
-    let fallbackQuery = supabase
+  // Older databases may not have avatar_url yet (migration 019). Retry with
+  // just avatar_id, then with neither, so public profiles stay available.
+  if (response.error && /avatar_(id|url)/i.test(response.error.message)) {
+    let midQuery = supabase
       .from("profiles")
-      .select(profileSelect(false));
-      
+      .select("user_id, username, full_name, college, target_role, github_url, linkedin_url, portfolio_url, bio, avatar_id");
     if (isUuid) {
-      fallbackQuery = fallbackQuery.eq("user_id", username);
+      midQuery = midQuery.eq("user_id", username);
     } else {
-      fallbackQuery = fallbackQuery.ilike("username", username);
+      midQuery = midQuery.ilike("username", username);
     }
-    
-    const fallback = await fallbackQuery.single();
-    return (fallback.data as ProfileRow | null) ?? null;
+    const mid = await midQuery.single();
+    if (mid.data) return mid.data as unknown as ProfileRow;
+
+    if (mid.error && /avatar_id/i.test(mid.error.message)) {
+      let fallbackQuery = supabase
+        .from("profiles")
+        .select(profileSelect(false));
+
+      if (isUuid) {
+        fallbackQuery = fallbackQuery.eq("user_id", username);
+      } else {
+        fallbackQuery = fallbackQuery.ilike("username", username);
+      }
+
+      const fallback = await fallbackQuery.single();
+      return (fallback.data as ProfileRow | null) ?? null;
+    }
   }
 
   return null;
@@ -138,8 +155,12 @@ export default async function ProfilePage({ params }: { params: Params }) {
 
   if (!profile) notFound();
 
-  const [{ data: score }, { data: projects }, { data: skills }, { data: labProjectRows }] = await Promise.all([
-    supabase.from("scores").select("total,tier,last_calculated_at").eq("user_id", profile.user_id).single(),
+  const [{ data: scoreRow }, { data: projects }, { data: skills }, { data: labProjectRows }] = await Promise.all([
+    supabase
+      .from("scores")
+      .select("total,tier,projects_pts,skills_pts,community_pts,completion_pts,recognition_pts,reading_pts,quizzes_pts,last_calculated_at")
+      .eq("user_id", profile.user_id)
+      .maybeSingle(),
     supabase
       .from("projects")
       .select("title,description,repo_url,live_url,complexity_tier,verified,points_awarded,ai_score")
@@ -161,10 +182,28 @@ export default async function ProfilePage({ params }: { params: Params }) {
       .limit(100),
   ]);
 
+  // Self-healing recompute-on-read: if the stored score has never been
+  // calculated, or is more than 5 minutes stale, recompute it from live
+  // data (verified projects/skills, roadmap completion, community XP) so a
+  // visited profile never shows a number that silently drifted out of date.
+  const scoreAgeMs = scoreRow?.last_calculated_at ? Date.now() - new Date(scoreRow.last_calculated_at).getTime() : Infinity;
+  const score = scoreAgeMs > 5 * 60 * 1000
+    ? (await recalculateAndPersistScore(profile.user_id)) ?? scoreRow
+    : scoreRow;
+
   const totalScore = Math.max(0, Math.min(PROFILE_MAX_SCORE, Number(score?.total ?? 0)));
   const scorePercent = Math.round((totalScore / PROFILE_MAX_SCORE) * 100);
   const tier = normalizeTier(score?.tier);
   const verifiedSkills = (skills ?? []) as unknown as VerifiedSkillRow[];
+  const scoreBreakdown = {
+    projects: Number(score?.projects_pts ?? 0),
+    skills: Number(score?.skills_pts ?? 0),
+    community: Number(score?.community_pts ?? 0),
+    completion: Number(score?.completion_pts ?? 0),
+    recognition: Number(score?.recognition_pts ?? 0),
+    reading: Number(score?.reading_pts ?? 0),
+    quizzes: Number(score?.quizzes_pts ?? 0),
+  };
 
   // Keep only the best passed submission for each role/level/day. Failed work
   // remains private; a better retry replaces the version shown publicly.
@@ -189,6 +228,7 @@ export default async function ProfilePage({ params }: { params: Params }) {
         <div className="absolute bottom-0 left-6 z-10 translate-y-1/2 sm:bottom-1/2 sm:left-8 sm:translate-y-1/2">
           <ProfileAvatar
             avatarId={profile.avatar_id ?? null}
+            avatarUrl={profile.avatar_url ?? null}
             size={120}
             className="border-4 border-[#eef4ff] shadow-[0_0_0_8px_rgba(255,255,255,0.08),0_24px_60px_rgba(59,130,246,0.35)] dark:border-slate-950"
           />
@@ -226,7 +266,10 @@ export default async function ProfilePage({ params }: { params: Params }) {
 
           <div className="mt-6 max-w-2xl">
             <div className="mb-2 flex items-center justify-between gap-3">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-white/45">Talent score</span>
+              <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-white/45">
+                Talent score
+                <WhyScoreButton breakdown={scoreBreakdown} total={totalScore} tier={tier} />
+              </span>
               <span className="font-mono text-sm font-black text-cyan-100">
                 {totalScore}/{PROFILE_MAX_SCORE}
               </span>
