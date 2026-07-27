@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowBigUp, ArrowBigDown, MessageSquare, Bookmark, Share2, U
 import { AiMarkdown } from "@/components/ai/ai-markdown";
 import { votePost, savePost, followUser, createComment, acceptAnswer, rsvpEvent, submitChallengeEntry } from "@/app/community/actions";
 import { ProfileAvatar } from "@/components/ui/profile-avatar";
+import { ImproveWithAiButton } from "@/components/ai/improve-with-ai-button";
 
 type CommentData = {
   id: string;
@@ -328,7 +329,10 @@ export function PostDetailView({
           <div className="mt-4">
             {replyTo && <p className="mb-2 text-xs text-slate-500">Replying to a comment · <button onClick={() => setReplyTo(null)} className="text-brand-700 underline">Cancel</button></p>}
             <textarea value={commentText} onChange={(e) => setCommentText(e.target.value)} className="input" rows={3} placeholder="Write a comment..." />
-            <button onClick={handleComment} disabled={submitting || !commentText.trim()} className="btn-primary mt-2">{submitting ? "Posting..." : "Post Comment"}</button>
+            <div className="mt-2 flex items-center gap-2">
+              <button onClick={handleComment} disabled={submitting || !commentText.trim()} className="btn-primary">{submitting ? "Posting..." : "Post Comment"}</button>
+              <ImproveWithAiButton text={commentText} context="comment" onApply={(improved) => setCommentText(improved)} />
+            </div>
           </div>
         ) : (
           <p className="mt-4 text-sm text-slate-500">Login to comment on this post.</p>

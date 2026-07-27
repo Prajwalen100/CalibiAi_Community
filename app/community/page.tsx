@@ -94,6 +94,7 @@ export default async function CommunityHomePage({
             username={user.email?.split("@")[0] ?? ""}
             avatarId={currentUserAvatar.avatar_id}
             avatarUrl={currentUserAvatar.avatar_url}
+            communities={trendingCommunities}
           />
         ) : (
           <div className="glass-panel mb-6 flex items-center justify-between p-6">
