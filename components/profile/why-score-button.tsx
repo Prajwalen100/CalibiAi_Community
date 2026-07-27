@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { HelpCircle, X, FolderGit2, Radar, Users, ListChecks, Award, BookOpenText, ClipboardCheck } from "lucide-react";
 import { SCORE_WEIGHTS, TIERS } from "@/lib/score/config";
 
@@ -86,6 +87,19 @@ const PILLARS: Array<{
 export function WhyScoreButton({ breakdown, total, tier }: Props) {
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    if (!open) return;
+    document.body.style.overflow = "hidden";
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [open]);
+
   return (
     <>
       <button
@@ -96,9 +110,11 @@ export function WhyScoreButton({ breakdown, total, tier }: Props) {
         <HelpCircle className="h-3 w-3" /> Why?
       </button>
 
-      {open && (
+      {open && typeof document !== "undefined" && createPortal(
+        // This profile page is animated with transformed containers. Portaling
+        // prevents those containers from clipping a viewport-fixed dialog.
         <div
-          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-slate-900/60 px-4 py-8 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-slate-900/60 px-4 py-8 backdrop-blur-sm"
           onClick={() => setOpen(false)}
           role="dialog"
           aria-modal="true"
@@ -170,7 +186,8 @@ export function WhyScoreButton({ breakdown, total, tier }: Props) {
               </p>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </>
   );

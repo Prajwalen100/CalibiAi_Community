@@ -1,7 +1,6 @@
 import Link from "next/link";
 import {
-  Home, MessageSquare, Lightbulb, Rocket,
-  Search, Bell,
+  Home, MessageSquare, Rocket,
   LayoutGrid, Target, ChevronRight, Bot, Zap,
 } from "lucide-react";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
@@ -145,11 +144,6 @@ export default async function CommunityLayout({ children }: { children: ReactNod
                     badge={href === "/community/ask/history" ? aiQaCount : null}
                   />
                 ))}
-              </StaggerReveal>
-              <div className="my-3 border-t border-slate-200/60 dark:border-slate-800/60" />
-              <StaggerReveal staggerDelay={50} direction="right" className="space-y-1">
-                <NavLink label="Search" href="/community/search" icon={Search} />
-                {user && <NavLink label="Notifications" href="/community/notifications" icon={Bell} />}
               </StaggerReveal>
             </nav>
 

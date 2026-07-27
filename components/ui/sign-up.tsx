@@ -583,23 +583,23 @@ export const AuthComponent = ({
                   <p className={`text-sm font-medium text-center ${compact ? 'text-slate-600 dark:text-slate-400' : 'text-secondary'}`}>Continue with</p>
                 </BlurFade>
                 <BlurFade delay={0.75}>
-                  <div className="flex items-center justify-center gap-3 w-full">
+                  <div className="flex w-full items-stretch justify-center gap-3">
                     <GlassButton
                       type="button"
-                      contentClassName="flex items-center justify-center gap-2"
+                      contentClassName="flex h-20 w-full items-center justify-center gap-3 whitespace-nowrap text-sm sm:h-24 sm:text-base"
                       size="sm"
                       onClick={() => onOAuth?.("google")}
-                      className="w-full"
+                      className="min-w-0 flex-1"
                     >
                       <GoogleIcon />
                       <span className="font-semibold">Continue with Google</span>
                     </GlassButton>
                     <GlassButton
                       type="button"
-                      contentClassName="flex items-center justify-center gap-2"
+                      contentClassName="flex h-20 w-full items-center justify-center gap-3 whitespace-nowrap text-sm sm:h-24 sm:text-base"
                       size="sm"
                       onClick={() => onOAuth?.("github")}
-                      className="w-full"
+                      className="min-w-0 flex-1"
                     >
                       <GitHubIcon />
                       <span className="font-semibold">Continue with GitHub</span>

@@ -31,7 +31,7 @@ function humanize(value: string) {
   return value.replace(/_/g, " ");
 }
 
-export default async function JobDetailPage({ params }: { params: Params }) {
+export async function JobDetailPage({ params }: { params: Params }) {
   const { id } = await params;
   const supabase = await createServerSupabaseClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -179,3 +179,5 @@ export default async function JobDetailPage({ params }: { params: Params }) {
     </div>
   );
 }
+
+export default JobDetailPage;

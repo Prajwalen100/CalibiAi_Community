@@ -5,13 +5,26 @@ import { SiteFooter } from "@/components/site-footer";
 import { ChromeSlot } from "@/components/site-chrome";
 import { ThemeProvider } from "@/components/theme-provider";
 import { GlobalAiAssistant } from "@/components/global-ai-assistant";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
   title: "CalibiAI — verified, hire-ready applied-AI engineers",
   description: "CalibiAI helps engineering students build verified AI profiles and connect with startups that trust proof over certificates.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  // The assistant is a signed-in product feature, never a public landing-page
+  // widget. Resolve this server-side so it does not briefly appear before the
+  // client can discover that the visitor is anonymous.
+  let isAuthenticated = false;
+  try {
+    const supabase = await createServerSupabaseClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    isAuthenticated = Boolean(user);
+  } catch {
+    // Keep the public site usable when the auth service is unavailable.
+  }
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
@@ -28,7 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ChromeSlot>
             <SiteFooter />
           </ChromeSlot>
-          <GlobalAiAssistant />
+          {isAuthenticated && <GlobalAiAssistant />}
         </ThemeProvider>
       </body>
     </html>

@@ -3,7 +3,7 @@ import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { PostCard } from "@/components/community/post-card";
 import { mapPostToCardData } from "@/lib/community/mappers";
 import { attachCommunityProfiles } from "@/lib/community/public-profiles";
-import { ScrollReveal, StaggerReveal, Floating, GlowOnHover } from "@/components/scroll-reveal";
+import { ScrollReveal, StaggerReveal, GlowOnHover } from "@/components/scroll-reveal";
 import { Trophy, Target, Award, Crown } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -38,21 +38,25 @@ export default async function ChallengesPage() {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <ScrollReveal direction="up" className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
-        <div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-amber-700 dark:bg-amber-950/50 dark:text-amber-300 mb-3">
-            <Trophy className="h-3.5 w-3.5" />
-            <span>Weekly Challenges</span>
+      <ScrollReveal direction="up" className="relative overflow-hidden rounded-3xl border border-white/60 bg-white/55 p-6 shadow-[0_16px_45px_-28px_rgba(30,41,59,0.45)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/55 sm:p-8">
+        <div className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-violet-400/20 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 right-1/3 h-48 w-48 rounded-full bg-amber-300/20 blur-3xl" />
+        <div className="relative flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
+          <div className="max-w-xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-amber-200/80 bg-amber-50/80 px-3 py-1.5 text-xs font-bold text-amber-700 shadow-sm dark:border-amber-800/50 dark:bg-amber-950/40 dark:text-amber-300">
+              <Trophy className="h-3.5 w-3.5" />
+              Weekly Challenges
+            </div>
+            <h1 className="mt-4 text-3xl font-black tracking-tight text-primary sm:text-4xl">AI Challenges</h1>
+            <p className="mt-2 text-sm leading-6 text-secondary sm:text-base">Build in public, test your AI skills, and earn recognition from the community.</p>
           </div>
-          <h1 className="text-2xl font-black text-primary">🏆 AI Challenges</h1>
-          <p className="mt-2 text-secondary">Weekly challenges to build your skills. Submit entries, climb the leaderboard, earn XP.</p>
+          {user && (
+            <Link href="/community/create?type=challenge" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl bg-slate-950 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-slate-900/15 transition-all hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-brand-500/25 dark:bg-white dark:text-slate-950 dark:hover:bg-brand-100">
+              <Target className="h-4 w-4" />
+              Launch a Challenge
+            </Link>
+          )}
         </div>
-        {user && (
-          <Link href="/community/create?type=challenge" className="btn-primary">
-            <Target className="h-4 w-4" />
-            Launch a Challenge
-          </Link>
-        )}
       </ScrollReveal>
 
       {/* Active Challenges */}
@@ -94,18 +98,20 @@ export default async function ChallengesPage() {
       {/* Empty State */}
       {active.length === 0 && past.length === 0 && (
         <ScrollReveal direction="up" delay={100} className="mt-8">
-          <div className="glass-panel text-center py-12">
-            <Floating amplitude={10} duration={3000}>
-              <p className="text-4xl">🏆</p>
-            </Floating>
-            <h3 className="mt-4 font-bold text-primary">No challenges yet</h3>
-            <p className="mt-2 text-sm text-secondary">Launch the first AI challenge for the community!</p>
-            {user && (
-              <Link href="/community/create?type=challenge" className="btn-primary mt-4 inline-block">
-                <Target className="h-4 w-4" />
-                Create Challenge
-              </Link>
-            )}
+          <div className="relative overflow-hidden rounded-3xl border border-white/70 bg-white/60 px-6 py-14 text-center shadow-[0_18px_50px_-30px_rgba(30,41,59,0.4)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/55 sm:px-10">
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-300/15 blur-3xl" />
+            <div className="relative mx-auto flex max-w-md flex-col items-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-100 text-3xl shadow-sm dark:border-amber-800/50 dark:from-amber-950/60 dark:to-orange-950/40">🏆</div>
+              <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-300">Your arena is ready</p>
+              <h3 className="mt-2 text-2xl font-black tracking-tight text-primary">Start the first challenge</h3>
+              <p className="mt-3 text-sm leading-6 text-secondary">Invite the community to solve a real AI problem, showcase their work, and compete on the leaderboard.</p>
+              {user && (
+                <Link href="/community/create?type=challenge" className="mt-7 inline-flex items-center gap-2 rounded-2xl bg-brand-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-brand-500/25 transition-all hover:-translate-y-0.5 hover:bg-brand-700">
+                  <Target className="h-4 w-4" />
+                  Create the first challenge
+                </Link>
+              )}
+            </div>
           </div>
         </ScrollReveal>
       )}

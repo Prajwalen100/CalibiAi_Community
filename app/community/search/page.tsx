@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { SearchResults } from "./search-results";
+import { LiveSearchForm } from "./live-search-form";
 import { attachCommunityProfiles } from "@/lib/community/public-profiles";
 
 export const dynamic = "force-dynamic";
@@ -35,18 +36,7 @@ export default async function SearchPage({
       <h1 className="text-2xl font-black">🔍 Search</h1>
       <p className="mt-2 text-slate-600">Search across posts, communities, members, and more.</p>
 
-      <form action="/community/search" method="GET" className="mt-6">
-        <div className="flex gap-3">
-          <input
-            className="input flex-1"
-            name="q"
-            defaultValue={q}
-            placeholder="Search posts, communities, members..."
-            autoFocus
-          />
-          <button type="submit" className="btn-primary">Search</button>
-        </div>
-      </form>
+      <LiveSearchForm initialQuery={q ?? ""} />
 
       {q && q.trim().length > 0 && (
         <SearchResults posts={posts} communities={communities} members={members} query={q} />
