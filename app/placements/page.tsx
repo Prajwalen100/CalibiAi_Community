@@ -202,7 +202,7 @@ export default async function PlacementsPage() {
                   <CheckCircle2 className="h-4 w-4 text-emerald-500" />
                   Posted by a verified employer on CalibiAI
                 </span>
-                <Link href={`/community/jobs/${j.id}`} className="font-bold text-brand-600 hover:underline">
+                <Link href={`/jobs/${j.id}`} className="font-bold text-brand-600 hover:underline">
                   View full JD →
                 </Link>
               </div>
