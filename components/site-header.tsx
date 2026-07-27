@@ -157,16 +157,20 @@ export async function SiteHeader() {
                 </Link>
               )}
 
-              <Link
-                href={isEmployer ? "/employer/dashboard" : studentDestination}
-                className="rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-xs font-bold text-slate-700 shadow-sm transition-all duration-200 hover:bg-white hover:text-slate-950 dark:border-white/10 dark:bg-white/8 dark:text-white/70 dark:hover:bg-white/12 dark:hover:text-white"
-                style={{
-                  backdropFilter: "blur(12px)",
-                  WebkitBackdropFilter: "blur(12px)",
-                }}
-              >
-                {isEmployer ? "Employer hub" : canAccessStudentArea ? "Student hub" : "Continue setup"}
-              </Link>
+              {/* Student navigation already includes Learning Hub. Keep the
+                  employer workspace shortcut exclusive to employer accounts. */}
+              {isEmployer && (
+                <Link
+                  href="/employer/dashboard"
+                  className="rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-xs font-bold text-slate-700 shadow-sm transition-all duration-200 hover:bg-white hover:text-slate-950 dark:border-white/10 dark:bg-white/8 dark:text-white/70 dark:hover:bg-white/12 dark:hover:text-white"
+                  style={{
+                    backdropFilter: "blur(12px)",
+                    WebkitBackdropFilter: "blur(12px)",
+                  }}
+                >
+                  Employer hub
+                </Link>
+              )}
 
               <ProfileMenu
                 fullName={profile?.full_name}
