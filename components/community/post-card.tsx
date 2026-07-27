@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowBigUp, ArrowBigDown, MessageSquare, Share2, Bookmark, CheckCircle2, Github, Globe } from "lucide-react";
+import { ArrowBigUp, ArrowBigDown, MessageSquare, Share2, Bookmark, Github, Globe } from "lucide-react";
 import { votePost, savePost, followUser } from "@/app/community/actions";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
@@ -27,6 +27,7 @@ export type PostCardData = {
   repoUrl?: string | null;
   liveUrl?: string | null;
   techStack?: string[] | null;
+  imageUrl?: string | null;
   jobType?: string | null;
   jobCompany?: string | null;
   createdAt: string;
@@ -68,9 +69,9 @@ const statusColors = {
 
 export function PostCard({
   id, title, content, postType, authorName, authorUsername, authorId,
-  upvotes, downvotes, commentCount, saveCount, isSolved, isFeatured, isPinned,
+  upvotes, downvotes, commentCount, isSolved, isFeatured, isPinned,
   communityName, communityEmoji, communitySlug,
-  repoUrl, liveUrl, techStack, jobType, jobCompany,
+  repoUrl, liveUrl, techStack, imageUrl, jobType, jobCompany,
   createdAt, currentUserVote, isSaved, isFollowing, currentUserId,
 }: PostCardData) {
   const [votes, setVotes] = useState({ up: upvotes, down: downvotes, myVote: currentUserVote ?? 0 });
@@ -105,78 +106,120 @@ export function PostCard({
     setFollowing(!following);
   }
 
+  const isShowcase = postType === "showcase";
+
   return (
-    <ScrollReveal direction="up" className="card-interactive group relative overflow-hidden">
+    <ScrollReveal direction="up" className="card-interactive group relative overflow-hidden text-left">
       {/* Subtle glow on hover */}
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      
-      <div className="relative mb-3 flex flex-wrap items-center gap-2">
-        <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold ${colorClass}`}>
-          {icon} {postType.replace("_", " ")}
-        </span>
-        {isPinned && <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${statusColors.pinned}`}>📌 Pinned</span>}
-        {isFeatured && <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${statusColors.featured}`}>⭐ Featured</span>}
-        {isSolved && <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${statusColors.solved}`}>✅ Solved</span>}
-        {communityName && (
-          <Link href={`/community/community/${communitySlug}`} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600 hover:bg-slate-200 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:bg-slate-700/50 transition-colors">
-            {communityEmoji} {communityName}
-          </Link>
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-500/[0.04] via-transparent to-purple-500/[0.04] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+      {/* Showcase thumbnail */}
+      {isShowcase && imageUrl && (
+        <Link href={`/community/post/${id}`} className="relative block h-44 w-full overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={imageUrl}
+            alt={title}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent" />
+        </Link>
+      )}
+
+      <div className="relative flex flex-col gap-2.5 p-4 sm:p-5">
+        {/* Header: type / status badges + community */}
+        <div className="flex flex-wrap items-center gap-1.5">
+          <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold ${colorClass}`}>
+            {icon} {postType.replace("_", " ")}
+          </span>
+          {isPinned && <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${statusColors.pinned}`}>📌 Pinned</span>}
+          {isFeatured && <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${statusColors.featured}`}>⭐ Featured</span>}
+          {isSolved && <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${statusColors.solved}`}>✅ Solved</span>}
+          {communityName && (
+            <Link
+              href={`/community/community/${communitySlug}`}
+              className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600 transition-colors hover:bg-slate-200 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:bg-slate-700/50"
+            >
+              {communityEmoji} {communityName}
+            </Link>
+          )}
+        </div>
+
+        {/* Title + content */}
+        <Link href={`/community/post/${id}`} className="block">
+          <h3 className={`text-left font-extrabold leading-snug text-primary transition-colors duration-200 group-hover:text-brand-600 dark:group-hover:text-brand-400 ${isShowcase ? "text-xl" : "text-lg"}`}>
+            {title}
+          </h3>
+          <p className="mt-1.5 line-clamp-3 text-left text-sm leading-relaxed text-secondary">{content}</p>
+        </Link>
+
+        {/* Repo / Live links */}
+        {(repoUrl || liveUrl) && (
+          <div className="flex flex-wrap gap-3">
+            {repoUrl && (
+              <a href={repoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs font-semibold text-secondary transition-colors hover:text-primary">
+                <Github className="h-3.5 w-3.5" /> Repo
+              </a>
+            )}
+            {liveUrl && (
+              <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 transition-colors hover:text-brand-500 dark:text-brand-400 dark:hover:text-brand-300">
+                <Globe className="h-3.5 w-3.5" /> Live
+              </a>
+            )}
+          </div>
+        )}
+
+        {/* Tech stack — prominent for showcase */}
+        {techStack && techStack.length > 0 && (
+          <div className="flex flex-wrap gap-1.5">
+            {techStack.map((t) => (
+              <span
+                key={t}
+                className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
+                  isShowcase
+                    ? "bg-brand-100 text-brand-700 dark:bg-brand-950/60 dark:text-brand-300"
+                    : "bg-slate-100 text-secondary dark:bg-slate-800/50 dark:text-slate-300"
+                }`}
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Job meta */}
+        {jobCompany && (
+          <p className="text-sm font-medium text-secondary">
+            {jobCompany}
+            {jobType && <span className="text-xs text-subtle"> · {jobType.replace("_", " ")}</span>}
+          </p>
         )}
       </div>
 
-      <Link href={`/community/post/${id}`} className="block">
-        <h3 className="text-lg font-bold text-primary group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-200">{title}</h3>
-        <p className="mt-2 line-clamp-3 text-sm text-secondary">{content}</p>
-      </Link>
-
-      {(repoUrl || liveUrl) && (
-        <div className="relative mt-3 flex gap-3">
-          {repoUrl && (
-            <a href={repoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs font-semibold text-secondary hover:text-primary transition-colors">
-              <Github className="h-3.5 w-3.5" /> Repo
-            </a>
-          )}
-          {liveUrl && (
-            <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-500 dark:text-brand-400 dark:hover:text-brand-300 transition-colors">
-              <Globe className="h-3.5 w-3.5" /> Live
-            </a>
-          )}
-        </div>
-      )}
-
-      {techStack && techStack.length > 0 && (
-        <div className="relative mt-3 flex flex-wrap gap-1.5">
-          {techStack.map((t) => (
-            <span key={t} className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-secondary dark:bg-slate-800/50 dark:text-slate-300">
-              {t}
-            </span>
-          ))}
-        </div>
-      )}
-
-      {jobCompany && (
-        <p className="relative mt-2 text-sm font-medium text-secondary">
-          {jobCompany} {jobType && <span className="text-xs text-subtle">· {jobType.replace("_", " ")}</span>}
-        </p>
-      )}
-
-      <div className="relative mt-4 flex items-center justify-between border-t border-slate-200/60 pt-3 dark:border-slate-800/60">
+      {/* Footer: author + actions */}
+      <div className="relative mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200/60 pt-3 dark:border-slate-800/60">
         <div className="flex items-center gap-2">
-          <Link href={`/community/members/${authorUsername ?? authorId}`} className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-50 text-sm font-bold text-brand-700 dark:bg-brand-950/50 dark:text-brand-300">
+          <Link
+            href={`/community/members/${authorUsername ?? authorId}`}
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-50 text-sm font-bold text-brand-700 dark:bg-brand-950/50 dark:text-brand-300"
+          >
             {authorName?.charAt(0)?.toUpperCase() ?? "?"}
           </Link>
-          <div>
-            <Link href={`/community/members/${authorUsername ?? authorId}`} className="text-sm font-semibold text-primary hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+          <div className="leading-tight">
+            <Link
+              href={`/community/members/${authorUsername ?? authorId}`}
+              className="text-sm font-semibold text-primary transition-colors hover:text-brand-600 dark:hover:text-brand-400"
+            >
               {authorName}
             </Link>
             <p className="text-xs text-subtle">{timeAgo}</p>
           </div>
           {currentUserId && currentUserId !== authorId && (
-            <button 
-              onClick={handleFollow} 
-              className={`ml-2 rounded-full px-2 py-0.5 text-xs font-semibold transition-all duration-200 ${
-                following 
-                  ? "bg-slate-100 text-secondary hover:bg-slate-200 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:bg-slate-700/50" 
+            <button
+              onClick={handleFollow}
+              className={`ml-1 rounded-full px-2 py-0.5 text-xs font-semibold transition-all duration-200 ${
+                following
+                  ? "bg-slate-100 text-secondary hover:bg-slate-200 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:bg-slate-700/50"
                   : "bg-brand-50 text-brand-700 hover:bg-brand-100 dark:bg-brand-950/50 dark:text-brand-300 dark:hover:bg-brand-900/50"
               }`}
             >
@@ -184,43 +227,55 @@ export function PostCard({
             </button>
           )}
         </div>
-        <div className="flex items-center gap-1">
-          <button 
-            onClick={() => handleVote(1)} 
+
+        <div className="flex items-center gap-0.5">
+          <button
+            onClick={() => handleVote(1)}
+            aria-label="Upvote"
             className={`flex items-center gap-0.5 rounded-lg px-2 py-1 text-sm transition-all duration-200 ${
-              votes.myVote === 1 
-                ? "bg-brand-50 text-brand-700 dark:bg-brand-950/50 dark:text-brand-300" 
+              votes.myVote === 1
+                ? "bg-brand-50 text-brand-700 dark:bg-brand-950/50 dark:text-brand-300"
                 : "text-subtle hover:bg-slate-100 hover:text-primary dark:hover:bg-slate-800/50 dark:hover:text-primary"
             }`}
           >
-            <ArrowBigUp className="h-4 w-4" />{votes.up}
+            <ArrowBigUp className="h-4 w-4" />
+            {votes.up}
           </button>
-          <button 
-            onClick={() => handleVote(-1)} 
+          <button
+            onClick={() => handleVote(-1)}
+            aria-label="Downvote"
             className={`flex items-center gap-0.5 rounded-lg px-2 py-1 text-sm transition-all duration-200 ${
-              votes.myVote === -1 
-                ? "bg-rose-50 text-rose-600 dark:bg-rose-950/50 dark:text-rose-400" 
+              votes.myVote === -1
+                ? "bg-rose-50 text-rose-600 dark:bg-rose-950/50 dark:text-rose-400"
                 : "text-subtle hover:bg-slate-100 hover:text-rose-600 dark:hover:bg-slate-800/50 dark:hover:text-rose-400"
             }`}
           >
             <ArrowBigDown className="h-4 w-4" />
           </button>
-          <Link href={`/community/post/${id}`} className="flex items-center gap-0.5 rounded-lg px-2 py-1 text-sm text-subtle hover:bg-slate-100 hover:text-primary dark:hover:bg-slate-800/50 dark:hover:text-primary transition-all duration-200">
-            <MessageSquare className="h-4 w-4" />{commentCount}
+          <Link
+            href={`/community/post/${id}`}
+            className="flex items-center gap-0.5 rounded-lg px-2 py-1 text-sm text-subtle transition-all duration-200 hover:bg-slate-100 hover:text-primary dark:hover:bg-slate-800/50 dark:hover:text-primary"
+          >
+            <MessageSquare className="h-4 w-4" />
+            {commentCount}
           </Link>
-          <button 
-            onClick={handleSave} 
+          <button
+            onClick={handleSave}
+            aria-label="Save post"
             className={`rounded-lg p-1.5 text-sm transition-all duration-200 ${
-              saved 
-                ? "text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950/30" 
+              saved
+                ? "text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950/30"
                 : "text-subtle hover:bg-slate-100 hover:text-primary dark:hover:bg-slate-800/50 dark:hover:text-primary"
             }`}
           >
             <Bookmark className={`h-4 w-4 ${saved ? "fill-current" : ""}`} />
           </button>
-          <button 
-            onClick={() => { navigator.clipboard?.writeText(`${window.location.origin}/community/post/${id}`); }} 
-            className="rounded-lg p-1.5 text-sm text-subtle hover:bg-slate-100 hover:text-primary dark:hover:bg-slate-800/50 dark:hover:text-primary transition-all duration-200"
+          <button
+            onClick={() => {
+              navigator.clipboard?.writeText(`${window.location.origin}/community/post/${id}`);
+            }}
+            aria-label="Share post"
+            className="rounded-lg p-1.5 text-sm text-subtle transition-all duration-200 hover:bg-slate-100 hover:text-primary dark:hover:bg-slate-800/50 dark:hover:text-primary"
           >
             <Share2 className="h-4 w-4" />
           </button>

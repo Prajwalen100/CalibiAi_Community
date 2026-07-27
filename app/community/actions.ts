@@ -43,12 +43,13 @@ async function addXp(userId: string, amount: number) {
   }
 }
 
-async function createNotification(userId: string, actorId: string, type: string, postId?: string, commentId?: string) {
+async function createNotification(userId: string, actorId: string, type: string, postId?: string, commentId?: string, applicationId?: string) {
   const supabase = await createServerSupabaseClient();
   try {
     await supabase.from("comm_notifications").insert({
       user_id: userId, actor_id: actorId, type,
       post_id: postId || null, comment_id: commentId || null,
+      application_id: applicationId || null,
     });
   } catch {
     // Table might not exist yet
@@ -429,6 +430,7 @@ export async function joinCommunity(communityId: string) {
   } catch { /* ignore */ }
 
   revalidatePath("/community");
+  revalidatePath("/community/communities");
   revalidatePath(`/community/community/${communityId}`);
   return { success: true };
 }
@@ -782,14 +784,14 @@ export async function applyToJob(formData: FormData) {
   if (job.status !== "open") return { error: "This opportunity is closed and not accepting applications." };
   if (job.user_id === user.id) return { error: "You can't apply to your own posting." };
 
-  const { error } = await supabase.from("comm_job_applications").insert({
+  const { data: appRow, error } = await supabase.from("comm_job_applications").insert({
     job_id: d.job_id,
     applicant_id: user.id,
     cover_letter: d.cover_letter,
     portfolio_url: d.portfolio_url || null,
     resume_url: d.resume_url || null,
     contact_email: d.contact_email,
-  });
+  }).select("id").single();
 
   if (error) {
     if (/comm_job_applications|relation .* does not exist/i.test(error.message)) {
@@ -799,7 +801,7 @@ export async function applyToJob(formData: FormData) {
     return { error: error.message };
   }
 
-  await createNotification(job.user_id, user.id, "job_application");
+  await createNotification(job.user_id, user.id, "job_application", undefined, undefined, appRow?.id);
   await addXp(user.id, 5);
   revalidatePath(`/community/jobs/${d.job_id}`);
   revalidatePath("/community/jobs/opportunities");
@@ -862,5 +864,35 @@ export async function updateApplicationStatus(applicationId: string, status: "su
   revalidatePath("/employer/dashboard");
   revalidatePath("/employer/dashboard/applications");
   revalidatePath(`/employer/dashboard/applications/${applicationId}`);
+  return { success: true };
+}
+
+// ── Student AI Q&A history ───────────────────────────────────
+
+export async function deleteAiQa(id: string) {
+  const user = await getAuthUser();
+  if (!user) return { error: "Not authenticated" };
+  const supabase = await createServerSupabaseClient();
+  const { error } = await supabase
+    .from("student_ai_qa")
+    .delete()
+    .eq("id", id)
+    .eq("user_id", user.id);
+  if (error) return { error: error.message };
+  revalidatePath("/community/ask/history");
+  return { success: true };
+}
+
+export async function toggleSaveAiQa(id: string, isSaved: boolean) {
+  const user = await getAuthUser();
+  if (!user) return { error: "Not authenticated" };
+  const supabase = await createServerSupabaseClient();
+  const { error } = await supabase
+    .from("student_ai_qa")
+    .update({ is_saved: isSaved })
+    .eq("id", id)
+    .eq("user_id", user.id);
+  if (error) return { error: error.message };
+  revalidatePath("/community/ask/history");
   return { success: true };
 }

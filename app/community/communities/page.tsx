@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { ScrollReveal, StaggerReveal, GlowOnHover, Floating } from "@/components/scroll-reveal";
-import { Users, Hash, BookOpen, Briefcase, Search, ArrowRight } from "lucide-react";
+import { Users, Hash, Search, ArrowRight } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -30,54 +30,62 @@ export default async function CommunitiesPage() {
     { label: "Research", icon: "🔬", slugs: ["research-papers"], color: "purple" },
   ];
 
-  function CommunityCard({ 
-    id, slug, name, emoji, description, memberCount, postCount, isJoined, userId 
+  function CommunityCard({
+    id, slug, name, emoji, description, memberCount, postCount, isJoined, userId
   }: {
     id: string; slug: string; name: string; emoji: string; description: string;
     memberCount: number; postCount: number; isJoined: boolean; userId?: string;
   }) {
     return (
-      <GlowOnHover color="brand" intensity="subtle" className="group">
-        <Link href={`/community/community/${slug}`} className="glass-panel block transition-all duration-300 hover:border-brand-500/50 hover:shadow-xl hover:-translate-y-1 h-full">
-          <div className="flex items-start justify-between">
-            <div>
-              <span className="text-3xl animate-float-slow">{emoji}</span>
-              <h3 className="mt-2 font-bold text-primary group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{name}</h3>
-            </div>
-            {userId && (
-              <form action={async () => {
+      <GlowOnHover color="brand" intensity="subtle" className="group relative h-full">
+        <div className="glass-panel relative flex h-full flex-col overflow-hidden transition-all duration-300 hover:border-brand-500/50 hover:shadow-xl hover:-translate-y-1">
+          {userId && (
+            <form
+              action={async () => {
                 "use server";
                 const { joinCommunity } = await import("@/app/community/actions");
                 await joinCommunity(id);
-              }}>
-                <button type="submit" className={`rounded-full px-3 py-1 text-xs font-semibold transition-all duration-200 ${
-                  isJoined 
-                    ? "bg-slate-100 text-secondary hover:bg-slate-200 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:bg-slate-700/50" 
+              }}
+              className="absolute right-4 top-4 z-10"
+            >
+              <button
+                type="submit"
+                className={`rounded-full px-3 py-1 text-xs font-semibold transition-all duration-200 ${
+                  isJoined
+                    ? "bg-slate-100 text-secondary hover:bg-slate-200 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:bg-slate-700/50"
                     : "bg-brand-500 text-white hover:bg-brand-600 hover:shadow-brand-500/30"
-                }`}>
-                  {isJoined ? "Joined" : "Join"}
-                </button>
-              </form>
-            )}
-          </div>
-          <p className="mt-2 text-sm text-secondary line-clamp-2">{description}</p>
-          <div className="mt-3 flex items-center gap-4 text-xs text-subtle">
-            <span className="inline-flex items-center gap-1">
-              <Users className="h-3 w-3" />
-              {memberCount} members
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <Hash className="h-3 w-3" />
-              {postCount} posts
-            </span>
-          </div>
-          <div className="mt-3 pt-3 border-t border-slate-200/60 dark:border-slate-800/60">
-            <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 transition-colors group">
-              View community
-              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-            </span>
-          </div>
-        </Link>
+                }`}
+              >
+                {isJoined ? "Joined" : "Join"}
+              </button>
+            </form>
+          )}
+          <Link href={`/community/community/${slug}`} className="flex h-full flex-col p-5 text-left">
+            <div className="pr-14">
+              <span className="text-3xl animate-float-slow">{emoji}</span>
+              <h3 className="mt-2 font-bold text-primary transition-colors group-hover:text-brand-600 dark:group-hover:text-brand-400">
+                {name}
+              </h3>
+            </div>
+            <p className="mt-2 flex-1 text-sm leading-relaxed text-secondary line-clamp-2">{description}</p>
+            <div className="mt-3 flex items-center gap-4 text-xs text-subtle">
+              <span className="inline-flex items-center gap-1">
+                <Users className="h-3 w-3" />
+                {memberCount} members
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <Hash className="h-3 w-3" />
+                {postCount} posts
+              </span>
+            </div>
+            <div className="mt-3 flex items-center justify-between border-t border-slate-200/60 pt-3 dark:border-slate-800/60">
+              <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 transition-colors group-hover:text-brand-700 dark:text-brand-400 dark:group-hover:text-brand-300">
+                View community
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+              </span>
+            </div>
+          </Link>
+        </div>
       </GlowOnHover>
     );
   }

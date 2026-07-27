@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { createPost } from "@/app/community/actions";
-import { Loader2, ArrowLeft, Bot, Users, Sparkles, RefreshCw, MessageSquarePlus, Copy, Check } from "lucide-react";
+import { Loader2, ArrowLeft, Bot, Users, Sparkles, RefreshCw, MessageSquarePlus, Copy, Check, History } from "lucide-react";
 import { AiMarkdown } from "@/components/ai/ai-markdown";
 
 const postTypes = [
@@ -216,13 +216,21 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity }: P
                 <p className="text-xs text-purple-700">CalibiAI Assistant</p>
               </div>
             </div>
-            <button
-              type="button"
-              onClick={() => setQuestionSubMode("choice")}
-              className="rounded-xl border border-purple-200 bg-white px-3 py-1.5 text-xs font-bold text-purple-700 hover:bg-purple-50"
-            >
-              ← Switch Options (Post to Community)
-            </button>
+            <div className="flex items-center gap-2">
+              <Link
+                href="/community/ask/history"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-purple-200 bg-white px-3 py-1.5 text-xs font-bold text-purple-700 hover:bg-purple-50"
+              >
+                <History className="h-3.5 w-3.5" /> My saved Q&A
+              </Link>
+              <button
+                type="button"
+                onClick={() => setQuestionSubMode("choice")}
+                className="rounded-xl border border-purple-200 bg-white px-3 py-1.5 text-xs font-bold text-purple-700 hover:bg-purple-50"
+              >
+                ← Switch Options (Post to Community)
+              </button>
+            </div>
           </div>
 
           <form onSubmit={handleAskAi} className="mt-5 space-y-4">
@@ -266,6 +274,9 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity }: P
               <div className="flex flex-wrap items-center justify-between gap-2 border-b border-purple-100 pb-3">
                 <div className="flex items-center gap-2 text-sm font-bold text-purple-900">
                   <Sparkles className="h-4 w-4 text-purple-600" /> CalibiAI Assistant Response
+                  <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2 py-0.5 text-[10px] font-bold text-green-700 dark:bg-green-950/50 dark:text-green-300">
+                    <Check className="h-3 w-3" /> Saved to your history
+                  </span>
                 </div>
                 <button
                   type="button"

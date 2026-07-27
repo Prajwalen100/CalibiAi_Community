@@ -5,6 +5,7 @@ export type CommunityPublicProfile = {
   full_name: string | null;
   username: string | null;
   avatar_id: number | null;
+  avatar_url: string | null;
 };
 
 type ServerSupabaseClient = Awaited<ReturnType<typeof createServerSupabaseClient>>;
@@ -36,10 +37,17 @@ export async function attachCommunityProfiles<T extends RowWithAuthor>(
   // of hiding the whole feed; cards will use their Anonymous fallback.
   let response = await supabase
     .from("comm_public_profiles")
-    .select("user_id, full_name, username, avatar_id")
+    .select("user_id, full_name, username, avatar_id, avatar_url")
     .in("user_id", userIds);
 
-  // Migration 005_profile_avatars.sql has not been applied yet — retry without avatar_id.
+  // Migration 019 (avatar_url) or 005 (avatar_id) has not been applied yet — retry
+  // with a progressively smaller column set so the feed still renders.
+  if (response.error && /avatar_(id|url)/.test(response.error.message)) {
+    response = await supabase
+      .from("comm_public_profiles")
+      .select("user_id, full_name, username, avatar_id")
+      .in("user_id", userIds) as typeof response;
+  }
   if (response.error && /avatar_id/.test(response.error.message)) {
     response = await supabase
       .from("comm_public_profiles")
@@ -60,6 +68,7 @@ export async function attachCommunityProfiles<T extends RowWithAuthor>(
         full_name: (profile.full_name as string | null) ?? null,
         username: (profile.username as string | null) ?? null,
         avatar_id: (profile.avatar_id as number | null) ?? null,
+        avatar_url: (profile.avatar_url as string | null) ?? null,
       } satisfies CommunityPublicProfile,
     ]),
   );
