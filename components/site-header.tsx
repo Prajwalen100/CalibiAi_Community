@@ -2,7 +2,7 @@ import Link from "next/link";
 import { SignInButton } from "@/components/sign-in-button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
-import { Bell } from "lucide-react";
+import { Bell, Search } from "lucide-react";
 import { CompactBrandLogo } from "@/components/brand-logo";
 import { getStudentAccess } from "@/lib/auth/student-access";
 import { ProfileMenu } from "@/components/profile-menu";
@@ -134,6 +134,19 @@ export async function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
+          {user && !isEmployer && canAccessStudentArea && (
+            <Link
+              href="/community/search"
+              aria-label="Search community"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/80 text-slate-600 shadow-sm transition-all duration-200 hover:bg-white hover:text-brand-600 dark:border-white/10 dark:bg-white/8 dark:text-white/70 dark:hover:bg-white/12 dark:hover:text-white"
+              style={{
+                backdropFilter: "blur(12px)",
+                WebkitBackdropFilter: "blur(12px)",
+              }}
+            >
+              <Search className="h-4 w-4" />
+            </Link>
+          )}
           <ThemeToggle />
 
           {user ? (
