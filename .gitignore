@@ -12,3 +12,6 @@ tsconfig.tsbuildinfo
 
 # Runtime-uploaded blog images for local development
 public/uploads
+
+# Scratch markdown used by _article_inject.py (source of truth is the JSON)
+_tmp_articles/
