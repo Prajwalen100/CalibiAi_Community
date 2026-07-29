@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import fs from "fs";
 import path from "path";
 import { ArrowLeft, Clock, Target, BookOpen } from "lucide-react";
+import { AiMarkdown } from "@/components/ai/ai-markdown";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
@@ -57,16 +58,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           ))}
         </div>
 
-        <div className="mt-8 prose prose-lg max-w-none text-slate-700 dark:text-slate-300" id="article-content">
-          {article.content.split("\n").map((line: string, i: number) => {
-            if (line.startsWith("# ")) return <h2 key={i} className="text-2xl font-black text-slate-900 dark:text-white mt-8 mb-4">{line.replace("# ", "")}</h2>;
-            if (line.startsWith("## ")) return <h3 key={i} className="text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3">{line.replace("## ", "")}</h3>;
-            if (line.startsWith("### ")) return <h4 key={i} className="text-lg font-bold text-slate-800 dark:text-slate-200 mt-5 mb-2">{line.replace("### ", "")}</h4>;
-            if (line.startsWith("**") && line.endsWith("**")) return <p key={i} className="font-bold mt-4 mb-2">{line.replace(/\*\*/g, "")}</p>;
-            if (line.trim().startsWith("- ")) return <li key={i} className="ml-5 list-disc">{line.replace("- ", "")}</li>;
-            if (line.trim() === "") return <br key={i} />;
-            return <p key={i} className="mt-3 leading-relaxed">{line}</p>;
-          })}
+        <div className="mt-8 max-w-none text-slate-700 dark:text-slate-300" id="article-content">
+          <AiMarkdown content={article.content} />
         </div>
 
         <script
