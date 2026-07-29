@@ -12,9 +12,12 @@ export function LiveSearchForm({ initialQuery }: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const [query, setQuery] = useState(initialQuery);
+  const [prevInitialQuery, setPrevInitialQuery] = useState(initialQuery);
+  if (initialQuery !== prevInitialQuery) {
+    setPrevInitialQuery(initialQuery);
+    setQuery(initialQuery);
+  }
   const [isPending, startTransition] = useTransition();
-
-  useEffect(() => setQuery(initialQuery), [initialQuery]);
 
   useEffect(() => {
     const normalized = query.trim();

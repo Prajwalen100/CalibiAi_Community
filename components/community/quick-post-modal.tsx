@@ -18,11 +18,16 @@ type Props = {
  */
 export function QuickPostModal({ open, onClose, communities }: Props) {
   const [formKey, setFormKey] = useState(0);
+  const [prevOpen, setPrevOpen] = useState(open);
+  if (open && !prevOpen) {
+    setPrevOpen(true);
+    setFormKey((k) => k + 1);
+  } else if (!open && prevOpen) {
+    setPrevOpen(false);
+  }
 
   useEffect(() => {
     if (!open) return;
-    // Reset the form each time the modal is opened fresh.
-    setFormKey((k) => k + 1);
     document.body.style.overflow = "hidden";
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
@@ -32,7 +37,7 @@ export function QuickPostModal({ open, onClose, communities }: Props) {
       document.body.style.overflow = "";
       document.removeEventListener("keydown", closeOnEscape);
     };
-  }, [open]);
+  }, [open, onClose]);
 
   if (!open || typeof document === "undefined") return null;
 

@@ -11,7 +11,7 @@ export default async function CommunitiesPage() {
 
   let communities: Array<Record<string, unknown>> = [];
   let joinedIds: Set<string> = new Set();
-  let memberCounts: Record<string, number> = {};
+  const memberCounts: Record<string, number> = {};
 
   try {
     const [commResult, memberResult, allMembersResult] = await Promise.all([
