@@ -18,6 +18,7 @@ import {
 } from "@/lib/curriculum/catalog";
 import { getUserProgressMap } from "../../actions";
 import { ModuleScrollProgress } from "../../scroll-progress";
+import { LessonDiagrams } from "@/components/curriculum/lesson-diagrams";
 
 export const dynamic = "force-dynamic";
 
@@ -157,9 +158,12 @@ export default async function ModuleReaderPage({ params }: { params: Params }) {
           </header>
 
           <div
+            id="lesson-body"
             className="lesson-prose rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10 dark:border-slate-800 dark:bg-slate-900"
             dangerouslySetInnerHTML={{ __html: html }}
           />
+          {/* Turns ```mermaid fences in the lesson HTML into rendered diagrams. */}
+          <LessonDiagrams containerId="lesson-body" />
 
           <nav className="mt-8 grid gap-3 sm:grid-cols-2">
             {lessonModule.prev ? (

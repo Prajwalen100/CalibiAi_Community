@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { parseMarkdownBlocks } from "@/lib/ai/markdown";
+import { isMermaidLang } from "@/lib/ai/mermaid";
+import { MermaidDiagram } from "@/components/ai/mermaid-diagram";
 
 /**
  * Renders a CalibiAI Assistant markdown answer as a readable article.
@@ -124,6 +126,10 @@ export function AiMarkdown({ content, className = "" }: { content: string; class
               </ul>
             );
           case "code":
+            // ```mermaid fences become real diagrams instead of raw source.
+            if (isMermaidLang(block.lang)) {
+              return <MermaidDiagram key={key} code={block.code} />;
+            }
             return (
               <div key={key} className="mt-4 overflow-hidden rounded-xl border border-slate-800 bg-slate-950">
                 {block.lang && (
