@@ -181,7 +181,7 @@ export function WhyScoreButton({ breakdown, total, tier }: Props) {
               <p className="mt-5 text-xs leading-5 text-slate-400 dark:text-slate-500">
                 Each pillar is calculated independently and capped at its own maximum, then all seven are summed and
                 capped at 1000 total. Any project flagged as likely copied or AI-generated without personal input
-                is excluded from the Verified Projects pillar until it's re-reviewed. Scores recalculate automatically
+                is excluded from the Verified Projects pillar until it&apos;s re-reviewed. Scores recalculate automatically
                 after key activity and periodically when a profile is viewed, so this always reflects your latest work.
               </p>
             </div>

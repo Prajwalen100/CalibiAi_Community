@@ -8,6 +8,7 @@ import { attachCommunityProfiles } from "@/lib/community/public-profiles";
 import { ProfileAvatar } from "@/components/ui/profile-avatar";
 import type { ReactNode } from "react";
 import { ScrollReveal, StaggerReveal } from "@/components/scroll-reveal";
+import { CommunityLayoutShell } from "@/components/community/community-layout-shell";
 
 export const dynamic = "force-dynamic";
 
@@ -121,161 +122,165 @@ function NavLink({ label, href, icon: Icon, isActive = false, badge }: {
 export default async function CommunityLayout({ children }: { children: ReactNode }) {
   const { leaderboard, upcomingEvents, activeChallenge, joinedCommunities, user, currentProfile, aiQaCount } = await getSidebarData();
 
-  return (
-    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <ScrollReveal direction="down" className="mb-4 flex items-center gap-2 text-sm text-subtle">
-        <Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</Link>
-        <ChevronRight className="h-3 w-3" />
-        <span className="font-medium text-primary">Community</span>
-      </ScrollReveal>
+  const breadcrumb = (
+    <ScrollReveal direction="down" className="mb-4 flex items-center gap-2 text-sm text-subtle">
+      <Link href="/" className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</Link>
+      <ChevronRight className="h-3 w-3" />
+      <span className="font-medium text-primary">Community</span>
+    </ScrollReveal>
+  );
 
-      <div className="flex gap-6 lg:flex-row">
-        {/* Left Nav Sidebar — transparent so it recedes from the feed */}
-        <ScrollReveal direction="left" delay={100} className="hidden w-56 shrink-0 lg:block">
-          <aside className="sticky top-24 space-y-6">
-            <nav className="space-y-1">
-              <StaggerReveal staggerDelay={50} direction="right" className="space-y-1">
-                {communityNav.map(({ label, href, icon: Icon }) => (
-                  <NavLink
-                    key={href}
-                    label={label}
-                    href={href}
-                    icon={Icon}
-                    badge={href === "/community/ask/history" ? aiQaCount : null}
-                  />
-                ))}
-              </StaggerReveal>
-            </nav>
+  const leftSidebar = (
+    <ScrollReveal direction="left" delay={100} className="hidden w-56 shrink-0 lg:block">
+      <aside className="sticky top-24 space-y-6">
+        <nav className="space-y-1">
+          <StaggerReveal staggerDelay={50} direction="right" className="space-y-1">
+            {communityNav.map(({ label, href, icon: Icon }) => (
+              <NavLink
+                key={href}
+                label={label}
+                href={href}
+                icon={Icon}
+                badge={href === "/community/ask/history" ? aiQaCount : null}
+              />
+            ))}
+          </StaggerReveal>
+        </nav>
 
-            {joinedCommunities.length > 0 && (
-              <ScrollReveal direction="left" delay={300} className="">
-                <p className="px-3 text-xs font-bold uppercase tracking-wide text-subtle">Your Communities</p>
-                <div className="mt-2 space-y-1">
-                  {joinedCommunities.map((jc, i) => (
-                    <Link
-                      key={i}
-                      href={`/community/community/${jc.comm_communities?.slug}`}
-                      className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-secondary hover:bg-slate-100 hover:text-primary dark:hover:bg-slate-800/50 dark:hover:text-primary transition-all duration-200"
-                    >
-                      <span>{jc.comm_communities?.emoji}</span>
-                      <span className="truncate">{jc.comm_communities?.name}</span>
-                    </Link>
-                  ))}
-                </div>
-              </ScrollReveal>
-            )}
-          </aside>
-        </ScrollReveal>
-
-        <main className="min-w-0 flex-1">
-          <ScrollReveal direction="up" delay={200}>
-            {children}
-          </ScrollReveal>
-        </main>
-
-        {/* Right Sidebar — gamification & daily hooks */}
-        <ScrollReveal direction="right" delay={150} className="hidden w-72 shrink-0 xl:block">
-          <aside>
-            <div className="sticky top-24 space-y-4">
-              {/* You */}
-              <ScrollReveal direction="right" className="card-interactive glass-panel p-4 transition-all duration-300 hover:border-brand-500/50 hover:shadow-xl">
-                <div className="flex items-center gap-3 w-full">
-                  <Link href="/community/profile/avatar" className="flex items-center gap-3 w-full">
-                    <ProfileAvatar
-                      avatarId={currentProfile?.avatar_id ?? null}
-                      avatarUrl={currentProfile?.avatar_url ?? null}
-                      size={48}
-                    />
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-bold text-primary">{currentProfile?.full_name ?? "Your profile"}</p>
-                      <p className="mt-0.5 truncate text-xs text-subtle">
-                        Customize your avatar →
-                      </p>
-                    </div>
-                  </Link>
-                </div>
-              </ScrollReveal>
-
-              {/* Daily Quest — above the leaderboard */}
-              <ScrollReveal direction="right" delay={80} className="glass-panel-subtle rounded-2xl border-brand-200/40 bg-brand-50/40 p-4 dark:border-brand-900/40 dark:bg-brand-950/30">
-                <div className="flex items-center gap-2">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-100 text-amber-600 dark:bg-amber-950/50">
-                    <Zap className="h-4 w-4" />
-                  </span>
-                  <p className="text-sm font-bold text-primary">Daily Quest</p>
-                </div>
-                <p className="mt-2 text-xs text-secondary">
-                  <span className="font-bold text-brand-700 dark:text-brand-300">+50 XP:</span> Answer a question in the RAG community.
-                </p>
+        {joinedCommunities.length > 0 && (
+          <ScrollReveal direction="left" delay={300} className="">
+            <p className="px-3 text-xs font-bold uppercase tracking-wide text-subtle">Your Communities</p>
+            <div className="mt-2 space-y-1">
+              {joinedCommunities.map((jc, i) => (
                 <Link
-                  href="/community?tab=question"
-                  className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-500 dark:text-brand-300 transition-colors"
+                  key={i}
+                  href={`/community/community/${jc.comm_communities?.slug}`}
+                  className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-secondary hover:bg-slate-100 hover:text-primary dark:hover:bg-slate-800/50 dark:hover:text-primary transition-all duration-200"
                 >
-                  Start quest <ArrowRightSmall />
+                  <span>{jc.comm_communities?.emoji}</span>
+                  <span className="truncate">{jc.comm_communities?.name}</span>
                 </Link>
-              </ScrollReveal>
+              ))}
+            </div>
+          </ScrollReveal>
+        )}
+      </aside>
+    </ScrollReveal>
+  );
 
-              {/* Leaderboard */}
-              <ScrollReveal direction="right" delay={100} className="glass-panel-subtle rounded-2xl p-4">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-bold text-primary">🏆 Leaderboard</p>
-                  <Link href="/community/leaderboard" className="text-xs font-semibold text-brand-600 hover:text-brand-500 transition-colors">View all</Link>
+  const rightSidebar = (
+    <ScrollReveal direction="right" delay={150} className="hidden w-72 shrink-0 xl:block">
+      <aside>
+        <div className="sticky top-24 space-y-4">
+          {/* You */}
+          <ScrollReveal direction="right" className="card-interactive glass-panel p-4 transition-all duration-300 hover:border-brand-500/50 hover:shadow-xl">
+            <div className="flex items-center gap-3 w-full">
+              <Link href="/community/profile/avatar" className="flex items-center gap-3 w-full">
+                <ProfileAvatar
+                  avatarId={currentProfile?.avatar_id ?? null}
+                  avatarUrl={currentProfile?.avatar_url ?? null}
+                  size={48}
+                />
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-sm font-bold text-primary">{currentProfile?.full_name ?? "Your profile"}</p>
+                  <p className="mt-0.5 truncate text-xs text-subtle">
+                    Customize your avatar →
+                  </p>
                 </div>
-                <div className="mt-3 space-y-2">
-                  {leaderboard.length ? leaderboard.map((entry, i) => (
-                    <div key={entry.user_id} className="flex items-center justify-between text-sm">
-                      <div className="flex items-center gap-2">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-50 text-xs font-bold text-brand-700 dark:bg-brand-950/50 dark:text-brand-300">{i + 1}</span>
-                        <ProfileAvatar
-                          avatarId={entry.profiles?.avatar_id ?? null}
-                          avatarUrl={entry.profiles?.avatar_url ?? null}
-                          size={22}
-                        />
-                        <span className="font-medium truncate text-primary">{entry.profiles?.full_name ?? "User"}</span>
-                      </div>
-                      <span className="text-xs font-semibold text-brand-600 dark:text-brand-400">{entry.xp} XP</span>
-                    </div>
-                  )) : (
-                    <p className="text-xs text-subtle">No leaderboard data yet.</p>
-                  )}
+              </Link>
+            </div>
+          </ScrollReveal>
+
+          {/* Daily Quest — above the leaderboard */}
+          <ScrollReveal direction="right" delay={80} className="glass-panel-subtle rounded-2xl border-brand-200/40 bg-brand-50/40 p-4 dark:border-brand-900/40 dark:bg-brand-950/30">
+            <div className="flex items-center gap-2">
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-100 text-amber-600 dark:bg-amber-950/50">
+                <Zap className="h-4 w-4" />
+              </span>
+              <p className="text-sm font-bold text-primary">Daily Quest</p>
+            </div>
+            <p className="mt-2 text-xs text-secondary">
+              <span className="font-bold text-brand-700 dark:text-brand-300">+50 XP:</span> Answer a question in the RAG community.
+            </p>
+            <Link
+              href="/community?tab=question"
+              className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-500 dark:text-brand-300 transition-colors"
+            >
+              Start quest <ArrowRightSmall />
+            </Link>
+          </ScrollReveal>
+
+          {/* Leaderboard */}
+          <ScrollReveal direction="right" delay={100} className="glass-panel-subtle rounded-2xl p-4">
+            <div className="flex items-center justify-between">
+              <p className="text-sm font-bold text-primary">🏆 Leaderboard</p>
+              <Link href="/community/leaderboard" className="text-xs font-semibold text-brand-600 hover:text-brand-500 transition-colors">View all</Link>
+            </div>
+            <div className="mt-3 space-y-2">
+              {leaderboard.length ? leaderboard.map((entry, i) => (
+                <div key={entry.user_id} className="flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-50 text-xs font-bold text-brand-700 dark:bg-brand-950/50 dark:text-brand-300">{i + 1}</span>
+                    <ProfileAvatar
+                      avatarId={entry.profiles?.avatar_id ?? null}
+                      avatarUrl={entry.profiles?.avatar_url ?? null}
+                      size={22}
+                    />
+                    <span className="font-medium truncate text-primary">{entry.profiles?.full_name ?? "User"}</span>
+                  </div>
+                  <span className="text-xs font-semibold text-brand-600 dark:text-brand-400">{entry.xp} XP</span>
                 </div>
-              </ScrollReveal>
-
-              {/* Upcoming Events — hidden entirely when empty (no zero-state) */}
-              {upcomingEvents.length > 0 && (
-                <ScrollReveal direction="right" delay={200} className="glass-panel-subtle rounded-2xl p-4">
-                  <div className="flex items-center justify-between">
-                    <p className="text-sm font-bold text-primary">📅 Upcoming Events</p>
-                    <Link href="/community/events" className="text-xs font-semibold text-brand-600 hover:text-brand-500 transition-colors">View all</Link>
-                  </div>
-                  <div className="mt-3 space-y-2">
-                    {upcomingEvents.map((ev) => (
-                      <Link key={ev.id} href={`/community/events/${ev.id}`} className="block rounded-lg p-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors">
-                        <p className="font-medium truncate text-primary">{ev.title}</p>
-                        <p className="text-xs text-subtle">{new Date(ev.event_date).toLocaleDateString()}</p>
-                      </Link>
-                    ))}
-                  </div>
-                </ScrollReveal>
-              )}
-
-              {/* Active Challenge */}
-              {activeChallenge.length > 0 && (
-                <ScrollReveal direction="right" delay={400} className="glass-panel-subtle rounded-2xl border-brand-200/50 bg-brand-50/30 p-4 dark:border-brand-900/30 dark:bg-brand-950/30">
-                  <p className="text-sm font-bold text-brand-700 dark:text-brand-300">🔥 Weekly Challenge</p>
-                  {activeChallenge.map((ch) => (
-                    <Link key={ch.id} href={`/community/post/${ch.id}`} className="mt-2 block">
-                      <p className="font-semibold text-brand-700 dark:text-brand-300">{ch.title}</p>
-                      <p className="text-xs text-brand-600 dark:text-brand-400">Ends {new Date(ch.challenge_deadline).toLocaleDateString()}</p>
-                    </Link>
-                  ))}
-                </ScrollReveal>
+              )) : (
+                <p className="text-xs text-subtle">No leaderboard data yet.</p>
               )}
             </div>
-          </aside>
-        </ScrollReveal>
-      </div>
-    </div>
+          </ScrollReveal>
+
+          {/* Upcoming Events — hidden entirely when empty (no zero-state) */}
+          {upcomingEvents.length > 0 && (
+            <ScrollReveal direction="right" delay={200} className="glass-panel-subtle rounded-2xl p-4">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-bold text-primary">📅 Upcoming Events</p>
+                <Link href="/community/events" className="text-xs font-semibold text-brand-600 hover:text-brand-500 transition-colors">View all</Link>
+              </div>
+              <div className="mt-3 space-y-2">
+                {upcomingEvents.map((ev) => (
+                  <Link key={ev.id} href={`/community/events/${ev.id}`} className="block rounded-lg p-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors">
+                    <p className="font-medium truncate text-primary">{ev.title}</p>
+                    <p className="text-xs text-subtle">{new Date(ev.event_date).toLocaleDateString()}</p>
+                  </Link>
+                ))}
+              </div>
+            </ScrollReveal>
+          )}
+
+          {/* Active Challenge */}
+          {activeChallenge.length > 0 && (
+            <ScrollReveal direction="right" delay={400} className="glass-panel-subtle rounded-2xl border-brand-200/50 bg-brand-50/30 p-4 dark:border-brand-900/30 dark:bg-brand-950/30">
+              <p className="text-sm font-bold text-brand-700 dark:text-brand-300">🔥 Weekly Challenge</p>
+              {activeChallenge.map((ch) => (
+                <Link key={ch.id} href={`/community/post/${ch.id}`} className="mt-2 block">
+                  <p className="font-semibold text-brand-700 dark:text-brand-300">{ch.title}</p>
+                  <p className="text-xs text-brand-600 dark:text-brand-400">Ends {new Date(ch.challenge_deadline).toLocaleDateString()}</p>
+                </Link>
+              ))}
+            </ScrollReveal>
+          )}
+        </div>
+      </aside>
+    </ScrollReveal>
+  );
+
+  return (
+    <CommunityLayoutShell
+      breadcrumb={breadcrumb}
+      leftSidebar={leftSidebar}
+      rightSidebar={rightSidebar}
+    >
+      <ScrollReveal direction="up" delay={200}>
+        {children}
+      </ScrollReveal>
+    </CommunityLayoutShell>
   );
 }
 

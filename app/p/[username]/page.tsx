@@ -140,6 +140,11 @@ async function getProfile(username: string): Promise<ProfileRow | null> {
   return null;
 }
 
+function getScoreAgeMs(lastCalculatedAt?: string | null): number {
+  if (!lastCalculatedAt) return Infinity;
+  return Date.now() - new Date(lastCalculatedAt).getTime();
+}
+
 export default async function ProfilePage({ params }: { params: Params }) {
   const { username } = await params;
   const supabase = createAdminSupabaseClient();
@@ -178,7 +183,7 @@ export default async function ProfilePage({ params }: { params: Params }) {
   // calculated, or is more than 5 minutes stale, recompute it from live
   // data (verified projects/skills, roadmap completion, community XP) so a
   // visited profile never shows a number that silently drifted out of date.
-  const scoreAgeMs = scoreRow?.last_calculated_at ? Date.now() - new Date(scoreRow.last_calculated_at).getTime() : Infinity;
+  const scoreAgeMs = getScoreAgeMs(scoreRow?.last_calculated_at);
   const score = scoreAgeMs > 5 * 60 * 1000
     ? (await recalculateAndPersistScore(profile.user_id)) ?? scoreRow
     : scoreRow;

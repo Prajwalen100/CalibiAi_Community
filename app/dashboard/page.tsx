@@ -77,7 +77,6 @@ export default async function DashboardPage({
     { data: profile },
     { data: score },
     { data: roadmap },
-    { data: readingActivity },
     { data: projects },
     { data: recentProgress },
     { data: roadmapMiniProjects },
