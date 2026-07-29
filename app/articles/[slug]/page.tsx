@@ -4,6 +4,7 @@ import path from "path";
 import { ArrowLeft, Clock, Target, BookOpen } from "lucide-react";
 import { AiMarkdown } from "@/components/ai/ai-markdown";
 import Link from "next/link";
+import { ArticleScrollProgress } from "./article-scroll-progress";
 
 export const dynamic = "force-dynamic";
 
@@ -33,11 +34,13 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const roleTitle = article.role.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
 
   return (
-    <section className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
-      <Link href={`/roadmap/day/${article.day}`} className="inline-flex items-center gap-2 text-sm font-medium text-brand-600 hover:text-brand-700">
-        <ArrowLeft className="h-4 w-4" />
-        Back to Day {article.day}
-      </Link>
+    <>
+      <ArticleScrollProgress />
+      <section className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+        <Link href={`/roadmap/day/${article.day}`} className="inline-flex items-center gap-2 text-sm font-medium text-brand-600 hover:text-brand-700">
+          <ArrowLeft className="h-4 w-4" />
+          Back to Day {article.day}
+        </Link>
 
       <article className="mt-6 rounded-3xl bg-white p-6 shadow-xl dark:bg-slate-900 sm:p-10">
         <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-slate-400">
@@ -107,5 +110,6 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         )}
       </article>
     </section>
+    </>
   );
 }

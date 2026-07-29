@@ -62,7 +62,13 @@ function colorForIndex(index: number): "brand" | "success" | "warning" | "purple
   return (["brand", "success", "warning", "purple"] as const)[index % 4];
 }
 
-export default async function BlogPage() {
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ subscribed?: string }>;
+}) {
+  const params = await searchParams;
+  const subscribed = params.subscribed;
   const { posts, fromAdmin } = await getPublishedBlogPosts();
 
   return (
@@ -82,6 +88,22 @@ export default async function BlogPage() {
               ? "Every article here is published from the CalibiAI admin portal."
               : "Sample articles are shown until the first post is published from the admin portal."}
           </p>
+
+          {subscribed === "success" && (
+            <div className="mb-8 rounded-2xl border border-emerald-200 bg-emerald-50 px-6 py-4 text-center text-emerald-800">
+              ✅ You have successfully subscribed! Thank you.
+            </div>
+          )}
+          {subscribed === "invalid" && (
+            <div className="mb-8 rounded-2xl border border-amber-200 bg-amber-50 px-6 py-4 text-center text-amber-800">
+              Please enter a valid email address.
+            </div>
+          )}
+          {subscribed === "error" && (
+            <div className="mb-8 rounded-2xl border border-red-200 bg-red-50 px-6 py-4 text-center text-red-800">
+              Something went wrong. Please try again later.
+            </div>
+          )}
         </ScrollReveal>
 
         <StaggerReveal staggerDelay={150} direction="up" className="grid gap-6 md:grid-cols-2">
