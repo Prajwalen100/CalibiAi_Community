@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { isMermaidLang } from "@/lib/ai/mermaid";
 
 const PHASES_ROOT = path.join(process.cwd(), "phases");
 
@@ -307,8 +308,14 @@ export function renderLessonMarkdown(md: string): string {
         codeLang = raw.slice(3).trim();
         codeBuf = [];
       } else {
+        const code = codeBuf.join("\n");
+        // Mermaid fences are placeholders the client hydrates into real SVG
+        // diagrams (see components/curriculum/lesson-diagrams.tsx). The <pre>
+        // stays inside as the no-JS / parse-failure fallback.
         html.push(
-          `<pre class="md-code" data-lang="${escapeHtml(codeLang)}"><code>${escapeHtml(codeBuf.join("\n"))}</code></pre>`
+          isMermaidLang(codeLang)
+            ? `<div class="md-mermaid" data-mermaid="${escapeHtml(code)}"><pre class="md-code" data-lang="mermaid"><code>${escapeHtml(code)}</code></pre></div>`
+            : `<pre class="md-code" data-lang="${escapeHtml(codeLang)}"><code>${escapeHtml(code)}</code></pre>`
         );
         inCode = false;
         codeLang = "";

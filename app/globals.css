@@ -1448,3 +1448,72 @@ a {
     animation: none;
   }
 }
+
+/* ── Mermaid diagrams ──────────────────────────────────────────
+   Mermaid emits raw SVG, so it sits outside Tailwind's reach. These rules
+   keep diagrams centred, responsive and legible in both themes. */
+.mermaid-diagram {
+  display: block;
+  text-align: center;
+}
+.mermaid-diagram svg {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
+/* Expanded (lightbox) view fills the available width. */
+.mermaid-diagram-zoom svg {
+  width: 100%;
+}
+/* Mermaid's foreignObject labels inherit page styles; pin them down so long
+   labels wrap instead of overflowing their node. */
+.mermaid-diagram .nodeLabel,
+.mermaid-diagram .edgeLabel,
+.mermaid-diagram .messageText,
+.mermaid-diagram .actor,
+.mermaid-diagram foreignObject div {
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  line-height: 1.4;
+}
+.mermaid-diagram .edgeLabel {
+  font-size: 0.78rem;
+}
+/* Edge labels get an opaque backdrop so lines do not cut through the text. */
+.mermaid-diagram .edgeLabel rect,
+.mermaid-diagram .edgeLabel foreignObject div {
+  background-color: #ffffff;
+}
+.dark .mermaid-diagram .edgeLabel rect,
+.dark .mermaid-diagram .edgeLabel foreignObject div {
+  background-color: #0f172a;
+}
+
+/* Lesson reader: mermaid placeholder before/after hydration. */
+.lesson-prose .md-mermaid {
+  margin: 1.5rem 0;
+}
+.lesson-prose .md-mermaid-rendered {
+  overflow-x: auto;
+  padding: 1.25rem 0.75rem;
+  text-align: center;
+  border: 1px solid rgb(226 232 240);
+  border-radius: 1rem;
+  background: rgb(255 255 255);
+}
+.dark .lesson-prose .md-mermaid-rendered {
+  border-color: rgb(51 65 85);
+  background: rgb(15 23 42 / 0.6);
+}
+.lesson-prose .md-mermaid-rendered svg {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
+.lesson-prose .md-mermaid-rendered .nodeLabel,
+.lesson-prose .md-mermaid-rendered .edgeLabel,
+.lesson-prose .md-mermaid-rendered foreignObject div {
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  line-height: 1.4;
+}
