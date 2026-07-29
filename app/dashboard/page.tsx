@@ -77,6 +77,7 @@ export default async function DashboardPage({
     { data: profile },
     { data: score },
     { data: roadmap },
+    { data: readingActivity },
     { data: projects },
     { data: recentProgress },
     { data: roadmapMiniProjects },
@@ -86,7 +87,7 @@ export default async function DashboardPage({
     supabase.from("scores").select("*").eq("user_id", user.id).single(),
     supabase.from("roadmaps").select("*").eq("user_id", user.id).order("created_at", { ascending: false }).limit(1).single(),
     supabase.from("projects").select("id,title,description,repo_url,live_url,ai_score,verified,complexity_tier,points_awarded,created_at,how_it_works,tech_stack,ai_feedback,ai_strengths,ai_improvements").eq("user_id", user.id).order("created_at", { ascending: false }),
-    supabase.from("roadmap_progress").select("module_id,day,status").eq("user_id", user.id).order("day", { ascending: true }).limit(5),
+    supabase.from("roadmap_progress").select("module_id,day,status").eq("user_id", user.id).order("day", { ascending: true }),
     supabase
       .from("roadmap_task_assessments")
       .select("id,user_roadmap_id,day,task_description,submission_language,score,points_awarded,ai_enriched,created_at")
@@ -124,9 +125,11 @@ export default async function DashboardPage({
     return true;
   }).slice(0, 6);
 
-  // Get current day's progress
-  const currentDay = recentProgress?.find(p => p.status === "not_started")?.day ?? 
-    recentProgress?.find(p => p.status === "in_progress")?.day ?? 1;
+  // Get current day's progress: first non-completed day only
+  const completedDayNumbers = new Set(
+    (recentProgress ?? []).filter((p) => p.status === "completed").map((p) => p.day)
+  );
+  const currentDay = days.find((d) => !completedDayNumbers.has(d.day))?.day ?? 1;
   const currentWeek = Math.ceil(currentDay / 7);
 
   // Build weekly progress summary

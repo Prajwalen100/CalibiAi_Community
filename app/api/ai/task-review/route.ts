@@ -195,6 +195,22 @@ export async function POST(request: Request) {
       },
     });
 
+    // Auto-complete roadmap day for any passed task (mini_project, practical_task, assignment, quiz)
+    const autoCompleteTypes = ["mini_project", "practical_task", "assignment", "quiz"];
+    if (autoCompleteTypes.includes(parsed.data.taskType) && review.passed) {
+      await supabase
+        .from("roadmap_progress")
+        .upsert(
+          {
+            user_id: user.id,
+            day: task.dayNumber,
+            status: "completed",
+            completed_at: new Date().toISOString(),
+          },
+          { onConflict: "user_id,day" }
+        );
+    }
+
     return NextResponse.json({
       ...review,
       saved: true,

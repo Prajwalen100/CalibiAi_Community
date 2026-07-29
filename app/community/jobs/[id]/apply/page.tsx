@@ -1,10 +1,7 @@
-import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { ArrowLeft, Building2 } from "lucide-react";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { ApplyForm } from "./apply-form";
-
-export const dynamic = "force-dynamic";
+import { ArrowLeft, Building2 } from "lucide-react";
 
 type Params = Promise<{ id: string }>;
 
@@ -16,49 +13,69 @@ export default async function ApplyPage({ params }: { params: Params }) {
 
   const { data: job, error } = await supabase
     .from("comm_jobs")
-    .select("id, title, company_name, employment_type, workplace_type, location, status, user_id")
+    .select("id, title, company_name, employment_type, workplace_type, location")
     .eq("id", id)
     .single();
+
   if (error || !job) notFound();
 
-  if (job.user_id === user.id) {
-    redirect(`/community/jobs/${id}`);
-  }
-
-  const [{ data: existing }, { data: profile }] = await Promise.all([
-    supabase.from("comm_job_applications").select("id, status").eq("job_id", id).eq("applicant_id", user.id).maybeSingle(),
-    supabase.from("profiles").select("full_name, portfolio_url").eq("user_id", user.id).maybeSingle(),
-  ]);
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("full_name, portfolio_url")
+    .eq("user_id", user.id)
+    .maybeSingle();
 
   return (
-    <div>
-      <Link href={`/community/jobs/${id}`} className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-ink">
-        <ArrowLeft className="h-4 w-4" /> Back to job
-      </Link>
-
-      <div className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
-        <div>
-          <h1 className="text-2xl font-black">Apply for this opportunity</h1>
-          <p className="mt-2 text-slate-600">Fill out the short application below. The job poster will get a notification the moment you submit.</p>
-
-          {existing ? (
-            <div className="mt-6 rounded-3xl border border-green-200 bg-green-50 p-6">
-              <h2 className="font-bold text-green-900">✅ You&apos;ve already applied</h2>
-              <p className="mt-2 text-sm text-green-800">Current status: <span className="font-semibold capitalize">{String(existing.status).replace(/_/g, " ")}</span>.</p>
-              <Link href="/community/jobs/applications" className="btn-secondary mt-4 inline-flex">Track your applications</Link>
-            </div>
-          ) : (
-            <ApplyForm jobId={job.id} defaultEmail={user.email ?? ""} defaultPortfolio={(profile?.portfolio_url as string) ?? ""} />
-          )}
+    <div className="min-h-screen bg-[radial-gradient(#e0e7ff_0.8px,transparent_1px)] bg-[length:4px_4px] py-12">
+      <div className="mx-auto max-w-3xl px-6">
+        {/* Top bar */}
+        <div className="mb-8 flex items-center justify-between">
+          <a
+            href={`/community/jobs/${id}`}
+            className="inline-flex items-center gap-2 rounded-full bg-white/60 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm backdrop-blur-lg transition hover:bg-white/80"
+          >
+            <ArrowLeft className="h-4 w-4" /> Back to job
+          </a>
+          <div className="text-xs text-slate-500">Step 1 of 1</div>
         </div>
 
-        <aside className="h-fit rounded-3xl border border-slate-200 bg-slate-50 p-6">
-          <p className="text-xs font-bold uppercase tracking-wide text-slate-500">Applying to</p>
-          <h2 className="mt-1 font-bold">{job.title}</h2>
-          <p className="mt-2 flex items-center gap-1.5 text-sm text-slate-700"><Building2 className="h-4 w-4" /> {job.company_name}</p>
-          <p className="mt-3 text-xs text-slate-500 capitalize">{String(job.employment_type).replace(/_/g, " ")} · {String(job.workplace_type).replace(/_/g, " ")}{job.location ? ` · ${job.location}` : ""}</p>
-          <p className="mt-4 rounded-xl bg-white p-3 text-xs text-slate-600">🔔 Your application (name, cover letter, and links) is shared with the poster along with an instant notification.</p>
-        </aside>
+        {/* Hero header */}
+        <div className="mb-10 text-center">
+          <div className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-1 text-xs font-bold tracking-[3px] text-brand-700 shadow-sm backdrop-blur">
+            APPLICATION
+          </div>
+          <h1 className="text-5xl font-black tracking-tighter text-slate-950">Apply for this opportunity</h1>
+          <p className="mt-3 max-w-md mx-auto text-lg text-slate-600">
+            Your application will be sent instantly to the hiring team.
+          </p>
+        </div>
+
+        {/* Main glass card */}
+        <div className="glass-panel-strong relative overflow-hidden rounded-3xl border border-white/40 bg-white/70 p-10 shadow-2xl backdrop-blur-3xl">
+          <div className="mb-8 flex items-center gap-4 rounded-2xl bg-white/60 p-5 backdrop-blur">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-600 to-violet-600 text-white shadow-inner">
+              <Building2 className="h-7 w-7" />
+            </div>
+            <div>
+              <div className="font-bold text-xl tracking-tight">{job.title}</div>
+              <div className="text-sm text-slate-600">{job.company_name}</div>
+              <div className="mt-0.5 text-xs text-slate-500">
+                {job.employment_type} · {job.workplace_type}
+                {job.location && ` · ${job.location}`}
+              </div>
+            </div>
+          </div>
+
+          <ApplyForm
+            jobId={job.id}
+            defaultEmail={user.email ?? ""}
+            defaultPortfolio={(profile?.portfolio_url as string) ?? ""}
+          />
+        </div>
+
+        <p className="mt-6 text-center text-xs text-slate-500">
+          Your cover letter, resume, and contact details are shared only with the employer.
+        </p>
       </div>
     </div>
   );
