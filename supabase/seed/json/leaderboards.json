@@ -1,0 +1,2564 @@
+{
+  "talent_score": [
+    {
+      "rank": 1,
+      "user_id": "29c72e89-5225-50f0-ac83-191bbc25d25f",
+      "username": "hariniraghavan",
+      "full_name": "Harini Raghavan",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=hariniraghavan&backgroundType=gradientLinear",
+      "talent_score": 970,
+      "tier": "elite"
+    },
+    {
+      "rank": 2,
+      "user_id": "758b036f-014c-5706-82c5-5a0601b8ed9f",
+      "username": "sujoybanerjee",
+      "full_name": "Sujoy Banerjee",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=sujoybanerjee&backgroundType=gradientLinear",
+      "talent_score": 953,
+      "tier": "elite"
+    },
+    {
+      "rank": 3,
+      "user_id": "b7d21872-04cf-5329-bcff-8959d140f5f4",
+      "username": "ipsitabhattacharya",
+      "full_name": "Ipsita Bhattacharya",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=ipsitabhattacharya&backgroundType=gradientLinear",
+      "talent_score": 905,
+      "tier": "elite"
+    },
+    {
+      "rank": 4,
+      "user_id": "d5d5d29f-3635-5c31-8af8-706a82c15b77",
+      "username": "dineshbhat",
+      "full_name": "Dinesh Bhat",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=dineshbhat&backgroundType=gradientLinear",
+      "talent_score": 899,
+      "tier": "prod_ready"
+    },
+    {
+      "rank": 5,
+      "user_id": "79813ad0-f39b-5b63-b112-fec51ccfd284",
+      "username": "adithyashenoy",
+      "full_name": "Adithya Shenoy",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=adithyashenoy&backgroundType=gradientLinear",
+      "talent_score": 896,
+      "tier": "prod_ready"
+    },
+    {
+      "rank": 6,
+      "user_id": "de432219-3179-533f-b960-1c2ba0ba92bb",
+      "username": "gurubhat",
+      "full_name": "Guru Bhat",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=gurubhat&backgroundType=gradientLinear",
+      "talent_score": 890,
+      "tier": "prod_ready"
+    },
+    {
+      "rank": 7,
+      "user_id": "4fa9d4ea-8927-52df-9048-051067e4de77",
+      "username": "debaratibasak",
+      "full_name": "Debarati Basak",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=debaratibasak&backgroundType=gradientLinear",
+      "talent_score": 890,
+      "tier": "prod_ready"
+    },
+    {
+      "rank": 8,
+      "user_id": "4ab847ee-b5f4-5510-84b1-54e8a69d0360",
+      "username": "atharvaranade",
+      "full_name": "Atharva Ranade",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=atharvaranade&backgroundType=gradientLinear",
+      "talent_score": 883,
+      "tier": "prod_ready"
+    },
+    {
+      "rank": 9,
+      "user_id": "4eaf9112-008b-536a-aa2d-ee68fe01aa96",
+      "username": "rajarshikundu",
+      "full_name": "Rajarshi Kundu",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=rajarshikundu&backgroundType=gradientLinear",
+      "talent_score": 876,
+      "tier": "prod_ready"
+    },
+    {
+      "rank": 10,
+      "user_id": "03140595-8f37-5bac-94ac-d111fc98907b",
+      "username": "harshgrover",
+      "full_name": "Harsh Grover",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=harshgrover&backgroundType=gradientLinear",
+      "talent_score": 876,
+      "tier": "prod_ready"
+    },
+    {
+      "rank": 11,
+      "user_id": "f78f1c58-4457-5ebe-a9ff-9653c20d5a9a",
+      "username": "aarohibansal",
+      "full_name": "Aarohi Bansal",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=aarohibansal&backgroundType=gradientLinear",
+      "talent_score": 870,
+      "tier": "prod_ready"
+    },
+    {
+      "rank": 12,
+      "user_id": "f0acb74e-bacc-5451-b8e4-d606209b2ad0",
+      "username": "sudeshnamitra",
+      "full_name": "Sudeshna Mitra",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=sudeshnamitra&backgroundType=gradientLinear",
+      "talent_score": 863,
+      "tier": "prod_ready"
+    },
+    {
+      "rank": 13,
+      "user_id": "0564ab9f-706a-5276-9769-8576404ea447",
+      "username": "sahilsood",
+      "full_name": "Sahil Sood",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=sahilsood&backgroundType=gradientLinear",
+      "talent_score": 863,
+      "tier": "prod_ready"
+    },
+    {
+      "rank": 14,
+      "user_id": "c9687c28-4ba9-51fc-9e7e-141df7f48e24",
+      "username": "jishnudutta",
+      "full_name": "Jishnu Dutta",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=jishnudutta&backgroundType=gradientLinear",
+      "talent_score": 856,
+      "tier": "prod_ready"
+    },
+    {
+      "rank": 15,
+      "user_id": "a5e7626a-0b2e-515e-970d-13e18fd2015c",
+      "username": "neelkarve",
+      "full_name": "Neel Karve",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=neelkarve&backgroundType=gradientLinear",
+      "talent_score": 850,
+      "tier": "prod_ready"
+    },
+    {
+      "rank": 16,
+      "user_id": "0cc0ba65-4fdd-5319-beb6-fd9ff1e28a8e",
+      "username": "kartikjindal",
+      "full_name": "Kartik Jindal",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=kartikjindal&backgroundType=gradientLinear",
+      "talent_score": 849,
+      "tier": "advanced"
+    },
+    {
+      "rank": 17,
+      "user_id": "1d600c9d-98ee-5840-8b8f-c9423a237bd1",
+      "username": "sagarikasen",
+      "full_name": "Sagarika Sen",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=sagarikasen&backgroundType=gradientLinear",
+      "talent_score": 847,
+      "tier": "advanced"
+    },
+    {
+      "rank": 18,
+      "user_id": "d76c496a-70c0-5925-9d79-75fde5065a00",
+      "username": "sathvikrao",
+      "full_name": "Sathvik Rao",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=sathvikrao&backgroundType=gradientLinear",
+      "talent_score": 843,
+      "tier": "advanced"
+    },
+    {
+      "rank": 19,
+      "user_id": "110b77ba-c3bd-5fc8-8928-2160bde27d50",
+      "username": "divyamenon",
+      "full_name": "Divya Menon",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=divyamenon&backgroundType=gradientLinear",
+      "talent_score": 843,
+      "tier": "advanced"
+    },
+    {
+      "rank": 20,
+      "user_id": "93cefb33-c9af-57fc-898f-6c31f34b9d7c",
+      "username": "sudiptosengupta",
+      "full_name": "Sudipto Sengupta",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=sudiptosengupta&backgroundType=gradientLinear",
+      "talent_score": 840,
+      "tier": "advanced"
+    },
+    {
+      "rank": 21,
+      "user_id": "fbef8661-4c7e-5259-91aa-b311c978f8b4",
+      "username": "sudiptochatterjee",
+      "full_name": "Sudipto Chatterjee",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=sudiptochatterjee&backgroundType=gradientLinear",
+      "talent_score": 836,
+      "tier": "advanced"
+    },
+    {
+      "rank": 22,
+      "user_id": "71d72673-79a9-5c43-a9c1-282de8831337",
+      "username": "nitinjindal",
+      "full_name": "Nitin Jindal",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=nitinjindal&backgroundType=gradientLinear",
+      "talent_score": 836,
+      "tier": "advanced"
+    },
+    {
+      "rank": 23,
+      "user_id": "629d5a8f-da92-5ede-be9d-32fcecd4d21f",
+      "username": "tejasjoshi",
+      "full_name": "Tejas Joshi",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=tejasjoshi&backgroundType=gradientLinear",
+      "talent_score": 832,
+      "tier": "advanced"
+    },
+    {
+      "rank": 24,
+      "user_id": "80b44ab9-aa78-5a95-b234-cc89232960c9",
+      "username": "arnab.majumdar",
+      "full_name": "Arnab S. Majumdar",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=arnab.majumdar&backgroundType=gradientLinear",
+      "talent_score": 828,
+      "tier": "advanced"
+    },
+    {
+      "rank": 25,
+      "user_id": "f206caa2-6550-5fbd-aeaf-1eef6cc9db61",
+      "username": "rushikeshkhedekar",
+      "full_name": "Rushikesh Khedekar",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=rushikeshkhedekar&backgroundType=gradientLinear",
+      "talent_score": 828,
+      "tier": "advanced"
+    },
+    {
+      "rank": 26,
+      "user_id": "b3de17ae-98bb-5c45-a1ae-c1a84e3f3fb5",
+      "username": "vaidehidesai",
+      "full_name": "Vaidehi Desai",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=vaidehidesai&backgroundType=gradientLinear",
+      "talent_score": 825,
+      "tier": "advanced"
+    },
+    {
+      "rank": 27,
+      "user_id": "3d3d5d91-00a7-5d80-a177-8a8d92e0bfb0",
+      "username": "varsharamanujan",
+      "full_name": "Varsha Ramanujan",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=varsharamanujan&backgroundType=gradientLinear",
+      "talent_score": 821,
+      "tier": "advanced"
+    },
+    {
+      "rank": 28,
+      "user_id": "2251ae20-c872-5778-8c9a-01e34ef47831",
+      "username": "bharathnair",
+      "full_name": "Bharath Nair",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=bharathnair&backgroundType=gradientLinear",
+      "talent_score": 821,
+      "tier": "advanced"
+    },
+    {
+      "rank": 29,
+      "user_id": "c534ce8f-7cb8-5db4-bff3-5d36a011b5d6",
+      "username": "mahibhatia",
+      "full_name": "Mahi Bhatia",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=mahibhatia&backgroundType=gradientLinear",
+      "talent_score": 817,
+      "tier": "advanced"
+    },
+    {
+      "rank": 30,
+      "user_id": "bb2f5d58-29e3-5485-b5cf-caf7a93ee56b",
+      "username": "yashbhatia",
+      "full_name": "Yash Bhatia",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=yashbhatia&backgroundType=gradientLinear",
+      "talent_score": 813,
+      "tier": "advanced"
+    },
+    {
+      "rank": 31,
+      "user_id": "dae3feb7-4f6b-56c0-9e1e-08b729fa9ac2",
+      "username": "nabarunsarkar",
+      "full_name": "Nabarun Sarkar",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=nabarunsarkar&backgroundType=gradientLinear",
+      "talent_score": 813,
+      "tier": "advanced"
+    },
+    {
+      "rank": 32,
+      "user_id": "b0751714-499e-5f11-8e14-f8ceee434229",
+      "username": "tanmaysinha",
+      "full_name": "Tanmay Sinha",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=tanmaysinha&backgroundType=gradientLinear",
+      "talent_score": 809,
+      "tier": "advanced"
+    },
+    {
+      "rank": 33,
+      "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+      "username": "anweshachakraborty",
+      "full_name": "Anwesha Chakraborty",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=anweshachakraborty&backgroundType=gradientLinear",
+      "talent_score": 806,
+      "tier": "advanced"
+    },
+    {
+      "rank": 34,
+      "user_id": "a4cd1e52-5765-5b3a-b6f1-411fab8cc858",
+      "username": "adityaprasad",
+      "full_name": "Aditya Prasad",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=adityaprasad&backgroundType=gradientLinear",
+      "talent_score": 806,
+      "tier": "advanced"
+    },
+    {
+      "rank": 35,
+      "user_id": "f398ce7e-6157-56a5-9e05-380e02ffb538",
+      "username": "poojadeshmukh",
+      "full_name": "Pooja Deshmukh",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=poojadeshmukh&backgroundType=gradientLinear",
+      "talent_score": 802,
+      "tier": "advanced"
+    },
+    {
+      "rank": 36,
+      "user_id": "48eb90d5-715e-5489-a195-0a7009ce4a68",
+      "username": "debjaninandi",
+      "full_name": "Debjani Nandi",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=debjaninandi&backgroundType=gradientLinear",
+      "talent_score": 798,
+      "tier": "advanced"
+    },
+    {
+      "rank": 37,
+      "user_id": "165f6c1b-d2c4-53a6-9d79-de0bdd6c8f43",
+      "username": "ishasaxena",
+      "full_name": "Isha Saxena",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=ishasaxena&backgroundType=gradientLinear",
+      "talent_score": 798,
+      "tier": "advanced"
+    },
+    {
+      "rank": 38,
+      "user_id": "38c61459-189d-5018-8498-2e8738a09f93",
+      "username": "shreyasjadhav",
+      "full_name": "Shreyas Jadhav",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=shreyasjadhav&backgroundType=gradientLinear",
+      "talent_score": 794,
+      "tier": "advanced"
+    },
+    {
+      "rank": 39,
+      "user_id": "dbed9adc-a66b-5ee9-a0d3-68ed10c44f5f",
+      "username": "gauthamnaidu",
+      "full_name": "Gautham Naidu",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=gauthamnaidu&backgroundType=gradientLinear",
+      "talent_score": 790,
+      "tier": "advanced"
+    },
+    {
+      "rank": 40,
+      "user_id": "4c9a0b97-1487-5edd-9934-d9818eafa0da",
+      "username": "shauryanandi",
+      "full_name": "Shaurya Nandi",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=shauryanandi&backgroundType=gradientLinear",
+      "talent_score": 790,
+      "tier": "advanced"
+    },
+    {
+      "rank": 41,
+      "user_id": "8f9dd994-27bb-544c-bf7f-4078e589898d",
+      "username": "madhurirao",
+      "full_name": "Madhuri Rao",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=madhurirao&backgroundType=gradientLinear",
+      "talent_score": 787,
+      "tier": "advanced"
+    },
+    {
+      "rank": 42,
+      "user_id": "66be353e-9630-504e-8bea-f39ff2e4d638",
+      "username": "rohantiwari",
+      "full_name": "Rohan Tiwari",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=rohantiwari&backgroundType=gradientLinear",
+      "talent_score": 783,
+      "tier": "advanced"
+    },
+    {
+      "rank": 43,
+      "user_id": "76fca80b-e05c-5707-abc2-12d796e2c2b9",
+      "username": "samruddhideshmukh",
+      "full_name": "Samruddhi Deshmukh",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=samruddhideshmukh&backgroundType=gradientLinear",
+      "talent_score": 783,
+      "tier": "advanced"
+    },
+    {
+      "rank": 44,
+      "user_id": "7c625956-24aa-50a1-ac48-ad5045cb94b2",
+      "username": "saanvinagpal",
+      "full_name": "Saanvi Nagpal",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=saanvinagpal&backgroundType=gradientLinear",
+      "talent_score": 779,
+      "tier": "advanced"
+    },
+    {
+      "rank": 45,
+      "user_id": "fd1fc6ad-3c24-5661-836b-b6fef691377f",
+      "username": "atharvadesai",
+      "full_name": "Atharva Desai",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=atharvadesai&backgroundType=gradientLinear",
+      "talent_score": 775,
+      "tier": "advanced"
+    },
+    {
+      "rank": 46,
+      "user_id": "15f3d11c-812d-545b-8e1a-9f5988bfc2c6",
+      "username": "praveenreddy",
+      "full_name": "Praveen Reddy",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=praveenreddy&backgroundType=gradientLinear",
+      "talent_score": 775,
+      "tier": "advanced"
+    },
+    {
+      "rank": 47,
+      "user_id": "acc706da-2e8c-5d84-bbd3-1fb7144a1901",
+      "username": "radhikabhat",
+      "full_name": "Radhika Bhat",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=radhikabhat&backgroundType=gradientLinear",
+      "talent_score": 771,
+      "tier": "advanced"
+    },
+    {
+      "rank": 48,
+      "user_id": "e64984b4-4fa4-5b69-b32e-5a97bb53dba1",
+      "username": "atharvakhedekar",
+      "full_name": "Atharva Khedekar",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=atharvakhedekar&backgroundType=gradientLinear",
+      "talent_score": 768,
+      "tier": "advanced"
+    },
+    {
+      "rank": 49,
+      "user_id": "e0f3d7ea-fabe-5f9e-82d7-3e09d1e6d735",
+      "username": "rushikeshjadhav",
+      "full_name": "Rushikesh Jadhav",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=rushikeshjadhav&backgroundType=gradientLinear",
+      "talent_score": 768,
+      "tier": "advanced"
+    },
+    {
+      "rank": 50,
+      "user_id": "2734ecaa-a479-57d0-be96-5d7a3e0d249e",
+      "username": "hardikshinde",
+      "full_name": "Hardik Shinde",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=hardikshinde&backgroundType=gradientLinear",
+      "talent_score": 764,
+      "tier": "advanced"
+    }
+  ],
+  "community_xp": [
+    {
+      "rank": 1,
+      "user_id": "758b036f-014c-5706-82c5-5a0601b8ed9f",
+      "username": "sujoybanerjee",
+      "full_name": "Sujoy Banerjee",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=sujoybanerjee&backgroundType=gradientLinear",
+      "community_xp": 1854
+    },
+    {
+      "rank": 2,
+      "user_id": "f0acb74e-bacc-5451-b8e4-d606209b2ad0",
+      "username": "sudeshnamitra",
+      "full_name": "Sudeshna Mitra",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=sudeshnamitra&backgroundType=gradientLinear",
+      "community_xp": 1834
+    },
+    {
+      "rank": 3,
+      "user_id": "b0751714-499e-5f11-8e14-f8ceee434229",
+      "username": "tanmaysinha",
+      "full_name": "Tanmay Sinha",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=tanmaysinha&backgroundType=gradientLinear",
+      "community_xp": 1825
+    },
+    {
+      "rank": 4,
+      "user_id": "f78f1c58-4457-5ebe-a9ff-9653c20d5a9a",
+      "username": "aarohibansal",
+      "full_name": "Aarohi Bansal",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=aarohibansal&backgroundType=gradientLinear",
+      "community_xp": 1802
+    },
+    {
+      "rank": 5,
+      "user_id": "c534ce8f-7cb8-5db4-bff3-5d36a011b5d6",
+      "username": "mahibhatia",
+      "full_name": "Mahi Bhatia",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=mahibhatia&backgroundType=gradientLinear",
+      "community_xp": 1787
+    },
+    {
+      "rank": 6,
+      "user_id": "b3de17ae-98bb-5c45-a1ae-c1a84e3f3fb5",
+      "username": "vaidehidesai",
+      "full_name": "Vaidehi Desai",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=vaidehidesai&backgroundType=gradientLinear",
+      "community_xp": 1676
+    },
+    {
+      "rank": 7,
+      "user_id": "29c72e89-5225-50f0-ac83-191bbc25d25f",
+      "username": "hariniraghavan",
+      "full_name": "Harini Raghavan",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=hariniraghavan&backgroundType=gradientLinear",
+      "community_xp": 1671
+    },
+    {
+      "rank": 8,
+      "user_id": "d5d5d29f-3635-5c31-8af8-706a82c15b77",
+      "username": "dineshbhat",
+      "full_name": "Dinesh Bhat",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=dineshbhat&backgroundType=gradientLinear",
+      "community_xp": 1666
+    },
+    {
+      "rank": 9,
+      "user_id": "4c9a0b97-1487-5edd-9934-d9818eafa0da",
+      "username": "shauryanandi",
+      "full_name": "Shaurya Nandi",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=shauryanandi&backgroundType=gradientLinear",
+      "community_xp": 1640
+    },
+    {
+      "rank": 10,
+      "user_id": "bb787b05-43ed-5cf8-bee9-b162c9179143",
+      "username": "uttiyobagchi",
+      "full_name": "Uttiyo Bagchi",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=uttiyobagchi&backgroundType=gradientLinear",
+      "community_xp": 1609
+    },
+    {
+      "rank": 11,
+      "user_id": "de432219-3179-533f-b960-1c2ba0ba92bb",
+      "username": "gurubhat",
+      "full_name": "Guru Bhat",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=gurubhat&backgroundType=gradientLinear",
+      "community_xp": 1598
+    },
+    {
+      "rank": 12,
+      "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+      "username": "aditeepawar",
+      "full_name": "Aditee Pawar",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=aditeepawar&backgroundType=gradientLinear",
+      "community_xp": 1593
+    },
+    {
+      "rank": 13,
+      "user_id": "8f9dd994-27bb-544c-bf7f-4078e589898d",
+      "username": "madhurirao",
+      "full_name": "Madhuri Rao",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=madhurirao&backgroundType=gradientLinear",
+      "community_xp": 1592
+    },
+    {
+      "rank": 14,
+      "user_id": "1d600c9d-98ee-5840-8b8f-c9423a237bd1",
+      "username": "sagarikasen",
+      "full_name": "Sagarika Sen",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=sagarikasen&backgroundType=gradientLinear",
+      "community_xp": 1583
+    },
+    {
+      "rank": 15,
+      "user_id": "b5bf273a-7965-59bf-b9af-159bd061702b",
+      "username": "aditeedesai",
+      "full_name": "Aditee Desai",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=aditeedesai&backgroundType=gradientLinear",
+      "community_xp": 1565
+    },
+    {
+      "rank": 16,
+      "user_id": "7e1386f5-6df1-5e61-a674-2b0ff843fdb0",
+      "username": "anirbannandi",
+      "full_name": "Anirban Nandi",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=anirbannandi&backgroundType=gradientLinear",
+      "community_xp": 1554
+    },
+    {
+      "rank": 17,
+      "user_id": "e0f3d7ea-fabe-5f9e-82d7-3e09d1e6d735",
+      "username": "rushikeshjadhav",
+      "full_name": "Rushikesh Jadhav",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=rushikeshjadhav&backgroundType=gradientLinear",
+      "community_xp": 1554
+    },
+    {
+      "rank": 18,
+      "user_id": "baa09c11-7266-5693-8537-4305097ca621",
+      "username": "vinaychandrasekar",
+      "full_name": "Vinay Chandrasekar",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=vinaychandrasekar&backgroundType=gradientLinear",
+      "community_xp": 1509
+    },
+    {
+      "rank": 19,
+      "user_id": "a5e7626a-0b2e-515e-970d-13e18fd2015c",
+      "username": "neelkarve",
+      "full_name": "Neel Karve",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=neelkarve&backgroundType=gradientLinear",
+      "community_xp": 1496
+    },
+    {
+      "rank": 20,
+      "user_id": "1d717aeb-6383-5b8d-90e7-f78ff36c30b5",
+      "username": "aayushkulkarni",
+      "full_name": "Aayush Kulkarni",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=aayushkulkarni&backgroundType=gradientLinear",
+      "community_xp": 1490
+    },
+    {
+      "rank": 21,
+      "user_id": "463409ee-b6af-560d-b3bb-7400c5345db6",
+      "username": "balajimenon",
+      "full_name": "Balaji Menon",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=balajimenon&backgroundType=gradientLinear",
+      "community_xp": 1451
+    },
+    {
+      "rank": 22,
+      "user_id": "48eb90d5-715e-5489-a195-0a7009ce4a68",
+      "username": "debjaninandi",
+      "full_name": "Debjani Nandi",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=debjaninandi&backgroundType=gradientLinear",
+      "community_xp": 1450
+    },
+    {
+      "rank": 23,
+      "user_id": "4fa9d4ea-8927-52df-9048-051067e4de77",
+      "username": "debaratibasak",
+      "full_name": "Debarati Basak",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=debaratibasak&backgroundType=gradientLinear",
+      "community_xp": 1447
+    },
+    {
+      "rank": 24,
+      "user_id": "0802452a-ebd7-5ac5-9589-46190d4c6bdb",
+      "username": "atharvasalunkhe",
+      "full_name": "Atharva Salunkhe",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=atharvasalunkhe&backgroundType=gradientLinear",
+      "community_xp": 1444
+    },
+    {
+      "rank": 25,
+      "user_id": "1a5633df-f521-5992-83fb-a6d966750920",
+      "username": "vivaanrathore",
+      "full_name": "Vivaan Rathore",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=vivaanrathore&backgroundType=gradientLinear",
+      "community_xp": 1420
+    },
+    {
+      "rank": 26,
+      "user_id": "740a3431-b399-5dea-8e46-fa433efccb1b",
+      "username": "nakulkhurana",
+      "full_name": "Nakul Khurana",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=nakulkhurana&backgroundType=gradientLinear",
+      "community_xp": 1412
+    },
+    {
+      "rank": 27,
+      "user_id": "cc6474c4-7e71-509a-b17a-4bd7283bd7dd",
+      "username": "tejaskhedekar",
+      "full_name": "Tejas Khedekar",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=tejaskhedekar&backgroundType=gradientLinear",
+      "community_xp": 1399
+    },
+    {
+      "rank": 28,
+      "user_id": "9901481d-045e-5968-a356-8fa64d89188e",
+      "username": "anirbanbasak",
+      "full_name": "Anirban Basak",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=anirbanbasak&backgroundType=gradientLinear",
+      "community_xp": 1395
+    },
+    {
+      "rank": 29,
+      "user_id": "55131d40-1c3e-5018-bc02-cc49f4a84b9f",
+      "username": "krishmehra",
+      "full_name": "Krish Mehra",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=krishmehra&backgroundType=gradientLinear",
+      "community_xp": 1382
+    },
+    {
+      "rank": 30,
+      "user_id": "4ab847ee-b5f4-5510-84b1-54e8a69d0360",
+      "username": "atharvaranade",
+      "full_name": "Atharva Ranade",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=atharvaranade&backgroundType=gradientLinear",
+      "community_xp": 1381
+    },
+    {
+      "rank": 31,
+      "user_id": "c1f1bc65-be40-52e3-a495-b3db9bedd832",
+      "username": "shubhojitdas",
+      "full_name": "Shubhojit Das",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=shubhojitdas&backgroundType=gradientLinear",
+      "community_xp": 1376
+    },
+    {
+      "rank": 32,
+      "user_id": "4deae523-8d3c-57c7-b25f-ca45ec0ff10a",
+      "username": "yaminiiyer",
+      "full_name": "Yamini Iyer",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=yaminiiyer&backgroundType=gradientLinear",
+      "community_xp": 1370
+    },
+    {
+      "rank": 33,
+      "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+      "username": "ronakkadam",
+      "full_name": "Ronak Kadam",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=ronakkadam&backgroundType=gradientLinear",
+      "community_xp": 1357
+    },
+    {
+      "rank": 34,
+      "user_id": "1fd2753a-317b-5c8e-a671-52ab1d3b4ea6",
+      "username": "subhajitdas",
+      "full_name": "Subhajit Das",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=subhajitdas&backgroundType=gradientLinear",
+      "community_xp": 1352
+    },
+    {
+      "rank": 35,
+      "user_id": "b600a5f2-53b8-581f-a7f4-fdda96db53e7",
+      "username": "tanishdeshmukh",
+      "full_name": "Tanish Deshmukh",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=tanishdeshmukh&backgroundType=gradientLinear",
+      "community_xp": 1325
+    },
+    {
+      "rank": 36,
+      "user_id": "629d5a8f-da92-5ede-be9d-32fcecd4d21f",
+      "username": "tejasjoshi",
+      "full_name": "Tejas Joshi",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=tejasjoshi&backgroundType=gradientLinear",
+      "community_xp": 1322
+    },
+    {
+      "rank": 37,
+      "user_id": "2802f5ff-1f7a-5d93-8f52-f1c3ea675007",
+      "username": "utkarshmehra",
+      "full_name": "Utkarsh Mehra",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=utkarshmehra&backgroundType=gradientLinear",
+      "community_xp": 1321
+    },
+    {
+      "rank": 38,
+      "user_id": "110b77ba-c3bd-5fc8-8928-2160bde27d50",
+      "username": "divyamenon",
+      "full_name": "Divya Menon",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=divyamenon&backgroundType=gradientLinear",
+      "community_xp": 1313
+    },
+    {
+      "rank": 39,
+      "user_id": "2251ae20-c872-5778-8c9a-01e34ef47831",
+      "username": "bharathnair",
+      "full_name": "Bharath Nair",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=bharathnair&backgroundType=gradientLinear",
+      "community_xp": 1311
+    },
+    {
+      "rank": 40,
+      "user_id": "fd1fc6ad-3c24-5661-836b-b6fef691377f",
+      "username": "atharvadesai",
+      "full_name": "Atharva Desai",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=atharvadesai&backgroundType=gradientLinear",
+      "community_xp": 1309
+    },
+    {
+      "rank": 41,
+      "user_id": "fbef8661-4c7e-5259-91aa-b311c978f8b4",
+      "username": "sudiptochatterjee",
+      "full_name": "Sudipto Chatterjee",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=sudiptochatterjee&backgroundType=gradientLinear",
+      "community_xp": 1297
+    },
+    {
+      "rank": 42,
+      "user_id": "9e888005-13d7-57a1-be0b-cf25e5213dac",
+      "username": "rajarshisen",
+      "full_name": "Rajarshi Sen",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=rajarshisen&backgroundType=gradientLinear",
+      "community_xp": 1297
+    },
+    {
+      "rank": 43,
+      "user_id": "811191c1-70cd-59d6-b292-781b77c90c22",
+      "username": "sathvikprasad",
+      "full_name": "Sathvik Prasad",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=sathvikprasad&backgroundType=gradientLinear",
+      "community_xp": 1290
+    },
+    {
+      "rank": 44,
+      "user_id": "80b44ab9-aa78-5a95-b234-cc89232960c9",
+      "username": "arnab.majumdar",
+      "full_name": "Arnab S. Majumdar",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=arnab.majumdar&backgroundType=gradientLinear",
+      "community_xp": 1276
+    },
+    {
+      "rank": 45,
+      "user_id": "b5974f00-dfef-5e8e-afef-cd49a9b528ab",
+      "username": "aishanikulkarni",
+      "full_name": "Aishani Kulkarni",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=aishanikulkarni&backgroundType=gradientLinear",
+      "community_xp": 1270
+    },
+    {
+      "rank": 46,
+      "user_id": "53e72821-b224-55cd-adbe-8b91485ea329",
+      "username": "gauthamreddy",
+      "full_name": "Gautham Reddy",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=gauthamreddy&backgroundType=gradientLinear",
+      "community_xp": 1266
+    },
+    {
+      "rank": 47,
+      "user_id": "a4cd1e52-5765-5b3a-b6f1-411fab8cc858",
+      "username": "adityaprasad",
+      "full_name": "Aditya Prasad",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=adityaprasad&backgroundType=gradientLinear",
+      "community_xp": 1265
+    },
+    {
+      "rank": 48,
+      "user_id": "e15b8c2f-fcb0-51bd-928e-32cfd7125350",
+      "username": "mihirkarve",
+      "full_name": "Mihir Karve",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=mihirkarve&backgroundType=gradientLinear",
+      "community_xp": 1261
+    },
+    {
+      "rank": 49,
+      "user_id": "165f6c1b-d2c4-53a6-9d79-de0bdd6c8f43",
+      "username": "ishasaxena",
+      "full_name": "Isha Saxena",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=ishasaxena&backgroundType=gradientLinear",
+      "community_xp": 1251
+    },
+    {
+      "rank": 50,
+      "user_id": "53178aaa-f98c-5d76-b5bd-21b56275ff8d",
+      "username": "tarunreddy",
+      "full_name": "Tarun Reddy",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=tarunreddy&backgroundType=gradientLinear",
+      "community_xp": 1244
+    }
+  ],
+  "weekly_xp": [
+    {
+      "rank": 1,
+      "user_id": "d5d5d29f-3635-5c31-8af8-706a82c15b77",
+      "username": "dineshbhat",
+      "full_name": "Dinesh Bhat",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=dineshbhat&backgroundType=gradientLinear",
+      "weekly_xp": 459
+    },
+    {
+      "rank": 2,
+      "user_id": "03140595-8f37-5bac-94ac-d111fc98907b",
+      "username": "harshgrover",
+      "full_name": "Harsh Grover",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=harshgrover&backgroundType=gradientLinear",
+      "weekly_xp": 428
+    },
+    {
+      "rank": 3,
+      "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+      "username": "anweshachakraborty",
+      "full_name": "Anwesha Chakraborty",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=anweshachakraborty&backgroundType=gradientLinear",
+      "weekly_xp": 418
+    },
+    {
+      "rank": 4,
+      "user_id": "758b036f-014c-5706-82c5-5a0601b8ed9f",
+      "username": "sujoybanerjee",
+      "full_name": "Sujoy Banerjee",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=sujoybanerjee&backgroundType=gradientLinear",
+      "weekly_xp": 418
+    },
+    {
+      "rank": 5,
+      "user_id": "b0751714-499e-5f11-8e14-f8ceee434229",
+      "username": "tanmaysinha",
+      "full_name": "Tanmay Sinha",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=tanmaysinha&backgroundType=gradientLinear",
+      "weekly_xp": 417
+    },
+    {
+      "rank": 6,
+      "user_id": "80b44ab9-aa78-5a95-b234-cc89232960c9",
+      "username": "arnab.majumdar",
+      "full_name": "Arnab S. Majumdar",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=arnab.majumdar&backgroundType=gradientLinear",
+      "weekly_xp": 408
+    },
+    {
+      "rank": 7,
+      "user_id": "f398ce7e-6157-56a5-9e05-380e02ffb538",
+      "username": "poojadeshmukh",
+      "full_name": "Pooja Deshmukh",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=poojadeshmukh&backgroundType=gradientLinear",
+      "weekly_xp": 397
+    },
+    {
+      "rank": 8,
+      "user_id": "629d5a8f-da92-5ede-be9d-32fcecd4d21f",
+      "username": "tejasjoshi",
+      "full_name": "Tejas Joshi",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=tejasjoshi&backgroundType=gradientLinear",
+      "weekly_xp": 391
+    },
+    {
+      "rank": 9,
+      "user_id": "c9687c28-4ba9-51fc-9e7e-141df7f48e24",
+      "username": "jishnudutta",
+      "full_name": "Jishnu Dutta",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=jishnudutta&backgroundType=gradientLinear",
+      "weekly_xp": 377
+    },
+    {
+      "rank": 10,
+      "user_id": "f0acb74e-bacc-5451-b8e4-d606209b2ad0",
+      "username": "sudeshnamitra",
+      "full_name": "Sudeshna Mitra",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=sudeshnamitra&backgroundType=gradientLinear",
+      "weekly_xp": 366
+    },
+    {
+      "rank": 11,
+      "user_id": "baa09c11-7266-5693-8537-4305097ca621",
+      "username": "vinaychandrasekar",
+      "full_name": "Vinay Chandrasekar",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=vinaychandrasekar&backgroundType=gradientLinear",
+      "weekly_xp": 355
+    },
+    {
+      "rank": 12,
+      "user_id": "fc2c809a-1f1b-597b-842e-874d4ee37c7a",
+      "username": "yashrajshinde",
+      "full_name": "Yashraj Shinde",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=yashrajshinde&backgroundType=gradientLinear",
+      "weekly_xp": 343
+    },
+    {
+      "rank": 13,
+      "user_id": "df5d7d0f-526f-553e-8c16-7746604be934",
+      "username": "pranitchavan",
+      "full_name": "Pranit Chavan",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=pranitchavan&backgroundType=gradientLinear",
+      "weekly_xp": 342
+    },
+    {
+      "rank": 14,
+      "user_id": "70f17663-e3c8-5956-9399-f22ea4257cba",
+      "username": "tarunrao",
+      "full_name": "Tarun Rao",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=tarunrao&backgroundType=gradientLinear",
+      "weekly_xp": 341
+    },
+    {
+      "rank": 15,
+      "user_id": "1fd2753a-317b-5c8e-a671-52ab1d3b4ea6",
+      "username": "subhajitdas",
+      "full_name": "Subhajit Das",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=subhajitdas&backgroundType=gradientLinear",
+      "weekly_xp": 338
+    },
+    {
+      "rank": 16,
+      "user_id": "74cb429a-9056-5918-83a9-ca43e22298b7",
+      "username": "ishaanbhardwaj",
+      "full_name": "Ishaan Bhardwaj",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=ishaanbhardwaj&backgroundType=gradientLinear",
+      "weekly_xp": 337
+    },
+    {
+      "rank": 17,
+      "user_id": "4c9a0b97-1487-5edd-9934-d9818eafa0da",
+      "username": "shauryanandi",
+      "full_name": "Shaurya Nandi",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=shauryanandi&backgroundType=gradientLinear",
+      "weekly_xp": 328
+    },
+    {
+      "rank": 18,
+      "user_id": "8f9dd994-27bb-544c-bf7f-4078e589898d",
+      "username": "madhurirao",
+      "full_name": "Madhuri Rao",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=madhurirao&backgroundType=gradientLinear",
+      "weekly_xp": 327
+    },
+    {
+      "rank": 19,
+      "user_id": "0802452a-ebd7-5ac5-9589-46190d4c6bdb",
+      "username": "atharvasalunkhe",
+      "full_name": "Atharva Salunkhe",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=atharvasalunkhe&backgroundType=gradientLinear",
+      "weekly_xp": 326
+    },
+    {
+      "rank": 20,
+      "user_id": "7e1386f5-6df1-5e61-a674-2b0ff843fdb0",
+      "username": "anirbannandi",
+      "full_name": "Anirban Nandi",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=anirbannandi&backgroundType=gradientLinear",
+      "weekly_xp": 320
+    },
+    {
+      "rank": 21,
+      "user_id": "d76c496a-70c0-5925-9d79-75fde5065a00",
+      "username": "sathvikrao",
+      "full_name": "Sathvik Rao",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=sathvikrao&backgroundType=gradientLinear",
+      "weekly_xp": 315
+    },
+    {
+      "rank": 22,
+      "user_id": "cd5137e6-2652-5a16-aed5-72e9444cfbc1",
+      "username": "sushantchakraborty",
+      "full_name": "Sushant Chakraborty",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=sushantchakraborty&backgroundType=gradientLinear",
+      "weekly_xp": 314
+    },
+    {
+      "rank": 23,
+      "user_id": "caf74b87-31a5-59ed-ba3d-ab41492375e8",
+      "username": "anirbanmukherjee",
+      "full_name": "Anirban Mukherjee",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=anirbanmukherjee&backgroundType=gradientLinear",
+      "weekly_xp": 312
+    },
+    {
+      "rank": 24,
+      "user_id": "e64984b4-4fa4-5b69-b32e-5a97bb53dba1",
+      "username": "atharvakhedekar",
+      "full_name": "Atharva Khedekar",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=atharvakhedekar&backgroundType=gradientLinear",
+      "weekly_xp": 310
+    },
+    {
+      "rank": 25,
+      "user_id": "e0f3d7ea-fabe-5f9e-82d7-3e09d1e6d735",
+      "username": "rushikeshjadhav",
+      "full_name": "Rushikesh Jadhav",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=rushikeshjadhav&backgroundType=gradientLinear",
+      "weekly_xp": 310
+    },
+    {
+      "rank": 26,
+      "user_id": "7799f933-dd75-5642-9861-900dcaac763a",
+      "username": "sanchitamajumdar",
+      "full_name": "Sanchita Majumdar",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=sanchitamajumdar&backgroundType=gradientLinear",
+      "weekly_xp": 308
+    },
+    {
+      "rank": 27,
+      "user_id": "f78f1c58-4457-5ebe-a9ff-9653c20d5a9a",
+      "username": "aarohibansal",
+      "full_name": "Aarohi Bansal",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=aarohibansal&backgroundType=gradientLinear",
+      "weekly_xp": 308
+    },
+    {
+      "rank": 28,
+      "user_id": "4eaf9112-008b-536a-aa2d-ee68fe01aa96",
+      "username": "rajarshikundu",
+      "full_name": "Rajarshi Kundu",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=rajarshikundu&backgroundType=gradientLinear",
+      "weekly_xp": 305
+    },
+    {
+      "rank": 29,
+      "user_id": "08f5ec63-3abb-5887-b5b4-9702041fc7f0",
+      "username": "manasigaikwad",
+      "full_name": "Manasi Gaikwad",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=manasigaikwad&backgroundType=gradientLinear",
+      "weekly_xp": 305
+    },
+    {
+      "rank": 30,
+      "user_id": "fd1fc6ad-3c24-5661-836b-b6fef691377f",
+      "username": "atharvadesai",
+      "full_name": "Atharva Desai",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=atharvadesai&backgroundType=gradientLinear",
+      "weekly_xp": 302
+    },
+    {
+      "rank": 31,
+      "user_id": "0cc0ba65-4fdd-5319-beb6-fd9ff1e28a8e",
+      "username": "kartikjindal",
+      "full_name": "Kartik Jindal",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=kartikjindal&backgroundType=gradientLinear",
+      "weekly_xp": 298
+    },
+    {
+      "rank": 32,
+      "user_id": "463409ee-b6af-560d-b3bb-7400c5345db6",
+      "username": "balajimenon",
+      "full_name": "Balaji Menon",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=balajimenon&backgroundType=gradientLinear",
+      "weekly_xp": 298
+    },
+    {
+      "rank": 33,
+      "user_id": "2734ecaa-a479-57d0-be96-5d7a3e0d249e",
+      "username": "hardikshinde",
+      "full_name": "Hardik Shinde",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=hardikshinde&backgroundType=gradientLinear",
+      "weekly_xp": 294
+    },
+    {
+      "rank": 34,
+      "user_id": "425ec9bf-e99a-58e8-80f8-a111071e0f64",
+      "username": "simrantiwari",
+      "full_name": "Simran Tiwari",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=simrantiwari&backgroundType=gradientLinear",
+      "weekly_xp": 293
+    },
+    {
+      "rank": 35,
+      "user_id": "acc706da-2e8c-5d84-bbd3-1fb7144a1901",
+      "username": "radhikabhat",
+      "full_name": "Radhika Bhat",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=radhikabhat&backgroundType=gradientLinear",
+      "weekly_xp": 292
+    },
+    {
+      "rank": 36,
+      "user_id": "c1f1bc65-be40-52e3-a495-b3db9bedd832",
+      "username": "shubhojitdas",
+      "full_name": "Shubhojit Das",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=shubhojitdas&backgroundType=gradientLinear",
+      "weekly_xp": 292
+    },
+    {
+      "rank": 37,
+      "user_id": "53e72821-b224-55cd-adbe-8b91485ea329",
+      "username": "gauthamreddy",
+      "full_name": "Gautham Reddy",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=gauthamreddy&backgroundType=gradientLinear",
+      "weekly_xp": 289
+    },
+    {
+      "rank": 38,
+      "user_id": "bb2f5d58-29e3-5485-b5cf-caf7a93ee56b",
+      "username": "yashbhatia",
+      "full_name": "Yash Bhatia",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=yashbhatia&backgroundType=gradientLinear",
+      "weekly_xp": 288
+    },
+    {
+      "rank": 39,
+      "user_id": "1d717aeb-6383-5b8d-90e7-f78ff36c30b5",
+      "username": "aayushkulkarni",
+      "full_name": "Aayush Kulkarni",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=aayushkulkarni&backgroundType=gradientLinear",
+      "weekly_xp": 288
+    },
+    {
+      "rank": 40,
+      "user_id": "0c9679b2-9d7f-52c2-8b4b-afbe298fa9fd",
+      "username": "aaravyadav",
+      "full_name": "Aarav Yadav",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=aaravyadav&backgroundType=gradientLinear",
+      "weekly_xp": 287
+    },
+    {
+      "rank": 41,
+      "user_id": "aecbabc3-9e3c-5fbc-9f86-e1015a7f4768",
+      "username": "abhinavmitra",
+      "full_name": "Abhinav Mitra",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=abhinavmitra&backgroundType=gradientLinear",
+      "weekly_xp": 287
+    },
+    {
+      "rank": 42,
+      "user_id": "087adf7c-caa0-501b-b98c-c929dd07de61",
+      "username": "ritwikabanerjee",
+      "full_name": "Ritwika Banerjee",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=ritwikabanerjee&backgroundType=gradientLinear",
+      "weekly_xp": 287
+    },
+    {
+      "rank": 43,
+      "user_id": "47204d35-54d2-55df-99a2-b60217cda016",
+      "username": "anshgupta",
+      "full_name": "Ansh Gupta",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=anshgupta&backgroundType=gradientLinear",
+      "weekly_xp": 284
+    },
+    {
+      "rank": 44,
+      "user_id": "179e589f-b153-5317-b084-a03c9a92b1a2",
+      "username": "ojaschavan",
+      "full_name": "Ojas Chavan",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=ojaschavan&backgroundType=gradientLinear",
+      "weekly_xp": 282
+    },
+    {
+      "rank": 45,
+      "user_id": "f827dc47-e05d-5742-b964-41de06158216",
+      "username": "yeshwanthganesan",
+      "full_name": "Yeshwanth Ganesan",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=yeshwanthganesan&backgroundType=gradientLinear",
+      "weekly_xp": 280
+    },
+    {
+      "rank": 46,
+      "user_id": "82a66f33-726e-5994-81ff-aaa912cb12d0",
+      "username": "suryabhat",
+      "full_name": "Surya Bhat",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=suryabhat&backgroundType=gradientLinear",
+      "weekly_xp": 278
+    },
+    {
+      "rank": 47,
+      "user_id": "97aa16d2-c38f-59f5-b41e-9d50ecd06285",
+      "username": "chetanpillai",
+      "full_name": "Chetan Pillai",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=chetanpillai&backgroundType=gradientLinear",
+      "weekly_xp": 276
+    },
+    {
+      "rank": 48,
+      "user_id": "0564ab9f-706a-5276-9769-8576404ea447",
+      "username": "sahilsood",
+      "full_name": "Sahil Sood",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=sahilsood&backgroundType=gradientLinear",
+      "weekly_xp": 276
+    },
+    {
+      "rank": 49,
+      "user_id": "1d600c9d-98ee-5840-8b8f-c9423a237bd1",
+      "username": "sagarikasen",
+      "full_name": "Sagarika Sen",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=sagarikasen&backgroundType=gradientLinear",
+      "weekly_xp": 272
+    },
+    {
+      "rank": 50,
+      "user_id": "8eaf1e45-2310-5b8b-b7cb-e2b5a3da56e6",
+      "username": "vinaymenon",
+      "full_name": "Vinay Menon",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=vinaymenon&backgroundType=gradientLinear",
+      "weekly_xp": 271
+    }
+  ],
+  "project_score": [
+    {
+      "rank": 1,
+      "user_id": "79813ad0-f39b-5b63-b112-fec51ccfd284",
+      "username": "adithyashenoy",
+      "full_name": "Adithya Shenoy",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=adithyashenoy&backgroundType=gradientLinear",
+      "projects_completed": 12
+    },
+    {
+      "rank": 2,
+      "user_id": "0cc0ba65-4fdd-5319-beb6-fd9ff1e28a8e",
+      "username": "kartikjindal",
+      "full_name": "Kartik Jindal",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=kartikjindal&backgroundType=gradientLinear",
+      "projects_completed": 12
+    },
+    {
+      "rank": 3,
+      "user_id": "bb2f5d58-29e3-5485-b5cf-caf7a93ee56b",
+      "username": "yashbhatia",
+      "full_name": "Yash Bhatia",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=yashbhatia&backgroundType=gradientLinear",
+      "projects_completed": 12
+    },
+    {
+      "rank": 4,
+      "user_id": "f0acb74e-bacc-5451-b8e4-d606209b2ad0",
+      "username": "sudeshnamitra",
+      "full_name": "Sudeshna Mitra",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=sudeshnamitra&backgroundType=gradientLinear",
+      "projects_completed": 12
+    },
+    {
+      "rank": 5,
+      "user_id": "b3de17ae-98bb-5c45-a1ae-c1a84e3f3fb5",
+      "username": "vaidehidesai",
+      "full_name": "Vaidehi Desai",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=vaidehidesai&backgroundType=gradientLinear",
+      "projects_completed": 12
+    },
+    {
+      "rank": 6,
+      "user_id": "4ab847ee-b5f4-5510-84b1-54e8a69d0360",
+      "username": "atharvaranade",
+      "full_name": "Atharva Ranade",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=atharvaranade&backgroundType=gradientLinear",
+      "projects_completed": 12
+    },
+    {
+      "rank": 7,
+      "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+      "username": "aditeepawar",
+      "full_name": "Aditee Pawar",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=aditeepawar&backgroundType=gradientLinear",
+      "projects_completed": 11
+    },
+    {
+      "rank": 8,
+      "user_id": "3d3d5d91-00a7-5d80-a177-8a8d92e0bfb0",
+      "username": "varsharamanujan",
+      "full_name": "Varsha Ramanujan",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=varsharamanujan&backgroundType=gradientLinear",
+      "projects_completed": 11
+    },
+    {
+      "rank": 9,
+      "user_id": "de432219-3179-533f-b960-1c2ba0ba92bb",
+      "username": "gurubhat",
+      "full_name": "Guru Bhat",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=gurubhat&backgroundType=gradientLinear",
+      "projects_completed": 11
+    },
+    {
+      "rank": 10,
+      "user_id": "4deae523-8d3c-57c7-b25f-ca45ec0ff10a",
+      "username": "yaminiiyer",
+      "full_name": "Yamini Iyer",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=yaminiiyer&backgroundType=gradientLinear",
+      "projects_completed": 11
+    },
+    {
+      "rank": 11,
+      "user_id": "4eaf9112-008b-536a-aa2d-ee68fe01aa96",
+      "username": "rajarshikundu",
+      "full_name": "Rajarshi Kundu",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=rajarshikundu&backgroundType=gradientLinear",
+      "projects_completed": 11
+    },
+    {
+      "rank": 12,
+      "user_id": "dae3feb7-4f6b-56c0-9e1e-08b729fa9ac2",
+      "username": "nabarunsarkar",
+      "full_name": "Nabarun Sarkar",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=nabarunsarkar&backgroundType=gradientLinear",
+      "projects_completed": 11
+    },
+    {
+      "rank": 13,
+      "user_id": "1d717aeb-6383-5b8d-90e7-f78ff36c30b5",
+      "username": "aayushkulkarni",
+      "full_name": "Aayush Kulkarni",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=aayushkulkarni&backgroundType=gradientLinear",
+      "projects_completed": 11
+    },
+    {
+      "rank": 14,
+      "user_id": "f398ce7e-6157-56a5-9e05-380e02ffb538",
+      "username": "poojadeshmukh",
+      "full_name": "Pooja Deshmukh",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=poojadeshmukh&backgroundType=gradientLinear",
+      "projects_completed": 11
+    },
+    {
+      "rank": 15,
+      "user_id": "a4cd1e52-5765-5b3a-b6f1-411fab8cc858",
+      "username": "adityaprasad",
+      "full_name": "Aditya Prasad",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=adityaprasad&backgroundType=gradientLinear",
+      "projects_completed": 11
+    },
+    {
+      "rank": 16,
+      "user_id": "9958a719-fc69-5592-93db-34ee04b5852e",
+      "username": "eshwarpillai",
+      "full_name": "Eshwar Pillai",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=eshwarpillai&backgroundType=gradientLinear",
+      "projects_completed": 11
+    },
+    {
+      "rank": 17,
+      "user_id": "2734ecaa-a479-57d0-be96-5d7a3e0d249e",
+      "username": "hardikshinde",
+      "full_name": "Hardik Shinde",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=hardikshinde&backgroundType=gradientLinear",
+      "projects_completed": 11
+    },
+    {
+      "rank": 18,
+      "user_id": "fc2c809a-1f1b-597b-842e-874d4ee37c7a",
+      "username": "yashrajshinde",
+      "full_name": "Yashraj Shinde",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=yashrajshinde&backgroundType=gradientLinear",
+      "projects_completed": 11
+    },
+    {
+      "rank": 19,
+      "user_id": "f78f1c58-4457-5ebe-a9ff-9653c20d5a9a",
+      "username": "aarohibansal",
+      "full_name": "Aarohi Bansal",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=aarohibansal&backgroundType=gradientLinear",
+      "projects_completed": 11
+    },
+    {
+      "rank": 20,
+      "user_id": "629d5a8f-da92-5ede-be9d-32fcecd4d21f",
+      "username": "tejasjoshi",
+      "full_name": "Tejas Joshi",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=tejasjoshi&backgroundType=gradientLinear",
+      "projects_completed": 11
+    },
+    {
+      "rank": 21,
+      "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+      "username": "ronakkadam",
+      "full_name": "Ronak Kadam",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=ronakkadam&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 22,
+      "user_id": "df5d7d0f-526f-553e-8c16-7746604be934",
+      "username": "pranitchavan",
+      "full_name": "Pranit Chavan",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=pranitchavan&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 23,
+      "user_id": "f206caa2-6550-5fbd-aeaf-1eef6cc9db61",
+      "username": "rushikeshkhedekar",
+      "full_name": "Rushikesh Khedekar",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=rushikeshkhedekar&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 24,
+      "user_id": "23b1640c-d87b-5429-a8b6-2cab5ba70209",
+      "username": "prathameshchavan",
+      "full_name": "Prathamesh Chavan",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=prathameshchavan&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 25,
+      "user_id": "38c61459-189d-5018-8498-2e8738a09f93",
+      "username": "shreyasjadhav",
+      "full_name": "Shreyas Jadhav",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=shreyasjadhav&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 26,
+      "user_id": "740a3431-b399-5dea-8e46-fa433efccb1b",
+      "username": "nakulkhurana",
+      "full_name": "Nakul Khurana",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=nakulkhurana&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 27,
+      "user_id": "c1f1bc65-be40-52e3-a495-b3db9bedd832",
+      "username": "shubhojitdas",
+      "full_name": "Shubhojit Das",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=shubhojitdas&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 28,
+      "user_id": "165f6c1b-d2c4-53a6-9d79-de0bdd6c8f43",
+      "username": "ishasaxena",
+      "full_name": "Isha Saxena",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=ishasaxena&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 29,
+      "user_id": "e64984b4-4fa4-5b69-b32e-5a97bb53dba1",
+      "username": "atharvakhedekar",
+      "full_name": "Atharva Khedekar",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=atharvakhedekar&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 30,
+      "user_id": "1a5633df-f521-5992-83fb-a6d966750920",
+      "username": "vivaanrathore",
+      "full_name": "Vivaan Rathore",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=vivaanrathore&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 31,
+      "user_id": "c534ce8f-7cb8-5db4-bff3-5d36a011b5d6",
+      "username": "mahibhatia",
+      "full_name": "Mahi Bhatia",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=mahibhatia&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 32,
+      "user_id": "d5d5d29f-3635-5c31-8af8-706a82c15b77",
+      "username": "dineshbhat",
+      "full_name": "Dinesh Bhat",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=dineshbhat&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 33,
+      "user_id": "b5bf273a-7965-59bf-b9af-159bd061702b",
+      "username": "aditeedesai",
+      "full_name": "Aditee Desai",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=aditeedesai&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 34,
+      "user_id": "40c13017-8031-5aaf-a7fc-aa7776f40c7e",
+      "username": "gauthampillai",
+      "full_name": "Gautham Pillai",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=gauthampillai&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 35,
+      "user_id": "cb248cca-21ef-57cd-b5d2-7a009506a74f",
+      "username": "jayakundu",
+      "full_name": "Jaya Kundu",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=jayakundu&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 36,
+      "user_id": "425ec9bf-e99a-58e8-80f8-a111071e0f64",
+      "username": "simrantiwari",
+      "full_name": "Simran Tiwari",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=simrantiwari&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 37,
+      "user_id": "9e888005-13d7-57a1-be0b-cf25e5213dac",
+      "username": "rajarshisen",
+      "full_name": "Rajarshi Sen",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=rajarshisen&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 38,
+      "user_id": "2251ae20-c872-5778-8c9a-01e34ef47831",
+      "username": "bharathnair",
+      "full_name": "Bharath Nair",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=bharathnair&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 39,
+      "user_id": "aecbabc3-9e3c-5fbc-9f86-e1015a7f4768",
+      "username": "abhinavmitra",
+      "full_name": "Abhinav Mitra",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=abhinavmitra&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 40,
+      "user_id": "74cb429a-9056-5918-83a9-ca43e22298b7",
+      "username": "ishaanbhardwaj",
+      "full_name": "Ishaan Bhardwaj",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=ishaanbhardwaj&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 41,
+      "user_id": "caf74b87-31a5-59ed-ba3d-ab41492375e8",
+      "username": "anirbanmukherjee",
+      "full_name": "Anirban Mukherjee",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=anirbanmukherjee&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 42,
+      "user_id": "93cefb33-c9af-57fc-898f-6c31f34b9d7c",
+      "username": "sudiptosengupta",
+      "full_name": "Sudipto Sengupta",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=sudiptosengupta&backgroundType=gradientLinear",
+      "projects_completed": 10
+    },
+    {
+      "rank": 43,
+      "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+      "username": "prathameshsalunkhe",
+      "full_name": "Prathamesh Salunkhe",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=prathameshsalunkhe&backgroundType=gradientLinear",
+      "projects_completed": 9
+    },
+    {
+      "rank": 44,
+      "user_id": "7799f933-dd75-5642-9861-900dcaac763a",
+      "username": "sanchitamajumdar",
+      "full_name": "Sanchita Majumdar",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=sanchitamajumdar&backgroundType=gradientLinear",
+      "projects_completed": 9
+    },
+    {
+      "rank": 45,
+      "user_id": "7d7a319e-f9a3-58db-ad85-abef93f3791e",
+      "username": "kavyagoel",
+      "full_name": "Kavya Goel",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=kavyagoel&backgroundType=gradientLinear",
+      "projects_completed": 9
+    },
+    {
+      "rank": 46,
+      "user_id": "43408700-d8d5-52ae-a6f3-3e27bbf6ddf4",
+      "username": "venkateshsubramanian",
+      "full_name": "Venkatesh Subramanian",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=venkateshsubramanian&backgroundType=gradientLinear",
+      "projects_completed": 9
+    },
+    {
+      "rank": 47,
+      "user_id": "ab9c7f65-cf24-5929-99de-529c1d3bab19",
+      "username": "sudeshnasarkar",
+      "full_name": "Sudeshna Sarkar",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=sudeshnasarkar&backgroundType=gradientLinear",
+      "projects_completed": 9
+    },
+    {
+      "rank": 48,
+      "user_id": "76fca80b-e05c-5707-abc2-12d796e2c2b9",
+      "username": "samruddhideshmukh",
+      "full_name": "Samruddhi Deshmukh",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=samruddhideshmukh&backgroundType=gradientLinear",
+      "projects_completed": 9
+    },
+    {
+      "rank": 49,
+      "user_id": "670161b4-69af-5088-b1e4-e2d6890a9e09",
+      "username": "varsha.ramanujan",
+      "full_name": "Varsha S. Ramanujan",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=varsha.ramanujan&backgroundType=gradientLinear",
+      "projects_completed": 9
+    },
+    {
+      "rank": 50,
+      "user_id": "8108974b-dca9-53d0-947d-5ede173ce30e",
+      "username": "prachichavan",
+      "full_name": "Prachi Chavan",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=prachichavan&backgroundType=gradientLinear",
+      "projects_completed": 9
+    }
+  ],
+  "github_score": [
+    {
+      "rank": 1,
+      "user_id": "d5d5d29f-3635-5c31-8af8-706a82c15b77",
+      "username": "dineshbhat",
+      "full_name": "Dinesh Bhat",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=dineshbhat&backgroundType=gradientLinear",
+      "open_source_score": 100,
+      "repos": 25
+    },
+    {
+      "rank": 2,
+      "user_id": "4ab847ee-b5f4-5510-84b1-54e8a69d0360",
+      "username": "atharvaranade",
+      "full_name": "Atharva Ranade",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=atharvaranade&backgroundType=gradientLinear",
+      "open_source_score": 100,
+      "repos": 32
+    },
+    {
+      "rank": 3,
+      "user_id": "f78f1c58-4457-5ebe-a9ff-9653c20d5a9a",
+      "username": "aarohibansal",
+      "full_name": "Aarohi Bansal",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=aarohibansal&backgroundType=gradientLinear",
+      "open_source_score": 100,
+      "repos": 21
+    },
+    {
+      "rank": 4,
+      "user_id": "03140595-8f37-5bac-94ac-d111fc98907b",
+      "username": "harshgrover",
+      "full_name": "Harsh Grover",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=harshgrover&backgroundType=gradientLinear",
+      "open_source_score": 99,
+      "repos": 69
+    },
+    {
+      "rank": 5,
+      "user_id": "80b44ab9-aa78-5a95-b234-cc89232960c9",
+      "username": "arnab.majumdar",
+      "full_name": "Arnab S. Majumdar",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=arnab.majumdar&backgroundType=gradientLinear",
+      "open_source_score": 97,
+      "repos": 53
+    },
+    {
+      "rank": 6,
+      "user_id": "a4cd1e52-5765-5b3a-b6f1-411fab8cc858",
+      "username": "adityaprasad",
+      "full_name": "Aditya Prasad",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=adityaprasad&backgroundType=gradientLinear",
+      "open_source_score": 97,
+      "repos": 23
+    },
+    {
+      "rank": 7,
+      "user_id": "71d72673-79a9-5c43-a9c1-282de8831337",
+      "username": "nitinjindal",
+      "full_name": "Nitin Jindal",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=nitinjindal&backgroundType=gradientLinear",
+      "open_source_score": 96,
+      "repos": 58
+    },
+    {
+      "rank": 8,
+      "user_id": "c534ce8f-7cb8-5db4-bff3-5d36a011b5d6",
+      "username": "mahibhatia",
+      "full_name": "Mahi Bhatia",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=mahibhatia&backgroundType=gradientLinear",
+      "open_source_score": 95,
+      "repos": 55
+    },
+    {
+      "rank": 9,
+      "user_id": "93cefb33-c9af-57fc-898f-6c31f34b9d7c",
+      "username": "sudiptosengupta",
+      "full_name": "Sudipto Sengupta",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=sudiptosengupta&backgroundType=gradientLinear",
+      "open_source_score": 91,
+      "repos": 46
+    },
+    {
+      "rank": 10,
+      "user_id": "15f3d11c-812d-545b-8e1a-9f5988bfc2c6",
+      "username": "praveenreddy",
+      "full_name": "Praveen Reddy",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=praveenreddy&backgroundType=gradientLinear",
+      "open_source_score": 89,
+      "repos": 4
+    },
+    {
+      "rank": 11,
+      "user_id": "0cc0ba65-4fdd-5319-beb6-fd9ff1e28a8e",
+      "username": "kartikjindal",
+      "full_name": "Kartik Jindal",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=kartikjindal&backgroundType=gradientLinear",
+      "open_source_score": 88,
+      "repos": 53
+    },
+    {
+      "rank": 12,
+      "user_id": "de432219-3179-533f-b960-1c2ba0ba92bb",
+      "username": "gurubhat",
+      "full_name": "Guru Bhat",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=gurubhat&backgroundType=gradientLinear",
+      "open_source_score": 86,
+      "repos": 68
+    },
+    {
+      "rank": 13,
+      "user_id": "c9687c28-4ba9-51fc-9e7e-141df7f48e24",
+      "username": "jishnudutta",
+      "full_name": "Jishnu Dutta",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=jishnudutta&backgroundType=gradientLinear",
+      "open_source_score": 85,
+      "repos": 59
+    },
+    {
+      "rank": 14,
+      "user_id": "fbef8661-4c7e-5259-91aa-b311c978f8b4",
+      "username": "sudiptochatterjee",
+      "full_name": "Sudipto Chatterjee",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=sudiptochatterjee&backgroundType=gradientLinear",
+      "open_source_score": 84,
+      "repos": 13
+    },
+    {
+      "rank": 15,
+      "user_id": "f0acb74e-bacc-5451-b8e4-d606209b2ad0",
+      "username": "sudeshnamitra",
+      "full_name": "Sudeshna Mitra",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=sudeshnamitra&backgroundType=gradientLinear",
+      "open_source_score": 80,
+      "repos": 21
+    },
+    {
+      "rank": 16,
+      "user_id": "48eb90d5-715e-5489-a195-0a7009ce4a68",
+      "username": "debjaninandi",
+      "full_name": "Debjani Nandi",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=debjaninandi&backgroundType=gradientLinear",
+      "open_source_score": 79,
+      "repos": 24
+    },
+    {
+      "rank": 17,
+      "user_id": "acc706da-2e8c-5d84-bbd3-1fb7144a1901",
+      "username": "radhikabhat",
+      "full_name": "Radhika Bhat",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=radhikabhat&backgroundType=gradientLinear",
+      "open_source_score": 78,
+      "repos": 6
+    },
+    {
+      "rank": 18,
+      "user_id": "79813ad0-f39b-5b63-b112-fec51ccfd284",
+      "username": "adithyashenoy",
+      "full_name": "Adithya Shenoy",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=adithyashenoy&backgroundType=gradientLinear",
+      "open_source_score": 76,
+      "repos": 22
+    },
+    {
+      "rank": 19,
+      "user_id": "7c625956-24aa-50a1-ac48-ad5045cb94b2",
+      "username": "saanvinagpal",
+      "full_name": "Saanvi Nagpal",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=saanvinagpal&backgroundType=gradientLinear",
+      "open_source_score": 76,
+      "repos": 29
+    },
+    {
+      "rank": 20,
+      "user_id": "2251ae20-c872-5778-8c9a-01e34ef47831",
+      "username": "bharathnair",
+      "full_name": "Bharath Nair",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=bharathnair&backgroundType=gradientLinear",
+      "open_source_score": 76,
+      "repos": 25
+    },
+    {
+      "rank": 21,
+      "user_id": "38c61459-189d-5018-8498-2e8738a09f93",
+      "username": "shreyasjadhav",
+      "full_name": "Shreyas Jadhav",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=shreyasjadhav&backgroundType=gradientLinear",
+      "open_source_score": 74,
+      "repos": 16
+    },
+    {
+      "rank": 22,
+      "user_id": "a5e7626a-0b2e-515e-970d-13e18fd2015c",
+      "username": "neelkarve",
+      "full_name": "Neel Karve",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=neelkarve&backgroundType=gradientLinear",
+      "open_source_score": 71,
+      "repos": 18
+    },
+    {
+      "rank": 23,
+      "user_id": "3d3d5d91-00a7-5d80-a177-8a8d92e0bfb0",
+      "username": "varsharamanujan",
+      "full_name": "Varsha Ramanujan",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=varsharamanujan&backgroundType=gradientLinear",
+      "open_source_score": 68,
+      "repos": 6
+    },
+    {
+      "rank": 24,
+      "user_id": "0564ab9f-706a-5276-9769-8576404ea447",
+      "username": "sahilsood",
+      "full_name": "Sahil Sood",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=sahilsood&backgroundType=gradientLinear",
+      "open_source_score": 67,
+      "repos": 62
+    },
+    {
+      "rank": 25,
+      "user_id": "fd1fc6ad-3c24-5661-836b-b6fef691377f",
+      "username": "atharvadesai",
+      "full_name": "Atharva Desai",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=atharvadesai&backgroundType=gradientLinear",
+      "open_source_score": 66,
+      "repos": 41
+    },
+    {
+      "rank": 26,
+      "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+      "username": "anweshachakraborty",
+      "full_name": "Anwesha Chakraborty",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=anweshachakraborty&backgroundType=gradientLinear",
+      "open_source_score": 65,
+      "repos": 42
+    },
+    {
+      "rank": 27,
+      "user_id": "76fca80b-e05c-5707-abc2-12d796e2c2b9",
+      "username": "samruddhideshmukh",
+      "full_name": "Samruddhi Deshmukh",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=samruddhideshmukh&backgroundType=gradientLinear",
+      "open_source_score": 65,
+      "repos": 40
+    },
+    {
+      "rank": 28,
+      "user_id": "dae3feb7-4f6b-56c0-9e1e-08b729fa9ac2",
+      "username": "nabarunsarkar",
+      "full_name": "Nabarun Sarkar",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=nabarunsarkar&backgroundType=gradientLinear",
+      "open_source_score": 63,
+      "repos": 38
+    },
+    {
+      "rank": 29,
+      "user_id": "29c72e89-5225-50f0-ac83-191bbc25d25f",
+      "username": "hariniraghavan",
+      "full_name": "Harini Raghavan",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=hariniraghavan&backgroundType=gradientLinear",
+      "open_source_score": 63,
+      "repos": 70
+    },
+    {
+      "rank": 30,
+      "user_id": "4eaf9112-008b-536a-aa2d-ee68fe01aa96",
+      "username": "rajarshikundu",
+      "full_name": "Rajarshi Kundu",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=rajarshikundu&backgroundType=gradientLinear",
+      "open_source_score": 62,
+      "repos": 18
+    },
+    {
+      "rank": 31,
+      "user_id": "165f6c1b-d2c4-53a6-9d79-de0bdd6c8f43",
+      "username": "ishasaxena",
+      "full_name": "Isha Saxena",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=ishasaxena&backgroundType=gradientLinear",
+      "open_source_score": 62,
+      "repos": 28
+    },
+    {
+      "rank": 32,
+      "user_id": "b7d21872-04cf-5329-bcff-8959d140f5f4",
+      "username": "ipsitabhattacharya",
+      "full_name": "Ipsita Bhattacharya",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=ipsitabhattacharya&backgroundType=gradientLinear",
+      "open_source_score": 60,
+      "repos": 64
+    },
+    {
+      "rank": 33,
+      "user_id": "758b036f-014c-5706-82c5-5a0601b8ed9f",
+      "username": "sujoybanerjee",
+      "full_name": "Sujoy Banerjee",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=sujoybanerjee&backgroundType=gradientLinear",
+      "open_source_score": 57,
+      "repos": 62
+    },
+    {
+      "rank": 34,
+      "user_id": "4fa9d4ea-8927-52df-9048-051067e4de77",
+      "username": "debaratibasak",
+      "full_name": "Debarati Basak",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=debaratibasak&backgroundType=gradientLinear",
+      "open_source_score": 55,
+      "repos": 38
+    },
+    {
+      "rank": 35,
+      "user_id": "2734ecaa-a479-57d0-be96-5d7a3e0d249e",
+      "username": "hardikshinde",
+      "full_name": "Hardik Shinde",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=hardikshinde&backgroundType=gradientLinear",
+      "open_source_score": 55,
+      "repos": 58
+    },
+    {
+      "rank": 36,
+      "user_id": "110b77ba-c3bd-5fc8-8928-2160bde27d50",
+      "username": "divyamenon",
+      "full_name": "Divya Menon",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=divyamenon&backgroundType=gradientLinear",
+      "open_source_score": 54,
+      "repos": 45
+    },
+    {
+      "rank": 37,
+      "user_id": "66be353e-9630-504e-8bea-f39ff2e4d638",
+      "username": "rohantiwari",
+      "full_name": "Rohan Tiwari",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=rohantiwari&backgroundType=gradientLinear",
+      "open_source_score": 53,
+      "repos": 33
+    },
+    {
+      "rank": 38,
+      "user_id": "b0751714-499e-5f11-8e14-f8ceee434229",
+      "username": "tanmaysinha",
+      "full_name": "Tanmay Sinha",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=tanmaysinha&backgroundType=gradientLinear",
+      "open_source_score": 51,
+      "repos": 23
+    },
+    {
+      "rank": 39,
+      "user_id": "f206caa2-6550-5fbd-aeaf-1eef6cc9db61",
+      "username": "rushikeshkhedekar",
+      "full_name": "Rushikesh Khedekar",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=rushikeshkhedekar&backgroundType=gradientLinear",
+      "open_source_score": 49,
+      "repos": 8
+    },
+    {
+      "rank": 40,
+      "user_id": "4c9a0b97-1487-5edd-9934-d9818eafa0da",
+      "username": "shauryanandi",
+      "full_name": "Shaurya Nandi",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=shauryanandi&backgroundType=gradientLinear",
+      "open_source_score": 49,
+      "repos": 50
+    },
+    {
+      "rank": 41,
+      "user_id": "b3de17ae-98bb-5c45-a1ae-c1a84e3f3fb5",
+      "username": "vaidehidesai",
+      "full_name": "Vaidehi Desai",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=vaidehidesai&backgroundType=gradientLinear",
+      "open_source_score": 47,
+      "repos": 40
+    },
+    {
+      "rank": 42,
+      "user_id": "e64984b4-4fa4-5b69-b32e-5a97bb53dba1",
+      "username": "atharvakhedekar",
+      "full_name": "Atharva Khedekar",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=atharvakhedekar&backgroundType=gradientLinear",
+      "open_source_score": 42,
+      "repos": 13
+    },
+    {
+      "rank": 43,
+      "user_id": "bb2f5d58-29e3-5485-b5cf-caf7a93ee56b",
+      "username": "yashbhatia",
+      "full_name": "Yash Bhatia",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=yashbhatia&backgroundType=gradientLinear",
+      "open_source_score": 40,
+      "repos": 12
+    },
+    {
+      "rank": 44,
+      "user_id": "1d600c9d-98ee-5840-8b8f-c9423a237bd1",
+      "username": "sagarikasen",
+      "full_name": "Sagarika Sen",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=sagarikasen&backgroundType=gradientLinear",
+      "open_source_score": 38,
+      "repos": 14
+    },
+    {
+      "rank": 45,
+      "user_id": "dbed9adc-a66b-5ee9-a0d3-68ed10c44f5f",
+      "username": "gauthamnaidu",
+      "full_name": "Gautham Naidu",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=gauthamnaidu&backgroundType=gradientLinear",
+      "open_source_score": 37,
+      "repos": 31
+    },
+    {
+      "rank": 46,
+      "user_id": "8f9dd994-27bb-544c-bf7f-4078e589898d",
+      "username": "madhurirao",
+      "full_name": "Madhuri Rao",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=madhurirao&backgroundType=gradientLinear",
+      "open_source_score": 36,
+      "repos": 48
+    },
+    {
+      "rank": 47,
+      "user_id": "d76c496a-70c0-5925-9d79-75fde5065a00",
+      "username": "sathvikrao",
+      "full_name": "Sathvik Rao",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=sathvikrao&backgroundType=gradientLinear",
+      "open_source_score": 36,
+      "repos": 21
+    },
+    {
+      "rank": 48,
+      "user_id": "629d5a8f-da92-5ede-be9d-32fcecd4d21f",
+      "username": "tejasjoshi",
+      "full_name": "Tejas Joshi",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=tejasjoshi&backgroundType=gradientLinear",
+      "open_source_score": 31,
+      "repos": 22
+    },
+    {
+      "rank": 49,
+      "user_id": "e0f3d7ea-fabe-5f9e-82d7-3e09d1e6d735",
+      "username": "rushikeshjadhav",
+      "full_name": "Rushikesh Jadhav",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=rushikeshjadhav&backgroundType=gradientLinear",
+      "open_source_score": 24,
+      "repos": 44
+    },
+    {
+      "rank": 50,
+      "user_id": "f398ce7e-6157-56a5-9e05-380e02ffb538",
+      "username": "poojadeshmukh",
+      "full_name": "Pooja Deshmukh",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=poojadeshmukh&backgroundType=gradientLinear",
+      "open_source_score": 17,
+      "repos": 25
+    }
+  ],
+  "current_streak": [
+    {
+      "rank": 1,
+      "user_id": "cb248cca-21ef-57cd-b5d2-7a009506a74f",
+      "username": "jayakundu",
+      "full_name": "Jaya Kundu",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=jayakundu&backgroundType=gradientLinear",
+      "current_streak": 118,
+      "longest_streak": 206
+    },
+    {
+      "rank": 2,
+      "user_id": "eb7d5307-685e-5c9f-b76a-2fc63a1d3681",
+      "username": "harshmalhotra",
+      "full_name": "Harsh Malhotra",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=harshmalhotra&backgroundType=gradientLinear",
+      "current_streak": 117,
+      "longest_streak": 137
+    },
+    {
+      "rank": 3,
+      "user_id": "f6f98726-0e0a-585c-86c6-4561d2192211",
+      "username": "gauthambalakrishnan",
+      "full_name": "Gautham Balakrishnan",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=gauthambalakrishnan&backgroundType=gradientLinear",
+      "current_streak": 115,
+      "longest_streak": 168
+    },
+    {
+      "rank": 4,
+      "user_id": "4c70260c-77c9-58a9-a558-33cf923c6362",
+      "username": "jananisrinivasan",
+      "full_name": "Janani Srinivasan",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=jananisrinivasan&backgroundType=gradientLinear",
+      "current_streak": 115,
+      "longest_streak": 133
+    },
+    {
+      "rank": 5,
+      "user_id": "758b036f-014c-5706-82c5-5a0601b8ed9f",
+      "username": "sujoybanerjee",
+      "full_name": "Sujoy Banerjee",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=sujoybanerjee&backgroundType=gradientLinear",
+      "current_streak": 108,
+      "longest_streak": 113
+    },
+    {
+      "rank": 6,
+      "user_id": "cd7d2d5b-ed5b-5e13-a03c-d3e0517fd203",
+      "username": "anmolahuja",
+      "full_name": "Anmol Ahuja",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=anmolahuja&backgroundType=gradientLinear",
+      "current_streak": 107,
+      "longest_streak": 114
+    },
+    {
+      "rank": 7,
+      "user_id": "b5bf273a-7965-59bf-b9af-159bd061702b",
+      "username": "aditeedesai",
+      "full_name": "Aditee Desai",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=aditeedesai&backgroundType=gradientLinear",
+      "current_streak": 104,
+      "longest_streak": 190
+    },
+    {
+      "rank": 8,
+      "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+      "username": "priyakrishnan",
+      "full_name": "Priya Krishnan",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=priyakrishnan&backgroundType=gradientLinear",
+      "current_streak": 97,
+      "longest_streak": 186
+    },
+    {
+      "rank": 9,
+      "user_id": "12b03a59-3b69-59e3-8703-c8e92dd0c411",
+      "username": "pranitwagh",
+      "full_name": "Pranit Wagh",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=pranitwagh&backgroundType=gradientLinear",
+      "current_streak": 96,
+      "longest_streak": 121
+    },
+    {
+      "rank": 10,
+      "user_id": "f827dc47-e05d-5742-b964-41de06158216",
+      "username": "yeshwanthganesan",
+      "full_name": "Yeshwanth Ganesan",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=yeshwanthganesan&backgroundType=gradientLinear",
+      "current_streak": 92,
+      "longest_streak": 147
+    },
+    {
+      "rank": 11,
+      "user_id": "1d717aeb-6383-5b8d-90e7-f78ff36c30b5",
+      "username": "aayushkulkarni",
+      "full_name": "Aayush Kulkarni",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=aayushkulkarni&backgroundType=gradientLinear",
+      "current_streak": 78,
+      "longest_streak": 118
+    },
+    {
+      "rank": 12,
+      "user_id": "e52c6bf4-1884-534f-9b9e-7af8f55a1e61",
+      "username": "divyabalakrishnan",
+      "full_name": "Divya Balakrishnan",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=divyabalakrishnan&backgroundType=gradientLinear",
+      "current_streak": 61,
+      "longest_streak": 93
+    },
+    {
+      "rank": 13,
+      "user_id": "c9687c28-4ba9-51fc-9e7e-141df7f48e24",
+      "username": "jishnudutta",
+      "full_name": "Jishnu Dutta",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=jishnudutta&backgroundType=gradientLinear",
+      "current_streak": 58,
+      "longest_streak": 108
+    },
+    {
+      "rank": 14,
+      "user_id": "add9b7db-a786-5480-940a-cc401b7631f0",
+      "username": "uttiyoroy",
+      "full_name": "Uttiyo Roy",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=uttiyoroy&backgroundType=gradientLinear",
+      "current_streak": 58,
+      "longest_streak": 133
+    },
+    {
+      "rank": 15,
+      "user_id": "9b72be11-22a1-55d5-9794-9f679e3cc134",
+      "username": "nakulsinha",
+      "full_name": "Nakul Sinha",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=nakulsinha&backgroundType=gradientLinear",
+      "current_streak": 53,
+      "longest_streak": 85
+    },
+    {
+      "rank": 16,
+      "user_id": "c253ca58-2130-5b72-8f83-1c1a1e583882",
+      "username": "dhruvsharma",
+      "full_name": "Dhruv Sharma",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=dhruvsharma&backgroundType=gradientLinear",
+      "current_streak": 52,
+      "longest_streak": 126
+    },
+    {
+      "rank": 17,
+      "user_id": "c31e8763-d6fa-5b5f-8c06-59e0f02fe051",
+      "username": "gauthambhat",
+      "full_name": "Gautham Bhat",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=gauthambhat&backgroundType=gradientLinear",
+      "current_streak": 43,
+      "longest_streak": 100
+    },
+    {
+      "rank": 18,
+      "user_id": "59142af5-9589-5eb0-a669-243fda8ab289",
+      "username": "vivaanbansal",
+      "full_name": "Vivaan Bansal",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=vivaanbansal&backgroundType=gradientLinear",
+      "current_streak": 43,
+      "longest_streak": 72
+    },
+    {
+      "rank": 19,
+      "user_id": "b3d2fde1-bd28-5f3e-9b44-ee6bd9ed6029",
+      "username": "nakulgoel",
+      "full_name": "Nakul Goel",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=nakulgoel&backgroundType=gradientLinear",
+      "current_streak": 38,
+      "longest_streak": 55
+    },
+    {
+      "rank": 20,
+      "user_id": "4262a5c6-444c-5fed-b1aa-aac863350b86",
+      "username": "kavyachauhan",
+      "full_name": "Kavya Chauhan",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=kavyachauhan&backgroundType=gradientLinear",
+      "current_streak": 37,
+      "longest_streak": 113
+    },
+    {
+      "rank": 21,
+      "user_id": "17925617-2cd9-5128-ae7c-ac3ea7a8a8eb",
+      "username": "balajipillai",
+      "full_name": "Balaji Pillai",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=balajipillai&backgroundType=gradientLinear",
+      "current_streak": 33,
+      "longest_streak": 74
+    },
+    {
+      "rank": 22,
+      "user_id": "f4bd5a9e-06cf-5b0f-81e7-450f88bbaff7",
+      "username": "rithwikbhat",
+      "full_name": "Rithwik Bhat",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=rithwikbhat&backgroundType=gradientLinear",
+      "current_streak": 28,
+      "longest_streak": 92
+    },
+    {
+      "rank": 23,
+      "user_id": "9ab09ec5-26b1-50ec-9bd1-cbf8842089ee",
+      "username": "tarunbhat",
+      "full_name": "Tarun Bhat",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=tarunbhat&backgroundType=gradientLinear",
+      "current_streak": 28,
+      "longest_streak": 71
+    },
+    {
+      "rank": 24,
+      "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+      "username": "dhruvverma",
+      "full_name": "Dhruv Verma",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=dhruvverma&backgroundType=gradientLinear",
+      "current_streak": 24,
+      "longest_streak": 88
+    },
+    {
+      "rank": 25,
+      "user_id": "d73c7cdd-3dac-5500-8b28-0a9dfefe70ce",
+      "username": "uttiyosarkar",
+      "full_name": "Uttiyo Sarkar",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=uttiyosarkar&backgroundType=gradientLinear",
+      "current_streak": 24,
+      "longest_streak": 57
+    },
+    {
+      "rank": 26,
+      "user_id": "73657aa0-d932-5322-89dd-232eeabd5c65",
+      "username": "jishnupramanik",
+      "full_name": "Jishnu Pramanik",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=jishnupramanik&backgroundType=gradientLinear",
+      "current_streak": 24,
+      "longest_streak": 90
+    },
+    {
+      "rank": 27,
+      "user_id": "7c625956-24aa-50a1-ac48-ad5045cb94b2",
+      "username": "saanvinagpal",
+      "full_name": "Saanvi Nagpal",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=saanvinagpal&backgroundType=gradientLinear",
+      "current_streak": 24,
+      "longest_streak": 26
+    },
+    {
+      "rank": 28,
+      "user_id": "ee16b280-e74c-5599-86cd-1d4bb4f07739",
+      "username": "arpitaganguly",
+      "full_name": "Arpita Ganguly",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=arpitaganguly&backgroundType=gradientLinear",
+      "current_streak": 24,
+      "longest_streak": 44
+    },
+    {
+      "rank": 29,
+      "user_id": "151b63ee-5b34-5168-8c3b-a10de1239a50",
+      "username": "tanmaychauhan",
+      "full_name": "Tanmay Chauhan",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=tanmaychauhan&backgroundType=gradientLinear",
+      "current_streak": 24,
+      "longest_streak": 64
+    },
+    {
+      "rank": 30,
+      "user_id": "d76c496a-70c0-5925-9d79-75fde5065a00",
+      "username": "sathvikrao",
+      "full_name": "Sathvik Rao",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=sathvikrao&backgroundType=gradientLinear",
+      "current_streak": 24,
+      "longest_streak": 59
+    },
+    {
+      "rank": 31,
+      "user_id": "d9147ac9-8552-56c1-b5d9-e889e78f4a7e",
+      "username": "aparnaiyengar",
+      "full_name": "Aparna Iyengar",
+      "avatar_url": "https://api.dicebear.com/9.x/bottts-neutral/svg?seed=aparnaiyengar&backgroundType=gradientLinear",
+      "current_streak": 24,
+      "longest_streak": 42
+    },
+    {
+      "rank": 32,
+      "user_id": "13956bd8-785d-5dd5-9b3a-82285bd0699e",
+      "username": "anshgrover",
+      "full_name": "Ansh Grover",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=anshgrover&backgroundType=gradientLinear",
+      "current_streak": 24,
+      "longest_streak": 50
+    },
+    {
+      "rank": 33,
+      "user_id": "e13edc27-fe23-5422-bf99-3089df608953",
+      "username": "ishaanarora",
+      "full_name": "Ishaan Arora",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=ishaanarora&backgroundType=gradientLinear",
+      "current_streak": 24,
+      "longest_streak": 75
+    },
+    {
+      "rank": 34,
+      "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+      "username": "tanishsalunkhe",
+      "full_name": "Tanish Salunkhe",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=tanishsalunkhe&backgroundType=gradientLinear",
+      "current_streak": 23,
+      "longest_streak": 106
+    },
+    {
+      "rank": 35,
+      "user_id": "df5d7d0f-526f-553e-8c16-7746604be934",
+      "username": "pranitchavan",
+      "full_name": "Pranit Chavan",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=pranitchavan&backgroundType=gradientLinear",
+      "current_streak": 23,
+      "longest_streak": 58
+    },
+    {
+      "rank": 36,
+      "user_id": "bb2f5d58-29e3-5485-b5cf-caf7a93ee56b",
+      "username": "yashbhatia",
+      "full_name": "Yash Bhatia",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=yashbhatia&backgroundType=gradientLinear",
+      "current_streak": 23,
+      "longest_streak": 26
+    },
+    {
+      "rank": 37,
+      "user_id": "baa09c11-7266-5693-8537-4305097ca621",
+      "username": "vinaychandrasekar",
+      "full_name": "Vinay Chandrasekar",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=vinaychandrasekar&backgroundType=gradientLinear",
+      "current_streak": 23,
+      "longest_streak": 78
+    },
+    {
+      "rank": 38,
+      "user_id": "23b1640c-d87b-5429-a8b6-2cab5ba70209",
+      "username": "prathameshchavan",
+      "full_name": "Prathamesh Chavan",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=prathameshchavan&backgroundType=gradientLinear",
+      "current_streak": 23,
+      "longest_streak": 35
+    },
+    {
+      "rank": 39,
+      "user_id": "f37e1cbb-05a7-5b9f-a479-e586abcec0e8",
+      "username": "rohankapoor",
+      "full_name": "Rohan Kapoor",
+      "avatar_url": "https://api.dicebear.com/9.x/notionists-neutral/svg?seed=rohankapoor&backgroundType=gradientLinear",
+      "current_streak": 23,
+      "longest_streak": 86
+    },
+    {
+      "rank": 40,
+      "user_id": "bfff095f-78a9-564d-ba10-0696ad62f5f5",
+      "username": "deepakbhat",
+      "full_name": "Deepak Bhat",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=deepakbhat&backgroundType=gradientLinear",
+      "current_streak": 23,
+      "longest_streak": 24
+    },
+    {
+      "rank": 41,
+      "user_id": "8c66e18b-03f6-553c-960d-7debfb4f68f6",
+      "username": "sujoychatterjee",
+      "full_name": "Sujoy Chatterjee",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=sujoychatterjee&backgroundType=gradientLinear",
+      "current_streak": 23,
+      "longest_streak": 39
+    },
+    {
+      "rank": 42,
+      "user_id": "b8a4a67c-ae51-580d-9e99-f13f00c4b4d9",
+      "username": "sumitbasak",
+      "full_name": "Sumit Basak",
+      "avatar_url": "https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=sumitbasak&backgroundType=gradientLinear",
+      "current_streak": 23,
+      "longest_streak": 75
+    },
+    {
+      "rank": 43,
+      "user_id": "7fbc4762-0725-579d-b392-2f76711a8a82",
+      "username": "madhurimakundu",
+      "full_name": "Madhurima Kundu",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=madhurimakundu&backgroundType=gradientLinear",
+      "current_streak": 23,
+      "longest_streak": 106
+    },
+    {
+      "rank": 44,
+      "user_id": "b5974f00-dfef-5e8e-afef-cd49a9b528ab",
+      "username": "aishanikulkarni",
+      "full_name": "Aishani Kulkarni",
+      "avatar_url": "https://api.dicebear.com/9.x/big-smile/svg?seed=aishanikulkarni&backgroundType=gradientLinear",
+      "current_streak": 22,
+      "longest_streak": 62
+    },
+    {
+      "rank": 45,
+      "user_id": "2d047e7a-87b8-5692-bd38-7a8a22b20297",
+      "username": "devanshsood",
+      "full_name": "Devansh Sood",
+      "avatar_url": "https://api.dicebear.com/9.x/shapes/svg?seed=devanshsood&backgroundType=gradientLinear",
+      "current_streak": 22,
+      "longest_streak": 51
+    },
+    {
+      "rank": 46,
+      "user_id": "baad3092-45d3-5bb3-9565-665193bd6d0a",
+      "username": "omkargaikwad",
+      "full_name": "Omkar Gaikwad",
+      "avatar_url": "https://api.dicebear.com/9.x/thumbs/svg?seed=omkargaikwad&backgroundType=gradientLinear",
+      "current_streak": 22,
+      "longest_streak": 35
+    },
+    {
+      "rank": 47,
+      "user_id": "97aa16d2-c38f-59f5-b41e-9d50ecd06285",
+      "username": "chetanpillai",
+      "full_name": "Chetan Pillai",
+      "avatar_url": "https://api.dicebear.com/9.x/fun-emoji/svg?seed=chetanpillai&backgroundType=gradientLinear",
+      "current_streak": 22,
+      "longest_streak": 59
+    },
+    {
+      "rank": 48,
+      "user_id": "17b28011-ee5e-52dc-ab2d-078cf415d690",
+      "username": "vedantranade",
+      "full_name": "Vedant Ranade",
+      "avatar_url": "https://api.dicebear.com/9.x/avataaars-neutral/svg?seed=vedantranade&backgroundType=gradientLinear",
+      "current_streak": 22,
+      "longest_streak": 67
+    },
+    {
+      "rank": 49,
+      "user_id": "ab14d58b-89e9-5bd8-9990-459d7a45e4e9",
+      "username": "ojasmhatre",
+      "full_name": "Ojas Mhatre",
+      "avatar_url": "https://api.dicebear.com/9.x/personas/svg?seed=ojasmhatre&backgroundType=gradientLinear",
+      "current_streak": 22,
+      "longest_streak": 78
+    },
+    {
+      "rank": 50,
+      "user_id": "4c769715-558b-5285-9973-4bb603e2f1b0",
+      "username": "saikatnandi",
+      "full_name": "Saikat Nandi",
+      "avatar_url": "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=saikatnandi&backgroundType=gradientLinear",
+      "current_streak": 22,
+      "longest_streak": 94
+    }
+  ]
+}

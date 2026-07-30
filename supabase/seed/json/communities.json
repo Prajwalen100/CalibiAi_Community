@@ -1,0 +1,202 @@
+[
+  {
+    "id": "cd09057b-2e00-5008-bf82-60f795f093e4",
+    "slug": "general-ai",
+    "name": "General AI",
+    "emoji": "🤖",
+    "description": "Everything about artificial intelligence — news, trends, and open discussions.",
+    "banner_url": "/storage/community-banners/general-ai.png",
+    "cover_color": "#1f8fff",
+    "sort_order": 1
+  },
+  {
+    "id": "ef39291b-3d75-5436-9532-9681f6b38c38",
+    "slug": "prompt-engineering",
+    "name": "Prompt Engineering",
+    "emoji": "🧠",
+    "description": "Master the art and science of prompting LLMs effectively.",
+    "banner_url": "/storage/community-banners/prompt-engineering.png",
+    "cover_color": "#f45f8a",
+    "sort_order": 2
+  },
+  {
+    "id": "bc5889d4-b624-565d-a5e3-c19e37ebd2d4",
+    "slug": "llms",
+    "name": "LLMs",
+    "emoji": "🦜",
+    "description": "Large Language Models — GPT, Claude, Gemini, Llama, Mistral and more.",
+    "banner_url": "/storage/community-banners/llms.png",
+    "cover_color": "#8b5cf6",
+    "sort_order": 3
+  },
+  {
+    "id": "d2461814-a1b4-5d0c-aa4b-0cb78f318d7a",
+    "slug": "rag",
+    "name": "RAG",
+    "emoji": "📚",
+    "description": "Retrieval-Augmented Generation patterns, tools, and best practices.",
+    "banner_url": "/storage/community-banners/rag.png",
+    "cover_color": "#22c55e",
+    "sort_order": 4
+  },
+  {
+    "id": "4e3de4cf-4eb8-598d-8142-bbcc14d9b202",
+    "slug": "ai-agents",
+    "name": "AI Agents",
+    "emoji": "🕹️",
+    "description": "Autonomous AI agents, LangGraph, CrewAI, AutoGen and frameworks.",
+    "banner_url": "/storage/community-banners/ai-agents.png",
+    "cover_color": "#eab308",
+    "sort_order": 5
+  },
+  {
+    "id": "3f1a1f30-af94-55b7-9c8b-07689768982e",
+    "slug": "mcp",
+    "name": "MCP",
+    "emoji": "🔌",
+    "description": "Model Context Protocol — standards, tools, and integrations.",
+    "banner_url": "/storage/community-banners/mcp.png",
+    "cover_color": "#f97316",
+    "sort_order": 6
+  },
+  {
+    "id": "a231fb57-c92c-5df8-82f7-228f4f45a8e0",
+    "slug": "langgraph",
+    "name": "LangGraph",
+    "emoji": "🕸️",
+    "description": "Graph-based orchestration for stateful, tool-using agents.",
+    "banner_url": "/storage/community-banners/langgraph.png",
+    "cover_color": "#06b6d4",
+    "sort_order": 7
+  },
+  {
+    "id": "5beb3241-b2c7-5c2e-aa18-6406082369f5",
+    "slug": "crewai",
+    "name": "CrewAI",
+    "emoji": "🧑‍🤝‍🧑",
+    "description": "Role-based multi-agent teams that ship real work.",
+    "banner_url": "/storage/community-banners/crewai.png",
+    "cover_color": "#a855f7",
+    "sort_order": 8
+  },
+  {
+    "id": "72fe25a8-5002-54ef-ab07-5a0e27bb17f8",
+    "slug": "n8n",
+    "name": "n8n",
+    "emoji": "⚡",
+    "description": "Low-code AI automations, workflows and integrations.",
+    "banner_url": "/storage/community-banners/n8n.png",
+    "cover_color": "#10b981",
+    "sort_order": 9
+  },
+  {
+    "id": "2916b543-829f-55f6-af95-472e196f6ff8",
+    "slug": "make",
+    "name": "Make (Integromat)",
+    "emoji": "🧩",
+    "description": "Visual automation and AI workflows on Make.",
+    "banner_url": "/storage/community-banners/make.png",
+    "cover_color": "#ef4444",
+    "sort_order": 10
+  },
+  {
+    "id": "5d5ca41b-f1b4-5c09-b441-6aaaa4c3c45d",
+    "slug": "python",
+    "name": "Python",
+    "emoji": "🐍",
+    "description": "Python for AI development — libraries, tips, and projects.",
+    "banner_url": "/storage/community-banners/python.png",
+    "cover_color": "#1f8fff",
+    "sort_order": 11
+  },
+  {
+    "id": "cacd79c0-29ad-5054-844e-94574a2dd70d",
+    "slug": "deep-learning",
+    "name": "Deep Learning",
+    "emoji": "🧬",
+    "description": "Neural nets, transformers, training tricks and papers.",
+    "banner_url": "/storage/community-banners/deep-learning.png",
+    "cover_color": "#f45f8a",
+    "sort_order": 12
+  },
+  {
+    "id": "87cc79bc-7b47-5fba-a44b-d984288111f2",
+    "slug": "machine-learning",
+    "name": "Machine Learning",
+    "emoji": "📈",
+    "description": "Classical ML, feature engineering, and applied problems.",
+    "banner_url": "/storage/community-banners/machine-learning.png",
+    "cover_color": "#8b5cf6",
+    "sort_order": 13
+  },
+  {
+    "id": "be46ad5f-9d16-50ac-8990-947aa0555782",
+    "slug": "computer-vision",
+    "name": "Computer Vision",
+    "emoji": "👁️",
+    "description": "Vision models, YOLO, CLIP, segmentation and OCR.",
+    "banner_url": "/storage/community-banners/computer-vision.png",
+    "cover_color": "#22c55e",
+    "sort_order": 14
+  },
+  {
+    "id": "0eb8dd37-2b34-56d4-bcdb-3c21311fa7a5",
+    "slug": "openai",
+    "name": "OpenAI",
+    "emoji": "🟢",
+    "description": "GPT-4o, Realtime, function calling, Assistants API tips.",
+    "banner_url": "/storage/community-banners/openai.png",
+    "cover_color": "#eab308",
+    "sort_order": 15
+  },
+  {
+    "id": "ca9fa564-89d3-5dc0-8bf4-5c2c91a927c0",
+    "slug": "claude",
+    "name": "Claude",
+    "emoji": "🟣",
+    "description": "Anthropic Claude — long context, tool use, and best prompts.",
+    "banner_url": "/storage/community-banners/claude.png",
+    "cover_color": "#f97316",
+    "sort_order": 16
+  },
+  {
+    "id": "bbaa6298-6293-5fae-9cb7-04ca25018b52",
+    "slug": "gemini",
+    "name": "Gemini",
+    "emoji": "🔷",
+    "description": "Google Gemini models, Vertex AI and Google Cloud AI.",
+    "banner_url": "/storage/community-banners/gemini.png",
+    "cover_color": "#06b6d4",
+    "sort_order": 17
+  },
+  {
+    "id": "bf35d528-fbe2-5152-8c78-170c1ea2f788",
+    "slug": "mistral",
+    "name": "Mistral",
+    "emoji": "🟠",
+    "description": "Mistral open models, fine-tuning and deployments.",
+    "banner_url": "/storage/community-banners/mistral.png",
+    "cover_color": "#a855f7",
+    "sort_order": 18
+  },
+  {
+    "id": "0e88206f-12d7-5ba0-9138-c8c8d6bda5d7",
+    "slug": "vector-databases",
+    "name": "Vector Databases",
+    "emoji": "🧭",
+    "description": "Pinecone, Weaviate, Qdrant, pgvector — indexes and tuning.",
+    "banner_url": "/storage/community-banners/vector-databases.png",
+    "cover_color": "#10b981",
+    "sort_order": 19
+  },
+  {
+    "id": "89bc4550-fa74-588a-9deb-86d1c190df3f",
+    "slug": "hugging-face",
+    "name": "Hugging Face",
+    "emoji": "🤗",
+    "description": "Transformers, datasets, spaces and open-source models.",
+    "banner_url": "/storage/community-banners/hugging-face.png",
+    "cover_color": "#ef4444",
+    "sort_order": 20
+  }
+]

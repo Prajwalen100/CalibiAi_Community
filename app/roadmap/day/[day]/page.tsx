@@ -28,6 +28,7 @@ import {
   getRoadmapDayAccess,
   ROADMAP_PROGRESS_LOCK_COLUMNS,
 } from "@/lib/learning/day-access";
+import { ArticleReadBeacon } from "./article-read-beacon";
 
 export const dynamic = "force-dynamic";
 
@@ -134,6 +135,87 @@ export default async function DayPage({
       .eq("user_id", user.id)
       .eq("day", dayNumber);
   }
+
+  // Resolve the active roadmap assignment so we can look up per-day
+  // submission state. This is a cheap query — the (user_id, role,
+  // status) index makes it O(1).
+  const { data: activeAssignment } = await supabase
+    .from("user_roadmaps")
+    .select("id")
+    .eq("user_id", user.id)
+    .eq("status", "active")
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  // Pull every "done vs. not done" signal for this day in a single hop:
+  //   * per-task awards (score + submitted flag)
+  //   * quiz completion (score)
+  //   * article read
+  //
+  // The three queries are fired in parallel and default to `null` when
+  // the tables have no row yet, so `.maybeSingle()` never throws.
+  const [taskAwardsResult, quizResult, articleResult] = await Promise.all([
+    activeAssignment
+      ? supabase
+          .from("roadmap_task_awards")
+          .select("task_type,best_score,submitted,submitted_at")
+          .eq("user_roadmap_id", activeAssignment.id)
+          .eq("day", dayNumber)
+      : Promise.resolve({ data: null, error: null } as const),
+    activeAssignment
+      ? supabase
+          .from("roadmap_quiz_completions")
+          .select("best_score,submitted_at")
+          .eq("user_roadmap_id", activeAssignment.id)
+          .eq("day", dayNumber)
+          .maybeSingle()
+      : Promise.resolve({ data: null, error: null } as const),
+    activeAssignment
+      ? supabase
+          .from("roadmap_article_reads")
+          .select("read_at")
+          .eq("user_roadmap_id", activeAssignment.id)
+          .eq("day", dayNumber)
+          .maybeSingle()
+      : Promise.resolve({ data: null, error: null } as const),
+  ]);
+
+  type TaskAwardRow = {
+    task_type: "practical_task" | "mini_project" | "assignment";
+    best_score: number | null;
+    submitted: boolean | null;
+    submitted_at: string | null;
+  };
+  const taskAwards: TaskAwardRow[] = (taskAwardsResult.data as TaskAwardRow[] | null) ?? [];
+  const taskState = (taskType: TaskAwardRow["task_type"]) => {
+    const row = taskAwards.find((r) => r.task_type === taskType);
+    return {
+      submitted: Boolean(row?.submitted),
+      score: row?.best_score ?? null,
+    };
+  };
+  const practicalState = taskState("practical_task");
+  const miniProjectState = taskState("mini_project");
+  const assignmentState = taskState("assignment");
+  const quizState = {
+    submitted: Boolean(quizResult.data),
+    score: quizResult.data?.best_score ?? null,
+  };
+  const articleReadState = { read: Boolean(articleResult.data) };
+
+  // Every present requirement must be satisfied before the day can be
+  // marked complete. A day that does not include (say) a mini project
+  // simply drops that requirement — the gate stays honest for every
+  // shape of day defined in the curriculum.
+  const requirements = [
+    currentDay?.practical_task ? practicalState.submitted : true,
+    currentDay?.mini_project ? miniProjectState.submitted : true,
+    currentDay?.assignment ? assignmentState.submitted : true,
+    currentDay?.has_quiz ? quizState.submitted : true,
+    articleReadState.read, // article link is present on every day
+  ];
+  const canMarkComplete = requirements.every(Boolean);
 
   return (
     <section className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
@@ -258,53 +340,41 @@ export default async function DayPage({
 
       {/* Practical Task */}
       {currentDay?.practical_task && (
-        <div className="mt-6 rounded-2xl border border-brand-200 bg-brand-50 p-5 dark:border-brand-800 dark:bg-brand-950/20">
-          <h2 className="flex items-center gap-2 text-lg font-bold text-brand-700 dark:text-brand-300">
-            <PlayCircle className="h-5 w-5" />
-            Practical Task
-          </h2>
-          <p className="mt-2 text-slate-700 dark:text-slate-300">{currentDay.practical_task}</p>
-          <Link
-            href={`/assessment/task?type=practical_task&day=${dayNumber}`}
-            className="btn-secondary mt-3 inline-flex items-center gap-2"
-          >
-            <Sparkles className="h-4 w-4" /> Open AI Assessment
-          </Link>
-        </div>
+        <TaskCard
+          kind="practical_task"
+          title="Practical Task"
+          description={currentDay.practical_task}
+          submitted={practicalState.submitted}
+          score={practicalState.score}
+          dayNumber={dayNumber}
+          accent="brand"
+        />
       )}
 
       {/* Mini Project */}
       {currentDay?.mini_project && (
-        <div className="mt-4 rounded-2xl border border-purple-200 bg-purple-50 p-5 dark:border-purple-900 dark:bg-purple-950/20">
-          <h2 className="flex items-center gap-2 text-lg font-bold text-purple-700 dark:text-purple-300">
-            <ExternalLink className="h-5 w-5" />
-            Mini Project
-          </h2>
-          <p className="mt-2 text-slate-700 dark:text-slate-300">{currentDay.mini_project}</p>
-          <Link
-            href={`/assessment/task?type=mini_project&day=${dayNumber}`}
-            className="btn-secondary mt-3 inline-flex items-center gap-2"
-          >
-            <Sparkles className="h-4 w-4" /> Submit Project for AI Review
-          </Link>
-        </div>
+        <TaskCard
+          kind="mini_project"
+          title="Mini Project"
+          description={currentDay.mini_project}
+          submitted={miniProjectState.submitted}
+          score={miniProjectState.score}
+          dayNumber={dayNumber}
+          accent="purple"
+        />
       )}
 
       {/* Assignment */}
       {currentDay?.assignment && (
-        <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-5 dark:border-amber-900 dark:bg-amber-950/20">
-          <h2 className="flex items-center gap-2 text-lg font-bold text-amber-700 dark:text-amber-300">
-            <FileText className="h-5 w-5" />
-            Assignment
-          </h2>
-          <p className="mt-2 text-slate-700 dark:text-slate-300">{currentDay.assignment}</p>
-          <Link
-            href={`/assessment/task?type=assignment&day=${dayNumber}`}
-            className="btn-secondary mt-3 inline-flex items-center gap-2"
-          >
-            <Sparkles className="h-4 w-4" /> Submit Assignment for AI Review
-          </Link>
-        </div>
+        <TaskCard
+          kind="assignment"
+          title="Assignment"
+          description={currentDay.assignment}
+          submitted={assignmentState.submitted}
+          score={assignmentState.score}
+          dayNumber={dayNumber}
+          accent="amber"
+        />
       )}
 
       {/* Resources */}
@@ -370,36 +440,19 @@ export default async function DayPage({
       )}
 
       {/* Detailed Article Link */}
-      <div className="mt-6 rounded-2xl border border-violet-200 bg-violet-50 p-5 dark:border-violet-900 dark:bg-violet-950/20">
-        <h2 className="flex items-center gap-2 text-lg font-bold text-violet-700 dark:text-violet-300">
-          <BookOpen className="h-5 w-5" />
-          Detailed Article for This Day
-        </h2>
-        <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-          Read the full 500-600 word article covering theory, real-world application, common pitfalls, and assessment notes.
-        </p>
-        <Link
-          href={`/articles/${getArticleSlug(plan?.roadmap?.role, plan?.roadmap?.level, dayNumber)}`}
-          className="btn-primary mt-3 inline-flex items-center gap-2"
-        >
-          Read Detailed Article <ExternalLink className="h-4 w-4" />
-        </Link>
-      </div>
+      <ArticleCard
+        articleHref={`/articles/${getArticleSlug(plan?.roadmap?.role, plan?.roadmap?.level, dayNumber)}`}
+        dayNumber={dayNumber}
+        alreadyRead={articleReadState.read}
+      />
 
       {/* Quiz Notice */}
       {currentDay?.has_quiz && (
-        <div className="mt-6 rounded-2xl border border-indigo-200 bg-indigo-50 p-5 dark:border-indigo-900 dark:bg-indigo-950/20">
-          <h2 className="flex items-center gap-2 text-lg font-bold text-indigo-700 dark:text-indigo-300">
-            <CheckCircle2 className="h-5 w-5" />
-            Quiz Available
-          </h2>
-          <p className="mt-2 text-slate-700 dark:text-slate-300">
-            Test your knowledge with the quiz at the end of this day&apos;s learning.
-          </p>
-          <Link href={`/quiz/${dayNumber}`} className="btn-primary mt-3">
-            Take Quiz
-          </Link>
-        </div>
+        <QuizCard
+          dayNumber={dayNumber}
+          submitted={quizState.submitted}
+          score={quizState.score}
+        />
       )}
 
       {/* Navigation Footer */}
@@ -416,47 +469,30 @@ export default async function DayPage({
           <div />
         )}
         
-        <div className="flex gap-2">
+        <div className="flex flex-col items-end gap-2 sm:flex-row sm:items-center">
           {!isCompleted && (
-            <form action={async () => {
-              "use server";
-              const supabase = await createServerSupabaseClient();
-              const { data: { user } } = await supabase.auth.getUser();
-              if (user) {
-                // Re-check the lock on submit: a server action can be invoked
-                // directly, so the button being hidden is not enough.
-                const access = await getRoadmapDayAccess(supabase, user.id, dayNumber);
-                if (access.isLocked) return;
-
-                const now = new Date();
-                await supabase
-                  .from("roadmap_progress")
-                  .update({ status: "completed", completed_at: now.toISOString() })
-                  .eq("user_id", user.id)
-                  .eq("day", dayNumber);
-
-                if (dayNumber < totalDays) {
-                  const nextMidnight = getNextMidnightUTC(now);
-                  await supabase
-                    .from("roadmap_progress")
-                    .update({
-                      status: "locked",
-                      unlock_at: nextMidnight.toISOString(),
-                    })
-                    .eq("user_id", user.id)
-                    .eq("day", dayNumber + 1)
-                    .neq("status", "completed");
-                }
-              }
-            }}>
-              <button type="submit" className="btn-primary">
-                Mark Complete ✓
-              </button>
-            </form>
+            <MarkCompleteForm
+              dayNumber={dayNumber}
+              totalDays={totalDays}
+              canMarkComplete={canMarkComplete}
+              requirements={{
+                practical: currentDay?.practical_task
+                  ? practicalState.submitted
+                  : null,
+                miniProject: currentDay?.mini_project
+                  ? miniProjectState.submitted
+                  : null,
+                assignment: currentDay?.assignment
+                  ? assignmentState.submitted
+                  : null,
+                quiz: currentDay?.has_quiz ? quizState.submitted : null,
+                article: articleReadState.read,
+              }}
+            />
           )}
 
           {nextDay && (
-            <Link 
+            <Link
               href={`/roadmap/day/${nextDay.day}`}
               className="btn-secondary flex items-center gap-2"
             >
@@ -468,6 +504,397 @@ export default async function DayPage({
       </div>
     </section>
   );
+}
+
+// -------------------------------------------------------------------------
+// Task / article / quiz cards
+// -------------------------------------------------------------------------
+
+const ACCENTS = {
+  brand: {
+    border: "border-brand-200 dark:border-brand-800",
+    background: "bg-brand-50 dark:bg-brand-950/20",
+    title: "text-brand-700 dark:text-brand-300",
+    icon: PlayCircle,
+  },
+  purple: {
+    border: "border-purple-200 dark:border-purple-900",
+    background: "bg-purple-50 dark:bg-purple-950/20",
+    title: "text-purple-700 dark:text-purple-300",
+    icon: ExternalLink,
+  },
+  amber: {
+    border: "border-amber-200 dark:border-amber-900",
+    background: "bg-amber-50 dark:bg-amber-950/20",
+    title: "text-amber-700 dark:text-amber-300",
+    icon: FileText,
+  },
+} as const;
+
+type Accent = keyof typeof ACCENTS;
+
+function TaskCard({
+  kind,
+  title,
+  description,
+  submitted,
+  score,
+  dayNumber,
+  accent,
+}: {
+  kind: "practical_task" | "mini_project" | "assignment";
+  title: string;
+  description: string;
+  submitted: boolean;
+  score: number | null;
+  dayNumber: number;
+  accent: Accent;
+}) {
+  const style = ACCENTS[accent];
+  const Icon = style.icon;
+  return (
+    <div
+      className={`mt-4 rounded-2xl border p-5 ${
+        submitted
+          ? "border-emerald-300 bg-emerald-50 dark:border-emerald-900 dark:bg-emerald-950/20"
+          : `${style.border} ${style.background}`
+      }`}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <h2
+          className={`flex items-center gap-2 text-lg font-bold ${
+            submitted ? "text-emerald-700 dark:text-emerald-300" : style.title
+          }`}
+        >
+          <Icon className="h-5 w-5" />
+          {title}
+        </h2>
+        {submitted && (
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-3 py-1 text-xs font-black text-white shadow-sm">
+            <CheckCircle2 className="h-3.5 w-3.5" />
+            Submitted{typeof score === "number" ? ` • ${score}/100` : ""}
+          </span>
+        )}
+      </div>
+      <p className="mt-2 text-slate-700 dark:text-slate-300">{description}</p>
+
+      {submitted ? (
+        <div className="mt-3 flex flex-wrap items-center gap-3 text-sm">
+          <Link
+            href={`/assessment/task?type=${kind}&day=${dayNumber}`}
+            className="btn-secondary inline-flex items-center gap-2"
+          >
+            <Sparkles className="h-4 w-4" /> View AI Review
+          </Link>
+          <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-300">
+            You can only submit this once — resubmission is disabled.
+          </span>
+        </div>
+      ) : (
+        <Link
+          href={`/assessment/task?type=${kind}&day=${dayNumber}`}
+          className="btn-secondary mt-3 inline-flex items-center gap-2"
+        >
+          <Sparkles className="h-4 w-4" />
+          {kind === "practical_task"
+            ? "Open AI Assessment"
+            : kind === "mini_project"
+              ? "Submit Project for AI Review"
+              : "Submit Assignment for AI Review"}
+        </Link>
+      )}
+    </div>
+  );
+}
+
+function ArticleCard({
+  articleHref,
+  dayNumber,
+  alreadyRead,
+}: {
+  articleHref: string;
+  dayNumber: number;
+  alreadyRead: boolean;
+}) {
+  return (
+    <div
+      className={`mt-6 rounded-2xl border p-5 ${
+        alreadyRead
+          ? "border-emerald-300 bg-emerald-50 dark:border-emerald-900 dark:bg-emerald-950/20"
+          : "border-violet-200 bg-violet-50 dark:border-violet-900 dark:bg-violet-950/20"
+      }`}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <h2
+          className={`flex items-center gap-2 text-lg font-bold ${
+            alreadyRead
+              ? "text-emerald-700 dark:text-emerald-300"
+              : "text-violet-700 dark:text-violet-300"
+          }`}
+        >
+          <BookOpen className="h-5 w-5" />
+          Detailed Article for This Day
+        </h2>
+        {alreadyRead && (
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-3 py-1 text-xs font-black text-white shadow-sm">
+            <CheckCircle2 className="h-3.5 w-3.5" />
+            Read
+          </span>
+        )}
+      </div>
+      <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
+        Read the full 500-600 word article covering theory, real-world application, common pitfalls, and assessment notes.
+      </p>
+      <ArticleReadLink
+        articleHref={articleHref}
+        dayNumber={dayNumber}
+        alreadyRead={alreadyRead}
+      />
+    </div>
+  );
+}
+
+function QuizCard({
+  dayNumber,
+  submitted,
+  score,
+}: {
+  dayNumber: number;
+  submitted: boolean;
+  score: number | null;
+}) {
+  return (
+    <div
+      className={`mt-6 rounded-2xl border p-5 ${
+        submitted
+          ? "border-emerald-300 bg-emerald-50 dark:border-emerald-900 dark:bg-emerald-950/20"
+          : "border-indigo-200 bg-indigo-50 dark:border-indigo-900 dark:bg-indigo-950/20"
+      }`}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <h2
+          className={`flex items-center gap-2 text-lg font-bold ${
+            submitted
+              ? "text-emerald-700 dark:text-emerald-300"
+              : "text-indigo-700 dark:text-indigo-300"
+          }`}
+        >
+          <CheckCircle2 className="h-5 w-5" />
+          {submitted ? "Quiz Completed" : "Quiz Available"}
+        </h2>
+        {submitted && (
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-3 py-1 text-xs font-black text-white shadow-sm">
+            Score {typeof score === "number" ? `${score}/100` : "saved"}
+          </span>
+        )}
+      </div>
+      <p className="mt-2 text-slate-700 dark:text-slate-300">
+        {submitted
+          ? "Your quiz score is locked in for this day. Retakes are disabled to keep the leaderboard fair."
+          : "Test your knowledge with the quiz at the end of this day's learning."}
+      </p>
+      {!submitted && (
+        <Link href={`/quiz/${dayNumber}`} className="btn-primary mt-3">
+          Take Quiz
+        </Link>
+      )}
+    </div>
+  );
+}
+
+/**
+ * The "Read Detailed Article" button also records the read via a small
+ * beacon so the day page's Mark Complete gate can flip on. It's a
+ * client component because `navigator.sendBeacon` needs the browser —
+ * but it degrades gracefully to a normal link if beacons are blocked.
+ */
+function ArticleReadLink({
+  articleHref,
+  dayNumber,
+  alreadyRead,
+}: {
+  articleHref: string;
+  dayNumber: number;
+  alreadyRead: boolean;
+}) {
+  // We render the same <Link> markup on server and client; the beacon
+  // fires from a small client-only helper.
+  return (
+    <>
+      <Link
+        href={articleHref}
+        className="btn-primary mt-3 inline-flex items-center gap-2"
+        data-role="article-read-link"
+        data-day={dayNumber}
+        prefetch={false}
+      >
+        {alreadyRead ? "Reopen Detailed Article" : "Read Detailed Article"}{" "}
+        <ExternalLink className="h-4 w-4" />
+      </Link>
+      <ArticleReadBeacon dayNumber={dayNumber} />
+    </>
+  );
+}
+
+// -------------------------------------------------------------------------
+// Mark Complete
+// -------------------------------------------------------------------------
+
+function MarkCompleteForm({
+  dayNumber,
+  totalDays,
+  canMarkComplete,
+  requirements,
+}: {
+  dayNumber: number;
+  totalDays: number;
+  canMarkComplete: boolean;
+  requirements: {
+    practical: boolean | null;
+    miniProject: boolean | null;
+    assignment: boolean | null;
+    quiz: boolean | null;
+    article: boolean;
+  };
+}) {
+  const missing: string[] = [];
+  if (requirements.practical === false) missing.push("Practical Task");
+  if (requirements.miniProject === false) missing.push("Mini Project");
+  if (requirements.assignment === false) missing.push("Assignment");
+  if (requirements.quiz === false) missing.push("Quiz");
+  if (!requirements.article) missing.push("Detailed Article");
+
+  return (
+    <form
+      className="flex flex-col items-end gap-1"
+      action={async () => {
+        "use server";
+        const supabase = await createServerSupabaseClient();
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+        if (!user) return;
+
+        // Re-run the gate on the server so a malicious client can't POST
+        // this action with the button hidden.
+        const access = await getRoadmapDayAccess(supabase, user.id, dayNumber);
+        if (access.isLocked) return;
+
+        const gate = await isDayReadyForCompletion(supabase, user.id, dayNumber);
+        if (!gate.ready) return;
+
+        const now = new Date();
+        await supabase
+          .from("roadmap_progress")
+          .update({ status: "completed", completed_at: now.toISOString() })
+          .eq("user_id", user.id)
+          .eq("day", dayNumber);
+
+        if (dayNumber < totalDays) {
+          const nextMidnight = getNextMidnightUTC(now);
+          await supabase
+            .from("roadmap_progress")
+            .update({
+              status: "locked",
+              unlock_at: nextMidnight.toISOString(),
+            })
+            .eq("user_id", user.id)
+            .eq("day", dayNumber + 1)
+            .neq("status", "completed");
+        }
+      }}
+    >
+      <button
+        type="submit"
+        disabled={!canMarkComplete}
+        className={`btn-primary ${
+          canMarkComplete
+            ? ""
+            : "cursor-not-allowed opacity-50 hover:!bg-brand-600"
+        }`}
+        title={
+          canMarkComplete
+            ? "Mark this day complete and unlock tomorrow"
+            : `Finish: ${missing.join(", ")}`
+        }
+      >
+        Mark Complete ✓
+      </button>
+      {!canMarkComplete && missing.length > 0 && (
+        <p className="max-w-xs text-right text-xs font-semibold text-amber-700 dark:text-amber-400">
+          Finish {missing.join(", ")} first.
+        </p>
+      )}
+    </form>
+  );
+}
+
+/**
+ * Server-side re-check of the completion gate. Mirrors the client-side
+ * requirement calculation so the "Mark Complete" server action refuses
+ * to run when a task, quiz or article read is still missing.
+ */
+async function isDayReadyForCompletion(
+  supabase: Awaited<ReturnType<typeof createServerSupabaseClient>>,
+  userId: string,
+  dayNumber: number,
+): Promise<{ ready: boolean; missing: string[] }> {
+  const { data: roadmap } = await supabase
+    .from("roadmaps")
+    .select("generated_plan")
+    .eq("user_id", userId)
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  const plan = roadmap?.generated_plan as StoredRoadmap | undefined;
+  const dayDef = plan?.days?.find((d) => d.day === dayNumber);
+  if (!dayDef) return { ready: false, missing: ["day"] };
+
+  const { data: activeAssignment } = await supabase
+    .from("user_roadmaps")
+    .select("id")
+    .eq("user_id", userId)
+    .eq("status", "active")
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  if (!activeAssignment) return { ready: false, missing: ["roadmap"] };
+
+  const [awardsRes, quizRes, articleRes] = await Promise.all([
+    supabase
+      .from("roadmap_task_awards")
+      .select("task_type,submitted")
+      .eq("user_roadmap_id", activeAssignment.id)
+      .eq("day", dayNumber),
+    supabase
+      .from("roadmap_quiz_completions")
+      .select("id")
+      .eq("user_roadmap_id", activeAssignment.id)
+      .eq("day", dayNumber)
+      .maybeSingle(),
+    supabase
+      .from("roadmap_article_reads")
+      .select("id")
+      .eq("user_roadmap_id", activeAssignment.id)
+      .eq("day", dayNumber)
+      .maybeSingle(),
+  ]);
+
+  const awards = ((awardsRes.data ?? []) as Array<{
+    task_type: string;
+    submitted: boolean;
+  }>).reduce<Record<string, boolean>>((acc, row) => {
+    acc[row.task_type] = row.submitted;
+    return acc;
+  }, {});
+
+  const missing: string[] = [];
+  if (dayDef.practical_task && !awards.practical_task) missing.push("practical_task");
+  if (dayDef.mini_project && !awards.mini_project) missing.push("mini_project");
+  if (dayDef.assignment && !awards.assignment) missing.push("assignment");
+  if (dayDef.has_quiz && !quizRes.data) missing.push("quiz");
+  if (!articleRes.data) missing.push("article");
+  return { ready: missing.length === 0, missing };
 }
 
 /**

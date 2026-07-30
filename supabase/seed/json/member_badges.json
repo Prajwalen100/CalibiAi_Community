@@ -1,0 +1,1184 @@
+[
+  {
+    "id": "77633633-b8d7-5313-b8d7-cfc91f2ee93d",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "badge_slug": "community-helper",
+    "awarded_at": "2025-09-29T22:31:00+00:00"
+  },
+  {
+    "id": "820d446f-8016-5313-95b8-50ddcb728d3d",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "badge_slug": "hackathon-winner",
+    "awarded_at": "2026-01-25T13:55:00+00:00"
+  },
+  {
+    "id": "ede52c8c-9744-560d-9247-af734c1c2e80",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-02-21T14:31:00+00:00"
+  },
+  {
+    "id": "3b16cd43-ade6-53ff-9cdd-4f9d47e3c557",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-01-13T18:22:00+00:00"
+  },
+  {
+    "id": "ae3295e7-9256-566c-9d8f-1dd8d9424667",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-05-31T05:36:00+00:00"
+  },
+  {
+    "id": "182ca09c-0333-57c2-ba22-9929e71c43f7",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "badge_slug": "community-helper",
+    "awarded_at": "2025-12-08T06:35:00+00:00"
+  },
+  {
+    "id": "7fdcfb6d-44b5-5151-a93b-0f5728bdfadf",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-01-15T10:42:00+00:00"
+  },
+  {
+    "id": "e989eafb-e775-52aa-97da-6dad9985044e",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "badge_slug": "community-helper",
+    "awarded_at": "2025-12-31T07:16:00+00:00"
+  },
+  {
+    "id": "9bfdef7a-be5e-5bd7-a5c4-5adcce044592",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-02-05T07:22:00+00:00"
+  },
+  {
+    "id": "85732c69-630c-540b-813a-534fc70c2ffd",
+    "user_id": "3d3d5d91-00a7-5d80-a177-8a8d92e0bfb0",
+    "badge_slug": "hackathon-winner",
+    "awarded_at": "2025-11-11T01:38:00+00:00"
+  },
+  {
+    "id": "a6167749-9323-5e51-94b1-37a0e43e6c07",
+    "user_id": "7799f933-dd75-5642-9861-900dcaac763a",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2026-02-02T11:48:00+00:00"
+  },
+  {
+    "id": "0ee239f4-fa72-5873-8b79-36a1c9043145",
+    "user_id": "af9525f1-b596-5f85-bd56-9554ce61247a",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-10-30T11:24:00+00:00"
+  },
+  {
+    "id": "ea0a91e9-885b-5528-a6b3-aadcbe56a766",
+    "user_id": "79813ad0-f39b-5b63-b112-fec51ccfd284",
+    "badge_slug": "production-ready",
+    "awarded_at": "2026-10-27T20:08:00+00:00"
+  },
+  {
+    "id": "f8ccdb19-0d12-570f-9575-dbca8a621b97",
+    "user_id": "79813ad0-f39b-5b63-b112-fec51ccfd284",
+    "badge_slug": "ai-builder",
+    "awarded_at": "2026-10-08T18:08:00+00:00"
+  },
+  {
+    "id": "89e82191-06d8-5b01-9673-f7779b437f42",
+    "user_id": "43408700-d8d5-52ae-a6f3-3e27bbf6ddf4",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2026-11-17T00:02:00+00:00"
+  },
+  {
+    "id": "4ab46324-3e20-54b4-b33e-77cd246d15a5",
+    "user_id": "66be353e-9630-504e-8bea-f39ff2e4d638",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2026-09-09T20:04:00+00:00"
+  },
+  {
+    "id": "f77abc0c-ee8b-51b3-ab27-13665d277159",
+    "user_id": "66be353e-9630-504e-8bea-f39ff2e4d638",
+    "badge_slug": "weekly-winner",
+    "awarded_at": "2026-12-13T16:04:00+00:00"
+  },
+  {
+    "id": "bcdba11b-5b44-5577-b5ea-00ea213c5ea1",
+    "user_id": "0cc0ba65-4fdd-5319-beb6-fd9ff1e28a8e",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2026-06-09T11:03:00+00:00"
+  },
+  {
+    "id": "4c4d3ab4-ec63-513c-a7b8-604d79427bd8",
+    "user_id": "0cc0ba65-4fdd-5319-beb6-fd9ff1e28a8e",
+    "badge_slug": "top-mentor",
+    "awarded_at": "2026-05-22T06:03:00+00:00"
+  },
+  {
+    "id": "d2b07225-580b-5bb1-8d5a-7df1837a54c9",
+    "user_id": "bb2f5d58-29e3-5485-b5cf-caf7a93ee56b",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2026-05-24T15:30:00+00:00"
+  },
+  {
+    "id": "e14df6e9-a1a3-5afb-aaa5-5ebd19ea66c1",
+    "user_id": "bb2f5d58-29e3-5485-b5cf-caf7a93ee56b",
+    "badge_slug": "hackathon-winner",
+    "awarded_at": "2026-03-15T14:30:00+00:00"
+  },
+  {
+    "id": "dce35c00-5c70-5ad4-922a-32e3b09af530",
+    "user_id": "80b44ab9-aa78-5a95-b234-cc89232960c9",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2026-09-22T17:54:00+00:00"
+  },
+  {
+    "id": "3361dc04-788f-5efe-a10d-cd20569513b1",
+    "user_id": "80b44ab9-aa78-5a95-b234-cc89232960c9",
+    "badge_slug": "hackathon-winner",
+    "awarded_at": "2026-07-23T22:54:00+00:00"
+  },
+  {
+    "id": "b491e3c0-a285-52b9-8174-b7923cc7a5d1",
+    "user_id": "c006c253-c383-5f35-b9bc-b160e08f99e8",
+    "badge_slug": "community-helper",
+    "awarded_at": "2025-12-01T18:43:00+00:00"
+  },
+  {
+    "id": "bf71edb3-0fe7-5a1b-b848-af6d3a32cb06",
+    "user_id": "d363fb07-1691-57dc-88d0-2d08b84bdf53",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-08-05T05:42:00+00:00"
+  },
+  {
+    "id": "e5238bde-a8df-5527-9ef4-151935d26c19",
+    "user_id": "baa09c11-7266-5693-8537-4305097ca621",
+    "badge_slug": "community-helper",
+    "awarded_at": "2025-09-26T19:23:00+00:00"
+  },
+  {
+    "id": "6787dede-da93-51d3-936c-1e95b935e465",
+    "user_id": "46ab3c6a-5df8-5684-8d13-7ee0041b4851",
+    "badge_slug": "community-helper",
+    "awarded_at": "2025-10-16T23:04:00+00:00"
+  },
+  {
+    "id": "b5a0f1bd-3f55-5741-a400-a2f96ba5cff8",
+    "user_id": "23b1640c-d87b-5429-a8b6-2cab5ba70209",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2026-03-05T17:02:00+00:00"
+  },
+  {
+    "id": "702f507d-2b17-56f4-897e-2af34af9c3b0",
+    "user_id": "76fca80b-e05c-5707-abc2-12d796e2c2b9",
+    "badge_slug": "top-mentor",
+    "awarded_at": "2026-10-25T17:05:00+00:00"
+  },
+  {
+    "id": "4df07182-cc01-5519-b0bd-f527eb4f07e4",
+    "user_id": "f6f98726-0e0a-585c-86c6-4561d2192211",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-09-03T03:49:00+00:00"
+  },
+  {
+    "id": "09df180f-41cb-58cc-8a61-84344ad9a706",
+    "user_id": "de432219-3179-533f-b960-1c2ba0ba92bb",
+    "badge_slug": "production-ready",
+    "awarded_at": "2026-09-21T12:16:00+00:00"
+  },
+  {
+    "id": "52bb9758-c356-5cc9-99b9-96ac5b789411",
+    "user_id": "de432219-3179-533f-b960-1c2ba0ba92bb",
+    "badge_slug": "ai-builder",
+    "awarded_at": "2026-05-17T06:16:00+00:00"
+  },
+  {
+    "id": "f24a4baf-9e07-5b6b-86bc-7e5a05dba25c",
+    "user_id": "de432219-3179-533f-b960-1c2ba0ba92bb",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-06-22T13:16:00+00:00"
+  },
+  {
+    "id": "8218232e-cd25-5d5e-8f17-94fd2271a3f5",
+    "user_id": "de432219-3179-533f-b960-1c2ba0ba92bb",
+    "badge_slug": "hackathon-winner",
+    "awarded_at": "2026-11-23T23:16:00+00:00"
+  },
+  {
+    "id": "abf32c76-ccfe-5dca-ab64-2d0038b5fa36",
+    "user_id": "4deae523-8d3c-57c7-b25f-ca45ec0ff10a",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-07-23T01:26:00+00:00"
+  },
+  {
+    "id": "b0362309-2293-541e-8a73-fa52e4ef8fde",
+    "user_id": "4deae523-8d3c-57c7-b25f-ca45ec0ff10a",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2026-08-17T16:26:00+00:00"
+  },
+  {
+    "id": "f15b4d21-1897-545d-99f7-9cb1c59450dc",
+    "user_id": "8f9dd994-27bb-544c-bf7f-4078e589898d",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-08-23T01:30:00+00:00"
+  },
+  {
+    "id": "31ce5fac-efcd-5cdf-9f24-d2b74081670b",
+    "user_id": "8f9dd994-27bb-544c-bf7f-4078e589898d",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2026-08-11T01:30:00+00:00"
+  },
+  {
+    "id": "f3d1041f-c798-570d-85b5-311c97c62ee4",
+    "user_id": "c253ca58-2130-5b72-8f83-1c1a1e583882",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-11-17T22:46:00+00:00"
+  },
+  {
+    "id": "f4542564-36fb-5b30-825c-1318660babe4",
+    "user_id": "b5974f00-dfef-5e8e-afef-cd49a9b528ab",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-10-30T04:54:00+00:00"
+  },
+  {
+    "id": "bab22d33-947d-5be8-9b5a-8cb2b745558b",
+    "user_id": "d73c7cdd-3dac-5500-8b28-0a9dfefe70ce",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-05-11T06:17:00+00:00"
+  },
+  {
+    "id": "5b8c5f07-6c64-5650-8f5d-c92429b896c2",
+    "user_id": "c9687c28-4ba9-51fc-9e7e-141df7f48e24",
+    "badge_slug": "production-ready",
+    "awarded_at": "2026-05-14T06:48:00+00:00"
+  },
+  {
+    "id": "e3600c65-5892-57e5-85bc-262607a407b5",
+    "user_id": "c9687c28-4ba9-51fc-9e7e-141df7f48e24",
+    "badge_slug": "ai-builder",
+    "awarded_at": "2025-12-31T14:48:00+00:00"
+  },
+  {
+    "id": "cfefbfc7-1824-5f53-9caf-77abcb8ee8f5",
+    "user_id": "c9687c28-4ba9-51fc-9e7e-141df7f48e24",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-02-23T20:48:00+00:00"
+  },
+  {
+    "id": "313dae39-14bc-5916-9185-4edcccf511e0",
+    "user_id": "c9687c28-4ba9-51fc-9e7e-141df7f48e24",
+    "badge_slug": "weekly-winner",
+    "awarded_at": "2026-04-06T16:48:00+00:00"
+  },
+  {
+    "id": "c8de8dfc-fc8e-526f-9ad7-75896c310096",
+    "user_id": "c9687c28-4ba9-51fc-9e7e-141df7f48e24",
+    "badge_slug": "top-mentor",
+    "awarded_at": "2026-01-20T00:48:00+00:00"
+  },
+  {
+    "id": "cd480c45-3088-51e0-8feb-01dd169199ae",
+    "user_id": "1d6df707-0dc1-5eeb-8f88-a1c145d99916",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-03-18T22:15:00+00:00"
+  },
+  {
+    "id": "d136dccf-def8-5475-8976-1f096422825d",
+    "user_id": "7c625956-24aa-50a1-ac48-ad5045cb94b2",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2026-07-24T18:00:00+00:00"
+  },
+  {
+    "id": "7dddd3c7-0c24-58b9-aa79-2b8ce919a1d8",
+    "user_id": "4eaf9112-008b-536a-aa2d-ee68fe01aa96",
+    "badge_slug": "production-ready",
+    "awarded_at": "2026-06-13T21:03:00+00:00"
+  },
+  {
+    "id": "e5e50b64-0d1c-5a3f-bd06-1494b08c3854",
+    "user_id": "4eaf9112-008b-536a-aa2d-ee68fe01aa96",
+    "badge_slug": "ai-builder",
+    "awarded_at": "2026-05-20T10:03:00+00:00"
+  },
+  {
+    "id": "30121ff4-f10b-5a9c-b02c-4579c54dc761",
+    "user_id": "4eaf9112-008b-536a-aa2d-ee68fe01aa96",
+    "badge_slug": "top-mentor",
+    "awarded_at": "2026-07-26T23:03:00+00:00"
+  },
+  {
+    "id": "1162c19f-9a16-59b3-8ea3-d81bbb53c843",
+    "user_id": "463409ee-b6af-560d-b3bb-7400c5345db6",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-01-15T22:55:00+00:00"
+  },
+  {
+    "id": "602eace9-ac99-5728-bac5-12683c58aaeb",
+    "user_id": "7e1386f5-6df1-5e61-a674-2b0ff843fdb0",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-08-25T01:38:00+00:00"
+  },
+  {
+    "id": "931c5680-17da-5987-96d7-0ac8bc5673b0",
+    "user_id": "b0751714-499e-5f11-8e14-f8ceee434229",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-08-14T23:13:00+00:00"
+  },
+  {
+    "id": "877e869f-c33a-542a-b3c5-6d7e44d23e3d",
+    "user_id": "b0751714-499e-5f11-8e14-f8ceee434229",
+    "badge_slug": "hackathon-winner",
+    "awarded_at": "2026-07-25T10:13:00+00:00"
+  },
+  {
+    "id": "fe28a164-f730-546e-b650-858c818d4ec2",
+    "user_id": "99a2b6a8-d26f-5537-b165-9f2bc57b90df",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-04-21T13:08:00+00:00"
+  },
+  {
+    "id": "c5e5dfcf-6b1b-51d6-ab3d-c5ad3855f302",
+    "user_id": "e52c6bf4-1884-534f-9b9e-7af8f55a1e61",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-05-13T02:03:00+00:00"
+  },
+  {
+    "id": "6fb1f89c-575d-568f-b6bc-33705b2f31af",
+    "user_id": "9901481d-045e-5968-a356-8fa64d89188e",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-07-19T14:42:00+00:00"
+  },
+  {
+    "id": "a08a3d54-7315-54d7-af9d-253372df01b9",
+    "user_id": "a5e7626a-0b2e-515e-970d-13e18fd2015c",
+    "badge_slug": "production-ready",
+    "awarded_at": "2026-03-15T01:18:00+00:00"
+  },
+  {
+    "id": "a3934fef-855b-5297-84b6-b8572dabe4b8",
+    "user_id": "a5e7626a-0b2e-515e-970d-13e18fd2015c",
+    "badge_slug": "ai-builder",
+    "awarded_at": "2026-04-20T23:18:00+00:00"
+  },
+  {
+    "id": "fd724aa6-8903-5276-b48c-c83bf7afc9f0",
+    "user_id": "a5e7626a-0b2e-515e-970d-13e18fd2015c",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-04-12T10:18:00+00:00"
+  },
+  {
+    "id": "6f043235-50d5-5eb9-94f6-2db39a21b816",
+    "user_id": "a5e7626a-0b2e-515e-970d-13e18fd2015c",
+    "badge_slug": "weekly-winner",
+    "awarded_at": "2026-05-21T09:18:00+00:00"
+  },
+  {
+    "id": "255fadbb-e059-5673-aec0-18f3a4c2c4e2",
+    "user_id": "1c611363-6450-5c84-9d56-5a801d2463fc",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-02-03T10:18:00+00:00"
+  },
+  {
+    "id": "69d4c63b-f02a-55ff-aafd-80d734f2ca5f",
+    "user_id": "740a3431-b399-5dea-8e46-fa433efccb1b",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-07-31T20:44:00+00:00"
+  },
+  {
+    "id": "24d62ad8-a757-512d-990c-3723d4e8384c",
+    "user_id": "fe91490c-bba8-560b-8df4-d7083d81cd9f",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-05-06T07:59:00+00:00"
+  },
+  {
+    "id": "d19bdeec-f9d3-56c8-9509-cfa012c69ff5",
+    "user_id": "baad3092-45d3-5bb3-9565-665193bd6d0a",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-07-24T18:27:00+00:00"
+  },
+  {
+    "id": "821fbb6b-f621-5cbf-81ee-44e6a4de1929",
+    "user_id": "151b63ee-5b34-5168-8c3b-a10de1239a50",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-02-26T08:29:00+00:00"
+  },
+  {
+    "id": "6f5a1e8e-ef41-57a5-80c5-389a9f7ef534",
+    "user_id": "48eb90d5-715e-5489-a195-0a7009ce4a68",
+    "badge_slug": "weekly-winner",
+    "awarded_at": "2027-02-18T19:57:00+00:00"
+  },
+  {
+    "id": "11117b2f-99b7-535f-90a6-ef20fbb4e803",
+    "user_id": "e3866bf3-26c5-5d1f-946e-14420f45b3a4",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-07-13T13:14:00+00:00"
+  },
+  {
+    "id": "a6b3db48-5943-5fa2-81bf-2c66d64d85f1",
+    "user_id": "f0acb74e-bacc-5451-b8e4-d606209b2ad0",
+    "badge_slug": "production-ready",
+    "awarded_at": "2026-08-11T09:30:00+00:00"
+  },
+  {
+    "id": "3c81e27c-cf3d-519f-9a1d-12392bac7db5",
+    "user_id": "f0acb74e-bacc-5451-b8e4-d606209b2ad0",
+    "badge_slug": "ai-builder",
+    "awarded_at": "2026-08-22T07:30:00+00:00"
+  },
+  {
+    "id": "0b935193-ac18-511c-94ab-da507929ea31",
+    "user_id": "f0acb74e-bacc-5451-b8e4-d606209b2ad0",
+    "badge_slug": "community-helper",
+    "awarded_at": "2025-12-30T02:30:00+00:00"
+  },
+  {
+    "id": "5bb3bff0-a652-5730-ae5b-0e06d41a90e2",
+    "user_id": "c31e8763-d6fa-5b5f-8c06-59e0f02fe051",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-10-09T16:45:00+00:00"
+  },
+  {
+    "id": "f97b3e26-dd59-5b21-802d-62828fbac689",
+    "user_id": "c31e8763-d6fa-5b5f-8c06-59e0f02fe051",
+    "badge_slug": "community-helper",
+    "awarded_at": "2027-01-02T06:45:00+00:00"
+  },
+  {
+    "id": "70a6e6de-191d-5546-8d97-d1e796b81612",
+    "user_id": "b3de17ae-98bb-5c45-a1ae-c1a84e3f3fb5",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-06-01T23:18:00+00:00"
+  },
+  {
+    "id": "ad934be2-62de-5acf-8ac5-37f22f63b7a9",
+    "user_id": "2802f5ff-1f7a-5d93-8f52-f1c3ea675007",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-02-01T06:23:00+00:00"
+  },
+  {
+    "id": "4a269cd1-07d7-51c8-9314-a6be3fa1b4d2",
+    "user_id": "f49dec28-aa24-5ee4-9474-510f037d6270",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-04-03T17:05:00+00:00"
+  },
+  {
+    "id": "1890f289-c2ca-51ba-9aef-6f716e7621cd",
+    "user_id": "c1f1bc65-be40-52e3-a495-b3db9bedd832",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-03-01T16:18:00+00:00"
+  },
+  {
+    "id": "32e9155e-dc43-5c77-9060-354c82c8e9cd",
+    "user_id": "f827dc47-e05d-5742-b964-41de06158216",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-09-18T02:24:00+00:00"
+  },
+  {
+    "id": "c6801d62-9fdd-5762-9bdd-adac4ea49e70",
+    "user_id": "03140595-8f37-5bac-94ac-d111fc98907b",
+    "badge_slug": "production-ready",
+    "awarded_at": "2026-06-20T09:19:00+00:00"
+  },
+  {
+    "id": "55d5ec50-8483-5cec-84bb-88ad2f6bc192",
+    "user_id": "03140595-8f37-5bac-94ac-d111fc98907b",
+    "badge_slug": "ai-builder",
+    "awarded_at": "2026-07-22T14:19:00+00:00"
+  },
+  {
+    "id": "2a4ff0f7-3f3e-5bcd-8c4a-22cdbe617716",
+    "user_id": "758b036f-014c-5706-82c5-5a0601b8ed9f",
+    "badge_slug": "production-ready",
+    "awarded_at": "2026-03-08T03:10:00+00:00"
+  },
+  {
+    "id": "0070e844-e258-5d8b-bfd1-024ff2a3b48b",
+    "user_id": "758b036f-014c-5706-82c5-5a0601b8ed9f",
+    "badge_slug": "top-contributor",
+    "awarded_at": "2025-11-21T07:10:00+00:00"
+  },
+  {
+    "id": "d44eadf9-21f8-5429-b292-1e7c5b7d420d",
+    "user_id": "758b036f-014c-5706-82c5-5a0601b8ed9f",
+    "badge_slug": "ai-builder",
+    "awarded_at": "2025-11-25T03:10:00+00:00"
+  },
+  {
+    "id": "9482f669-d8ec-508c-922b-0843cf2e6625",
+    "user_id": "758b036f-014c-5706-82c5-5a0601b8ed9f",
+    "badge_slug": "prompt-master",
+    "awarded_at": "2026-02-27T10:10:00+00:00"
+  },
+  {
+    "id": "efb6b8e8-6e61-56c2-b5a2-c0249c1bc732",
+    "user_id": "758b036f-014c-5706-82c5-5a0601b8ed9f",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-03-13T19:10:00+00:00"
+  },
+  {
+    "id": "028afaa0-bcf8-56f0-853b-74baab6b6b8e",
+    "user_id": "758b036f-014c-5706-82c5-5a0601b8ed9f",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-04-28T02:10:00+00:00"
+  },
+  {
+    "id": "71d9442b-5124-5d3d-a36d-0a4fec366e80",
+    "user_id": "758b036f-014c-5706-82c5-5a0601b8ed9f",
+    "badge_slug": "hackathon-winner",
+    "awarded_at": "2026-05-01T04:10:00+00:00"
+  },
+  {
+    "id": "525a8d3f-877f-5c2f-96e8-a9b037106009",
+    "user_id": "cc6474c4-7e71-509a-b17a-4bd7283bd7dd",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-05-15T17:50:00+00:00"
+  },
+  {
+    "id": "97d3e6a6-b4c1-555a-94a7-05b1541fda72",
+    "user_id": "165f6c1b-d2c4-53a6-9d79-de0bdd6c8f43",
+    "badge_slug": "weekly-winner",
+    "awarded_at": "2025-12-02T07:12:00+00:00"
+  },
+  {
+    "id": "14388d09-530f-51b5-a437-c64312ba784e",
+    "user_id": "4c70260c-77c9-58a9-a558-33cf923c6362",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-01-12T15:48:00+00:00"
+  },
+  {
+    "id": "f4c8e537-6a8a-5734-9f13-ef72258ecab7",
+    "user_id": "2df1903a-f783-5ed7-ac06-c0b998a2cd23",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-11-03T22:12:00+00:00"
+  },
+  {
+    "id": "77f69158-ac46-50c4-b3dc-86380b4eead1",
+    "user_id": "3fda3ceb-9250-5be8-aff9-c73d4033b8ed",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-07-24T15:35:00+00:00"
+  },
+  {
+    "id": "c9424f6d-589d-507f-8c3e-54f97a8bd3e8",
+    "user_id": "e9649093-cf09-58d3-b3a7-38ab0e18c769",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-09-30T03:51:00+00:00"
+  },
+  {
+    "id": "63a16c0d-dbf2-5022-a77f-64b88419822a",
+    "user_id": "1d717aeb-6383-5b8d-90e7-f78ff36c30b5",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-05-03T10:25:00+00:00"
+  },
+  {
+    "id": "f2ab25a0-3829-5f91-8bce-dbba0b146e5e",
+    "user_id": "1d717aeb-6383-5b8d-90e7-f78ff36c30b5",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-05-02T03:25:00+00:00"
+  },
+  {
+    "id": "795e9a11-7434-5d97-bd01-80dfb1cc1a90",
+    "user_id": "489c00b1-9140-56d5-9b78-1239928a4086",
+    "badge_slug": "community-helper",
+    "awarded_at": "2025-10-26T17:43:00+00:00"
+  },
+  {
+    "id": "7d7360f0-c2f1-5434-a651-605f00f3487d",
+    "user_id": "f37e1cbb-05a7-5b9f-a479-e586abcec0e8",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-11-30T05:48:00+00:00"
+  },
+  {
+    "id": "a6994b19-0f6e-575e-b7a1-acd7c9758377",
+    "user_id": "bfff095f-78a9-564d-ba10-0696ad62f5f5",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-05-09T01:42:00+00:00"
+  },
+  {
+    "id": "3e73d61c-9c71-50b1-b7fc-128553c05fb1",
+    "user_id": "d76c496a-70c0-5925-9d79-75fde5065a00",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2025-12-18T14:30:00+00:00"
+  },
+  {
+    "id": "d623bb9e-ee18-5170-8950-bd8b06d1b610",
+    "user_id": "1a5633df-f521-5992-83fb-a6d966750920",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-09-03T19:12:00+00:00"
+  },
+  {
+    "id": "5b8727d6-8065-5b24-bb16-82cf61526bb9",
+    "user_id": "c534ce8f-7cb8-5db4-bff3-5d36a011b5d6",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-08-11T21:13:00+00:00"
+  },
+  {
+    "id": "8174641e-3971-5b00-8b8a-773558501792",
+    "user_id": "1fd2753a-317b-5c8e-a671-52ab1d3b4ea6",
+    "badge_slug": "community-helper",
+    "awarded_at": "2025-11-01T11:19:00+00:00"
+  },
+  {
+    "id": "6b0e91b4-73b3-540c-b2dc-148b9166388b",
+    "user_id": "0564ab9f-706a-5276-9769-8576404ea447",
+    "badge_slug": "production-ready",
+    "awarded_at": "2026-09-11T13:11:00+00:00"
+  },
+  {
+    "id": "0ccd1a33-7ffa-50f5-af01-208e5f629370",
+    "user_id": "0564ab9f-706a-5276-9769-8576404ea447",
+    "badge_slug": "ai-builder",
+    "awarded_at": "2026-11-07T15:11:00+00:00"
+  },
+  {
+    "id": "adb87a12-34f4-5a64-a6a8-8c8ef89b055a",
+    "user_id": "0564ab9f-706a-5276-9769-8576404ea447",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2026-12-31T01:11:00+00:00"
+  },
+  {
+    "id": "bf5d8243-76c2-5b58-aa1c-252204dd95b5",
+    "user_id": "8c66e18b-03f6-553c-960d-7debfb4f68f6",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-06-27T19:11:00+00:00"
+  },
+  {
+    "id": "3ec994f4-2d4c-5519-8248-fd8ac5a29957",
+    "user_id": "fbef8661-4c7e-5259-91aa-b311c978f8b4",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-09-20T12:29:00+00:00"
+  },
+  {
+    "id": "98fc312a-a9f6-5127-bbe0-578b3011ba81",
+    "user_id": "b8a4a67c-ae51-580d-9e99-f13f00c4b4d9",
+    "badge_slug": "community-helper",
+    "awarded_at": "2027-01-07T03:48:00+00:00"
+  },
+  {
+    "id": "d99a92b3-e2d4-58f4-8706-c01b999fc911",
+    "user_id": "7cd8bb88-1c44-555a-a2ff-905216e0c94f",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-08-21T00:57:00+00:00"
+  },
+  {
+    "id": "f9f2e7a9-5685-59a4-996a-1497d80b9e40",
+    "user_id": "4c664f2f-4004-502a-8a1e-758f2a86f528",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-10-12T00:07:00+00:00"
+  },
+  {
+    "id": "d47b2026-b8ee-53ec-9f84-30130da89bac",
+    "user_id": "c8d03460-20a1-5e8c-86b5-abdc9ad9956c",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-11-14T21:18:00+00:00"
+  },
+  {
+    "id": "c0936011-4df7-5453-9b4f-21a602ade8dc",
+    "user_id": "29c72e89-5225-50f0-ac83-191bbc25d25f",
+    "badge_slug": "production-ready",
+    "awarded_at": "2025-10-27T11:26:00+00:00"
+  },
+  {
+    "id": "0fd9a6de-c218-5d3a-abc5-3e6f86c3f24a",
+    "user_id": "29c72e89-5225-50f0-ac83-191bbc25d25f",
+    "badge_slug": "top-contributor",
+    "awarded_at": "2026-04-15T23:26:00+00:00"
+  },
+  {
+    "id": "ffb2dd4b-7205-5363-8bee-bbd406613e65",
+    "user_id": "29c72e89-5225-50f0-ac83-191bbc25d25f",
+    "badge_slug": "ai-builder",
+    "awarded_at": "2026-04-01T04:26:00+00:00"
+  },
+  {
+    "id": "81e375a7-47c2-591d-ae08-867e0863fcd3",
+    "user_id": "29c72e89-5225-50f0-ac83-191bbc25d25f",
+    "badge_slug": "prompt-master",
+    "awarded_at": "2025-10-16T09:26:00+00:00"
+  },
+  {
+    "id": "3304eb8d-55a5-5ad3-9b20-dfc097eeec0d",
+    "user_id": "431754e2-8982-5de9-a3e9-5406f7ee5a28",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-06-02T10:14:00+00:00"
+  },
+  {
+    "id": "aca7329f-d237-58f2-adb5-485afec005f0",
+    "user_id": "bb787b05-43ed-5cf8-bee9-b162c9179143",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-10-15T08:10:00+00:00"
+  },
+  {
+    "id": "b283996c-14a5-5711-bb53-dd426311dc68",
+    "user_id": "0d852075-090a-559b-9797-8e69f3170212",
+    "badge_slug": "community-helper",
+    "awarded_at": "2027-03-04T00:08:00+00:00"
+  },
+  {
+    "id": "2114c2e8-a928-5b0f-b722-6f908b3b7135",
+    "user_id": "7fbc4762-0725-579d-b392-2f76711a8a82",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-09-07T12:40:00+00:00"
+  },
+  {
+    "id": "de444ebe-fd6a-53d4-ba18-54c7b4b8f3d6",
+    "user_id": "4262a5c6-444c-5fed-b1aa-aac863350b86",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-07-30T17:16:00+00:00"
+  },
+  {
+    "id": "63c6013f-57d5-5696-8ddb-1718ef105223",
+    "user_id": "4262a5c6-444c-5fed-b1aa-aac863350b86",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-08-19T14:16:00+00:00"
+  },
+  {
+    "id": "575527ba-f37b-5361-ae22-2bb083af9271",
+    "user_id": "f398ce7e-6157-56a5-9e05-380e02ffb538",
+    "badge_slug": "hackathon-winner",
+    "awarded_at": "2027-02-14T13:32:00+00:00"
+  },
+  {
+    "id": "6a22d4dd-4ac1-5e4b-a25f-e1a62a3857d1",
+    "user_id": "d5d5d29f-3635-5c31-8af8-706a82c15b77",
+    "badge_slug": "production-ready",
+    "awarded_at": "2026-04-06T12:34:00+00:00"
+  },
+  {
+    "id": "38f3b14d-7901-5b82-bb37-4feed3bac346",
+    "user_id": "d5d5d29f-3635-5c31-8af8-706a82c15b77",
+    "badge_slug": "ai-builder",
+    "awarded_at": "2026-05-25T16:34:00+00:00"
+  },
+  {
+    "id": "49dfebd7-7335-50fd-acb8-11f62cf005fd",
+    "user_id": "d5d5d29f-3635-5c31-8af8-706a82c15b77",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2026-09-17T21:34:00+00:00"
+  },
+  {
+    "id": "f170fe62-e2a1-5987-9027-93b3cd99b864",
+    "user_id": "d5d5d29f-3635-5c31-8af8-706a82c15b77",
+    "badge_slug": "hackathon-winner",
+    "awarded_at": "2026-07-04T03:34:00+00:00"
+  },
+  {
+    "id": "b1741cc1-c025-5fe6-9520-de66ede19f03",
+    "user_id": "0e10072b-50bd-51a5-8343-732c94ccb022",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-01-20T00:19:00+00:00"
+  },
+  {
+    "id": "f14bc64e-d00f-5e4d-9199-2ceeb6f528b8",
+    "user_id": "0e10072b-50bd-51a5-8343-732c94ccb022",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-03-02T16:19:00+00:00"
+  },
+  {
+    "id": "e189c7d6-179e-54c7-8e86-a8feef0972ca",
+    "user_id": "17b28011-ee5e-52dc-ab2d-078cf415d690",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-08-11T19:34:00+00:00"
+  },
+  {
+    "id": "ac9ffd63-5c3c-537d-af91-6752490cae52",
+    "user_id": "b5bf273a-7965-59bf-b9af-159bd061702b",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-04-08T22:00:00+00:00"
+  },
+  {
+    "id": "391b0de9-eeec-5b65-971a-7ffea6d845e2",
+    "user_id": "b5bf273a-7965-59bf-b9af-159bd061702b",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-03-17T01:00:00+00:00"
+  },
+  {
+    "id": "2434b619-b1f3-5750-bcac-67b683ac6eda",
+    "user_id": "dd1718e6-9efe-5832-b455-a6657f9f2979",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-01-18T15:42:00+00:00"
+  },
+  {
+    "id": "367d2e73-885a-5cc7-9ee3-7e1962a30b94",
+    "user_id": "584dc4ac-51cb-5992-97cb-209d01891f60",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-01-05T19:31:00+00:00"
+  },
+  {
+    "id": "fccc1379-8ce9-547e-a99b-74646f695393",
+    "user_id": "fdca027b-1537-5f83-b272-5c4ec2cee6ff",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-11-16T13:27:00+00:00"
+  },
+  {
+    "id": "6c9559e5-3532-59a2-b2ed-bc3b11492cc3",
+    "user_id": "6dadf40f-37a8-5242-9f13-242c87caa990",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-10-11T13:40:00+00:00"
+  },
+  {
+    "id": "bf7af7b6-4ffe-5b7c-abc7-aec029d31ac6",
+    "user_id": "4ab847ee-b5f4-5510-84b1-54e8a69d0360",
+    "badge_slug": "production-ready",
+    "awarded_at": "2027-03-17T23:24:00+00:00"
+  },
+  {
+    "id": "7d4ddb6c-c9d0-5e96-9335-761cf7a73ba9",
+    "user_id": "4ab847ee-b5f4-5510-84b1-54e8a69d0360",
+    "badge_slug": "ai-builder",
+    "awarded_at": "2027-03-26T12:24:00+00:00"
+  },
+  {
+    "id": "47f71727-f161-5b10-8798-96e483cc5074",
+    "user_id": "4ab847ee-b5f4-5510-84b1-54e8a69d0360",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2027-03-09T11:24:00+00:00"
+  },
+  {
+    "id": "2a73de4e-e766-5f34-ba9a-c6a5a5af070c",
+    "user_id": "491f686e-5059-5c06-bd12-452dd9cfdbf7",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-09-29T16:07:00+00:00"
+  },
+  {
+    "id": "2fea3eaf-99e9-553b-9009-9c1589e0dc1e",
+    "user_id": "310686e2-758d-5b02-9453-85cb130534b4",
+    "badge_slug": "community-helper",
+    "awarded_at": "2027-02-13T21:19:00+00:00"
+  },
+  {
+    "id": "ed021bd8-0163-5276-ba66-a63b51025907",
+    "user_id": "79739735-8dec-5ecf-ab98-97174bdf53d4",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-08-31T10:14:00+00:00"
+  },
+  {
+    "id": "4a51c2d0-1f1a-5685-b3b4-b68c4c0f1589",
+    "user_id": "65603204-199f-5e0e-a184-7a16c029e56f",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-08-28T03:46:00+00:00"
+  },
+  {
+    "id": "178580d6-39ce-5552-aa1b-f2fd0cc4af96",
+    "user_id": "cb248cca-21ef-57cd-b5d2-7a009506a74f",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-09-29T01:45:00+00:00"
+  },
+  {
+    "id": "eaca1959-5b23-584f-afb8-bf755d237c72",
+    "user_id": "cb248cca-21ef-57cd-b5d2-7a009506a74f",
+    "badge_slug": "community-helper",
+    "awarded_at": "2027-01-04T08:45:00+00:00"
+  },
+  {
+    "id": "39552bd5-8707-5639-a3dc-0abd7151910f",
+    "user_id": "3a23b551-e425-5d6a-a468-f4e70aae0ed7",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-06-15T22:56:00+00:00"
+  },
+  {
+    "id": "68542976-ed7e-576a-9f29-495a0cf2edf8",
+    "user_id": "4c769715-558b-5285-9973-4bb603e2f1b0",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-05-19T02:25:00+00:00"
+  },
+  {
+    "id": "09a2d754-e129-59b7-a641-d32fc9776dcc",
+    "user_id": "7280ed22-6bfc-562b-9e4f-ada97fdc992d",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-02-05T11:17:00+00:00"
+  },
+  {
+    "id": "b0b09964-52ce-582a-96d2-4cdf020f1fb9",
+    "user_id": "55131d40-1c3e-5018-bc02-cc49f4a84b9f",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-08-16T03:23:00+00:00"
+  },
+  {
+    "id": "4043f062-5c20-5085-bc63-d7f36ffec537",
+    "user_id": "21107343-7aaf-54ca-a1c3-d500c491e98e",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-04-01T16:45:00+00:00"
+  },
+  {
+    "id": "4e0bbbb4-60fc-5617-ba17-61cf97fadfb2",
+    "user_id": "0802452a-ebd7-5ac5-9589-46190d4c6bdb",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-08-25T19:49:00+00:00"
+  },
+  {
+    "id": "587e84f3-6c9e-5b2a-ad43-babef452e845",
+    "user_id": "e15b8c2f-fcb0-51bd-928e-32cfd7125350",
+    "badge_slug": "community-helper",
+    "awarded_at": "2025-12-09T05:17:00+00:00"
+  },
+  {
+    "id": "7be0d877-a3a7-5b6c-9f4a-4018c2011c1e",
+    "user_id": "4fa9d4ea-8927-52df-9048-051067e4de77",
+    "badge_slug": "production-ready",
+    "awarded_at": "2026-05-06T10:23:00+00:00"
+  },
+  {
+    "id": "95657c0a-a865-5cd0-ac71-ab76f66b4e35",
+    "user_id": "4fa9d4ea-8927-52df-9048-051067e4de77",
+    "badge_slug": "ai-builder",
+    "awarded_at": "2025-09-13T17:23:00+00:00"
+  },
+  {
+    "id": "c4fcb043-2667-5d83-b44d-3214fa539a6d",
+    "user_id": "4fa9d4ea-8927-52df-9048-051067e4de77",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2025-10-13T14:23:00+00:00"
+  },
+  {
+    "id": "561146b8-43ba-5d06-9f12-ce4f04be8e56",
+    "user_id": "4fa9d4ea-8927-52df-9048-051067e4de77",
+    "badge_slug": "hackathon-winner",
+    "awarded_at": "2026-05-24T21:23:00+00:00"
+  },
+  {
+    "id": "fe3d452e-86d3-5504-802f-74d4a9611c42",
+    "user_id": "b53252d8-f721-59ed-a0aa-5485f3ac9b88",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-02-10T21:17:00+00:00"
+  },
+  {
+    "id": "25719b7e-f6ab-549c-ad7f-77eb485a5a1a",
+    "user_id": "65974c06-bec2-5c14-bc59-12756d2d416f",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-07-10T19:55:00+00:00"
+  },
+  {
+    "id": "2f583940-e954-5a02-9031-6ad2153b57fb",
+    "user_id": "71d72673-79a9-5c43-a9c1-282de8831337",
+    "badge_slug": "weekly-winner",
+    "awarded_at": "2026-11-20T23:19:00+00:00"
+  },
+  {
+    "id": "3b2f7dfc-379a-5d03-876a-8fb9df13c36e",
+    "user_id": "9e888005-13d7-57a1-be0b-cf25e5213dac",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-05-15T15:26:00+00:00"
+  },
+  {
+    "id": "6051f532-ff3f-5d2f-802d-43508b1cbad7",
+    "user_id": "a4cd1e52-5765-5b3a-b6f1-411fab8cc858",
+    "badge_slug": "hackathon-winner",
+    "awarded_at": "2026-03-06T09:59:00+00:00"
+  },
+  {
+    "id": "a7bc3be3-1d0d-56f5-a0c7-70fcee5943ab",
+    "user_id": "a4cd1e52-5765-5b3a-b6f1-411fab8cc858",
+    "badge_slug": "weekly-winner",
+    "awarded_at": "2026-06-25T12:59:00+00:00"
+  },
+  {
+    "id": "008b9fa0-6773-53ee-be6a-a8c2672b6a3d",
+    "user_id": "2251ae20-c872-5778-8c9a-01e34ef47831",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2027-01-17T11:13:00+00:00"
+  },
+  {
+    "id": "2c487459-e961-5e9a-a76e-37a838fc3fbd",
+    "user_id": "2251ae20-c872-5778-8c9a-01e34ef47831",
+    "badge_slug": "weekly-winner",
+    "awarded_at": "2026-10-31T01:13:00+00:00"
+  },
+  {
+    "id": "f78c83ef-adb4-545c-a1f5-d03d0a87f482",
+    "user_id": "2251ae20-c872-5778-8c9a-01e34ef47831",
+    "badge_slug": "top-mentor",
+    "awarded_at": "2026-11-04T18:13:00+00:00"
+  },
+  {
+    "id": "6983ffdd-a55a-5d5c-84ea-58e3ec33a0a0",
+    "user_id": "b7b4d474-89e0-5691-bc38-b75628e2b0d3",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-06-17T03:37:00+00:00"
+  },
+  {
+    "id": "e202cc15-fa03-5475-acaa-e1ef649ccfce",
+    "user_id": "ef8a0f5d-2dee-59bc-87c8-e8a620ed49fb",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-08-07T16:53:00+00:00"
+  },
+  {
+    "id": "3af9b11a-bd98-5626-8fd9-7e366f603a69",
+    "user_id": "1d600c9d-98ee-5840-8b8f-c9423a237bd1",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2026-09-03T19:10:00+00:00"
+  },
+  {
+    "id": "92340941-3228-5adb-807c-36dc20441270",
+    "user_id": "12b03a59-3b69-59e3-8703-c8e92dd0c411",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-03-08T22:55:00+00:00"
+  },
+  {
+    "id": "e1bc75bd-d718-55ef-987f-d6f7d2e1f43f",
+    "user_id": "b600a5f2-53b8-581f-a7f4-fdda96db53e7",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-04-28T04:29:00+00:00"
+  },
+  {
+    "id": "f15f3f39-d009-5db7-95e3-8ce3505e82f0",
+    "user_id": "2734ecaa-a479-57d0-be96-5d7a3e0d249e",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2025-12-19T22:53:00+00:00"
+  },
+  {
+    "id": "ae1291b2-8565-5b8a-8b62-958a1af41712",
+    "user_id": "eb7d5307-685e-5c9f-b76a-2fc63a1d3681",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-01-28T20:20:00+00:00"
+  },
+  {
+    "id": "6fb0a6d6-50cb-564e-8880-4a074ccc8da5",
+    "user_id": "b7d21872-04cf-5329-bcff-8959d140f5f4",
+    "badge_slug": "production-ready",
+    "awarded_at": "2026-05-08T17:39:00+00:00"
+  },
+  {
+    "id": "ccd641d2-a57c-51ac-9ddb-0158fdb7c960",
+    "user_id": "b7d21872-04cf-5329-bcff-8959d140f5f4",
+    "badge_slug": "top-contributor",
+    "awarded_at": "2026-06-15T15:39:00+00:00"
+  },
+  {
+    "id": "33d7e824-0e89-5295-9474-55c728a4c000",
+    "user_id": "b7d21872-04cf-5329-bcff-8959d140f5f4",
+    "badge_slug": "ai-builder",
+    "awarded_at": "2026-09-26T20:39:00+00:00"
+  },
+  {
+    "id": "3f0ffdab-ac15-5498-9ae4-8b61685b82ec",
+    "user_id": "b7d21872-04cf-5329-bcff-8959d140f5f4",
+    "badge_slug": "prompt-master",
+    "awarded_at": "2026-12-06T18:39:00+00:00"
+  },
+  {
+    "id": "6e5f4565-3a47-5e9e-91fe-e299fec69403",
+    "user_id": "b7d21872-04cf-5329-bcff-8959d140f5f4",
+    "badge_slug": "top-mentor",
+    "awarded_at": "2026-04-17T22:39:00+00:00"
+  },
+  {
+    "id": "a3082cbf-4be5-5c32-a57c-c188b83cc203",
+    "user_id": "13956bd8-785d-5dd5-9b3a-82285bd0699e",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-02-24T03:29:00+00:00"
+  },
+  {
+    "id": "43ed885c-fb57-5969-99bc-f03f6a3281c3",
+    "user_id": "4c9a0b97-1487-5edd-9934-d9818eafa0da",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-02-18T04:24:00+00:00"
+  },
+  {
+    "id": "0aa6a4c6-3902-558b-8850-48708ba2b7f8",
+    "user_id": "4c9a0b97-1487-5edd-9934-d9818eafa0da",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2026-03-06T05:24:00+00:00"
+  },
+  {
+    "id": "63527e63-9154-538e-841f-f04de759e556",
+    "user_id": "fc2c809a-1f1b-597b-842e-874d4ee37c7a",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-02-08T04:10:00+00:00"
+  },
+  {
+    "id": "547d7721-838d-57ba-90ac-85cbeb0a9302",
+    "user_id": "fc2c809a-1f1b-597b-842e-874d4ee37c7a",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2026-05-14T01:10:00+00:00"
+  },
+  {
+    "id": "8676f40b-7b76-5a29-90ce-dcaa636da213",
+    "user_id": "53178aaa-f98c-5d76-b5bd-21b56275ff8d",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-07-04T16:05:00+00:00"
+  },
+  {
+    "id": "003609d1-f3ad-5e9f-aca6-b5a32b789806",
+    "user_id": "cd7d2d5b-ed5b-5e13-a03c-d3e0517fd203",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-12-08T03:55:00+00:00"
+  },
+  {
+    "id": "8fb0076b-07be-5056-b70a-f10517e447c6",
+    "user_id": "add9b7db-a786-5480-940a-cc401b7631f0",
+    "badge_slug": "streak-100",
+    "awarded_at": "2026-09-15T07:55:00+00:00"
+  },
+  {
+    "id": "b7195645-892b-51e5-b09b-9fbcca76d59a",
+    "user_id": "811191c1-70cd-59d6-b292-781b77c90c22",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-04-08T09:51:00+00:00"
+  },
+  {
+    "id": "a99fe9ee-2701-508a-bbb3-4f4fcb79e295",
+    "user_id": "f78f1c58-4457-5ebe-a9ff-9653c20d5a9a",
+    "badge_slug": "production-ready",
+    "awarded_at": "2025-09-25T22:15:00+00:00"
+  },
+  {
+    "id": "9dd629e4-3882-50f1-bde1-11b12ab039e4",
+    "user_id": "f78f1c58-4457-5ebe-a9ff-9653c20d5a9a",
+    "badge_slug": "ai-builder",
+    "awarded_at": "2026-04-11T06:15:00+00:00"
+  },
+  {
+    "id": "efa20e5e-055c-594a-b25f-0558092e1171",
+    "user_id": "f78f1c58-4457-5ebe-a9ff-9653c20d5a9a",
+    "badge_slug": "community-helper",
+    "awarded_at": "2025-09-18T19:15:00+00:00"
+  },
+  {
+    "id": "1f077f68-f391-5449-9462-487b4f46db80",
+    "user_id": "f78f1c58-4457-5ebe-a9ff-9653c20d5a9a",
+    "badge_slug": "hackathon-winner",
+    "awarded_at": "2025-10-28T23:15:00+00:00"
+  },
+  {
+    "id": "bef239bd-a382-514c-a81b-65bf5ffd0c0e",
+    "user_id": "179e589f-b153-5317-b084-a03c9a92b1a2",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-11-12T04:10:00+00:00"
+  },
+  {
+    "id": "2ee32c4b-c267-5496-a476-a4745e69861a",
+    "user_id": "53e72821-b224-55cd-adbe-8b91485ea329",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-10-31T05:29:00+00:00"
+  },
+  {
+    "id": "971d8a02-e930-599c-babf-9469a69f53bb",
+    "user_id": "93cefb33-c9af-57fc-898f-6c31f34b9d7c",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2026-04-26T22:13:00+00:00"
+  },
+  {
+    "id": "5c9b2310-9773-5ebc-a90b-976e312c4300",
+    "user_id": "e0f3d7ea-fabe-5f9e-82d7-3e09d1e6d735",
+    "badge_slug": "community-helper",
+    "awarded_at": "2026-11-16T21:31:00+00:00"
+  },
+  {
+    "id": "81c3345a-b368-5385-9f9d-cd65ffeede08",
+    "user_id": "110b77ba-c3bd-5fc8-8928-2160bde27d50",
+    "badge_slug": "rag-expert",
+    "awarded_at": "2025-09-30T03:41:00+00:00"
+  },
+  {
+    "id": "1021dfec-f6b5-518d-9fa2-0444f508222e",
+    "user_id": "110b77ba-c3bd-5fc8-8928-2160bde27d50",
+    "badge_slug": "hackathon-winner",
+    "awarded_at": "2026-01-03T10:41:00+00:00"
+  },
+  {
+    "id": "4cc3a7a1-7a91-5af7-b9f8-4851f4673964",
+    "user_id": "bf72a834-f7b5-5abf-9b73-be83a6b250cd",
+    "badge_slug": "weekly-winner",
+    "awarded_at": "2026-09-05T19:02:00+00:00"
+  }
+]

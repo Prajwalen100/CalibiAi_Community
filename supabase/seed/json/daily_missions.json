@@ -1,0 +1,402 @@
+[
+  {
+    "id": "9999c4af-ed83-5890-919a-ce082f97ee97",
+    "slug": "read-one-ai-article",
+    "title": "Read one AI article",
+    "category": "read",
+    "xp_reward": 10,
+    "sort_order": 1
+  },
+  {
+    "id": "36bde325-7520-59f0-9c58-afba80380203",
+    "slug": "watch-a-short-tutorial-video",
+    "title": "Watch a short tutorial video",
+    "category": "video",
+    "xp_reward": 10,
+    "sort_order": 2
+  },
+  {
+    "id": "53d46548-3aa8-53bc-b537-b75e77c4cfdc",
+    "slug": "complete-a-daily-quiz",
+    "title": "Complete a daily quiz",
+    "category": "quiz",
+    "xp_reward": 15,
+    "sort_order": 3
+  },
+  {
+    "id": "48e665bb-404a-57c3-baaf-157f1c0a7b36",
+    "slug": "push-a-github-commit",
+    "title": "Push a GitHub commit",
+    "category": "github",
+    "xp_reward": 20,
+    "sort_order": 4
+  },
+  {
+    "id": "a78df296-d2d3-5812-ac71-341df861c782",
+    "slug": "answer-a-community-question",
+    "title": "Answer a community question",
+    "category": "community",
+    "xp_reward": 15,
+    "sort_order": 5
+  },
+  {
+    "id": "c2899344-b96b-563c-8a97-b828c9e96b85",
+    "slug": "finish-a-roadmap-assignment",
+    "title": "Finish a roadmap assignment",
+    "category": "assignment",
+    "xp_reward": 25,
+    "sort_order": 6
+  },
+  {
+    "id": "e2f34ee4-7b5e-5732-8afa-85230490251c",
+    "slug": "build-a-mini-prompt-experiment",
+    "title": "Build a mini prompt experiment",
+    "category": "project",
+    "xp_reward": 25,
+    "sort_order": 7
+  },
+  {
+    "id": "a34f90c0-55de-54f2-91d7-d9547714bf16",
+    "slug": "bookmark-a-new-resource",
+    "title": "Bookmark a new resource",
+    "category": "read",
+    "xp_reward": 5,
+    "sort_order": 8
+  },
+  {
+    "id": "269b1b61-f8c0-5f0c-a010-a422d08b66fc",
+    "slug": "comment-on-a-showcase-post",
+    "title": "Comment on a showcase post",
+    "category": "community",
+    "xp_reward": 8,
+    "sort_order": 9
+  },
+  {
+    "id": "5ef2f1da-bd5c-55a6-a8a8-657d3c501afc",
+    "slug": "complete-a-prompt-engineering-drill",
+    "title": "Complete a Prompt Engineering drill",
+    "category": "quiz",
+    "xp_reward": 15,
+    "sort_order": 10
+  },
+  {
+    "id": "db787567-8b77-5991-98c7-6b825b360828",
+    "slug": "try-one-new-llm-tool",
+    "title": "Try one new LLM tool",
+    "category": "video",
+    "xp_reward": 10,
+    "sort_order": 11
+  },
+  {
+    "id": "aa4604e4-d195-533f-a016-3745ce80ddb7",
+    "slug": "review-someone-s-pr",
+    "title": "Review someone's PR",
+    "category": "github",
+    "xp_reward": 20,
+    "sort_order": 12
+  },
+  {
+    "id": "1a20d32a-df98-5543-bc2c-6ce5174a3226",
+    "slug": "write-a-5-line-reflection-note",
+    "title": "Write a 5-line reflection note",
+    "category": "read",
+    "xp_reward": 5,
+    "sort_order": 13
+  },
+  {
+    "id": "15bea232-043f-5275-b16a-eb1c60a62833",
+    "slug": "explore-a-hugging-face-dataset",
+    "title": "Explore a Hugging Face dataset",
+    "category": "video",
+    "xp_reward": 10,
+    "sort_order": 14
+  },
+  {
+    "id": "9a29564d-bcbb-5dd9-a2fa-5266d2f10b4c",
+    "slug": "run-a-rag-query-in-the-sandbox",
+    "title": "Run a RAG query in the sandbox",
+    "category": "project",
+    "xp_reward": 20,
+    "sort_order": 15
+  },
+  {
+    "id": "7bcfefb3-6615-5ed8-84da-07d912dd3207",
+    "slug": "follow-a-new-peer",
+    "title": "Follow a new peer",
+    "category": "community",
+    "xp_reward": 5,
+    "sort_order": 16
+  },
+  {
+    "id": "16fee981-e684-5ca6-82e4-bcc29e72b9e9",
+    "slug": "update-your-portfolio-readme",
+    "title": "Update your portfolio README",
+    "category": "github",
+    "xp_reward": 15,
+    "sort_order": 17
+  },
+  {
+    "id": "1fd435d5-ab49-5c90-8fdd-3d80f9fdbb09",
+    "slug": "ship-a-new-n8n-workflow",
+    "title": "Ship a new n8n workflow",
+    "category": "project",
+    "xp_reward": 25,
+    "sort_order": 18
+  },
+  {
+    "id": "6dde2a4c-9831-5101-8471-fa28a2ded565",
+    "slug": "vote-on-a-research-paper-thread",
+    "title": "Vote on a research paper thread",
+    "category": "community",
+    "xp_reward": 5,
+    "sort_order": 19
+  },
+  {
+    "id": "41226dbd-0d3b-5b63-969c-059dcdcd56d4",
+    "slug": "complete-a-langgraph-tutorial",
+    "title": "Complete a LangGraph tutorial",
+    "category": "video",
+    "xp_reward": 15,
+    "sort_order": 20
+  },
+  {
+    "id": "6a1d8989-1d0e-5f79-9a08-98562323cfa6",
+    "slug": "publish-a-prompt-to-the-library",
+    "title": "Publish a prompt to the library",
+    "category": "project",
+    "xp_reward": 20,
+    "sort_order": 21
+  },
+  {
+    "id": "f42349af-34f1-512d-94d7-1ebc1dbb1052",
+    "slug": "solve-a-python-katas-set",
+    "title": "Solve a Python katas set",
+    "category": "quiz",
+    "xp_reward": 15,
+    "sort_order": 22
+  },
+  {
+    "id": "c57f9c73-3ffb-5809-b065-83f61beae699",
+    "slug": "attend-a-live-ama",
+    "title": "Attend a live AMA",
+    "category": "video",
+    "xp_reward": 10,
+    "sort_order": 23
+  },
+  {
+    "id": "3f6678d7-964e-5f58-aaae-595b06a974ee",
+    "slug": "contribute-to-an-open-source-repo",
+    "title": "Contribute to an open-source repo",
+    "category": "github",
+    "xp_reward": 30,
+    "sort_order": 24
+  },
+  {
+    "id": "f1d09a88-9578-5015-a608-c63250ec4726",
+    "slug": "write-a-mini-blog-on-today-s-learning",
+    "title": "Write a mini blog on today's learning",
+    "category": "read",
+    "xp_reward": 15,
+    "sort_order": 25
+  },
+  {
+    "id": "54dc2a91-3009-5c0e-bd57-0ae5f274af2b",
+    "slug": "review-a-peer-s-project",
+    "title": "Review a peer's project",
+    "category": "community",
+    "xp_reward": 15,
+    "sort_order": 26
+  },
+  {
+    "id": "88c04543-4749-517c-928c-f610c3432e49",
+    "slug": "try-a-claude-tool-use-recipe",
+    "title": "Try a Claude tool-use recipe",
+    "category": "project",
+    "xp_reward": 20,
+    "sort_order": 27
+  },
+  {
+    "id": "864ffa61-22e2-5ab3-a0cd-158c8682a989",
+    "slug": "set-up-pgvector-locally",
+    "title": "Set up pgvector locally",
+    "category": "project",
+    "xp_reward": 25,
+    "sort_order": 28
+  },
+  {
+    "id": "d915bd08-b4a3-559d-9a93-841123b4c65a",
+    "slug": "compare-two-embedding-models",
+    "title": "Compare two embedding models",
+    "category": "quiz",
+    "xp_reward": 15,
+    "sort_order": 29
+  },
+  {
+    "id": "dcf1adf6-19bf-5f58-8177-9002c0d26693",
+    "slug": "take-the-weekend-deep-dive-quiz",
+    "title": "Take the weekend deep-dive quiz",
+    "category": "quiz",
+    "xp_reward": 20,
+    "sort_order": 30
+  },
+  {
+    "id": "08da3e3e-22ba-52cb-807e-7e02e61e46f9",
+    "slug": "post-one-insight-in-general-ai",
+    "title": "Post one insight in #general-ai",
+    "category": "community",
+    "xp_reward": 8,
+    "sort_order": 31
+  },
+  {
+    "id": "235e4f8e-c02f-5a2d-acf5-f0a2cd3a4dbb",
+    "slug": "submit-a-capstone-milestone",
+    "title": "Submit a capstone milestone",
+    "category": "assignment",
+    "xp_reward": 30,
+    "sort_order": 32
+  },
+  {
+    "id": "36510eea-ffe2-51d0-aba0-70e485945ae1",
+    "slug": "refactor-an-old-notebook",
+    "title": "Refactor an old notebook",
+    "category": "github",
+    "xp_reward": 15,
+    "sort_order": 33
+  },
+  {
+    "id": "699ee140-fddf-5ec1-a928-2f026b7cd281",
+    "slug": "answer-a-mcp-protocol-question",
+    "title": "Answer a MCP protocol question",
+    "category": "community",
+    "xp_reward": 12,
+    "sort_order": 34
+  },
+  {
+    "id": "1cf65af0-1482-5748-b4e4-8a328a976844",
+    "slug": "explore-a-crewai-recipe",
+    "title": "Explore a CrewAI recipe",
+    "category": "video",
+    "xp_reward": 12,
+    "sort_order": 35
+  },
+  {
+    "id": "0eae267b-aaf8-5995-a740-f99e083aa0c7",
+    "slug": "debug-a-friend-s-agent",
+    "title": "Debug a friend's agent",
+    "category": "community",
+    "xp_reward": 12,
+    "sort_order": 36
+  },
+  {
+    "id": "bd737ff7-ceb1-5141-a47c-2dc5af64e033",
+    "slug": "publish-a-gemini-experiment",
+    "title": "Publish a Gemini experiment",
+    "category": "project",
+    "xp_reward": 20,
+    "sort_order": 37
+  },
+  {
+    "id": "d2224dfb-099e-5651-b3c9-6f282d4b604d",
+    "slug": "try-mistral-fine-tuning-template",
+    "title": "Try Mistral fine-tuning template",
+    "category": "project",
+    "xp_reward": 25,
+    "sort_order": 38
+  },
+  {
+    "id": "dcf4e75f-6bf6-5373-90b8-337cdde609d3",
+    "slug": "vote-on-the-trending-post",
+    "title": "Vote on the trending post",
+    "category": "community",
+    "xp_reward": 3,
+    "sort_order": 39
+  },
+  {
+    "id": "549ef0d3-79d2-565a-8261-43f9e4682fb4",
+    "slug": "read-a-research-paper-summary",
+    "title": "Read a research paper summary",
+    "category": "read",
+    "xp_reward": 12,
+    "sort_order": 40
+  },
+  {
+    "id": "a3ad5325-5e0b-5adf-b24a-7ace7a563cf7",
+    "slug": "add-tests-to-your-ai-project",
+    "title": "Add tests to your AI project",
+    "category": "github",
+    "xp_reward": 20,
+    "sort_order": 41
+  },
+  {
+    "id": "b027a3a1-3fed-5890-be91-4aacce4c01ea",
+    "slug": "draft-an-interview-star-story",
+    "title": "Draft an interview STAR story",
+    "category": "read",
+    "xp_reward": 10,
+    "sort_order": 42
+  },
+  {
+    "id": "bfba3b7e-867f-528e-afdd-f6f50a63b3b9",
+    "slug": "book-a-mock-interview-slot",
+    "title": "Book a mock interview slot",
+    "category": "assignment",
+    "xp_reward": 15,
+    "sort_order": 43
+  },
+  {
+    "id": "4a33c652-d9c4-5d71-9ee0-edff02c027c7",
+    "slug": "review-your-talent-score-gaps",
+    "title": "Review your talent-score gaps",
+    "category": "read",
+    "xp_reward": 8,
+    "sort_order": 44
+  },
+  {
+    "id": "6abc5957-6cad-5105-995f-63708c838dd5",
+    "slug": "complete-the-vector-db-drill",
+    "title": "Complete the vector DB drill",
+    "category": "quiz",
+    "xp_reward": 15,
+    "sort_order": 45
+  },
+  {
+    "id": "7c840311-46a1-52be-96fa-cbdcb71663a2",
+    "slug": "ship-a-tiny-voice-agent-demo",
+    "title": "Ship a tiny voice-agent demo",
+    "category": "project",
+    "xp_reward": 25,
+    "sort_order": 46
+  },
+  {
+    "id": "dafbff60-03c9-5658-81f5-cd96cdccbe5b",
+    "slug": "answer-one-hiring-thread",
+    "title": "Answer one hiring thread",
+    "category": "community",
+    "xp_reward": 10,
+    "sort_order": 47
+  },
+  {
+    "id": "65b347a6-ac01-5957-aeaa-eaecc37d5c80",
+    "slug": "update-your-production-ready-checklist",
+    "title": "Update your Production-Ready checklist",
+    "category": "assignment",
+    "xp_reward": 20,
+    "sort_order": 48
+  },
+  {
+    "id": "31dba771-8779-50f1-8608-43244f77af37",
+    "slug": "peer-review-a-resume",
+    "title": "Peer-review a resume",
+    "category": "community",
+    "xp_reward": 12,
+    "sort_order": 49
+  },
+  {
+    "id": "e5457c66-9b75-5987-97b2-d6e743cc64a1",
+    "slug": "watch-a-real-world-ai-teardown",
+    "title": "Watch a Real-World AI teardown",
+    "category": "video",
+    "xp_reward": 15,
+    "sort_order": 50
+  }
+]

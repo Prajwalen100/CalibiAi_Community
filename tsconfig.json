@@ -38,6 +38,7 @@
   "exclude": [
     "node_modules",
     "phases",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    "supabase/seed"
   ]
 }

@@ -1,0 +1,2141 @@
+[
+  {
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "repository_count": 42,
+    "contribution_count": 957,
+    "stars_received": 349,
+    "stars_given": 105,
+    "languages": [
+      "TypeScript",
+      "JavaScript",
+      "Go"
+    ],
+    "pinned_projects": [
+      {
+        "name": "anweshachakraborty/starter-workshop",
+        "description": "LangChain templates for enterprise search",
+        "language": "TypeScript",
+        "stars": 304,
+        "forks": 26,
+        "url": "https://github.com/anweshachakraborty/starter-workshop"
+      },
+      {
+        "name": "anweshachakraborty/pdfchat-engine",
+        "description": "Voice agent with realtime transcription",
+        "language": "JavaScript",
+        "stars": 45,
+        "forks": 15,
+        "url": "https://github.com/anweshachakraborty/pdfchat-engine"
+      }
+    ],
+    "open_source_score": 65
+  },
+  {
+    "user_id": "3d3d5d91-00a7-5d80-a177-8a8d92e0bfb0",
+    "repository_count": 6,
+    "contribution_count": 1061,
+    "stars_received": 312,
+    "stars_given": 284,
+    "languages": [
+      "Go",
+      "Kotlin",
+      "TypeScript"
+    ],
+    "pinned_projects": [
+      {
+        "name": "varsharamanujan/llm-engine",
+        "description": "AI recruiter with resume parser",
+        "language": "Go",
+        "stars": 304,
+        "forks": 39,
+        "url": "https://github.com/varsharamanujan/llm-engine"
+      },
+      {
+        "name": "varsharamanujan/toolbox-bench",
+        "description": "Hugging Face fine-tuning notebook",
+        "language": "Kotlin",
+        "stars": 8,
+        "forks": 38,
+        "url": "https://github.com/varsharamanujan/toolbox-bench"
+      }
+    ],
+    "open_source_score": 68
+  },
+  {
+    "user_id": "79813ad0-f39b-5b63-b112-fec51ccfd284",
+    "repository_count": 22,
+    "contribution_count": 955,
+    "stars_received": 577,
+    "stars_given": 147,
+    "languages": [
+      "Shell",
+      "TypeScript",
+      "Kotlin",
+      "Java"
+    ],
+    "pinned_projects": [
+      {
+        "name": "adithyashenoy/kit-engine",
+        "description": "Voice agent with realtime transcription",
+        "language": "Shell",
+        "stars": 115,
+        "forks": 1,
+        "url": "https://github.com/adithyashenoy/kit-engine"
+      },
+      {
+        "name": "adithyashenoy/resume-server",
+        "description": "Hugging Face fine-tuning notebook",
+        "language": "TypeScript",
+        "stars": 76,
+        "forks": 9,
+        "url": "https://github.com/adithyashenoy/resume-server"
+      },
+      {
+        "name": "adithyashenoy/starter-cli",
+        "description": "n8n workflow library for AI onboarding",
+        "language": "Kotlin",
+        "stars": 17,
+        "forks": 1,
+        "url": "https://github.com/adithyashenoy/starter-cli"
+      },
+      {
+        "name": "adithyashenoy/pdfchat-notebook",
+        "description": "Streamlit dashboard for LLM evals",
+        "language": "Java",
+        "stars": 159,
+        "forks": 7,
+        "url": "https://github.com/adithyashenoy/pdfchat-notebook"
+      },
+      {
+        "name": "adithyashenoy/rag-bench",
+        "description": "OSS starter for GenAI portfolios",
+        "language": "Shell",
+        "stars": 210,
+        "forks": 36,
+        "url": "https://github.com/adithyashenoy/rag-bench"
+      }
+    ],
+    "open_source_score": 76
+  },
+  {
+    "user_id": "66be353e-9630-504e-8bea-f39ff2e4d638",
+    "repository_count": 33,
+    "contribution_count": 575,
+    "stars_received": 497,
+    "stars_given": 275,
+    "languages": [
+      "Go",
+      "Python"
+    ],
+    "pinned_projects": [
+      {
+        "name": "rohantiwari/kit-workshop",
+        "description": "Voice agent with realtime transcription",
+        "language": "Go",
+        "stars": 179,
+        "forks": 40,
+        "url": "https://github.com/rohantiwari/kit-workshop"
+      },
+      {
+        "name": "rohantiwari/leadgen-labs",
+        "description": "OSS starter for GenAI portfolios",
+        "language": "Python",
+        "stars": 73,
+        "forks": 34,
+        "url": "https://github.com/rohantiwari/leadgen-labs"
+      },
+      {
+        "name": "rohantiwari/meetnote-engine",
+        "description": "CrewAI cold-outreach crew",
+        "language": "Go",
+        "stars": 245,
+        "forks": 8,
+        "url": "https://github.com/rohantiwari/meetnote-engine"
+      }
+    ],
+    "open_source_score": 53
+  },
+  {
+    "user_id": "0cc0ba65-4fdd-5319-beb6-fd9ff1e28a8e",
+    "repository_count": 53,
+    "contribution_count": 1375,
+    "stars_received": 402,
+    "stars_given": 173,
+    "languages": [
+      "Jupyter Notebook",
+      "Rust",
+      "Kotlin",
+      "JavaScript",
+      "Shell"
+    ],
+    "pinned_projects": [
+      {
+        "name": "kartikjindal/starter-engine",
+        "description": "LangChain templates for enterprise search",
+        "language": "Jupyter Notebook",
+        "stars": 137,
+        "forks": 30,
+        "url": "https://github.com/kartikjindal/starter-engine"
+      },
+      {
+        "name": "kartikjindal/researcher-api",
+        "description": "LangGraph multi-agent research assistant",
+        "language": "Rust",
+        "stars": 265,
+        "forks": 28,
+        "url": "https://github.com/kartikjindal/researcher-api"
+      }
+    ],
+    "open_source_score": 88
+  },
+  {
+    "user_id": "bb2f5d58-29e3-5485-b5cf-caf7a93ee56b",
+    "repository_count": 12,
+    "contribution_count": 294,
+    "stars_received": 512,
+    "stars_given": 25,
+    "languages": [
+      "Rust",
+      "JavaScript",
+      "Shell",
+      "C++"
+    ],
+    "pinned_projects": [
+      {
+        "name": "yashbhatia/starter-cli",
+        "description": "MCP servers for personal knowledge base",
+        "language": "Rust",
+        "stars": 164,
+        "forks": 39,
+        "url": "https://github.com/yashbhatia/starter-cli"
+      },
+      {
+        "name": "yashbhatia/toolbox-bench",
+        "description": "Vector DB comparison notebook",
+        "language": "JavaScript",
+        "stars": 89,
+        "forks": 38,
+        "url": "https://github.com/yashbhatia/toolbox-bench"
+      },
+      {
+        "name": "yashbhatia/agentic-bench",
+        "description": "Vector DB comparison notebook",
+        "language": "Shell",
+        "stars": 259,
+        "forks": 11,
+        "url": "https://github.com/yashbhatia/agentic-bench"
+      }
+    ],
+    "open_source_score": 40
+  },
+  {
+    "user_id": "80b44ab9-aa78-5a95-b234-cc89232960c9",
+    "repository_count": 53,
+    "contribution_count": 1252,
+    "stars_received": 698,
+    "stars_given": 293,
+    "languages": [
+      "JavaScript",
+      "Python",
+      "Kotlin"
+    ],
+    "pinned_projects": [
+      {
+        "name": "arnab.majumdar/invoice-sdk",
+        "description": "Streamlit dashboard for LLM evals",
+        "language": "JavaScript",
+        "stars": 179,
+        "forks": 10,
+        "url": "https://github.com/arnab.majumdar/invoice-sdk"
+      },
+      {
+        "name": "arnab.majumdar/recruiter-starter",
+        "description": "Hugging Face fine-tuning notebook",
+        "language": "Python",
+        "stars": 68,
+        "forks": 12,
+        "url": "https://github.com/arnab.majumdar/recruiter-starter"
+      },
+      {
+        "name": "arnab.majumdar/rag-playground",
+        "description": "Prompt-eval benchmark on customer FAQs",
+        "language": "Kotlin",
+        "stars": 294,
+        "forks": 40,
+        "url": "https://github.com/arnab.majumdar/rag-playground"
+      },
+      {
+        "name": "arnab.majumdar/starter-starter",
+        "description": "RAG playground with hybrid search",
+        "language": "JavaScript",
+        "stars": 157,
+        "forks": 31,
+        "url": "https://github.com/arnab.majumdar/starter-starter"
+      }
+    ],
+    "open_source_score": 97
+  },
+  {
+    "user_id": "f206caa2-6550-5fbd-aeaf-1eef6cc9db61",
+    "repository_count": 8,
+    "contribution_count": 624,
+    "stars_received": 361,
+    "stars_given": 202,
+    "languages": [
+      "Kotlin",
+      "Java",
+      "Rust",
+      "Shell"
+    ],
+    "pinned_projects": [
+      {
+        "name": "rushikeshkhedekar/meetnote-notebook",
+        "description": "AI recruiter with resume parser",
+        "language": "Kotlin",
+        "stars": 312,
+        "forks": 35,
+        "url": "https://github.com/rushikeshkhedekar/meetnote-notebook"
+      },
+      {
+        "name": "rushikeshkhedekar/kit-bench",
+        "description": "n8n workflow library for AI onboarding",
+        "language": "Java",
+        "stars": 49,
+        "forks": 30,
+        "url": "https://github.com/rushikeshkhedekar/kit-bench"
+      }
+    ],
+    "open_source_score": 49
+  },
+  {
+    "user_id": "dbed9adc-a66b-5ee9-a0d3-68ed10c44f5f",
+    "repository_count": 31,
+    "contribution_count": 458,
+    "stars_received": 298,
+    "stars_given": 199,
+    "languages": [
+      "Shell",
+      "Rust",
+      "Java",
+      "Python"
+    ],
+    "pinned_projects": [
+      {
+        "name": "gauthamnaidu/kit-starter",
+        "description": "LangGraph multi-agent research assistant",
+        "language": "Shell",
+        "stars": 174,
+        "forks": 38,
+        "url": "https://github.com/gauthamnaidu/kit-starter"
+      },
+      {
+        "name": "gauthamnaidu/toolbox-cli",
+        "description": "n8n workflow library for AI onboarding",
+        "language": "Rust",
+        "stars": 100,
+        "forks": 12,
+        "url": "https://github.com/gauthamnaidu/toolbox-cli"
+      },
+      {
+        "name": "gauthamnaidu/email-bench",
+        "description": "Vector DB comparison notebook",
+        "language": "Java",
+        "stars": 24,
+        "forks": 0,
+        "url": "https://github.com/gauthamnaidu/email-bench"
+      }
+    ],
+    "open_source_score": 37
+  },
+  {
+    "user_id": "76fca80b-e05c-5707-abc2-12d796e2c2b9",
+    "repository_count": 40,
+    "contribution_count": 1078,
+    "stars_received": 223,
+    "stars_given": 131,
+    "languages": [
+      "Rust",
+      "C++",
+      "Python"
+    ],
+    "pinned_projects": [
+      {
+        "name": "samruddhideshmukh/kit-sdk",
+        "description": "OSS starter for GenAI portfolios",
+        "language": "Rust",
+        "stars": 42,
+        "forks": 19,
+        "url": "https://github.com/samruddhideshmukh/kit-sdk"
+      },
+      {
+        "name": "samruddhideshmukh/codegrade-workshop",
+        "description": "Hugging Face fine-tuning notebook",
+        "language": "C++",
+        "stars": 181,
+        "forks": 40,
+        "url": "https://github.com/samruddhideshmukh/codegrade-workshop"
+      }
+    ],
+    "open_source_score": 65
+  },
+  {
+    "user_id": "de432219-3179-533f-b960-1c2ba0ba92bb",
+    "repository_count": 68,
+    "contribution_count": 1028,
+    "stars_received": 707,
+    "stars_given": 128,
+    "languages": [
+      "C++",
+      "Java",
+      "Kotlin",
+      "JavaScript",
+      "Go"
+    ],
+    "pinned_projects": [
+      {
+        "name": "gurubhat/leadgen-engine",
+        "description": "Vector DB comparison notebook",
+        "language": "C++",
+        "stars": 210,
+        "forks": 2,
+        "url": "https://github.com/gurubhat/leadgen-engine"
+      },
+      {
+        "name": "gurubhat/meetnote-notebook",
+        "description": "AI recruiter with resume parser",
+        "language": "Java",
+        "stars": 172,
+        "forks": 20,
+        "url": "https://github.com/gurubhat/meetnote-notebook"
+      },
+      {
+        "name": "gurubhat/rag-workshop",
+        "description": "Streamlit dashboard for LLM evals",
+        "language": "Kotlin",
+        "stars": 262,
+        "forks": 11,
+        "url": "https://github.com/gurubhat/rag-workshop"
+      },
+      {
+        "name": "gurubhat/email-toolkit",
+        "description": "LangChain templates for enterprise search",
+        "language": "JavaScript",
+        "stars": 63,
+        "forks": 22,
+        "url": "https://github.com/gurubhat/email-toolkit"
+      }
+    ],
+    "open_source_score": 86
+  },
+  {
+    "user_id": "8f9dd994-27bb-544c-bf7f-4078e589898d",
+    "repository_count": 48,
+    "contribution_count": 243,
+    "stars_received": 481,
+    "stars_given": 283,
+    "languages": [
+      "Kotlin",
+      "TypeScript",
+      "Go",
+      "Jupyter Notebook"
+    ],
+    "pinned_projects": [
+      {
+        "name": "madhurirao/kit-playground",
+        "description": "OSS starter for GenAI portfolios",
+        "language": "Kotlin",
+        "stars": 291,
+        "forks": 1,
+        "url": "https://github.com/madhurirao/kit-playground"
+      },
+      {
+        "name": "madhurirao/toolbox-engine",
+        "description": "Streamlit dashboard for LLM evals",
+        "language": "TypeScript",
+        "stars": 190,
+        "forks": 20,
+        "url": "https://github.com/madhurirao/toolbox-engine"
+      }
+    ],
+    "open_source_score": 36
+  },
+  {
+    "user_id": "38c61459-189d-5018-8498-2e8738a09f93",
+    "repository_count": 16,
+    "contribution_count": 1053,
+    "stars_received": 430,
+    "stars_given": 155,
+    "languages": [
+      "Jupyter Notebook",
+      "Java",
+      "Rust",
+      "Kotlin"
+    ],
+    "pinned_projects": [
+      {
+        "name": "shreyasjadhav/toolbox-notebook",
+        "description": "MCP servers for personal knowledge base",
+        "language": "Jupyter Notebook",
+        "stars": 133,
+        "forks": 11,
+        "url": "https://github.com/shreyasjadhav/toolbox-notebook"
+      },
+      {
+        "name": "shreyasjadhav/researcher-notebook",
+        "description": "Streamlit dashboard for LLM evals",
+        "language": "Java",
+        "stars": 40,
+        "forks": 37,
+        "url": "https://github.com/shreyasjadhav/researcher-notebook"
+      },
+      {
+        "name": "shreyasjadhav/codegrade-sdk",
+        "description": "CrewAI cold-outreach crew",
+        "language": "Rust",
+        "stars": 235,
+        "forks": 4,
+        "url": "https://github.com/shreyasjadhav/codegrade-sdk"
+      },
+      {
+        "name": "shreyasjadhav/codegrade-sdk",
+        "description": "Voice agent with realtime transcription",
+        "language": "Kotlin",
+        "stars": 22,
+        "forks": 24,
+        "url": "https://github.com/shreyasjadhav/codegrade-sdk"
+      }
+    ],
+    "open_source_score": 74
+  },
+  {
+    "user_id": "c9687c28-4ba9-51fc-9e7e-141df7f48e24",
+    "repository_count": 59,
+    "contribution_count": 991,
+    "stars_received": 716,
+    "stars_given": 128,
+    "languages": [
+      "Jupyter Notebook",
+      "JavaScript",
+      "TypeScript"
+    ],
+    "pinned_projects": [
+      {
+        "name": "jishnudutta/codegrade-sdk",
+        "description": "Vector DB comparison notebook",
+        "language": "Jupyter Notebook",
+        "stars": 202,
+        "forks": 34,
+        "url": "https://github.com/jishnudutta/codegrade-sdk"
+      },
+      {
+        "name": "jishnudutta/labs-playground",
+        "description": "Prompt-eval benchmark on customer FAQs",
+        "language": "JavaScript",
+        "stars": 63,
+        "forks": 39,
+        "url": "https://github.com/jishnudutta/labs-playground"
+      },
+      {
+        "name": "jishnudutta/researcher-cli",
+        "description": "LangGraph multi-agent research assistant",
+        "language": "TypeScript",
+        "stars": 182,
+        "forks": 8,
+        "url": "https://github.com/jishnudutta/researcher-cli"
+      },
+      {
+        "name": "jishnudutta/pdfchat-toolkit",
+        "description": "Streamlit dashboard for LLM evals",
+        "language": "Jupyter Notebook",
+        "stars": 157,
+        "forks": 10,
+        "url": "https://github.com/jishnudutta/pdfchat-toolkit"
+      },
+      {
+        "name": "jishnudutta/email-workshop",
+        "description": "Streamlit dashboard for LLM evals",
+        "language": "JavaScript",
+        "stars": 112,
+        "forks": 10,
+        "url": "https://github.com/jishnudutta/email-workshop"
+      }
+    ],
+    "open_source_score": 85
+  },
+  {
+    "user_id": "7c625956-24aa-50a1-ac48-ad5045cb94b2",
+    "repository_count": 29,
+    "contribution_count": 921,
+    "stars_received": 618,
+    "stars_given": 368,
+    "languages": [
+      "Go",
+      "Java"
+    ],
+    "pinned_projects": [
+      {
+        "name": "saanvinagpal/leadgen-toolkit",
+        "description": "CrewAI cold-outreach crew",
+        "language": "Go",
+        "stars": 9,
+        "forks": 32,
+        "url": "https://github.com/saanvinagpal/leadgen-toolkit"
+      },
+      {
+        "name": "saanvinagpal/pdfchat-starter",
+        "description": "Hugging Face fine-tuning notebook",
+        "language": "Java",
+        "stars": 132,
+        "forks": 38,
+        "url": "https://github.com/saanvinagpal/pdfchat-starter"
+      },
+      {
+        "name": "saanvinagpal/voice-api",
+        "description": "Voice agent with realtime transcription",
+        "language": "Go",
+        "stars": 231,
+        "forks": 16,
+        "url": "https://github.com/saanvinagpal/voice-api"
+      },
+      {
+        "name": "saanvinagpal/email-engine",
+        "description": "Streamlit dashboard for LLM evals",
+        "language": "Java",
+        "stars": 236,
+        "forks": 38,
+        "url": "https://github.com/saanvinagpal/email-engine"
+      },
+      {
+        "name": "saanvinagpal/labs-playground",
+        "description": "AI recruiter with resume parser",
+        "language": "Go",
+        "stars": 10,
+        "forks": 10,
+        "url": "https://github.com/saanvinagpal/labs-playground"
+      }
+    ],
+    "open_source_score": 76
+  },
+  {
+    "user_id": "4eaf9112-008b-536a-aa2d-ee68fe01aa96",
+    "repository_count": 18,
+    "contribution_count": 949,
+    "stars_received": 295,
+    "stars_given": 243,
+    "languages": [
+      "TypeScript",
+      "Rust",
+      "Shell"
+    ],
+    "pinned_projects": [
+      {
+        "name": "rajarshikundu/rag-api",
+        "description": "CrewAI cold-outreach crew",
+        "language": "TypeScript",
+        "stars": 29,
+        "forks": 10,
+        "url": "https://github.com/rajarshikundu/rag-api"
+      },
+      {
+        "name": "rajarshikundu/toolbox-labs",
+        "description": "Hugging Face fine-tuning notebook",
+        "language": "Rust",
+        "stars": 266,
+        "forks": 25,
+        "url": "https://github.com/rajarshikundu/toolbox-labs"
+      }
+    ],
+    "open_source_score": 62
+  },
+  {
+    "user_id": "b0751714-499e-5f11-8e14-f8ceee434229",
+    "repository_count": 23,
+    "contribution_count": 552,
+    "stars_received": 474,
+    "stars_given": 179,
+    "languages": [
+      "Shell",
+      "JavaScript"
+    ],
+    "pinned_projects": [
+      {
+        "name": "tanmaysinha/labs-workshop",
+        "description": "Vector DB comparison notebook",
+        "language": "Shell",
+        "stars": 180,
+        "forks": 28,
+        "url": "https://github.com/tanmaysinha/labs-workshop"
+      },
+      {
+        "name": "tanmaysinha/invoice-toolkit",
+        "description": "PDF chat over a 10k-page manual",
+        "language": "JavaScript",
+        "stars": 82,
+        "forks": 16,
+        "url": "https://github.com/tanmaysinha/invoice-toolkit"
+      },
+      {
+        "name": "tanmaysinha/llm-workshop",
+        "description": "Streamlit dashboard for LLM evals",
+        "language": "Shell",
+        "stars": 212,
+        "forks": 3,
+        "url": "https://github.com/tanmaysinha/llm-workshop"
+      }
+    ],
+    "open_source_score": 51
+  },
+  {
+    "user_id": "a5e7626a-0b2e-515e-970d-13e18fd2015c",
+    "repository_count": 18,
+    "contribution_count": 725,
+    "stars_received": 707,
+    "stars_given": 28,
+    "languages": [
+      "Java",
+      "C++",
+      "Jupyter Notebook",
+      "Go"
+    ],
+    "pinned_projects": [
+      {
+        "name": "neelkarve/pdfchat-notebook",
+        "description": "PDF chat over a 10k-page manual",
+        "language": "Java",
+        "stars": 295,
+        "forks": 35,
+        "url": "https://github.com/neelkarve/pdfchat-notebook"
+      },
+      {
+        "name": "neelkarve/resume-cli",
+        "description": "Voice agent with realtime transcription",
+        "language": "C++",
+        "stars": 175,
+        "forks": 37,
+        "url": "https://github.com/neelkarve/resume-cli"
+      },
+      {
+        "name": "neelkarve/toolbox-api",
+        "description": "Hugging Face fine-tuning notebook",
+        "language": "Jupyter Notebook",
+        "stars": 237,
+        "forks": 6,
+        "url": "https://github.com/neelkarve/toolbox-api"
+      }
+    ],
+    "open_source_score": 71
+  },
+  {
+    "user_id": "acc706da-2e8c-5d84-bbd3-1fb7144a1901",
+    "repository_count": 6,
+    "contribution_count": 828,
+    "stars_received": 747,
+    "stars_given": 158,
+    "languages": [
+      "Java",
+      "TypeScript",
+      "Jupyter Notebook"
+    ],
+    "pinned_projects": [
+      {
+        "name": "radhikabhat/autoflow-notebook",
+        "description": "LangGraph multi-agent research assistant",
+        "language": "Java",
+        "stars": 70,
+        "forks": 21,
+        "url": "https://github.com/radhikabhat/autoflow-notebook"
+      },
+      {
+        "name": "radhikabhat/starter-api",
+        "description": "PDF chat over a 10k-page manual",
+        "language": "TypeScript",
+        "stars": 231,
+        "forks": 6,
+        "url": "https://github.com/radhikabhat/starter-api"
+      },
+      {
+        "name": "radhikabhat/toolbox-cli",
+        "description": "Vector DB comparison notebook",
+        "language": "Jupyter Notebook",
+        "stars": 83,
+        "forks": 40,
+        "url": "https://github.com/radhikabhat/toolbox-cli"
+      },
+      {
+        "name": "radhikabhat/support-starter",
+        "description": "LangGraph multi-agent research assistant",
+        "language": "Java",
+        "stars": 170,
+        "forks": 28,
+        "url": "https://github.com/radhikabhat/support-starter"
+      },
+      {
+        "name": "radhikabhat/codegrade-cli",
+        "description": "CrewAI cold-outreach crew",
+        "language": "TypeScript",
+        "stars": 193,
+        "forks": 21,
+        "url": "https://github.com/radhikabhat/codegrade-cli"
+      }
+    ],
+    "open_source_score": 78
+  },
+  {
+    "user_id": "48eb90d5-715e-5489-a195-0a7009ce4a68",
+    "repository_count": 24,
+    "contribution_count": 1372,
+    "stars_received": 226,
+    "stars_given": 167,
+    "languages": [
+      "JavaScript",
+      "Jupyter Notebook"
+    ],
+    "pinned_projects": [
+      {
+        "name": "debjaninandi/rag-sdk",
+        "description": "LangGraph multi-agent research assistant",
+        "language": "JavaScript",
+        "stars": 40,
+        "forks": 28,
+        "url": "https://github.com/debjaninandi/rag-sdk"
+      },
+      {
+        "name": "debjaninandi/playbook-workshop",
+        "description": "LangGraph multi-agent research assistant",
+        "language": "Jupyter Notebook",
+        "stars": 40,
+        "forks": 0,
+        "url": "https://github.com/debjaninandi/playbook-workshop"
+      },
+      {
+        "name": "debjaninandi/playbook-kit",
+        "description": "OSS starter for GenAI portfolios",
+        "language": "JavaScript",
+        "stars": 146,
+        "forks": 34,
+        "url": "https://github.com/debjaninandi/playbook-kit"
+      }
+    ],
+    "open_source_score": 79
+  },
+  {
+    "user_id": "f0acb74e-bacc-5451-b8e4-d606209b2ad0",
+    "repository_count": 21,
+    "contribution_count": 1164,
+    "stars_received": 443,
+    "stars_given": 349,
+    "languages": [
+      "Rust",
+      "Java"
+    ],
+    "pinned_projects": [
+      {
+        "name": "sudeshnamitra/leadgen-cli",
+        "description": "CrewAI cold-outreach crew",
+        "language": "Rust",
+        "stars": 265,
+        "forks": 35,
+        "url": "https://github.com/sudeshnamitra/leadgen-cli"
+      },
+      {
+        "name": "sudeshnamitra/prompt-server",
+        "description": "Vector DB comparison notebook",
+        "language": "Java",
+        "stars": 37,
+        "forks": 1,
+        "url": "https://github.com/sudeshnamitra/prompt-server"
+      },
+      {
+        "name": "sudeshnamitra/leadgen-starter",
+        "description": "Streamlit dashboard for LLM evals",
+        "language": "Rust",
+        "stars": 141,
+        "forks": 38,
+        "url": "https://github.com/sudeshnamitra/leadgen-starter"
+      }
+    ],
+    "open_source_score": 80
+  },
+  {
+    "user_id": "b3de17ae-98bb-5c45-a1ae-c1a84e3f3fb5",
+    "repository_count": 40,
+    "contribution_count": 628,
+    "stars_received": 315,
+    "stars_given": 55,
+    "languages": [
+      "Jupyter Notebook",
+      "Shell"
+    ],
+    "pinned_projects": [
+      {
+        "name": "vaidehidesai/rag-notebook",
+        "description": "LangChain templates for enterprise search",
+        "language": "Jupyter Notebook",
+        "stars": 147,
+        "forks": 19,
+        "url": "https://github.com/vaidehidesai/rag-notebook"
+      },
+      {
+        "name": "vaidehidesai/meetnote-sdk",
+        "description": "OSS starter for GenAI portfolios",
+        "language": "Shell",
+        "stars": 168,
+        "forks": 23,
+        "url": "https://github.com/vaidehidesai/meetnote-sdk"
+      }
+    ],
+    "open_source_score": 47
+  },
+  {
+    "user_id": "03140595-8f37-5bac-94ac-d111fc98907b",
+    "repository_count": 69,
+    "contribution_count": 1294,
+    "stars_received": 700,
+    "stars_given": 352,
+    "languages": [
+      "Rust",
+      "Java"
+    ],
+    "pinned_projects": [
+      {
+        "name": "harshgrover/toolbox-workshop",
+        "description": "LangChain templates for enterprise search",
+        "language": "Rust",
+        "stars": 66,
+        "forks": 16,
+        "url": "https://github.com/harshgrover/toolbox-workshop"
+      },
+      {
+        "name": "harshgrover/kit-api",
+        "description": "MCP servers for personal knowledge base",
+        "language": "Java",
+        "stars": 171,
+        "forks": 9,
+        "url": "https://github.com/harshgrover/kit-api"
+      },
+      {
+        "name": "harshgrover/rag-labs",
+        "description": "Streamlit dashboard for LLM evals",
+        "language": "Rust",
+        "stars": 218,
+        "forks": 36,
+        "url": "https://github.com/harshgrover/rag-labs"
+      },
+      {
+        "name": "harshgrover/researcher-toolkit",
+        "description": "AI recruiter with resume parser",
+        "language": "Java",
+        "stars": 218,
+        "forks": 0,
+        "url": "https://github.com/harshgrover/researcher-toolkit"
+      },
+      {
+        "name": "harshgrover/playbook-starter",
+        "description": "RAG playground with hybrid search",
+        "language": "Rust",
+        "stars": 27,
+        "forks": 30,
+        "url": "https://github.com/harshgrover/playbook-starter"
+      }
+    ],
+    "open_source_score": 99
+  },
+  {
+    "user_id": "758b036f-014c-5706-82c5-5a0601b8ed9f",
+    "repository_count": 62,
+    "contribution_count": 743,
+    "stars_received": 407,
+    "stars_given": 214,
+    "languages": [
+      "TypeScript",
+      "Java"
+    ],
+    "pinned_projects": [
+      {
+        "name": "sujoybanerjee/pdfchat-api",
+        "description": "OpenAI function calling toolkit",
+        "language": "TypeScript",
+        "stars": 233,
+        "forks": 28,
+        "url": "https://github.com/sujoybanerjee/pdfchat-api"
+      },
+      {
+        "name": "sujoybanerjee/llm-labs",
+        "description": "Voice agent with realtime transcription",
+        "language": "Java",
+        "stars": 174,
+        "forks": 14,
+        "url": "https://github.com/sujoybanerjee/llm-labs"
+      }
+    ],
+    "open_source_score": 57
+  },
+  {
+    "user_id": "165f6c1b-d2c4-53a6-9d79-de0bdd6c8f43",
+    "repository_count": 28,
+    "contribution_count": 584,
+    "stars_received": 665,
+    "stars_given": 107,
+    "languages": [
+      "JavaScript",
+      "Rust",
+      "Go"
+    ],
+    "pinned_projects": [
+      {
+        "name": "ishasaxena/toolbox-kit",
+        "description": "CrewAI cold-outreach crew",
+        "language": "JavaScript",
+        "stars": 139,
+        "forks": 11,
+        "url": "https://github.com/ishasaxena/toolbox-kit"
+      },
+      {
+        "name": "ishasaxena/agentic-workshop",
+        "description": "Streamlit dashboard for LLM evals",
+        "language": "Rust",
+        "stars": 90,
+        "forks": 9,
+        "url": "https://github.com/ishasaxena/agentic-workshop"
+      },
+      {
+        "name": "ishasaxena/leadgen-starter",
+        "description": "Vector DB comparison notebook",
+        "language": "Go",
+        "stars": 262,
+        "forks": 0,
+        "url": "https://github.com/ishasaxena/leadgen-starter"
+      },
+      {
+        "name": "ishasaxena/codegrade-sdk",
+        "description": "MCP servers for personal knowledge base",
+        "language": "JavaScript",
+        "stars": 174,
+        "forks": 37,
+        "url": "https://github.com/ishasaxena/codegrade-sdk"
+      }
+    ],
+    "open_source_score": 62
+  },
+  {
+    "user_id": "e64984b4-4fa4-5b69-b32e-5a97bb53dba1",
+    "repository_count": 13,
+    "contribution_count": 112,
+    "stars_received": 735,
+    "stars_given": 261,
+    "languages": [
+      "TypeScript",
+      "JavaScript"
+    ],
+    "pinned_projects": [
+      {
+        "name": "atharvakhedekar/email-api",
+        "description": "Voice agent with realtime transcription",
+        "language": "TypeScript",
+        "stars": 129,
+        "forks": 24,
+        "url": "https://github.com/atharvakhedekar/email-api"
+      },
+      {
+        "name": "atharvakhedekar/codegrade-playground",
+        "description": "OpenAI function calling toolkit",
+        "language": "JavaScript",
+        "stars": 76,
+        "forks": 33,
+        "url": "https://github.com/atharvakhedekar/codegrade-playground"
+      },
+      {
+        "name": "atharvakhedekar/labs-cli",
+        "description": "MCP servers for personal knowledge base",
+        "language": "TypeScript",
+        "stars": 214,
+        "forks": 18,
+        "url": "https://github.com/atharvakhedekar/labs-cli"
+      },
+      {
+        "name": "atharvakhedekar/voice-playground",
+        "description": "PDF chat over a 10k-page manual",
+        "language": "JavaScript",
+        "stars": 316,
+        "forks": 36,
+        "url": "https://github.com/atharvakhedekar/voice-playground"
+      }
+    ],
+    "open_source_score": 42
+  },
+  {
+    "user_id": "dae3feb7-4f6b-56c0-9e1e-08b729fa9ac2",
+    "repository_count": 38,
+    "contribution_count": 303,
+    "stars_received": 971,
+    "stars_given": 95,
+    "languages": [
+      "Kotlin",
+      "TypeScript"
+    ],
+    "pinned_projects": [
+      {
+        "name": "nabarunsarkar/kit-playground",
+        "description": "PDF chat over a 10k-page manual",
+        "language": "Kotlin",
+        "stars": 250,
+        "forks": 18,
+        "url": "https://github.com/nabarunsarkar/kit-playground"
+      },
+      {
+        "name": "nabarunsarkar/playbook-labs",
+        "description": "Voice agent with realtime transcription",
+        "language": "TypeScript",
+        "stars": 243,
+        "forks": 28,
+        "url": "https://github.com/nabarunsarkar/playbook-labs"
+      },
+      {
+        "name": "nabarunsarkar/crm-toolkit",
+        "description": "n8n workflow library for AI onboarding",
+        "language": "Kotlin",
+        "stars": 173,
+        "forks": 25,
+        "url": "https://github.com/nabarunsarkar/crm-toolkit"
+      },
+      {
+        "name": "nabarunsarkar/rag-bench",
+        "description": "Vector DB comparison notebook",
+        "language": "TypeScript",
+        "stars": 305,
+        "forks": 1,
+        "url": "https://github.com/nabarunsarkar/rag-bench"
+      }
+    ],
+    "open_source_score": 63
+  },
+  {
+    "user_id": "d76c496a-70c0-5925-9d79-75fde5065a00",
+    "repository_count": 21,
+    "contribution_count": 328,
+    "stars_received": 392,
+    "stars_given": 283,
+    "languages": [
+      "Rust",
+      "C++",
+      "Shell"
+    ],
+    "pinned_projects": [
+      {
+        "name": "sathvikrao/support-engine",
+        "description": "Voice agent with realtime transcription",
+        "language": "Rust",
+        "stars": 193,
+        "forks": 31,
+        "url": "https://github.com/sathvikrao/support-engine"
+      },
+      {
+        "name": "sathvikrao/toolbox-starter",
+        "description": "OSS starter for GenAI portfolios",
+        "language": "C++",
+        "stars": 31,
+        "forks": 4,
+        "url": "https://github.com/sathvikrao/toolbox-starter"
+      },
+      {
+        "name": "sathvikrao/invoice-playground",
+        "description": "Voice agent with realtime transcription",
+        "language": "Shell",
+        "stars": 101,
+        "forks": 30,
+        "url": "https://github.com/sathvikrao/invoice-playground"
+      },
+      {
+        "name": "sathvikrao/voice-cli",
+        "description": "OpenAI function calling toolkit",
+        "language": "Rust",
+        "stars": 67,
+        "forks": 38,
+        "url": "https://github.com/sathvikrao/voice-cli"
+      }
+    ],
+    "open_source_score": 36
+  },
+  {
+    "user_id": "c534ce8f-7cb8-5db4-bff3-5d36a011b5d6",
+    "repository_count": 55,
+    "contribution_count": 1324,
+    "stars_received": 595,
+    "stars_given": 78,
+    "languages": [
+      "TypeScript",
+      "Go",
+      "Python",
+      "Rust"
+    ],
+    "pinned_projects": [
+      {
+        "name": "mahibhatia/llm-notebook",
+        "description": "CrewAI cold-outreach crew",
+        "language": "TypeScript",
+        "stars": 156,
+        "forks": 6,
+        "url": "https://github.com/mahibhatia/llm-notebook"
+      },
+      {
+        "name": "mahibhatia/playbook-api",
+        "description": "MCP servers for personal knowledge base",
+        "language": "Go",
+        "stars": 230,
+        "forks": 15,
+        "url": "https://github.com/mahibhatia/playbook-api"
+      },
+      {
+        "name": "mahibhatia/crm-workshop",
+        "description": "Vector DB comparison notebook",
+        "language": "Python",
+        "stars": 209,
+        "forks": 9,
+        "url": "https://github.com/mahibhatia/crm-workshop"
+      }
+    ],
+    "open_source_score": 95
+  },
+  {
+    "user_id": "0564ab9f-706a-5276-9769-8576404ea447",
+    "repository_count": 62,
+    "contribution_count": 880,
+    "stars_received": 461,
+    "stars_given": 236,
+    "languages": [
+      "Kotlin",
+      "Go",
+      "Shell",
+      "C++"
+    ],
+    "pinned_projects": [
+      {
+        "name": "sahilsood/toolbox-playground",
+        "description": "Vector DB comparison notebook",
+        "language": "Kotlin",
+        "stars": 240,
+        "forks": 29,
+        "url": "https://github.com/sahilsood/toolbox-playground"
+      },
+      {
+        "name": "sahilsood/researcher-engine",
+        "description": "AI recruiter with resume parser",
+        "language": "Go",
+        "stars": 163,
+        "forks": 32,
+        "url": "https://github.com/sahilsood/researcher-engine"
+      },
+      {
+        "name": "sahilsood/leadgen-starter",
+        "description": "LangChain templates for enterprise search",
+        "language": "Shell",
+        "stars": 58,
+        "forks": 7,
+        "url": "https://github.com/sahilsood/leadgen-starter"
+      }
+    ],
+    "open_source_score": 67
+  },
+  {
+    "user_id": "fbef8661-4c7e-5259-91aa-b311c978f8b4",
+    "repository_count": 13,
+    "contribution_count": 975,
+    "stars_received": 708,
+    "stars_given": 259,
+    "languages": [
+      "JavaScript",
+      "Go"
+    ],
+    "pinned_projects": [
+      {
+        "name": "sudiptochatterjee/labs-sdk",
+        "description": "Vector DB comparison notebook",
+        "language": "JavaScript",
+        "stars": 293,
+        "forks": 2,
+        "url": "https://github.com/sudiptochatterjee/labs-sdk"
+      },
+      {
+        "name": "sudiptochatterjee/playbook-notebook",
+        "description": "RAG playground with hybrid search",
+        "language": "Go",
+        "stars": 124,
+        "forks": 15,
+        "url": "https://github.com/sudiptochatterjee/playbook-notebook"
+      },
+      {
+        "name": "sudiptochatterjee/email-labs",
+        "description": "OpenAI function calling toolkit",
+        "language": "JavaScript",
+        "stars": 274,
+        "forks": 24,
+        "url": "https://github.com/sudiptochatterjee/email-labs"
+      },
+      {
+        "name": "sudiptochatterjee/resume-api",
+        "description": "Hugging Face fine-tuning notebook",
+        "language": "Go",
+        "stars": 17,
+        "forks": 16,
+        "url": "https://github.com/sudiptochatterjee/resume-api"
+      }
+    ],
+    "open_source_score": 84
+  },
+  {
+    "user_id": "29c72e89-5225-50f0-ac83-191bbc25d25f",
+    "repository_count": 70,
+    "contribution_count": 383,
+    "stars_received": 879,
+    "stars_given": 186,
+    "languages": [
+      "JavaScript",
+      "Jupyter Notebook",
+      "TypeScript",
+      "Java"
+    ],
+    "pinned_projects": [
+      {
+        "name": "hariniraghavan/kit-server",
+        "description": "LangChain templates for enterprise search",
+        "language": "JavaScript",
+        "stars": 30,
+        "forks": 22,
+        "url": "https://github.com/hariniraghavan/kit-server"
+      },
+      {
+        "name": "hariniraghavan/kit-workshop",
+        "description": "MCP servers for personal knowledge base",
+        "language": "Jupyter Notebook",
+        "stars": 252,
+        "forks": 13,
+        "url": "https://github.com/hariniraghavan/kit-workshop"
+      },
+      {
+        "name": "hariniraghavan/rag-labs",
+        "description": "CrewAI cold-outreach crew",
+        "language": "TypeScript",
+        "stars": 306,
+        "forks": 33,
+        "url": "https://github.com/hariniraghavan/rag-labs"
+      },
+      {
+        "name": "hariniraghavan/toolbox-api",
+        "description": "Vector DB comparison notebook",
+        "language": "Java",
+        "stars": 291,
+        "forks": 9,
+        "url": "https://github.com/hariniraghavan/toolbox-api"
+      }
+    ],
+    "open_source_score": 63
+  },
+  {
+    "user_id": "f398ce7e-6157-56a5-9e05-380e02ffb538",
+    "repository_count": 25,
+    "contribution_count": 96,
+    "stars_received": 255,
+    "stars_given": 197,
+    "languages": [
+      "C++",
+      "TypeScript",
+      "Kotlin",
+      "Shell"
+    ],
+    "pinned_projects": [
+      {
+        "name": "poojadeshmukh/support-sdk",
+        "description": "Hugging Face fine-tuning notebook",
+        "language": "C++",
+        "stars": 177,
+        "forks": 27,
+        "url": "https://github.com/poojadeshmukh/support-sdk"
+      },
+      {
+        "name": "poojadeshmukh/researcher-cli",
+        "description": "Vector DB comparison notebook",
+        "language": "TypeScript",
+        "stars": 78,
+        "forks": 29,
+        "url": "https://github.com/poojadeshmukh/researcher-cli"
+      }
+    ],
+    "open_source_score": 17
+  },
+  {
+    "user_id": "fd1fc6ad-3c24-5661-836b-b6fef691377f",
+    "repository_count": 41,
+    "contribution_count": 652,
+    "stars_received": 676,
+    "stars_given": 294,
+    "languages": [
+      "Java",
+      "Python",
+      "Kotlin",
+      "Jupyter Notebook"
+    ],
+    "pinned_projects": [
+      {
+        "name": "atharvadesai/kit-engine",
+        "description": "CrewAI cold-outreach crew",
+        "language": "Java",
+        "stars": 12,
+        "forks": 2,
+        "url": "https://github.com/atharvadesai/kit-engine"
+      },
+      {
+        "name": "atharvadesai/llm-starter",
+        "description": "CrewAI cold-outreach crew",
+        "language": "Python",
+        "stars": 288,
+        "forks": 39,
+        "url": "https://github.com/atharvadesai/llm-starter"
+      },
+      {
+        "name": "atharvadesai/llm-toolkit",
+        "description": "Voice agent with realtime transcription",
+        "language": "Kotlin",
+        "stars": 292,
+        "forks": 21,
+        "url": "https://github.com/atharvadesai/llm-toolkit"
+      },
+      {
+        "name": "atharvadesai/recruiter-starter",
+        "description": "OpenAI function calling toolkit",
+        "language": "Jupyter Notebook",
+        "stars": 84,
+        "forks": 20,
+        "url": "https://github.com/atharvadesai/recruiter-starter"
+      }
+    ],
+    "open_source_score": 66
+  },
+  {
+    "user_id": "d5d5d29f-3635-5c31-8af8-706a82c15b77",
+    "repository_count": 25,
+    "contribution_count": 1578,
+    "stars_received": 463,
+    "stars_given": 272,
+    "languages": [
+      "Go",
+      "C++",
+      "Python",
+      "Rust",
+      "Java"
+    ],
+    "pinned_projects": [
+      {
+        "name": "dineshbhat/toolbox-playground",
+        "description": "RAG playground with hybrid search",
+        "language": "Go",
+        "stars": 240,
+        "forks": 16,
+        "url": "https://github.com/dineshbhat/toolbox-playground"
+      },
+      {
+        "name": "dineshbhat/researcher-playground",
+        "description": "OpenAI function calling toolkit",
+        "language": "C++",
+        "stars": 223,
+        "forks": 35,
+        "url": "https://github.com/dineshbhat/researcher-playground"
+      }
+    ],
+    "open_source_score": 100
+  },
+  {
+    "user_id": "4ab847ee-b5f4-5510-84b1-54e8a69d0360",
+    "repository_count": 32,
+    "contribution_count": 1505,
+    "stars_received": 1062,
+    "stars_given": 95,
+    "languages": [
+      "Java",
+      "JavaScript"
+    ],
+    "pinned_projects": [
+      {
+        "name": "atharvaranade/toolbox-toolkit",
+        "description": "CrewAI cold-outreach crew",
+        "language": "Java",
+        "stars": 283,
+        "forks": 17,
+        "url": "https://github.com/atharvaranade/toolbox-toolkit"
+      },
+      {
+        "name": "atharvaranade/meetnote-api",
+        "description": "Voice agent with realtime transcription",
+        "language": "JavaScript",
+        "stars": 300,
+        "forks": 28,
+        "url": "https://github.com/atharvaranade/meetnote-api"
+      },
+      {
+        "name": "atharvaranade/voice-kit",
+        "description": "Voice agent with realtime transcription",
+        "language": "Java",
+        "stars": 294,
+        "forks": 21,
+        "url": "https://github.com/atharvaranade/voice-kit"
+      },
+      {
+        "name": "atharvaranade/autoflow-notebook",
+        "description": "n8n workflow library for AI onboarding",
+        "language": "JavaScript",
+        "stars": 67,
+        "forks": 4,
+        "url": "https://github.com/atharvaranade/autoflow-notebook"
+      },
+      {
+        "name": "atharvaranade/invoice-server",
+        "description": "Prompt-eval benchmark on customer FAQs",
+        "language": "Java",
+        "stars": 118,
+        "forks": 17,
+        "url": "https://github.com/atharvaranade/invoice-server"
+      }
+    ],
+    "open_source_score": 100
+  },
+  {
+    "user_id": "4fa9d4ea-8927-52df-9048-051067e4de77",
+    "repository_count": 38,
+    "contribution_count": 571,
+    "stars_received": 532,
+    "stars_given": 217,
+    "languages": [
+      "Python",
+      "Rust",
+      "C++"
+    ],
+    "pinned_projects": [
+      {
+        "name": "debaratibasak/starter-bench",
+        "description": "LangGraph multi-agent research assistant",
+        "language": "Python",
+        "stars": 191,
+        "forks": 23,
+        "url": "https://github.com/debaratibasak/starter-bench"
+      },
+      {
+        "name": "debaratibasak/prompt-kit",
+        "description": "MCP servers for personal knowledge base",
+        "language": "Rust",
+        "stars": 60,
+        "forks": 29,
+        "url": "https://github.com/debaratibasak/prompt-kit"
+      },
+      {
+        "name": "debaratibasak/crm-toolkit",
+        "description": "LangGraph multi-agent research assistant",
+        "language": "C++",
+        "stars": 55,
+        "forks": 37,
+        "url": "https://github.com/debaratibasak/crm-toolkit"
+      },
+      {
+        "name": "debaratibasak/voice-starter",
+        "description": "PDF chat over a 10k-page manual",
+        "language": "Python",
+        "stars": 226,
+        "forks": 40,
+        "url": "https://github.com/debaratibasak/voice-starter"
+      }
+    ],
+    "open_source_score": 55
+  },
+  {
+    "user_id": "71d72673-79a9-5c43-a9c1-282de8831337",
+    "repository_count": 58,
+    "contribution_count": 961,
+    "stars_received": 973,
+    "stars_given": 271,
+    "languages": [
+      "Shell",
+      "Go",
+      "TypeScript",
+      "Jupyter Notebook",
+      "Python"
+    ],
+    "pinned_projects": [
+      {
+        "name": "nitinjindal/recruiter-kit",
+        "description": "LangChain templates for enterprise search",
+        "language": "Shell",
+        "stars": 199,
+        "forks": 24,
+        "url": "https://github.com/nitinjindal/recruiter-kit"
+      },
+      {
+        "name": "nitinjindal/meetnote-server",
+        "description": "Hugging Face fine-tuning notebook",
+        "language": "Go",
+        "stars": 167,
+        "forks": 25,
+        "url": "https://github.com/nitinjindal/meetnote-server"
+      },
+      {
+        "name": "nitinjindal/meetnote-labs",
+        "description": "Vector DB comparison notebook",
+        "language": "TypeScript",
+        "stars": 194,
+        "forks": 14,
+        "url": "https://github.com/nitinjindal/meetnote-labs"
+      },
+      {
+        "name": "nitinjindal/codegrade-bench",
+        "description": "Vector DB comparison notebook",
+        "language": "Jupyter Notebook",
+        "stars": 227,
+        "forks": 19,
+        "url": "https://github.com/nitinjindal/codegrade-bench"
+      },
+      {
+        "name": "nitinjindal/crm-kit",
+        "description": "RAG playground with hybrid search",
+        "language": "Python",
+        "stars": 186,
+        "forks": 19,
+        "url": "https://github.com/nitinjindal/crm-kit"
+      }
+    ],
+    "open_source_score": 96
+  },
+  {
+    "user_id": "a4cd1e52-5765-5b3a-b6f1-411fab8cc858",
+    "repository_count": 23,
+    "contribution_count": 891,
+    "stars_received": 1060,
+    "stars_given": 69,
+    "languages": [
+      "Shell",
+      "Go",
+      "Kotlin"
+    ],
+    "pinned_projects": [
+      {
+        "name": "adityaprasad/support-playground",
+        "description": "OSS starter for GenAI portfolios",
+        "language": "Shell",
+        "stars": 276,
+        "forks": 13,
+        "url": "https://github.com/adityaprasad/support-playground"
+      },
+      {
+        "name": "adityaprasad/playbook-engine",
+        "description": "RAG playground with hybrid search",
+        "language": "Go",
+        "stars": 55,
+        "forks": 30,
+        "url": "https://github.com/adityaprasad/playbook-engine"
+      },
+      {
+        "name": "adityaprasad/recruiter-playground",
+        "description": "OSS starter for GenAI portfolios",
+        "language": "Kotlin",
+        "stars": 194,
+        "forks": 27,
+        "url": "https://github.com/adityaprasad/recruiter-playground"
+      },
+      {
+        "name": "adityaprasad/meetnote-starter",
+        "description": "Prompt-eval benchmark on customer FAQs",
+        "language": "Shell",
+        "stars": 288,
+        "forks": 8,
+        "url": "https://github.com/adityaprasad/meetnote-starter"
+      },
+      {
+        "name": "adityaprasad/pdfchat-cli",
+        "description": "OSS starter for GenAI portfolios",
+        "language": "Go",
+        "stars": 247,
+        "forks": 25,
+        "url": "https://github.com/adityaprasad/pdfchat-cli"
+      }
+    ],
+    "open_source_score": 97
+  },
+  {
+    "user_id": "2251ae20-c872-5778-8c9a-01e34ef47831",
+    "repository_count": 25,
+    "contribution_count": 1318,
+    "stars_received": 213,
+    "stars_given": 346,
+    "languages": [
+      "Rust",
+      "Jupyter Notebook",
+      "Kotlin",
+      "Go",
+      "Shell"
+    ],
+    "pinned_projects": [
+      {
+        "name": "bharathnair/leadgen-bench",
+        "description": "Voice agent with realtime transcription",
+        "language": "Rust",
+        "stars": 179,
+        "forks": 19,
+        "url": "https://github.com/bharathnair/leadgen-bench"
+      },
+      {
+        "name": "bharathnair/researcher-sdk",
+        "description": "AI recruiter with resume parser",
+        "language": "Jupyter Notebook",
+        "stars": 34,
+        "forks": 28,
+        "url": "https://github.com/bharathnair/researcher-sdk"
+      }
+    ],
+    "open_source_score": 76
+  },
+  {
+    "user_id": "15f3d11c-812d-545b-8e1a-9f5988bfc2c6",
+    "repository_count": 4,
+    "contribution_count": 1091,
+    "stars_received": 698,
+    "stars_given": 63,
+    "languages": [
+      "TypeScript",
+      "Jupyter Notebook",
+      "Python",
+      "Go"
+    ],
+    "pinned_projects": [
+      {
+        "name": "praveenreddy/kit-sdk",
+        "description": "LangGraph multi-agent research assistant",
+        "language": "TypeScript",
+        "stars": 217,
+        "forks": 18,
+        "url": "https://github.com/praveenreddy/kit-sdk"
+      },
+      {
+        "name": "praveenreddy/resume-server",
+        "description": "CrewAI cold-outreach crew",
+        "language": "Jupyter Notebook",
+        "stars": 130,
+        "forks": 14,
+        "url": "https://github.com/praveenreddy/resume-server"
+      },
+      {
+        "name": "praveenreddy/invoice-toolkit",
+        "description": "RAG playground with hybrid search",
+        "language": "Python",
+        "stars": 90,
+        "forks": 16,
+        "url": "https://github.com/praveenreddy/invoice-toolkit"
+      },
+      {
+        "name": "praveenreddy/recruiter-labs",
+        "description": "Voice agent with realtime transcription",
+        "language": "Go",
+        "stars": 125,
+        "forks": 34,
+        "url": "https://github.com/praveenreddy/recruiter-labs"
+      },
+      {
+        "name": "praveenreddy/pdfchat-toolkit",
+        "description": "MCP servers for personal knowledge base",
+        "language": "TypeScript",
+        "stars": 136,
+        "forks": 30,
+        "url": "https://github.com/praveenreddy/pdfchat-toolkit"
+      }
+    ],
+    "open_source_score": 89
+  },
+  {
+    "user_id": "1d600c9d-98ee-5840-8b8f-c9423a237bd1",
+    "repository_count": 14,
+    "contribution_count": 285,
+    "stars_received": 475,
+    "stars_given": 60,
+    "languages": [
+      "TypeScript",
+      "JavaScript",
+      "Python",
+      "C++",
+      "Jupyter Notebook"
+    ],
+    "pinned_projects": [
+      {
+        "name": "sagarikasen/pdfchat-playground",
+        "description": "OpenAI function calling toolkit",
+        "language": "TypeScript",
+        "stars": 190,
+        "forks": 5,
+        "url": "https://github.com/sagarikasen/pdfchat-playground"
+      },
+      {
+        "name": "sagarikasen/autoflow-cli",
+        "description": "Prompt-eval benchmark on customer FAQs",
+        "language": "JavaScript",
+        "stars": 82,
+        "forks": 13,
+        "url": "https://github.com/sagarikasen/autoflow-cli"
+      },
+      {
+        "name": "sagarikasen/crm-api",
+        "description": "OpenAI function calling toolkit",
+        "language": "Python",
+        "stars": 62,
+        "forks": 18,
+        "url": "https://github.com/sagarikasen/crm-api"
+      },
+      {
+        "name": "sagarikasen/voice-notebook",
+        "description": "Prompt-eval benchmark on customer FAQs",
+        "language": "C++",
+        "stars": 141,
+        "forks": 38,
+        "url": "https://github.com/sagarikasen/voice-notebook"
+      }
+    ],
+    "open_source_score": 38
+  },
+  {
+    "user_id": "2734ecaa-a479-57d0-be96-5d7a3e0d249e",
+    "repository_count": 58,
+    "contribution_count": 698,
+    "stars_received": 408,
+    "stars_given": 95,
+    "languages": [
+      "Jupyter Notebook",
+      "Go",
+      "Kotlin"
+    ],
+    "pinned_projects": [
+      {
+        "name": "hardikshinde/email-playground",
+        "description": "Hugging Face fine-tuning notebook",
+        "language": "Jupyter Notebook",
+        "stars": 254,
+        "forks": 24,
+        "url": "https://github.com/hardikshinde/email-playground"
+      },
+      {
+        "name": "hardikshinde/recruiter-sdk",
+        "description": "CrewAI cold-outreach crew",
+        "language": "Go",
+        "stars": 154,
+        "forks": 1,
+        "url": "https://github.com/hardikshinde/recruiter-sdk"
+      }
+    ],
+    "open_source_score": 55
+  },
+  {
+    "user_id": "b7d21872-04cf-5329-bcff-8959d140f5f4",
+    "repository_count": 64,
+    "contribution_count": 563,
+    "stars_received": 656,
+    "stars_given": 376,
+    "languages": [
+      "TypeScript",
+      "C++",
+      "Rust",
+      "Shell",
+      "Go"
+    ],
+    "pinned_projects": [
+      {
+        "name": "ipsitabhattacharya/rag-labs",
+        "description": "RAG playground with hybrid search",
+        "language": "TypeScript",
+        "stars": 109,
+        "forks": 6,
+        "url": "https://github.com/ipsitabhattacharya/rag-labs"
+      },
+      {
+        "name": "ipsitabhattacharya/resume-toolkit",
+        "description": "OpenAI function calling toolkit",
+        "language": "C++",
+        "stars": 263,
+        "forks": 3,
+        "url": "https://github.com/ipsitabhattacharya/resume-toolkit"
+      },
+      {
+        "name": "ipsitabhattacharya/invoice-bench",
+        "description": "AI recruiter with resume parser",
+        "language": "Rust",
+        "stars": 284,
+        "forks": 9,
+        "url": "https://github.com/ipsitabhattacharya/invoice-bench"
+      }
+    ],
+    "open_source_score": 60
+  },
+  {
+    "user_id": "4c9a0b97-1487-5edd-9934-d9818eafa0da",
+    "repository_count": 50,
+    "contribution_count": 567,
+    "stars_received": 431,
+    "stars_given": 126,
+    "languages": [
+      "Java",
+      "Python",
+      "Shell",
+      "C++",
+      "Kotlin"
+    ],
+    "pinned_projects": [
+      {
+        "name": "shauryanandi/recruiter-toolkit",
+        "description": "LangGraph multi-agent research assistant",
+        "language": "Java",
+        "stars": 18,
+        "forks": 37,
+        "url": "https://github.com/shauryanandi/recruiter-toolkit"
+      },
+      {
+        "name": "shauryanandi/researcher-kit",
+        "description": "OpenAI function calling toolkit",
+        "language": "Python",
+        "stars": 67,
+        "forks": 10,
+        "url": "https://github.com/shauryanandi/researcher-kit"
+      },
+      {
+        "name": "shauryanandi/pdfchat-notebook",
+        "description": "LangChain templates for enterprise search",
+        "language": "Shell",
+        "stars": 212,
+        "forks": 19,
+        "url": "https://github.com/shauryanandi/pdfchat-notebook"
+      },
+      {
+        "name": "shauryanandi/pdfchat-server",
+        "description": "Voice agent with realtime transcription",
+        "language": "C++",
+        "stars": 34,
+        "forks": 14,
+        "url": "https://github.com/shauryanandi/pdfchat-server"
+      },
+      {
+        "name": "shauryanandi/researcher-sdk",
+        "description": "n8n workflow library for AI onboarding",
+        "language": "Kotlin",
+        "stars": 100,
+        "forks": 4,
+        "url": "https://github.com/shauryanandi/researcher-sdk"
+      }
+    ],
+    "open_source_score": 49
+  },
+  {
+    "user_id": "f78f1c58-4457-5ebe-a9ff-9653c20d5a9a",
+    "repository_count": 21,
+    "contribution_count": 1382,
+    "stars_received": 686,
+    "stars_given": 83,
+    "languages": [
+      "Java",
+      "C++",
+      "Go"
+    ],
+    "pinned_projects": [
+      {
+        "name": "aarohibansal/starter-bench",
+        "description": "MCP servers for personal knowledge base",
+        "language": "Java",
+        "stars": 101,
+        "forks": 11,
+        "url": "https://github.com/aarohibansal/starter-bench"
+      },
+      {
+        "name": "aarohibansal/email-toolkit",
+        "description": "Hugging Face fine-tuning notebook",
+        "language": "C++",
+        "stars": 47,
+        "forks": 16,
+        "url": "https://github.com/aarohibansal/email-toolkit"
+      },
+      {
+        "name": "aarohibansal/labs-bench",
+        "description": "LangGraph multi-agent research assistant",
+        "language": "Go",
+        "stars": 4,
+        "forks": 18,
+        "url": "https://github.com/aarohibansal/labs-bench"
+      },
+      {
+        "name": "aarohibansal/pdfchat-kit",
+        "description": "LangGraph multi-agent research assistant",
+        "language": "Java",
+        "stars": 258,
+        "forks": 32,
+        "url": "https://github.com/aarohibansal/pdfchat-kit"
+      },
+      {
+        "name": "aarohibansal/toolbox-kit",
+        "description": "OpenAI function calling toolkit",
+        "language": "C++",
+        "stars": 276,
+        "forks": 30,
+        "url": "https://github.com/aarohibansal/toolbox-kit"
+      }
+    ],
+    "open_source_score": 100
+  },
+  {
+    "user_id": "93cefb33-c9af-57fc-898f-6c31f34b9d7c",
+    "repository_count": 46,
+    "contribution_count": 787,
+    "stars_received": 1035,
+    "stars_given": 207,
+    "languages": [
+      "Kotlin",
+      "Go",
+      "Shell",
+      "JavaScript",
+      "Java"
+    ],
+    "pinned_projects": [
+      {
+        "name": "sudiptosengupta/llm-bench",
+        "description": "n8n workflow library for AI onboarding",
+        "language": "Kotlin",
+        "stars": 301,
+        "forks": 12,
+        "url": "https://github.com/sudiptosengupta/llm-bench"
+      },
+      {
+        "name": "sudiptosengupta/crm-labs",
+        "description": "PDF chat over a 10k-page manual",
+        "language": "Go",
+        "stars": 166,
+        "forks": 32,
+        "url": "https://github.com/sudiptosengupta/crm-labs"
+      },
+      {
+        "name": "sudiptosengupta/playbook-cli",
+        "description": "Voice agent with realtime transcription",
+        "language": "Shell",
+        "stars": 222,
+        "forks": 5,
+        "url": "https://github.com/sudiptosengupta/playbook-cli"
+      },
+      {
+        "name": "sudiptosengupta/codegrade-notebook",
+        "description": "Streamlit dashboard for LLM evals",
+        "language": "JavaScript",
+        "stars": 92,
+        "forks": 32,
+        "url": "https://github.com/sudiptosengupta/codegrade-notebook"
+      },
+      {
+        "name": "sudiptosengupta/prompt-notebook",
+        "description": "AI recruiter with resume parser",
+        "language": "Java",
+        "stars": 254,
+        "forks": 24,
+        "url": "https://github.com/sudiptosengupta/prompt-notebook"
+      }
+    ],
+    "open_source_score": 91
+  },
+  {
+    "user_id": "e0f3d7ea-fabe-5f9e-82d7-3e09d1e6d735",
+    "repository_count": 44,
+    "contribution_count": 345,
+    "stars_received": 152,
+    "stars_given": 89,
+    "languages": [
+      "Java",
+      "TypeScript",
+      "Go",
+      "Python"
+    ],
+    "pinned_projects": [
+      {
+        "name": "rushikeshjadhav/voice-api",
+        "description": "OpenAI function calling toolkit",
+        "language": "Java",
+        "stars": 149,
+        "forks": 17,
+        "url": "https://github.com/rushikeshjadhav/voice-api"
+      },
+      {
+        "name": "rushikeshjadhav/labs-workshop",
+        "description": "Vector DB comparison notebook",
+        "language": "TypeScript",
+        "stars": 3,
+        "forks": 22,
+        "url": "https://github.com/rushikeshjadhav/labs-workshop"
+      }
+    ],
+    "open_source_score": 24
+  },
+  {
+    "user_id": "629d5a8f-da92-5ede-be9d-32fcecd4d21f",
+    "repository_count": 22,
+    "contribution_count": 123,
+    "stars_received": 507,
+    "stars_given": 257,
+    "languages": [
+      "Shell",
+      "Rust"
+    ],
+    "pinned_projects": [
+      {
+        "name": "tejasjoshi/resume-notebook",
+        "description": "RAG playground with hybrid search",
+        "language": "Shell",
+        "stars": 220,
+        "forks": 38,
+        "url": "https://github.com/tejasjoshi/resume-notebook"
+      },
+      {
+        "name": "tejasjoshi/toolbox-sdk",
+        "description": "MCP servers for personal knowledge base",
+        "language": "Rust",
+        "stars": 36,
+        "forks": 17,
+        "url": "https://github.com/tejasjoshi/toolbox-sdk"
+      },
+      {
+        "name": "tejasjoshi/rag-playground",
+        "description": "Streamlit dashboard for LLM evals",
+        "language": "Shell",
+        "stars": 251,
+        "forks": 31,
+        "url": "https://github.com/tejasjoshi/rag-playground"
+      }
+    ],
+    "open_source_score": 31
+  },
+  {
+    "user_id": "110b77ba-c3bd-5fc8-8928-2160bde27d50",
+    "repository_count": 45,
+    "contribution_count": 694,
+    "stars_received": 402,
+    "stars_given": 62,
+    "languages": [
+      "Go",
+      "Jupyter Notebook",
+      "Shell",
+      "Kotlin",
+      "C++"
+    ],
+    "pinned_projects": [
+      {
+        "name": "divyamenon/pdfchat-workshop",
+        "description": "LangGraph multi-agent research assistant",
+        "language": "Go",
+        "stars": 237,
+        "forks": 18,
+        "url": "https://github.com/divyamenon/pdfchat-workshop"
+      },
+      {
+        "name": "divyamenon/prompt-cli",
+        "description": "Hugging Face fine-tuning notebook",
+        "language": "Jupyter Notebook",
+        "stars": 165,
+        "forks": 27,
+        "url": "https://github.com/divyamenon/prompt-cli"
+      }
+    ],
+    "open_source_score": 54
+  }
+]
