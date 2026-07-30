@@ -553,6 +553,7 @@ export async function markNotificationsRead() {
     await supabase.from("comm_notifications").update({ is_read: true }).eq("user_id", user.id).eq("is_read", false);
   } catch { /* ignore */ }
   revalidatePath("/community/notifications");
+  revalidatePath("/", "layout");
   revalidateTag("community-feed", "max");
 }
 

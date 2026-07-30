@@ -2,7 +2,7 @@ import Link from "next/link";
 import { SignInButton } from "@/components/sign-in-button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
-import { Bell } from "lucide-react";
+import { NotificationPopover } from "@/components/notification-popover";
 import { CompactBrandLogo } from "@/components/brand-logo";
 import { getStudentAccess } from "@/lib/auth/student-access";
 import { ProfileMenu } from "@/components/profile-menu";
@@ -85,24 +85,44 @@ export async function SiteHeader() {
     }
   }
 
-  let unreadCount = 0;
+  type HeaderNotification = { id: string; type: string; post_id: string | null; actor_id: string | null; is_read: boolean; created_at: string };
+  let headerNotifications: HeaderNotification[] = [];
+  const actorNames = new Map<string, string>();
   if (user && (isEmployer || canAccessStudentArea) && url && key) {
     try {
       const supabase = await createServerSupabaseClient();
       const result = await withTimeout(
         supabase
           .from("comm_notifications")
-          .select("*", { count: "exact", head: true })
+          .select("id, type, post_id, actor_id, is_read, created_at")
           .eq("user_id", user.id)
-          .eq("is_read", false)
-          .then((data) => data),
+          .order("created_at", { ascending: false })
+          .limit(12),
         2000
       );
-      unreadCount = (result as { count?: number | null }).count ?? 0;
+      headerNotifications = ((result as { data?: HeaderNotification[] }).data ?? []);
+      const actorIds = [...new Set(headerNotifications.map((item) => item.actor_id).filter(Boolean))] as string[];
+      if (actorIds.length) {
+        const actors = await withTimeout(supabase.from("profiles").select("user_id, full_name, username").in("user_id", actorIds), 1500);
+        for (const actor of ((actors as { data?: { user_id: string; full_name: string | null; username: string | null }[] }).data ?? [])) {
+          actorNames.set(actor.user_id, actor.full_name || actor.username || "Someone");
+        }
+      }
     } catch {
-      // Ignore
+      // Notifications are optional; never let them block the header.
     }
   }
+
+  const notificationHref = (notification: HeaderNotification) => {
+    if (["job_application", "application_submitted", "application_shortlisted", "application_interviewed", "application_accepted", "application_rejected", "job_offer", "offer_accepted", "offer_declined"].includes(notification.type)) return isEmployer ? "/employer/dashboard/applications" : "/community/jobs";
+    if (notification.post_id) return `/community/post/${notification.post_id}`;
+    return null;
+  };
+  const popoverNotifications = headerNotifications.map((notification) => ({
+    id: notification.id, type: notification.type, isRead: notification.is_read, createdAt: notification.created_at,
+    actorName: notification.actor_id ? actorNames.get(notification.actor_id) || "Someone" : "CalibiAI",
+    href: notificationHref(notification),
+  }));
 
   const navLinks = !user
     ? publicLinks
@@ -141,22 +161,7 @@ export async function SiteHeader() {
           {user ? (
             <>
               {(isEmployer || canAccessStudentArea) && (
-                <Link
-                  href={isEmployer ? "/employer/dashboard/notifications" : "/community/notifications"}
-                  aria-label="Notifications"
-                  className="relative flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/80 text-slate-600 shadow-sm transition-all duration-200 hover:bg-white hover:text-slate-950 dark:border-white/10 dark:bg-white/8 dark:text-white/70 dark:hover:bg-white/12 dark:hover:text-white"
-                  style={{
-                    backdropFilter: "blur(12px)",
-                    WebkitBackdropFilter: "blur(12px)",
-                  }}
-                >
-                  <Bell className="h-4 w-4" />
-                  {unreadCount > 0 && (
-                    <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white shadow-sm animate-pulse">
-                      {unreadCount > 9 ? "9+" : unreadCount}
-                    </span>
-                  )}
-                </Link>
+                <NotificationPopover notifications={popoverNotifications} />
               )}
 
               {/* Student navigation already includes Learning Hub. Keep the
