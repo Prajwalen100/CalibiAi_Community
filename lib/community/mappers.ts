@@ -1,5 +1,18 @@
 import type { PostCardData } from "@/components/community/post-card";
 
+/** Dedupe tokens case-insensitively, keeping first-seen casing and order. */
+function dedupeTokens(tokens: string[]): string[] {
+  const seen = new Set<string>();
+  const result: string[] = [];
+  for (const token of tokens) {
+    const key = token.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    result.push(token);
+  }
+  return result;
+}
+
 /**
  * Maps a raw Supabase comm_posts row (with joined profiles + comm_communities)
  * to the typed PostCardData structure.
@@ -32,7 +45,7 @@ export function mapPostToCardData(
     communitySlug: community.slug ? String(community.slug) : undefined,
     repoUrl: p.repo_url ? String(p.repo_url) : null,
     liveUrl: p.live_url ? String(p.live_url) : null,
-    techStack: Array.isArray(p.tech_stack) ? (p.tech_stack as string[]) : null,
+    techStack: Array.isArray(p.tech_stack) ? dedupeTokens(p.tech_stack as string[]) : null,
     imageUrl: p.image_url ? String(p.image_url) : null,
     jobType: p.job_type ? String(p.job_type) : null,
     jobCompany: p.job_company ? String(p.job_company) : null,

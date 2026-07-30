@@ -137,8 +137,8 @@ export default async function OpportunitiesPage({ searchParams }: { searchParams
                 </div>
                 {job.skills_required && job.skills_required.length > 0 && (
                   <div className="mt-3 flex flex-wrap gap-1.5">
-                    {job.skills_required.slice(0, 6).map((s) => (
-                      <span key={s} className="rounded-full bg-brand-50 px-2.5 py-1 text-xs font-medium text-brand-700">{s}</span>
+                    {job.skills_required.slice(0, 6).map((s, i) => (
+                      <span key={`${s}-${i}`} className="rounded-full bg-brand-50 px-2.5 py-1 text-xs font-medium text-brand-700">{s}</span>
                     ))}
                   </div>
                 )}

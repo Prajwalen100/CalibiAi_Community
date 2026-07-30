@@ -201,14 +201,14 @@ export function PostDetailView({
         {/* Tech stack */}
         {techStack && techStack.length > 0 && (
           <div className="mt-4 flex flex-wrap gap-2">
-            {techStack.map((t) => <span key={t} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">{t}</span>)}
+            {techStack.map((t, i) => <span key={`${t}-${i}`} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">{t}</span>)}
           </div>
         )}
 
         {/* Tags */}
         {tags.length > 0 && (
           <div className="mt-3 flex flex-wrap gap-2">
-            {tags.map((t) => <span key={t} className="rounded-full bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700">#{t}</span>)}
+            {tags.map((t, i) => <span key={`${t}-${i}`} className="rounded-full bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700">#{t}</span>)}
           </div>
         )}
 
