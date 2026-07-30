@@ -18,7 +18,16 @@ import {
   Sparkles,
   Lock
 } from "lucide-react";
-import { getNextMidnightUTC, getRoadmapDayLockStatus } from "@/lib/learning/day-lock";
+import {
+  formatUnlockTime,
+  getNextMidnightUTC,
+  getRoadmapDayLockStatus,
+  type RoadmapDayLockStatus,
+} from "@/lib/learning/day-lock";
+import {
+  getRoadmapDayAccess,
+  ROADMAP_PROGRESS_LOCK_COLUMNS,
+} from "@/lib/learning/day-access";
 
 export const dynamic = "force-dynamic";
 
@@ -73,10 +82,11 @@ export default async function DayPage({
   if (access.isEmployer) redirect("/employer/dashboard");
   if (!access.canAccessStudentArea) redirect(access.nextPath);
 
-  const [{ data: roadmap }, { data: progress }, { data: profile }] = await Promise.all([
+  const [{ data: roadmap }, { data: progress }] = await Promise.all([
     supabase.from("roadmaps").select("*").eq("user_id", user.id).order("created_at", { ascending: false }).limit(1).single(),
-    supabase.from("roadmap_progress").select("day,status").eq("user_id", user.id).order("day", { ascending: true }),
-    supabase.from("profiles").select("username").eq("user_id", user.id).single(),
+    // `completed_at` / `unlock_at` are required by the pacing rules — selecting
+    // only `status` silently disabled the 12 AM daily reset lock.
+    supabase.from("roadmap_progress").select(ROADMAP_PROGRESS_LOCK_COLUMNS).eq("user_id", user.id).order("day", { ascending: true }),
   ]);
 
   const plan = roadmap?.generated_plan as StoredRoadmap | undefined;
@@ -98,12 +108,26 @@ export default async function DayPage({
   const prevDay = dayNumber > 1 ? days.find(d => d.day === dayNumber - 1) : null;
   const nextDay = dayNumber < totalDays ? days.find(d => d.day === dayNumber + 1) : null;
 
+  // Authoritative server-side lock check. A locked day must never render its
+  // lesson content, tasks, quiz or article link — even when the URL is typed
+  // directly (e.g. /roadmap/day/5 while Day 4 is still incomplete).
   const lockStatus = getRoadmapDayLockStatus(dayNumber, days, progress ?? []);
   const isCompleted = lockStatus.isCompleted;
   const isLocked = lockStatus.isLocked;
 
-  // Mark as in_progress if not started and not locked
-  if (currentProgress?.status === "not_started" && !isLocked) {
+  if (isLocked) {
+    return (
+      <LockedDayScreen
+        dayNumber={dayNumber}
+        dayTitle={currentDay?.title}
+        totalDays={totalDays}
+        lockStatus={lockStatus}
+      />
+    );
+  }
+
+  // Past this point the day is unlocked. Mark it in progress on first open.
+  if (currentProgress?.status === "not_started") {
     await supabase
       .from("roadmap_progress")
       .update({ status: "in_progress" })
@@ -187,37 +211,6 @@ export default async function DayPage({
           </div>
         )}
 
-        {/* Locked Day Alert Banner */}
-        {isLocked && (
-          <div className="mt-6 rounded-2xl border border-amber-200/80 bg-gradient-to-r from-amber-50/90 to-orange-50/60 p-6 shadow-sm dark:border-amber-900/60 dark:from-amber-950/40 dark:to-orange-950/20">
-            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-start gap-3">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-900/60 dark:text-amber-300">
-                  <Lock className="h-6 w-6" />
-                </div>
-                <div>
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-200/60 px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider text-amber-900 dark:bg-amber-900/50 dark:text-amber-200">
-                    <Clock className="h-3 w-3" /> Day Locked
-                  </span>
-                  <h3 className="mt-1 text-lg font-bold text-amber-950 dark:text-amber-100">
-                    {lockStatus.lockReason}
-                  </h3>
-                  <p className="mt-1 text-sm text-amber-800/90 dark:text-amber-200/80">
-                    {lockStatus.isDailyResetLock
-                      ? "In 24 hours you can only complete 1 day. This day unlocks automatically after the 12:00 AM daily reset to ensure proper pacing and better skill retention."
-                      : `You must finish Day ${dayNumber - 1} before unlocking Day ${dayNumber}. Complete each day sequentially to stay on track.`}
-                  </p>
-                </div>
-              </div>
-              <Link
-                href={`/roadmap/day/${Math.max(1, dayNumber - 1)}`}
-                className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-amber-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-amber-700 dark:bg-amber-600 dark:hover:bg-amber-500"
-              >
-                Go to Day {Math.max(1, dayNumber - 1)} →
-              </Link>
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Expected Outcome */}
@@ -424,12 +417,17 @@ export default async function DayPage({
         )}
         
         <div className="flex gap-2">
-          {!isCompleted && !isLocked && (
+          {!isCompleted && (
             <form action={async () => {
               "use server";
               const supabase = await createServerSupabaseClient();
               const { data: { user } } = await supabase.auth.getUser();
               if (user) {
+                // Re-check the lock on submit: a server action can be invoked
+                // directly, so the button being hidden is not enough.
+                const access = await getRoadmapDayAccess(supabase, user.id, dayNumber);
+                if (access.isLocked) return;
+
                 const now = new Date();
                 await supabase
                   .from("roadmap_progress")
@@ -457,16 +455,6 @@ export default async function DayPage({
             </form>
           )}
 
-          {isLocked && (
-            <button
-              disabled
-              className="inline-flex cursor-not-allowed items-center gap-2 rounded-xl border border-amber-300/80 bg-amber-100/90 px-4 py-2.5 text-sm font-bold text-amber-900 opacity-90 dark:border-amber-800 dark:bg-amber-950/50 dark:text-amber-200"
-            >
-              <Lock className="h-4 w-4" />
-              {lockStatus.isDailyResetLock ? "Unlocks after 12 AM reset" : `Complete Day ${dayNumber - 1} to Unlock`}
-            </button>
-          )}
-          
           {nextDay && (
             <Link 
               href={`/roadmap/day/${nextDay.day}`}
@@ -476,6 +464,94 @@ export default async function DayPage({
               <ChevronRight className="h-4 w-4" />
             </Link>
           )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * Full-page replacement shown instead of a locked day's content.
+ *
+ * This is intentionally a *substitute* for the lesson body rather than a banner
+ * on top of it: objectives, topics, tasks, quiz and article links must not be
+ * reachable until the previous day is completed and the 12 AM reset has passed.
+ */
+function LockedDayScreen({
+  dayNumber,
+  dayTitle,
+  totalDays,
+  lockStatus,
+}: {
+  dayNumber: number;
+  dayTitle?: string;
+  totalDays: number;
+  lockStatus: RoadmapDayLockStatus;
+}) {
+  const previousDay = Math.max(1, dayNumber - 1);
+  const isDailyReset = lockStatus.isDailyResetLock;
+
+  return (
+    <section className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="flex items-center justify-between">
+        <Link
+          href="/roadmap"
+          className="flex items-center gap-1 text-sm font-semibold text-slate-500 hover:text-brand-700"
+        >
+          <ChevronLeft className="h-4 w-4" />
+          Back to Roadmap
+        </Link>
+        <span className="text-sm text-slate-500">
+          Day {dayNumber} of {totalDays}
+        </span>
+      </div>
+
+      <div className="mt-6 rounded-3xl border border-amber-200/80 bg-gradient-to-br from-amber-50/90 to-orange-50/50 p-8 text-center shadow-sm dark:border-amber-900/60 dark:from-amber-950/40 dark:to-orange-950/20">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-100 text-amber-700 dark:bg-amber-900/60 dark:text-amber-300">
+          <Lock className="h-8 w-8" />
+        </div>
+
+        <span className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-amber-200/60 px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-900 dark:bg-amber-900/50 dark:text-amber-200">
+          <Clock className="h-3 w-3" /> Day {dayNumber} Locked
+        </span>
+
+        <h1 className="mt-3 text-2xl font-black text-amber-950 dark:text-amber-100 sm:text-3xl">
+          {lockStatus.lockReason ?? `Complete Day ${previousDay} to unlock`}
+        </h1>
+
+        {dayTitle && (
+          <p className="mt-2 text-sm font-semibold text-amber-800/80 dark:text-amber-200/70">
+            Day {dayNumber}: {dayTitle}
+          </p>
+        )}
+
+        <p className="mx-auto mt-4 max-w-xl text-sm text-amber-900/90 dark:text-amber-100/80">
+          {isDailyReset
+            ? "You can complete one day every 24 hours. This day unlocks automatically after the 12:00 AM daily reset, which keeps your pacing steady and improves skill retention."
+            : `Days must be completed in order. Finish Day ${previousDay} — including its tasks — before Day ${dayNumber} opens.`}
+        </p>
+
+        {isDailyReset && lockStatus.unlockAt && (
+          <p className="mt-3 text-xs font-bold uppercase tracking-wide text-amber-800 dark:text-amber-300">
+            Unlocks at {formatUnlockTime(lockStatus.unlockAt)}
+          </p>
+        )}
+
+        <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+          {!isDailyReset && (
+            <Link
+              href={`/roadmap/day/${previousDay}`}
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-amber-700"
+            >
+              Go to Day {previousDay} →
+            </Link>
+          )}
+          <Link
+            href="/roadmap"
+            className="inline-flex items-center justify-center gap-2 rounded-xl border border-amber-300 bg-white/70 px-5 py-2.5 text-sm font-semibold text-amber-900 transition-all hover:bg-white dark:border-amber-800 dark:bg-slate-900/60 dark:text-amber-200 dark:hover:bg-slate-900"
+          >
+            View Full Roadmap
+          </Link>
         </div>
       </div>
     </section>

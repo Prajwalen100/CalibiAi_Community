@@ -4,6 +4,7 @@ import { notFound, redirect } from "next/navigation";
 import { AiTaskLab } from "@/components/ai-task-lab";
 import { getStudentAccess } from "@/lib/auth/student-access";
 import { isLearningRole } from "@/lib/learning/content";
+import { getRoadmapDayAccess } from "@/lib/learning/day-access";
 import { getRoadmapTask } from "@/lib/learning/roadmap-task";
 import {
   ROADMAP_TASK_TYPES,
@@ -52,6 +53,11 @@ export default async function TaskAssessmentPage({
   if (assignment.level !== "beginner" && assignment.level !== "intermediate") {
     redirect("/roadmap/assign");
   }
+
+  // Tasks belong to a day — if that day is locked, the lab stays closed too.
+  const dayAccess = await getRoadmapDayAccess(supabase, user.id, dayNumber);
+  if (!dayAccess.hasRoadmap) redirect("/roadmap/assign");
+  if (dayAccess.isLocked) redirect(`/roadmap/day/${dayNumber}`);
 
   let task: ReturnType<typeof getRoadmapTask> = null;
   try {
