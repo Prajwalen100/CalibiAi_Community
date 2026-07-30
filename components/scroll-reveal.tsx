@@ -36,6 +36,13 @@ export function ScrollReveal({
       return;
     }
 
+    // Never hide content in browsers/webviews that do not implement the
+    // observer API (a common source of apparently blank pages).
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return;
+    }
+
     // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -126,6 +133,13 @@ export function StaggerReveal({
   useEffect(() => {
     if (disabled || typeof window === "undefined") {
       setTimeout(() => setIsVisible(true), 0);
+      return;
+    }
+
+    // As above, a missing observer must degrade to visible content rather than
+    // leaving every staggered item transparent.
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
       return;
     }
 

@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { recalculateAndPersistScore } from "@/lib/score/recalculate";
 
@@ -126,6 +126,7 @@ export async function createPost(formData: FormData) {
 
   await addXp(user.id, 10);
   revalidatePath("/community");
+  revalidateTag("community-feed", "max");
   return { success: true };
 }
 
@@ -257,8 +258,11 @@ export async function createJobPosting(formData: FormData) {
 
   await addXp(user.id, 10);
   revalidatePath("/community");
+  revalidateTag("community-feed", "max");
   revalidatePath("/community/jobs");
+  revalidateTag("community-feed", "max");
   revalidatePath("/community/jobs/opportunities");
+  revalidateTag("community-feed", "max");
   revalidatePath("/placements");
   revalidatePath("/network");
   revalidatePath("/employer/dashboard");
@@ -308,7 +312,9 @@ export async function votePost(postId: string, voteType: 1 | -1) {
   }
 
   revalidatePath("/community");
+  revalidateTag("community-feed", "max");
   revalidatePath(`/community/post/${postId}`);
+  revalidateTag("community-feed", "max");
   return { success: true };
 }
 
@@ -364,6 +370,7 @@ export async function createComment(postId: string, content: string, parentId?: 
   } catch { /* ignore */ }
 
   revalidatePath(`/community/post/${postId}`);
+  revalidateTag("community-feed", "max");
   return { success: true };
 }
 
@@ -389,6 +396,7 @@ export async function acceptAnswer(commentId: string, postId: string) {
   } catch { /* ignore */ }
 
   revalidatePath(`/community/post/${postId}`);
+  revalidateTag("community-feed", "max");
   return { success: true };
 }
 
@@ -443,8 +451,11 @@ export async function joinCommunity(communityId: string) {
   } catch { /* ignore */ }
 
   revalidatePath("/community");
+  revalidateTag("community-feed", "max");
   revalidatePath("/community/communities");
+  revalidateTag("community-feed", "max");
   revalidatePath(`/community/community/${communityId}`);
+  revalidateTag("community-feed", "max");
   return { success: true };
 }
 
@@ -472,7 +483,9 @@ export async function rsvpEvent(postId: string) {
   } catch { /* ignore */ }
 
   revalidatePath("/community/events");
+  revalidateTag("community-feed", "max");
   revalidatePath(`/community/post/${postId}`);
+  revalidateTag("community-feed", "max");
   return { success: true };
 }
 
@@ -506,7 +519,9 @@ export async function submitChallengeEntry(formData: FormData) {
 
   await addXp(user.id, 15);
   revalidatePath(`/community/post/${d.post_id}`);
+  revalidateTag("community-feed", "max");
   revalidatePath("/community/challenges");
+  revalidateTag("community-feed", "max");
   return { success: true };
 }
 
@@ -521,6 +536,7 @@ export async function markNotificationsRead() {
     await supabase.from("comm_notifications").update({ is_read: true }).eq("user_id", user.id).eq("is_read", false);
   } catch { /* ignore */ }
   revalidatePath("/community/notifications");
+  revalidateTag("community-feed", "max");
 }
 
 // ── Squads (Team Finder) ─────────────────────────────────────
@@ -580,6 +596,7 @@ export async function createSquad(formData: FormData) {
   }
 
   revalidatePath("/community/team-finder");
+  revalidateTag("community-feed", "max");
   return { id: squad.id as string };
 }
 
@@ -616,7 +633,9 @@ export async function addMembersToSquad(squadId: string, userIds: string[]) {
 
   await Promise.all(cleanIds.map((uid) => createNotification(uid, user.id, "squad_added")));
   revalidatePath("/community/team-finder");
+  revalidateTag("community-feed", "max");
   revalidatePath(`/community/team-finder/${squadId}`);
+  revalidateTag("community-feed", "max");
   return { success: true };
 }
 
@@ -626,7 +645,9 @@ export async function leaveSquad(squadId: string) {
   const supabase = await createServerSupabaseClient();
   await supabase.from("comm_squad_members").delete().eq("squad_id", squadId).eq("user_id", user.id);
   revalidatePath("/community/team-finder");
+  revalidateTag("community-feed", "max");
   revalidatePath(`/community/team-finder/${squadId}`);
+  revalidateTag("community-feed", "max");
   return { success: true };
 }
 
@@ -726,6 +747,7 @@ export async function createEvent(formData: FormData) {
 
   await addXp(user.id, 15);
   revalidatePath("/community/events");
+  revalidateTag("community-feed", "max");
   return { id: data.id as string };
 }
 
@@ -765,7 +787,9 @@ export async function toggleEventRegistration(eventId: string) {
   }
 
   revalidatePath("/community/events");
+  revalidateTag("community-feed", "max");
   revalidatePath(`/community/events/${eventId}`);
+  revalidateTag("community-feed", "max");
   return { success: true };
 }
 
@@ -817,8 +841,11 @@ export async function applyToJob(formData: FormData) {
   await createNotification(job.user_id, user.id, "job_application", undefined, undefined, appRow?.id);
   await addXp(user.id, 5);
   revalidatePath(`/community/jobs/${d.job_id}`);
+  revalidateTag("community-feed", "max");
   revalidatePath("/community/jobs/opportunities");
+  revalidateTag("community-feed", "max");
   revalidatePath("/community/jobs/applications");
+  revalidateTag("community-feed", "max");
   revalidatePath("/employer/dashboard");
   revalidatePath("/employer/dashboard/applications");
   revalidatePath("/placements");
@@ -848,6 +875,7 @@ export async function respondToJobOffer(offerId: string, status: "accepted" | "d
 
   await createNotification(offer.employer_id, user.id, `offer_${status}`);
   revalidatePath("/community/jobs/applications");
+  revalidateTag("community-feed", "max");
   revalidatePath("/employer/dashboard");
   revalidatePath("/employer/dashboard/notifications");
   return { success: true };
@@ -874,7 +902,9 @@ export async function updateApplicationStatus(applicationId: string, status: "su
 
   await createNotification(existing.applicant_id, user.id, `application_${status}`);
   revalidatePath(`/community/jobs/${existing.job_id}`);
+  revalidateTag("community-feed", "max");
   revalidatePath("/community/jobs/applications");
+  revalidateTag("community-feed", "max");
   revalidatePath("/employer/dashboard");
   revalidatePath("/employer/dashboard/applications");
   revalidatePath(`/employer/dashboard/applications/${applicationId}`);
@@ -894,6 +924,7 @@ export async function deleteAiQa(id: string) {
     .eq("user_id", user.id);
   if (error) return { error: error.message };
   revalidatePath("/community/ask/history");
+  revalidateTag("community-feed", "max");
   return { success: true };
 }
 
@@ -908,5 +939,6 @@ export async function toggleSaveAiQa(id: string, isSaved: boolean) {
     .eq("user_id", user.id);
   if (error) return { error: error.message };
   revalidatePath("/community/ask/history");
+  revalidateTag("community-feed", "max");
   return { success: true };
 }

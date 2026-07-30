@@ -12,6 +12,10 @@ import { CommunityLayoutShell } from "@/components/community/community-layout-sh
 
 export const dynamic = "force-dynamic";
 
+function isCommunityConfigured() {
+  return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+}
+
 const communityNav = [
   { label: "Home", href: "/community", icon: Home },
   { label: "My AI Q&A", href: "/community/ask/history", icon: Bot },
@@ -120,6 +124,13 @@ function NavLink({ label, href, icon: Icon, isActive = false, badge }: {
 }
 
 export default async function CommunityLayout({ children }: { children: ReactNode }) {
+  // Keep the route renderable while a deployment is waiting for its Supabase
+  // environment variables. The page presents a useful status instead of Next's
+  // otherwise blank/error response.
+  if (!isCommunityConfigured()) {
+    return <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">{children}</main>;
+  }
+
   const { leaderboard, upcomingEvents, activeChallenge, joinedCommunities, user, currentProfile, aiQaCount } = await getSidebarData();
 
   const breadcrumb = (
