@@ -36,7 +36,7 @@ export default async function MemberProfilePage({ params }: { params: Params }) 
     if (isUuid) {
       query = query.eq("user_id", username);
     } else {
-      query = query.ilike("username", username);
+      query = query.eq("username", username.toLowerCase());
     }
     let profileResult = await query.single();
 
@@ -46,7 +46,7 @@ export default async function MemberProfilePage({ params }: { params: Params }) 
       if (isUuid) {
         fallbackQuery = fallbackQuery.eq("user_id", username);
       } else {
-        fallbackQuery = fallbackQuery.ilike("username", username);
+        fallbackQuery = fallbackQuery.eq("username", username.toLowerCase());
       }
       profileResult = await fallbackQuery.single();
     }
@@ -55,7 +55,7 @@ export default async function MemberProfilePage({ params }: { params: Params }) 
       if (isUuid) {
         fallbackQuery2 = fallbackQuery2.eq("user_id", username);
       } else {
-        fallbackQuery2 = fallbackQuery2.ilike("username", username);
+        fallbackQuery2 = fallbackQuery2.eq("username", username.toLowerCase());
       }
       profileResult = await fallbackQuery2.single();
     }
@@ -103,8 +103,10 @@ export default async function MemberProfilePage({ params }: { params: Params }) 
       supabase.from("comm_member_badges").select("comm_badges(name, emoji, description)").eq("user_id", userId),
       supabase.from("comm_posts").select("id, title, post_type, upvotes, comment_count, created_at").eq("user_id", userId).order("created_at", { ascending: false }).limit(10),
       supabase.from("comm_members").select("comm_communities(slug, name, emoji)").eq("user_id", userId),
-      supabase.from("comm_follows").select("id").eq("follower_id", userId),
-      supabase.from("comm_follows").select("id").eq("following_id", userId),
+      // Counts must not fetch every relationship row. A popular creator can
+      // have 100k+ followers; count-only queries keep payload and memory flat.
+      supabase.from("comm_follows").select("id", { count: "exact", head: true }).eq("follower_id", userId),
+      supabase.from("comm_follows").select("id", { count: "exact", head: true }).eq("following_id", userId),
     ]);
 
     if (scoreResult.data) { scoreTotal = Number(scoreResult.data.total); scoreTier = String(scoreResult.data.tier); }
@@ -128,8 +130,8 @@ export default async function MemberProfilePage({ params }: { params: Params }) 
       });
     }
 
-    followingCount = followsResult.data?.length ?? 0;
-    followerCount = followersResult.data?.length ?? 0;
+    followingCount = followsResult.count ?? 0;
+    followerCount = followersResult.count ?? 0;
 
     if (user && user.id !== userId) {
       const followCheck = await supabase.from("comm_follows").select("id").eq("follower_id", user.id).eq("following_id", userId).single();
