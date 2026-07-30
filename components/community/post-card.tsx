@@ -111,6 +111,9 @@ export function PostCard({
   }
 
   const isShowcase = postType === "showcase";
+  // Some older profile rows have an empty username. Treat it as absent so the
+  // link falls back to the stable auth user ID instead of navigating to a 404.
+  const profileHref = `/community/members/${authorUsername || authorId}`;
 
   return (
     <ScrollReveal direction="up" className="card-interactive group relative overflow-hidden text-left">
@@ -204,14 +207,14 @@ export function PostCard({
       <div className="relative mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200/60 pt-3 dark:border-slate-800/60">
         <div className="flex items-center gap-2">
           <Link
-            href={`/community/members/${authorUsername ?? authorId}`}
+            href={profileHref}
             className="shrink-0 overflow-hidden rounded-full"
           >
             <ProfileAvatar avatarId={authorAvatarId} avatarUrl={authorAvatarUrl} size={32} />
           </Link>
           <div className="leading-tight">
             <Link
-              href={`/community/members/${authorUsername ?? authorId}`}
+              href={profileHref}
               className="text-sm font-semibold text-primary transition-colors hover:text-brand-600 dark:hover:text-brand-400"
             >
               {authorName}

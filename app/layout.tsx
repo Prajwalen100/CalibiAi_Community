@@ -39,7 +39,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           </ChromeSlot>
           <main>{children}</main>
           <ChromeSlot>
-            <SiteFooter />
+            <SiteFooter isAuthenticated={isAuthenticated} />
           </ChromeSlot>
           {isAuthenticated && <GlobalAiAssistant />}
         </ThemeProvider>

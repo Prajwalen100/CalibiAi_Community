@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Github, Twitter, Linkedin } from "lucide-react";
+import { Instagram, Linkedin } from "lucide-react";
 import { CompactBrandLogo } from "@/components/brand-logo";
 
-export function SiteFooter() {
+export function SiteFooter({ isAuthenticated = false }: { isAuthenticated?: boolean }) {
   return (
     <footer className="relative overflow-hidden border-t border-slate-200/70 dark:border-white/8">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-blue-100/50 via-transparent to-transparent dark:from-blue-950/20" />
@@ -21,28 +21,32 @@ export function SiteFooter() {
 
           {/* Links */}
           <div className="flex flex-wrap items-center justify-center gap-8 text-xs">
-            <div>
-              <p className="font-bold text-slate-700 dark:text-white/60 mb-3">Discover</p>
-              <div className="grid gap-2">
-                <Link href="/#how-it-works" className="text-slate-500 transition hover:text-slate-900 dark:text-white/30 dark:hover:text-white/70">
-                  How It Works
-                </Link>
-                <Link href="/#testimonials" className="text-slate-500 transition hover:text-slate-900 dark:text-white/30 dark:hover:text-white/70">
-                  Testimonials
-                </Link>
-              </div>
-            </div>
-            <div>
-              <p className="font-bold text-slate-700 dark:text-white/60 mb-3">Get started</p>
-              <div className="grid gap-2">
-                <Link href="/signin?mode=sign-in" className="text-slate-500 transition hover:text-slate-900 dark:text-white/30 dark:hover:text-white/70">
-                  Student login
-                </Link>
-                <Link href="/employer/signin?mode=sign-in" className="text-slate-500 transition hover:text-slate-900 dark:text-white/30 dark:hover:text-white/70">
-                  Employer login
-                </Link>
-              </div>
-            </div>
+            {!isAuthenticated && (
+              <>
+                <div>
+                  <p className="mb-3 font-bold text-slate-700 dark:text-white/60">Discover</p>
+                  <div className="grid gap-2">
+                    <Link href="/#how-it-works" className="text-slate-500 transition hover:text-slate-900 dark:text-white/30 dark:hover:text-white/70">
+                      How It Works
+                    </Link>
+                    <Link href="/#testimonials" className="text-slate-500 transition hover:text-slate-900 dark:text-white/30 dark:hover:text-white/70">
+                      Testimonials
+                    </Link>
+                  </div>
+                </div>
+                <div>
+                  <p className="mb-3 font-bold text-slate-700 dark:text-white/60">Get started</p>
+                  <div className="grid gap-2">
+                    <Link href="/signin?mode=sign-in" className="text-slate-500 transition hover:text-slate-900 dark:text-white/30 dark:hover:text-white/70">
+                      Student login
+                    </Link>
+                    <Link href="/employer/signin?mode=sign-in" className="text-slate-500 transition hover:text-slate-900 dark:text-white/30 dark:hover:text-white/70">
+                      Employer login
+                    </Link>
+                  </div>
+                </div>
+              </>
+            )}
             <div>
               <p className="font-bold text-slate-700 dark:text-white/60 mb-3">Legal</p>
               <div className="grid gap-2">
@@ -59,25 +63,16 @@ export function SiteFooter() {
           {/* Social */}
           <div className="flex items-center gap-3">
             <a
-              href="https://github.com/CalibiAI"
+              href="https://www.instagram.com/calibiai?igsh=M3FqemVmcmI5cTFj&utm_source=qr"
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/70 text-slate-500 transition hover:bg-white hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white/40 dark:hover:bg-white/10 dark:hover:text-white/70"
-              aria-label="GitHub"
+              aria-label="Instagram"
             >
-              <Github className="h-4 w-4" />
+              <Instagram className="h-4 w-4" />
             </a>
             <a
-              href="https://twitter.com/CalibiAI"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/70 text-slate-500 transition hover:bg-white hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white/40 dark:hover:bg-white/10 dark:hover:text-white/70"
-              aria-label="Twitter"
-            >
-              <Twitter className="h-4 w-4" />
-            </a>
-            <a
-              href="https://linkedin.com/company/calibiai"
+              href="https://www.linkedin.com/company/calibi/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/70 text-slate-500 transition hover:bg-white hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white/40 dark:hover:bg-white/10 dark:hover:text-white/70"

@@ -100,7 +100,7 @@ async function getProfile(username: string): Promise<ProfileRow | null> {
   if (isUuid) {
     query = query.eq("user_id", username);
   } else {
-    query = query.ilike("username", username);
+    query = query.eq("username", username.toLowerCase());
   }
   
   const response = await query.single();
@@ -116,7 +116,7 @@ async function getProfile(username: string): Promise<ProfileRow | null> {
     if (isUuid) {
       midQuery = midQuery.eq("user_id", username);
     } else {
-      midQuery = midQuery.ilike("username", username);
+      midQuery = midQuery.eq("username", username.toLowerCase());
     }
     const mid = await midQuery.single();
     if (mid.data) return mid.data as unknown as ProfileRow;
@@ -129,7 +129,7 @@ async function getProfile(username: string): Promise<ProfileRow | null> {
       if (isUuid) {
         fallbackQuery = fallbackQuery.eq("user_id", username);
       } else {
-        fallbackQuery = fallbackQuery.ilike("username", username);
+        fallbackQuery = fallbackQuery.eq("username", username.toLowerCase());
       }
 
       const fallback = await fallbackQuery.single();

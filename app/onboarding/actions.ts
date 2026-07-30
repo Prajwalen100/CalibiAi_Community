@@ -37,6 +37,11 @@ export async function completeOnboarding(formData: FormData) {
   }, { onConflict: "user_id" });
   const roadmap = await generatePersonalizedRoadmap({ role: parsed.target_role, level: parsed.level, tasks: [parsed.task_one ?? "", parsed.task_two ?? ""].filter(Boolean) });
   await supabase.from("roadmaps").insert({ user_id: user.id, role: parsed.target_role, generated_plan: roadmap });
-  await supabase.from("scores").upsert({ user_id: user.id, projects_pts: 0, skills_pts: 0, community_pts: 0, completion_pts: 0, recognition_pts: 0, total: 0, tier: "bronze" }, { onConflict: "user_id" });
+  // A learner may return to onboarding to complete profile details.  Score
+  // initialization must never overwrite the score they have already earned.
+  await supabase.from("scores").upsert(
+    { user_id: user.id, projects_pts: 0, skills_pts: 0, community_pts: 0, completion_pts: 0, recognition_pts: 0, total: 0, tier: "bronze" },
+    { onConflict: "user_id", ignoreDuplicates: true },
+  );
   redirect("/dashboard");
 }

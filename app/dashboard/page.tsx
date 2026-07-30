@@ -10,6 +10,7 @@ import { LabProjectCard, type LabProjectDetail } from "@/components/lab-project-
 import { STATIC_BLOG_POSTS, toBlogPost, type BlogPost } from "@/lib/blog/posts";
 import { getCurrentDayNumber, getRoadmapDayLockStatuses } from "@/lib/learning/day-lock";
 import { ROADMAP_PROGRESS_LOCK_COLUMNS } from "@/lib/learning/day-access";
+import { recalculateAndPersistScore } from "@/lib/score/recalculate";
 
 export const dynamic = "force-dynamic";
 
@@ -78,7 +79,7 @@ export default async function DashboardPage({
 
   const [
     { data: profile },
-    { data: score },
+    { data: storedScore },
     { data: roadmap },
     { data: projects },
     { data: recentProgress },
@@ -110,6 +111,13 @@ export default async function DashboardPage({
       .order("created_at", { ascending: false })
       .limit(6),
   ]);
+
+  // Repair legacy rows that were reset by the former onboarding/roadmap
+  // initializers. The recalculation uses durable learner data and persists the
+  // recovered value, so every score surface subsequently agrees.
+  const score = !storedScore || Number(storedScore.total) === 0
+    ? (await recalculateAndPersistScore(user.id)) ?? storedScore
+    : storedScore;
 
   const publishedBlogs: BlogPost[] = (blogData ?? []).map((row) => toBlogPost(row as Record<string, unknown>));
 
