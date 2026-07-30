@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { getCachedCommunityPosts, getCachedTrendingCommunities, type TrendingCommunity } from "@/lib/community/public-feed";
 import { PostCard } from "@/components/community/post-card";
 import { mapPostToCardData } from "@/lib/community/mappers";
 import { attachCommunityProfiles } from "@/lib/community/public-profiles";
@@ -28,12 +29,13 @@ export default async function CommunityHomePage({
     return <CommunityUnavailable />;
   }
 
-  const { tab = "all" } = await searchParams;
+  const { tab: requestedTab = "all" } = await searchParams;
+  const tab = requestedTab === "showcase" || requestedTab === "question" ? requestedTab : "all";
   const supabase = await createServerSupabaseClient();
   const { data: { user } } = await supabase.auth.getUser();
 
   let posts: Array<Record<string, unknown>> = [];
-  let trendingCommunities: Array<{ id: string; slug: string; name: string; emoji: string; member_count: number }> = [];
+  let trendingCommunities: TrendingCommunity[] = [];
   let feedError: string | null = null;
   let currentUserAvatar: { avatar_id: number | null; avatar_url: string | null } = { avatar_id: null, avatar_url: null };
 
@@ -61,37 +63,21 @@ export default async function CommunityHomePage({
     } catch { /* avatar columns might not exist yet */ }
   }
 
-  const postQuery = supabase
-    .from("comm_posts")
-    // Do not embed profiles here. comm_posts.user_id references auth.users and
-    // PostgREST cannot infer a comm_posts -> profiles relationship through it.
-    .select(`id, title, content, post_type, upvotes, downvotes, comment_count, save_count,
-      is_pinned, is_featured, is_solved, repo_url, live_url, tech_stack, image_url,
-      created_at, user_id, comm_communities(slug, name, emoji)`)
-    .neq("post_type", "job")
-    .order("is_pinned", { ascending: false })
-    .order("created_at", { ascending: false })
-    .limit(30);
-
-  if (tab === "showcase") {
-    postQuery.eq("post_type", "showcase");
-  } else if (tab === "question") {
-    postQuery.eq("post_type", "question");
-  }
-
-  const [postResult, communitiesResult] = await Promise.all([
-    postQuery,
-    supabase.from("comm_communities").select("id, slug, name, emoji, member_count").order("member_count", { ascending: false }).limit(8),
+  // The feed and community list are public and shared between visitors. Cache
+  // them for one minute; mutations invalidate the tag immediately.
+  const [postsResult, communitiesResult] = await Promise.allSettled([
+    getCachedCommunityPosts(tab),
+    getCachedTrendingCommunities(),
   ]);
 
-  if (postResult.error) {
+  if (postsResult.status === "rejected") {
     feedError = "The community posts could not be loaded. Please refresh the page; if this continues, confirm that migration 002_community.sql has been applied.";
   } else {
-    posts = await attachCommunityProfiles(supabase, (postResult.data ?? []) as Array<Record<string, unknown>>);
+    posts = await attachCommunityProfiles(supabase, postsResult.value);
   }
 
-  if (!communitiesResult.error) {
-    trendingCommunities = (communitiesResult.data ?? []) as typeof trendingCommunities;
+  if (communitiesResult.status === "fulfilled") {
+    trendingCommunities = communitiesResult.value;
   }
 
   return (
