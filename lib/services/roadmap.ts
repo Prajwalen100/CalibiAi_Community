@@ -361,7 +361,9 @@ export async function assignRoadmap(): Promise<Result<{ userRoadmapId: string }>
         tier: assessmentScorePoints >= 75 ? "silver" : assessmentScorePoints >= 50 ? "bronze" : "bronze",
         last_calculated_at: new Date().toISOString(),
       },
-      { onConflict: "user_id" }
+      // A roadmap can be reassigned after a learner has already accumulated
+      // points. This is an initializer, not a score reset.
+      { onConflict: "user_id", ignoreDuplicates: true }
     ),
     supabase.from("activity_logs").insert({
       user_id: user.id,

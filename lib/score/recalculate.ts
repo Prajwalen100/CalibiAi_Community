@@ -28,12 +28,22 @@ export async function recalculateAndPersistScore(
 ): Promise<ScoreBreakdown | null> {
   const supabase = createAdminSupabaseClient();
 
-  const [projectsResult, skillsResult, progressResult, xpResult, currentScoreResult] = await Promise.all([
+  const [projectsResult, skillsResult, progressResult, xpResult, currentScoreResult, assessmentResult] = await Promise.all([
     supabase.from("projects").select("verified,points_awarded,originality_status").eq("user_id", userId),
     supabase.from("user_skills").select("id", { count: "exact", head: true }).eq("user_id", userId).eq("verified", true),
     supabase.from("roadmap_progress").select("status").eq("user_id", userId),
     supabase.from("comm_xp").select("xp, last_active_date, updated_at").eq("user_id", userId).maybeSingle(),
     supabase.from("scores").select("completion_pts,recognition_pts,reading_pts,quizzes_pts").eq("user_id", userId).maybeSingle(),
+    // Keep an independent source for the onboarding assessment contribution.
+    // This makes a previously reset score recoverable from persisted work.
+    supabase
+      .from("assessment_results")
+      .select("overall_score")
+      .eq("user_id", userId)
+      .eq("status", "submitted")
+      .order("submitted_at", { ascending: false })
+      .limit(1)
+      .maybeSingle(),
   ]);
 
   if (projectsResult.error || progressResult.error) return null;
@@ -65,8 +75,15 @@ export async function recalculateAndPersistScore(
   });
 
   // AI Lab / roadmap completion points only ever grow from verified work;
-  // never let a recalculation erase points already earned.
-  const completionPoints = Math.max(calculated.completion_pts, currentScore?.completion_pts ?? 0);
+  // never let a recalculation erase points already earned. Assessment results
+  // are also retained independently, allowing recovery if an old initializer
+  // accidentally replaced a score row with zeroes.
+  const assessmentPoints = Math.round(Number(assessmentResult.data?.overall_score ?? 0) * 0.5);
+  const completionPoints = Math.max(
+    calculated.completion_pts,
+    currentScore?.completion_pts ?? 0,
+    assessmentPoints,
+  );
   const total = Math.min(1000, calculated.total - calculated.completion_pts + completionPoints);
   const breakdown: ScoreBreakdown = { ...calculated, completion_pts: completionPoints, total, tier: tierFor(total) };
 
