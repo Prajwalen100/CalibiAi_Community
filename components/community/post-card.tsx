@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowBigUp, ArrowBigDown, MessageSquare, Share2, Bookmark, Github, Globe } from "lucide-react";
 import { votePost, savePost, followUser } from "@/app/community/actions";
@@ -82,7 +82,20 @@ export function PostCard({
   const [saved, setSaved] = useState(isSaved ?? false);
   const [following, setFollowing] = useState(isFollowing ?? false);
 
-  const timeAgo = getTimeAgo(createdAt);
+  // Render a deterministic absolute date during SSR and the first client
+  // render, then swap to the relative label after mount. Computing
+  // "x minutes ago" during hydration compares a live clock against the
+  // server-rendered text and mismatches whenever a minute boundary is
+  // crossed between the two passes.
+  const [timeAgo, setTimeAgo] = useState(() => formatAbsoluteDate(createdAt));
+  useEffect(() => {
+    // Hydration-safe swap from the SSR label to the live relative one —
+    // the synchronous call is the whole point of this effect.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setTimeAgo(getTimeAgo(createdAt));
+    const interval = setInterval(() => setTimeAgo(getTimeAgo(createdAt)), 60_000);
+    return () => clearInterval(interval);
+  }, [createdAt]);
   const colorClass = postTypeColors[postType] ?? "bg-slate-50 text-slate-700 dark:bg-slate-800/50 dark:text-slate-300";
   const icon = postTypeIcons[postType] ?? "📝";
 
@@ -290,6 +303,17 @@ export function PostCard({
       </div>
     </ScrollReveal>
   );
+}
+
+/** Locale-stable absolute date used for SSR/hydration parity. */
+function formatAbsoluteDate(dateStr: string): string {
+  const date = new Date(dateStr);
+  if (Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(date);
 }
 
 function getTimeAgo(dateStr: string): string {
