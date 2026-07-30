@@ -112,8 +112,8 @@ export async function JobDetailPage({ params }: { params: Params }) {
             <h2 className="text-lg font-bold">Skills required</h2>
             {job.skills_required && job.skills_required.length > 0 ? (
               <div className="mt-3 flex flex-wrap gap-2">
-                {job.skills_required.map((skill) => (
-                  <span key={skill} className="rounded-full bg-brand-50 px-3 py-1.5 text-sm font-semibold text-brand-700">{skill}</span>
+                {job.skills_required.map((skill, i) => (
+                  <span key={`${skill}-${i}`} className="rounded-full bg-brand-50 px-3 py-1.5 text-sm font-semibold text-brand-700">{skill}</span>
                 ))}
               </div>
             ) : <p className="mt-2 text-sm text-slate-500">Skills were not specified for this role.</p>}

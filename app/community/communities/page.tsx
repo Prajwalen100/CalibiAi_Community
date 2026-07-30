@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { ScrollReveal, StaggerReveal, GlowOnHover, Floating } from "@/components/scroll-reveal";
-import { Users, Hash, Search, ArrowRight } from "lucide-react";
+import { Users, Hash, ArrowRight } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -109,12 +109,6 @@ export default async function CommunitiesPage() {
           </div>
           <h1 className="text-2xl font-black text-primary">AI Communities</h1>
           <p className="mt-2 text-secondary">Join communities that match your interests. Post, learn, and grow together.</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <Link href="/community/search" className="btn-secondary">
-            <Search className="h-4 w-4" />
-            Search
-          </Link>
         </div>
       </ScrollReveal>
 

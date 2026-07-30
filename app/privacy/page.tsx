@@ -17,7 +17,7 @@ export default function PrivacyPolicyPage() {
         <p className="mt-5 text-sm font-medium text-slate-500 dark:text-slate-400">Last updated: {updated}</p>
       </header>
 
-      <div className="prose prose-slate mt-10 max-w-none dark:prose-invert prose-headings:font-black prose-a:text-brand-700 dark:prose-a:text-brand-300">
+      <div className="legal-prose mt-10">
         <p>CalibiAI (&ldquo;CalibiAI,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) respects your privacy. This Privacy Policy describes the information we collect, how we use it, when we share it, and the choices available to you. By accessing or using CalibiAI, you acknowledge the practices described in this policy.</p>
 
         <h2>1. Scope</h2>

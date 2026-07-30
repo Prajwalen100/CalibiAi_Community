@@ -192,9 +192,9 @@ export function PostCard({
         {/* Tech stack — prominent for showcase */}
         {techStack && techStack.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
-            {techStack.map((t) => (
+            {techStack.map((t, i) => (
               <span
-                key={t}
+                key={`${t}-${i}`}
                 className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
                   isShowcase
                     ? "bg-brand-100 text-brand-700 dark:bg-brand-950/60 dark:text-brand-300"

@@ -7,6 +7,23 @@ import { recalculateAndPersistScore } from "@/lib/score/recalculate";
 
 // ── Helpers ──────────────────────────────────────────────────
 
+/**
+ * Remove duplicate tokens (tags / tech-stack entries) case-insensitively
+ * while preserving the first-seen casing and order. Prevents duplicate
+ * React keys and repeated pills like "Python, Python".
+ */
+function dedupeTokens(tokens: string[]): string[] {
+  const seen = new Set<string>();
+  const result: string[] = [];
+  for (const token of tokens) {
+    const key = token.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    result.push(token);
+  }
+  return result;
+}
+
 async function getAuthUser() {
   const supabase = await createServerSupabaseClient();
   const { data: { user }, error } = await supabase.auth.getUser();
@@ -104,9 +121,9 @@ export async function createPost(formData: FormData) {
   const insertData: Record<string, unknown> = {
     user_id: user.id, title: d.title, content: d.content, post_type: d.post_type,
     community_id: d.community_id || null, link_url: d.link_url || null, image_url: d.image_url || null,
-    tags: d.tags ? d.tags.split(",").map((t) => t.trim()).filter(Boolean) : [],
+    tags: d.tags ? dedupeTokens(d.tags.split(",").map((t) => t.trim()).filter(Boolean)) : [],
     repo_url: d.repo_url || null, live_url: d.live_url || null, demo_video_url: d.demo_video_url || null,
-    tech_stack: d.tech_stack ? d.tech_stack.split(",").map((t) => t.trim()).filter(Boolean) : [],
+    tech_stack: d.tech_stack ? dedupeTokens(d.tech_stack.split(",").map((t) => t.trim()).filter(Boolean)) : [],
     event_date: d.event_date || null, event_type: d.event_type || null, event_location: d.event_location || null,
     resource_type: d.resource_type || null, resource_url: d.resource_url || null,
     challenge_deadline: d.challenge_deadline || null,

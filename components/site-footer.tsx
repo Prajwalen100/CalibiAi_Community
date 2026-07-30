@@ -58,6 +58,14 @@ export function SiteFooter({ isAuthenticated = false }: { isAuthenticated?: bool
                 </Link>
               </div>
             </div>
+            <div>
+              <p className="font-bold text-slate-700 dark:text-white/60 mb-3">Help</p>
+              <div className="grid gap-2">
+                <a href="mailto:help@calibiai.com" className="text-slate-500 transition hover:text-slate-900 dark:text-white/30 dark:hover:text-white/70">
+                  Customer Service
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Social */}
