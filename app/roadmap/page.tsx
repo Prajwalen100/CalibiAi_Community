@@ -16,8 +16,10 @@ import {
   Users,
   Code,
   Database,
-  Cloud
+  Cloud,
+  Lock
 } from "lucide-react";
+import { getCurrentDayNumber, getRoadmapDayLockStatuses } from "@/lib/learning/day-lock";
 
 export const dynamic = "force-dynamic";
 
@@ -96,10 +98,11 @@ export default async function RoadmapPage() {
     redirect("/roadmap/assign");
   }
 
-  // Calculate progress stats
+  // Calculate progress stats & day lock statuses
   const completedDays = progress?.filter(p => p.status === "completed").length ?? 0;
   const inProgressDays = progress?.filter(p => p.status === "in_progress").length ?? 0;
-  const currentDay = progress?.find(p => p.status === "not_started" || p.status === "in_progress")?.day ?? 1;
+  const dayLockMap = getRoadmapDayLockStatuses(days, progress ?? []);
+  const currentDay = getCurrentDayNumber(days, dayLockMap);
   const currentWeek = Math.ceil(currentDay / 7);
   const progressPercent = Math.round((completedDays / totalDays) * 100);
 
@@ -268,25 +271,30 @@ export default async function RoadmapPage() {
               {/* Days Preview */}
               <div className="mt-4 grid grid-cols-7 gap-2">
                 {week.days.map((day) => {
-                  const dayProgress = progress?.find(p => p.day === day.day);
-                  const isCompleted = dayProgress?.status === "completed";
-                  const isCurrent = day.day === currentDay;
+                  const st = dayLockMap[day.day];
+                  const isCompleted = st?.isCompleted ?? false;
+                  const isCurrent = st?.isCurrent ?? false;
+                  const isLocked = st?.isLocked ?? false;
                   
                   return (
                     <Link
                       key={day.day}
                       href={`/roadmap/day/${day.day}`}
+                      title={isLocked ? st.lockReason : undefined}
                       className={`group flex flex-col items-center rounded-xl p-2 transition-all ${
                         isCompleted
-                          ? "bg-emerald-100 text-emerald-700 hover:bg-emerald-200"
+                          ? "bg-emerald-100 text-emerald-700 hover:bg-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300"
                           : isCurrent
-                            ? "bg-brand-100 text-brand-700 hover:bg-brand-200"
-                            : "bg-slate-50 text-slate-500 hover:bg-slate-100 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
+                            ? "bg-brand-100 text-brand-700 hover:bg-brand-200 dark:bg-brand-950/40 dark:text-brand-300"
+                            : isLocked
+                              ? "bg-slate-100/70 text-slate-400 hover:bg-amber-100 hover:text-amber-800 dark:bg-slate-900/40 dark:text-slate-500 dark:hover:bg-amber-950/40 dark:hover:text-amber-300"
+                              : "bg-slate-50 text-slate-500 hover:bg-slate-100 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
                       }`}
                     >
                       <span className="text-xs font-bold">D{day.day}</span>
                       {isCompleted && <CheckCircle2 className="mt-1 h-3 w-3" />}
                       {isCurrent && <Zap className="mt-1 h-3 w-3" />}
+                      {isLocked && <Lock className="mt-1 h-3 w-3" />}
                     </Link>
                   );
                 })}
@@ -321,32 +329,38 @@ export default async function RoadmapPage() {
         </div>
         <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {days.slice(0, 6).map((day) => {
-            const dayProgress = progress?.find(p => p.day === day.day);
-            const isCompleted = dayProgress?.status === "completed";
-            const isCurrent = day.day === currentDay;
+            const st = dayLockMap[day.day];
+            const isCompleted = st?.isCompleted ?? false;
+            const isCurrent = st?.isCurrent ?? false;
+            const isLocked = st?.isLocked ?? false;
+            const isDailyReset = st?.isDailyResetLock ?? false;
             
             return (
               <Link
                 key={day.day}
                 href={`/roadmap/day/${day.day}`}
-                className={`group rounded-2xl border p-4 transition-all hover:border-brand-500 hover:shadow-md ${
+                className={`group rounded-2xl border p-4 transition-all ${
                   isCompleted
-                    ? "border-emerald-200 bg-emerald-50/50 dark:border-emerald-900 dark:bg-emerald-950/20"
+                    ? "border-emerald-200 bg-emerald-50/50 hover:border-emerald-400 dark:border-emerald-900 dark:bg-emerald-950/20"
                     : isCurrent
-                      ? "border-brand-200 bg-brand-50/50 dark:border-brand-800 dark:bg-brand-950/20"
-                      : "border-slate-200 dark:border-slate-800"
+                      ? "border-brand-200 bg-brand-50/50 hover:border-brand-500 hover:shadow-md dark:border-brand-800 dark:bg-brand-950/20"
+                      : isLocked
+                        ? "border-slate-200/80 bg-slate-50/70 opacity-90 hover:border-amber-300 hover:bg-amber-50/40 dark:border-slate-800/80 dark:bg-slate-900/40 dark:hover:border-amber-900/50 dark:hover:bg-amber-950/20"
+                        : "border-slate-200 hover:border-brand-500 hover:shadow-md dark:border-slate-800"
                 }`}
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-2">
                     <div className={`flex h-8 w-8 items-center justify-center rounded-lg text-sm font-bold ${
                       isCompleted
-                        ? "bg-emerald-100 text-emerald-700"
+                        ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/60 dark:text-emerald-300"
                         : isCurrent
-                          ? "bg-brand-100 text-brand-700"
-                          : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400"
+                          ? "bg-brand-100 text-brand-700 dark:bg-brand-900/60 dark:text-brand-300"
+                          : isLocked
+                            ? "bg-slate-200/80 text-slate-500 group-hover:bg-amber-100 group-hover:text-amber-800 dark:bg-slate-800 dark:text-slate-400 dark:group-hover:bg-amber-900/50 dark:group-hover:text-amber-300"
+                            : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400"
                     }`}>
-                      {isCompleted ? "✓" : day.day}
+                      {isCompleted ? "✓" : isLocked ? <Lock className="h-4 w-4" /> : day.day}
                     </div>
                     <div>
                       <p className="font-semibold group-hover:text-brand-700">Day {day.day}</p>
@@ -354,8 +368,14 @@ export default async function RoadmapPage() {
                     </div>
                   </div>
                   {isCurrent && (
-                    <span className="rounded-full bg-brand-100 px-2 py-0.5 text-xs font-bold text-brand-700">
+                    <span className="rounded-full bg-brand-100 px-2 py-0.5 text-xs font-bold text-brand-700 dark:bg-brand-900/60 dark:text-brand-300">
                       Today
+                    </span>
+                  )}
+                  {isLocked && (
+                    <span className="inline-flex items-center gap-1 rounded-full border border-amber-200/80 bg-amber-100/90 px-2 py-0.5 text-[11px] font-semibold text-amber-800 dark:border-amber-900/60 dark:bg-amber-950/60 dark:text-amber-300">
+                      <Clock className="h-3 w-3" />
+                      {isDailyReset ? "12 AM Reset" : `Complete D${day.day - 1}`}
                     </span>
                   )}
                 </div>

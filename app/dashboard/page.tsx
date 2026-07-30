@@ -3,10 +3,11 @@ import { redirect } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import type { GeneratedRoadmap } from "@/lib/ai/schemas";
 import { getStudentAccess } from "@/lib/auth/student-access";
-import { Calendar, Target, Trophy, TrendingUp, Zap, BookOpen, CheckCircle2, Clock, ChevronRight, Sparkles, FileText, ArrowRight } from "lucide-react";
+import { Calendar, Target, Trophy, TrendingUp, Zap, BookOpen, CheckCircle2, Clock, ChevronRight, Sparkles, FileText, ArrowRight, Lock } from "lucide-react";
 import { DashboardGreeting } from "@/components/dashboard-greeting";
 import { ProjectCard, type ProjectDetail } from "@/components/project-detail-modal";
 import { STATIC_BLOG_POSTS, toBlogPost, type BlogPost } from "@/lib/blog/posts";
+import { getCurrentDayNumber, getRoadmapDayLockStatuses } from "@/lib/learning/day-lock";
 
 export const dynamic = "force-dynamic";
 
@@ -124,11 +125,9 @@ export default async function DashboardPage({
     return true;
   }).slice(0, 6);
 
-  // Get current day's progress: first non-completed day only
-  const completedDayNumbers = new Set(
-    (recentProgress ?? []).filter((p) => p.status === "completed").map((p) => p.day)
-  );
-  const currentDay = days.find((d) => !completedDayNumbers.has(d.day))?.day ?? 1;
+  // Get current day's progress and lock statuses
+  const dayLockMap = getRoadmapDayLockStatuses(days, recentProgress ?? []);
+  const currentDay = getCurrentDayNumber(days, dayLockMap);
   const currentWeek = Math.ceil(currentDay / 7);
 
   // Build weekly progress summary
@@ -262,49 +261,98 @@ export default async function DashboardPage({
         {/* Left Column - Today's Focus & Weekly Targets */}
         <div className="space-y-5">
           {/* Today's Focus */}
-          {todayFocus && (
-            <div className="card">
-              <div className="flex items-center gap-2 text-sm font-semibold text-brand-700">
-                <Zap className="h-4 w-4" />
-                Today&apos;s Focus
-              </div>
-              <div className="mt-3">
-                <p className="text-lg font-bold">Day {todayFocus.day}: {todayFocus.title}</p>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {todayFocus.skills_gained?.map((skill, i) => (
-                    <span key={i} className="rounded-full bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-3 flex items-center gap-4 text-sm text-slate-500">
-                  {todayFocus.estimated_time && (
-                    <span className="flex items-center gap-1">
-                      <Clock className="h-3 w-3" />
-                      {todayFocus.estimated_time}
-                    </span>
-                  )}
-                  {todayFocus.has_quiz && (
-                    <span className="flex items-center gap-1">
-                      <CheckCircle2 className="h-3 w-3 text-emerald-500" />
-                      Quiz included
+          {todayFocus && (() => {
+            const focusLock = dayLockMap[todayFocus.day];
+            const isFocusLocked = focusLock?.isLocked ?? false;
+            const isDailyReset = focusLock?.isDailyResetLock ?? false;
+
+            return (
+              <div className={`card transition-all ${
+                isFocusLocked
+                  ? "border-amber-200/80 bg-gradient-to-br from-amber-50/60 to-orange-50/30 dark:border-amber-900/60 dark:from-amber-950/20 dark:to-orange-950/10"
+                  : "border-brand-200 bg-gradient-to-br from-brand-50/50 to-purple-50/30 dark:border-brand-800 dark:from-brand-950/20 dark:to-purple-950/10"
+              }`}>
+                <div className="flex items-center justify-between">
+                  <div className={`flex items-center gap-2 text-sm font-semibold ${
+                    isFocusLocked ? "text-amber-700 dark:text-amber-300" : "text-brand-700 dark:text-brand-300"
+                  }`}>
+                    {isFocusLocked ? <Lock className="h-4 w-4" /> : <Zap className="h-4 w-4" />}
+                    {isFocusLocked ? "Next Scheduled Day (Locked)" : "Today's Focus"}
+                  </div>
+                  {isFocusLocked && (
+                    <span className="inline-flex items-center gap-1 rounded-full border border-amber-300/80 bg-amber-100/90 px-2.5 py-0.5 text-xs font-bold text-amber-900 dark:border-amber-800 dark:bg-amber-950/70 dark:text-amber-200">
+                      <Clock className="h-3.5 w-3.5" />
+                      {isDailyReset ? "Unlocks after 12:00 AM reset" : "Complete Previous Day"}
                     </span>
                   )}
                 </div>
-                {todayFocus.expected_outcome && (
-                  <p className="mt-3 text-sm text-slate-600">
-                    <span className="font-semibold">Goal:</span> {todayFocus.expected_outcome}
-                  </p>
+                <div className="mt-3">
+                  <p className="text-lg font-bold">Day {todayFocus.day}: {todayFocus.title}</p>
+                  {isFocusLocked && (
+                    <p className="mt-1.5 text-sm font-medium text-amber-800/90 dark:text-amber-200/80">
+                      {isDailyReset
+                        ? "Great job today! In 24 hours you can only complete 1 day. This day unlocks automatically after 12:00 AM daily reset."
+                        : `You must complete Day ${todayFocus.day - 1} before starting Day ${todayFocus.day}.`}
+                    </p>
+                  )}
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {todayFocus.skills_gained?.map((skill, i) => (
+                      <span key={i} className={`rounded-full px-2 py-0.5 text-xs font-medium ${
+                        isFocusLocked
+                          ? "bg-amber-100/80 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200"
+                          : "bg-brand-50 text-brand-700 dark:bg-brand-950/40 dark:text-brand-300"
+                      }`}>
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="mt-3 flex items-center gap-4 text-sm text-slate-500">
+                    {todayFocus.estimated_time && (
+                      <span className="flex items-center gap-1">
+                        <Clock className="h-3 w-3" />
+                        {todayFocus.estimated_time}
+                      </span>
+                    )}
+                    {todayFocus.has_quiz && (
+                      <span className="flex items-center gap-1">
+                        <CheckCircle2 className="h-3 w-3 text-emerald-500" />
+                        Quiz included
+                      </span>
+                    )}
+                  </div>
+                  {todayFocus.expected_outcome && (
+                    <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">
+                      <span className="font-semibold">Goal:</span> {todayFocus.expected_outcome}
+                    </p>
+                  )}
+                </div>
+                {isFocusLocked ? (
+                  <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+                    <button
+                      disabled
+                      className="inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-xl border border-amber-300/80 bg-amber-100/80 px-4 py-2.5 text-sm font-bold text-amber-900 opacity-90 dark:border-amber-800 dark:bg-amber-900/40 dark:text-amber-200"
+                    >
+                      <Lock className="h-4 w-4" />
+                      {isDailyReset ? "Locked • Unlocks after 12:00 AM reset" : `Locked • Complete Day ${todayFocus.day - 1}`}
+                    </button>
+                    <Link
+                      href={`/roadmap/day/${Math.max(1, todayFocus.day - 1)}`}
+                      className="btn-secondary inline-flex w-full items-center justify-center gap-2 text-sm"
+                    >
+                      View Day {Math.max(1, todayFocus.day - 1)} →
+                    </Link>
+                  </div>
+                ) : (
+                  <Link 
+                    href={`/roadmap/day/${todayFocus.day}`}
+                    className="btn-primary mt-4 w-full justify-center"
+                  >
+                    Start Today&apos;s Learning
+                  </Link>
                 )}
               </div>
-              <Link 
-                href={`/roadmap/day/${todayFocus.day}`}
-                className="btn-primary mt-4 w-full justify-center"
-              >
-                Start Today&apos;s Learning
-              </Link>
-            </div>
-          )}
+            );
+          })()}
 
           {/* Weekly Targets */}
           <div className="card">
@@ -425,35 +473,48 @@ export default async function DashboardPage({
           
           <div className="mt-4 space-y-4">
             {days.slice(0, 8).map((day) => {
-              const isCompleted = recentProgress?.some(p => p.day === day.day && p.status === "completed");
-              const isCurrent = day.day === currentDay;
+              const st = dayLockMap[day.day];
+              const isCompleted = st?.isCompleted ?? false;
+              const isCurrent = st?.isCurrent ?? false;
+              const isLocked = st?.isLocked ?? false;
+              const isDailyReset = st?.isDailyResetLock ?? false;
               
               return (
                 <Link
                   key={day.day}
                   href={`/roadmap/day/${day.day}`}
-                  className={`group block rounded-2xl border p-4 transition-all hover:border-brand-500 hover:bg-brand-50/50 hover:shadow-sm ${
+                  className={`group block rounded-2xl border p-4 transition-all ${
                     isCompleted
-                      ? "border-emerald-200 bg-emerald-50/30 dark:border-emerald-900 dark:bg-emerald-950/20"
+                      ? "border-emerald-200 bg-emerald-50/30 hover:border-emerald-400 dark:border-emerald-900 dark:bg-emerald-950/20"
                       : isCurrent
-                        ? "border-brand-200 bg-brand-50/50 dark:border-brand-800 dark:bg-brand-950/20"
-                        : "border-slate-100 dark:border-slate-800"
+                        ? "border-brand-200 bg-brand-50/50 hover:border-brand-500 hover:bg-brand-50 hover:shadow-sm dark:border-brand-800 dark:bg-brand-950/20"
+                        : isLocked
+                          ? "border-slate-200/80 bg-slate-50/70 opacity-90 hover:border-amber-300 hover:bg-amber-50/40 dark:border-slate-800/80 dark:bg-slate-900/40 dark:hover:border-amber-900/50 dark:hover:bg-amber-950/20"
+                          : "border-slate-100 hover:border-brand-500 dark:border-slate-800"
                   }`}
                 >
                   <div className="flex items-start gap-3">
                     <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-sm font-bold ${
                       isCompleted
-                        ? "bg-emerald-100 text-emerald-700"
+                        ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/60 dark:text-emerald-300"
                         : isCurrent
-                          ? "bg-brand-100 text-brand-700"
-                          : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400"
+                          ? "bg-brand-100 text-brand-700 dark:bg-brand-900/60 dark:text-brand-300"
+                          : isLocked
+                            ? "bg-slate-200/80 text-slate-500 group-hover:bg-amber-100 group-hover:text-amber-800 dark:bg-slate-800 dark:text-slate-400 dark:group-hover:bg-amber-900/50 dark:group-hover:text-amber-300"
+                            : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400"
                     }`}>
-                      {isCompleted ? "✓" : day.day}
+                      {isCompleted ? "✓" : isLocked ? <Lock className="h-4 w-4" /> : day.day}
                     </div>
                     <div className="flex-1">
                       <p className="font-semibold group-hover:text-brand-700">
                         {day.title}
-                        {isCurrent && <span className="ml-2 rounded bg-brand-100 px-1.5 py-0.5 text-xs font-medium text-brand-700">Today</span>}
+                        {isCurrent && <span className="ml-2 rounded-full bg-brand-100 px-2 py-0.5 text-xs font-bold text-brand-700 dark:bg-brand-900/60 dark:text-brand-300">Today</span>}
+                        {isLocked && (
+                          <span className="ml-2 inline-flex items-center gap-1 rounded-full border border-amber-200/80 bg-amber-100/90 px-2 py-0.5 text-[11px] font-semibold text-amber-800 dark:border-amber-900/60 dark:bg-amber-950/60 dark:text-amber-300">
+                            <Clock className="h-3 w-3" />
+                            {isDailyReset ? "After 12 AM reset" : `Complete Day ${day.day - 1}`}
+                          </span>
+                        )}
                       </p>
                       <div className="mt-1 flex flex-wrap gap-1.5">
                         {day.skills_gained?.slice(0, 2).map((skill, i) => (
@@ -469,7 +530,11 @@ export default async function DashboardPage({
                         )}
                       </div>
                     </div>
-                    <ChevronRight className="h-5 w-5 shrink-0 text-slate-400 group-hover:text-brand-500" />
+                    {isLocked ? (
+                      <Lock className="h-5 w-5 shrink-0 text-slate-400 group-hover:text-amber-600 dark:text-slate-500 dark:group-hover:text-amber-400" />
+                    ) : (
+                      <ChevronRight className="h-5 w-5 shrink-0 text-slate-400 group-hover:text-brand-500" />
+                    )}
                   </div>
                 </Link>
               );

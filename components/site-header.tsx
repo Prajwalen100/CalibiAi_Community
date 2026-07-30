@@ -16,7 +16,7 @@ const publicLinks = [
 const studentLinks = [
   ["Learning Hub", "/learning-hub"],
   ["Community", "/community"],
-  ["Opportunity", "/placements"],
+  ["Network", "/network"],
   ["Blog", "/blog"],
 ] as const;
 

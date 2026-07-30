@@ -260,6 +260,7 @@ export async function createJobPosting(formData: FormData) {
   revalidatePath("/community/jobs");
   revalidatePath("/community/jobs/opportunities");
   revalidatePath("/placements");
+  revalidatePath("/network");
   revalidatePath("/employer/dashboard");
   return { success: true, id: data!.id };
 }
@@ -821,6 +822,7 @@ export async function applyToJob(formData: FormData) {
   revalidatePath("/employer/dashboard");
   revalidatePath("/employer/dashboard/applications");
   revalidatePath("/placements");
+  revalidatePath("/network");
   return { success: true };
 }
 

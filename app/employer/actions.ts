@@ -274,6 +274,7 @@ export async function createEmployerJob(formData: FormData) {
       revalidatePath("/employer/dashboard");
       revalidatePath("/community/jobs");
       revalidatePath("/placements");
+      revalidatePath("/network");
       revalidatePath("/community/jobs/opportunities");
       return { success: true, id: fallback!.id as string };
     }
@@ -291,6 +292,7 @@ export async function createEmployerJob(formData: FormData) {
   revalidatePath("/community/jobs");
   revalidatePath("/community/jobs/opportunities");
   revalidatePath("/placements");
+  revalidatePath("/network");
   return { success: true, id: data.id as string };
 }
 
@@ -308,6 +310,7 @@ export async function updateJobStatus(jobId: string, status: "open" | "closed") 
   revalidatePath("/employer/dashboard/jobs");
   revalidatePath("/community/jobs");
   revalidatePath("/placements");
+  revalidatePath("/network");
   return { success: true };
 }
 
