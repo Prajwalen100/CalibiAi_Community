@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -28,11 +29,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var key='calibiai-theme';var saved=localStorage.getItem(key);var theme=(saved==='dark'||saved==='light')?saved:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.classList.toggle('dark',theme==='dark');document.documentElement.style.colorScheme=theme;}catch(e){}})();`,
-          }}
-        />
+        {/* Theme bootstrap. Loaded with next/script's beforeInteractive
+            strategy so Next injects it into the document ahead of hydration
+            instead of React rendering it — a raw <script> inside the layout
+            triggers React's "script tag while rendering a component" error
+            and never re-executes when the tree regenerates on the client. */}
+        <Script id="calibiai-theme-init" strategy="beforeInteractive">
+          {`(function(){try{var key='calibiai-theme';var saved=localStorage.getItem(key);var theme=(saved==='dark'||saved==='light')?saved:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.classList.toggle('dark',theme==='dark');document.documentElement.style.colorScheme=theme;}catch(e){}})();`}
+        </Script>
         <ThemeProvider>
           <ChromeSlot>
             <SiteHeader />

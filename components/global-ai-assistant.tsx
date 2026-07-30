@@ -113,15 +113,12 @@ export function GlobalAiAssistant() {
 
   const [open, setOpen] = useState(false);
   const [view, setView] = useState<"chat" | "history">("chat");
-  const [messages, setMessages] = useState<ChatMessage[]>(() => {
-    if (typeof window === "undefined") return [];
-    try {
-      const saved = window.localStorage.getItem(STORAGE_KEY);
-      return saved ? (JSON.parse(saved) as ChatMessage[]) : [];
-    } catch {
-      return [];
-    }
-  });
+  // Start with the exact state the server rendered. The saved thread is
+  // restored in an effect after hydration: reading localStorage during the
+  // initial render makes the first client render differ from the SSR markup,
+  // which breaks React hydration for the whole page (root-layout boundary).
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [hasRestored, setHasRestored] = useState(false);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -129,13 +126,34 @@ export function GlobalAiAssistant() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+  // Restore the previous conversation only after the component has mounted,
+  // so the first client render matches the server-rendered HTML exactly.
+  // The synchronous setState is deliberate: this effect exists precisely to
+  // swap in the client-only thread once hydration is done.
   useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved) as ChatMessage[];
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        if (Array.isArray(parsed)) setMessages(parsed);
+      }
+    } catch {
+      /* corrupted or unavailable storage — start fresh */
+    }
+    setHasRestored(true);
+  }, []);
+
+  useEffect(() => {
+    // Never persist before the restore effect above has run: on mount the
+    // state is briefly the empty array and would wipe the saved thread.
+    if (!hasRestored) return;
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
     } catch {
       /* ignore */
     }
-  }, [messages]);
+  }, [messages, hasRestored]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });

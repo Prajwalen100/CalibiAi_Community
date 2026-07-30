@@ -75,7 +75,28 @@ export function ScrollReveal({
     );
 
     observer.observe(element);
-    return () => observer.disconnect();
+
+    // Failsafe: if the observer never reports (partial hydration failure,
+    // exotic webviews), content that is already inside the viewport must not
+    // stay transparent — that renders the page blank.
+    const failsafe = setTimeout(() => {
+      const rect = element.getBoundingClientRect();
+      const inViewport =
+        rect.bottom > 0 &&
+        rect.right > 0 &&
+        rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.left < (window.innerWidth || document.documentElement.clientWidth);
+      if (inViewport) {
+        setIsVisible(true);
+        setHasAnimated(true);
+        observer.disconnect();
+      }
+    }, delay + 1500);
+
+    return () => {
+      clearTimeout(failsafe);
+      observer.disconnect();
+    };
   }, [delay, threshold, rootMargin, once, disabled, hasAnimated]);
 
   const directionClasses = {
@@ -172,7 +193,27 @@ export function StaggerReveal({
     );
 
     observer.observe(element);
-    return () => observer.disconnect();
+
+    // Same failsafe as ScrollReveal: never leave in-viewport content
+    // transparent when the observer fails to deliver.
+    const failsafe = setTimeout(() => {
+      const rect = element.getBoundingClientRect();
+      const inViewport =
+        rect.bottom > 0 &&
+        rect.right > 0 &&
+        rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.left < (window.innerWidth || document.documentElement.clientWidth);
+      if (inViewport) {
+        setIsVisible(true);
+        setHasAnimated(true);
+        observer.disconnect();
+      }
+    }, 1500);
+
+    return () => {
+      clearTimeout(failsafe);
+      observer.disconnect();
+    };
   }, [threshold, rootMargin, once, disabled, hasAnimated]);
 
   const directionClasses = {
