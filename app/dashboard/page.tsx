@@ -6,6 +6,7 @@ import { getStudentAccess } from "@/lib/auth/student-access";
 import { Calendar, Target, Trophy, TrendingUp, Zap, BookOpen, CheckCircle2, Clock, ChevronRight, Sparkles, FileText, ArrowRight, Lock } from "lucide-react";
 import { DashboardGreeting } from "@/components/dashboard-greeting";
 import { ProjectCard, type ProjectDetail } from "@/components/project-detail-modal";
+import { LabProjectCard, type LabProjectDetail } from "@/components/lab-project-modal";
 import { STATIC_BLOG_POSTS, toBlogPost, type BlogPost } from "@/lib/blog/posts";
 import { getCurrentDayNumber, getRoadmapDayLockStatuses } from "@/lib/learning/day-lock";
 import { ROADMAP_PROGRESS_LOCK_COLUMNS } from "@/lib/learning/day-access";
@@ -91,7 +92,7 @@ export default async function DashboardPage({
     supabase.from("roadmap_progress").select(`module_id,${ROADMAP_PROGRESS_LOCK_COLUMNS}`).eq("user_id", user.id).order("day", { ascending: true }),
     supabase
       .from("roadmap_task_assessments")
-      .select("id,user_roadmap_id,day,task_description,submission_language,score,points_awarded,ai_enriched,created_at")
+      .select("id,user_roadmap_id,day,level,task_description,submission_language,submission,explanation,score,points_awarded,ai_enriched,created_at,feedback,strengths,improvements")
       .eq("user_id", user.id)
       .eq("task_type", "mini_project")
       .eq("passed", true)
@@ -435,22 +436,7 @@ export default async function DashboardPage({
               ))}
 
               {bestRoadmapMiniProjects.map((project) => (
-                <div key={project.id} className="rounded-2xl border border-violet-200 bg-violet-50/40 p-4 dark:border-violet-900 dark:bg-violet-950/20">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="text-xs font-black uppercase tracking-wide text-violet-600">AI Lab · Day {project.day}</p>
-                      <p className="mt-1 line-clamp-2 font-semibold">{project.task_description}</p>
-                    </div>
-                    <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-bold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300">
-                      Verified
-                    </span>
-                  </div>
-                  <div className="mt-2 flex flex-wrap items-center gap-3 text-sm">
-                    <span className="font-bold text-violet-700 dark:text-violet-300">AI Score: {project.score}/100</span>
-                    <span className="uppercase text-slate-500">{project.submission_language}</span>
-                    {project.points_awarded > 0 && <span className="font-bold text-amber-600">+{project.points_awarded} points</span>}
-                  </div>
-                </div>
+                <LabProjectCard key={project.id} project={project as LabProjectDetail} />
               ))}
 
               {(projects?.length ?? 0) === 0 && bestRoadmapMiniProjects.length === 0 && (

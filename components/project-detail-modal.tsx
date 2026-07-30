@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   X,
@@ -148,7 +149,15 @@ export function ProjectDetailModal({
   const improvements = asStringArray(project.ai_improvements);
   const created = formatDate(project.created_at);
 
-  return (
+  if (typeof document === "undefined") return null;
+
+  // Cards live inside animated/scroll-reveal wrappers that apply CSS
+  // transforms. A `fixed` element nested under a transformed ancestor is
+  // positioned and clipped by that ancestor instead of the viewport, which
+  // made the popup taller than its container with no way to reach the rest of
+  // it. Rendering at document.body restores true viewport-fixed behaviour so
+  // max-h + overflow-y-auto can actually scroll.
+  return createPortal(
     <AnimatePresence>
       {open && (
         <motion.div
@@ -166,7 +175,7 @@ export function ProjectDetailModal({
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: 40, opacity: 0, scale: 0.98 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="modal-glass relative flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden"
+            className="modal-glass relative flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
@@ -205,7 +214,7 @@ export function ProjectDetailModal({
             </div>
 
             {/* Scrollable body */}
-            <div className="min-h-0 flex-1 space-y-6 overflow-y-auto p-5 sm:p-6">
+            <div className="min-h-0 flex-1 space-y-6 overflow-y-auto overscroll-contain p-5 sm:p-6">
               {/* Quick stats */}
               <div className="flex flex-wrap gap-2">
                 {project.ai_score != null && (
@@ -338,7 +347,8 @@ export function ProjectDetailModal({
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }
 
