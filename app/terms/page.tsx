@@ -17,7 +17,7 @@ export default function TermsOfServicePage() {
         <p className="mt-5 text-sm font-medium text-slate-500 dark:text-slate-400">Last updated: {updated}</p>
       </header>
 
-      <div className="prose prose-slate mt-10 max-w-none dark:prose-invert prose-headings:font-black prose-a:text-brand-700 dark:prose-a:text-brand-300">
+      <div className="legal-prose mt-10">
         <p>These Terms of Service (&ldquo;Terms&rdquo;) form an agreement between you and CalibiAI (&ldquo;CalibiAI,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;). By creating an account, accessing, or using our website, applications, community, learning tools, employer features, and related services (collectively, the &ldquo;Services&rdquo;), you agree to these Terms and our Privacy Policy. If you do not agree, do not use the Services.</p>
 
         <h2>1. Eligibility and accounts</h2>

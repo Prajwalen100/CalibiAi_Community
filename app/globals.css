@@ -1151,6 +1151,85 @@ a {
   border-bottom: 0;
 }
 
+/* ── Legal documents (Terms of Service, Privacy Policy) ────── */
+.legal-prose {
+  color: rgb(51 65 85);
+  line-height: 1.75;
+  font-size: 1rem;
+}
+.dark .legal-prose {
+  color: rgb(203 213 225);
+}
+.legal-prose > p:first-child {
+  font-size: 1.075rem;
+  color: rgb(30 41 59);
+}
+.dark .legal-prose > p:first-child {
+  color: rgb(226 232 240);
+}
+.legal-prose h2 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: rgb(15 23 42);
+  margin: 2.5rem 0 0.85rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgb(226 232 240);
+  scroll-margin-top: 5rem;
+}
+.dark .legal-prose h2 {
+  color: rgb(248 250 252);
+  border-bottom-color: rgb(30 41 59);
+}
+.legal-prose h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgb(30 41 59);
+  margin: 1.75rem 0 0.5rem;
+}
+.dark .legal-prose h3 {
+  color: rgb(226 232 240);
+}
+.legal-prose p {
+  margin: 0.9rem 0;
+}
+.legal-prose ul,
+.legal-prose ol {
+  margin: 1rem 0 1rem 1.4rem;
+  padding: 0;
+}
+.legal-prose ul {
+  list-style: disc;
+}
+.legal-prose ol {
+  list-style: decimal;
+}
+.legal-prose li {
+  margin: 0.5rem 0;
+  padding-left: 0.35rem;
+}
+.legal-prose li::marker {
+  color: rgb(11 110 216);
+}
+.dark .legal-prose li::marker {
+  color: rgb(112 185 255);
+}
+.legal-prose strong {
+  font-weight: 700;
+  color: rgb(15 23 42);
+}
+.dark .legal-prose strong {
+  color: rgb(248 250 252);
+}
+.legal-prose a {
+  color: rgb(7 87 174);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.dark .legal-prose a {
+  color: rgb(112 185 255);
+}
+
 /* ── Glassmorphism Design System ──────────────────────────── */
 .glass {
   backdrop-filter: blur(18px) saturate(200%);
