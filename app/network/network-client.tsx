@@ -23,17 +23,41 @@ import {
   Target,
   UserCheck,
 } from "lucide-react";
+import {
+  NON_ROADMAP_BUFFER_DAYS,
+  REQUIRED_PROJECT_RATING,
+  type ChecklistStatus,
+  type NetworkReadiness,
+} from "@/lib/network/readiness";
 
 interface NetworkClientProps {
-  currentScore: number;
-  requiredScore: number;
+  readiness: NetworkReadiness;
+  isSignedIn: boolean;
 }
 
-export function NetworkClient({ currentScore = 642, requiredScore = 850 }: NetworkClientProps) {
+export function NetworkClient({ readiness, isSignedIn }: NetworkClientProps) {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
-  const scorePercent = Math.min(100, Math.round((currentScore / 1000) * 100));
-  const remainingScore = Math.max(0, requiredScore - currentScore);
+  const {
+    currentScore,
+    requiredScore,
+    remainingScore,
+    scorePercent,
+    remainingRoadmapDays,
+    estimatedDaysToUnlock,
+    isRoadmapComplete,
+    totalRoadmapDays,
+    completedRoadmapDays,
+    verifiedProjectsCount,
+    requiredProjects,
+    isPortfolioComplete,
+    averageProjectRating,
+    meetsRatingBar,
+    hasGithubPortfolio,
+    hasCapstone,
+    completedRequirements,
+    totalRequirements,
+  } = readiness;
 
   // SVG circular progress parameters
   const size = 160;
@@ -43,54 +67,77 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (scorePercent / 100) * circumference;
 
-  const checklistItems = [
+  // Every requirement is derived from live learner data so the checklist can
+  // never claim something is done when it isn't.
+  const checklistItems: {
+    id: number;
+    title: string;
+    status: ChecklistStatus;
+    description: string;
+    icon: typeof Target;
+  }[] = [
     {
       id: 1,
-      title: "Talent Score ≥ 850",
-      status: "pending" as const,
-      description: `Current: ${currentScore} / Required: 850 (${remainingScore} points remaining)`,
+      title: "Talent Score \u2265 850",
+      status: currentScore >= requiredScore ? "completed" : "pending",
+      description:
+        currentScore >= requiredScore
+          ? `Current: ${currentScore} / Required: ${requiredScore} \u2014 qualified`
+          : `Current: ${currentScore} / Required: ${requiredScore} (${remainingScore} points remaining)`,
       icon: Target,
     },
     {
       id: 2,
       title: "Complete AI Roadmap",
-      status: "completed" as const,
-      description: "45-day structured engineering roadmap completed in sequence",
+      status: isRoadmapComplete ? "completed" : "pending",
+      description:
+        totalRoadmapDays === 0
+          ? "Take your placement assessment to get a personalized roadmap assigned"
+          : isRoadmapComplete
+            ? `All ${totalRoadmapDays} roadmap days completed in sequence`
+            : `${completedRoadmapDays} of ${totalRoadmapDays} roadmap days completed \u2014 ${remainingRoadmapDays} remaining`,
       icon: CheckCircle2,
     },
     {
       id: 3,
       title: "Complete Capstone Project",
-      status: "pending" as const,
-      description: "Build and publish a production-ready end-to-end AI system",
+      status: hasCapstone ? "completed" : "pending",
+      description: hasCapstone
+        ? "Production-ready end-to-end AI system published and verified"
+        : "Build and publish a production-ready end-to-end AI system",
       icon: Code,
     },
     {
       id: 4,
       title: "Pass AI Technical Interview",
-      status: "locked" as const,
+      status: "locked",
       description: "Automated architecture and system design verification",
       icon: Lock,
     },
     {
       id: 5,
       title: "Strong GitHub Portfolio",
-      status: "completed" as const,
-      description: "Verified code repository activity and automated code quality checks",
+      status: hasGithubPortfolio ? "completed" : "pending",
+      description: hasGithubPortfolio
+        ? "Verified code repository activity and automated code quality checks"
+        : "Link a public repository to a verified project to pass code quality checks",
       icon: Globe,
     },
     {
       id: 6,
       title: "Complete Portfolio",
-      status: "pending" as const,
-      description: "2 of 3 verified projects published to your public showcase",
+      status: isPortfolioComplete ? "completed" : "pending",
+      description: `${verifiedProjectsCount} of ${requiredProjects} verified projects published to your public showcase`,
       icon: Layers,
     },
     {
       id: 7,
       title: "Minimum Project Rating",
-      status: "locked" as const,
-      description: "Maintain an AI verification rating of ≥ 8.5/10 across projects",
+      status: meetsRatingBar ? "completed" : averageProjectRating === null ? "locked" : "pending",
+      description:
+        averageProjectRating === null
+          ? `Maintain an AI verification rating of \u2265 ${REQUIRED_PROJECT_RATING}/10 across projects`
+          : `Current average ${averageProjectRating}/10 \u2014 required \u2265 ${REQUIRED_PROJECT_RATING}/10`,
       icon: Star,
     },
   ];
@@ -376,22 +423,22 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
   ];
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#05060A] text-slate-100 selection:bg-emerald-500 selection:text-slate-950">
+    <main className="relative min-h-screen overflow-hidden bg-slate-50 dark:bg-[#05060A] text-slate-800 dark:text-slate-100 selection:bg-emerald-500 selection:text-white dark:selection:text-slate-950">
       {/* Ambient Floating Gradient Lights */}
-      <div className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[650px] w-[950px] -translate-x-1/2 rounded-full bg-gradient-to-tr from-emerald-500/10 via-sky-500/5 to-teal-500/10 opacity-70 blur-[130px]" />
-      <div className="pointer-events-none absolute right-[-20%] top-[45%] -z-10 h-[500px] w-[500px] rounded-full bg-emerald-500/10 opacity-50 blur-[140px]" />
-      <div className="pointer-events-none absolute left-[-15%] top-[70%] -z-10 h-[500px] w-[500px] rounded-full bg-teal-500/10 opacity-40 blur-[140px]" />
+      <div className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[650px] w-[950px] -translate-x-1/2 rounded-full bg-gradient-to-tr from-emerald-400/25 via-sky-400/15 to-teal-400/25 opacity-60 blur-[130px] dark:from-emerald-500/10 dark:via-sky-500/5 dark:to-teal-500/10 dark:opacity-70" />
+      <div className="pointer-events-none absolute right-[-20%] top-[45%] -z-10 h-[500px] w-[500px] rounded-full bg-emerald-400/20 opacity-50 blur-[140px] dark:bg-emerald-500/10" />
+      <div className="pointer-events-none absolute left-[-15%] top-[70%] -z-10 h-[500px] w-[500px] rounded-full bg-teal-400/20 opacity-40 blur-[140px] dark:bg-teal-500/10" />
 
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         {/* ====================================================
             TOP HERO SECTION
         ==================================================== */}
-        <section className="relative overflow-hidden rounded-3xl border border-white/[0.12] bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-transparent p-8 text-center shadow-2xl backdrop-blur-2xl sm:p-14">
+        <section className="relative overflow-hidden rounded-3xl border border-slate-900/[0.10] dark:border-white/[0.12] bg-gradient-to-b from-white/80 via-white/50 to-transparent dark:from-white/[0.08] dark:via-white/[0.03] dark:to-transparent p-8 text-center shadow-lg shadow-slate-900/[0.06] dark:shadow-2xl dark:shadow-black/40 backdrop-blur-2xl sm:p-14">
           {/* Subtle mesh background accent */}
           <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-500/15 via-transparent to-transparent opacity-60" />
 
           {/* Large animated lock */}
-          <div className="relative mx-auto flex h-24 w-24 items-center justify-center rounded-3xl border border-emerald-500/30 bg-gradient-to-b from-emerald-400/20 to-emerald-500/5 text-emerald-400 shadow-[0_0_50px_-10px_rgba(16,185,129,0.6)]">
+          <div className="relative mx-auto flex h-24 w-24 items-center justify-center rounded-3xl border border-emerald-600/30 dark:border-emerald-500/30 bg-gradient-to-b from-emerald-400/25 to-emerald-500/10 dark:from-emerald-400/20 dark:to-emerald-500/5 text-emerald-700 dark:text-emerald-400 shadow-[0_0_50px_-10px_rgba(16,185,129,0.6)]">
             <Lock className="h-12 w-12 animate-pulse" />
             <div className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-xs font-black text-slate-950 shadow-md">
               🔒
@@ -399,31 +446,31 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
           </div>
 
           {/* Title */}
-          <h1 className="mt-8 text-4xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="mt-8 text-4xl font-black tracking-tight text-slate-900 dark:text-white sm:text-6xl lg:text-7xl">
             Network
           </h1>
 
           {/* Subtitle */}
-          <p className="mx-auto mt-4 max-w-2xl text-base font-normal leading-relaxed text-slate-300/90 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base font-normal leading-relaxed text-slate-600 dark:text-slate-300/90 sm:text-lg">
             Welcome to CalibiAI Network.
             <br />
             This is an exclusive marketplace reserved only for Production Ready AI Engineers.
             <br />
-            <span className="text-slate-400">
+            <span className="text-slate-600 dark:text-slate-400">
               Unlock verified jobs, premium freelance opportunities, AI client projects and direct hiring from partner companies.
             </span>
           </p>
 
           {/* Glass badges */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/15 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-400 shadow-[0_0_20px_-3px_rgba(16,185,129,0.4)]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-600/35 dark:border-emerald-500/40 bg-emerald-500/10 dark:bg-emerald-500/15 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:text-emerald-400 shadow-[0_0_20px_-3px_rgba(16,185,129,0.4)]">
               <Lock className="h-3.5 w-3.5" /> LOCKED
             </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold text-white/90 backdrop-blur-md">
-              <Sparkles className="h-3.5 w-3.5 text-emerald-400" /> Production Ready Required
+            <span className="inline-flex items-center gap-2 rounded-full border border-slate-900/[0.10] dark:border-white/15 bg-white/60 dark:bg-white/5 px-4 py-1.5 text-xs font-semibold text-slate-800 dark:text-white/90 backdrop-blur-md">
+              <Sparkles className="h-3.5 w-3.5 text-emerald-700 dark:text-emerald-400" /> Production Ready Required
             </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold text-white/90 backdrop-blur-md">
-              <Target className="h-3.5 w-3.5 text-sky-400" /> Required Talent Score • 850
+            <span className="inline-flex items-center gap-2 rounded-full border border-slate-900/[0.10] dark:border-white/15 bg-white/60 dark:bg-white/5 px-4 py-1.5 text-xs font-semibold text-slate-800 dark:text-white/90 backdrop-blur-md">
+              <Target className="h-3.5 w-3.5 text-sky-600 dark:text-sky-400" /> Required Talent Score • 850
             </span>
           </div>
         </section>
@@ -431,7 +478,7 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
         {/* ====================================================
             LIVE PROGRESS
         ==================================================== */}
-        <section className="mt-8 overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6 shadow-2xl backdrop-blur-xl sm:p-10">
+        <section className="mt-8 overflow-hidden rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] p-6 shadow-lg shadow-slate-900/[0.06] dark:shadow-2xl dark:shadow-black/40 backdrop-blur-xl sm:p-10">
           <div className="flex flex-col items-center justify-between gap-8 lg:flex-row">
             {/* Circular progress component */}
             <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
@@ -442,7 +489,7 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
                     cx="80"
                     cy="80"
                     r={radius}
-                    className="stroke-slate-900"
+                    className="stroke-slate-200 dark:stroke-slate-900"
                     strokeWidth={strokeWidth}
                     fill="transparent"
                   />
@@ -451,7 +498,7 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
                     cx="80"
                     cy="80"
                     r={radius}
-                    className="stroke-emerald-400 transition-all duration-1000 ease-out"
+                    className="stroke-emerald-600 transition-all duration-1000 ease-out dark:stroke-emerald-400"
                     strokeWidth={strokeWidth}
                     strokeDasharray={circumference}
                     strokeDashoffset={strokeDashoffset}
@@ -463,63 +510,69 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
                   />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="text-3xl font-black tracking-tight text-white">
+                  <span className="text-3xl font-black tracking-tight text-slate-900 dark:text-white">
                     {currentScore}
                   </span>
-                  <span className="text-[11px] font-semibold text-slate-400">/ 1000</span>
-                  <span className="mt-1 text-[10px] font-extrabold uppercase tracking-widest text-emerald-400">
+                  <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">/ 1000</span>
+                  <span className="mt-1 text-[10px] font-extrabold uppercase tracking-widest text-emerald-700 dark:text-emerald-400">
                     TALENT SCORE
                   </span>
                 </div>
               </div>
 
               <div>
-                <span className="inline-block rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-emerald-400">
+                <span className="inline-block rounded-full border border-emerald-600/25 dark:border-emerald-500/20 bg-emerald-500/10 dark:bg-emerald-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
                   Live Audit Status
                 </span>
-                <h2 className="mt-2 text-2xl font-black text-white sm:text-3xl">
+                <h2 className="mt-2 text-2xl font-black text-slate-900 dark:text-white sm:text-3xl">
                   {remainingScore > 0
                     ? `${remainingScore} Points to Unlock Network`
                     : "You are Production Ready!"}
                 </h2>
-                <p className="mt-1 max-w-md text-sm text-slate-400">
-                  Keep progressing through your daily roadmap and AI Lab verifications to qualify for exclusive talent placements.
+                <p className="mt-1 max-w-md text-sm text-slate-600 dark:text-slate-400">
+                  {isSignedIn
+                    ? "Keep progressing through your daily roadmap and AI Lab verifications to qualify for exclusive talent placements."
+                    : "Sign in to see your live Talent Score, roadmap progress and personalized unlock checklist."}
                 </p>
               </div>
             </div>
 
             {/* Below / beside metrics bar */}
             <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-4 lg:w-auto">
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4 text-center backdrop-blur-md">
-                <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+              <div className="rounded-2xl border border-slate-900/[0.07] dark:border-white/[0.06] bg-white/60 dark:bg-white/[0.02] p-4 text-center backdrop-blur-md">
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
                   Current
                 </p>
-                <p className="mt-1 text-2xl font-black text-white">{currentScore}</p>
-                <p className="mt-0.5 text-[11px] text-slate-500">Talent Score</p>
+                <p className="mt-1 text-2xl font-black text-slate-900 dark:text-white">{currentScore}</p>
+                <p className="mt-0.5 text-[11px] text-slate-500 dark:text-slate-500">Talent Score</p>
               </div>
 
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4 text-center backdrop-blur-md">
-                <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+              <div className="rounded-2xl border border-slate-900/[0.07] dark:border-white/[0.06] bg-white/60 dark:bg-white/[0.02] p-4 text-center backdrop-blur-md">
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
                   Required
                 </p>
-                <p className="mt-1 text-2xl font-black text-emerald-400">{requiredScore}</p>
-                <p className="mt-0.5 text-[11px] text-slate-500">Talent Score</p>
+                <p className="mt-1 text-2xl font-black text-emerald-700 dark:text-emerald-400">{requiredScore}</p>
+                <p className="mt-0.5 text-[11px] text-slate-500 dark:text-slate-500">Talent Score</p>
               </div>
 
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4 text-center backdrop-blur-md">
-                <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+              <div className="rounded-2xl border border-slate-900/[0.07] dark:border-white/[0.06] bg-white/60 dark:bg-white/[0.02] p-4 text-center backdrop-blur-md">
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
                   Remaining
                 </p>
-                <p className="mt-1 text-2xl font-black text-amber-400">{remainingScore}</p>
-                <p className="mt-0.5 text-[11px] text-slate-500">Points to earn</p>
+                <p className="mt-1 text-2xl font-black text-amber-600 dark:text-amber-400">{remainingScore}</p>
+                <p className="mt-0.5 text-[11px] text-slate-500 dark:text-slate-500">Points to earn</p>
               </div>
 
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4 text-center backdrop-blur-md">
-                <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+              <div className="rounded-2xl border border-slate-900/[0.07] dark:border-white/[0.06] bg-white/60 dark:bg-white/[0.02] p-4 text-center backdrop-blur-md">
+                <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-500 dark:text-slate-400">
                   Estimated Time
                 </p>
-                <p className="mt-1 text-2xl font-black text-sky-400">14 Days</p>
-                <p className="mt-0.5 text-[11px] text-slate-500">At current pace</p>
+                <p className="mt-1 text-2xl font-black text-sky-600 dark:text-sky-400">
+                  {estimatedDaysToUnlock} Days
+                </p>
+                <p className="mt-0.5 text-[11px] text-slate-500 dark:text-slate-500 dark:text-slate-500">
+                  {remainingRoadmapDays} roadmap + {NON_ROADMAP_BUFFER_DAYS} activity
+                </p>
               </div>
             </div>
           </div>
@@ -528,18 +581,18 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
         {/* ====================================================
             UNLOCK CHECKLIST
         ==================================================== */}
-        <section className="mt-8 rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6 shadow-2xl backdrop-blur-xl sm:p-10">
+        <section className="mt-8 rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] p-6 shadow-lg shadow-slate-900/[0.06] dark:shadow-2xl dark:shadow-black/40 backdrop-blur-xl sm:p-10">
           <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+              <p className="text-xs font-bold uppercase tracking-widest text-emerald-700 dark:text-emerald-400">
                 Requirements
               </p>
-              <h2 className="mt-1 text-2xl font-black text-white sm:text-3xl">
+              <h2 className="mt-1 text-2xl font-black text-slate-900 dark:text-white sm:text-3xl">
                 Unlock Checklist
               </h2>
             </div>
-            <span className="text-sm font-semibold text-slate-400">
-              2 of 7 requirements completed
+            <span className="text-sm font-semibold text-slate-500 dark:text-slate-500 dark:text-slate-400">
+              {completedRequirements} of {totalRequirements} requirements completed
             </span>
           </div>
 
@@ -555,20 +608,20 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
                   key={item.id}
                   className={`group relative flex flex-col justify-between gap-4 rounded-2xl border p-5 transition-all duration-300 sm:flex-row sm:items-center ${
                     isCompleted
-                      ? "border-emerald-500/40 bg-emerald-950/20 shadow-[0_0_25px_-10px_rgba(16,185,129,0.4)] hover:border-emerald-500/60"
+                      ? "border-emerald-600/35 bg-emerald-50/80 shadow-[0_0_25px_-12px_rgba(16,185,129,0.35)] hover:border-emerald-600/55 dark:border-emerald-500/40 dark:bg-emerald-950/20 dark:shadow-[0_0_25px_-10px_rgba(16,185,129,0.4)] dark:hover:border-emerald-500/60"
                       : isPending
-                        ? "border-white/10 bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.04]"
-                        : "border-white/5 bg-white/[0.01] opacity-60 hover:opacity-80"
+                        ? "border-slate-900/[0.08] bg-white/70 hover:border-slate-900/20 hover:bg-white/90 dark:border-white/10 dark:bg-white/[0.02] dark:hover:border-white/20 dark:hover:bg-white/[0.04]"
+                        : "border-slate-900/[0.06] bg-white/50 opacity-70 hover:opacity-90 dark:border-white/5 dark:bg-white/[0.01] dark:opacity-60 dark:hover:opacity-80"
                   }`}
                 >
                   <div className="flex items-start gap-4">
                     <div
                       className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl font-bold transition-all ${
                         isCompleted
-                          ? "bg-emerald-500/20 text-emerald-400 shadow-[0_0_15px_-3px_rgba(16,185,129,0.5)]"
+                          ? "bg-emerald-500/15 text-emerald-700 shadow-[0_0_15px_-5px_rgba(16,185,129,0.45)] dark:bg-emerald-500/20 dark:text-emerald-400 dark:shadow-[0_0_15px_-3px_rgba(16,185,129,0.5)]"
                           : isPending
-                            ? "bg-white/10 text-white"
-                            : "bg-white/5 text-slate-500"
+                            ? "bg-slate-900/[0.06] text-slate-900 dark:bg-white/10 dark:text-white"
+                            : "bg-white/60 text-slate-500 dark:bg-white/5 dark:text-slate-500"
                       }`}
                     >
                       <Icon className="h-5 w-5" />
@@ -576,12 +629,12 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
 
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-semibold text-slate-500">
+                        <span className="text-xs font-semibold text-slate-500 dark:text-slate-500">
                           #{index + 1}
                         </span>
                         <h3
                           className={`font-bold sm:text-lg ${
-                            isCompleted ? "text-emerald-300" : "text-white"
+                            isCompleted ? "text-emerald-800 dark:text-emerald-300" : "text-slate-900 dark:text-white"
                           }`}
                         >
                           {item.title}
@@ -589,7 +642,7 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
                       </div>
                       <p
                         className={`mt-1 text-sm ${
-                          isLocked ? "text-slate-500 blur-[0.3px]" : "text-slate-400"
+                          isLocked ? "text-slate-400 blur-[0.3px] dark:text-slate-500" : "text-slate-600 dark:text-slate-400"
                         }`}
                       >
                         {item.description}
@@ -599,17 +652,17 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
 
                   <div className="shrink-0 sm:text-right">
                     {isCompleted && (
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/20 px-3.5 py-1 text-xs font-bold text-emerald-300 shadow-[0_0_12px_-3px_rgba(16,185,129,0.5)]">
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-600/35 dark:border-emerald-500/40 bg-emerald-500/15 dark:bg-emerald-500/20 px-3.5 py-1 text-xs font-bold text-emerald-700 dark:text-emerald-300 shadow-[0_0_12px_-3px_rgba(16,185,129,0.5)]">
                         <CheckCircle2 className="h-3.5 w-3.5" /> Completed
                       </span>
                     )}
                     {isPending && (
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-1 text-xs font-semibold text-slate-300">
-                        <Clock className="h-3.5 w-3.5 text-amber-400" /> Pending
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-900/[0.10] dark:border-white/15 bg-white/60 dark:bg-white/5 px-3.5 py-1 text-xs font-semibold text-slate-600 dark:text-slate-300">
+                        <Clock className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" /> Pending
                       </span>
                     )}
                     {isLocked && (
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-white/5 bg-white/5 px-3.5 py-1 text-xs font-semibold text-slate-500">
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-900/[0.06] dark:border-white/5 bg-white/60 dark:bg-white/5 px-3.5 py-1 text-xs font-semibold text-slate-500 dark:text-slate-500">
                         <Lock className="h-3.5 w-3.5" /> Locked
                       </span>
                     )}
@@ -627,13 +680,13 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
         ==================================================== */}
         <section className="mt-16">
           <div className="text-center">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-400">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-600/30 dark:border-emerald-500/30 bg-emerald-500/10 dark:bg-emerald-500/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
               <Lock className="h-3.5 w-3.5" /> Inside Network
             </span>
-            <h2 className="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">
+            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-4xl">
               What You&apos;re Missing
             </h2>
-            <p className="mx-auto mt-2 max-w-xl text-base text-slate-400">
+            <p className="mx-auto mt-2 max-w-xl text-base text-slate-600 dark:text-slate-400">
               Here&apos;s what becomes available after becoming a Production Ready Engineer.
             </p>
           </div>
@@ -645,31 +698,31 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
               return (
                 <div
                   key={card.id}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 shadow-xl transition-all duration-300 hover:border-emerald-500/40 hover:shadow-2xl hover:shadow-emerald-950/20"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] p-6 shadow-md shadow-slate-900/[0.05] dark:shadow-xl dark:shadow-black/30 transition-all duration-300 hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-600/10 dark:hover:shadow-2xl dark:hover:shadow-emerald-950/20"
                 >
                   {/* Blurred card value */}
                   <div>
                     <div className="flex items-center justify-between">
-                      <p className="text-sm font-bold text-white/90">🔒 {card.title}</p>
-                      <CardIcon className="h-4 w-4 text-emerald-400 opacity-60" />
+                      <p className="text-sm font-bold text-slate-800 dark:text-white/90">🔒 {card.title}</p>
+                      <CardIcon className="h-4 w-4 text-emerald-700 dark:text-emerald-400 opacity-60" />
                     </div>
 
                     <div className="relative mt-4">
                       {/* Blurred Value background */}
-                      <p className="select-none text-4xl font-black tracking-tight text-white opacity-40 blur-[5px] transition-all duration-300 group-hover:opacity-50">
+                      <p className="select-none text-4xl font-black tracking-tight text-slate-900 dark:text-white opacity-40 blur-[5px] transition-all duration-300 group-hover:opacity-50">
                         {card.value}
                       </p>
                     </div>
 
-                    <p className="mt-3 text-xs leading-relaxed text-slate-400">
+                    <p className="mt-3 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
                       {card.description}
                     </p>
                   </div>
 
                   {/* Glass overlay with lock button */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950/45 backdrop-blur-[2px] transition-all duration-300 group-hover:bg-slate-950/30">
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-slate-900/90 px-3.5 py-1.5 text-xs font-bold text-white shadow-xl transition-all duration-300 group-hover:border-emerald-500/40 group-hover:text-emerald-400 group-hover:shadow-[0_0_15px_-3px_rgba(16,185,129,0.4)]">
-                      <Lock className="h-3.5 w-3.5 text-emerald-400" /> Unlock Network to View
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/55 dark:bg-slate-950/45 backdrop-blur-[2px] transition-all duration-300 group-hover:bg-white/40 dark:group-hover:bg-slate-950/30">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-900/[0.10] dark:border-white/15 bg-white/90 dark:bg-slate-900/90 px-3.5 py-1.5 text-xs font-bold text-slate-900 dark:text-white shadow-xl transition-all duration-300 group-hover:border-emerald-500/40 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 group-hover:shadow-[0_0_15px_-3px_rgba(16,185,129,0.4)]">
+                      <Lock className="h-3.5 w-3.5 text-emerald-700 dark:text-emerald-400" /> Unlock Network to View
                     </span>
                   </div>
                 </div>
@@ -684,18 +737,18 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
         <section className="mt-16">
           <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+              <p className="text-xs font-bold uppercase tracking-widest text-emerald-700 dark:text-emerald-400">
                 Opportunities Preview
               </p>
-              <h2 className="mt-1 text-2xl font-black text-white sm:text-3xl">
+              <h2 className="mt-1 text-2xl font-black text-slate-900 dark:text-white sm:text-3xl">
                 Marketplace Preview
               </h2>
-              <p className="mt-1 text-sm text-slate-400">
+              <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
                 Verified jobs, freelance contracts, and exclusive client AI services currently live.
               </p>
             </div>
 
-            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-slate-400">
+            <span className="rounded-full border border-slate-900/[0.08] dark:border-white/10 bg-white/60 dark:bg-white/5 px-3 py-1 text-xs font-semibold text-slate-600 dark:text-slate-400">
               🔒 64+ live opportunities locked
             </span>
           </div>
@@ -704,28 +757,28 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
             {marketplaceOpportunities.map((item) => (
               <div
                 key={item.id}
-                className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40"
+                className="group relative overflow-hidden rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] p-6 shadow-md shadow-slate-900/[0.05] dark:shadow-xl dark:shadow-black/30 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40"
               >
                 {/* Category tag */}
                 <div className="flex items-center justify-between">
-                  <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[11px] font-semibold text-slate-300">
+                  <span className="rounded-full border border-slate-900/[0.08] dark:border-white/10 bg-white/60 dark:bg-white/5 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600 dark:text-slate-300">
                     {item.category}
                   </span>
-                  <span className="text-xs font-semibold text-slate-500">
+                  <span className="text-xs font-semibold text-slate-500 dark:text-slate-500">
                     {item.location}
                   </span>
                 </div>
 
                 {/* Content (dimmed / blurred) */}
                 <div className="mt-4 select-none opacity-60 blur-[3px]">
-                  <h3 className="text-lg font-bold text-white">{item.title}</h3>
-                  <p className="text-sm text-slate-400">{item.company}</p>
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">{item.title}</h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">{item.company}</p>
 
-                  <div className="mt-4 flex items-center justify-between border-t border-white/5 pt-4">
-                    <span className="text-xl font-black text-emerald-400">
+                  <div className="mt-4 flex items-center justify-between border-t border-slate-900/[0.06] dark:border-white/5 pt-4">
+                    <span className="text-xl font-black text-emerald-700 dark:text-emerald-400">
                       {item.compensation}
                     </span>
-                    <span className="rounded bg-white/10 px-2 py-0.5 text-xs text-slate-300">
+                    <span className="rounded bg-slate-900/[0.06] dark:bg-white/10 px-2 py-0.5 text-xs text-slate-600 dark:text-slate-300">
                       {item.type}
                     </span>
                   </div>
@@ -734,7 +787,7 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
                     {item.tags.map((tag, i) => (
                       <span
                         key={i}
-                        className="rounded bg-white/5 px-2 py-0.5 text-[10px] text-slate-400"
+                        className="rounded bg-white/60 dark:bg-white/5 px-2 py-0.5 text-[10px] text-slate-600 dark:text-slate-400"
                       >
                         {tag}
                       </span>
@@ -743,9 +796,9 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
                 </div>
 
                 {/* Glass Lock overlay */}
-                <div className="absolute inset-0 flex items-center justify-center bg-slate-950/35 backdrop-blur-[1px] transition-all duration-300 group-hover:bg-slate-950/25">
+                <div className="absolute inset-0 flex items-center justify-center bg-white/45 dark:bg-slate-950/35 backdrop-blur-[1px] transition-all duration-300 group-hover:bg-white/30 dark:group-hover:bg-slate-950/25">
                   <div className="flex flex-col items-center gap-1.5">
-                    <span className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/40 bg-slate-950/95 px-4 py-2 text-xs font-bold uppercase tracking-wider text-emerald-400 shadow-2xl transition-all group-hover:border-emerald-500 group-hover:shadow-[0_0_20px_-3px_rgba(16,185,129,0.5)]">
+                    <span className="inline-flex items-center gap-2 rounded-xl border border-emerald-600/35 dark:border-emerald-500/40 bg-white/95 dark:bg-slate-950/95 px-4 py-2 text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 shadow-lg shadow-slate-900/10 dark:shadow-2xl dark:shadow-black/50 transition-all group-hover:border-emerald-500 group-hover:shadow-[0_0_20px_-3px_rgba(16,185,129,0.5)]">
                       <Lock className="h-3.5 w-3.5" /> LOCKED • SCORE 850+
                     </span>
                   </div>
@@ -760,22 +813,22 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
         ==================================================== */}
         <section className="mt-16">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+            <p className="text-xs font-bold uppercase tracking-widest text-emerald-700 dark:text-emerald-400">
               Talent Leaderboard
             </p>
-            <h2 className="mt-1 text-2xl font-black text-white sm:text-3xl">
+            <h2 className="mt-1 text-2xl font-black text-slate-900 dark:text-white sm:text-3xl">
               Top Engineers Preview
             </h2>
-            <p className="mx-auto mt-2 max-w-md text-sm text-slate-400">
+            <p className="mx-auto mt-2 max-w-md text-sm text-slate-600 dark:text-slate-400">
               Production Ready Engineers actively completing projects and earning monthly inside the Network.
             </p>
           </div>
 
-          <div className="mt-8 overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.03] shadow-2xl backdrop-blur-xl">
+          <div className="mt-8 overflow-hidden rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] shadow-lg shadow-slate-900/[0.06] dark:shadow-2xl dark:shadow-black/40 backdrop-blur-xl">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-white/10 bg-white/[0.02] text-xs uppercase tracking-wider text-slate-400">
+                  <tr className="border-b border-slate-900/[0.08] dark:border-white/10 bg-white/60 dark:bg-white/[0.02] text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">
                     <th className="px-6 py-4">Rank</th>
                     <th className="px-6 py-4">Engineer</th>
                     <th className="px-6 py-4">Talent Score</th>
@@ -784,13 +837,13 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
                     <th className="px-6 py-4">Verification Rating</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5">
+                <tbody className="divide-y divide-slate-900/[0.06] dark:divide-white/5">
                   {topEngineers.map((eng) => (
                     <tr
                       key={eng.rank}
-                      className="transition-colors hover:bg-white/[0.02]"
+                      className="transition-colors hover:bg-slate-900/[0.03] dark:hover:bg-white/[0.02]"
                     >
-                      <td className="px-6 py-4 font-black text-slate-400">
+                      <td className="px-6 py-4 font-black text-slate-600 dark:text-slate-400">
                         #{eng.rank}
                       </td>
                       <td className="px-6 py-4">
@@ -800,23 +853,23 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
                             className={`h-9 w-9 shrink-0 rounded-full bg-gradient-to-br ${eng.avatarBg} opacity-70 blur-[4px]`}
                           />
                           {/* Blurred name */}
-                          <span className="select-none font-bold text-white opacity-75 blur-[3px]">
+                          <span className="select-none font-bold text-slate-900 dark:text-white opacity-75 blur-[3px]">
                             {eng.name}
                           </span>
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 font-black text-emerald-400">
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-600/30 dark:border-emerald-500/30 bg-emerald-500/10 dark:bg-emerald-500/10 px-3 py-1 font-black text-emerald-700 dark:text-emerald-400">
                           {eng.score}
                         </span>
                       </td>
-                      <td className="px-6 py-4 font-semibold text-slate-300">
+                      <td className="px-6 py-4 font-semibold text-slate-600 dark:text-slate-300">
                         {eng.projects}
                       </td>
-                      <td className="px-6 py-4 font-bold text-white">
+                      <td className="px-6 py-4 font-bold text-slate-900 dark:text-white">
                         {eng.earnings}
                       </td>
-                      <td className="px-6 py-4 font-semibold text-amber-400">
+                      <td className="px-6 py-4 font-semibold text-amber-600 dark:text-amber-400">
                         {eng.rating}
                       </td>
                     </tr>
@@ -826,8 +879,8 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
             </div>
 
             {/* Leaderboard footer */}
-            <div className="border-t border-white/10 bg-white/[0.02] p-4 text-center">
-              <span className="inline-flex items-center gap-2 text-sm font-bold text-emerald-400">
+            <div className="border-t border-slate-900/[0.08] dark:border-white/10 bg-white/60 dark:bg-white/[0.02] p-4 text-center">
+              <span className="inline-flex items-center gap-2 text-sm font-bold text-emerald-700 dark:text-emerald-400">
                 <Lock className="h-4 w-4" /> Unlock to Join Top Engineers
               </span>
             </div>
@@ -839,13 +892,13 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
         ==================================================== */}
         <section className="mt-16">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+            <p className="text-xs font-bold uppercase tracking-widest text-emerald-700 dark:text-emerald-400">
               Value Proposition
             </p>
-            <h2 className="mt-1 text-2xl font-black text-white sm:text-3xl">
+            <h2 className="mt-1 text-2xl font-black text-slate-900 dark:text-white sm:text-3xl">
               Why Network Matters
             </h2>
-            <p className="mx-auto mt-2 max-w-xl text-sm text-slate-400">
+            <p className="mx-auto mt-2 max-w-xl text-sm text-slate-600 dark:text-slate-400">
               An exclusive professional club designed to elevate your AI engineering career from learner to industry leader.
             </p>
           </div>
@@ -856,15 +909,15 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
               return (
                 <div
                   key={index}
-                  className="group rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:bg-white/[0.05]"
+                  className="group rounded-2xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:bg-white/90 dark:hover:bg-white/[0.05]"
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 transition-all group-hover:bg-emerald-500/20">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 transition-all group-hover:bg-emerald-500/20">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="mt-4 text-base font-bold text-white group-hover:text-emerald-300">
+                  <h3 className="mt-4 text-base font-bold text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-300">
                     {feat.title}
                   </h3>
-                  <p className="mt-1.5 text-xs leading-relaxed text-slate-400">
+                  <p className="mt-1.5 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
                     {feat.description}
                   </p>
                 </div>
@@ -876,15 +929,15 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
         {/* ====================================================
             HOW TO UNLOCK
         ==================================================== */}
-        <section className="mt-16 rounded-3xl border border-white/[0.08] bg-white/[0.03] p-8 shadow-2xl backdrop-blur-xl sm:p-12">
+        <section className="mt-16 rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] p-8 shadow-lg shadow-slate-900/[0.06] dark:shadow-2xl dark:shadow-black/40 backdrop-blur-xl sm:p-12">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+            <p className="text-xs font-bold uppercase tracking-widest text-emerald-700 dark:text-emerald-400">
               Clear Roadmap
             </p>
-            <h2 className="mt-1 text-2xl font-black text-white sm:text-3xl">
+            <h2 className="mt-1 text-2xl font-black text-slate-900 dark:text-white sm:text-3xl">
               How to Unlock
             </h2>
-            <p className="mx-auto mt-2 max-w-md text-sm text-slate-400">
+            <p className="mx-auto mt-2 max-w-md text-sm text-slate-600 dark:text-slate-400">
               Follow the 4-step path from your initial assessment to joining the CalibiAI Network.
             </p>
           </div>
@@ -893,17 +946,17 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
             {unlockSteps.map((s, idx) => (
               <div
                 key={s.step}
-                className="relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 text-center transition-all hover:border-white/20"
+                className="relative rounded-2xl border border-slate-900/[0.08] dark:border-white/10 bg-white/60 dark:bg-white/[0.02] p-6 text-center transition-all hover:border-slate-900/20 dark:hover:border-white/20"
               >
-                <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full border border-emerald-500/30 bg-emerald-500/15 font-black text-emerald-400">
+                <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full border border-emerald-600/30 dark:border-emerald-500/30 bg-emerald-500/10 dark:bg-emerald-500/15 font-black text-emerald-700 dark:text-emerald-400">
                   {s.step}
                 </div>
-                <h3 className="mt-4 font-bold text-white">{s.title}</h3>
-                <p className="mt-1.5 text-xs text-slate-400">{s.desc}</p>
+                <h3 className="mt-4 font-bold text-slate-900 dark:text-white">{s.title}</h3>
+                <p className="mt-1.5 text-xs text-slate-600 dark:text-slate-400">{s.desc}</p>
 
                 {/* Step arrow connector for lg screens */}
                 {idx < 3 && (
-                  <div className="absolute -right-4 top-1/2 hidden -translate-y-1/2 text-slate-600 lg:block">
+                  <div className="absolute -right-4 top-1/2 hidden -translate-y-1/2 text-slate-400 dark:text-slate-600 lg:block">
                     <ArrowRight className="h-5 w-5" />
                   </div>
                 )}
@@ -912,8 +965,8 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
           </div>
 
           <div className="mt-10 flex justify-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-gradient-to-r from-emerald-950/60 via-emerald-900/40 to-teal-950/60 px-6 py-2.5 text-sm font-bold text-emerald-300 shadow-[0_0_25px_-5px_rgba(16,185,129,0.5)]">
-              <Sparkles className="h-4 w-4 text-emerald-400" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-600/35 dark:border-emerald-500/40 bg-gradient-to-r from-emerald-100 via-emerald-50 to-teal-100 dark:from-emerald-950/60 dark:via-emerald-900/40 dark:to-teal-950/60 px-6 py-2.5 text-sm font-bold text-emerald-700 dark:text-emerald-300 shadow-[0_0_25px_-5px_rgba(16,185,129,0.5)]">
+              <Sparkles className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
               Production Ready Engineer → Network Unlocked
             </span>
           </div>
@@ -922,26 +975,26 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
         {/* ====================================================
             CALL TO ACTION (CTA)
         ==================================================== */}
-        <section className="mt-16 relative overflow-hidden rounded-3xl border border-emerald-500/30 bg-gradient-to-r from-emerald-950/40 via-slate-900/80 to-emerald-950/40 p-10 text-center shadow-2xl backdrop-blur-2xl sm:p-14">
+        <section className="mt-16 relative overflow-hidden rounded-3xl border border-emerald-600/30 dark:border-emerald-500/30 bg-gradient-to-r from-emerald-50 via-white to-emerald-50 dark:from-emerald-950/40 dark:via-slate-900/80 dark:to-emerald-950/40 p-10 text-center shadow-lg shadow-slate-900/[0.06] dark:shadow-2xl dark:shadow-black/40 backdrop-blur-2xl sm:p-14">
           <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-500/20 via-transparent to-transparent opacity-60" />
 
-          <h2 className="text-3xl font-black tracking-tight text-white sm:text-5xl">
+          <h2 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white sm:text-5xl">
             Become Production Ready.
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-base text-slate-300">
+          <p className="mx-auto mt-3 max-w-xl text-base text-slate-600 dark:text-slate-300">
             Complete your roadmap, improve your Talent Score and unlock the CalibiAI Network.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/roadmap"
-              className="inline-flex items-center gap-2 rounded-2xl bg-emerald-500 px-8 py-4 text-base font-bold text-slate-950 shadow-lg shadow-emerald-500/30 transition-all duration-300 hover:bg-emerald-400 hover:shadow-emerald-500/50"
+              className="inline-flex items-center gap-2 rounded-2xl bg-emerald-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-emerald-600/25 transition-all duration-300 hover:bg-emerald-700 dark:bg-emerald-500 dark:text-slate-950 dark:shadow-emerald-500/30 dark:hover:bg-emerald-400 dark:hover:shadow-emerald-500/50"
             >
               Continue Learning <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/learning-hub"
-              className="inline-flex items-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-6 py-4 text-sm font-semibold text-white transition-all hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-2xl border border-slate-900/[0.12] dark:border-white/15 bg-white/80 dark:bg-white/5 px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white transition-all hover:bg-white dark:hover:bg-white/10"
             >
               Explore Curriculum
             </Link>
@@ -953,18 +1006,18 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
         ==================================================== */}
         <section className="mt-16 pb-12">
           <div className="text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+            <p className="text-xs font-bold uppercase tracking-widest text-emerald-700 dark:text-emerald-400">
               Questions & Answers
             </p>
-            <h2 className="mt-1 text-2xl font-black text-white sm:text-3xl">
+            <h2 className="mt-1 text-2xl font-black text-slate-900 dark:text-white sm:text-3xl">
               Frequently Asked Questions
             </h2>
-            <p className="mx-auto mt-2 max-w-md text-sm text-slate-400">
+            <p className="mx-auto mt-2 max-w-md text-sm text-slate-600 dark:text-slate-400">
               Everything you need to know about access, verification, and marketplace opportunities.
             </p>
           </div>
 
-          <div className="mx-auto mt-8 max-w-3xl divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/[0.02] px-6 backdrop-blur-xl">
+          <div className="mx-auto mt-8 max-w-3xl divide-y divide-slate-900/[0.08] dark:divide-white/10 rounded-2xl border border-slate-900/[0.08] dark:border-white/10 bg-white/60 dark:bg-white/[0.02] px-6 backdrop-blur-xl">
             {faqItems.map((item, index) => {
               const isOpen = openFaqIndex === index;
 
@@ -972,17 +1025,17 @@ export function NetworkClient({ currentScore = 642, requiredScore = 850 }: Netwo
                 <div key={index} className="py-5">
                   <button
                     onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                    className="flex w-full items-center justify-between text-left font-bold text-white transition-colors hover:text-emerald-400"
+                    className="flex w-full items-center justify-between text-left font-bold text-slate-900 dark:text-white transition-colors hover:text-emerald-700 dark:hover:text-emerald-400"
                   >
                     <span className="text-base sm:text-lg">{item.question}</span>
                     <ChevronDown
-                      className={`h-5 w-5 shrink-0 text-slate-400 transition-transform duration-300 ${
-                        isOpen ? "rotate-180 text-emerald-400" : ""
+                      className={`h-5 w-5 shrink-0 text-slate-600 dark:text-slate-400 transition-transform duration-300 ${
+                        isOpen ? "rotate-180 text-emerald-700 dark:text-emerald-400" : ""
                       }`}
                     />
                   </button>
                   {isOpen && (
-                    <div className="mt-3 text-sm leading-relaxed text-slate-300/90 sm:text-base">
+                    <div className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300/90 sm:text-base">
                       {item.answer}
                     </div>
                   )}
