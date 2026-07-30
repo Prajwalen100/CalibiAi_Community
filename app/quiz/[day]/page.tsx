@@ -2,6 +2,7 @@ import { randomUUID } from "node:crypto";
 import { notFound, redirect } from "next/navigation";
 import { getStudentAccess } from "@/lib/auth/student-access";
 import { isLearningRole } from "@/lib/learning/content";
+import { getRoadmapDayAccess } from "@/lib/learning/day-access";
 import { getRoadmapQuiz } from "@/lib/learning/roadmap-quiz";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { QuizPageClient } from "./quiz-page-client";
@@ -47,6 +48,12 @@ export default async function QuizPage({
   if (assignment.level !== "beginner" && assignment.level !== "intermediate") {
     redirect("/roadmap/assign");
   }
+
+  // A locked day's quiz must not be reachable by URL. Send the student back to
+  // the day page, which explains why it is locked and what to do next.
+  const dayAccess = await getRoadmapDayAccess(supabase, user.id, dayNumber);
+  if (!dayAccess.hasRoadmap) redirect("/roadmap/assign");
+  if (dayAccess.isLocked) redirect(`/roadmap/day/${dayNumber}`);
 
   let quiz: ReturnType<typeof getRoadmapQuiz> = null;
   try {

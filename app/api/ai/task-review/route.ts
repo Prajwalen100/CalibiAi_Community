@@ -7,6 +7,7 @@ import { getRoadmapTask } from "@/lib/learning/roadmap-task";
 import { LAB_LANGUAGES, ROADMAP_TASK_TYPES } from "@/lib/learning/task-types";
 import { pointsForTaskScore } from "@/lib/learning/task-scoring";
 import { getNextMidnightUTC } from "@/lib/learning/day-lock";
+import { getRoadmapDayAccess } from "@/lib/learning/day-access";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -64,6 +65,22 @@ export async function POST(request: Request) {
     }
     if (assignment.level !== "beginner" && assignment.level !== "intermediate") {
       return errorResponse("Your roadmap level is invalid.", 409);
+    }
+
+    // Reject work submitted for a day the student has not unlocked yet. The UI
+    // hides locked days, but the endpoint must enforce it independently.
+    const dayAccess = await getRoadmapDayAccess(
+      supabase,
+      user.id,
+      parsed.data.dayNumber
+    );
+    if (dayAccess.isLocked) {
+      return errorResponse(
+        dayAccess.lockStatus.isDailyResetLock
+          ? "This day is locked until the 12:00 AM daily reset."
+          : `Day ${parsed.data.dayNumber} is locked. Complete Day ${parsed.data.dayNumber - 1} first.`,
+        403
+      );
     }
 
     const task = getRoadmapTask(
@@ -200,18 +217,17 @@ export async function POST(request: Request) {
     const autoCompleteTypes = ["mini_project", "practical_task", "assignment", "quiz"];
     if (autoCompleteTypes.includes(parsed.data.taskType) && review.passed) {
       const now = new Date();
+      // `roadmap_progress` is unique on (user_id, module_id) and
+      // (user_roadmap_id, day) — there is no (user_id, day) constraint, so an
+      // upsert on that pair fails. Update the existing row for this day
+      // instead; it is always seeded when the roadmap is assigned.
       await supabase
         .from("roadmap_progress")
-        .upsert(
-          {
-            user_id: user.id,
-            day: task.dayNumber,
-            status: "completed",
-            completed_at: now.toISOString(),
-          },
-          { onConflict: "user_id,day" }
-        );
+        .update({ status: "completed", completed_at: now.toISOString() })
+        .eq("user_id", user.id)
+        .eq("day", task.dayNumber);
 
+      // Arm the 12 AM pacing lock on the next day so it cannot be opened today.
       await supabase
         .from("roadmap_progress")
         .update({

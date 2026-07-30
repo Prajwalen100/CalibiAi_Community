@@ -6,8 +6,10 @@ import { getStudentAccess } from "@/lib/auth/student-access";
 import { Calendar, Target, Trophy, TrendingUp, Zap, BookOpen, CheckCircle2, Clock, ChevronRight, Sparkles, FileText, ArrowRight, Lock } from "lucide-react";
 import { DashboardGreeting } from "@/components/dashboard-greeting";
 import { ProjectCard, type ProjectDetail } from "@/components/project-detail-modal";
+import { LabProjectCard, type LabProjectDetail } from "@/components/lab-project-modal";
 import { STATIC_BLOG_POSTS, toBlogPost, type BlogPost } from "@/lib/blog/posts";
 import { getCurrentDayNumber, getRoadmapDayLockStatuses } from "@/lib/learning/day-lock";
+import { ROADMAP_PROGRESS_LOCK_COLUMNS } from "@/lib/learning/day-access";
 
 export const dynamic = "force-dynamic";
 
@@ -87,10 +89,10 @@ export default async function DashboardPage({
     supabase.from("scores").select("*").eq("user_id", user.id).single(),
     supabase.from("roadmaps").select("*").eq("user_id", user.id).order("created_at", { ascending: false }).limit(1).single(),
     supabase.from("projects").select("id,title,description,repo_url,live_url,ai_score,verified,complexity_tier,points_awarded,created_at,how_it_works,tech_stack,ai_feedback,ai_strengths,ai_improvements").eq("user_id", user.id).order("created_at", { ascending: false }),
-    supabase.from("roadmap_progress").select("module_id,day,status").eq("user_id", user.id).order("day", { ascending: true }),
+    supabase.from("roadmap_progress").select(`module_id,${ROADMAP_PROGRESS_LOCK_COLUMNS}`).eq("user_id", user.id).order("day", { ascending: true }),
     supabase
       .from("roadmap_task_assessments")
-      .select("id,user_roadmap_id,day,task_description,submission_language,score,points_awarded,ai_enriched,created_at")
+      .select("id,user_roadmap_id,day,level,task_description,submission_language,submission,explanation,score,points_awarded,ai_enriched,created_at,feedback,strengths,improvements")
       .eq("user_id", user.id)
       .eq("task_type", "mini_project")
       .eq("passed", true)
@@ -434,22 +436,7 @@ export default async function DashboardPage({
               ))}
 
               {bestRoadmapMiniProjects.map((project) => (
-                <div key={project.id} className="rounded-2xl border border-violet-200 bg-violet-50/40 p-4 dark:border-violet-900 dark:bg-violet-950/20">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="text-xs font-black uppercase tracking-wide text-violet-600">AI Lab · Day {project.day}</p>
-                      <p className="mt-1 line-clamp-2 font-semibold">{project.task_description}</p>
-                    </div>
-                    <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-bold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300">
-                      Verified
-                    </span>
-                  </div>
-                  <div className="mt-2 flex flex-wrap items-center gap-3 text-sm">
-                    <span className="font-bold text-violet-700 dark:text-violet-300">AI Score: {project.score}/100</span>
-                    <span className="uppercase text-slate-500">{project.submission_language}</span>
-                    {project.points_awarded > 0 && <span className="font-bold text-amber-600">+{project.points_awarded} points</span>}
-                  </div>
-                </div>
+                <LabProjectCard key={project.id} project={project as LabProjectDetail} />
               ))}
 
               {(projects?.length ?? 0) === 0 && bestRoadmapMiniProjects.length === 0 && (
@@ -479,20 +466,17 @@ export default async function DashboardPage({
               const isLocked = st?.isLocked ?? false;
               const isDailyReset = st?.isDailyResetLock ?? false;
               
-              return (
-                <Link
-                  key={day.day}
-                  href={`/roadmap/day/${day.day}`}
-                  className={`group block rounded-2xl border p-4 transition-all ${
-                    isCompleted
-                      ? "border-emerald-200 bg-emerald-50/30 hover:border-emerald-400 dark:border-emerald-900 dark:bg-emerald-950/20"
-                      : isCurrent
-                        ? "border-brand-200 bg-brand-50/50 hover:border-brand-500 hover:bg-brand-50 hover:shadow-sm dark:border-brand-800 dark:bg-brand-950/20"
-                        : isLocked
-                          ? "border-slate-200/80 bg-slate-50/70 opacity-90 hover:border-amber-300 hover:bg-amber-50/40 dark:border-slate-800/80 dark:bg-slate-900/40 dark:hover:border-amber-900/50 dark:hover:bg-amber-950/20"
-                          : "border-slate-100 hover:border-brand-500 dark:border-slate-800"
-                  }`}
-                >
+              const rowClass = `group block rounded-2xl border p-4 transition-all ${
+                isCompleted
+                  ? "border-emerald-200 bg-emerald-50/30 hover:border-emerald-400 dark:border-emerald-900 dark:bg-emerald-950/20"
+                  : isCurrent
+                    ? "border-brand-200 bg-brand-50/50 hover:border-brand-500 hover:bg-brand-50 hover:shadow-sm dark:border-brand-800 dark:bg-brand-950/20"
+                    : isLocked
+                      ? "cursor-not-allowed border-slate-200/80 bg-slate-50/70 opacity-90 dark:border-slate-800/80 dark:bg-slate-900/40"
+                      : "border-slate-100 hover:border-brand-500 dark:border-slate-800"
+              }`;
+
+              const rowBody = (
                   <div className="flex items-start gap-3">
                     <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-sm font-bold ${
                       isCompleted
@@ -500,7 +484,7 @@ export default async function DashboardPage({
                         : isCurrent
                           ? "bg-brand-100 text-brand-700 dark:bg-brand-900/60 dark:text-brand-300"
                           : isLocked
-                            ? "bg-slate-200/80 text-slate-500 group-hover:bg-amber-100 group-hover:text-amber-800 dark:bg-slate-800 dark:text-slate-400 dark:group-hover:bg-amber-900/50 dark:group-hover:text-amber-300"
+                            ? "bg-slate-200/80 text-slate-500 dark:bg-slate-800 dark:text-slate-400"
                             : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400"
                     }`}>
                       {isCompleted ? "✓" : isLocked ? <Lock className="h-4 w-4" /> : day.day}
@@ -531,11 +515,25 @@ export default async function DashboardPage({
                       </div>
                     </div>
                     {isLocked ? (
-                      <Lock className="h-5 w-5 shrink-0 text-slate-400 group-hover:text-amber-600 dark:text-slate-500 dark:group-hover:text-amber-400" />
+                      <Lock className="h-5 w-5 shrink-0 text-slate-400 dark:text-slate-500" />
                     ) : (
                       <ChevronRight className="h-5 w-5 shrink-0 text-slate-400 group-hover:text-brand-500" />
                     )}
                   </div>
+              );
+
+              // Locked days must not be openable from the dashboard list.
+              if (isLocked) {
+                return (
+                  <div key={day.day} aria-disabled="true" title={st?.lockReason} className={rowClass}>
+                    {rowBody}
+                  </div>
+                );
+              }
+
+              return (
+                <Link key={day.day} href={`/roadmap/day/${day.day}`} className={rowClass}>
+                  {rowBody}
                 </Link>
               );
             })}

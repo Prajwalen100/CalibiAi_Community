@@ -20,6 +20,7 @@ import {
   Lock
 } from "lucide-react";
 import { getCurrentDayNumber, getRoadmapDayLockStatuses } from "@/lib/learning/day-lock";
+import { ROADMAP_PROGRESS_LOCK_COLUMNS } from "@/lib/learning/day-access";
 
 export const dynamic = "force-dynamic";
 
@@ -83,7 +84,7 @@ export default async function RoadmapPage() {
 
   const [{ data: roadmap }, { data: progress }] = await Promise.all([
     supabase.from("roadmaps").select("*").eq("user_id", user.id).order("created_at", { ascending: false }).limit(1).single(),
-    supabase.from("roadmap_progress").select("day,status").eq("user_id", user.id).order("day", { ascending: true }),
+    supabase.from("roadmap_progress").select(ROADMAP_PROGRESS_LOCK_COLUMNS).eq("user_id", user.id).order("day", { ascending: true }),
   ]);
 
   const plan = roadmap?.generated_plan as StoredRoadmap | undefined;
@@ -276,25 +277,43 @@ export default async function RoadmapPage() {
                   const isCurrent = st?.isCurrent ?? false;
                   const isLocked = st?.isLocked ?? false;
                   
-                  return (
-                    <Link
-                      key={day.day}
-                      href={`/roadmap/day/${day.day}`}
-                      title={isLocked ? st.lockReason : undefined}
-                      className={`group flex flex-col items-center rounded-xl p-2 transition-all ${
-                        isCompleted
-                          ? "bg-emerald-100 text-emerald-700 hover:bg-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300"
-                          : isCurrent
-                            ? "bg-brand-100 text-brand-700 hover:bg-brand-200 dark:bg-brand-950/40 dark:text-brand-300"
-                            : isLocked
-                              ? "bg-slate-100/70 text-slate-400 hover:bg-amber-100 hover:text-amber-800 dark:bg-slate-900/40 dark:text-slate-500 dark:hover:bg-amber-950/40 dark:hover:text-amber-300"
-                              : "bg-slate-50 text-slate-500 hover:bg-slate-100 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
-                      }`}
-                    >
+                  const tileClass = `group flex flex-col items-center rounded-xl p-2 transition-all ${
+                    isCompleted
+                      ? "bg-emerald-100 text-emerald-700 hover:bg-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300"
+                      : isCurrent
+                        ? "bg-brand-100 text-brand-700 hover:bg-brand-200 dark:bg-brand-950/40 dark:text-brand-300"
+                        : isLocked
+                          ? "cursor-not-allowed bg-slate-100/70 text-slate-400 dark:bg-slate-900/40 dark:text-slate-500"
+                          : "bg-slate-50 text-slate-500 hover:bg-slate-100 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
+                  }`;
+
+                  const tileBody = (
+                    <>
                       <span className="text-xs font-bold">D{day.day}</span>
                       {isCompleted && <CheckCircle2 className="mt-1 h-3 w-3" />}
                       {isCurrent && <Zap className="mt-1 h-3 w-3" />}
                       {isLocked && <Lock className="mt-1 h-3 w-3" />}
+                    </>
+                  );
+
+                  // Locked days are not links — the day page would only show a
+                  // lock screen, so there is nothing to navigate to.
+                  if (isLocked) {
+                    return (
+                      <div
+                        key={day.day}
+                        title={st.lockReason}
+                        aria-disabled="true"
+                        className={tileClass}
+                      >
+                        {tileBody}
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <Link key={day.day} href={`/roadmap/day/${day.day}`} className={tileClass}>
+                      {tileBody}
                     </Link>
                   );
                 })}
@@ -335,20 +354,18 @@ export default async function RoadmapPage() {
             const isLocked = st?.isLocked ?? false;
             const isDailyReset = st?.isDailyResetLock ?? false;
             
-            return (
-              <Link
-                key={day.day}
-                href={`/roadmap/day/${day.day}`}
-                className={`group rounded-2xl border p-4 transition-all ${
-                  isCompleted
-                    ? "border-emerald-200 bg-emerald-50/50 hover:border-emerald-400 dark:border-emerald-900 dark:bg-emerald-950/20"
-                    : isCurrent
-                      ? "border-brand-200 bg-brand-50/50 hover:border-brand-500 hover:shadow-md dark:border-brand-800 dark:bg-brand-950/20"
-                      : isLocked
-                        ? "border-slate-200/80 bg-slate-50/70 opacity-90 hover:border-amber-300 hover:bg-amber-50/40 dark:border-slate-800/80 dark:bg-slate-900/40 dark:hover:border-amber-900/50 dark:hover:bg-amber-950/20"
-                        : "border-slate-200 hover:border-brand-500 hover:shadow-md dark:border-slate-800"
-                }`}
-              >
+            const cardClass = `group rounded-2xl border p-4 transition-all ${
+              isCompleted
+                ? "border-emerald-200 bg-emerald-50/50 hover:border-emerald-400 dark:border-emerald-900 dark:bg-emerald-950/20"
+                : isCurrent
+                  ? "border-brand-200 bg-brand-50/50 hover:border-brand-500 hover:shadow-md dark:border-brand-800 dark:bg-brand-950/20"
+                  : isLocked
+                    ? "cursor-not-allowed border-slate-200/80 bg-slate-50/70 opacity-90 dark:border-slate-800/80 dark:bg-slate-900/40"
+                    : "border-slate-200 hover:border-brand-500 hover:shadow-md dark:border-slate-800"
+            }`;
+
+            const cardBody = (
+              <>
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-2">
                     <div className={`flex h-8 w-8 items-center justify-center rounded-lg text-sm font-bold ${
@@ -357,7 +374,7 @@ export default async function RoadmapPage() {
                         : isCurrent
                           ? "bg-brand-100 text-brand-700 dark:bg-brand-900/60 dark:text-brand-300"
                           : isLocked
-                            ? "bg-slate-200/80 text-slate-500 group-hover:bg-amber-100 group-hover:text-amber-800 dark:bg-slate-800 dark:text-slate-400 dark:group-hover:bg-amber-900/50 dark:group-hover:text-amber-300"
+                            ? "bg-slate-200/80 text-slate-500 dark:bg-slate-800 dark:text-slate-400"
                             : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400"
                     }`}>
                       {isCompleted ? "✓" : isLocked ? <Lock className="h-4 w-4" /> : day.day}
@@ -396,6 +413,21 @@ export default async function RoadmapPage() {
                 {day.expected_outcome && (
                   <p className="mt-2 text-xs text-slate-500 line-clamp-2">{day.expected_outcome}</p>
                 )}
+              </>
+            );
+
+            // Locked days stay unclickable so a student cannot jump ahead.
+            if (isLocked) {
+              return (
+                <div key={day.day} aria-disabled="true" title={st?.lockReason} className={cardClass}>
+                  {cardBody}
+                </div>
+              );
+            }
+
+            return (
+              <Link key={day.day} href={`/roadmap/day/${day.day}`} className={cardClass}>
+                {cardBody}
               </Link>
             );
           })}

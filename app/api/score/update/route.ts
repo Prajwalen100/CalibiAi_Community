@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { getRoadmapDayAccess } from "@/lib/learning/day-access";
 import { recalculateAndPersistScore } from "@/lib/score/recalculate";
 
 export const dynamic = "force-dynamic";
@@ -35,6 +36,17 @@ export async function POST(request: Request) {
     } = await supabase.auth.getUser();
     if (!user) {
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+    }
+
+    // A quiz score can only be banked for a day the student has unlocked.
+    if (typeof quizDay === "number") {
+      const dayAccess = await getRoadmapDayAccess(supabase, user.id, quizDay);
+      if (dayAccess.isLocked) {
+        return NextResponse.json(
+          { error: `Day ${quizDay} is locked. Complete the previous day first.` },
+          { status: 403 }
+        );
+      }
     }
 
     // Never accept a user ID from the client — the score always recalculates

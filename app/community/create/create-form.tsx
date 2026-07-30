@@ -7,6 +7,7 @@ import { createPost } from "@/app/community/actions";
 import { Loader2, ArrowLeft, Bot, Users, Sparkles, RefreshCw, MessageSquarePlus, Copy, Check, History } from "lucide-react";
 import { AiMarkdown } from "@/components/ai/ai-markdown";
 import { ImproveWithAiButton } from "@/components/ai/improve-with-ai-button";
+import { ImageUploadField } from "@/components/community/image-upload-field";
 
 const postTypes = [
   { key: "discussion", label: "💬 Discussion", desc: "Start a conversation" },
@@ -470,11 +471,8 @@ export function CreatePostForm({ communities, defaultType, defaultCommunity, onS
             </div>
           )}
 
-          {/* Image */}
-          <div>
-            <label className="label">Image URL (optional)</label>
-            <input className="input mt-1" name="image_url" type="url" placeholder="https://..." />
-          </div>
+          {/* Image — upload from device or paste a URL */}
+          <ImageUploadField />
 
           {error && (
             <p className="rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">{error}</p>
