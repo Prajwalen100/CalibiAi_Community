@@ -4,6 +4,7 @@ import path from "path";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { ROLE_DETAILS, isLearningRole, type LearningRole } from "@/lib/learning/content";
 import { analyzeAssessmentWithAI, getFallbackAssessmentResult, type AIAssessmentResult } from "@/lib/ai/assessment";
+import { recordVerifiedSkillsFromAssessment } from "@/lib/learning/verified-skills.server";
 
 type Question = {
   id: string;
@@ -438,6 +439,11 @@ export async function finishAttempt(attemptId: string): Promise<Result<{
   if (submitError || !submitted) {
     return { data: null, error: { message: "Could not finish your assessment. Please retry.", status: 500 } };
   }
+
+  // Grant verified-skill rows for any `band = strong` skills so the public
+  // profile's "Verified skills" radar populates. Best-effort — failures here
+  // are logged inside the helper and must not fail the submission.
+  await recordVerifiedSkillsFromAssessment(user.id, skillScores, attemptId);
 
   // Update user's total score with assessment performance
   // Assessment contributes to completion_pts (up to 100 points max)
