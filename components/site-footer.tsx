@@ -20,7 +20,7 @@ export function SiteFooter({ isAuthenticated = false }: { isAuthenticated?: bool
           </div>
 
           {/* Links */}
-          <div className="flex flex-wrap items-center justify-center gap-8 text-xs">
+          <div className="flex flex-wrap items-start justify-center gap-8 text-xs">
             {!isAuthenticated && (
               <>
                 <div>

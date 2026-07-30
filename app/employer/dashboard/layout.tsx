@@ -13,6 +13,7 @@ import {
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { CompactBrandLogo } from "@/components/brand-logo";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { NotificationPopover } from "@/components/notification-popover";
 
 export const dynamic = "force-dynamic";
 
@@ -67,6 +68,24 @@ export default async function EmployerDashboardLayout({
     /* optional */
   }
 
+  type EmployerNotification = { id: string; type: string; is_read: boolean; created_at: string; actor_id: string | null };
+  let employerNotifications: EmployerNotification[] = [];
+  const employerActorNames = new Map<string, string>();
+  try {
+    const { data } = await supabase.from("comm_notifications").select("id, type, is_read, created_at, actor_id").eq("user_id", user.id).order("created_at", { ascending: false }).limit(12);
+    employerNotifications = (data ?? []) as EmployerNotification[];
+    const actorIds = [...new Set(employerNotifications.map((notification) => notification.actor_id).filter(Boolean))] as string[];
+    if (actorIds.length) {
+      const { data: actors } = await supabase.from("profiles").select("user_id, full_name, username").in("user_id", actorIds);
+      for (const actor of actors ?? []) employerActorNames.set(actor.user_id, actor.full_name || actor.username || "Someone");
+    }
+  } catch { /* optional */ }
+  const employerPopoverNotifications = employerNotifications.map((notification) => ({
+    id: notification.id, type: notification.type, isRead: notification.is_read, createdAt: notification.created_at,
+    actorName: notification.actor_id ? employerActorNames.get(notification.actor_id) || "Someone" : "CalibiAI",
+    href: "/employer/dashboard/applications",
+  }));
+
   return (
     <div className="min-h-screen bg-slate-50/80 dark:bg-slate-950">
       <header className="sticky top-0 z-40 border-b border-slate-200/70 bg-white/80 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/80">
@@ -83,6 +102,7 @@ export default async function EmployerDashboardLayout({
             {/* The global site header is hidden on employer routes, so the
                 employer portal needs its own light/dark switch. */}
             <ThemeToggle />
+            <NotificationPopover notifications={employerPopoverNotifications} historyHref="/employer/dashboard/notifications" />
             <div className="hidden text-right sm:block">
               <p className="text-sm font-bold text-primary">{employer.company_name}</p>
               <p className="text-xs text-secondary">{profile?.full_name || user.email}</p>
