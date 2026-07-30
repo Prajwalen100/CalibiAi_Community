@@ -5,8 +5,13 @@ import { mapPostToCardData } from "@/lib/community/mappers";
 import { attachCommunityProfiles } from "@/lib/community/public-profiles";
 import { CommunityComposer } from "@/components/community/community-composer";
 import { ScrollReveal, StaggerReveal } from "@/components/scroll-reveal";
+import { CommunityUnavailable } from "@/components/community/community-unavailable";
 
 export const dynamic = "force-dynamic";
+
+function isCommunityConfigured() {
+  return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+}
 
 const feedTabs = [
   { key: "all", label: "Feed" },
@@ -19,6 +24,10 @@ export default async function CommunityHomePage({
 }: {
   searchParams: Promise<{ tab?: string }>;
 }) {
+  if (!isCommunityConfigured()) {
+    return <CommunityUnavailable />;
+  }
+
   const { tab = "all" } = await searchParams;
   const supabase = await createServerSupabaseClient();
   const { data: { user } } = await supabase.auth.getUser();
