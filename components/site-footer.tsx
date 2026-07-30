@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github, Twitter, Linkedin } from "lucide-react";
+import { Instagram, Linkedin } from "lucide-react";
 import { CompactBrandLogo } from "@/components/brand-logo";
 
 export function SiteFooter() {
@@ -59,25 +59,16 @@ export function SiteFooter() {
           {/* Social */}
           <div className="flex items-center gap-3">
             <a
-              href="https://github.com/CalibiAI"
+              href="https://www.instagram.com/calibiai?igsh=M3FqemVmcmI5cTFj&utm_source=qr"
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/70 text-slate-500 transition hover:bg-white hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white/40 dark:hover:bg-white/10 dark:hover:text-white/70"
-              aria-label="GitHub"
+              aria-label="Instagram"
             >
-              <Github className="h-4 w-4" />
+              <Instagram className="h-4 w-4" />
             </a>
             <a
-              href="https://twitter.com/CalibiAI"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/70 text-slate-500 transition hover:bg-white hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white/40 dark:hover:bg-white/10 dark:hover:text-white/70"
-              aria-label="Twitter"
-            >
-              <Twitter className="h-4 w-4" />
-            </a>
-            <a
-              href="https://linkedin.com/company/calibiai"
+              href="https://www.linkedin.com/company/calibi/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/70 text-slate-500 transition hover:bg-white hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white/40 dark:hover:bg-white/10 dark:hover:text-white/70"
