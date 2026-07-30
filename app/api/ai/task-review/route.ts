@@ -6,6 +6,7 @@ import { isLearningRole } from "@/lib/learning/content";
 import { getRoadmapTask } from "@/lib/learning/roadmap-task";
 import { LAB_LANGUAGES, ROADMAP_TASK_TYPES } from "@/lib/learning/task-types";
 import { pointsForTaskScore } from "@/lib/learning/task-scoring";
+import { getNextMidnightUTC } from "@/lib/learning/day-lock";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -198,6 +199,7 @@ export async function POST(request: Request) {
     // Auto-complete roadmap day for any passed task (mini_project, practical_task, assignment, quiz)
     const autoCompleteTypes = ["mini_project", "practical_task", "assignment", "quiz"];
     if (autoCompleteTypes.includes(parsed.data.taskType) && review.passed) {
+      const now = new Date();
       await supabase
         .from("roadmap_progress")
         .upsert(
@@ -205,10 +207,20 @@ export async function POST(request: Request) {
             user_id: user.id,
             day: task.dayNumber,
             status: "completed",
-            completed_at: new Date().toISOString(),
+            completed_at: now.toISOString(),
           },
           { onConflict: "user_id,day" }
         );
+
+      await supabase
+        .from("roadmap_progress")
+        .update({
+          status: "locked",
+          unlock_at: getNextMidnightUTC(now).toISOString(),
+        })
+        .eq("user_id", user.id)
+        .eq("day", task.dayNumber + 1)
+        .neq("status", "completed");
     }
 
     return NextResponse.json({

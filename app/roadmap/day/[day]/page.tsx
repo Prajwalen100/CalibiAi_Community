@@ -15,8 +15,10 @@ import {
   ExternalLink,
   Video,
   FileText,
-  Sparkles
+  Sparkles,
+  Lock
 } from "lucide-react";
+import { getNextMidnightUTC, getRoadmapDayLockStatus } from "@/lib/learning/day-lock";
 
 export const dynamic = "force-dynamic";
 
@@ -96,17 +98,18 @@ export default async function DayPage({
   const prevDay = dayNumber > 1 ? days.find(d => d.day === dayNumber - 1) : null;
   const nextDay = dayNumber < totalDays ? days.find(d => d.day === dayNumber + 1) : null;
 
-  // Mark as in_progress if not started
-  if (currentProgress?.status === "not_started") {
+  const lockStatus = getRoadmapDayLockStatus(dayNumber, days, progress ?? []);
+  const isCompleted = lockStatus.isCompleted;
+  const isLocked = lockStatus.isLocked;
+
+  // Mark as in_progress if not started and not locked
+  if (currentProgress?.status === "not_started" && !isLocked) {
     await supabase
       .from("roadmap_progress")
       .update({ status: "in_progress" })
       .eq("user_id", user.id)
       .eq("day", dayNumber);
   }
-
-  const isCompleted = currentProgress?.status === "completed";
-  const isLocked = currentProgress?.status === "locked";
 
   return (
     <section className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
@@ -181,6 +184,38 @@ export default async function DayPage({
                 {skill}
               </span>
             ))}
+          </div>
+        )}
+
+        {/* Locked Day Alert Banner */}
+        {isLocked && (
+          <div className="mt-6 rounded-2xl border border-amber-200/80 bg-gradient-to-r from-amber-50/90 to-orange-50/60 p-6 shadow-sm dark:border-amber-900/60 dark:from-amber-950/40 dark:to-orange-950/20">
+            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-start gap-3">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-700 dark:bg-amber-900/60 dark:text-amber-300">
+                  <Lock className="h-6 w-6" />
+                </div>
+                <div>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-200/60 px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider text-amber-900 dark:bg-amber-900/50 dark:text-amber-200">
+                    <Clock className="h-3 w-3" /> Day Locked
+                  </span>
+                  <h3 className="mt-1 text-lg font-bold text-amber-950 dark:text-amber-100">
+                    {lockStatus.lockReason}
+                  </h3>
+                  <p className="mt-1 text-sm text-amber-800/90 dark:text-amber-200/80">
+                    {lockStatus.isDailyResetLock
+                      ? "In 24 hours you can only complete 1 day. This day unlocks automatically after the 12:00 AM daily reset to ensure proper pacing and better skill retention."
+                      : `You must finish Day ${dayNumber - 1} before unlocking Day ${dayNumber}. Complete each day sequentially to stay on track.`}
+                  </p>
+                </div>
+              </div>
+              <Link
+                href={`/roadmap/day/${Math.max(1, dayNumber - 1)}`}
+                className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-amber-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-amber-700 dark:bg-amber-600 dark:hover:bg-amber-500"
+              >
+                Go to Day {Math.max(1, dayNumber - 1)} →
+              </Link>
+            </div>
           </div>
         )}
       </div>
@@ -389,23 +424,47 @@ export default async function DayPage({
         )}
         
         <div className="flex gap-2">
-          {!isCompleted && (
+          {!isCompleted && !isLocked && (
             <form action={async () => {
               "use server";
               const supabase = await createServerSupabaseClient();
               const { data: { user } } = await supabase.auth.getUser();
               if (user) {
+                const now = new Date();
                 await supabase
                   .from("roadmap_progress")
-                  .update({ status: "completed", completed_at: new Date().toISOString() })
+                  .update({ status: "completed", completed_at: now.toISOString() })
                   .eq("user_id", user.id)
                   .eq("day", dayNumber);
+
+                if (dayNumber < totalDays) {
+                  const nextMidnight = getNextMidnightUTC(now);
+                  await supabase
+                    .from("roadmap_progress")
+                    .update({
+                      status: "locked",
+                      unlock_at: nextMidnight.toISOString(),
+                    })
+                    .eq("user_id", user.id)
+                    .eq("day", dayNumber + 1)
+                    .neq("status", "completed");
+                }
               }
             }}>
               <button type="submit" className="btn-primary">
                 Mark Complete ✓
               </button>
             </form>
+          )}
+
+          {isLocked && (
+            <button
+              disabled
+              className="inline-flex cursor-not-allowed items-center gap-2 rounded-xl border border-amber-300/80 bg-amber-100/90 px-4 py-2.5 text-sm font-bold text-amber-900 opacity-90 dark:border-amber-800 dark:bg-amber-950/50 dark:text-amber-200"
+            >
+              <Lock className="h-4 w-4" />
+              {lockStatus.isDailyResetLock ? "Unlocks after 12 AM reset" : `Complete Day ${dayNumber - 1} to Unlock`}
+            </button>
           )}
           
           {nextDay && (
