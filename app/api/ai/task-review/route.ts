@@ -7,6 +7,7 @@ import { getRoadmapTask } from "@/lib/learning/roadmap-task";
 import { LAB_LANGUAGES, ROADMAP_TASK_TYPES } from "@/lib/learning/task-types";
 import { pointsForTaskScore } from "@/lib/learning/task-scoring";
 import { getRoadmapDayAccess } from "@/lib/learning/day-access";
+import { recordVerifiedSkillsFromRoadmapTask } from "@/lib/learning/verified-skills.server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -227,6 +228,15 @@ export async function POST(request: Request) {
     if (awardError) {
       console.error("Roadmap task award save failed", awardError);
       return errorResponse("The assessment was saved, but points could not be awarded. Retry once.", 500);
+    }
+
+    // Grant verified-skill rows for the day's `skills_gained` when the
+    // student passed the mini-project. Only `mini_project` task types count
+    // toward the public profile (per the public profile query, which joins
+    // `task_type = 'mini_project'`), and only `passed = true` rows are
+    // surfaced. Best-effort — the helper logs and swallows errors.
+    if (review.passed && task.taskType === "mini_project" && task.skillsGained?.length) {
+      await recordVerifiedSkillsFromRoadmapTask(user.id, task.skillsGained, assessment.id);
     }
 
     // The database function locks the award state and score rows together, so

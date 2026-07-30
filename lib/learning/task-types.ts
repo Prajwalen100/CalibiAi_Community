@@ -38,4 +38,10 @@ export type RoadmapTask = {
   difficulty: string;
   suggestedLanguage: LabLanguage;
   starterCode: string;
+  /**
+   * Canonical skills the student gains by completing this day, sourced from
+   * the roadmap JSON's `skills_gained` array. Optional because older
+   * roadmap content may not include it.
+   */
+  skillsGained?: string[];
 };

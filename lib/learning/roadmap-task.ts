@@ -26,6 +26,10 @@ const RoadmapTaskDaySchema = z.object({
   practical_task: z.string().trim().min(1),
   mini_project: z.string().trim().min(1),
   assignment: z.string().trim().min(1),
+  // Optional: the canonical skills the student gains by completing this day.
+  // Used to drive the public profile's "Verified skills" radar when a
+  // mini-project is passed.
+  skills_gained: z.array(z.string().trim().min(1)).default([]),
 });
 
 const RoadmapTaskContentSchema = z.object({
@@ -136,5 +140,6 @@ export function getRoadmapTask(
     difficulty: day.difficulty ?? level,
     suggestedLanguage,
     starterCode: starterFor(suggestedLanguage, taskDescription),
+    skillsGained: day.skills_gained ?? [],
   };
 }
