@@ -36,7 +36,7 @@ export default async function QuizPage({
   // active assignment, then load and validate that source content directly.
   const { data: assignment, error: assignmentError } = await supabase
     .from("user_roadmaps")
-    .select("level")
+    .select("id,level")
     .eq("user_id", user.id)
     .eq("role", role)
     .eq("status", "active")
@@ -54,6 +54,17 @@ export default async function QuizPage({
   const dayAccess = await getRoadmapDayAccess(supabase, user.id, dayNumber);
   if (!dayAccess.hasRoadmap) redirect("/roadmap/assign");
   if (dayAccess.isLocked) redirect(`/roadmap/day/${dayNumber}`);
+
+  // If this day's quiz was already submitted, do not re-open it. The day
+  // page renders the recorded score in read-only mode and any further
+  // attempt would just be a wasted round trip.
+  const { data: existingQuiz } = await supabase
+    .from("roadmap_quiz_completions")
+    .select("id")
+    .eq("user_roadmap_id", assignment.id)
+    .eq("day", dayNumber)
+    .maybeSingle();
+  if (existingQuiz) redirect(`/roadmap/day/${dayNumber}`);
 
   let quiz: ReturnType<typeof getRoadmapQuiz> = null;
   try {

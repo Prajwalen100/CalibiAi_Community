@@ -41,7 +41,7 @@ export default async function TaskAssessmentPage({
 
   const { data: assignment, error: assignmentError } = await supabase
     .from("user_roadmaps")
-    .select("level")
+    .select("id,level")
     .eq("user_id", user.id)
     .eq("role", role)
     .eq("status", "active")
@@ -67,6 +67,52 @@ export default async function TaskAssessmentPage({
   }
   if (!task) notFound();
 
+  // Hydrate the lab with any prior graded submission so a returning
+  // student sees the read-only AI feedback immediately instead of a
+  // blank editor. The lab component uses `alreadySubmitted` to hide
+  // the Submit + Run AI Checks buttons and prevent another LLM call.
+  const { data: priorAward } = await supabase
+    .from("roadmap_task_awards")
+    .select("submitted,latest_assessment_id")
+    .eq("user_roadmap_id", assignment.id)
+    .eq("day", dayNumber)
+    .eq("task_type", taskType)
+    .maybeSingle();
+  const alreadySubmitted = Boolean(priorAward?.submitted);
+  let savedReview = null as
+    | null
+    | {
+        score: number;
+        passed: boolean;
+        feedback: string;
+        strengths: string[];
+        improvements: string[];
+        correctnessIssues: string[];
+        aiEnriched: boolean;
+        motivation?: string;
+      };
+  if (alreadySubmitted && priorAward?.latest_assessment_id) {
+    const { data: assessment } = await supabase
+      .from("roadmap_task_assessments")
+      .select(
+        "score,passed,feedback,strengths,improvements,correctness_issues,ai_enriched"
+      )
+      .eq("id", priorAward.latest_assessment_id)
+      .maybeSingle();
+    if (assessment) {
+      savedReview = {
+        score: assessment.score,
+        passed: assessment.passed,
+        feedback: assessment.feedback,
+        strengths: (assessment.strengths as string[] | null) ?? [],
+        improvements: (assessment.improvements as string[] | null) ?? [],
+        correctnessIssues: (assessment.correctness_issues as string[] | null) ?? [],
+        aiEnriched: assessment.ai_enriched,
+        motivation: "Locked-in review — no further attempts allowed.",
+      };
+    }
+  }
+
   return (
     <main>
       <div className="border-b border-slate-200 bg-white px-4 py-2 dark:border-slate-800 dark:bg-slate-950 sm:px-6">
@@ -79,7 +125,11 @@ export default async function TaskAssessmentPage({
           </Link>
         </div>
       </div>
-      <AiTaskLab task={task} />
+      <AiTaskLab
+        task={task}
+        alreadySubmitted={alreadySubmitted}
+        savedReview={savedReview}
+      />
     </main>
   );
 }

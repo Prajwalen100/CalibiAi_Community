@@ -6,7 +6,6 @@ import { isLearningRole } from "@/lib/learning/content";
 import { getRoadmapTask } from "@/lib/learning/roadmap-task";
 import { LAB_LANGUAGES, ROADMAP_TASK_TYPES } from "@/lib/learning/task-types";
 import { pointsForTaskScore } from "@/lib/learning/task-scoring";
-import { getNextMidnightUTC } from "@/lib/learning/day-lock";
 import { getRoadmapDayAccess } from "@/lib/learning/day-access";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
@@ -91,6 +90,62 @@ export async function POST(request: Request) {
     );
     if (!task) return errorResponse("This roadmap task was not found.", 404);
 
+    // Load any prior award for this (roadmap, day, task_type). One-shot
+    // submission is enforced here — if `submitted` is already true we do
+    // NOT call the LLM again, which is the whole point of the guard.
+    const { data: priorAward, error: priorAwardError } = await supabase
+      .from("roadmap_task_awards")
+      .select("id,best_score,points_awarded,submitted,submitted_at,latest_assessment_id")
+      .eq("user_roadmap_id", assignment.id)
+      .eq("day", task.dayNumber)
+      .eq("task_type", task.taskType)
+      .maybeSingle();
+
+    if (priorAwardError) {
+      console.error("Roadmap task award lookup failed", priorAwardError);
+      return errorResponse(
+        "AI Lab storage is unavailable. Apply the latest Supabase migrations and retry.",
+        503
+      );
+    }
+
+    if (priorAward?.submitted) {
+      // Return the last saved review payload so the UI can render the
+      // read-only feedback panel without re-invoking the model.
+      const { data: lastAssessment } = await supabase
+        .from("roadmap_task_assessments")
+        .select(
+          "score,passed,feedback,strengths,improvements,correctness_issues,ai_enriched,points_awarded"
+        )
+        .eq("id", priorAward.latest_assessment_id ?? "")
+        .maybeSingle();
+
+      return NextResponse.json(
+        {
+          error: {
+            message:
+              "This assessment was already submitted. Each roadmap task allows only one graded submission — practice locally, then submit once.",
+            code: "already_submitted",
+            submittedAt: priorAward.submitted_at,
+          },
+          previous: lastAssessment
+            ? {
+                score: lastAssessment.score,
+                passed: lastAssessment.passed,
+                feedback: lastAssessment.feedback,
+                strengths: lastAssessment.strengths ?? [],
+                improvements: lastAssessment.improvements ?? [],
+                correctnessIssues: lastAssessment.correctness_issues ?? [],
+                aiEnriched: lastAssessment.ai_enriched,
+                pointsEarned: 0,
+                bestTaskPoints: priorAward.points_awarded ?? 0,
+              }
+            : null,
+        },
+        { status: 409 }
+      );
+    }
+
     const review = await reviewRoadmapTask({
       task,
       language: parsed.data.language,
@@ -109,21 +164,6 @@ export async function POST(request: Request) {
     }
 
     const potentialPoints = pointsForTaskScore(review.score);
-    const { data: priorAward, error: priorAwardError } = await supabase
-      .from("roadmap_task_awards")
-      .select("id,best_score,points_awarded")
-      .eq("user_roadmap_id", assignment.id)
-      .eq("day", task.dayNumber)
-      .eq("task_type", task.taskType)
-      .maybeSingle();
-
-    if (priorAwardError) {
-      console.error("Roadmap task award lookup failed", priorAwardError);
-      return errorResponse(
-        "AI Lab storage is unavailable. Apply the latest Supabase migrations and retry.",
-        503
-      );
-    }
 
     const priorPoints = priorAward?.points_awarded ?? 0;
     const bestTaskPoints = Math.max(priorPoints, potentialPoints);
@@ -160,6 +200,7 @@ export async function POST(request: Request) {
     }
 
     const bestScore = Math.max(priorAward?.best_score ?? 0, review.score);
+    const submittedAt = new Date().toISOString();
     const awardMutation = priorAward
       ? supabase
           .from("roadmap_task_awards")
@@ -167,6 +208,8 @@ export async function POST(request: Request) {
             best_score: bestScore,
             points_awarded: bestTaskPoints,
             latest_assessment_id: assessment.id,
+            submitted: true,
+            submitted_at: submittedAt,
           })
           .eq("id", priorAward.id)
       : supabase.from("roadmap_task_awards").insert({
@@ -177,6 +220,8 @@ export async function POST(request: Request) {
           best_score: bestScore,
           points_awarded: bestTaskPoints,
           latest_assessment_id: assessment.id,
+          submitted: true,
+          submitted_at: submittedAt,
         });
     const { error: awardError } = await awardMutation;
     if (awardError) {
@@ -213,31 +258,15 @@ export async function POST(request: Request) {
       },
     });
 
-    // Auto-complete roadmap day for any passed task (mini_project, practical_task, assignment, quiz)
-    const autoCompleteTypes = ["mini_project", "practical_task", "assignment", "quiz"];
-    if (autoCompleteTypes.includes(parsed.data.taskType) && review.passed) {
-      const now = new Date();
-      // `roadmap_progress` is unique on (user_id, module_id) and
-      // (user_roadmap_id, day) — there is no (user_id, day) constraint, so an
-      // upsert on that pair fails. Update the existing row for this day
-      // instead; it is always seeded when the roadmap is assigned.
-      await supabase
-        .from("roadmap_progress")
-        .update({ status: "completed", completed_at: now.toISOString() })
-        .eq("user_id", user.id)
-        .eq("day", task.dayNumber);
-
-      // Arm the 12 AM pacing lock on the next day so it cannot be opened today.
-      await supabase
-        .from("roadmap_progress")
-        .update({
-          status: "locked",
-          unlock_at: getNextMidnightUTC(now).toISOString(),
-        })
-        .eq("user_id", user.id)
-        .eq("day", task.dayNumber + 1)
-        .neq("status", "completed");
-    }
+    // Day completion is now driven exclusively by the "Mark Complete"
+    // button on the day page. That button is only enabled once every
+    // required item (practical task, mini project, assignment, quiz and
+    // detailed article) is done — see /roadmap/day/[day]/page.tsx and
+    // the `roadmap_day_completion_state` view added in migration 021.
+    //
+    // Automatically completing the day on a single task submission
+    // (previous behaviour) skipped that gate and let students bypass the
+    // rest of the day's work.
 
     return NextResponse.json({
       ...review,

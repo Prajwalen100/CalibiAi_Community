@@ -23,10 +23,13 @@ export function QuizPageClient({
   }
 
   function saveScore(score: number) {
-    void fetch("/api/score/update", {
+    // Idempotent quiz-submit. The endpoint returns 409 if this quiz was
+    // already submitted for this roadmap day — that's expected on
+    // subsequent visits, so we swallow the error silently.
+    void fetch("/api/roadmap/quiz-submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ quizAverage: score, quizDay: dayNumber }),
+      body: JSON.stringify({ day: dayNumber, score }),
       keepalive: true,
     }).catch(() => undefined);
   }

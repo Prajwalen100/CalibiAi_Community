@@ -61,18 +61,54 @@ function taskTypeLabel(taskType: RoadmapTask["taskType"]): string {
   return "Practical Task";
 }
 
-export function AiTaskLab({ task }: { task: RoadmapTask }) {
+export function AiTaskLab({
+  task,
+  alreadySubmitted = false,
+  savedReview = null,
+}: {
+  task: RoadmapTask;
+  alreadySubmitted?: boolean;
+  savedReview?:
+    | (Omit<ReviewResult, "saved" | "pointsEarned" | "bestTaskPoints" | "calibiPointsAdded" | "motivation"> & {
+        motivation?: string;
+      })
+    | null;
+}) {
   const [language, setLanguage] = useState<LabLanguage>(task.suggestedLanguage);
   const [submission, setSubmission] = useState(task.starterCode);
   const [explanation, setExplanation] = useState("");
-  const [activeTab, setActiveTab] = useState<LabTab>("problem");
+  const [activeTab, setActiveTab] = useState<LabTab>(alreadySubmitted ? "feedback" : "problem");
   const [busyMode, setBusyMode] = useState<LabMode | null>(null);
-  const [result, setResult] = useState<ReviewResult | null>(null);
+  const [result, setResult] = useState<ReviewResult | null>(
+    savedReview
+      ? {
+          score: savedReview.score,
+          passed: savedReview.passed,
+          feedback: savedReview.feedback,
+          strengths: savedReview.strengths ?? [],
+          improvements: savedReview.improvements ?? [],
+          correctnessIssues: savedReview.correctnessIssues ?? [],
+          motivation: savedReview.motivation ?? "Your saved AI review.",
+          aiEnriched: savedReview.aiEnriched,
+          saved: true,
+          pointsEarned: 0,
+          bestTaskPoints: 0,
+          calibiPointsAdded: 0,
+        }
+      : null
+  );
   const [error, setError] = useState("");
-  const [consoleLines, setConsoleLines] = useState([
-    "CalibiAI Lab ready.",
-    "Write your solution, explain the approach, then run AI checks.",
-  ]);
+  const [consoleLines, setConsoleLines] = useState(
+    alreadySubmitted
+      ? [
+          "This task has already been submitted for a graded AI review.",
+          "Resubmission is disabled — your saved feedback is available on the AI Feedback tab.",
+        ]
+      : [
+          "CalibiAI Lab ready.",
+          "Write your solution, explain the approach, then run AI checks.",
+        ]
+  );
   const [draftLoaded, setDraftLoaded] = useState(false);
   const lineNumbersRef = useRef<HTMLPreElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -195,6 +231,13 @@ export function AiTaskLab({ task }: { task: RoadmapTask }) {
   }
 
   async function review(mode: LabMode) {
+    if (alreadySubmitted) {
+      // Guard defensively — the UI hides both buttons in this state, but
+      // any programmatic call must still be a no-op so we never trigger
+      // another LLM invocation.
+      setError("This assessment has already been submitted. Resubmission is disabled.");
+      return;
+    }
     setError("");
     setResult(null);
     if (submission.trim().length < 20) {
@@ -224,7 +267,46 @@ export function AiTaskLab({ task }: { task: RoadmapTask }) {
       });
       const payload = (await response.json().catch(() => ({}))) as
         | ReviewResult
-        | { error?: { message?: string } };
+        | {
+            error?: { message?: string; code?: string };
+            previous?: Omit<
+              ReviewResult,
+              "saved" | "pointsEarned" | "bestTaskPoints" | "calibiPointsAdded" | "motivation"
+            > & { motivation?: string };
+          };
+
+      // The API returns 409 when a graded submission already exists. Surface
+      // the saved review in read-only mode instead of pretending we called
+      // the model again.
+      if (response.status === 409 && "error" in payload) {
+        setError(
+          payload.error?.message ??
+            "This assessment has already been submitted. Resubmission is disabled."
+        );
+        if (payload.previous) {
+          setResult({
+            score: payload.previous.score,
+            passed: payload.previous.passed,
+            feedback: payload.previous.feedback,
+            strengths: payload.previous.strengths ?? [],
+            improvements: payload.previous.improvements ?? [],
+            correctnessIssues: payload.previous.correctnessIssues ?? [],
+            motivation: payload.previous.motivation ?? "Your saved AI review.",
+            aiEnriched: payload.previous.aiEnriched,
+            saved: true,
+            pointsEarned: 0,
+            bestTaskPoints: 0,
+            calibiPointsAdded: 0,
+          });
+          setActiveTab("feedback");
+        }
+        setConsoleLines([
+          "Submission blocked — this task was already graded.",
+          "Open the AI Feedback tab to review the saved score.",
+        ]);
+        return;
+      }
+
       if (!response.ok || !("score" in payload)) {
         throw new Error(
           "error" in payload
@@ -462,29 +544,46 @@ export function AiTaskLab({ task }: { task: RoadmapTask }) {
           )}
 
           <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-800 bg-slate-900 px-4 py-3">
-            <p className="text-xs text-slate-500">
-              Ctrl/⌘ + Enter runs a practice check
-            </p>
-            <div className="flex gap-2">
-              <button
-                type="button"
-                onClick={() => void review("check")}
-                disabled={busyMode !== null}
-                className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-4 py-2 text-sm font-bold text-slate-200 transition hover:border-slate-600 hover:bg-slate-700 disabled:opacity-50"
-              >
-                {busyMode === "check" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Play className="h-4 w-4 text-emerald-400" />}
-                Run AI Checks
-              </button>
-              <button
-                type="button"
-                onClick={() => void review("submit")}
-                disabled={busyMode !== null}
-                className="inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-sm font-black text-white shadow-lg shadow-brand-900/30 transition hover:bg-brand-500 disabled:opacity-50"
-              >
-                {busyMode === "submit" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
-                Submit Assessment
-              </button>
-            </div>
+            {alreadySubmitted ? (
+              <>
+                <p className="text-xs font-bold text-emerald-400">
+                  ✓ Submitted — resubmission is disabled to preserve fair scoring and prevent extra AI calls.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("feedback")}
+                  className="inline-flex items-center gap-2 rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-4 py-2 text-sm font-black text-emerald-300 hover:bg-emerald-500/20"
+                >
+                  <Sparkles className="h-4 w-4" /> View saved AI review
+                </button>
+              </>
+            ) : (
+              <>
+                <p className="text-xs text-slate-500">
+                  Ctrl/⌘ + Enter runs a practice check
+                </p>
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => void review("check")}
+                    disabled={busyMode !== null}
+                    className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-4 py-2 text-sm font-bold text-slate-200 transition hover:border-slate-600 hover:bg-slate-700 disabled:opacity-50"
+                  >
+                    {busyMode === "check" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Play className="h-4 w-4 text-emerald-400" />}
+                    Run AI Checks
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => void review("submit")}
+                    disabled={busyMode !== null}
+                    className="inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-sm font-black text-white shadow-lg shadow-brand-900/30 transition hover:bg-brand-500 disabled:opacity-50"
+                  >
+                    {busyMode === "submit" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+                    Submit Assessment
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </section>
       </div>
