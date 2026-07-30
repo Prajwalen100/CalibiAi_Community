@@ -1,0 +1,72 @@
+[
+  {
+    "slug": "top-contributor",
+    "name": "Top Contributor",
+    "category": "special",
+    "emoji": "🌟",
+    "description": "Top 1% contributor by community XP for the month."
+  },
+  {
+    "slug": "prompt-master",
+    "name": "Prompt Master",
+    "category": "skill",
+    "emoji": "🧠",
+    "description": "Delivered 25+ high-signal prompt patterns to the community."
+  },
+  {
+    "slug": "ai-builder",
+    "name": "AI Builder",
+    "category": "skill",
+    "emoji": "🛠️",
+    "description": "Shipped 5+ verified AI projects."
+  },
+  {
+    "slug": "production-ready",
+    "name": "Production Ready",
+    "category": "special",
+    "emoji": "🚀",
+    "description": "Passed assessment, roadmap, capstone, GitHub and portfolio checks."
+  },
+  {
+    "slug": "streak-100",
+    "name": "100-Day Streak",
+    "category": "milestone",
+    "emoji": "🔥",
+    "description": "Learned or contributed on 100 consecutive days."
+  },
+  {
+    "slug": "rag-expert",
+    "name": "RAG Expert",
+    "category": "skill",
+    "emoji": "📚",
+    "description": "Verified expertise in retrieval-augmented systems."
+  },
+  {
+    "slug": "community-helper",
+    "name": "Community Helper",
+    "category": "contribution",
+    "emoji": "🤝",
+    "description": "Answered 50+ questions with helpful, accepted responses."
+  },
+  {
+    "slug": "hackathon-winner",
+    "name": "Hackathon Winner",
+    "category": "special",
+    "emoji": "🏆",
+    "description": "Won or podiumed at a CalibiAI hackathon."
+  },
+  {
+    "slug": "weekly-winner",
+    "name": "Weekly Winner",
+    "category": "special",
+    "emoji": "🥇",
+    "description": "Topped the weekly XP leaderboard."
+  },
+  {
+    "slug": "top-mentor",
+    "name": "Top Mentor",
+    "category": "contribution",
+    "emoji": "🎓",
+    "description": "Recognized as a top mentor by the community."
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "users": 300,
+  "communities": 20,
+  "posts": 400,
+  "comments": 2000,
+  "post_votes": 12000,
+  "post_saves": 1500,
+  "follows": 21331,
+  "memberships": 1519,
+  "projects": 600,
+  "activity_log": 3000,
+  "login_history": 9575,
+  "weekly_platform_rows": 52,
+  "weekly_user_xp_rows": 5200,
+  "daily_missions": 50
+}

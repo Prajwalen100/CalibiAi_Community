@@ -1,0 +1,4002 @@
+[
+  {
+    "id": "5423154d-f52b-598d-8fda-925526559e41",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2025-10-12T12:02:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "07f23519-ce39-57c8-9889-cb2b0dba1cd6",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2026-04-02T08:54:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "3fab6514-4a8a-5bd0-bfb9-33f35a0673e4",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2026-01-25T18:43:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "dc35ab6e-7ff6-5e18-9935-c896bfbed2d0",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2025-09-19T15:14:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "94f3f443-6625-568f-829d-6a64ae925d3c",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2026-03-06T07:51:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "36aa67bc-ee61-5f4b-94b8-db8da07e718e",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2026-04-07T10:35:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "05a3e964-9c9b-5b7b-932c-8df69353b58d",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2026-01-29T19:58:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e4376723-966e-5c87-a08e-f41fac3f54b9",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2025-09-18T05:37:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d0af332d-906e-5642-b42f-aa85234cdf23",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2026-04-22T21:48:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e5ff19c2-7d90-5988-96a0-14dc51aafb81",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2025-09-26T18:37:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "741c90ff-7e6e-5241-bde8-ab1107ae80eb",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2026-01-27T21:22:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "108cd94b-928c-53b3-8953-7ad40588d0b7",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2025-11-26T06:33:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ff0f5d02-cb40-55cf-919f-f58699e212b3",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2026-06-13T14:39:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "15fcd5fc-5ff4-5420-bf9f-1438464de6b3",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2025-09-10T05:02:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "40b2f3c9-6489-5620-ba8b-148103e55452",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2026-02-01T12:45:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "31c7453e-d57c-5f9e-a445-04b3da7ac58b",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2025-11-15T13:41:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "fd6145d9-e4ed-5120-921e-408e61c8c484",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2025-08-29T21:59:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "25f4c46e-32d3-5120-865c-2a825b00fb7a",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2026-06-27T17:16:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b07bfd67-012f-56db-b085-47524b38ee3b",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2026-04-24T15:05:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "7eeb1e59-124d-5326-ac1b-d1f8068ff30b",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2026-03-24T06:25:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "4073ab34-0b22-5b8f-87df-e4a1b8e7bb08",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2026-07-05T06:11:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ede1e2cb-5544-5cc5-a5d3-9510354728a8",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2025-12-09T10:54:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "02763b17-8239-590b-ae07-de4aa4c7718e",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2026-01-31T18:28:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "7c82c66c-9dc2-5022-9453-9023e17a6133",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2025-12-19T14:49:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b6e60ca7-5fe1-5a5f-bf4e-14ed82a04755",
+    "user_id": "5e1581a4-5b6d-50c5-adc3-d1e0dccadea5",
+    "logged_in_at": "2025-10-07T10:00:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "6ba0fcc1-2779-50c4-8b80-56b534c801c5",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-01-24T05:24:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e30448d5-4c21-59c1-90c0-096a59effa5a",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2025-12-24T13:17:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "242edb71-8431-5219-9808-1cf3c3c95507",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-01-18T09:34:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "7accc5b0-bdb2-5655-994a-7660fb12043e",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-05-10T18:56:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "3d735da2-3fe1-5b26-9707-03c31581fea2",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-03-31T21:39:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "1ff81c2c-25f1-54fb-b978-aed009ec10a9",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-02-25T06:20:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ba28cc35-06a0-50a2-a02a-94edfe44b38f",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2025-12-23T11:44:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "31273092-d0e6-5db8-ac20-f641185ee78c",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-03-02T12:07:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f2de83d9-46e9-539a-8dc0-811052493430",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-04-04T07:09:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "21176c7c-78bd-5c49-8211-19115767f15b",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-03-08T13:14:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "eb151473-f50b-5341-9bb1-4fb8f438b7ec",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-06-01T18:26:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "cd200fa7-b02c-5cad-9785-7f9920c5fdd3",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-03-30T09:47:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a9f7a8ea-1a36-54ee-9ab2-37e700899538",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-06-14T12:26:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d52d1f84-8d9b-597e-b17c-8e2e970fc22f",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2025-12-19T13:21:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "70485b35-4bcd-5eaf-ab8e-20770a8d454f",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-05-23T20:19:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "71bc50b7-7683-561a-a64b-a9921426e734",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-04-05T11:52:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5b2d8c5d-348c-5a44-8ea7-f3b79752886c",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-02-25T07:43:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "4c18b95a-7dad-52b6-a440-2c50a8f53cf8",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-05-05T10:06:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f4604cd7-4f11-519d-b570-fce9fdc5f32e",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-06-18T20:33:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "0244282c-e65a-5872-b72e-472f6267c36e",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-01-27T15:51:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "3ab33fad-29a2-57f9-aebf-33b7a2522fc0",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-03-25T06:01:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ad0bffff-9e3f-5d7c-b044-acbc0bbbd685",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-02-10T11:58:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5c40bfe6-8205-5f57-8d08-6d91ddd5c8aa",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-05-18T12:18:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "496b47c5-89fa-51e8-a0c7-0472aac7ae58",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-03-23T09:00:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "2ecee9d6-8322-59b3-bc02-5b2189c96d93",
+    "user_id": "65286171-60e6-58a0-8793-e8314ecda377",
+    "logged_in_at": "2026-02-26T05:14:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e755e950-203c-5e15-ad1e-bc2eb409ac8f",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2026-05-04T12:50:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "48fc6f4a-c7e1-5264-be42-f6f443c68089",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2025-12-15T15:02:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e18127d2-3519-51e7-9404-4eb78aa778c6",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2026-02-25T12:26:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d276e261-ab3a-5a4c-bef7-2ad488b6e6e8",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2025-09-23T16:01:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "475c83f4-8d27-574b-9524-1c7d2dbdc2d6",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2026-04-15T06:33:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "2adef460-e639-536e-b465-395023d3e2c6",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2026-06-29T07:13:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "61ca0799-8fbe-501f-85ae-988a40d897ec",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2026-06-28T16:11:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "db287a4d-40fa-5ae8-87f9-408199874f34",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2026-07-03T19:24:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "03fe5676-6b19-5a6f-a5d1-9ceeb6fc552a",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2026-02-13T05:13:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c6fdcb01-58ef-5d75-92a0-5e457d0cf81f",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2025-10-20T09:02:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "9ea2bdb0-9608-51b3-8214-36f2d337e65a",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2026-07-08T06:56:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "18e58a59-74b0-5f4f-ac4e-0e0adc6b2279",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2026-05-23T13:16:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "4872a291-544e-5465-954d-aeba80ca3734",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2025-12-11T10:14:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "739620c8-687b-5958-8fd2-04d3a237e4fa",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2026-02-23T09:51:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "db287a4d-40fa-5ae8-87f9-408199874f34",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2026-07-03T19:13:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d66943d4-e0b8-5518-aba2-524fceb699be",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2025-12-11T17:01:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "44e48162-6c93-543c-add2-16ee9faa0403",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2025-12-16T14:36:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e7627c71-8942-5a73-8434-c68021e53574",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2026-01-31T19:27:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "1379dc0b-3867-5e81-97f4-1b266d083b10",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2026-03-29T11:58:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "9d9f7211-d5bb-51ef-a3e4-2407d11020dc",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2026-07-23T07:58:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "965d7820-06c8-5358-8c72-0458d4a43098",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2025-10-10T06:46:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "accb0d69-f883-5106-8ac7-6c5d5e25ea59",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2026-03-05T22:48:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "9f9e79e3-b288-5a1e-9764-2f3375b11d04",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2026-01-04T15:11:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "19365ddf-6e1b-5823-bafa-0d7f7b592cec",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2025-11-22T22:58:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "712a2c2b-21b5-5400-9047-e5383707b0e4",
+    "user_id": "f7a2d6a5-90ca-5f6e-a41f-a6035549b9f8",
+    "logged_in_at": "2026-05-11T09:17:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "046c51bc-0f30-55ef-b407-547aa3034a40",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-09-24T10:02:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "500a7488-f106-5838-b0de-780b5fc640e5",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-02-01T08:24:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "3f5f066e-e716-5e15-a2b1-a17601b68765",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-12-03T06:10:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "95f5ef48-f9db-5fdb-8214-efb66ef10bdb",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-06-25T09:35:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "150ec7ed-2729-531a-9457-92cc41381fcd",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-09-17T07:29:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "2c4cb015-0140-5c9c-9c86-9218bac9cf07",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-09-28T18:19:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "fcae4f0a-2e22-5814-a28c-e3fdf9a29d60",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-01-13T12:09:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b81a9666-f616-51bb-b74e-b257ee9b252c",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-04-25T10:41:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ea64fc03-1e97-5b20-a704-fa8fc607ec77",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-05-23T17:55:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "85bcdcd9-31e0-5fba-8cb9-a383151788e5",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-05-24T10:09:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "941e5030-463d-53b4-a6be-07d102347b1f",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-12-01T13:33:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e35364a0-3c62-5343-a996-f9f9f373c656",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-04-16T07:31:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "37aa0cf1-e923-55b7-8513-c56ee72f74de",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-09-22T22:29:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "890e2a4d-66d8-540a-824a-859d7f55648f",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-11-11T07:38:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "fa2cc2e4-6ee0-5866-8996-b6280f2cea55",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-04-25T14:41:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "1a009247-b084-57c7-a3b6-45bc51365aee",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-10-07T13:06:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "1d45ba28-2484-5d21-b2b8-4919837fee1a",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-12-14T12:29:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a1caba3f-5855-5a65-8080-4cf430c2afb3",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-01-19T16:57:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a631bd0d-1dc6-546f-bd84-565884a6fadb",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-11-30T06:00:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c62cbbbc-69e5-5713-a964-347d194f6b9e",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-03-07T10:58:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "8e495f68-779a-5202-8623-3ba100f76f9d",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-08-31T07:52:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "2a09d40d-eca5-57bb-b9c8-8736ecce1eef",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-02-27T21:35:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ba90b921-2675-5fd0-977c-2745cda72558",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-04-25T22:42:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "3d5f0f4f-d853-5e64-a020-891dbdd8a1d3",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-03-13T06:11:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c302cac9-ff85-5a63-aa03-66c4979f62e2",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-07-27T16:39:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "46a158ef-baff-5160-b7e7-5e5507ebcd43",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-10-20T19:00:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e197d1be-eb88-57ba-930c-083ae26daf7c",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-10-10T11:51:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a096c31a-356a-5717-a26c-a13a1cee220a",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-09-24T05:31:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "85c86fe9-adbb-57fd-8061-396032e1faea",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-06-14T19:05:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e3d6a799-9b41-5eb7-84a9-5f6db19a6711",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-07-13T05:49:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "856271c9-3e7e-5369-8a77-76eedf22a260",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-04-15T06:56:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "74032cbc-6ba7-576e-9874-244a425383f3",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-12-18T07:09:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "6839e199-6fdc-5d6b-90db-0366d9c258de",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-10-10T05:23:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "8e79228e-510f-5a16-ab26-e7492c31e546",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-09-03T20:27:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "24c8b291-9b06-5190-b6ad-8dcbb9195044",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-09-03T14:33:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "812176e6-cadc-5e49-9a60-125d82884870",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-02-08T22:28:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "003f8a9d-f91c-5f22-a736-8fb9e2d1ebe8",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-07-12T18:29:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "0ce8dd34-13ac-5d51-a025-2a746e36b0c4",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-03-31T20:52:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "90e94241-440f-5180-8323-f6dc559b5b05",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-09-13T13:12:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "262a5f87-8671-538c-a9ab-81ed9e65e825",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-11-02T06:30:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "82eb539c-00e3-500c-8408-7ccf2fc0ff5b",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-09-14T14:26:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "02f17aab-b9c2-5528-9b3b-c94139a12e52",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-11-26T17:46:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a1cfdf37-e27b-589b-8f8a-31994fc7f937",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-06-22T10:18:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "4a0d1968-d283-55e9-8dd0-600a9306a8e6",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2026-05-22T06:40:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "37d3fc56-215b-529c-a7b0-9e3111e4354a",
+    "user_id": "d59bed1e-7366-5451-b803-0225b2407fef",
+    "logged_in_at": "2025-08-22T07:16:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f4e1a85e-ab30-5762-92f3-d5be3ed2dd5a",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-04-25T16:28:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "0363aee8-6f0c-5ced-86ac-346593a87f0c",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2025-11-26T15:16:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "3440f9e5-8d2b-563a-89e4-57eb3cc30790",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-02-08T06:14:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e1680785-eacf-530a-a9a0-fe630cbc8c75",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-01-30T21:03:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "89369705-0c3f-5b2e-adbf-a1893098898a",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-03-08T18:30:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "eaf920dc-f462-52df-bd20-4d0fb08c31fc",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2025-10-31T07:47:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c20b2596-d9ba-5c70-8164-fb94a67e1e24",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2025-10-25T17:46:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5ef47ab3-1af9-55ae-8ed8-d2e120bfea9f",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-07-10T08:09:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "7c2b8043-7af5-50d7-946f-752548f798ee",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-03-31T13:43:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5ef50216-725a-5b15-9ce5-0e19731958b9",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-05-28T05:38:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "4c999413-2bc5-552d-acbb-eb6937b5d962",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-05-13T19:20:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f165633b-73d7-53af-a800-692995ea5448",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-06-13T06:27:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "cbb030b0-8ebe-57d3-a07a-aaa26df5140d",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-01-15T14:10:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "96e3eecc-4d31-547e-8a58-e3c3b0a73c93",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-06-26T17:47:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c6534a4c-28b9-50ad-b104-c260008c8698",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-02-07T06:28:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "43b568c7-3837-52f6-bb99-e3a347366a49",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-07-03T10:17:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5dc8f338-878f-58e3-b0e2-c0aeb4f6f5f8",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2025-12-11T12:21:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c3f11202-6721-5b05-8d1e-955474c17f47",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-04-16T17:03:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "89d5726a-781d-5e24-b8e0-143a5cf1267f",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-01-08T11:22:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "bd7f117c-58b4-56ed-8d4a-bf7a6fc389b7",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2025-12-27T19:29:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "dec8623e-7790-51b2-90d7-34b0b8d31285",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-03-15T10:06:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c84be5de-fabc-58d3-9797-a7bd6a725f1c",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-01-30T13:52:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e8f6f267-5c1c-57b4-8799-f0bd921cb9d2",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-04-10T19:14:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ce409172-6c48-526f-99e3-b29e0df87954",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-05-22T09:20:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5d01b66c-3975-5c54-9d9a-403f8ab54ec2",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-06-18T05:58:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "0d4ace4d-1fb3-5a11-99ae-3ec5c4ce2661",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2025-12-28T11:58:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "bcb5e13e-c4a8-510a-812e-365bd125e1b1",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-01-15T16:27:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "05cfaa93-2c5c-51e1-8566-274f4aaa570f",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-07-19T14:40:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "8dfbe38a-e1c3-5e7d-87da-7aac512079fa",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-06-28T15:44:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "be3882fa-aa18-54ba-9735-f7a80299bdd2",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-04-16T06:33:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "82ecdd39-e61e-53f8-b309-095f70d79a5f",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2025-10-15T07:57:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f403c0c3-3204-5349-94b7-e8c37afca7cf",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2025-11-23T05:53:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "0240298c-8870-5e7b-96b6-c9210ccfb9be",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-05-06T13:24:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "014b97a7-9de6-5807-b292-c71e432298c6",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2025-12-29T10:04:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "acffe044-8088-59af-831a-77662d866cdd",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-06-08T14:08:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c39e9e87-4cb8-59ba-931c-62ea6113235e",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-06-11T20:59:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "8a559042-9371-50f5-8eed-18ff630b4db9",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-01-23T08:30:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "9371d0c5-e435-5039-9864-5b347c68c990",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-06-23T06:41:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f84f3bf5-8b44-538f-bfba-09fb2bfd012a",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-04-28T12:25:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "9e8c8b79-fe6a-541f-b5c1-87abccd46a8a",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2025-11-22T15:56:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "7381b9cc-59f9-5a83-8b05-94c989373084",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2025-12-22T06:58:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c7925fd7-cca2-5908-b35d-12bed66dfdac",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-07-04T17:10:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "701c5011-710a-5ff1-b752-27d161a69810",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-05-05T20:21:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b06dccf2-bc3b-575b-9cdd-9175a47734d9",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-03-09T08:55:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b8b4c666-ad70-5469-8138-d67ecdb5e541",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2025-10-21T14:13:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d8b78a50-a2b4-5c35-bca2-acd1cf410f93",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2025-10-24T18:22:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b57f5aaf-489f-5d1d-94eb-13d325af1971",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-03-23T06:52:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c5894105-8a0a-59c1-9c90-76eb8f35b752",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2025-12-17T14:52:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f19df18c-c7a3-51bf-8e17-7b34ed3688fc",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-06-12T15:17:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c2370cb6-9c62-5c32-8790-1a97327d12ad",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-02-04T18:53:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "bd8a6cdd-2c2e-5aa8-a5b1-4a4285675d5c",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-07-09T10:59:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "3de076b1-a349-5d39-bf84-940d09e4f894",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-01-11T14:20:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c9b70509-0f7f-5fb1-9a0d-e2f201a2b700",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-04-24T10:56:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "52cd90de-8575-53a2-9ca1-c53cda0cd845",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-06-17T12:38:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "cc09a274-3627-583b-9547-3ae347ef808c",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-07-04T22:05:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a505d760-6562-5c07-bdac-ced8ded3a798",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-01-08T15:12:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "80684062-fd27-5488-9d3d-44a6f57916ba",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-02-03T22:07:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "0b387e01-e3c4-5c47-8adc-e58d5d7b82a1",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-01-16T10:05:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a642b74f-12ed-527b-abeb-45f8879f9ebf",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2025-11-04T05:16:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "8e27a1b6-95aa-59e3-99b1-cebaa35671b3",
+    "user_id": "f24e6d58-09a6-5492-8b0e-9a18404959d0",
+    "logged_in_at": "2026-06-28T12:29:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "935d89e3-099a-5726-9927-73d62bfd3a60",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-06-22T12:03:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "9af3ae44-66d8-5e3b-93a6-d67184e7c286",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-06-19T05:36:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "fa25960a-8734-598b-a5c3-1ef57649fb0b",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-06-28T22:15:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f52fcb61-5b30-5e5a-b254-96db4c37b512",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-25T11:59:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "3ea9d40a-ded8-5cd0-9375-534c9dcf6dd1",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-06-30T19:17:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5646c747-151d-51e5-b0af-e27f13ee9f03",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-08T13:46:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5a37b1fb-3782-5e01-94d0-b85adebe8619",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-06-26T06:15:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "71d0ddaf-85d4-5972-9236-ade4571095f4",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-22T15:52:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d09a32c2-54a6-5eb9-bec8-056a39c0c1b1",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-08T11:51:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b4db02b0-01ab-5241-87ef-e5c1e24d8bc8",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-06T05:10:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5f35ea73-28f8-56bb-a230-9477affd972b",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-22T11:31:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "de79a311-595d-5b47-8f5a-8cb19d0a7b9d",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-10T13:03:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "704ef92a-efaf-555b-ba7d-266ee39f41eb",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-06-27T14:53:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a6b6e6f7-c8b0-5528-b74c-2f74147bc435",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-14T19:08:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b1cc6f5e-37b4-5e17-a19a-050098a44930",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-07T07:45:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "4acbf085-8056-5019-a25b-3b4a995e1065",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-17T10:20:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ffc7af2f-cf76-5f0b-82a7-f7f496076d77",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-15T18:47:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "be6aaea2-a1e9-54b7-9af0-42b207b7ce71",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-12T17:18:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "3f4eb46b-e7ed-54e8-bafd-c7dfdcf21ae8",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-25T14:00:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "566af461-0b78-55bb-b0a2-11964fa6b5c4",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-06-24T07:11:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f452698a-6c41-5789-bb24-129865be1541",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-10T05:03:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f3d08c8b-48b6-5100-bfa5-c7b71053a63d",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-29T18:51:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "06f158b6-4ce5-5d1d-b70e-bfe637ec27b0",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-15T07:45:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ac249f82-618e-576d-9723-f0a2f81f6e9c",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-18T17:04:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "0c6148ec-d13b-5421-9b83-58c3e3e40515",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-06-30T17:33:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "80d72dae-7cce-508d-86ac-7cf6e1db0188",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-14T08:31:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "68274687-8e6f-50cf-964d-8164dc867db3",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-08T22:33:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b2655c90-27a9-5c99-a23b-c31892a90153",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-06-25T16:56:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "4f0fbeff-6b4d-503e-aa10-e11e26bdb79e",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-01T18:22:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "7f08206b-eca0-56b2-9ff0-cc2737ff0cd7",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-06-28T07:47:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a148dcc1-8751-5f69-a9d9-7133a07d1532",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-06-20T12:54:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "566af461-0b78-55bb-b0a2-11964fa6b5c4",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-06-24T07:57:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "4ee44b64-10ce-5338-adf8-fff8bd0e8c5b",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-04T05:35:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "739d14dc-bbad-5e05-a814-616160e212c7",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-02T12:23:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f3bb24a2-9a98-5f0d-8578-ab916d9d83b5",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-08T09:57:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "be6aaea2-a1e9-54b7-9af0-42b207b7ce71",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-12T17:58:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e9c414fd-b306-546c-bd6b-40fe369f8c93",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-06-27T19:45:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "efdffa98-8c04-540c-b22f-c2339722aff7",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-13T09:22:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "643699e9-bf77-5153-8852-4bb137fa8d60",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-20T07:11:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "833c0635-62d3-5ed8-a639-6f6f792d7a1d",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-24T19:17:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "3b1b484e-4a53-54f3-aeec-ef273fe1b272",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-23T05:34:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "7f08206b-eca0-56b2-9ff0-cc2737ff0cd7",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-06-28T07:14:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "2f76167a-84c3-58eb-a9a9-81b6541839cc",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-18T19:21:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "12c50647-9d47-5af0-b111-86f51ab7e040",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-03T16:18:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "24d233c5-136e-5065-85c3-2610b690c9e6",
+    "user_id": "ed94a066-5d43-52b7-8971-168ea211c916",
+    "logged_in_at": "2026-07-22T18:35:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f776d1b1-82cb-5800-bd65-328be1b7d6f4",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2026-04-22T07:06:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "bd9a889c-cf16-555d-b5bd-7c909272a8ef",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2025-09-21T06:29:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "db2923d7-7cad-5785-8a66-bf872e5bee00",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2025-12-19T06:41:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e5e3222b-246e-5c08-a2cd-afd3969f3121",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2025-11-13T12:34:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "94388aec-a105-5d2b-95c8-2881e09f1ba8",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2025-10-22T10:30:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "8285b094-b7ff-5cc7-a032-9102e22dcc56",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2026-06-14T10:44:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "01c7a55c-77c3-5a46-af2b-71b13d2d612e",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2026-07-05T09:07:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "4654fa75-1216-573a-97a8-3092aef1cd72",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2025-10-14T13:14:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "38560bfa-0fe0-588f-87a1-341a856d9fef",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2026-06-26T14:04:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "673594af-a030-5041-a9db-200172ce255f",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2026-05-18T21:32:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "8c6f8837-8de5-5d74-8b1f-afd56585d7ee",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2025-09-25T23:00:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e3e7204c-d906-5425-a3d9-604ec43fea6f",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2026-02-19T19:14:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "1654b241-68e9-5e49-b3ee-a74c91f04b7a",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2026-06-10T16:06:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ba0bc825-809a-5a18-9d8b-145e202977c2",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2026-03-20T17:14:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "7d729e1c-bdb0-5f6d-96e7-6240056886c9",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2026-02-04T06:43:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c6ab046d-eb72-5670-9827-883477e54662",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2025-11-30T08:23:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "acdb619c-30b7-5882-96e6-0dcf9f110146",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2025-11-27T09:10:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "cdcca270-ac57-5f55-82a0-b60f8030b6e9",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2026-03-23T14:47:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ca3e0b14-ec87-57b2-add6-aa3835789138",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2026-04-22T18:12:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ed97f733-2826-5ad2-a19f-db8670aa3018",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2026-04-29T07:04:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "44007ec3-de38-506f-bd8c-ce9eaeebeae1",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2025-09-16T17:36:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "581b90c9-1dd6-5f2a-8646-a0d1803a5d29",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2026-07-29T15:45:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "fae4f249-f576-5560-92db-1ebb8df33d38",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2026-05-12T21:30:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "04679a0f-dff1-5140-ab5d-3cf267319922",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2026-07-06T07:49:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ef5e7930-cdf7-57a9-891b-793bbd4e121f",
+    "user_id": "8e50c06c-7fbe-5882-a542-622111397c66",
+    "logged_in_at": "2026-04-28T06:04:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "138baf95-8e69-5640-96b9-032a8bccc206",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-06-12T08:18:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "298d904c-51f3-5bf1-93eb-02f146f4d5e9",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2025-12-09T17:50:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5044f121-68b2-5304-b6ff-0bfff9c0bafd",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-04-26T20:40:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f45a809c-8525-51c7-a9b6-b2be6eac9643",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-05-05T21:53:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "67b2cf3a-fe3d-5ff1-b1ea-ae072041b732",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-04-15T16:34:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "3634df2f-a27d-53c2-b66e-313b706b5ede",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-07-15T06:42:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "77e17932-8dd2-54d0-a15e-25f8d45ade11",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-03-01T16:06:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "959a9497-9644-5513-aaba-f6e3a0ed9a27",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-01-02T15:33:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "0d815ed1-2355-5ced-bea3-64329db3f1f6",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-05-17T11:16:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "cab7c1a1-7088-5d19-9449-a015f43412ba",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2025-12-10T06:00:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "1060911f-d684-52df-97d6-2b187632e1e4",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-02-03T07:45:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "6cf098d1-adf0-5264-bc1f-92517c0e9031",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-06-16T19:55:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "2072db35-33e8-55a0-a01a-e901469c568d",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-06-17T09:50:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "161dc984-ce09-5fdf-afa8-8fb8ad633270",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-01-15T21:10:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "87efd846-9508-5ee2-ac12-aeed7eecd8b9",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-01-20T08:46:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a19b413b-f153-54fd-a8d9-e7e40bfaff02",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-02-24T18:26:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "2ae3ee75-221a-592a-a2b3-cbb6f92150fb",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-02-14T06:08:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "68727ee2-eeac-58d2-b662-d12bb45dd7c3",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-02-16T11:54:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "1a6fc49f-9865-5a33-ae42-cec6f3a2ab81",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-05-08T23:00:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "1efae046-fefd-52dd-b86f-59b8c273667a",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-01-11T11:54:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ffce5062-f80e-527b-81cd-fdd6eed82be5",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2025-11-20T06:11:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "aa57f208-5832-5746-abc4-5a2274fae2e0",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-02-18T18:57:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "7a486f57-592b-5778-afc5-ef0d39abae66",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-07-03T16:12:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "6801c0f9-5465-5e8c-89d7-6a5c53cdfd85",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-02-19T09:59:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "71433742-3f19-5007-8fce-df4aa557c019",
+    "user_id": "da632701-02ab-5f88-9bb8-a80f60899955",
+    "logged_in_at": "2026-03-28T21:46:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ca83db3a-810c-53ca-9b86-3ed6e26556ea",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-10-12T09:27:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "03956893-758c-5601-a0e6-3f4d38125414",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-12-20T20:04:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "37f8c8eb-a59a-5049-9f79-45f3295438a8",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-08-11T11:53:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "0255300b-18fa-5da8-b453-56c9edb7bcf5",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-03-14T13:39:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "6cf2cc79-f67b-5d70-a1b3-3d1c8bf8d9cc",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-10-09T19:37:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "def49b31-2ed3-57b2-9e82-3d119e1aff07",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-11-12T18:20:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d5feee3c-40b5-5587-9e0d-64152244180e",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-08-27T16:50:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "31d42e7f-84e8-53e8-8765-cddad96d5806",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-12-11T21:15:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a699c3ca-a74f-5b48-b40d-9185377056f5",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-07-11T13:58:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "20b642d1-76d3-5f39-a639-048d25f70e98",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-12-27T22:47:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d79a56d3-a2b5-5cba-b095-da2895d5184d",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-07-28T08:11:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5214eca8-0850-54bf-9707-d96017601f91",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-12-20T21:58:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "7d37504e-98fd-5a52-b997-e80d4d1fd97c",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-02-26T21:21:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "9ec4ce00-d684-5f69-9ab1-aee8281418c4",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-03-07T20:59:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "87ec0ada-fcf4-5972-9749-1e7868a54b5b",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-12-22T19:31:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "1f67cedc-c00b-52cc-8017-fd15dc72fb53",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-10-08T21:01:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e9984345-091c-573d-b765-efec6d9f329f",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-01-10T18:54:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "adcbd720-c205-5b7f-861b-448924b4eb11",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-09-20T05:57:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "667731ae-e81d-546e-9c64-4dc05bb6ac99",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-03-06T05:11:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "49da74ed-39fc-5430-9276-567b5f7b2917",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-06-04T16:56:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d1393f91-bb59-56e8-9fe3-cc9a1c6480d4",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-10-07T22:48:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "940e0f13-36df-5b23-affb-afc51ebf9198",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-05-18T08:45:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "13859834-a2a7-5787-a4cf-85e6752cf30d",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-02-11T06:22:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "fa464f56-5be8-5e10-a36e-2f2aa05e791d",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-06-07T22:58:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "0572064c-1478-5860-bd5d-db066b2b0dfa",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-04-27T06:16:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "15168c62-2850-56e5-a0b7-6611b42edeaa",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-12-23T06:24:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "3d1d22f5-7d19-50a6-9ee5-8acbd08e7953",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-12-03T19:29:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "8d5a8661-fde5-5d45-a680-7485c2e7b43f",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-10-08T12:57:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "0960cc2b-47cc-5345-be72-90fe0aedfaa4",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-12-08T16:07:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "cdcff62f-a996-5eef-8e66-a3b5e039341f",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-08-09T17:02:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e6874710-7542-5b12-95b8-2579045e8974",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-07-14T06:09:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e79c2dd0-698f-5b8a-87fe-26608f2afacb",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-01-20T11:52:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "9b5cc07c-bef3-5f33-97ba-1d693a42ef12",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-12-10T06:26:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "1631094e-0ab1-5b95-af3d-28ac09732f96",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-02-05T06:57:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "8edd65ea-c7d0-5e8d-97eb-ce665a13e277",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-11-01T17:29:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f0535f94-61bd-5792-a130-aa516d1c664a",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-07-23T05:33:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "da8b9105-5290-56d3-8fdc-3ad659f9b7c8",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-07-09T07:20:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "13ba8e26-2830-5366-b7ca-ad1a083edcd0",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-12-18T12:36:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "6ce034c3-4c4b-512f-b822-4ac330b31845",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-12-19T05:53:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e428dd0d-052f-548d-8194-2bd5a9209467",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-11-09T09:02:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ed44652b-9df3-5bf7-9a6f-ae246823b9c1",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-12-27T14:57:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d6ace557-c1f5-5df8-938b-968a6e9ea969",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-07-06T20:36:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "fbf0e23d-4222-5280-a3d0-823d72692b23",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-11-25T15:59:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "965d38cf-6ae1-583b-8f6b-89a058ca4492",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2026-02-02T08:11:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e5d1128d-36a7-5766-9576-077db3c27a75",
+    "user_id": "e8d35778-ed38-55fd-ab98-69f7c719d28b",
+    "logged_in_at": "2025-12-14T13:37:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d3c7a530-182c-57d3-8695-f984801c7178",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-03-27T22:15:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "14eecb84-2d0f-5fa8-8d18-e99ad54221d8",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-04-09T07:51:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "9174678c-9584-5d1f-994d-51d518ed2641",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-07-03T15:40:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ff8af4a4-df38-51d2-8a7d-730b8c58421a",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-03-24T16:11:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "dc305093-2feb-5e6c-a488-ec7678f7f254",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-01-19T21:14:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5f180810-0553-545e-86d0-b2093d9de459",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-01-01T06:01:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "209d63da-80f0-51b8-ade4-f4fd1b4ba5da",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-03-17T16:59:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e3b7acfd-41f4-5cb5-a773-1f2a8dac537c",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-04-08T06:59:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "7a920f13-c2fd-5c5f-b774-4499f0c99c9e",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-02-25T14:09:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "657b2e79-ae4e-5bbe-bb2d-65890edaefaf",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-02-18T06:44:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "2c8a4cea-f54a-5580-ba0a-1cd606f79085",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-04-19T21:37:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d9ce97df-337a-5da7-9a31-45b515cf363e",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-02-05T11:07:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "266c6f89-c9ee-5c16-85c7-9a3c58eb330b",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-04-24T07:34:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "44600ef9-6279-53e9-919d-e3142adc1f83",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-04-29T09:42:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "bb720cfc-8af0-54c1-9f91-56f208d9b5af",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-05-08T05:44:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "1308cf92-bb99-552a-a7ad-2aab917b5d84",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-05-03T21:39:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "2b928df7-8eda-5f16-867a-ee50bebd7100",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-05-17T10:28:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "cfa249ff-8e9b-5ae6-8730-0b1aa484f689",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-02-27T22:00:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "40a0a1ad-f374-5f9e-a95c-3927516da64d",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-04-27T07:06:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b8ea6735-10c1-52f1-9092-b2006664e675",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-01-03T19:40:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e9fbc379-62fa-5405-989c-b01f6c7ca83e",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-03-25T05:36:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "77cda38c-d70d-5b72-9d6e-db1691db7310",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-06-22T09:26:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "47adb475-8568-5093-9c1b-09b563b1dbb8",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-03-12T19:48:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "94d5dba8-197e-5fb7-a32f-3a2f619504f8",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-01-29T22:35:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "2143824a-2f4a-5d1e-b272-e25295a63e9d",
+    "user_id": "22504abe-0b6d-5cc5-96b2-08d6c3f3a0b1",
+    "logged_in_at": "2026-04-28T07:25:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "45365b27-722c-5c30-8201-f9381cf41884",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-06-03T15:25:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "61fa4116-27d3-53d9-8b50-3131c42fcd8f",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-06-27T11:53:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a82e48d1-7c00-51f9-8d17-93b12c797613",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-05-19T19:40:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "44d4103e-3a1e-5a71-9b13-3999c7e9220d",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-06-17T22:35:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f0f99d6a-17ae-5783-a71c-e9055dabba52",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-02-07T18:21:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "69d7c885-b0c0-5e30-a028-ca1ac4da0c1f",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-05-01T18:52:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ffa6c408-556d-5ad4-a98c-b2038e639bd1",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-07-28T22:41:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f2caf312-eee6-5e9b-902b-96c447ba676f",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2025-11-16T15:04:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "36681d21-7474-5c71-9c25-8a68119c4b1a",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2025-11-28T13:15:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a7479eb0-f45d-52ce-bbcd-2e2ae46beab7",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-05-03T13:17:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d2bbb21e-acac-5d4c-b752-0229070e82c3",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2025-12-01T12:22:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "eba7b17d-a09c-5392-9958-3a8b89c5521a",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-01-02T12:49:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b599f890-6696-5178-85ba-c7b8b1388c8a",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-01-31T19:17:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "0e08dd0e-7abd-5eac-8dda-71322b756d9a",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2025-11-26T16:18:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c5b44c00-249c-580a-86d5-201b347052ba",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-03-17T22:18:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "29dffe51-2329-5e6c-8428-d4353c536a20",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-02-25T21:34:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d2022d05-10be-5d9d-bdc3-dfee27e521e7",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-03-14T06:20:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a5e72cff-c7a8-5fbe-a80d-10342a8727a5",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2025-11-30T13:15:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "1b2ee8cb-5d55-5f33-9123-74fdc363e3a3",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-04-07T18:01:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f5da0829-b392-5a54-9984-835101381c85",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2025-10-22T09:20:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "64b1c99a-d9d5-5b73-9b30-54f580c4587d",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2025-10-14T14:44:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b402b968-55cc-51d3-828f-3b142f3841d4",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-05-30T11:51:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "4475ab9c-5c5d-5531-97b0-f29bfe33c1e2",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-01-21T06:02:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f37d954f-88e3-5ecd-ac37-066e72132fe4",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-02-20T21:21:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "16a30ba2-c64a-548a-b27b-f52eb4f45031",
+    "user_id": "78bfd332-da85-53d9-884d-7e0244babf34",
+    "logged_in_at": "2026-02-03T13:53:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b28fe704-171b-59a5-a15d-3495bdb4c6ec",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2025-10-23T11:56:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "acda2a30-4d86-572f-8222-798ce9693920",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2026-06-30T14:35:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "cd006366-b5a9-53cb-addb-e7f5572b055b",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2025-09-26T18:20:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "60204273-61b6-5f64-8867-e44db4c3197d",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2025-12-04T13:17:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "58636c6a-1640-5601-b17c-bac5b4d609fc",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2025-09-28T05:17:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5cccaf1b-98a7-5668-b1d7-3ec2c4880748",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2026-05-27T06:25:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "9555553f-aaae-5892-8395-3e1b004daf7e",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2026-05-14T18:51:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "af1ea560-6159-5c02-af23-c8ebd4c6f732",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2026-03-03T20:30:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "93094787-c17d-5a12-a385-91997d477b17",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2026-02-10T22:53:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "bcbf81a6-4753-5a1a-937c-118c4b9bafa9",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2026-02-05T10:30:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "2b9c7a29-20f3-5605-9785-f42b86440871",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2025-09-07T15:39:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b70bf58d-2d50-544d-b684-34c4f4f70e3d",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2026-07-03T21:18:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "bcbe0238-305a-5c8d-9d7d-3159cce155ea",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2025-10-10T07:55:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a46c4800-d58c-5a67-8072-529585c75d6e",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2025-12-15T17:41:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "006b5bbf-1e02-5578-a49b-71269c94bbbb",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2025-09-24T21:37:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "19a90ffc-e95b-517f-bf8f-9efc6389df86",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2026-04-16T09:04:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e7f0f9a0-2c09-5acc-ae82-686cce973a23",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2026-07-11T20:22:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "726300d9-79ae-5142-a68b-48b713283d36",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2025-12-24T06:30:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a0653a5a-1b3f-5e40-94d0-3900586e2086",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2026-03-07T11:44:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f2e050a5-6068-503e-b327-4d754ddecb12",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2026-07-21T16:56:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "20ee319a-14fb-55a5-8b25-91d53923b4c7",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2026-06-19T17:24:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "98f9ab61-5cb7-556c-b0af-27bfdd1ef84f",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2025-12-04T07:13:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b122e315-9cde-524d-ad00-a369ac39e8d0",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2026-05-14T05:19:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "615f5910-11ce-5ee3-b184-8a9a46076ae5",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2026-01-19T17:10:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "3a995199-3990-5f73-8c6a-36d1f3038c29",
+    "user_id": "f99c8a7c-017f-5aa9-9a02-9020151c68ba",
+    "logged_in_at": "2026-03-28T09:48:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "55be963f-b133-588f-9496-95cc8541ec40",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-05-06T16:24:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "cde72263-8112-5c71-a864-4ecf0603631e",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-03-03T21:43:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c7d0c2d4-adb6-503d-a1e7-84b45666cb17",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2025-10-18T13:04:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "79a4d7e1-dabb-56bd-9012-f964ad378865",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2025-12-07T12:24:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f3c5e1b6-6a04-5008-ae60-37526e5f4303",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-07-29T11:35:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "6d079676-015d-5f9b-bd97-1b6a59722343",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-03-30T10:23:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ee98eef2-38d8-5fe2-adef-f3971521d464",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-03-21T20:41:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "625c4c9d-51dd-5377-886e-c9b1d41538ee",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-03-01T15:57:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "2de1b49b-3fdc-5d67-91c0-31627c8bbc23",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-02-13T10:13:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "61fb2a33-ee01-556b-943c-2020c4222544",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-03-23T14:03:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "520658d2-fb40-551e-87f9-1c7ac2529591",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2025-12-02T06:24:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5290ba64-d7be-584d-b308-260254064efb",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-06-29T11:06:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "2cbfe037-46eb-5dd3-b5be-6a85211ca3e3",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-04-01T17:18:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "3423cc54-5458-53a3-bff7-3cb28c6cc0e6",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-06-05T21:57:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "2b702263-099d-5163-a5ce-1b90895506ec",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2025-12-06T18:11:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "69b453dd-0a19-5946-985c-f542fdc16859",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-04-12T06:48:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "17223aa4-51a7-52a8-8724-3698188b9adb",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-05-17T13:23:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "05df599e-dac4-5718-9bef-bc79a246a2ae",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-05-12T15:31:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "9e5c5515-8aa6-5d6b-8942-bc360222df9d",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2025-09-20T17:47:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "63881981-191c-55e9-b9b1-3b2d410af613",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-03-27T10:29:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "7c5d2c37-648a-57bd-8337-4c6a5ee75e99",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-04-06T16:46:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "142128e3-f56f-525c-aeaf-62c77f540e08",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-03-13T19:19:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f2eeff6a-74fa-50fe-989b-db70503b61ee",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2025-09-19T09:27:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "0106ee5d-615a-55a5-9305-44322b0422a7",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-03-16T13:05:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "97713f59-6569-50c9-a35d-1be55f2902a3",
+    "user_id": "807f0a62-8b65-57b2-a852-fbcc49d22cd9",
+    "logged_in_at": "2026-06-04T06:50:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "bc89d205-6e4c-5220-ae76-d5e6813e1a03",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-05-08T10:50:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c366770d-c02f-5b79-9537-117ca69ab878",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2025-11-26T18:21:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "9bfee2fe-8924-52f3-a161-5b43baf75d97",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-05-01T09:19:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "237b902a-830c-5b22-ac71-2d5afb74f62d",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-02-09T07:02:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c676c355-e2f8-5c95-b6dc-61883f70e227",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-05-03T10:33:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5d1f37e6-7696-59a2-80e6-b072c585c51c",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-06-25T20:56:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5a21696e-3772-56e3-819e-7a6563944f30",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-02-26T12:32:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "dac4496a-d2fa-52a2-b846-56171758a67b",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-06-30T12:20:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d26e1e86-cc53-53fe-a55e-d526c037a589",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-05-25T18:42:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "0186e249-e8f2-5010-9bb8-53d5b241c8c9",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-04-12T20:48:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "8a1030d5-7e33-5e54-95e5-8f5bdd219fcd",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-04-04T17:54:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ab76767c-5855-56ce-a7f2-c08fbe8309d6",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-06-04T15:54:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ccee9c7f-d6d9-5c32-9301-d1de4637ad63",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-06-27T22:40:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "15eb04cd-c5fa-522d-9ab1-60232a1a84d6",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2025-11-21T05:37:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f1661286-a35b-588c-a2e0-115015e727fb",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2025-11-04T11:14:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "594641d3-a740-5538-8aef-8539c97720d6",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-06-12T13:27:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d2b34135-eb51-5e61-86a7-8df03c6a79b4",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2025-12-02T08:12:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b0db9cf2-800b-5732-b473-6c8bf10ecfb6",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-02-26T06:09:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "4f78b291-77bb-5d84-aa8d-e35c07bf93a9",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-07-24T06:54:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "9fd869fc-0e83-55b8-ac4d-364e0b8a5c0a",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-02-10T22:12:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a925bff9-4178-588f-9a99-19a144f068ec",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-02-19T14:19:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "3cfc8433-104e-51f7-8217-0399f7763042",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-07-19T10:35:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "ee545f4a-9ded-5acd-91c1-813bb235aeca",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-07-18T16:47:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "de04aef3-90f6-51bc-8f0f-5b6e7ed00501",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-02-27T08:38:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5a37911a-757e-5708-8820-7aa82cfcf42b",
+    "user_id": "c9ea2255-62e7-53d8-a52c-aba542c1ac1e",
+    "logged_in_at": "2026-01-21T10:31:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a148dea0-2125-5461-8e32-0e58c1a77305",
+    "user_id": "4446c6bb-e271-54e3-bc6c-44f8d455a4e4",
+    "logged_in_at": "2026-02-03T10:05:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5011e7cc-d4a8-59b1-8190-5410c5f53a55",
+    "user_id": "4446c6bb-e271-54e3-bc6c-44f8d455a4e4",
+    "logged_in_at": "2026-07-07T18:30:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b7a47a3f-a6bd-5748-89f8-b9980dceb938",
+    "user_id": "4446c6bb-e271-54e3-bc6c-44f8d455a4e4",
+    "logged_in_at": "2026-05-16T16:29:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c1c3f364-9183-5343-b758-ad29e292e8ef",
+    "user_id": "4446c6bb-e271-54e3-bc6c-44f8d455a4e4",
+    "logged_in_at": "2026-03-16T15:37:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "61f5fd8d-d6ce-5c10-8089-46a836863283",
+    "user_id": "4446c6bb-e271-54e3-bc6c-44f8d455a4e4",
+    "logged_in_at": "2026-03-01T13:04:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "9def2e99-e397-5a3b-97f6-1dbef276514d",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-07-13T19:48:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a7af27a8-7684-5669-9bb3-2941098040df",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-01-17T06:52:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c80109d2-3d4b-55b9-a231-5666a56e9b9b",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-04-10T15:32:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a8289ed0-fd8b-5b61-bfad-561fdfb312a3",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-05-02T15:08:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "f1fff5ee-8367-583f-b502-ad09e9a94385",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-05-06T21:29:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "4cbb9e8c-0f4f-58f7-8fe7-1b2f3ca040d4",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-02-13T17:46:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "1f318c08-d036-5f82-b901-2eeca6c322b6",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-04-29T08:20:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "0c8acd80-ee51-5c61-84c4-b7b16791fe29",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-04-29T18:21:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "6c529100-223d-5c3f-9d87-0ac64df01927",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-02-20T06:24:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "10aa0697-aedf-5a1a-a157-9b8ffb0b3cde",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-07-24T06:00:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "4e60dee4-29bf-5367-9d70-27b2e62d1d2b",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-05-08T12:33:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a1ac0177-61cf-5fe3-b0cc-78f075bdb343",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-07-22T06:15:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "4a2ee8b9-a713-5fe9-b199-180abea96d40",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-06-28T20:30:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "962b05a3-90af-56fe-8332-538b58aec565",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-06-16T16:51:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "1ffbe354-277e-5065-8e29-153f370b2a26",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-02-19T21:37:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "9625f335-29e3-5fdd-b583-079a5afb5eae",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-04-01T09:14:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d7e14076-0aa3-57e9-be82-28c0c8417a31",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-01-18T08:15:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "14f705bc-9e34-5dd7-a944-2e8f41271022",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-02-22T14:19:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a7af27a8-7684-5669-9bb3-2941098040df",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-01-17T06:11:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d4f5dcb3-2391-5225-a7ee-6921bdfcbe53",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-03-25T07:47:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "bcf08208-0c50-56fc-9870-5a67ef9dc82e",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-02-23T19:56:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "20344209-936b-5187-9557-9d98834d94c7",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-07-12T14:17:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c2d64fb5-c2f3-59ff-9dec-5f8edcc0cf25",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-03-11T17:41:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "c05c158d-e9ec-52f4-8745-81211c46b45b",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-04-05T06:08:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "7aa96c40-8c52-5dc9-a52c-cfea577010d3",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-03-18T08:15:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "dc4022dd-8d2e-526a-a0c9-7918f2211639",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-04-29T19:31:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e72c61a4-041e-5812-b618-c48bf24b5d69",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-01-13T17:48:00+00:00",
+    "time_band": "night",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "5161f495-6f94-5dee-ac88-189513b1c1a2",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-02-18T08:04:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "6df79513-94e4-5ab0-8f90-544a687e4472",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-01-26T16:00:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b747c7d5-d26c-5b35-aa6b-c001a020069d",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-07-27T18:45:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "242f0d0a-d883-5b6f-8ecf-1384fdadbd18",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-06-10T14:57:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "6d904748-864b-5cec-aec7-d83c47e69e2f",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-01-25T16:21:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d81c4c9d-313d-5a86-a1a2-805fbf209741",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-07-09T13:30:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "0a78b585-d0f7-5eec-914d-2f75520347b1",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-03-08T09:08:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "e727dfbf-6e18-5465-9a42-3684d8d1fc10",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-07-02T16:24:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "1e9f2fb0-45ad-5102-a773-7116c2b7a037",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-04-30T09:05:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "d79b1760-ecc9-5552-95c2-a41af63c11de",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-03-09T07:33:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "1a3b6c58-56d0-5b0c-a451-4c2f450b9460",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-07-29T21:57:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "b158d5ef-8c67-561a-a156-e3bf3a256ba9",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-02-28T20:44:00+00:00",
+    "time_band": "night",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "69e01814-9463-5e56-b7bd-b3678d75ee55",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-07-09T14:47:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "83324915-16a0-5a67-8b08-78d3f98ca6c8",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-07-17T18:21:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "796ea44f-088e-5a6d-987c-bd50a2c9030c",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-02-16T16:16:00+00:00",
+    "time_band": "afternoon",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "793aec79-5588-5089-a6e1-2321bfa403c7",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-05-11T12:02:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "4e473ae6-dd40-5373-9743-69e21b3b07a2",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-05-15T09:00:00+00:00",
+    "time_band": "morning",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "152ead6c-7656-5f73-aa07-ec67eaefe50a",
+    "user_id": "04101a49-fd2b-53f9-bb9d-80dd20bb4fd0",
+    "logged_in_at": "2026-04-14T12:10:00+00:00",
+    "time_band": "afternoon",
+    "device": "web",
+    "ip_country": "IN"
+  },
+  {
+    "id": "2e16f185-bf42-5ca2-80fa-00421c21a5bb",
+    "user_id": "3d3d5d91-00a7-5d80-a177-8a8d92e0bfb0",
+    "logged_in_at": "2026-06-06T08:04:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "073d49c2-fe5c-53f7-831e-668839af86c7",
+    "user_id": "3d3d5d91-00a7-5d80-a177-8a8d92e0bfb0",
+    "logged_in_at": "2025-08-21T07:07:00+00:00",
+    "time_band": "morning",
+    "device": "tablet",
+    "ip_country": "IN"
+  },
+  {
+    "id": "316fe444-814a-5d4a-a449-069fbaeebcf5",
+    "user_id": "3d3d5d91-00a7-5d80-a177-8a8d92e0bfb0",
+    "logged_in_at": "2026-03-16T06:57:00+00:00",
+    "time_band": "morning",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "1ca357a9-7204-52f7-a569-9b6647929dd8",
+    "user_id": "3d3d5d91-00a7-5d80-a177-8a8d92e0bfb0",
+    "logged_in_at": "2026-05-12T16:40:00+00:00",
+    "time_band": "afternoon",
+    "device": "mobile",
+    "ip_country": "IN"
+  },
+  {
+    "id": "a0d88729-6c4c-53f8-9e34-b8e90e133ae2",
+    "user_id": "3d3d5d91-00a7-5d80-a177-8a8d92e0bfb0",
+    "logged_in_at": "2026-03-23T22:48:00+00:00",
+    "time_band": "night",
+    "device": "web",
+    "ip_country": "IN"
+  }
+]
