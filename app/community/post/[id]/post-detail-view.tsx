@@ -106,6 +106,7 @@ export function PostDetailView({
   const isEvent = postType === "event";
   const isChallenge = postType === "challenge";
   const colorClass = postTypeColors[postType] ?? "bg-slate-50 text-slate-700";
+  const profileHref = `/community/members/${authorUsername || authorId}`;
 
   async function handleVote(type: 1 | -1) {
     await votePost(id, type);
@@ -168,11 +169,11 @@ export function PostDetailView({
 
         {/* Author */}
         <div className="mt-4 flex items-center gap-3">
-          <Link href={`/community/members/${authorUsername ?? authorId}`} className="shrink-0 overflow-hidden rounded-full">
+          <Link href={profileHref} className="shrink-0 overflow-hidden rounded-full">
             <ProfileAvatar avatarId={authorAvatarId} avatarUrl={authorAvatarUrl} size={40} />
           </Link>
           <div>
-            <Link href={`/community/members/${authorUsername ?? authorId}`} className="font-semibold hover:text-brand-700">{authorName}</Link>
+            <Link href={profileHref} className="font-semibold hover:text-brand-700">{authorName}</Link>
             <div className="flex items-center gap-2 text-xs text-slate-500">
               <span>{getTimeAgo(createdAt)}</span>
               {authorXpXp > 0 && <span className="rounded-full bg-brand-50 px-2 py-0.5 text-brand-700 font-semibold">Level {authorXpLevel} · {authorXpXp} XP</span>}

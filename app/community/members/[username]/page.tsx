@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 import { FollowButton } from "./follow-button";
 import { ProfileAvatar } from "@/components/ui/profile-avatar";
 
@@ -17,8 +18,15 @@ type ProfileData = {
 
 export default async function MemberProfilePage({ params }: { params: Params }) {
   const { username } = await params;
-  const supabase = await createServerSupabaseClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const sessionSupabase = await createServerSupabaseClient();
+  // Start session lookup immediately, but do not make the public profile
+  // request wait for it. This removes one network round-trip from navigation.
+  const userResultPromise = sessionSupabase.auth.getUser();
+  // The profiles table is intentionally owner-only under RLS. Community
+  // profiles are public, so use the trusted server client here instead of
+  // querying it with the viewer's session (which otherwise returns no row and
+  // incorrectly renders a 404 for every other member).
+  const supabase = createAdminSupabaseClient();
 
   let profile: ProfileData;
 
@@ -69,6 +77,9 @@ export default async function MemberProfilePage({ params }: { params: Params }) 
   } catch {
     notFound();
   }
+
+  // The session lookup has been running alongside the profile fetch above.
+  const { data: { user } } = await userResultPromise;
 
   // Data from other tables (defaults to empty)
   let scoreTotal = 0;
