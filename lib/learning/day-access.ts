@@ -61,6 +61,24 @@ export async function getRoadmapDayAccess(
   dayNumber: number,
   now = new Date()
 ): Promise<RoadmapDayAccess> {
+  // Resolve the ACTIVE stage first. Both roadmap stages number their days
+  // 1..45, so progress must be filtered by `user_roadmap_id` — a user_id-only
+  // read would let a completed Beginner day unlock the same-numbered
+  // Intermediate day.
+  const { data: activeAssignment } = await supabase
+    .from("user_roadmaps")
+    .select("id")
+    .eq("user_id", userId)
+    .eq("status", "active")
+    .order("stage_index", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  const progressQuery = supabase
+    .from("roadmap_progress")
+    .select(ROADMAP_PROGRESS_LOCK_COLUMNS)
+    .eq("user_id", userId);
+
   const [{ data: roadmap }, { data: progressRows }] = await Promise.all([
     supabase
       .from("roadmaps")
@@ -69,11 +87,10 @@ export async function getRoadmapDayAccess(
       .order("created_at", { ascending: false })
       .limit(1)
       .maybeSingle(),
-    supabase
-      .from("roadmap_progress")
-      .select(ROADMAP_PROGRESS_LOCK_COLUMNS)
-      .eq("user_id", userId)
-      .order("day", { ascending: true }),
+    (activeAssignment?.id
+      ? progressQuery.eq("user_roadmap_id", activeAssignment.id)
+      : progressQuery
+    ).order("day", { ascending: true }),
   ]);
 
   const plan = (roadmap?.generated_plan ?? null) as

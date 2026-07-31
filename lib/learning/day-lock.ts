@@ -13,8 +13,9 @@
  */
 
 export interface RoadmapProgressRow {
-  day?: number;
-  status?: string;
+  /** Nullable: `roadmap_progress.day` is nullable in the database schema. */
+  day?: number | null;
+  status?: string | null;
   completed_at?: string | Date | null;
   unlock_at?: string | Date | null;
 }

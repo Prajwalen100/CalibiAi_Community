@@ -20,58 +20,9 @@ import {
   Lock
 } from "lucide-react";
 import { getCurrentDayNumber, getRoadmapDayLockStatuses } from "@/lib/learning/day-lock";
-import { ROADMAP_PROGRESS_LOCK_COLUMNS } from "@/lib/learning/day-access";
+import { getRoadmapContext, maybePromoteStage } from "@/lib/roadmap/service";
 
 export const dynamic = "force-dynamic";
-
-type AssignedRoadmapDay = {
-  day: number;
-  week?: number;
-  title: string;
-  objectives?: string[];
-  topics?: string[];
-  estimated_time?: string;
-  difficulty?: string;
-  practical_task?: string;
-  mini_project?: string;
-  assignment?: string;
-  expected_outcome?: string;
-  skills_gained?: string[];
-  resources?: {
-    youtube?: { title: string; channel: string; url: string }[];
-    docs?: { title: string; url: string }[];
-  };
-  has_quiz?: boolean;
-};
-
-type WeeklyTarget = {
-  week: number;
-  title: string;
-  focus: string;
-  days: number[];
-  keyTopics: string[];
-  milestones: string[];
-};
-
-type StoredRoadmap = {
-  roadmap?: {
-    title?: string;
-    role?: string;
-    level?: string;
-    total_days?: number;
-    description?: string;
-    outcome?: string;
-  };
-  days?: AssignedRoadmapDay[];
-  weeklyTargets?: WeeklyTarget[];
-  totalDays?: number;
-  totalWeeks?: number;
-  assessment_score?: number;
-  personalization?: {
-    focus_skills?: string[];
-    strong_skills?: string[];
-  };
-};
 
 export default async function RoadmapPage() {
   const supabase = await createServerSupabaseClient();
@@ -82,33 +33,42 @@ export default async function RoadmapPage() {
   if (access.isEmployer) redirect("/employer/dashboard");
   if (!access.canAccessStudentArea) redirect(access.nextPath);
 
-  const [{ data: roadmap }, { data: progress }] = await Promise.all([
-    supabase.from("roadmaps").select("*").eq("user_id", user.id).order("created_at", { ascending: false }).limit(1).single(),
-    supabase.from("roadmap_progress").select(ROADMAP_PROGRESS_LOCK_COLUMNS).eq("user_id", user.id).order("day", { ascending: true }),
-  ]);
+  // The roadmap page loads its stage dynamically through the engine, so once
+  // Beginner is complete it automatically renders the Intermediate JSON.
+  let context = await getRoadmapContext(supabase, user.id);
+  if (context.state?.currentStageCompleted) {
+    const promotion = await maybePromoteStage(supabase, user.id, context);
+    if (promotion.promoted) context = await getRoadmapContext(supabase, user.id);
+  }
 
-  const plan = roadmap?.generated_plan as StoredRoadmap | undefined;
-  const days = plan?.days ?? [];
-  const weeklyTargets = plan?.weeklyTargets ?? [];
-  const totalDays = plan?.totalDays ?? (plan?.days?.length ?? 0);
-  const totalWeeks = plan?.totalWeeks ?? Math.ceil(days.length / 7);
-  const assessmentScore = plan?.assessment_score ?? 0;
+  const journey = context.state;
+  const days = context.current?.days ?? [];
+  const weeklyTargets = context.current?.weeklyTargets ?? [];
+  const progress = context.progress;
+  const totalDays = journey?.stageTotalDays ?? 0;
+  const totalWeeks = journey?.stageTotalWeeks ?? 0;
+  const assessmentScore = context.assignment?.assessmentScore ?? 0;
 
   // If no roadmap exists or days array is empty/invalid, redirect to get one assigned
-  if (!plan || !Array.isArray(days) || days.length === 0) {
+  if (!context.hasRoadmap || days.length === 0) {
     redirect("/roadmap/assign");
   }
 
-  // Calculate progress stats & day lock statuses
-  const completedDays = progress?.filter(p => p.status === "completed").length ?? 0;
-  const inProgressDays = progress?.filter(p => p.status === "in_progress").length ?? 0;
-  const dayLockMap = getRoadmapDayLockStatuses(days, progress ?? []);
-  const currentDay = getCurrentDayNumber(days, dayLockMap);
-  const currentWeek = Math.ceil(currentDay / 7);
-  const progressPercent = Math.round((completedDays / totalDays) * 100);
+  // Stage progress. Day locks still use the pacing engine, now fed rows scoped
+  // to the active stage rather than every stage the learner has ever held.
+  const completedDays = journey?.stageCompletedDays ?? 0;
+  const dayLockMap = getRoadmapDayLockStatuses(days, progress);
+  const currentDay = journey?.currentStageDay ?? getCurrentDayNumber(days, dayLockMap);
+  const currentWeek = journey?.currentStageWeek ?? Math.ceil(currentDay / 7);
+  const progressPercent = journey?.stageProgressPercent ?? 0;
+
+  // Overall journey figures, spanning both stages.
+  const overallProgressPercent = journey?.overallProgressPercent ?? progressPercent;
+  const overallCompletedDays = journey?.overallCompletedDays ?? completedDays;
+  const overallJourneyDays = journey?.overallJourneyDays ?? totalDays;
 
   // Group days by week for display
-  const weeksData = weeklyTargets.map((week, weekIndex) => {
+  const weeksData = weeklyTargets.map((week) => {
     const weekDays = days.filter(d => week.days.includes(d.day));
     const weekProgress = week.days.map(day => 
       progress?.find(p => p.day === day)
@@ -141,7 +101,7 @@ export default async function RoadmapPage() {
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
           <p className="font-semibold text-brand-700">Your Roadmap</p>
-          <h1 className="mt-1.5 text-2xl font-black sm:text-3xl lg:mt-2">{plan?.roadmap?.title ?? "Learning Journey"}</h1>
+          <h1 className="mt-1.5 text-2xl font-black sm:text-3xl lg:mt-2">{context.current?.roadmap?.title ?? "Learning Journey"}</h1>
           <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
             <span className="flex items-center gap-1">
               <Trophy className="h-4 w-4 text-amber-500" />
@@ -170,13 +130,13 @@ export default async function RoadmapPage() {
         <div className="card">
           <p className="text-sm text-slate-500">Overall Progress</p>
           <div className="mt-2 flex items-end justify-between">
-            <p className="text-3xl font-black">{progressPercent}%</p>
-            <p className="text-sm text-slate-500">{completedDays}/{totalDays} days</p>
+            <p className="text-3xl font-black">{overallProgressPercent}%</p>
+            <p className="text-sm text-slate-500">{overallCompletedDays}/{overallJourneyDays} days</p>
           </div>
           <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
             <div 
               className="h-full rounded-full bg-gradient-to-r from-brand-500 to-indigo-500 transition-all"
-              style={{ width: `${progressPercent}%` }}
+              style={{ width: `${overallProgressPercent}%` }}
             />
           </div>
         </div>
@@ -184,13 +144,13 @@ export default async function RoadmapPage() {
         <div className="card">
           <p className="text-sm text-slate-500">Days Completed</p>
           <p className="mt-2 text-3xl font-black text-emerald-600">{completedDays}</p>
-          <p className="mt-1 text-sm text-slate-500">Keep going!</p>
+          <p className="mt-1 text-sm text-slate-500">{context.stageLabel} · {progressPercent}% of stage</p>
         </div>
 
         <div className="card">
           <p className="text-sm text-slate-500">Current Day</p>
-          <p className="mt-2 text-3xl font-black text-brand-600">{currentDay}</p>
-          <p className="mt-1 text-sm text-slate-500">Week {currentWeek}</p>
+          <p className="mt-2 text-3xl font-black text-brand-600">{journey?.currentOverallDay ?? currentDay}</p>
+          <p className="mt-1 text-sm text-slate-500">Week {journey?.currentOverallWeek ?? currentWeek} · {context.stageLabel} day {currentDay}</p>
         </div>
 
         <div className="card">

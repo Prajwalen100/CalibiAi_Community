@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
-import type { GeneratedRoadmap } from "@/lib/ai/schemas";
 import { getStudentAccess } from "@/lib/auth/student-access";
 import { Calendar, Target, Trophy, TrendingUp, Zap, BookOpen, CheckCircle2, Clock, ChevronRight, Sparkles, FileText, ArrowRight, Lock } from "lucide-react";
 import { DashboardGreeting } from "@/components/dashboard-greeting";
@@ -9,59 +8,12 @@ import { ProjectCard, type ProjectDetail } from "@/components/project-detail-mod
 import { LabProjectCard, type LabProjectDetail } from "@/components/lab-project-modal";
 import { STATIC_BLOG_POSTS, toBlogPost, type BlogPost } from "@/lib/blog/posts";
 import { getCurrentDayNumber, getRoadmapDayLockStatuses } from "@/lib/learning/day-lock";
-import { ROADMAP_PROGRESS_LOCK_COLUMNS } from "@/lib/learning/day-access";
 import { recalculateAndPersistScore } from "@/lib/score/recalculate";
 import { PullToRefresh } from "@/components/mobile/pull-to-refresh";
+import { getRoadmapContext, maybePromoteStage, syncJourneyToProfile } from "@/lib/roadmap/service";
+import { selectRecommendedActions, selectTodaysFocus } from "@/lib/roadmap/engine";
 
 export const dynamic = "force-dynamic";
-
-type AssignedRoadmapDay = {
-  day: number;
-  week?: number;
-  title: string;
-  objectives?: string[];
-  topics?: string[];
-  estimated_time?: string;
-  difficulty?: string;
-  practical_task?: string;
-  mini_project?: string;
-  assignment?: string;
-  expected_outcome?: string;
-  skills_gained?: string[];
-  resources?: {
-    youtube?: { title: string; channel: string; url: string }[];
-    docs?: { title: string; url: string }[];
-  };
-  has_quiz?: boolean;
-};
-
-type WeeklyTarget = {
-  week: number;
-  title: string;
-  focus: string;
-  days: number[];
-  keyTopics: string[];
-  milestones: string[];
-};
-
-type StoredRoadmap = Partial<GeneratedRoadmap> & {
-  days?: AssignedRoadmapDay[];
-  weeklyTargets?: WeeklyTarget[];
-  roadmap?: {
-    title?: string;
-    role?: string;
-    level?: string;
-    total_days?: number;
-  };
-  totalDays?: number;
-  totalWeeks?: number;
-  assessment_score?: number;
-  personalization?: {
-    focus_skills?: string[];
-    strong_skills?: string[];
-    weak_skill_days?: number[];
-  };
-};
 
 export default async function DashboardPage({
   searchParams,
@@ -81,17 +33,13 @@ export default async function DashboardPage({
   const [
     { data: profile },
     { data: storedScore },
-    { data: roadmap },
     { data: projects },
-    { data: recentProgress },
     { data: roadmapMiniProjects },
     { data: blogData },
   ] = await Promise.all([
     supabase.from("profiles").select("*").eq("user_id", user.id).single(),
     supabase.from("scores").select("*").eq("user_id", user.id).single(),
-    supabase.from("roadmaps").select("*").eq("user_id", user.id).order("created_at", { ascending: false }).limit(1).single(),
     supabase.from("projects").select("id,title,description,repo_url,live_url,ai_score,verified,complexity_tier,points_awarded,created_at,how_it_works,tech_stack,ai_feedback,ai_strengths,ai_improvements").eq("user_id", user.id).order("created_at", { ascending: false }),
-    supabase.from("roadmap_progress").select(`module_id,${ROADMAP_PROGRESS_LOCK_COLUMNS}`).eq("user_id", user.id).order("day", { ascending: true }),
     supabase
       .from("roadmap_task_assessments")
       .select("id,user_roadmap_id,day,level,task_description,submission_language,submission,explanation,score,points_awarded,ai_enriched,created_at,feedback,strengths,improvements")
@@ -122,12 +70,32 @@ export default async function DashboardPage({
 
   const publishedBlogs: BlogPost[] = (blogData ?? []).map((row) => toBlogPost(row as Record<string, unknown>));
 
-  const plan = roadmap?.generated_plan as StoredRoadmap | undefined;
-  const days = plan?.days ?? [];
-  const weeklyTargets = plan?.weeklyTargets ?? [];
-  const totalDays = plan?.totalDays ?? days.length;
-  const totalWeeks = plan?.totalWeeks ?? Math.ceil(days.length / 7);
-  const assessmentScore = plan?.assessment_score ?? 0;
+  // ── Roadmap mapping engine ───────────────────────────────────────────────
+  // Single source of truth for which JSON is active and where the learner is.
+  // Progress is scoped to the ACTIVE stage's user_roadmap_id, because both
+  // stages number their days 1..45 and a user_id-only read would mix them.
+  let context = await getRoadmapContext(supabase, user.id);
+
+  // Beginner 100% -> automatically activate Intermediate, reusing the existing
+  // JSON. No new user, no duplicated roadmap content. Exits immediately unless
+  // the current stage is actually complete.
+  if (context.state?.currentStageCompleted) {
+    const promotion = await maybePromoteStage(supabase, user.id, context);
+    if (promotion.promoted) context = await getRoadmapContext(supabase, user.id);
+  }
+
+  const journey = context.state;
+  if (journey) {
+    // Keep the denormalised mapping on `profiles` in step for admin filtering.
+    await syncJourneyToProfile(supabase, user.id, journey);
+  }
+
+  const days = context.current?.days ?? [];
+  const weeklyTargets = context.current?.weeklyTargets ?? [];
+  const totalDays = journey?.stageTotalDays ?? 0;
+  const totalWeeks = journey?.stageTotalWeeks ?? 0;
+  const assessmentScore = context.assignment?.assessmentScore ?? 0;
+  const recentProgress = context.progress;
   const miniProjectKeys = new Set<string>();
   const bestRoadmapMiniProjects = (roadmapMiniProjects ?? []).filter((project) => {
     const key = `${project.user_roadmap_id}:${project.day}`;
@@ -136,22 +104,33 @@ export default async function DashboardPage({
     return true;
   }).slice(0, 6);
 
-  // Get current day's progress and lock statuses
+  // Lock statuses still come from the pacing engine, now fed stage-scoped rows.
   const dayLockMap = getRoadmapDayLockStatuses(days, recentProgress ?? []);
-  const currentDay = getCurrentDayNumber(days, dayLockMap);
-  const currentWeek = Math.ceil(currentDay / 7);
 
-  // Build weekly progress summary
-  const completedDays = recentProgress?.filter(p => p.status === "completed").length ?? 0;
+  // Day and week numbers come from the roadmap engine so the dashboard, the
+  // roadmap page and the score all agree. `currentDay` stays STAGE-local
+  // because every day link, lock lookup and JSON read is stage-local.
+  const currentDay = journey?.currentStageDay ?? getCurrentDayNumber(days, dayLockMap);
+  const currentWeek = journey?.currentStageWeek ?? Math.ceil(currentDay / 7);
+
+  // Overall journey figures spanning both stages, for the metric cards.
+  const overallWeek = journey?.currentOverallWeek ?? currentWeek;
+  const overallJourneyDays = journey?.overallJourneyDays ?? totalDays;
+  const overallJourneyWeeks = journey?.overallJourneyWeeks ?? totalWeeks;
+  const overallCompletedDays = journey?.overallCompletedDays ?? 0;
+
+  // Per-week completion for the Weekly Targets card (stage-local).
   const weekProgress = weeklyTargets.map(week => ({
     ...week,
-    completedDays: recentProgress?.filter(p => week.days.includes(p.day) && p.status === "completed").length ?? 0,
+    completedDays: recentProgress?.filter(p => week.days.includes(Number(p.day)) && p.status === "completed").length ?? 0,
     totalDays: week.days.length,
     isCurrentWeek: week.week === currentWeek,
   }));
 
-  // Get today's focus (current day or next available)
-  const todayFocus = days.find(d => d.day === currentDay);
+  // Today's Focus and Recommended Actions both come from the CURRENT stage's
+  // JSON at the current day, via the engine's selectors.
+  const todayFocus = selectTodaysFocus(days, currentDay);
+  const recommendedDays = selectRecommendedActions(days, currentDay, 8);
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
@@ -165,9 +144,9 @@ export default async function DashboardPage({
             {onboarding === "complete" ? "🎉 Welcome to CalibiAI!" : "Dashboard"}
           </p>
           <h1 className="mt-1.5 text-2xl font-black sm:text-3xl lg:mt-2">Your Learning Journey</h1>
-          {plan?.roadmap?.title && (
+          {context.hasRoadmap && (
             <p className="mt-1 text-slate-600 max-lg:text-sm">
-              {plan.roadmap.title} • {plan.roadmap.level} Level
+              {context.journeyTitle} • {context.stageLabel} Stage
             </p>
           )}
         </div>
@@ -236,7 +215,7 @@ export default async function DashboardPage({
           </div>
           <div>
             <p className="text-sm text-slate-500">Days Completed</p>
-            <p className="text-2xl font-black">{completedDays} / {totalDays}</p>
+            <p className="text-2xl font-black">{overallCompletedDays} / {overallJourneyDays}</p>
           </div>
         </div>
 
@@ -246,7 +225,7 @@ export default async function DashboardPage({
           </div>
           <div>
             <p className="text-sm text-slate-500">Current Week</p>
-            <p className="text-2xl font-black">Week {currentWeek} of {totalWeeks}</p>
+            <p className="text-2xl font-black">Week {overallWeek} of {overallJourneyWeeks}</p>
           </div>
         </div>
 
@@ -473,7 +452,7 @@ export default async function DashboardPage({
           </div>
           
           <div className="mt-4 space-y-4">
-            {days.slice(0, 8).map((day) => {
+            {recommendedDays.map((day) => {
               const st = dayLockMap[day.day];
               const isCompleted = st?.isCompleted ?? false;
               const isCurrent = st?.isCurrent ?? false;

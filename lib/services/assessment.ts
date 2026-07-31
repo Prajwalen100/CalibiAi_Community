@@ -3,6 +3,8 @@ import fs from "fs";
 import path from "path";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { ROLE_DETAILS, isLearningRole, type LearningRole } from "@/lib/learning/content";
+import { resolveStageForScore } from "@/lib/roadmap/engine";
+import { resolvePlacementThreshold } from "@/lib/roadmap/settings";
 import { analyzeAssessmentWithAI, getFallbackAssessmentResult, type AIAssessmentResult } from "@/lib/ai/assessment";
 import { recordVerifiedSkillsFromAssessment } from "@/lib/learning/verified-skills.server";
 
@@ -363,7 +365,12 @@ export async function finishAttempt(attemptId: string): Promise<Result<{
   const weak = skillScores.filter(s => s.band === "weak").sort((a, b) => a.score - b.score);
   const strong = skillScores.filter(s => s.band === "strong").sort((a, b) => b.score - a.score);
 
-  const level = overall >= 70 && strong.length >= 6 && weak.length <= 1 ? "intermediate" : "beginner";
+  // Placement is now a single configurable score threshold, resolved through
+  // the roadmap engine (DB setting -> env var -> default 60). The previous
+  // rule also required `strong.length >= 6 && weak.length <= 1`, which made
+  // placement depend on how many skills a role's assessment happened to cover.
+  const placementThreshold = await resolvePlacementThreshold();
+  const level = resolveStageForScore(overall, placementThreshold);
 
   const roadmapFile = ROLE_DETAILS[row.role].roadmap[level as "beginner" | "intermediate"];
   const roadmap = JSON.parse(
