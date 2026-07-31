@@ -40,10 +40,17 @@ export function LessonDiagrams({ containerId }: { containerId: string }) {
       }
     };
 
-    void paint(readDocumentTheme());
+    // Chain paints so concurrent theme changes or rapid observer events
+    // never overlap on the singleton mermaid instance.
+    let paintChain: Promise<void> = Promise.resolve();
+    const queuedPaint = (theme: MermaidTheme) => {
+      paintChain = paintChain.then(() => paint(theme)).catch(() => {});
+    };
+
+    queuedPaint(readDocumentTheme());
 
     // Re-render on light/dark switches so diagram colours stay legible.
-    const observer = new MutationObserver(() => void paint(readDocumentTheme()));
+    const observer = new MutationObserver(() => queuedPaint(readDocumentTheme()));
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 
     return () => {

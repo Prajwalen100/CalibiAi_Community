@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AlertTriangle, Check, Code2, Copy, Maximize2, X } from "lucide-react";
 import { readDocumentTheme, renderMermaid, type MermaidTheme } from "@/lib/ai/mermaid-runtime";
 
@@ -46,9 +46,17 @@ export function MermaidDiagram({ code, className = "" }: { code: string; classNa
   const [showSource, setShowSource] = useState(false);
   const [zoomed, setZoomed] = useState(false);
   const [copied, setCopied] = useState(false);
+  const prevCodeRef = useRef(code);
 
   useEffect(() => {
     let cancelled = false;
+
+    // Only drop the previous diagram when the source actually changed;
+    // theme changes should keep the existing SVG while the new one renders.
+    if (prevCodeRef.current !== code) {
+      setSvg(null);
+      prevCodeRef.current = code;
+    }
 
     renderMermaid(code, theme)
       .then((rendered) => {
@@ -84,8 +92,10 @@ export function MermaidDiagram({ code, className = "" }: { code: string; classNa
     return () => window.removeEventListener("keydown", onKey);
   }, [zoomed]);
 
-  // Unparseable even after sanitizing: show the source, never a broken box.
-  if (failed) {
+  // Only fall back to source when we have never rendered a diagram.
+  // If a theme change fails we keep the previous SVG instead of
+  // replacing a working chart with raw code.
+  if (failed && !svg) {
     return (
       <div className={`mt-4 overflow-hidden rounded-xl border border-amber-300 dark:border-amber-500/40 ${className}`}>
         <div className="flex items-center gap-2 bg-amber-50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-amber-700 dark:bg-amber-950/40 dark:text-amber-300">

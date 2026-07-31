@@ -21,6 +21,10 @@ let mermaidPromise: Promise<MermaidApi> | null = null;
 let initializedTheme: MermaidTheme | null = null;
 let renderCounter = 0;
 
+// Serialize all mermaid renders so concurrent calls (theme changes,
+// multiple diagrams on the page) don't race the singleton instance.
+let renderLock = Promise.resolve();
+
 function mermaidConfig(theme: MermaidTheme) {
   const dark = theme === "dark";
   return {
@@ -108,11 +112,20 @@ async function getMermaid(theme: MermaidTheme): Promise<MermaidApi> {
  * Throws when the diagram is unparseable so callers can fall back to source.
  */
 export async function renderMermaid(source: string, theme: MermaidTheme): Promise<string> {
-  const mermaid = await getMermaid(theme);
-  renderCounter += 1;
-  const id = `calibiai-mermaid-${renderCounter}`;
+  // Wait for any previous render to finish before touching the singleton.
+  await renderLock;
+
+  let unlock: () => void;
+  renderLock = new Promise((res) => {
+    unlock = res as () => void;
+  });
+
+  let id = "";
 
   try {
+    const mermaid = await getMermaid(theme);
+    renderCounter += 1;
+    id = `calibiai-mermaid-${renderCounter}`;
     const { svg } = await mermaid.render(id, sanitizeMermaidSource(source));
     // Let the SVG shrink to its container rather than keeping a fixed width.
     return svg
@@ -120,7 +133,8 @@ export async function renderMermaid(source: string, theme: MermaidTheme): Promis
       .replace(/<svg /, '<svg preserveAspectRatio="xMidYMid meet" ');
   } finally {
     // mermaid leaves a hidden measuring node behind if rendering throws.
-    document.getElementById(`d${id}`)?.remove();
+    if (id) document.getElementById(`d${id}`)?.remove();
+    unlock!();
   }
 }
 
