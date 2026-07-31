@@ -114,7 +114,7 @@ export function OnboardingWizard({ initialStep, initialProfile, roles }: Props) 
         {step === 1 && (
           <>
             <p className="text-sm font-bold text-brand-600">Welcome to CalibiAI</p>
-            <h1 className="mt-3 text-3xl font-black text-primary">Let&apos;s build your personalized 45-day path.</h1>
+            <h1 className="mt-3 text-3xl font-black text-primary">Let&apos;s build your personalized learning path.</h1>
             <p className="mt-4 text-secondary">
               We&apos;ll tailor your learning plan in about four minutes—starting with a short placement assessment.
             </p>
