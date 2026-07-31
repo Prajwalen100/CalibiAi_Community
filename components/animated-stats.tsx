@@ -5,8 +5,8 @@ import { GraduationCap, Users, Building2, Globe, ArrowUpRight } from "lucide-rea
 
 const stats = [
   {
-    number: "10+",
-    label: "Colleges",
+    number: "15+",
+    label: "Campus Partners",
     desc: "Partnered across engineering campuses",
     icon: GraduationCap,
     gradient: "from-amber-500/20 via-amber-500/10 to-transparent",
@@ -14,8 +14,8 @@ const stats = [
     badge: "Campus MOUs",
   },
   {
-    number: "1000+",
-    label: "Students",
+    number: "1500+",
+    label: "Students Trained",
     desc: "Mentored in applied AI engineering",
     icon: Users,
     gradient: "from-brand-500/20 via-brand-500/10 to-transparent",
@@ -23,8 +23,8 @@ const stats = [
     badge: "Applied Builders",
   },
   {
-    number: "20+",
-    label: "Startups",
+    number: "50+",
+    label: "Verified Hiring",
     desc: "Hiring partners for verified talent",
     icon: Building2,
     gradient: "from-purple-500/20 via-purple-500/10 to-transparent",
