@@ -1,166 +1,44 @@
-import fs from "node:fs";
-import path from "node:path";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
-import { isLearningRole, ROLE_DETAILS, type LearningRole } from "@/lib/learning/content";
-import { parseRoadmapQuizContent } from "@/lib/learning/roadmap-quiz";
-import { parseRoadmapTaskContent } from "@/lib/learning/roadmap-task";
+import { isLearningRole } from "@/lib/learning/content";
+import { computeJourneyState, resolveStageForScore } from "@/lib/roadmap/engine";
+import { loadRoadmap, roadmapTotalDays } from "@/lib/roadmap/loader";
+import { resolvePlacementThreshold } from "@/lib/roadmap/settings";
+import {
+  buildStoredPlan,
+  seedStageProgress,
+  syncJourneyToProfile,
+  type ActiveAssignment,
+} from "@/lib/roadmap/service";
+import type { LoadedRoadmap, RoadmapStage } from "@/lib/roadmap/types";
 import type { Result } from "@/lib/services/onboarding";
 
-type RoadmapDay = {
-  day: number;
-  title: string;
-  objectives?: string[];
-  topics?: string[];
-  estimated_time?: string;
-  difficulty?: string;
-  practical_task?: string;
-  mini_project?: string;
-  assignment?: string;
-  expected_outcome?: string;
-  skills_gained?: string[];
-  youtube?: { title: string; channel: string; url: string }[];
-  official_docs?: { title: string; url: string }[];
-  quiz?: { question: string; options: string[]; answer: string }[];
-};
-
-type RoadmapContent = {
-  roadmap: {
-    title: string;
-    role: string;
-    level: string;
-    total_days: number;
-    description?: string;
-    outcome?: string;
-  };
-  days: RoadmapDay[];
-};
-
-type WeeklyTarget = {
-  week: number;
-  title: string;
-  focus: string;
-  days: number[];
-  keyTopics: string[];
-  milestones: string[];
-};
-
-function loadRoadmap(role: LearningRole, level: "beginner" | "intermediate") {
-  const fileName = ROLE_DETAILS[role].roadmap[level];
-  const filePath = path.join(process.cwd(), "content", "roadmap", fileName);
-  const source = JSON.parse(fs.readFileSync(filePath, "utf8")) as unknown;
-  // Validate every daily quiz while assigning the roadmap so malformed source
-  // content cannot create a `has_quiz` link that later opens an empty runner.
-  parseRoadmapQuizContent(source);
-  parseRoadmapTaskContent(source);
-  const content = source as RoadmapContent;
-
-  if (!content.roadmap || !Array.isArray(content.days) || content.days.length === 0) {
-    throw new Error("The selected roadmap content is incomplete.");
-  }
-  if (content.days.some((day, index) => !Number.isInteger(day.day) || day.day !== index + 1 || !day.title)) {
-    throw new Error("The selected roadmap days are invalid.");
-  }
-
-  return { content, fileName };
-}
-
 /**
- * Generate weekly targets from daily content
+ * Initial roadmap assignment, immediately after the placement assessment.
+ *
+ * All roadmap loading, transformation and journey maths now live in
+ * `lib/roadmap/*`; this module is only responsible for the database side of
+ * the first assignment. The previous inline copies of `loadRoadmap`,
+ * `generateWeeklyTargets` and `transformDayForDashboard` were removed so
+ * there is exactly one implementation of each.
+ *
+ * The existing roadmap JSONs are the single source of truth — nothing here
+ * creates or duplicates roadmap content.
  */
-function generateWeeklyTargets(days: RoadmapDay[]): WeeklyTarget[] {
-  const weeks: WeeklyTarget[] = [];
-  const daysPerWeek = 7;
-  const totalWeeks = Math.ceil(days.length / daysPerWeek);
 
-  for (let week = 0; week < totalWeeks; week++) {
-    const startDay = week * daysPerWeek + 1;
-    const endDay = Math.min((week + 1) * daysPerWeek, days.length);
-    const weekDays = days.slice(week * daysPerWeek, (week + 1) * daysPerWeek);
-
-    // Collect unique topics and skills
-    const allTopics = weekDays.flatMap(d => d.topics ?? []);
-    const allSkills = weekDays.flatMap(d => d.skills_gained ?? []);
-    const uniqueTopics = [...new Set(allTopics)].slice(0, 5);
-    const uniqueSkills = [...new Set(allSkills)].slice(0, 3);
-
-    // Generate milestones based on the week
-    const milestones: string[] = [];
-    if (weekDays[0]?.practical_task) {
-      milestones.push("Complete the week's practical task");
-    }
-    if (weekDays[0]?.mini_project) {
-      milestones.push("Submit the mini project");
-    }
-    if (weekDays.some(d => d.quiz && d.quiz.length > 0)) {
-      milestones.push("Pass the weekly quiz (80%+)");
-    }
-    if (weekDays[0]?.assignment) {
-      milestones.push("Submit the weekly assignment");
-    }
-
-    weeks.push({
-      week: week + 1,
-      title: `Week ${week + 1}`,
-      focus: uniqueSkills.length > 0 ? uniqueSkills.join(", ") : `Learning Days ${startDay}-${endDay}`,
-      days: weekDays.map(d => d.day),
-      keyTopics: uniqueTopics,
-      milestones,
-    });
-  }
-
-  return weeks;
+/** Stage placement derived from the learner's assessment score. */
+async function resolvePlacement(assessmentScore: number | null | undefined): Promise<{
+  stage: RoadmapStage;
+  threshold: number;
+}> {
+  const threshold = await resolvePlacementThreshold();
+  return { stage: resolveStageForScore(assessmentScore, threshold), threshold };
 }
 
 /**
- * Transform a roadmap day into a dashboard-friendly format
- */
-function transformDayForDashboard(day: RoadmapDay, week: number) {
-  return {
-    day: day.day,
-    week,
-    title: day.title,
-    objectives: day.objectives ?? [],
-    topics: day.topics ?? [],
-    estimated_time: day.estimated_time ?? "2-3 hours",
-    difficulty: day.difficulty ?? "Beginner",
-    practical_task: day.practical_task,
-    mini_project: day.mini_project,
-    assignment: day.assignment,
-    expected_outcome: day.expected_outcome,
-    skills_gained: day.skills_gained ?? [],
-    resources: {
-      youtube: day.youtube ?? [],
-      docs: day.official_docs ?? [],
-    },
-    has_quiz: day.quiz && day.quiz.length > 0,
-  };
-}
-
-function loadAndTransformRoadmap(role: LearningRole, level: "beginner" | "intermediate") {
-  const { content, fileName } = loadRoadmap(role, level);
-  
-  const daysPerWeek = 7;
-  const weeklyTargets = generateWeeklyTargets(content.days);
-  
-  const transformedDays = content.days.map((day, index) => {
-    const week = Math.floor(index / daysPerWeek) + 1;
-    return transformDayForDashboard(day, week);
-  });
-
-  return {
-    roadmap: content.roadmap,
-    fileName,
-    days: transformedDays,
-    weeklyTargets,
-    totalDays: content.days.length,
-    totalWeeks: weeklyTargets.length,
-  };
-}
-
-/**
- * Deterministically assigns the static role + level roadmap after assessment.
- * The operation is retry-safe: a partially-created active assignment is reused
- * and its progress rows are upserted before onboarding is unlocked.
+ * Deterministically assigns a roadmap after the assessment.
+ *
+ * Retry-safe: a partially-created active assignment is reused and its progress
+ * rows are upserted before onboarding is unlocked.
  */
 export async function assignRoadmap(): Promise<Result<{ userRoadmapId: string }>> {
   const supabase = await createServerSupabaseClient();
@@ -172,7 +50,7 @@ export async function assignRoadmap(): Promise<Result<{ userRoadmapId: string }>
   const [{ data: profile, error: profileError }, { data: assessment, error: assessmentError }] = await Promise.all([
     supabase
       .from("profiles")
-      .select("learning_role,onboarding_completed")
+      .select("learning_role,onboarding_completed,roadmap_stage_override")
       .eq("user_id", user.id)
       .maybeSingle(),
     supabase
@@ -197,19 +75,35 @@ export async function assignRoadmap(): Promise<Result<{ userRoadmapId: string }>
   if (assessment.role !== profile.learning_role) {
     return { data: null, error: { message: "Your assessment role no longer matches your selected role. Please retake the assessment." } };
   }
-  if (assessment.level !== "beginner" && assessment.level !== "intermediate") {
-    return { data: null, error: { message: "Your assessment level is missing. Please submit the assessment again." } };
-  }
 
-  let roadmap: ReturnType<typeof loadAndTransformRoadmap>;
+  const assessmentScore = Number(assessment.overall_score ?? 0);
+
+  // An admin override always wins; otherwise the configurable threshold
+  // decides. `assessment.level` is used only as a legacy fallback.
+  const override = (profile as { roadmap_stage_override?: string | null }).roadmap_stage_override;
+  const placement = await resolvePlacement(assessmentScore);
+  const stage: RoadmapStage =
+    override === "beginner" || override === "intermediate"
+      ? override
+      : placement.stage;
+
+  let roadmap: LoadedRoadmap;
   try {
-    roadmap = loadAndTransformRoadmap(assessment.role, assessment.level);
+    roadmap = loadRoadmap(assessment.role, stage);
   } catch (error) {
     return {
       data: null,
       error: { message: error instanceof Error ? error.message : "The selected roadmap could not be loaded." },
     };
   }
+
+  // A learner entering on Beginner has a two-stage, 90-day journey; entering
+  // directly on Intermediate is a single 45-day journey.
+  const entryStage = stage;
+  const overallJourneyDays =
+    entryStage === "beginner"
+      ? roadmap.totalDays + roadmapTotalDays(assessment.role, "intermediate")
+      : roadmap.totalDays;
 
   const { data: graphRow } = await supabase
     .from("knowledge_graph")
@@ -236,40 +130,37 @@ export async function assignRoadmap(): Promise<Result<{ userRoadmapId: string }>
     };
   }
 
-  // Prepare the full roadmap data with daily and weekly targets
-  const fullRoadmapData = {
-    roadmap: roadmap.roadmap,
-    file_key: roadmap.fileName,
-    assessment_result_id: assessment.id,
-    assessment_score: assessment.overall_score,
-    weeklyTargets: roadmap.weeklyTargets,
-    days: roadmap.days,
-    totalDays: roadmap.totalDays,
-    totalWeeks: roadmap.totalWeeks,
+  const storedPlan = {
+    ...buildStoredPlan(roadmap, {
+      assessmentScore,
+      entryStage,
+      stage,
+      overallJourneyDays,
+      focusSkills: graph?.weak_skills ?? [],
+      strongSkills: graph?.strong_skills ?? [],
+      assessmentResultId: assessment.id,
+    }),
     personalization: {
       focus_skills: graph?.weak_skills ?? [],
       strong_skills: graph?.strong_skills ?? [],
       weak_skill_days: roadmap.days
-        .filter(day => 
-          day.skills_gained?.some(skill => 
-            graph?.weak_skills?.some(ws => 
-              skill.toLowerCase().includes(ws.toLowerCase()) ||
-              ws.toLowerCase().includes(skill.toLowerCase())
-            )
-          )
+        .filter((day) =>
+          day.skills_gained?.some((skill) =>
+            graph?.weak_skills?.some(
+              (weak) =>
+                skill.toLowerCase().includes(weak.toLowerCase()) ||
+                weak.toLowerCase().includes(skill.toLowerCase()),
+            ),
+          ),
         )
-        .map(d => d.day),
+        .map((day) => day.day),
     },
   };
 
   if (!assignment) {
     const { data: catalogRow, error: catalogError } = await supabase
       .from("roadmaps")
-      .insert({
-        user_id: user.id,
-        role: assessment.role,
-        generated_plan: fullRoadmapData,
-      })
+      .insert({ user_id: user.id, role: assessment.role, generated_plan: storedPlan })
       .select("id")
       .single();
 
@@ -277,22 +168,28 @@ export async function assignRoadmap(): Promise<Result<{ userRoadmapId: string }>
       return { data: null, error: { message: "We couldn't save your roadmap. Please retry.", code: catalogError?.code } };
     }
 
-    const sequence = roadmap.days.map((day) => day.day);
     const created = await supabase
       .from("user_roadmaps")
       .insert({
         user_id: user.id,
         roadmap_id: catalogRow.id,
         role: assessment.role,
-        level: assessment.level,
+        level: stage,
+        // Journey mapping (migration 025). Pointers only, never content.
+        roadmap_stage: stage,
+        entry_stage: entryStage,
+        stage_index: 1,
+        roadmap_file: roadmap.fileName,
+        overall_journey_days: overallJourneyDays,
+        assessment_score: assessmentScore,
         status: "active",
         personalization: {
-          sequence,
+          sequence: roadmap.days.map((day) => day.day),
           day_actions: {},
           focus_skills: graph?.weak_skills ?? [],
           strong_skills: graph?.strong_skills ?? [],
           weekly_targets: roadmap.weeklyTargets,
-          version: 2,
+          version: 3,
           source: "deterministic",
         },
       })
@@ -318,21 +215,9 @@ export async function assignRoadmap(): Promise<Result<{ userRoadmapId: string }>
     }
   }
 
-  const progressRows = roadmap.days.map((day) => ({
-    user_id: user.id,
-    user_roadmap_id: assignment!.id,
-    module_id: `${assignment!.id}:day:${day.day}`,
-    day: day.day,
-    prereq_days: day.day === 1 ? [] : [day.day - 1],
-    status: day.day === 1 ? "not_started" : "locked",
-    unlock_at: day.day === 1 ? new Date().toISOString() : null,
-  }));
-
-  const { error: progressError } = await supabase
-    .from("roadmap_progress")
-    .upsert(progressRows, { onConflict: "user_id,module_id" });
-  if (progressError) {
-    return { data: null, error: { message: "We couldn't prepare your roadmap days. Please retry.", code: progressError.code } };
+  const seeded = await seedStageProgress(supabase, user.id, assignment.id, roadmap.days);
+  if (!seeded.ok) {
+    return { data: null, error: { message: seeded.message ?? "We couldn't prepare your roadmap days. Please retry." } };
   }
 
   const { data: completedProfile, error: completeError } = await supabase
@@ -345,9 +230,21 @@ export async function assignRoadmap(): Promise<Result<{ userRoadmapId: string }>
     return { data: null, error: { message: "We couldn't finish onboarding. Please retry.", code: completeError?.code } };
   }
 
-  // Initialize scores with assessment contribution
-  const assessmentScorePoints = Math.round((assessment.overall_score ?? 0) * 0.5);
-  
+  // Mirror the freshly-computed journey onto the profile so the dashboard and
+  // admin filters have the mapping available without recomputing it.
+  const initialState = computeJourneyState({
+    entryStage,
+    currentStage: stage,
+    stageTotalDays: roadmap.totalDays,
+    stageProgress: [],
+    beginnerTotalDays: entryStage === "beginner" ? roadmap.totalDays : 0,
+  });
+  await syncJourneyToProfile(supabase, user.id, initialState);
+
+  // Seed the score row with the assessment contribution. This is an
+  // initializer, not a reset: `ignoreDuplicates` protects an existing score.
+  const assessmentScorePoints = Math.round(assessmentScore * 0.5);
+
   await Promise.all([
     supabase.from("scores").upsert(
       {
@@ -358,21 +255,24 @@ export async function assignRoadmap(): Promise<Result<{ userRoadmapId: string }>
         completion_pts: assessmentScorePoints,
         recognition_pts: 0,
         total: assessmentScorePoints,
-        tier: assessmentScorePoints >= 75 ? "silver" : assessmentScorePoints >= 50 ? "bronze" : "bronze",
+        tier: assessmentScorePoints >= 75 ? "silver" : "bronze",
         last_calculated_at: new Date().toISOString(),
       },
-      // A roadmap can be reassigned after a learner has already accumulated
-      // points. This is an initializer, not a score reset.
-      { onConflict: "user_id", ignoreDuplicates: true }
+      { onConflict: "user_id", ignoreDuplicates: true },
     ),
     supabase.from("activity_logs").insert({
       user_id: user.id,
       action: "roadmap_assigned",
-      metadata: { 
-        role: assessment.role, 
-        level: assessment.level, 
+      metadata: {
+        role: assessment.role,
+        level: stage,
+        stage,
+        entry_stage: entryStage,
+        overall_journey_days: overallJourneyDays,
+        placement_threshold: placement.threshold,
+        stage_overridden: Boolean(override),
         user_roadmap_id: assignment.id,
-        assessment_score: assessment.overall_score,
+        assessment_score: assessmentScore,
         completion_pts_awarded: assessmentScorePoints,
       },
     }),
@@ -381,4 +281,5 @@ export async function assignRoadmap(): Promise<Result<{ userRoadmapId: string }>
   return { data: { userRoadmapId: assignment.id }, error: null };
 }
 
-export type { RoadmapDay, WeeklyTarget };
+export type { ActiveAssignment };
+export type { RoadmapDayContent as RoadmapDay, WeeklyTarget } from "@/lib/roadmap/types";

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { calculateNetworkReadiness } from "@/lib/network/readiness";
 import { NetworkClient } from "./network-client";
+import { getRoadmapContext } from "@/lib/roadmap/service";
 
 export const dynamic = "force-dynamic";
 
@@ -9,11 +10,6 @@ export const metadata: Metadata = {
   title: "Network • Exclusive AI Talent Marketplace | CalibiAI",
   description:
     "An exclusive AI Talent Marketplace reserved only for Production Ready AI Engineers. Unlock verified jobs, freelance contracts, AI client requests, and recruiter access.",
-};
-
-type StoredRoadmap = {
-  days?: { day: number }[];
-  totalDays?: number;
 };
 
 export default async function NetworkPage() {
@@ -35,19 +31,9 @@ export default async function NetworkPage() {
     try {
       const [
         { data: scoreRow },
-        { data: roadmapRow },
-        { data: progressRows },
         { data: projectRows },
       ] = await Promise.all([
         supabase.from("scores").select("total").eq("user_id", user.id).maybeSingle(),
-        supabase
-          .from("roadmaps")
-          .select("generated_plan")
-          .eq("user_id", user.id)
-          .order("created_at", { ascending: false })
-          .limit(1)
-          .maybeSingle(),
-        supabase.from("roadmap_progress").select("status").eq("user_id", user.id),
         supabase
           .from("projects")
           .select("verified,ai_score,repo_url,complexity_tier")
@@ -58,15 +44,13 @@ export default async function NetworkPage() {
         currentScore = scoreRow.total;
       }
 
-      const plan = (roadmapRow?.generated_plan ?? null) as StoredRoadmap | null;
-      const planDays = Array.isArray(plan?.days) ? plan.days.length : 0;
-      totalRoadmapDays =
-        typeof plan?.totalDays === "number" && plan.totalDays > 0
-          ? plan.totalDays
-          : planDays;
-      completedRoadmapDays = (progressRows ?? []).filter(
-        (row) => row.status === "completed"
-      ).length;
+      // "Complete AI Roadmap" gates entry to the Network, so it must mean the
+      // FULL journey: 90 days for a learner who started on Beginner, 45 for a
+      // direct-Intermediate placement. Counting `roadmap_progress` by user_id
+      // alone would also double-count, because both stages number days 1..45.
+      const journeyContext = await getRoadmapContext(supabase, user.id);
+      totalRoadmapDays = journeyContext.state?.overallJourneyDays ?? 0;
+      completedRoadmapDays = journeyContext.state?.overallCompletedDays ?? 0;
 
       const verified = (projectRows ?? []).filter((p) => p.verified === true);
       verifiedProjectsCount = verified.length;

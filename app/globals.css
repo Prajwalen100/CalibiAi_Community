@@ -1596,3 +1596,213 @@ a {
   overflow-wrap: anywhere;
   line-height: 1.4;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOBILE + PWA LAYER
+   ---------------------------------------------------------------------------
+   Everything below was added for the mobile/PWA pass.
+
+   CONTRACT: no rule in this section may affect the desktop layout. Every
+   responsive rule is wrapped in `@media (max-width: 1023.98px)` — the exact
+   complement of Tailwind's `lg` breakpoint (1024px) — so the `lg+` rendering
+   is byte-for-byte what it was before. The only unconditional rules here are
+   the Sheet keyframes (a brand-new component) and the safe-area/standalone
+   helpers, which are inert on desktop because `env(safe-area-inset-*)`
+   resolves to 0px and `display-mode: standalone` never matches in a browser
+   tab.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Sheet animations (new component, no existing selectors touched) ──────── */
+@keyframes sheet-overlay-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sheet-overlay-out { from { opacity: 1; } to { opacity: 0; } }
+
+.sheet-overlay[data-state="open"] { animation: sheet-overlay-in 200ms ease-out; }
+.sheet-overlay[data-state="closed"] { animation: sheet-overlay-out 180ms ease-in; }
+
+@keyframes sheet-in-left { from { transform: translate3d(-100%, 0, 0); } to { transform: translate3d(0, 0, 0); } }
+@keyframes sheet-out-left { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-100%, 0, 0); } }
+@keyframes sheet-in-right { from { transform: translate3d(100%, 0, 0); } to { transform: translate3d(0, 0, 0); } }
+@keyframes sheet-out-right { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(100%, 0, 0); } }
+@keyframes sheet-in-top { from { transform: translate3d(0, -100%, 0); } to { transform: translate3d(0, 0, 0); } }
+@keyframes sheet-out-top { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, -100%, 0); } }
+@keyframes sheet-in-bottom { from { transform: translate3d(0, 100%, 0); } to { transform: translate3d(0, 0, 0); } }
+@keyframes sheet-out-bottom { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, 100%, 0); } }
+
+/* iOS-style spring-ish easing keeps the drawers feeling native rather than linear. */
+.sheet-panel[data-side="left"][data-state="open"] { animation: sheet-in-left 300ms cubic-bezier(0.32, 0.72, 0, 1); }
+.sheet-panel[data-side="left"][data-state="closed"] { animation: sheet-out-left 220ms cubic-bezier(0.32, 0.72, 0, 1); }
+.sheet-panel[data-side="right"][data-state="open"] { animation: sheet-in-right 300ms cubic-bezier(0.32, 0.72, 0, 1); }
+.sheet-panel[data-side="right"][data-state="closed"] { animation: sheet-out-right 220ms cubic-bezier(0.32, 0.72, 0, 1); }
+.sheet-panel[data-side="top"][data-state="open"] { animation: sheet-in-top 300ms cubic-bezier(0.32, 0.72, 0, 1); }
+.sheet-panel[data-side="top"][data-state="closed"] { animation: sheet-out-top 220ms cubic-bezier(0.32, 0.72, 0, 1); }
+.sheet-panel[data-side="bottom"][data-state="open"] { animation: sheet-in-bottom 320ms cubic-bezier(0.32, 0.72, 0, 1); }
+.sheet-panel[data-side="bottom"][data-state="closed"] { animation: sheet-out-bottom 220ms cubic-bezier(0.32, 0.72, 0, 1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet-panel[data-state], .sheet-overlay[data-state] { animation-duration: 1ms !important; }
+}
+
+/* ── Safe areas + standalone helpers ──────────────────────────────────────
+   Inert on desktop: the insets are 0px in a normal browser window. */
+@layer utilities {
+  .pt-safe { padding-top: env(safe-area-inset-top); }
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+  .pl-safe { padding-left: env(safe-area-inset-left); }
+  .pr-safe { padding-right: env(safe-area-inset-right); }
+  .px-safe { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+  .mt-safe { margin-top: env(safe-area-inset-top); }
+  .mb-safe { margin-bottom: env(safe-area-inset-bottom); }
+  .h-safe-top { height: env(safe-area-inset-top); }
+
+  /* Prevents the iOS "rubber band" from revealing the page background behind
+     fixed chrome, and stops long-press callouts on tappable rows. */
+  .overscroll-none-touch { overscroll-behavior: none; -webkit-overflow-scrolling: touch; }
+  .touch-callout-none { -webkit-touch-callout: none; }
+  .tap-highlight-none { -webkit-tap-highlight-color: transparent; }
+}
+
+/* Shown only when launched from the home screen. */
+.standalone-only { display: none; }
+@media (display-mode: standalone) {
+  .standalone-only { display: revert; }
+  .browser-only { display: none !important; }
+}
+
+/* ── Skeleton loaders ─────────────────────────────────────────────────────
+   `.skeleton` already exists above; these are additive block shapes used by
+   the loading.tsx routes. */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+.skeleton-block {
+  border-radius: 0.75rem;
+  background-color: rgb(226 232 240);
+  animation: skeleton-pulse 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.dark .skeleton-block { background-color: rgb(30 41 59); }
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-block { animation: none; }
+}
+
+/* ── Pull-to-refresh indicator ────────────────────────────────────────────── */
+.ptr-spinner {
+  animation: rotate-slow 0.8s linear infinite;
+  animation-duration: 0.8s;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BELOW-LG RESPONSIVE RULES — desktop (>=1024px) never sees any of this.
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1023.98px) {
+  /* Kill horizontal overflow globally. Long unbroken strings (URLs, code,
+     scores) were the main source of sideways scroll on phones. */
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* iOS zooms the viewport when a focused input's font-size is under 16px. */
+  input, select, textarea {
+    font-size: max(16px, 1rem);
+  }
+
+  /* Comfortable, thumb-friendly control sizing. */
+  .input, .textarea, input[type="text"], input[type="email"], input[type="password"],
+  input[type="search"], input[type="url"], input[type="tel"], input[type="number"],
+  input[type="date"], select {
+    min-height: 48px;
+  }
+
+  .textarea, textarea { min-height: 96px; }
+
+  /* 48px minimum touch target on every shared button class. */
+  .btn-primary, .btn-secondary, .btn-outline {
+    min-height: 48px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .btn-ghost { min-height: 44px; }
+
+  /* Cards: 16px radius and tighter padding per the mobile spec. */
+  .card, .ui-card {
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+
+  /* Hover lift is meaningless on touch and causes sticky :hover states. */
+  .card:hover, .ui-card:hover, .card-hover-lift:hover, .btn-primary:hover,
+  .btn-secondary:hover, .btn-outline:hover, .glass-pill:hover {
+    transform: none;
+  }
+
+  /* Typography scale-down. Headings stay prominent but never overflow. */
+  .heading-1 { font-size: 1.875rem; line-height: 1.15; }
+  .heading-2 { font-size: 1.5rem; line-height: 1.2; }
+  .heading-3 { font-size: 1.25rem; line-height: 1.3; }
+  .heading-4 { font-size: 1.125rem; line-height: 1.35; }
+
+  h1, h2, h3, h4, h5, h6, p, span, a, li, td, th, dt, dd, label, button {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  /* Tables scroll horizontally rather than blowing out the page, for any
+     table not explicitly converted to the card pattern. */
+  .table-scroll {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Media never exceeds its column. */
+  img, svg, video, canvas, iframe { max-width: 100%; }
+
+  /* Wide code and pre blocks scroll internally. */
+  pre { overflow-x: auto; max-width: 100%; }
+
+  /* The floating AI assistant must clear the bottom tab bar. */
+  .has-mobile-tabbar .global-ai-fab {
+    bottom: calc(var(--mobile-tabbar-height) + env(safe-area-inset-bottom) + 1rem);
+  }
+}
+
+/* Phone-only refinements (below Tailwind's `sm`). */
+@media (max-width: 639.98px) {
+  /* Consistent 16px gutter, as specified. */
+  .card, .ui-card { padding: 1rem; }
+
+  /* Full-width, stacked actions inside the shared action-row helper. */
+  .mobile-actions-stack { display: flex; flex-direction: column; gap: 0.75rem; width: 100%; }
+  .mobile-actions-stack > * { width: 100%; }
+}
+
+/* ── Bottom tab bar spacing ──────────────────────────────────────────────
+   The tab bar is fixed, so the page needs matching bottom padding or the last
+   element hides behind it. Applied on <body> only while the bar is mounted. */
+:root { --mobile-tabbar-height: 64px; }
+
+@media (max-width: 1023.98px) {
+  body.has-mobile-tabbar {
+    padding-bottom: calc(var(--mobile-tabbar-height) + env(safe-area-inset-bottom));
+  }
+}
+
+/* ── Modals become bottom sheets on phones ────────────────────────────────
+   `.modal-glass` is the shared shell for the project, AI-lab and review
+   modals. Below `sm` we square off the bottom corners, go edge-to-edge and
+   respect the home indicator so the dialogs read as native bottom sheets.
+   Above `sm` — and therefore on all of desktop — the class is untouched. */
+@media (max-width: 639.98px) {
+  .modal-glass {
+    border-radius: 20px 20px 0 0;
+    border-bottom: none;
+    max-width: none;
+    width: 100%;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}

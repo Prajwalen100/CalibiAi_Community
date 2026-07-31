@@ -4,6 +4,9 @@ import { calculateCalibiAiScore, calculateReadingEngagement, tierFor, type Score
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
 import { getCurriculumStats } from "@/lib/curriculum/catalog";
 import { STATIC_BLOG_POSTS } from "@/lib/blog/posts";
+import { stageAdjustedTotal } from "@/lib/roadmap/scoring";
+import { resolvePlacementThreshold } from "@/lib/roadmap/settings";
+import { isRoadmapStage } from "@/lib/roadmap/types";
 
 type RecalculateOverrides = {
   /** 0-100 reading engagement percentage. Falls back to the live computation below. */
@@ -33,7 +36,7 @@ export async function recalculateAndPersistScore(
   const [
     projectsResult,
     skillsResult,
-    progressResult,
+    activeStageResult,
     xpResult,
     currentScoreResult,
     assessmentResult,
@@ -44,7 +47,15 @@ export async function recalculateAndPersistScore(
   ] = await Promise.all([
     supabase.from("projects").select("verified,points_awarded,originality_status").eq("user_id", userId),
     supabase.from("user_skills").select("id", { count: "exact", head: true }).eq("user_id", userId).eq("verified", true),
-    supabase.from("roadmap_progress").select("status").eq("user_id", userId),
+    // Scoped to the active stage below; see `activeStage` resolution.
+    supabase
+      .from("user_roadmaps")
+      .select("id,role,level,roadmap_stage,entry_stage,assessment_score")
+      .eq("user_id", userId)
+      .eq("status", "active")
+      .order("stage_index", { ascending: false })
+      .limit(1)
+      .maybeSingle(),
     supabase.from("comm_xp").select("xp, last_active_date, updated_at").eq("user_id", userId).maybeSingle(),
     supabase.from("scores").select("completion_pts,recognition_pts,reading_pts,quizzes_pts").eq("user_id", userId).maybeSingle(),
     // Keep an independent source for the onboarding assessment contribution.
@@ -66,7 +77,27 @@ export async function recalculateAndPersistScore(
     supabase.from("posts").select("id", { count: "exact", head: true }).eq("type", "blog").eq("status", "published").not("slug", "is", null),
   ]);
 
-  if (projectsResult.error || progressResult.error) return null;
+  if (projectsResult.error) return null;
+
+  // Stage-scoped progress. Both stages number their days 1..45, so counting
+  // completions by user_id alone would double-count once a learner has been
+  // promoted and inflate the completion component of their score.
+  const activeStage = activeStageResult.data as
+    | {
+        id: string;
+        role?: string | null;
+        level?: string | null;
+        roadmap_stage?: string | null;
+        entry_stage?: string | null;
+        assessment_score?: number | null;
+      }
+    | null;
+
+  const progressQuery = supabase.from("roadmap_progress").select("status").eq("user_id", userId);
+  const progressResult = await (activeStage?.id
+    ? progressQuery.eq("user_roadmap_id", activeStage.id)
+    : progressQuery);
+  if (progressResult.error) return null;
 
   const progress = progressResult.data ?? [];
   const currentScore = currentScoreResult.data as
@@ -125,7 +156,32 @@ export async function recalculateAndPersistScore(
     currentScore?.completion_pts ?? 0,
     assessmentPoints,
   );
-  const total = Math.min(1000, calculated.total - calculated.completion_pts + completionPoints);
+  const rawTotal = Math.min(1000, calculated.total - calculated.completion_pts + completionPoints);
+
+  // Stage banding. The additive engine above is unchanged; its raw 0-1000
+  // result is then projected into the band the learner's current stage allows
+  // (Beginner 150-650, Intermediate 650-1000, direct-Intermediate 350-500 up
+  // to 1000). This is what stops a Beginner a few lessons in from showing the
+  // same Talent Score as an Intermediate doing production-grade work.
+  const stage = isRoadmapStage(activeStage?.roadmap_stage)
+    ? activeStage.roadmap_stage
+    : isRoadmapStage(activeStage?.level)
+      ? activeStage.level
+      : null;
+  const entryStage = isRoadmapStage(activeStage?.entry_stage) ? activeStage.entry_stage : stage;
+
+  let total = rawTotal;
+  if (stage && entryStage) {
+    total = stageAdjustedTotal({
+      rawTotal,
+      stage,
+      entryStage,
+      hasRoadmap: true,
+      assessmentScore: activeStage?.assessment_score ?? assessmentResult.data?.overall_score ?? 0,
+      placementThreshold: await resolvePlacementThreshold(),
+    });
+  }
+
   const breakdown: ScoreBreakdown = { ...calculated, completion_pts: completionPoints, total, tier: tierFor(total) };
 
   await supabase.from("scores").upsert(

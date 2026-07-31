@@ -8,6 +8,15 @@ import { getStudentAccess } from "@/lib/auth/student-access";
 import { ProfileMenu } from "@/components/profile-menu";
 import { NavSearch } from "@/components/nav-search";
 import { signOut } from "@/app/auth-actions";
+import { MobileTopBar } from "@/components/mobile/mobile-top-bar";
+import { MobileTabBar } from "@/components/mobile/mobile-tab-bar";
+import {
+  EMPLOYER_TAB_ITEMS,
+  PUBLIC_MENU_ITEMS,
+  STUDENT_MENU_ITEMS,
+  STUDENT_TAB_ITEMS,
+  type MobileNavItem,
+} from "@/lib/navigation/mobile-nav";
 
 const publicLinks = [
   ["How It Works", "/#how-it-works"],
@@ -132,9 +141,51 @@ export async function SiteHeader() {
         ? studentLinks
         : [];
 
+  // ── Mobile chrome inputs ────────────────────────────────────────────────
+  // Derived from the same server-side data the desktop header already loaded,
+  // so the mobile nav costs zero extra queries.
+  const profileHref = profile?.username
+    ? `/p/${profile.username}`
+    : isEmployer
+      ? "/employer/dashboard"
+      : studentDestination;
+
+  // The tab bar's "Profile" tab needs a real destination; swap the placeholder
+  // href for the resolved profile route.
+  const studentTabs: MobileNavItem[] = STUDENT_TAB_ITEMS.map((item) =>
+    item.label === "Profile" ? { ...item, href: profileHref } : item,
+  );
+
+  const showMobileTabBar = Boolean(user) && (isEmployer || canAccessStudentArea);
+  const mobileTabs = isEmployer ? EMPLOYER_TAB_ITEMS : studentTabs;
+  const mobilePrimaryItems = showMobileTabBar ? mobileTabs : user ? [] : PUBLIC_MENU_ITEMS;
+  const mobileSecondaryItems = !user ? [] : isEmployer ? [] : canAccessStudentArea ? STUDENT_MENU_ITEMS : [];
+  const unreadCount = popoverNotifications.filter((notification) => !notification.isRead).length;
+
   return (
     <header className="sticky top-0 z-50 glass-panel-subtle transition-all duration-300">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
+      {/* Mobile chrome (below lg). The desktop row below is untouched. */}
+      <div className="px-4 py-2 sm:px-6 lg:hidden">
+        <MobileTopBar
+          homeHref={!user ? "/" : isEmployer ? "/employer/dashboard" : studentDestination}
+          primaryItems={mobilePrimaryItems}
+          secondaryItems={mobileSecondaryItems}
+          isAuthenticated={Boolean(user)}
+          showNotifications={Boolean(user) && (isEmployer || canAccessStudentArea)}
+          unreadCount={unreadCount}
+          notificationsHref={isEmployer ? "/employer/dashboard/notifications" : "/community/notifications"}
+          fullName={profile?.full_name}
+          username={profile?.username}
+          avatarId={profile?.avatar_id}
+          avatarUrl={profile?.avatar_url}
+          profileHref={profileHref}
+          signOut={signOut}
+        />
+      </div>
+
+      {showMobileTabBar && <MobileTabBar items={mobileTabs} />}
+
+      <div className="mx-auto hidden max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:flex lg:px-8">
         <Link
           href={!user ? "/" : isEmployer ? "/employer/dashboard" : studentDestination}
           className="group flex items-center gap-2"
@@ -184,7 +235,7 @@ export async function SiteHeader() {
                 username={profile?.username}
                 avatarId={profile?.avatar_id}
                 avatarUrl={profile?.avatar_url}
-                profileHref={profile?.username ? `/p/${profile.username}` : (isEmployer ? "/employer/dashboard" : studentDestination)}
+                profileHref={profileHref}
                 signOut={signOut}
               />
             </>

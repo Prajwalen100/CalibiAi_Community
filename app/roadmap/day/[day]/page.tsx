@@ -83,11 +83,30 @@ export default async function DayPage({
   if (access.isEmployer) redirect("/employer/dashboard");
   if (!access.canAccessStudentArea) redirect(access.nextPath);
 
-  const [{ data: roadmap }, { data: progress }] = await Promise.all([
-    supabase.from("roadmaps").select("*").eq("user_id", user.id).order("created_at", { ascending: false }).limit(1).single(),
+  // The active assignment scopes every progress read and write below. Both
+  // stages number their days 1..45, so an unscoped query or update would mix
+  // Beginner and Intermediate rows once a learner has been promoted.
+  const { data: activeStage } = await supabase
+    .from("user_roadmaps")
+    .select("id")
+    .eq("user_id", user.id)
+    .eq("status", "active")
+    .order("stage_index", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  const activeStageId = activeStage?.id ?? null;
+
+  const stageProgressQuery = supabase
+    .from("roadmap_progress")
     // `completed_at` / `unlock_at` are required by the pacing rules — selecting
     // only `status` silently disabled the 12 AM daily reset lock.
-    supabase.from("roadmap_progress").select(ROADMAP_PROGRESS_LOCK_COLUMNS).eq("user_id", user.id).order("day", { ascending: true }),
+    .select(ROADMAP_PROGRESS_LOCK_COLUMNS)
+    .eq("user_id", user.id);
+
+  const [{ data: roadmap }, { data: progress }] = await Promise.all([
+    supabase.from("roadmaps").select("*").eq("user_id", user.id).order("created_at", { ascending: false }).limit(1).single(),
+    (activeStageId ? stageProgressQuery.eq("user_roadmap_id", activeStageId) : stageProgressQuery)
+      .order("day", { ascending: true }),
   ]);
 
   const plan = roadmap?.generated_plan as StoredRoadmap | undefined;
@@ -129,11 +148,12 @@ export default async function DayPage({
 
   // Past this point the day is unlocked. Mark it in progress on first open.
   if (currentProgress?.status === "not_started") {
-    await supabase
+    const markInProgress = supabase
       .from("roadmap_progress")
       .update({ status: "in_progress" })
       .eq("user_id", user.id)
       .eq("day", dayNumber);
+    await (activeStageId ? markInProgress.eq("user_roadmap_id", activeStageId) : markInProgress);
   }
 
   // Resolve the active roadmap assignment so we can look up per-day
@@ -218,7 +238,7 @@ export default async function DayPage({
   const canMarkComplete = requirements.every(Boolean);
 
   return (
-    <section className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+    <section className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
       {/* Navigation */}
       <div className="flex items-center justify-between">
         <Link 
@@ -783,16 +803,29 @@ function MarkCompleteForm({
         const gate = await isDayReadyForCompletion(supabase, user.id, dayNumber);
         if (!gate.ready) return;
 
+        // Resolve the active stage inside the action: a "use server" closure
+        // cannot capture request-scoped values from the surrounding render.
+        const { data: actionStage } = await supabase
+          .from("user_roadmaps")
+          .select("id")
+          .eq("user_id", user.id)
+          .eq("status", "active")
+          .order("stage_index", { ascending: false })
+          .limit(1)
+          .maybeSingle();
+        const activeStageId = actionStage?.id ?? null;
+
         const now = new Date();
-        await supabase
+        const completeDay = supabase
           .from("roadmap_progress")
           .update({ status: "completed", completed_at: now.toISOString() })
           .eq("user_id", user.id)
           .eq("day", dayNumber);
+        await (activeStageId ? completeDay.eq("user_roadmap_id", activeStageId) : completeDay);
 
         if (dayNumber < totalDays) {
           const nextMidnight = getNextMidnightUTC(now);
-          await supabase
+          const unlockNext = supabase
             .from("roadmap_progress")
             .update({
               status: "locked",
@@ -801,6 +834,7 @@ function MarkCompleteForm({
             .eq("user_id", user.id)
             .eq("day", dayNumber + 1)
             .neq("status", "completed");
+          await (activeStageId ? unlockNext.eq("user_roadmap_id", activeStageId) : unlockNext);
         }
       }}
     >
@@ -919,7 +953,7 @@ function LockedDayScreen({
   const isDailyReset = lockStatus.isDailyResetLock;
 
   return (
-    <section className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
+    <section className="mx-auto max-w-3xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
       <div className="flex items-center justify-between">
         <Link
           href="/roadmap"

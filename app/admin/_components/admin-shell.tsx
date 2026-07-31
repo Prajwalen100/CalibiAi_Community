@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   Download,
   FileText,
+  Route,
   Users,
   type LucideIcon,
 } from "lucide-react";
@@ -32,6 +33,13 @@ export const ADMIN_NAV: NavItem[] = [
     href: "/admin/students",
     description: "Filter learners and download CSV",
     icon: Users,
+  },
+  {
+    key: "content",
+    label: "Roadmap Mapping",
+    href: "/admin/roadmap",
+    description: "Placement threshold, promotion and overrides",
+    icon: Route,
   },
 ];
 

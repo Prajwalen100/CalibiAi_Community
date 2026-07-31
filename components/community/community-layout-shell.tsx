@@ -24,7 +24,7 @@ export function CommunityLayoutShell({
 
   if (hideSidebars) {
     return (
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8 lg:py-6">
         {breadcrumb}
         <main className="min-w-0 flex-1">{children}</main>
       </div>
@@ -32,9 +32,11 @@ export function CommunityLayoutShell({
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8 lg:py-6">
       {breadcrumb}
-      <div className="flex gap-6 lg:flex-row">
+      {/* Sidebars are already `lg:`/`xl:`-gated, so below lg this collapses to
+          a single full-width column with no leftover gap. */}
+      <div className="flex gap-4 lg:flex-row lg:gap-6">
         {leftSidebar}
         <main className="min-w-0 flex-1">{children}</main>
         {rightSidebar}

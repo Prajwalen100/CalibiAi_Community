@@ -239,7 +239,9 @@ export function GlobalAiAssistant() {
         type="button"
         aria-label="Open Calibi AI Assistant"
         onClick={() => setOpen((o) => !o)}
-        className="group fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-2xl transition-transform duration-300 hover:scale-105 active:scale-95"
+        // `global-ai-fab` lets globals.css lift the button above the mobile
+        // bottom tab bar (and the home indicator) when that bar is mounted.
+        className="global-ai-fab group fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-2xl transition-transform duration-300 hover:scale-105 active:scale-95"
         style={{
           background:
             "linear-gradient(135deg, rgba(31,143,255,0.9), rgba(124,58,237,0.9))",
@@ -264,7 +266,9 @@ export function GlobalAiAssistant() {
 
       {/* Drawer */}
       <aside
-        className={`fixed right-0 top-0 z-50 flex h-full w-full max-w-[400px] flex-col border-l border-slate-200/80 bg-white/95 text-slate-900 transition-transform duration-300 ease-out dark:border-slate-800/80 dark:bg-slate-950/95 dark:text-slate-100 shadow-2xl ${
+        // Safe-area padding keeps the panel clear of the notch and the home
+        // indicator when the app is launched standalone on iOS.
+        className={`fixed right-0 top-0 z-50 flex h-full w-full max-w-[400px] flex-col border-l border-slate-200/80 bg-white/95 pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] text-slate-900 transition-transform duration-300 ease-out dark:border-slate-800/80 dark:bg-slate-950/95 dark:text-slate-100 shadow-2xl ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
         style={{
