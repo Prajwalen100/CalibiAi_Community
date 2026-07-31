@@ -84,7 +84,25 @@ export default async function DashboardPage({
   const weeklyTargets = context.current?.weeklyTargets ?? [];
   const totalDays = journey?.stageTotalDays ?? 0;
   const totalWeeks = journey?.stageTotalWeeks ?? 0;
-  const assessmentScore = context.assignment?.assessmentScore ?? 0;
+
+  // Authoritative assessment score: prefer the persisted score from the active
+  // stage, but fall back to the submitted assessment result so a null or
+  // missing `user_roadmaps.assessment_score` never shows as 0% on the
+  // dashboard. Mirrors the same fallback pattern used in `recalculate.ts`.
+  const { data: assessmentResult } = await supabase
+    .from("assessment_results")
+    .select("overall_score")
+    .eq("user_id", user.id)
+    .eq("status", "submitted")
+    .order("submitted_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  const storedAssignmentScore = context.assignment?.assessmentScore;
+  const assessmentScore =
+    (storedAssignmentScore ?? null) !== null
+      ? storedAssignmentScore!
+      : Number(assessmentResult?.overall_score ?? 0);
   const recentProgress = context.progress;
   const miniProjectKeys = new Set<string>();
   const bestRoadmapMiniProjects = (roadmapMiniProjects ?? []).filter((project) => {

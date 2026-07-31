@@ -304,7 +304,7 @@ export default async function RoadmapPage() {
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
           <p className="font-semibold text-brand-700">Your Roadmap</p>
-          <h1 className="mt-1.5 text-2xl font-black sm:text-3xl lg:mt-2">{context.current?.roadmap?.title ?? "Learning Journey"}</h1>
+          <h1 className="mt-1.5 text-2xl font-black sm:text-3xl lg:mt-2">{context.journeyTitle || context.current?.roadmap?.title || "Learning Journey"}</h1>
           <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
             <span className="flex items-center gap-1">
               <Trophy className="h-4 w-4 text-amber-500" />
@@ -312,11 +312,11 @@ export default async function RoadmapPage() {
             </span>
             <span className="flex items-center gap-1">
               <Calendar className="h-4 w-4 text-brand-500" />
-              {totalDays} days {isFullJourney && <span className="text-xs">({overallJourneyDays} total)</span>}
+              {overallJourneyDays} days
             </span>
             <span className="flex items-center gap-1">
               <Target className="h-4 w-4 text-purple-500" />
-              {totalWeeks} weeks
+              {overallJourneyWeeks} weeks
             </span>
             {isFullJourney && (
               <span className="rounded-full bg-brand-50 px-2 py-0.5 text-xs font-bold text-brand-700 dark:bg-brand-950/40">

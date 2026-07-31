@@ -3,7 +3,7 @@
 import { Loader2, RefreshCw, Route } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-export function AssigningRoadmap() {
+export function AssigningRoadmap({ expectedJourneyDays = 90 }: { expectedJourneyDays?: number }) {
   const started = useRef(false);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(true);
@@ -38,7 +38,7 @@ export function AssigningRoadmap() {
         </div>
         <p className="mt-6 text-sm font-bold text-brand-600">Assessment complete</p>
         <h1 className="mt-2 text-3xl font-black text-primary">
-          {busy ? "Building your 45-day roadmap…" : "Your roadmap needs one more try"}
+          {busy ? `Building your ${expectedJourneyDays}-day roadmap…` : "Your roadmap needs one more try"}
         </h1>
         <p className="mt-3 text-secondary">
           {busy
