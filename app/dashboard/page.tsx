@@ -7,11 +7,13 @@ import { DashboardGreeting } from "@/components/dashboard-greeting";
 import { ProjectCard, type ProjectDetail } from "@/components/project-detail-modal";
 import { LabProjectCard, type LabProjectDetail } from "@/components/lab-project-modal";
 import { STATIC_BLOG_POSTS, toBlogPost, type BlogPost } from "@/lib/blog/posts";
-import { getCurrentDayNumber, getRoadmapDayLockStatuses } from "@/lib/learning/day-lock";
+import { getCurrentDayNumber, getRoadmapDayLockStatuses, type RoadmapDayLockStatus } from "@/lib/learning/day-lock";
 import { recalculateAndPersistScore } from "@/lib/score/recalculate";
 import { PullToRefresh } from "@/components/mobile/pull-to-refresh";
-import { getRoadmapContext, maybePromoteStage, syncJourneyToProfile } from "@/lib/roadmap/service";
+import { getRoadmapContext, maybePromoteStage, syncJourneyToProfile, getStageProgress } from "@/lib/roadmap/service";
 import { selectRecommendedActions, selectTodaysFocus } from "@/lib/roadmap/engine";
+import { loadRoadmap } from "@/lib/roadmap/loader";
+import type { RoadmapStage } from "@/lib/roadmap/types";
 
 export const dynamic = "force-dynamic";
 
@@ -49,7 +51,6 @@ export default async function DashboardPage({
       .order("score", { ascending: false })
       .order("created_at", { ascending: false })
       .limit(100),
-    // Robust fetch for Admin CMS blogs — same logic as /blog page
     supabase
       .from("posts")
       .select("id,author_id,slug,title,excerpt,body,status,category,read_time_minutes,cover_image_url,tags,featured,published_at,created_at,updated_at")
@@ -61,24 +62,14 @@ export default async function DashboardPage({
       .limit(6),
   ]);
 
-  // Repair legacy rows that were reset by the former onboarding/roadmap
-  // initializers. The recalculation uses durable learner data and persists the
-  // recovered value, so every score surface subsequently agrees.
   const score = !storedScore || Number(storedScore.total) === 0
     ? (await recalculateAndPersistScore(user.id)) ?? storedScore
     : storedScore;
 
   const publishedBlogs: BlogPost[] = (blogData ?? []).map((row) => toBlogPost(row as Record<string, unknown>));
 
-  // ── Roadmap mapping engine ───────────────────────────────────────────────
-  // Single source of truth for which JSON is active and where the learner is.
-  // Progress is scoped to the ACTIVE stage's user_roadmap_id, because both
-  // stages number their days 1..45 and a user_id-only read would mix them.
   let context = await getRoadmapContext(supabase, user.id);
 
-  // Beginner 100% -> automatically activate Intermediate, reusing the existing
-  // JSON. No new user, no duplicated roadmap content. Exits immediately unless
-  // the current stage is actually complete.
   if (context.state?.currentStageCompleted) {
     const promotion = await maybePromoteStage(supabase, user.id, context);
     if (promotion.promoted) context = await getRoadmapContext(supabase, user.id);
@@ -86,7 +77,6 @@ export default async function DashboardPage({
 
   const journey = context.state;
   if (journey) {
-    // Keep the denormalised mapping on `profiles` in step for admin filtering.
     await syncJourneyToProfile(supabase, user.id, journey);
   }
 
@@ -104,40 +94,151 @@ export default async function DashboardPage({
     return true;
   }).slice(0, 6);
 
-  // Lock statuses still come from the pacing engine, now fed stage-scoped rows.
-  const dayLockMap = getRoadmapDayLockStatuses(days, recentProgress ?? []);
+  // Load both stages for full journey display on dashboard
+  const role = context.role;
+  const entryStage = (journey?.entryStage ?? context.assignment?.entryStage ?? "beginner") as RoadmapStage;
+  const currentStage = (journey?.currentStage ?? context.assignment?.stage ?? "beginner") as RoadmapStage;
 
-  // Day and week numbers come from the roadmap engine so the dashboard, the
-  // roadmap page and the score all agree. `currentDay` stays STAGE-local
-  // because every day link, lock lookup and JSON read is stage-local.
-  const currentDay = journey?.currentStageDay ?? getCurrentDayNumber(days, dayLockMap);
+  let beginnerLoaded: ReturnType<typeof loadRoadmap> | null = null;
+  let intermediateLoaded: ReturnType<typeof loadRoadmap> | null = null;
+  if (role) {
+    try { beginnerLoaded = loadRoadmap(role, "beginner"); } catch {}
+    try { intermediateLoaded = loadRoadmap(role, "intermediate"); } catch {}
+  }
+
+  let beginnerProgress: any[] = [];
+  let intermediateProgress: any[] = [];
+  if (role) {
+    try {
+      const { data: allAssignments } = await supabase
+        .from("user_roadmaps")
+        .select("id, roadmap_stage")
+        .eq("user_id", user.id)
+        .eq("role", role)
+        .order("stage_index", { ascending: true });
+      const bAssign = allAssignments?.find((a: any) => a.roadmap_stage === "beginner");
+      const iAssign = allAssignments?.find((a: any) => a.roadmap_stage === "intermediate");
+      if (bAssign) beginnerProgress = await getStageProgress(supabase, user.id, bAssign.id);
+      if (iAssign) intermediateProgress = await getStageProgress(supabase, user.id, iAssign.id);
+      if (beginnerProgress.length === 0 && currentStage === "beginner") beginnerProgress = recentProgress ?? [];
+      if (intermediateProgress.length === 0 && currentStage === "intermediate") intermediateProgress = recentProgress ?? [];
+    } catch {
+      beginnerProgress = currentStage === "beginner" ? recentProgress ?? [] : [];
+      intermediateProgress = currentStage === "intermediate" ? recentProgress ?? [] : [];
+    }
+  }
+
+  const isFullJourney = entryStage === "beginner" && beginnerLoaded && intermediateLoaded;
+
+  // Lock maps
+  const beginnerLockMap: Record<number, RoadmapDayLockStatus> = (() => {
+    if (!beginnerLoaded) return {};
+    if (currentStage === "intermediate" || journey?.beginnerCompleted) {
+      const map: Record<number, RoadmapDayLockStatus> = {};
+      for (const d of beginnerLoaded.days) {
+        map[d.day] = { dayNumber: d.day, isCompleted: true, isLocked: false, isCurrent: false, status: "completed", lockReason: undefined, unlockAt: null, isDailyResetLock: false };
+      }
+      return map;
+    }
+    return getRoadmapDayLockStatuses(beginnerLoaded.days, beginnerProgress ?? []);
+  })();
+
+  const intermediateLockMap: Record<number, RoadmapDayLockStatus> = (() => {
+    if (!intermediateLoaded) return {};
+    if (currentStage === "beginner" && !journey?.beginnerCompleted) {
+      const map: Record<number, RoadmapDayLockStatus> = {};
+      for (const d of intermediateLoaded.days) {
+        map[d.day] = { dayNumber: d.day, isCompleted: false, isLocked: true, isCurrent: false, status: "locked", lockReason: "Complete Beginner stage", unlockAt: null, isDailyResetLock: false };
+      }
+      return map;
+    }
+    return getRoadmapDayLockStatuses(intermediateLoaded.days, intermediateProgress ?? []);
+  })();
+
+  const daysForLock = currentStage === "beginner" ? (beginnerLoaded?.days ?? days) : (intermediateLoaded?.days ?? days);
+  const dayLockMap = currentStage === "beginner" ? (isFullJourney ? beginnerLockMap : getRoadmapDayLockStatuses(days, recentProgress ?? [])) : (isFullJourney ? intermediateLockMap : getRoadmapDayLockStatuses(days, recentProgress ?? []));
+
+  const currentDay = journey?.currentStageDay ?? getCurrentDayNumber(daysForLock, dayLockMap);
   const currentWeek = journey?.currentStageWeek ?? Math.ceil(currentDay / 7);
 
-  // Overall journey figures spanning both stages, for the metric cards.
-  const overallWeek = journey?.currentOverallWeek ?? currentWeek;
-  const overallJourneyDays = journey?.overallJourneyDays ?? totalDays;
-  const overallJourneyWeeks = journey?.overallJourneyWeeks ?? totalWeeks;
+  const overallWeek = journey?.currentOverallWeek ?? (isFullJourney && currentStage === "intermediate" ? (beginnerLoaded!.totalWeeks + currentWeek) : currentWeek);
+  const overallJourneyDays = journey?.overallJourneyDays ?? (isFullJourney ? beginnerLoaded!.totalDays + intermediateLoaded!.totalDays : totalDays);
+  const overallJourneyWeeks = journey?.overallJourneyWeeks ?? (isFullJourney ? beginnerLoaded!.totalWeeks + intermediateLoaded!.totalWeeks : totalWeeks);
   const overallCompletedDays = journey?.overallCompletedDays ?? 0;
+  const currentOverallDay = journey?.currentOverallDay ?? (isFullJourney && currentStage === "intermediate" ? beginnerLoaded!.totalDays + currentDay : currentDay);
 
-  // Per-week completion for the Weekly Targets card (stage-local).
-  const weekProgress = weeklyTargets.map(week => ({
-    ...week,
-    completedDays: recentProgress?.filter(p => week.days.includes(Number(p.day)) && p.status === "completed").length ?? 0,
-    totalDays: week.days.length,
-    isCurrentWeek: week.week === currentWeek,
-  }));
+  // Per-week completion - combine for full journey
+  let weekProgress: Array<{ week: number; overallWeek: number; stage: RoadmapStage; title: string; focus: string; days: number[]; overallDays: number[]; keyTopics: string[]; completedDays: number; totalDays: number; isCurrentWeek: boolean }>;
+  if (isFullJourney && beginnerLoaded && intermediateLoaded) {
+    const bWeeks = beginnerLoaded.weeklyTargets.map((w, idx) => ({
+      week: w.week,
+      overallWeek: idx + 1,
+      stage: "beginner" as RoadmapStage,
+      title: w.title,
+      focus: w.focus,
+      days: w.days,
+      overallDays: w.days,
+      keyTopics: w.keyTopics,
+      completedDays: journey?.beginnerCompleted ? w.days.length : (beginnerProgress ?? []).filter((p: any) => w.days.includes(Number(p.day)) && p.status === "completed").length,
+      totalDays: w.days.length,
+      isCurrentWeek: currentStage === "beginner" ? w.week === currentWeek : false,
+    }));
+    const offset = beginnerLoaded.totalWeeks;
+    const offsetDays = beginnerLoaded.totalDays;
+    const iWeeks = intermediateLoaded.weeklyTargets.map((w, idx) => ({
+      week: w.week,
+      overallWeek: offset + idx + 1,
+      stage: "intermediate" as RoadmapStage,
+      title: w.title,
+      focus: w.focus,
+      days: w.days,
+      overallDays: w.days.map((d) => d + offsetDays),
+      keyTopics: w.keyTopics,
+      completedDays: (intermediateProgress ?? []).filter((p: any) => w.days.includes(Number(p.day)) && p.status === "completed").length,
+      totalDays: w.days.length,
+      isCurrentWeek: currentStage === "intermediate" ? w.week === currentWeek : false,
+    }));
+    weekProgress = [...bWeeks, ...iWeeks];
+  } else {
+    weekProgress = weeklyTargets.map(week => ({
+      week: week.week,
+      overallWeek: week.week,
+      stage: currentStage,
+      title: week.title,
+      focus: week.focus,
+      days: week.days,
+      overallDays: week.days,
+      keyTopics: week.keyTopics,
+      completedDays: recentProgress?.filter(p => week.days.includes(Number(p.day)) && p.status === "completed").length ?? 0,
+      totalDays: week.days.length,
+      isCurrentWeek: week.week === currentWeek,
+    }));
+  }
 
-  // Today's Focus and Recommended Actions both come from the CURRENT stage's
-  // JSON at the current day, via the engine's selectors.
+  // Today's Focus and Recommended Actions
   const todayFocus = selectTodaysFocus(days, currentDay);
-  const recommendedDays = selectRecommendedActions(days, currentDay, 8);
+
+  // Build combined days for recommended actions with overall day numbers
+  let combinedDaysForRec: Array<any & { overallDay: number; stage: RoadmapStage; stageDay: number }>;
+  if (isFullJourney && beginnerLoaded && intermediateLoaded) {
+    const bDays = beginnerLoaded.days.map(d => ({ ...d, stage: "beginner" as RoadmapStage, stageDay: d.day, overallDay: d.day }));
+    const iDays = intermediateLoaded.days.map(d => ({ ...d, stage: "intermediate" as RoadmapStage, stageDay: d.day, overallDay: beginnerLoaded!.totalDays + d.day }));
+    combinedDaysForRec = [...bDays, ...iDays];
+  } else {
+    combinedDaysForRec = days.map(d => ({ ...d, stage: currentStage, stageDay: d.day, overallDay: d.day }));
+  }
+
+  const recommendedCombined = combinedDaysForRec
+    .filter(d => d.overallDay >= currentOverallDay)
+    .sort((a, b) => a.overallDay - b.overallDay)
+    .slice(0, 8);
+
+  const recommendedDays = recommendedCombined.length > 0 ? recommendedCombined : combinedDaysForRec.slice(0, 8);
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-      {/* Pull-to-refresh: mobile-only gesture, re-runs this server component. */}
       <PullToRefresh />
 
-      {/* Header */}
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
           <p className="font-semibold text-brand-700 max-lg:text-sm">
@@ -146,27 +247,24 @@ export default async function DashboardPage({
           <h1 className="mt-1.5 text-2xl font-black sm:text-3xl lg:mt-2">Your Learning Journey</h1>
           {context.hasRoadmap && (
             <p className="mt-1 text-slate-600 max-lg:text-sm">
-              {context.journeyTitle} • {context.stageLabel} Stage
+              {context.journeyTitle} • {context.stageLabel} Stage {isFullJourney ? `• ${overallJourneyDays} days total` : ""}
             </p>
           )}
         </div>
       </div>
 
-      {/* Success banner for completed onboarding */}
       {onboarding === "complete" && (
         <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-200">
           <p className="font-bold">🎉 Onboarding Complete!</p>
-          <p className="mt-1">Your personalized 45-day roadmap has been assigned based on your assessment score ({assessmentScore}%).</p>
+          <p className="mt-1">Your personalized {overallJourneyDays}-day roadmap has been assigned based on your assessment score ({assessmentScore}%).</p>
         </div>
       )}
 
-      {/* Personalized Greeting + Motivation */}
       <div className="mt-5 rounded-2xl bg-gradient-to-r from-brand-600 via-indigo-600 to-violet-600 p-5 text-white shadow-xl sm:p-6 lg:mt-6 lg:rounded-3xl lg:p-8 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, white 2px, transparent 2px), radial-gradient(circle at 80% 20%, white 1.5px, transparent 1.5px)', backgroundSize: '40px 40px' }} />
         <div className="relative">
           <DashboardGreeting name={profile?.full_name?.split(" ")[0] ?? profile?.username ?? "Student"} />
           <p className="mt-2 max-w-xl text-brand-100 max-lg:text-sm">&quot;Every expert was once a beginner. The only way to learn is to build, fail, and iterate.&quot;</p>
-          {/* Buttons go full-width and stack on phones, inline from sm up. */}
           <div className="mt-4 flex items-center gap-3 max-sm:flex-col max-sm:items-stretch max-sm:gap-2.5">
             <Link href="/roadmap" className="inline-flex items-center gap-2 rounded-xl bg-white/15 px-4 py-2 text-sm font-bold hover:bg-white/25 transition backdrop-blur-sm max-sm:min-h-[48px] max-sm:justify-center">
               Continue Learning <Zap className="h-4 w-4" />
@@ -178,8 +276,6 @@ export default async function DashboardPage({
         </div>
       </div>
 
-
-      {/* Score and Assessment Result */}
       {submitted === "1" && (
         <div className="mt-4 rounded-2xl border border-signal/30 bg-green-50 p-4 text-sm text-green-800">
           <p className="font-semibold">Project submitted successfully!</p>
@@ -187,7 +283,6 @@ export default async function DashboardPage({
         </div>
       )}
 
-      {/* Stats Grid — 1 col on phones, 2 on tablets, 4 from lg (unchanged). */}
       <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:mt-6 lg:grid-cols-4">
         <div className="card flex items-center gap-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
@@ -250,27 +345,17 @@ export default async function DashboardPage({
         </div>
       </div>
 
-      {/* Main Content Grid */}
       <div className="mt-5 grid gap-4 lg:mt-6 lg:grid-cols-[1fr_1.5fr] lg:gap-6">
-        {/* Left Column - Today's Focus & Weekly Targets */}
         <div className="space-y-4 lg:space-y-5">
-          {/* Today's Focus */}
           {todayFocus && (() => {
             const focusLock = dayLockMap[todayFocus.day];
             const isFocusLocked = focusLock?.isLocked ?? false;
             const isDailyReset = focusLock?.isDailyResetLock ?? false;
 
             return (
-              <div className={`card transition-all ${
-                isFocusLocked
-                  ? "border-amber-200/80 bg-gradient-to-br from-amber-50/60 to-orange-50/30 dark:border-amber-900/60 dark:from-amber-950/20 dark:to-orange-950/10"
-                  : "border-brand-200 bg-gradient-to-br from-brand-50/50 to-purple-50/30 dark:border-brand-800 dark:from-brand-950/20 dark:to-purple-950/10"
-              }`}>
-                {/* Stacks vertically on phones so the lock badge never squeezes the title. */}
+              <div className={`card transition-all ${isFocusLocked ? "border-amber-200/80 bg-gradient-to-br from-amber-50/60 to-orange-50/30 dark:border-amber-900/60 dark:from-amber-950/20 dark:to-orange-950/10" : "border-brand-200 bg-gradient-to-br from-brand-50/50 to-purple-50/30 dark:border-brand-800 dark:from-brand-950/20 dark:to-purple-950/10"}`}>
                 <div className="flex items-center justify-between max-sm:flex-col max-sm:items-start max-sm:gap-2">
-                  <div className={`flex items-center gap-2 text-sm font-semibold ${
-                    isFocusLocked ? "text-amber-700 dark:text-amber-300" : "text-brand-700 dark:text-brand-300"
-                  }`}>
+                  <div className={`flex items-center gap-2 text-sm font-semibold ${isFocusLocked ? "text-amber-700 dark:text-amber-300" : "text-brand-700 dark:text-brand-300"}`}>
                     {isFocusLocked ? <Lock className="h-4 w-4" /> : <Zap className="h-4 w-4" />}
                     {isFocusLocked ? "Next Scheduled Day (Locked)" : "Today's Focus"}
                   </div>
@@ -282,21 +367,15 @@ export default async function DashboardPage({
                   )}
                 </div>
                 <div className="mt-3">
-                  <p className="text-base font-bold sm:text-lg">Day {todayFocus.day}: {todayFocus.title}</p>
+                  <p className="text-base font-bold sm:text-lg">Day {currentOverallDay} (Stage day {todayFocus.day}): {todayFocus.title}</p>
                   {isFocusLocked && (
                     <p className="mt-1.5 text-sm font-medium text-amber-800/90 dark:text-amber-200/80">
-                      {isDailyReset
-                        ? "Great job today! In 24 hours you can only complete 1 day. This day unlocks automatically after 12:00 AM daily reset."
-                        : `You must complete Day ${todayFocus.day - 1} before starting Day ${todayFocus.day}.`}
+                      {isDailyReset ? "Great job today! In 24 hours you can only complete 1 day. This day unlocks automatically after 12:00 AM daily reset." : `You must complete Day ${todayFocus.day - 1} before starting Day ${todayFocus.day}.`}
                     </p>
                   )}
                   <div className="mt-2 flex flex-wrap gap-2">
                     {todayFocus.skills_gained?.map((skill, i) => (
-                      <span key={i} className={`rounded-full px-2 py-0.5 text-xs font-medium ${
-                        isFocusLocked
-                          ? "bg-amber-100/80 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200"
-                          : "bg-brand-50 text-brand-700 dark:bg-brand-950/40 dark:text-brand-300"
-                      }`}>
+                      <span key={i} className={`rounded-full px-2 py-0.5 text-xs font-medium ${isFocusLocked ? "bg-amber-100/80 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200" : "bg-brand-50 text-brand-700 dark:bg-brand-950/40 dark:text-brand-300"}`}>
                         {skill}
                       </span>
                     ))}
@@ -323,63 +402,40 @@ export default async function DashboardPage({
                 </div>
                 {isFocusLocked ? (
                   <div className="mt-4 flex flex-col gap-2 sm:flex-row">
-                    <button
-                      disabled
-                      className="inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-xl border border-amber-300/80 bg-amber-100/80 px-4 py-2.5 text-sm font-bold text-amber-900 opacity-90 dark:border-amber-800 dark:bg-amber-900/40 dark:text-amber-200"
-                    >
+                    <button disabled className="inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-xl border border-amber-300/80 bg-amber-100/80 px-4 py-2.5 text-sm font-bold text-amber-900 opacity-90 dark:border-amber-800 dark:bg-amber-900/40 dark:text-amber-200">
                       <Lock className="h-4 w-4" />
                       {isDailyReset ? "Locked • Unlocks after 12:00 AM reset" : `Locked • Complete Day ${todayFocus.day - 1}`}
                     </button>
-                    <Link
-                      href={`/roadmap/day/${Math.max(1, todayFocus.day - 1)}`}
-                      className="btn-secondary inline-flex w-full items-center justify-center gap-2 text-sm"
-                    >
-                      View Day {Math.max(1, todayFocus.day - 1)} →
+                    <Link href={`/roadmap/day/${Math.max(1, currentOverallDay - 1)}`} className="btn-secondary inline-flex w-full items-center justify-center gap-2 text-sm">
+                      View Day {Math.max(1, currentOverallDay - 1)} →
                     </Link>
                   </div>
                 ) : (
-                    <Link
-                    href={`/roadmap/day/${todayFocus.day}`}
-                    className="btn-primary mt-4 w-full justify-center"
-                  >
-                    Start Today&apos;s Learning
+                  <Link href={`/roadmap/day/${currentOverallDay}`} className="btn-primary mt-4 w-full justify-center">
+                    Start Today&apos;s Learning (Overall Day {currentOverallDay})
                   </Link>
                 )}
               </div>
             );
           })()}
 
-          {/* Weekly Targets */}
           <div className="card">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-sm font-semibold text-brand-700">
                 <Target className="h-4 w-4" />
                 Weekly Targets
               </div>
-              <span className="text-xs text-slate-500">{totalWeeks} weeks total</span>
+              <span className="text-xs text-slate-500">{overallJourneyWeeks} weeks total</span>
             </div>
             <div className="mt-4 space-y-3">
               {weekProgress.slice(0, 4).map((week) => (
-                <div 
-                  key={week.week} 
-                  className={`rounded-xl border p-3 transition-all ${
-                    week.isCurrentWeek 
-                      ? "border-brand-200 bg-brand-50/50 dark:border-brand-800 dark:bg-brand-950/20" 
-                      : "border-slate-100 dark:border-slate-800"
-                  }`}
-                >
+                <div key={`${week.stage}-${week.week}`} className={`rounded-xl border p-3 transition-all ${week.isCurrentWeek ? "border-brand-200 bg-brand-50/50 dark:border-brand-800 dark:bg-brand-950/20" : "border-slate-100 dark:border-slate-800"}`}>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className={`flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold ${
-                        week.completedDays === week.totalDays
-                          ? "bg-emerald-100 text-emerald-700"
-                          : week.isCurrentWeek
-                            ? "bg-brand-100 text-brand-700"
-                            : "bg-slate-100 text-slate-600"
-                      }`}>
-                        {week.completedDays === week.totalDays ? "✓" : week.week}
+                      <span className={`flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold ${week.completedDays === week.totalDays ? "bg-emerald-100 text-emerald-700" : week.isCurrentWeek ? "bg-brand-100 text-brand-700" : "bg-slate-100 text-slate-600"}`}>
+                        {week.completedDays === week.totalDays ? "✓" : week.overallWeek}
                       </span>
-                      <span className="font-semibold">{week.title}</span>
+                      <span className="font-semibold">{week.title} <span className="text-[10px] font-normal text-slate-400">W{week.overallWeek}</span></span>
                     </div>
                     <span className="text-xs text-slate-500">
                       {week.completedDays}/{week.totalDays} days
@@ -387,10 +443,7 @@ export default async function DashboardPage({
                   </div>
                   <div className="mt-2">
                     <div className="h-1.5 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
-                      <div 
-                        className="h-full rounded-full bg-brand-500 transition-all"
-                        style={{ width: `${(week.completedDays / week.totalDays) * 100}%` }}
-                      />
+                      <div className="h-full rounded-full bg-brand-500 transition-all" style={{ width: `${(week.completedDays / week.totalDays) * 100}%` }} />
                     </div>
                   </div>
                   {week.isCurrentWeek && week.keyTopics.length > 0 && (
@@ -406,16 +459,12 @@ export default async function DashboardPage({
               ))}
             </div>
             {weekProgress.length > 4 && (
-              <Link 
-                href="/roadmap" 
-                className="mt-3 flex items-center justify-center gap-1 text-sm font-semibold text-brand-700 hover:text-brand-600"
-              >
-                View all weeks <ChevronRight className="h-4 w-4" />
+              <Link href="/roadmap" className="mt-3 flex items-center justify-center gap-1 text-sm font-semibold text-brand-700 hover:text-brand-600">
+                View all {overallJourneyWeeks} weeks <ChevronRight className="h-4 w-4" />
               </Link>
             )}
           </div>
 
-          {/* Your Projects */}
           <div className="card">
             <div className="flex items-center justify-between">
               <p className="text-sm font-semibold text-slate-500">Your Projects</p>
@@ -442,23 +491,26 @@ export default async function DashboardPage({
           </div>
         </div>
 
-        {/* Right Column - Daily Tasks */}
         <div className="card">
           <div className="flex items-center justify-between">
-            <p className="text-sm font-semibold text-slate-500">Recommended next actions</p>
+            <p className="text-sm font-semibold text-slate-500">Recommended next actions • {overallJourneyDays} days journey</p>
             <Link href="/roadmap" className="text-sm font-semibold text-brand-700 hover:text-brand-600">
               Full roadmap
             </Link>
           </div>
-          
+
           <div className="mt-4 space-y-4">
             {recommendedDays.map((day) => {
-              const st = dayLockMap[day.day];
+              const stage = (day as any).stage as RoadmapStage;
+              const stageDay = (day as any).stageDay ?? day.day;
+              const overallDay = (day as any).overallDay ?? day.day;
+              const lockMap = stage === "beginner" ? beginnerLockMap : intermediateLockMap;
+              const st = lockMap?.[stageDay] ?? dayLockMap?.[stageDay];
               const isCompleted = st?.isCompleted ?? false;
-              const isCurrent = st?.isCurrent ?? false;
+              const isCurrent = overallDay === currentOverallDay;
               const isLocked = st?.isLocked ?? false;
               const isDailyReset = st?.isDailyResetLock ?? false;
-              
+
               const rowClass = `group block rounded-2xl border p-4 transition-all ${
                 isCompleted
                   ? "border-emerald-200 bg-emerald-50/30 hover:border-emerald-400 dark:border-emerald-900 dark:bg-emerald-950/20"
@@ -470,77 +522,63 @@ export default async function DashboardPage({
               }`;
 
               const rowBody = (
-                  <div className="flex items-start gap-3">
-                    <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-sm font-bold ${
-                      isCompleted
-                        ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/60 dark:text-emerald-300"
-                        : isCurrent
-                          ? "bg-brand-100 text-brand-700 dark:bg-brand-900/60 dark:text-brand-300"
-                          : isLocked
-                            ? "bg-slate-200/80 text-slate-500 dark:bg-slate-800 dark:text-slate-400"
-                            : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400"
-                    }`}>
-                      {isCompleted ? "✓" : isLocked ? <Lock className="h-4 w-4" /> : day.day}
-                    </div>
-                    <div className="flex-1">
-                      <p className="font-semibold group-hover:text-brand-700">
-                        {day.title}
-                        {isCurrent && <span className="ml-2 rounded-full bg-brand-100 px-2 py-0.5 text-xs font-bold text-brand-700 dark:bg-brand-900/60 dark:text-brand-300">Today</span>}
-                        {isLocked && (
-                          <span className="ml-2 inline-flex items-center gap-1 rounded-full border border-amber-200/80 bg-amber-100/90 px-2 py-0.5 text-[11px] font-semibold text-amber-800 dark:border-amber-900/60 dark:bg-amber-950/60 dark:text-amber-300">
-                            <Clock className="h-3 w-3" />
-                            {isDailyReset ? "After 12 AM reset" : `Complete Day ${day.day - 1}`}
-                          </span>
-                        )}
-                      </p>
-                      <div className="mt-1 flex flex-wrap gap-1.5">
-                        {day.skills_gained?.slice(0, 2).map((skill, i) => (
-                          <span key={i} className="rounded bg-slate-100 px-1.5 py-0.5 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-400">
-                            {skill}
-                          </span>
-                        ))}
-                        {day.estimated_time && (
-                          <span className="flex items-center gap-0.5 text-xs text-slate-400">
-                            <Clock className="h-3 w-3" />
-                            {day.estimated_time}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    {isLocked ? (
-                      <Lock className="h-5 w-5 shrink-0 text-slate-400 dark:text-slate-500" />
-                    ) : (
-                      <ChevronRight className="h-5 w-5 shrink-0 text-slate-400 group-hover:text-brand-500" />
-                    )}
+                <div className="flex items-start gap-3">
+                  <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-sm font-bold ${isCompleted ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/60 dark:text-emerald-300" : isCurrent ? "bg-brand-100 text-brand-700 dark:bg-brand-900/60 dark:text-brand-300" : isLocked ? "bg-slate-200/80 text-slate-500 dark:bg-slate-800 dark:text-slate-400" : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400"}`}>
+                    {isCompleted ? "✓" : isLocked ? <Lock className="h-4 w-4" /> : overallDay}
                   </div>
+                  <div className="flex-1">
+                    <p className="font-semibold group-hover:text-brand-700">
+                      Day {overallDay}: {day.title} <span className="text-xs font-normal text-slate-400">• {stage} {stageDay}</span>
+                      {isCurrent && <span className="ml-2 rounded-full bg-brand-100 px-2 py-0.5 text-xs font-bold text-brand-700 dark:bg-brand-900/60 dark:text-brand-300">Today</span>}
+                      {isLocked && (
+                        <span className="ml-2 inline-flex items-center gap-1 rounded-full border border-amber-200/80 bg-amber-100/90 px-2 py-0.5 text-[11px] font-semibold text-amber-800 dark:border-amber-900/60 dark:bg-amber-950/60 dark:text-amber-300">
+                          <Clock className="h-3 w-3" />
+                          {isDailyReset ? "After 12 AM reset" : stage === "intermediate" && currentStage === "beginner" ? "Finish Beginner" : `Complete Day ${overallDay - 1}`}
+                        </span>
+                      )}
+                    </p>
+                    <div className="mt-1 flex flex-wrap gap-1.5">
+                      {day.skills_gained?.slice(0, 2).map((skill: string, i: number) => (
+                        <span key={i} className="rounded bg-slate-100 px-1.5 py-0.5 text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-400">
+                          {skill}
+                        </span>
+                      ))}
+                      {day.estimated_time && (
+                        <span className="flex items-center gap-0.5 text-xs text-slate-400">
+                          <Clock className="h-3 w-3" />
+                          {day.estimated_time}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  {isLocked ? <Lock className="h-5 w-5 shrink-0 text-slate-400 dark:text-slate-500" /> : <ChevronRight className="h-5 w-5 shrink-0 text-slate-400 group-hover:text-brand-500" />}
+                </div>
               );
 
-              // Locked days must not be openable from the dashboard list.
               if (isLocked) {
                 return (
-                  <div key={day.day} aria-disabled="true" title={st?.lockReason} className={rowClass}>
+                  <div key={`${stage}-${stageDay}-${overallDay}`} aria-disabled="true" title={st?.lockReason} className={rowClass}>
                     {rowBody}
                   </div>
                 );
               }
 
               return (
-                <Link key={day.day} href={`/roadmap/day/${day.day}`} className={rowClass}>
+                <Link key={`${stage}-${stageDay}-${overallDay}`} href={`/roadmap/day/${overallDay}`} className={rowClass}>
                   {rowBody}
                 </Link>
               );
             })}
           </div>
 
-          {days.length > 8 && (
+          {combinedDaysForRec.length > 8 && (
             <Link href="/roadmap" className="mt-4 flex items-center justify-center gap-1 text-sm font-semibold text-brand-700 hover:text-brand-600">
-              View all {days.length} days <ChevronRight className="h-4 w-4" />
+              View all {combinedDaysForRec.length} days <ChevronRight className="h-4 w-4" />
             </Link>
           )}
         </div>
       </div>
 
-      {/* Blog Tab / Latest Insights for Students */}
       <div className="mt-7 lg:mt-8">
         <div className="mb-3 flex items-center justify-between lg:mb-4 max-lg:gap-3">
           <div className="flex items-center gap-2">
@@ -557,32 +595,24 @@ export default async function DashboardPage({
             publishedBlogs.map((post) => (
               <Link key={post.id} href={`/blog/${post.slug}`} className="group block rounded-2xl border border-slate-100 bg-white p-4 sm:p-5 dark:border-slate-800 dark:bg-slate-950/60 hover:border-brand-200 hover:shadow-md transition-all">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="inline-flex items-center rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-700 dark:bg-brand-950 dark:text-brand-300">
-                    {post.category}
-                  </span>
+                  <span className="inline-flex items-center rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-700 dark:bg-brand-950 dark:text-brand-300">{post.category}</span>
                   <span className="text-xs text-slate-500">{post.readTimeMinutes} min</span>
                 </div>
                 <h3 className="font-bold text-base sm:text-lg leading-tight line-clamp-2 group-hover:text-brand-700 transition-colors">{post.title}</h3>
                 <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-3">{post.excerpt}</p>
-                <div className="mt-3 flex items-center text-xs font-semibold text-brand-600 group-hover:gap-1 transition-all">
-                  Read article <ArrowRight className="h-3.5 w-3.5 ml-1" />
-                </div>
+                <div className="mt-3 flex items-center text-xs font-semibold text-brand-600 group-hover:gap-1 transition-all">Read article <ArrowRight className="h-3.5 w-3.5 ml-1" /></div>
               </Link>
             ))
           ) : (
             STATIC_BLOG_POSTS.slice(0, 3).map((post, idx) => (
               <Link key={idx} href={`/blog/${post.slug}`} className="group block rounded-2xl border border-slate-100 bg-white p-4 sm:p-5 dark:border-slate-800 dark:bg-slate-950/60 hover:border-brand-200 hover:shadow-md transition-all">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="inline-flex items-center rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-700 dark:bg-brand-950 dark:text-brand-300">
-                    {post.category}
-                  </span>
+                  <span className="inline-flex items-center rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-700 dark:bg-brand-950 dark:text-brand-300">{post.category}</span>
                   <span className="text-xs text-slate-500">{post.readTimeMinutes} min</span>
                 </div>
                 <h3 className="font-bold text-base sm:text-lg leading-tight line-clamp-2 group-hover:text-brand-700 transition-colors">{post.title}</h3>
                 <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-3">{post.excerpt}</p>
-                <div className="mt-3 flex items-center text-xs font-semibold text-brand-600 group-hover:gap-1 transition-all">
-                  Read article <ArrowRight className="h-3.5 w-3.5 ml-1" />
-                </div>
+                <div className="mt-3 flex items-center text-xs font-semibold text-brand-600 group-hover:gap-1 transition-all">Read article <ArrowRight className="h-3.5 w-3.5 ml-1" /></div>
               </Link>
             ))
           )}

@@ -6,17 +6,32 @@ import { getRoadmapDayAccess } from "@/lib/learning/day-access";
 import { getRoadmapQuiz } from "@/lib/learning/roadmap-quiz";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { QuizPageClient } from "./quiz-page-client";
+import { getRoadmapContext } from "@/lib/roadmap/service";
+import { loadRoadmap } from "@/lib/roadmap/loader";
+import type { RoadmapStage } from "@/lib/roadmap/types";
 
 export const dynamic = "force-dynamic";
 
 export default async function QuizPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ day: string }>;
+  searchParams: Promise<{ overall?: string }>;
 }) {
   const { day: dayParam } = await params;
-  const dayNumber = Number(dayParam);
-  if (!Number.isInteger(dayNumber) || dayNumber < 1) notFound();
+  const { overall: overallParam } = await searchParams;
+
+  const rawDay = Number(dayParam);
+  const rawOverall = overallParam ? Number(overallParam) : NaN;
+
+  if (!Number.isInteger(rawDay) || rawDay < 1) notFound();
+
+  let stageDayCandidate = rawDay;
+  let overallDayCandidate = Number.isInteger(rawOverall) && rawOverall >= 1 ? rawOverall : NaN;
+  if (Number.isNaN(overallDayCandidate) && stageDayCandidate > 45) {
+    overallDayCandidate = stageDayCandidate;
+  }
 
   const supabase = await createServerSupabaseClient();
   const {
@@ -31,54 +46,94 @@ export default async function QuizPage({
   const role = access.profile?.learning_role;
   if (!isLearningRole(role)) redirect("/roadmap/assign");
 
-  // The generated dashboard plan intentionally stores only `has_quiz`. Quiz
-  // questions remain in the immutable role/level curriculum. Resolve the
-  // active assignment, then load and validate that source content directly.
-  const { data: assignment, error: assignmentError } = await supabase
-    .from("user_roadmaps")
-    .select("id,level")
-    .eq("user_id", user.id)
-    .eq("role", role)
-    .eq("status", "active")
-    .order("created_at", { ascending: false })
-    .limit(1)
-    .maybeSingle();
+  let context;
+  try {
+    context = await getRoadmapContext(supabase, user.id);
+  } catch {
+    context = null;
+  }
+  if (!context || !context.hasRoadmap) redirect("/roadmap/assign");
 
-  if (assignmentError || !assignment) redirect("/roadmap/assign");
-  if (assignment.level !== "beginner" && assignment.level !== "intermediate") {
-    redirect("/roadmap/assign");
+  const entryStage = (context.state?.entryStage ?? context.assignment?.entryStage ?? "beginner") as RoadmapStage;
+  const currentStage = (context.state?.currentStage ?? context.assignment?.stage ?? "beginner") as RoadmapStage;
+
+  let beginnerLoaded: ReturnType<typeof loadRoadmap> | null = null;
+  let intermediateLoaded: ReturnType<typeof loadRoadmap> | null = null;
+  try { beginnerLoaded = loadRoadmap(role, "beginner"); } catch {}
+  try { intermediateLoaded = loadRoadmap(role, "intermediate"); } catch {}
+
+  const beginnerTotal = beginnerLoaded?.totalDays ?? 45;
+
+  let targetStage: RoadmapStage;
+  let targetStageDay: number;
+  let overallDay: number;
+
+  if (!Number.isNaN(overallDayCandidate)) {
+    overallDay = overallDayCandidate;
+    if (entryStage === "beginner") {
+      if (overallDay <= beginnerTotal) {
+        targetStage = "beginner";
+        targetStageDay = overallDay;
+      } else {
+        targetStage = "intermediate";
+        targetStageDay = overallDay - beginnerTotal;
+      }
+    } else {
+      targetStage = "intermediate";
+      targetStageDay = overallDay;
+    }
+  } else {
+    targetStage = currentStage;
+    targetStageDay = stageDayCandidate;
+    overallDay = entryStage === "beginner" && targetStage === "intermediate" ? beginnerTotal + targetStageDay : targetStageDay;
   }
 
-  // A locked day's quiz must not be reachable by URL. Send the student back to
-  // the day page, which explains why it is locked and what to do next.
-  const dayAccess = await getRoadmapDayAccess(supabase, user.id, dayNumber);
-  if (!dayAccess.hasRoadmap) redirect("/roadmap/assign");
-  if (dayAccess.isLocked) redirect(`/roadmap/day/${dayNumber}`);
+  const { data: allAssignments } = await supabase
+    .from("user_roadmaps")
+    .select("id,level,roadmap_stage")
+    .eq("user_id", user.id)
+    .eq("role", role)
+    .order("stage_index", { ascending: true });
 
-  // If this day's quiz was already submitted, do not re-open it. The day
-  // page renders the recorded score in read-only mode and any further
-  // attempt would just be a wasted round trip.
+  const targetAssignment = allAssignments?.find((a: any) => a.roadmap_stage === targetStage) as any;
+  const activeAssignment = context.assignment;
+
+  const assignmentForCheck = targetAssignment ?? activeAssignment;
+  if (!assignmentForCheck) redirect("/roadmap/assign");
+
+  const level = (assignmentForCheck.level ?? targetStage) as RoadmapStage;
+  if (level !== "beginner" && level !== "intermediate") redirect("/roadmap/assign");
+
+  // Locked check
+  if (targetStage === "intermediate" && entryStage === "beginner" && currentStage === "beginner" && !context.state?.beginnerCompleted) {
+    redirect(`/roadmap/day/${overallDay}`);
+  }
+
+  const dayAccess = await getRoadmapDayAccess(supabase, user.id, targetStageDay);
+  if (!dayAccess.hasRoadmap) redirect("/roadmap/assign");
+  if (targetStage === currentStage && dayAccess.isLocked) redirect(`/roadmap/day/${overallDay}`);
+
   const { data: existingQuiz } = await supabase
     .from("roadmap_quiz_completions")
     .select("id")
-    .eq("user_roadmap_id", assignment.id)
-    .eq("day", dayNumber)
+    .eq("user_roadmap_id", assignmentForCheck.id)
+    .eq("day", targetStageDay)
     .maybeSingle();
-  if (existingQuiz) redirect(`/roadmap/day/${dayNumber}`);
+  if (existingQuiz) redirect(`/roadmap/day/${overallDay}`);
 
   let quiz: ReturnType<typeof getRoadmapQuiz> = null;
   try {
-    quiz = getRoadmapQuiz(role, assignment.level, dayNumber);
+    quiz = getRoadmapQuiz(role, targetStage, targetStageDay);
   } catch (error) {
-    console.error(`Invalid roadmap quiz for ${role}/${assignment.level}/day-${dayNumber}`, error);
+    console.error(`Invalid roadmap quiz for ${role}/${targetStage}/day-${targetStageDay}`, error);
   }
 
   if (!quiz) notFound();
 
   return (
     <QuizPageClient
-      dayNumber={quiz.dayNumber}
-      dayTitle={quiz.dayTitle}
+      dayNumber={targetStageDay}
+      dayTitle={`${quiz.dayTitle} • Overall ${overallDay} • ${targetStage}`}
       questions={quiz.questions}
       attemptSeed={randomUUID()}
     />
