@@ -47,27 +47,27 @@ export function MetricsBar() {
           className="glass flex flex-col items-center justify-center divide-y divide-slate-200/80 overflow-hidden sm:flex-row sm:divide-x sm:divide-y-0 sm:rounded-2xl dark:divide-white/8"
         >
           <StatItem
-            end={10}
+            end={15}
             suffix="+"
-            label="Colleges"
+            label="Campus Partners"
             desc="Partnered campuses"
             icon={GraduationCap}
             glowClass="icon-glow-amber"
             iconColor="bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-400"
           />
           <StatItem
-            end={1000}
+            end={1500}
             suffix="+"
-            label="Students"
+            label="Students Trained"
             desc="Applied AI builders"
             icon={Users}
             glowClass="icon-glow-blue"
             iconColor="bg-blue-50 text-blue-700 dark:bg-blue-500/15 dark:text-blue-400"
           />
           <StatItem
-            end={20}
+            end={50}
             suffix="+"
-            label="Startups"
+            label="Verified Hiring"
             desc="Hiring partners"
             icon={Building2}
             glowClass="icon-glow-purple"
