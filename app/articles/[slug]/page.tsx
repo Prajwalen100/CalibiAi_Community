@@ -5,6 +5,7 @@ import { ArrowLeft, Clock, Target, BookOpen } from "lucide-react";
 import { AiMarkdown } from "@/components/ai/ai-markdown";
 import Link from "next/link";
 import { ArticleScrollProgress } from "./article-scroll-progress";
+import { ArticleCompletionBanner } from "./article-completion-banner";
 
 export const dynamic = "force-dynamic";
 
@@ -108,6 +109,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             </div>
           </div>
         )}
+
+        <ArticleCompletionBanner day={article.day} />
       </article>
     </section>
     </>
