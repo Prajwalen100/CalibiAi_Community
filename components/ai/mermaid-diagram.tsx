@@ -43,9 +43,11 @@ export function MermaidDiagram({ code, className = "" }: { code: string; classNa
 
   const [svg, setSvg] = useState<string | null>(null);
   const [failed, setFailed] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showSource, setShowSource] = useState(false);
   const [zoomed, setZoomed] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [attempt, setAttempt] = useState(0);
   const prevCodeRef = useRef(code);
 
   useEffect(() => {
@@ -58,20 +60,36 @@ export function MermaidDiagram({ code, className = "" }: { code: string; classNa
       prevCodeRef.current = code;
     }
 
+    // If mermaid's lazy chunk stalls (slow network, dev-server compile),
+    // turn the spinner into the retryable failure state instead of leaving
+    // readers stuck on "Rendering diagram…" forever.
+    const stallTimer = window.setTimeout(() => {
+      if (!cancelled) {
+        setFailed(true);
+        setErrorMessage("Timed out while loading the diagram renderer.");
+      }
+    }, 15000);
+
     renderMermaid(code, theme)
       .then((rendered) => {
         if (cancelled) return;
+        window.clearTimeout(stallTimer);
         setSvg(rendered);
         setFailed(false);
+        setErrorMessage(null);
       })
-      .catch(() => {
-        if (!cancelled) setFailed(true);
+      .catch((err: unknown) => {
+        if (cancelled) return;
+        window.clearTimeout(stallTimer);
+        setFailed(true);
+        setErrorMessage(err instanceof Error ? err.message : String(err));
       });
 
     return () => {
       cancelled = true;
+      window.clearTimeout(stallTimer);
     };
-  }, [code, theme]);
+  }, [code, theme, attempt]);
 
   const copySource = useCallback(async () => {
     try {
@@ -98,10 +116,31 @@ export function MermaidDiagram({ code, className = "" }: { code: string; classNa
   if (failed && !svg) {
     return (
       <div className={`mt-4 overflow-hidden rounded-xl border border-amber-300 dark:border-amber-500/40 ${className}`}>
-        <div className="flex items-center gap-2 bg-amber-50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-amber-700 dark:bg-amber-950/40 dark:text-amber-300">
-          <AlertTriangle className="h-3.5 w-3.5" />
-          Diagram source
+        <div className="flex items-center justify-between gap-2 bg-amber-50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-amber-700 dark:bg-amber-950/40 dark:text-amber-300">
+          <span className="flex items-center gap-2">
+            <AlertTriangle className="h-3.5 w-3.5" />
+            Couldn&apos;t render diagram
+          </span>
+          <button
+            type="button"
+            onClick={() => {
+              setFailed(false);
+              setErrorMessage(null);
+              setSvg(null);
+              setAttempt((value) => value + 1);
+            }}
+            className="rounded-md px-2 py-1 font-bold uppercase tracking-wide text-amber-800 transition hover:bg-amber-100 dark:text-amber-200 dark:hover:bg-amber-900/40"
+            aria-label="Retry rendering the diagram"
+            title="Retry"
+          >
+            Retry
+          </button>
         </div>
+        {errorMessage && (
+          <p className="border-t border-amber-200 px-3 py-1.5 font-mono text-[11px] text-amber-700 dark:border-amber-800/40 dark:text-amber-300/80">
+            {errorMessage}
+          </p>
+        )}
         <SourceBlock code={code} />
       </div>
     );

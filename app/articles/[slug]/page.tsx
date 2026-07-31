@@ -5,6 +5,7 @@ import { ArrowLeft, Clock, Target, BookOpen } from "lucide-react";
 import { AiMarkdown } from "@/components/ai/ai-markdown";
 import Link from "next/link";
 import { ArticleScrollProgress } from "./article-scroll-progress";
+import { ArticleReadingTracker } from "./article-reading-tracker";
 import { ArticleCompletionBanner } from "./article-completion-banner";
 
 export const dynamic = "force-dynamic";
@@ -66,27 +67,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <AiMarkdown content={article.content} />
         </div>
 
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                const start = Date.now();
-                let tracked = false;
-                function sendTrack() {
-                  if (tracked) return;
-                  tracked = true;
-                  fetch("/api/reading/track", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ articleId: "${article.id}", timeSpentSeconds: Math.round((Date.now() - start) / 1000) }),
-                  }).catch(() => {});
-                }
-                window.addEventListener("beforeunload", sendTrack);
-                setTimeout(sendTrack, 15000);
-              })();
-            `
-          }}
-        />
+        <ArticleReadingTracker articleId={article.id} />
 
         {article.resources && (article.resources.youtube?.length || article.resources.docs?.length) && (
           <div className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-800/30">
