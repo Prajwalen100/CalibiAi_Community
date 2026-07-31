@@ -11,6 +11,7 @@ import { STATIC_BLOG_POSTS, toBlogPost, type BlogPost } from "@/lib/blog/posts";
 import { getCurrentDayNumber, getRoadmapDayLockStatuses } from "@/lib/learning/day-lock";
 import { ROADMAP_PROGRESS_LOCK_COLUMNS } from "@/lib/learning/day-access";
 import { recalculateAndPersistScore } from "@/lib/score/recalculate";
+import { PullToRefresh } from "@/components/mobile/pull-to-refresh";
 
 export const dynamic = "force-dynamic";
 
@@ -153,16 +154,19 @@ export default async function DashboardPage({
   const todayFocus = days.find(d => d.day === currentDay);
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+      {/* Pull-to-refresh: mobile-only gesture, re-runs this server component. */}
+      <PullToRefresh />
+
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <p className="font-semibold text-brand-700">
+          <p className="font-semibold text-brand-700 max-lg:text-sm">
             {onboarding === "complete" ? "🎉 Welcome to CalibiAI!" : "Dashboard"}
           </p>
-          <h1 className="mt-2 text-3xl font-black">Your Learning Journey</h1>
+          <h1 className="mt-1.5 text-2xl font-black sm:text-3xl lg:mt-2">Your Learning Journey</h1>
           {plan?.roadmap?.title && (
-            <p className="mt-1 text-slate-600">
+            <p className="mt-1 text-slate-600 max-lg:text-sm">
               {plan.roadmap.title} • {plan.roadmap.level} Level
             </p>
           )}
@@ -178,16 +182,17 @@ export default async function DashboardPage({
       )}
 
       {/* Personalized Greeting + Motivation */}
-      <div className="mt-6 rounded-3xl bg-gradient-to-r from-brand-600 via-indigo-600 to-violet-600 p-6 text-white shadow-xl sm:p-8 relative overflow-hidden">
+      <div className="mt-5 rounded-2xl bg-gradient-to-r from-brand-600 via-indigo-600 to-violet-600 p-5 text-white shadow-xl sm:p-6 lg:mt-6 lg:rounded-3xl lg:p-8 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, white 2px, transparent 2px), radial-gradient(circle at 80% 20%, white 1.5px, transparent 1.5px)', backgroundSize: '40px 40px' }} />
         <div className="relative">
           <DashboardGreeting name={profile?.full_name?.split(" ")[0] ?? profile?.username ?? "Student"} />
-          <p className="mt-2 max-w-xl text-brand-100">&quot;Every expert was once a beginner. The only way to learn is to build, fail, and iterate.&quot;</p>
-          <div className="mt-4 flex items-center gap-3">
-            <Link href="/roadmap" className="inline-flex items-center gap-2 rounded-xl bg-white/15 px-4 py-2 text-sm font-bold hover:bg-white/25 transition backdrop-blur-sm">
+          <p className="mt-2 max-w-xl text-brand-100 max-lg:text-sm">&quot;Every expert was once a beginner. The only way to learn is to build, fail, and iterate.&quot;</p>
+          {/* Buttons go full-width and stack on phones, inline from sm up. */}
+          <div className="mt-4 flex items-center gap-3 max-sm:flex-col max-sm:items-stretch max-sm:gap-2.5">
+            <Link href="/roadmap" className="inline-flex items-center gap-2 rounded-xl bg-white/15 px-4 py-2 text-sm font-bold hover:bg-white/25 transition backdrop-blur-sm max-sm:min-h-[48px] max-sm:justify-center">
               Continue Learning <Zap className="h-4 w-4" />
             </Link>
-            <Link href="/dashboard/submit" className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-bold text-brand-700 hover:bg-brand-50 transition">
+            <Link href="/dashboard/submit" className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-bold text-brand-700 hover:bg-brand-50 transition max-sm:min-h-[48px] max-sm:justify-center">
               Submit Project <Sparkles className="h-4 w-4" />
             </Link>
           </div>
@@ -203,8 +208,8 @@ export default async function DashboardPage({
         </div>
       )}
 
-      {/* Stats Grid */}
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {/* Stats Grid — 1 col on phones, 2 on tablets, 4 from lg (unchanged). */}
+      <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:mt-6 lg:grid-cols-4">
         <div className="card flex items-center gap-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
             <Trophy className="h-6 w-6" />
@@ -267,9 +272,9 @@ export default async function DashboardPage({
       </div>
 
       {/* Main Content Grid */}
-      <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_1.5fr]">
+      <div className="mt-5 grid gap-4 lg:mt-6 lg:grid-cols-[1fr_1.5fr] lg:gap-6">
         {/* Left Column - Today's Focus & Weekly Targets */}
-        <div className="space-y-5">
+        <div className="space-y-4 lg:space-y-5">
           {/* Today's Focus */}
           {todayFocus && (() => {
             const focusLock = dayLockMap[todayFocus.day];
@@ -282,7 +287,8 @@ export default async function DashboardPage({
                   ? "border-amber-200/80 bg-gradient-to-br from-amber-50/60 to-orange-50/30 dark:border-amber-900/60 dark:from-amber-950/20 dark:to-orange-950/10"
                   : "border-brand-200 bg-gradient-to-br from-brand-50/50 to-purple-50/30 dark:border-brand-800 dark:from-brand-950/20 dark:to-purple-950/10"
               }`}>
-                <div className="flex items-center justify-between">
+                {/* Stacks vertically on phones so the lock badge never squeezes the title. */}
+                <div className="flex items-center justify-between max-sm:flex-col max-sm:items-start max-sm:gap-2">
                   <div className={`flex items-center gap-2 text-sm font-semibold ${
                     isFocusLocked ? "text-amber-700 dark:text-amber-300" : "text-brand-700 dark:text-brand-300"
                   }`}>
@@ -290,14 +296,14 @@ export default async function DashboardPage({
                     {isFocusLocked ? "Next Scheduled Day (Locked)" : "Today's Focus"}
                   </div>
                   {isFocusLocked && (
-                    <span className="inline-flex items-center gap-1 rounded-full border border-amber-300/80 bg-amber-100/90 px-2.5 py-0.5 text-xs font-bold text-amber-900 dark:border-amber-800 dark:bg-amber-950/70 dark:text-amber-200">
+                    <span className="inline-flex items-center gap-1 rounded-full border border-amber-300/80 bg-amber-100/90 px-2.5 py-0.5 text-xs font-bold text-amber-900 max-sm:w-fit max-sm:py-1 dark:border-amber-800 dark:bg-amber-950/70 dark:text-amber-200">
                       <Clock className="h-3.5 w-3.5" />
                       {isDailyReset ? "Unlocks after 12:00 AM reset" : "Complete Previous Day"}
                     </span>
                   )}
                 </div>
                 <div className="mt-3">
-                  <p className="text-lg font-bold">Day {todayFocus.day}: {todayFocus.title}</p>
+                  <p className="text-base font-bold sm:text-lg">Day {todayFocus.day}: {todayFocus.title}</p>
                   {isFocusLocked && (
                     <p className="mt-1.5 text-sm font-medium text-amber-800/90 dark:text-amber-200/80">
                       {isDailyReset
@@ -316,7 +322,7 @@ export default async function DashboardPage({
                       </span>
                     ))}
                   </div>
-                  <div className="mt-3 flex items-center gap-4 text-sm text-slate-500">
+                  <div className="mt-3 flex items-center gap-4 text-sm text-slate-500 max-sm:flex-wrap max-sm:gap-y-1.5">
                     {todayFocus.estimated_time && (
                       <span className="flex items-center gap-1">
                         <Clock className="h-3 w-3" />
@@ -353,7 +359,7 @@ export default async function DashboardPage({
                     </Link>
                   </div>
                 ) : (
-                  <Link 
+                    <Link
                     href={`/roadmap/day/${todayFocus.day}`}
                     className="btn-primary mt-4 w-full justify-center"
                   >
@@ -556,8 +562,8 @@ export default async function DashboardPage({
       </div>
 
       {/* Blog Tab / Latest Insights for Students */}
-      <div className="mt-8">
-        <div className="flex items-center justify-between mb-4">
+      <div className="mt-7 lg:mt-8">
+        <div className="mb-3 flex items-center justify-between lg:mb-4 max-lg:gap-3">
           <div className="flex items-center gap-2">
             <FileText className="h-5 w-5 text-brand-600" />
             <p className="text-sm font-semibold text-slate-500">Student Portal • Blog</p>
@@ -567,17 +573,17 @@ export default async function DashboardPage({
           </Link>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
           {publishedBlogs.length > 0 ? (
             publishedBlogs.map((post) => (
-              <Link key={post.id} href={`/blog/${post.slug}`} className="group block rounded-2xl border border-slate-100 bg-white p-5 dark:border-slate-800 dark:bg-slate-950/60 hover:border-brand-200 hover:shadow-md transition-all">
+              <Link key={post.id} href={`/blog/${post.slug}`} className="group block rounded-2xl border border-slate-100 bg-white p-4 sm:p-5 dark:border-slate-800 dark:bg-slate-950/60 hover:border-brand-200 hover:shadow-md transition-all">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="inline-flex items-center rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-700 dark:bg-brand-950 dark:text-brand-300">
                     {post.category}
                   </span>
                   <span className="text-xs text-slate-500">{post.readTimeMinutes} min</span>
                 </div>
-                <h3 className="font-bold text-lg leading-tight line-clamp-2 group-hover:text-brand-700 transition-colors">{post.title}</h3>
+                <h3 className="font-bold text-base sm:text-lg leading-tight line-clamp-2 group-hover:text-brand-700 transition-colors">{post.title}</h3>
                 <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-3">{post.excerpt}</p>
                 <div className="mt-3 flex items-center text-xs font-semibold text-brand-600 group-hover:gap-1 transition-all">
                   Read article <ArrowRight className="h-3.5 w-3.5 ml-1" />
@@ -586,14 +592,14 @@ export default async function DashboardPage({
             ))
           ) : (
             STATIC_BLOG_POSTS.slice(0, 3).map((post, idx) => (
-              <Link key={idx} href={`/blog/${post.slug}`} className="group block rounded-2xl border border-slate-100 bg-white p-5 dark:border-slate-800 dark:bg-slate-950/60 hover:border-brand-200 hover:shadow-md transition-all">
+              <Link key={idx} href={`/blog/${post.slug}`} className="group block rounded-2xl border border-slate-100 bg-white p-4 sm:p-5 dark:border-slate-800 dark:bg-slate-950/60 hover:border-brand-200 hover:shadow-md transition-all">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="inline-flex items-center rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-700 dark:bg-brand-950 dark:text-brand-300">
                     {post.category}
                   </span>
                   <span className="text-xs text-slate-500">{post.readTimeMinutes} min</span>
                 </div>
-                <h3 className="font-bold text-lg leading-tight line-clamp-2 group-hover:text-brand-700 transition-colors">{post.title}</h3>
+                <h3 className="font-bold text-base sm:text-lg leading-tight line-clamp-2 group-hover:text-brand-700 transition-colors">{post.title}</h3>
                 <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-3">{post.excerpt}</p>
                 <div className="mt-3 flex items-center text-xs font-semibold text-brand-600 group-hover:gap-1 transition-all">
                   Read article <ArrowRight className="h-3.5 w-3.5 ml-1" />

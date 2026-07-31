@@ -825,7 +825,9 @@ export function NetworkClient({ readiness, isSignedIn }: NetworkClientProps) {
           </div>
 
           <div className="mt-8 overflow-hidden rounded-3xl border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] shadow-lg shadow-slate-900/[0.06] dark:shadow-2xl dark:shadow-black/40 backdrop-blur-xl">
-            <div className="overflow-x-auto">
+            {/* Desktop keeps the original table verbatim; below lg the same
+                rows render as stacked cards so nothing needs sideways scroll. */}
+            <div className="overflow-x-auto max-lg:hidden">
               <table className="w-full text-left text-sm">
                 <thead>
                   <tr className="border-b border-slate-900/[0.08] dark:border-white/10 bg-white/60 dark:bg-white/[0.02] text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400">
@@ -877,6 +879,44 @@ export function NetworkClient({ readiness, isSignedIn }: NetworkClientProps) {
                 </tbody>
               </table>
             </div>
+
+            {/* Mobile card view of the leaderboard */}
+            <ul className="divide-y divide-slate-900/[0.06] p-3 dark:divide-white/5 lg:hidden">
+              {topEngineers.map((eng) => (
+                <li key={eng.rank} className="py-3 first:pt-0 last:pb-0">
+                  <div className="flex items-center gap-3">
+                    <span className="shrink-0 text-sm font-black text-slate-500 dark:text-slate-400">
+                      #{eng.rank}
+                    </span>
+                    <div
+                      className={`h-9 w-9 shrink-0 rounded-full bg-gradient-to-br ${eng.avatarBg} opacity-70 blur-[4px]`}
+                    />
+                    <span className="min-w-0 flex-1 select-none truncate font-bold text-slate-900 opacity-75 blur-[3px] dark:text-white">
+                      {eng.name}
+                    </span>
+                    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-emerald-600/30 bg-emerald-500/10 px-2.5 py-1 text-xs font-black text-emerald-700 dark:border-emerald-500/30 dark:text-emerald-400">
+                      {eng.score}
+                    </span>
+                  </div>
+
+                  {/* Each column becomes a labelled key/value pair. */}
+                  <dl className="mt-2.5 grid grid-cols-3 gap-2 pl-[calc(0.75rem+1.5rem)] text-xs">
+                    <div>
+                      <dt className="text-slate-500 dark:text-slate-400">Projects</dt>
+                      <dd className="mt-0.5 font-semibold text-slate-700 dark:text-slate-300">{eng.projects}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-slate-500 dark:text-slate-400">Monthly</dt>
+                      <dd className="mt-0.5 font-bold text-slate-900 dark:text-white">{eng.earnings}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-slate-500 dark:text-slate-400">Rating</dt>
+                      <dd className="mt-0.5 font-semibold text-amber-600 dark:text-amber-400">{eng.rating}</dd>
+                    </div>
+                  </dl>
+                </li>
+              ))}
+            </ul>
 
             {/* Leaderboard footer */}
             <div className="border-t border-slate-900/[0.08] dark:border-white/10 bg-white/60 dark:bg-white/[0.02] p-4 text-center">

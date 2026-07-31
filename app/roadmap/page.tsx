@@ -136,12 +136,12 @@ export default async function RoadmapPage() {
   };
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
           <p className="font-semibold text-brand-700">Your Roadmap</p>
-          <h1 className="mt-2 text-3xl font-black">{plan?.roadmap?.title ?? "Learning Journey"}</h1>
+          <h1 className="mt-1.5 text-2xl font-black sm:text-3xl lg:mt-2">{plan?.roadmap?.title ?? "Learning Journey"}</h1>
           <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
             <span className="flex items-center gap-1">
               <Trophy className="h-4 w-4 text-amber-500" />
@@ -157,8 +157,8 @@ export default async function RoadmapPage() {
             </span>
           </div>
         </div>
-        <div className="flex gap-2">
-          <Link href={`/roadmap/day/${currentDay}`} className="btn-primary inline-flex items-center gap-2">
+        <div className="flex gap-2 max-sm:w-full">
+          <Link href={`/roadmap/day/${currentDay}`} className="btn-primary inline-flex items-center gap-2 max-sm:w-full max-sm:justify-center">
             <PlayCircle className="h-4 w-4" />
             Continue Learning
           </Link>
@@ -166,7 +166,7 @@ export default async function RoadmapPage() {
       </div>
 
       {/* Progress Overview */}
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:mt-6 lg:grid-cols-4">
         <div className="card">
           <p className="text-sm text-slate-500">Overall Progress</p>
           <div className="mt-2 flex items-end justify-between">
@@ -270,7 +270,7 @@ export default async function RoadmapPage() {
               )}
 
               {/* Days Preview */}
-              <div className="mt-4 grid grid-cols-7 gap-2">
+              <div className="mt-4 grid grid-cols-4 gap-2 sm:grid-cols-7">
                 {week.days.map((day) => {
                   const st = dayLockMap[day.day];
                   const isCompleted = st?.isCompleted ?? false;
@@ -346,7 +346,7 @@ export default async function RoadmapPage() {
             Start Today →
           </Link>
         </div>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
           {days.slice(0, 6).map((day) => {
             const st = dayLockMap[day.day];
             const isCompleted = st?.isCompleted ?? false;

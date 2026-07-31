@@ -48,7 +48,9 @@ export function QuickPostModal({ open, onClose, communities }: Props) {
   // the full form visible above every sidebar and animation.
   return createPortal(
     <div
-      className="fixed inset-0 z-[100] flex items-start justify-center bg-slate-900/50 px-4 py-6 backdrop-blur-sm sm:items-center sm:py-8"
+      // Phones: edge-to-edge bottom sheet. From `sm` up the original centred
+      // dialog is preserved exactly.
+      className="fixed inset-0 z-[100] flex items-end justify-center bg-slate-900/50 px-0 py-0 backdrop-blur-sm sm:items-center sm:px-4 sm:py-8"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -56,15 +58,15 @@ export function QuickPostModal({ open, onClose, communities }: Props) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="flex max-h-[calc(100dvh-3rem)] w-full max-w-2xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl dark:bg-slate-900 sm:max-h-[calc(100dvh-4rem)]"
+        className="flex max-h-[calc(100dvh-3rem)] w-full max-w-2xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl dark:bg-slate-900 sm:max-h-[calc(100dvh-4rem)] max-sm:max-h-[92dvh] max-sm:rounded-b-none max-sm:pb-[env(safe-area-inset-bottom)]"
       >
-        <div className="flex shrink-0 items-center justify-between border-b border-slate-100 px-6 py-4 dark:border-slate-800">
+        <div className="flex shrink-0 items-center justify-between border-b border-slate-100 px-4 py-4 dark:border-slate-800 sm:px-6">
           <h2 className="text-lg font-black text-primary">Create a Post</h2>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="rounded-full p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-slate-800"
+            className="rounded-full p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-slate-800 max-sm:inline-flex max-sm:h-10 max-sm:w-10 max-sm:items-center max-sm:justify-center max-sm:p-0"
           >
             <X className="h-5 w-5" />
           </button>
@@ -72,7 +74,7 @@ export function QuickPostModal({ open, onClose, communities }: Props) {
         {/* Exactly one scroll region. Previously the overlay scrolled and this
             div also had its own max-height, so the two fought and the bottom of
             a tall form could become unreachable. */}
-        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 pb-6">
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 pb-6 sm:px-6">
           <CreatePostForm
             key={formKey}
             communities={communities}

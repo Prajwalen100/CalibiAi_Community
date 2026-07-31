@@ -218,7 +218,7 @@ export default async function DayPage({
   const canMarkComplete = requirements.every(Boolean);
 
   return (
-    <section className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+    <section className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
       {/* Navigation */}
       <div className="flex items-center justify-between">
         <Link 
@@ -919,7 +919,7 @@ function LockedDayScreen({
   const isDailyReset = lockStatus.isDailyResetLock;
 
   return (
-    <section className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
+    <section className="mx-auto max-w-3xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
       <div className="flex items-center justify-between">
         <Link
           href="/roadmap"

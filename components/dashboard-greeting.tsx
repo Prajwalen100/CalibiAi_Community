@@ -21,5 +21,10 @@ export function DashboardGreeting({ name }: { name: string }) {
     return () => window.clearInterval(interval);
   }, []);
 
-  return <h2 className="text-2xl font-black">{greeting}, {name}</h2>;
+  // Greeting stays prominent on phones (xl) and keeps its desktop size at lg+.
+  return (
+    <h2 className="text-2xl font-black max-sm:text-xl max-sm:leading-tight">
+      {greeting}, {name}
+    </h2>
+  );
 }

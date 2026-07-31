@@ -37,7 +37,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <ArticleScrollProgress />
-      <section className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
         <Link href={`/roadmap/day/${article.day}`} className="inline-flex items-center gap-2 text-sm font-medium text-brand-600 hover:text-brand-700">
           <ArrowLeft className="h-4 w-4" />
           Back to Day {article.day}
