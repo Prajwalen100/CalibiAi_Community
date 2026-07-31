@@ -4,6 +4,7 @@ import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { getStudentAccess } from "@/lib/auth/student-access";
 import { isLearningRole } from "@/lib/learning/content";
 import { getRoadmapDayAccess } from "@/lib/learning/day-access";
+import { recalculateAndPersistScore } from "@/lib/score/recalculate";
 
 export const dynamic = "force-dynamic";
 
@@ -86,6 +87,10 @@ export async function POST(request: Request) {
       { status: 500 }
     );
   }
+
+  // Reading Engagement moves the moment a new article is read — don't wait
+  // for the dashboard's stale-score fallback to notice.
+  await recalculateAndPersistScore(user.id).catch(() => null);
 
   return NextResponse.json({ success: true });
 }

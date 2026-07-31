@@ -1,10 +1,12 @@
 import "server-only";
 
-import { calculateCalibiAiScore, tierFor, type ScoreBreakdown } from "@/lib/score/calculate";
+import { calculateCalibiAiScore, calculateReadingEngagement, tierFor, type ScoreBreakdown } from "@/lib/score/calculate";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
+import { getCurriculumStats } from "@/lib/curriculum/catalog";
+import { STATIC_BLOG_POSTS } from "@/lib/blog/posts";
 
 type RecalculateOverrides = {
-  /** 0-100 reading engagement percentage. Falls back to the last stored reading_pts. */
+  /** 0-100 reading engagement percentage. Falls back to the live computation below. */
   readingScore?: number;
   /** 0-100 quiz average percentage. Falls back to the last stored quizzes_pts. */
   quizAverage?: number;
@@ -28,7 +30,18 @@ export async function recalculateAndPersistScore(
 ): Promise<ScoreBreakdown | null> {
   const supabase = createAdminSupabaseClient();
 
-  const [projectsResult, skillsResult, progressResult, xpResult, currentScoreResult, assessmentResult] = await Promise.all([
+  const [
+    projectsResult,
+    skillsResult,
+    progressResult,
+    xpResult,
+    currentScoreResult,
+    assessmentResult,
+    articlesReadResult,
+    blogReadsResult,
+    modulesCompletedResult,
+    publishedBlogCountResult,
+  ] = await Promise.all([
     supabase.from("projects").select("verified,points_awarded,originality_status").eq("user_id", userId),
     supabase.from("user_skills").select("id", { count: "exact", head: true }).eq("user_id", userId).eq("verified", true),
     supabase.from("roadmap_progress").select("status").eq("user_id", userId),
@@ -44,6 +57,13 @@ export async function recalculateAndPersistScore(
       .order("submitted_at", { ascending: false })
       .limit(1)
       .maybeSingle(),
+    // Reading Engagement inputs — every table here is optional: a missing
+    // migration (021/024) or an empty result must never fail the whole
+    // recalculation, it should just contribute 0 to that source.
+    supabase.from("roadmap_article_reads").select("id", { count: "exact", head: true }).eq("user_id", userId),
+    supabase.from("blog_post_reads").select("id", { count: "exact", head: true }).eq("user_id", userId),
+    supabase.from("curriculum_progress").select("id", { count: "exact", head: true }).eq("user_id", userId).eq("completed", true),
+    supabase.from("posts").select("id", { count: "exact", head: true }).eq("type", "blog").eq("status", "published").not("slug", "is", null),
   ]);
 
   if (projectsResult.error || progressResult.error) return null;
@@ -53,6 +73,27 @@ export async function recalculateAndPersistScore(
     | { completion_pts?: number; recognition_pts?: number; reading_pts?: number; quizzes_pts?: number }
     | null;
   const xpRow = xpResult.data as { xp?: number; last_active_date?: string | null; updated_at?: string | null } | null;
+
+  // Reading Engagement: percentage of all currently-published readable
+  // content (daily roadmap articles + blog posts + Learning Hub modules)
+  // this learner has completed. Every count below degrades to 0 rather than
+  // throwing when its table/migration is missing, so a fresh install still
+  // computes (an all-zero, but honest) percentage instead of erroring out.
+  const totalCurriculumModules = (() => {
+    try {
+      return getCurriculumStats().modules;
+    } catch {
+      return 0;
+    }
+  })();
+  const liveReadingScore = calculateReadingEngagement({
+    articlesRead: articlesReadResult.count ?? 0,
+    totalArticles: progress.length,
+    blogPostsRead: blogReadsResult.count ?? 0,
+    totalBlogPosts: publishedBlogCountResult.count ?? STATIC_BLOG_POSTS.length,
+    modulesCompleted: modulesCompletedResult.count ?? 0,
+    totalModules: totalCurriculumModules,
+  });
 
   const calculated = calculateCalibiAiScore({
     projects: (projectsResult.data ?? []).map((project) => ({
@@ -68,7 +109,7 @@ export async function recalculateAndPersistScore(
     // makes community activity actually move the Talent Score.
     communityRawPoints: xpRow?.xp ?? 0,
     recognitionRawPoints: currentScore?.recognition_pts ?? 0,
-    readingScore: overrides?.readingScore ?? currentScore?.reading_pts ?? 0,
+    readingScore: overrides?.readingScore ?? liveReadingScore,
     quizAverage: overrides?.quizAverage ?? currentScore?.quizzes_pts ?? 0,
     lastActivityAt: xpRow?.last_active_date ?? xpRow?.updated_at ?? null,
     now: new Date(),

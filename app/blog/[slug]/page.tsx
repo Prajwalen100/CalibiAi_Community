@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Calendar, Clock, ExternalLink, FileText, LinkIcon, User } from "lucide-react";
 import { BlogMarkdown } from "@/components/blog/blog-markdown";
 import { SafeBlogImage } from "@/components/blog/safe-blog-image";
+import { BlogReadTracker } from "@/components/blog/blog-read-tracker";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { listLocalPublishedPosts } from "@/lib/admin/blog-store";
 import { STATIC_BLOG_POSTS, toBlogPost, type BlogPost } from "@/lib/blog/posts";
@@ -62,6 +63,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
   return (
     <section className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+      <BlogReadTracker slug={post.slug} />
       <Link
         href="/blog"
         className="inline-flex items-center gap-2 text-sm font-bold text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300"

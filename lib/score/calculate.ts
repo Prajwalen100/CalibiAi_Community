@@ -13,6 +13,22 @@ export type ScoreInput = {
   now?: Date;
 };
 
+export type ReadingEngagementInput = {
+  /** Distinct daily roadmap articles the learner has scrolled to the end of. */
+  articlesRead: number;
+  /** Total articles available on the learner's assigned roadmap. */
+  totalArticles: number;
+  /** Distinct blog posts the learner has scrolled to the end of. */
+  blogPostsRead: number;
+  /** Total currently-published blog posts. */
+  totalBlogPosts: number;
+  /** Learning Hub phase modules marked completed (>=95% scrolled). */
+  modulesCompleted: number;
+  /** Total Learning Hub phase modules in the curriculum. */
+  totalModules: number;
+};
+
+
 export type ScoreBreakdown = {
   projects_pts: number;
   skills_pts: number;
@@ -40,6 +56,25 @@ export function communityDecayMultiplier(lastActivityAt: ScoreInput["lastActivit
 
 export function tierFor(total: number): ScoreTier {
   return TIERS.find((tier) => total >= tier.min && total <= tier.max)?.tier ?? "platinum";
+}
+
+/**
+ * Reading Engagement is the percentage of all currently-published readable
+ * content a learner has completed (scrolled to the end of): daily roadmap
+ * articles, blog posts, and Learning Hub phase modules, combined into one
+ * pool. Each individual completed read moves this by a small, content-size
+ * dependent amount rather than a fixed 0.1% — the percentage automatically
+ * re-scales as more articles/posts/modules are published, the same way
+ * `completion_pts` re-scales against `totalModulesCount`.
+ *
+ * Returns 0 when there is no readable content at all, so a fresh install
+ * never divides by zero.
+ */
+export function calculateReadingEngagement(input: ReadingEngagementInput): number {
+  const read = Math.max(0, input.articlesRead) + Math.max(0, input.blogPostsRead) + Math.max(0, input.modulesCompleted);
+  const total = Math.max(0, input.totalArticles) + Math.max(0, input.totalBlogPosts) + Math.max(0, input.totalModules);
+  if (total <= 0) return 0;
+  return clamp((read / total) * 100, 100);
 }
 
 export function calculateCalibiAiScore(input: ScoreInput): ScoreBreakdown {

@@ -251,7 +251,7 @@ export default async function DashboardPage({
           </div>
           <div>
             <p className="text-sm text-slate-500">Reading Engagement</p>
-            <p className="text-2xl font-black">{Math.round((score?.reading_pts ?? 0) / 1)}%</p>
+            <p className="text-2xl font-black">{Math.round(score?.reading_pts ?? 0)}%</p>
           </div>
         </div>
 

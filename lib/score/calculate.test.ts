@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { calculateCalibiAiScore, communityDecayMultiplier } from "./calculate";
+import { calculateCalibiAiScore, calculateReadingEngagement, communityDecayMultiplier } from "./calculate";
 
 describe("calculateCalibiAiScore", () => {
   it("only counts verified non-flagged project artifacts", () => {
@@ -41,3 +41,87 @@ describe("calculateCalibiAiScore", () => {
     expect(communityDecayMultiplier(new Date("2026-05-01"), new Date("2026-07-18"))).toBe(0.3);
   });
 });
+
+describe("calculateReadingEngagement", () => {
+  it("is 0% when nothing has been read yet, even with content available", () => {
+    const pct = calculateReadingEngagement({
+      articlesRead: 0,
+      totalArticles: 45,
+      blogPostsRead: 0,
+      totalBlogPosts: 10,
+      modulesCompleted: 0,
+      totalModules: 503,
+    });
+    expect(pct).toBe(0);
+  });
+
+  it("is 0% (not NaN/Infinity) when there is no readable content at all", () => {
+    const pct = calculateReadingEngagement({
+      articlesRead: 0,
+      totalArticles: 0,
+      blogPostsRead: 0,
+      totalBlogPosts: 0,
+      modulesCompleted: 0,
+      totalModules: 0,
+    });
+    expect(pct).toBe(0);
+  });
+
+  it("combines articles, blog posts, and learning-hub modules into one pool", () => {
+    // 1 article + 1 blog post + 1 module read out of (2 + 2 + 6) total = 3/10 = 30%
+    const pct = calculateReadingEngagement({
+      articlesRead: 1,
+      totalArticles: 2,
+      blogPostsRead: 1,
+      totalBlogPosts: 2,
+      modulesCompleted: 1,
+      totalModules: 6,
+    });
+    expect(pct).toBe(30);
+  });
+
+  it("each additional distinct read nudges the percentage up (never down)", () => {
+    const base = calculateReadingEngagement({
+      articlesRead: 10,
+      totalArticles: 100,
+      blogPostsRead: 0,
+      totalBlogPosts: 0,
+      modulesCompleted: 0,
+      totalModules: 0,
+    });
+    const afterOneMore = calculateReadingEngagement({
+      articlesRead: 11,
+      totalArticles: 100,
+      blogPostsRead: 0,
+      totalBlogPosts: 0,
+      modulesCompleted: 0,
+      totalModules: 0,
+    });
+    expect(afterOneMore).toBeGreaterThan(base);
+  });
+
+  it("reaches exactly 100% once everything published has been read", () => {
+    const pct = calculateReadingEngagement({
+      articlesRead: 45,
+      totalArticles: 45,
+      blogPostsRead: 10,
+      totalBlogPosts: 10,
+      modulesCompleted: 503,
+      totalModules: 503,
+    });
+    expect(pct).toBe(100);
+  });
+
+  it("never exceeds 100% even with a stale/inconsistent read count", () => {
+    const pct = calculateReadingEngagement({
+      articlesRead: 999,
+      totalArticles: 45,
+      blogPostsRead: 0,
+      totalBlogPosts: 0,
+      modulesCompleted: 0,
+      totalModules: 0,
+    });
+    expect(pct).toBe(100);
+  });
+});
+
