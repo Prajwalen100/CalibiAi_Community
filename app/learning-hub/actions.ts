@@ -3,6 +3,7 @@
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { recalculateAndPersistScore } from "@/lib/score/recalculate";
 
 const ProgressSchema = z.object({
   moduleId: z.string().min(3).max(200),
@@ -28,6 +29,16 @@ export async function saveModuleProgress(input: {
     const pct = parsed.data.progressPct;
     const completed = pct >= 95;
 
+    // Reading Engagement only counts a module the first time it crosses the
+    // completed threshold — read this before the upsert below overwrites it.
+    const { data: existing } = await supabase
+      .from("curriculum_progress")
+      .select("completed")
+      .eq("user_id", user.id)
+      .eq("module_id", parsed.data.moduleId)
+      .maybeSingle();
+    const newlyCompleted = completed && !existing?.completed;
+
     const { error } = await supabase.from("curriculum_progress").upsert(
       {
         user_id: user.id,
@@ -48,6 +59,12 @@ export async function saveModuleProgress(input: {
         };
       }
       return { error: error.message };
+    }
+
+    // Reading Engagement moves the moment a module is completed for the
+    // first time — no need to wait for the dashboard's stale-score fallback.
+    if (newlyCompleted) {
+      await recalculateAndPersistScore(user.id).catch(() => null);
     }
 
     // Light revalidation — avoid thrashing on every scroll tick
