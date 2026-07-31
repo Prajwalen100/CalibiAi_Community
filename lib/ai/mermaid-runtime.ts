@@ -19,13 +19,14 @@ type MermaidApi = {
 
 let mermaidPromise: Promise<MermaidApi> | null = null;
 let initializedTheme: MermaidTheme | null = null;
+let initializedHtmlLabels: boolean | null = null;
 let renderCounter = 0;
 
 // Serialize all mermaid renders so concurrent calls (theme changes,
 // multiple diagrams on the page) don't race the singleton instance.
 let renderLock = Promise.resolve();
 
-function mermaidConfig(theme: MermaidTheme) {
+function mermaidConfig(theme: MermaidTheme, htmlLabels = true) {
   const dark = theme === "dark";
   return {
     startOnLoad: false,
@@ -34,7 +35,7 @@ function mermaidConfig(theme: MermaidTheme) {
     theme: dark ? ("dark" as const) : ("default" as const),
     fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
     fontSize: 14,
-    flowchart: { htmlLabels: true, curve: "basis" as const, useMaxWidth: true, padding: 14, nodeSpacing: 45, rankSpacing: 55 },
+    flowchart: { htmlLabels, curve: "basis" as const, useMaxWidth: true, padding: 14, nodeSpacing: 45, rankSpacing: 55 },
     sequence: { useMaxWidth: true, wrap: true, width: 190, mirrorActors: false },
     gantt: { useMaxWidth: true },
     er: { useMaxWidth: true },
@@ -95,21 +96,38 @@ function mermaidConfig(theme: MermaidTheme) {
   };
 }
 
-async function getMermaid(theme: MermaidTheme): Promise<MermaidApi> {
+async function getMermaid(theme: MermaidTheme, htmlLabels: boolean): Promise<MermaidApi> {
   if (!mermaidPromise) {
     mermaidPromise = import("mermaid").then((mod) => (mod.default ?? mod) as unknown as MermaidApi);
   }
   const mermaid = await mermaidPromise;
-  if (initializedTheme !== theme) {
-    mermaid.initialize(mermaidConfig(theme));
+  if (initializedTheme !== theme || initializedHtmlLabels !== htmlLabels) {
+    mermaid.initialize(mermaidConfig(theme, htmlLabels));
     initializedTheme = theme;
+    initializedHtmlLabels = htmlLabels;
   }
   return mermaid;
+}
+
+function postProcessSvg(svg: string): string {
+  // Let the SVG shrink to its container rather than keeping a fixed width.
+  return svg
+    .replace(/\swidth="[\d.]+(?:px)?"/, "")
+    .replace(/<svg /, '<svg preserveAspectRatio="xMidYMid meet" ');
 }
 
 /**
  * Sanitizes and renders mermaid source to an SVG string.
  * Throws when the diagram is unparseable so callers can fall back to source.
+ *
+ * Flowchart edge labels are rendered as HTML (`foreignObject`) by default,
+ * which depends on browser layout/font measurement. A handful of real-world
+ * browsers measure those labels as zero-size on the first attempt (or have
+ * mermaid bugs around degenerate edge paths, e.g.
+ * "Could not find a suitable point for the given distance"), which fails the
+ * whole diagram and would drop readers onto raw source. SVG text labels avoid
+ * the HTML-layout dependency entirely, so when the first render throws we
+ * retry once with `htmlLabels: false` before giving up.
  */
 export async function renderMermaid(source: string, theme: MermaidTheme): Promise<string> {
   // Wait for any previous render to finish before touching the singleton.
@@ -120,20 +138,31 @@ export async function renderMermaid(source: string, theme: MermaidTheme): Promis
     unlock = res as () => void;
   });
 
-  let id = "";
+  const renderedIds: string[] = [];
+  let firstError: unknown = null;
 
   try {
-    const mermaid = await getMermaid(theme);
-    renderCounter += 1;
-    id = `calibiai-mermaid-${renderCounter}`;
-    const { svg } = await mermaid.render(id, sanitizeMermaidSource(source));
-    // Let the SVG shrink to its container rather than keeping a fixed width.
-    return svg
-      .replace(/\swidth="[\d.]+(?:px)?"/, "")
-      .replace(/<svg /, '<svg preserveAspectRatio="xMidYMid meet" ');
+    const sanitized = sanitizeMermaidSource(source);
+
+    // Preferred rendering first; the SVG-text fallback only kicks in when
+    // the HTML-label pass actually throws, so healthy browsers never notice.
+    for (const htmlLabels of [true, false]) {
+      const mermaid = await getMermaid(theme, htmlLabels);
+      try {
+        renderCounter += 1;
+        const id = `calibiai-mermaid-${renderCounter}`;
+        renderedIds.push(id);
+        const { svg } = await mermaid.render(id, sanitized);
+        return postProcessSvg(svg);
+      } catch (err) {
+        if (firstError === null) firstError = err;
+      }
+    }
+
+    throw firstError;
   } finally {
     // mermaid leaves a hidden measuring node behind if rendering throws.
-    if (id) document.getElementById(`d${id}`)?.remove();
+    for (const id of renderedIds) document.getElementById(`d${id}`)?.remove();
     unlock!();
   }
 }
