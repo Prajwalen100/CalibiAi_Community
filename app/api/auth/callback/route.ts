@@ -4,7 +4,19 @@ import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { getStudentAccess } from "@/lib/auth/student-access";
 import { recordLoginActivity } from "@/lib/admin/activity";
 
+/**
+ * Return the public-facing origin for redirect URLs.
+ * In production the server's internal address (e.g. https://localhost:3000)
+ * is used by `request.url`, which breaks browser redirects.
+ * NEXT_PUBLIC_SITE_URL overrides this with the real public origin.
+ */
+function publicOrigin(request: Request) {
+  return process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
+    new URL(request.url).origin;
+}
+
 export async function GET(request: Request) {
+  const siteOrigin = publicOrigin(request);
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get("code");
   const intentParam = requestUrl.searchParams.get("intent");
@@ -42,7 +54,7 @@ export async function GET(request: Request) {
           .eq("user_id", user.id)
           .maybeSingle();
         return NextResponse.redirect(
-          new URL(emp?.onboarding_complete ? "/employer/dashboard" : "/employer/onboarding", request.url)
+          new URL(emp?.onboarding_complete ? "/employer/dashboard" : "/employer/onboarding", siteOrigin)
         );
       }
 
@@ -77,7 +89,7 @@ export async function GET(request: Request) {
           // User had a student profile — do not silently convert; send to employer onboarding
           // which will set role=employer when they complete company form
         }
-        return NextResponse.redirect(new URL("/employer/onboarding", request.url));
+        return NextResponse.redirect(new URL("/employer/onboarding", siteOrigin));
       }
 
       // Student flow. A selected target role alone must never unlock the app;
@@ -86,7 +98,7 @@ export async function GET(request: Request) {
       // Track the login so the admin Student Data view can report active users.
       await recordLoginActivity(supabase, user.id);
       const access = await getStudentAccess(supabase, user.id);
-      return NextResponse.redirect(new URL(access.nextPath, request.url));
+      return NextResponse.redirect(new URL(access.nextPath, siteOrigin));
     }
   }
 
@@ -112,16 +124,16 @@ export async function GET(request: Request) {
             .eq("user_id", user.id)
             .maybeSingle();
           return NextResponse.redirect(
-            new URL(emp?.onboarding_complete ? "/employer/dashboard" : "/employer/onboarding", request.url)
+            new URL(emp?.onboarding_complete ? "/employer/dashboard" : "/employer/onboarding", siteOrigin)
           );
         }
-        return NextResponse.redirect(new URL("/employer/onboarding", request.url));
+        return NextResponse.redirect(new URL("/employer/onboarding", siteOrigin));
       }
 
       clearIntent();
       await recordLoginActivity(supabase, user.id);
       const access = await getStudentAccess(supabase, user.id);
-      return NextResponse.redirect(new URL(access.nextPath, request.url));
+      return NextResponse.redirect(new URL(access.nextPath, siteOrigin));
     }
   } catch {
     /* fall through */
@@ -129,6 +141,6 @@ export async function GET(request: Request) {
 
   clearIntent();
   return NextResponse.redirect(
-    new URL(intent === "employer" ? "/employer/signin?mode=sign-in" : "/signin?mode=sign-in", request.url)
+    new URL(intent === "employer" ? "/employer/signin?mode=sign-in" : "/signin?mode=sign-in", siteOrigin)
   );
 }

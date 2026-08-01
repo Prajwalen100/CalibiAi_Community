@@ -1,4 +1,5 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import {
   ArrowLeft,
@@ -18,7 +19,15 @@ import {
 } from "@/lib/curriculum/catalog";
 import { getUserProgressMap } from "../../actions";
 import { ModuleScrollProgress } from "../../scroll-progress";
-import { LessonDiagrams } from "@/components/curriculum/lesson-diagrams";
+
+// Load LessonDiagrams client-only so the mermaid library (~1 MB) is never
+// pulled into the server bundle.  Without `ssr: false` Turbopack can fail
+// to create the client chunk in production, causing flowcharts to silently
+// fall back to raw source code.
+const LessonDiagrams = dynamic(
+  () => import("@/components/curriculum/lesson-diagrams").then((mod) => mod.LessonDiagrams),
+  { ssr: false },
+);
 
 export const dynamic = "force-dynamic";
 
