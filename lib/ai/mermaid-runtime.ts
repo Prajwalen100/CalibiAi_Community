@@ -101,20 +101,30 @@ function mermaidConfig(theme: MermaidTheme, htmlLabels = true) {
 
 async function getMermaid(theme: MermaidTheme, htmlLabels: boolean): Promise<MermaidApi> {
   if (!mermaidPromise) {
-    mermaidPromise = import("mermaid").then((mod) => {
-      // Robust ESM default export resolution across different bundlers/Next.js dynamic imports
-      let m = mod as any;
-      if (m && m.default) {
-        m = m.default;
-      }
-      if (m && m.default) {
-        m = m.default;
-      }
-      return m as unknown as MermaidApi;
-    });
+    mermaidPromise = import("mermaid")
+      .then((mod) => {
+        // Robust ESM default export resolution across different bundlers/Next.js dynamic imports
+        let m = mod as any;
+        if (m && m.default) {
+          m = m.default;
+        }
+        if (m && m.default) {
+          m = m.default;
+        }
+        return m as unknown as MermaidApi;
+      })
+      .catch((err) => {
+        // Reset so a retry can attempt the import again (e.g. after a
+        // transient network failure loading the client chunk).
+        mermaidPromise = null;
+        console.error("[CalibiAI] Failed to load mermaid library:", err);
+        throw err;
+      });
   }
   const mermaid = await mermaidPromise;
   if (!mermaid || typeof mermaid.initialize !== "function") {
+    // Reset so the next attempt can try loading again from scratch.
+    mermaidPromise = null;
     throw new Error("Mermaid library failed to load or initialize properly.");
   }
   if (initializedTheme !== theme || initializedHtmlLabels !== htmlLabels) {

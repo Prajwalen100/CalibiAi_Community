@@ -1,7 +1,18 @@
+"use client";
+
 import type { ReactNode } from "react";
+import dynamic from "next/dynamic";
 import { parseMarkdownBlocks } from "@/lib/ai/markdown";
 import { isMermaidLang } from "@/lib/ai/mermaid";
-import { MermaidDiagram } from "@/components/ai/mermaid-diagram";
+
+// Load MermaidDiagram client-only so the mermaid library (~1 MB) is never
+// pulled into the server bundle.  Without `ssr: false` Turbopack can fail
+// to create the client chunk in production, causing flowcharts to silently
+// fall back to raw source code.
+const MermaidDiagram = dynamic(
+  () => import("@/components/ai/mermaid-diagram").then((mod) => mod.MermaidDiagram),
+  { ssr: false },
+);
 
 /**
  * Renders a CalibiAI Assistant markdown answer as a readable article.
