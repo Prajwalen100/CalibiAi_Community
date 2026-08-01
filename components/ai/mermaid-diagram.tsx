@@ -83,6 +83,7 @@ export function MermaidDiagram({ code, className = "" }: { code: string; classNa
         window.clearTimeout(stallTimer);
         setFailed(true);
         setErrorMessage(err instanceof Error ? err.message : String(err));
+        console.error("MermaidDiagram client component rendering failed:", err);
       });
 
     return () => {

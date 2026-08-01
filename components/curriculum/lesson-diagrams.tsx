@@ -18,7 +18,12 @@ export function LessonDiagrams({ containerId }: { containerId: string }) {
     let cancelled = false;
 
     const paint = async (theme: MermaidTheme) => {
-      const root = document.getElementById(containerId);
+      let root = document.getElementById(containerId);
+      if (!root) {
+        // Retry once after a frame to handle client-side routing / async mounting
+        await new Promise((resolve) => requestAnimationFrame(resolve));
+        root = document.getElementById(containerId);
+      }
       if (!root) return;
 
       const targets = Array.from(root.querySelectorAll<HTMLElement>(".md-mermaid[data-mermaid]"));
@@ -33,7 +38,8 @@ export function LessonDiagrams({ containerId }: { containerId: string }) {
           node.innerHTML = svg;
           node.dataset.mermaidTheme = theme;
           node.classList.add("md-mermaid-rendered");
-        } catch {
+        } catch (err) {
+          console.error("Lesson diagram rendering failed for source:", source, err);
           // Leave the <pre> fallback untouched; mark it so we do not retry.
           node.dataset.mermaidTheme = theme;
         }
