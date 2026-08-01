@@ -20,6 +20,9 @@ const nextConfig = {
     ];
   },
   experimental: {
+    // Server Actions are rejected from origins not listed here.
+    // BEFORE GOING LIVE: add your production domain(s), e.g.
+    // ["localhost:3000", "yourdomain.com", "www.yourdomain.com"]
     serverActions: { allowedOrigins: ["localhost:3000"] }
   }
 };
