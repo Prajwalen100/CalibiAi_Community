@@ -1,5 +1,4 @@
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import {
   ArrowLeft,
@@ -19,15 +18,7 @@ import {
 } from "@/lib/curriculum/catalog";
 import { getUserProgressMap } from "../../actions";
 import { ModuleScrollProgress } from "../../scroll-progress";
-
-// Load LessonDiagrams client-only so the mermaid library (~1 MB) is never
-// pulled into the server bundle.  Without `ssr: false` Turbopack can fail
-// to create the client chunk in production, causing flowcharts to silently
-// fall back to raw source code.
-const LessonDiagrams = dynamic(
-  () => import("@/components/curriculum/lesson-diagrams").then((mod) => mod.LessonDiagrams),
-  { ssr: false },
-);
+import { LessonDiagramsLoader } from "@/components/curriculum/lesson-diagrams-loader";
 
 export const dynamic = "force-dynamic";
 
@@ -172,7 +163,7 @@ export default async function ModuleReaderPage({ params }: { params: Params }) {
             dangerouslySetInnerHTML={{ __html: html }}
           />
           {/* Turns ```mermaid fences in the lesson HTML into rendered diagrams. */}
-          <LessonDiagrams containerId="lesson-body" />
+          <LessonDiagramsLoader containerId="lesson-body" />
 
           <nav className="mt-8 grid gap-3 sm:grid-cols-2">
             {lessonModule.prev ? (
