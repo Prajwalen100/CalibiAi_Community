@@ -23,7 +23,7 @@ const nextConfig = {
     // Server Actions are rejected from origins not listed here.
     // BEFORE GOING LIVE: add your production domain(s), e.g.
     // ["localhost:3000", "yourdomain.com", "www.yourdomain.com"]
-    serverActions: { allowedOrigins: ["localhost:3000"] }
+    serverActions: { allowedOrigins: ["localhost:3000", "app.calibiai.com", "calibiai.com", "www.calibiai.com"] }
   }
 };
 export default nextConfig;
