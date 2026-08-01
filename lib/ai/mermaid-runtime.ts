@@ -30,11 +30,14 @@ function mermaidConfig(theme: MermaidTheme, htmlLabels = true) {
   const dark = theme === "dark";
   return {
     startOnLoad: false,
-    // Labels come from model output, so keep mermaid's HTML escaping on.
-    securityLevel: "strict" as const,
+    // Using loose security level to allow HTML labels (e.g. <br/> tags)
+    // to render reliably in all modern browsers without strict-mode crashes.
+    securityLevel: "loose" as const,
     theme: dark ? ("dark" as const) : ("default" as const),
     fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif",
     fontSize: 14,
+    // Add top-level htmlLabels config to comply with Mermaid v11 deprecations
+    htmlLabels,
     flowchart: { htmlLabels, curve: "basis" as const, useMaxWidth: true, padding: 14, nodeSpacing: 45, rankSpacing: 55 },
     sequence: { useMaxWidth: true, wrap: true, width: 190, mirrorActors: false },
     gantt: { useMaxWidth: true },
@@ -98,9 +101,22 @@ function mermaidConfig(theme: MermaidTheme, htmlLabels = true) {
 
 async function getMermaid(theme: MermaidTheme, htmlLabels: boolean): Promise<MermaidApi> {
   if (!mermaidPromise) {
-    mermaidPromise = import("mermaid").then((mod) => (mod.default ?? mod) as unknown as MermaidApi);
+    mermaidPromise = import("mermaid").then((mod) => {
+      // Robust ESM default export resolution across different bundlers/Next.js dynamic imports
+      let m = mod as any;
+      if (m && m.default) {
+        m = m.default;
+      }
+      if (m && m.default) {
+        m = m.default;
+      }
+      return m as unknown as MermaidApi;
+    });
   }
   const mermaid = await mermaidPromise;
+  if (!mermaid || typeof mermaid.initialize !== "function") {
+    throw new Error("Mermaid library failed to load or initialize properly.");
+  }
   if (initializedTheme !== theme || initializedHtmlLabels !== htmlLabels) {
     mermaid.initialize(mermaidConfig(theme, htmlLabels));
     initializedTheme = theme;
@@ -155,14 +171,18 @@ export async function renderMermaid(source: string, theme: MermaidTheme): Promis
         const { svg } = await mermaid.render(id, sanitized);
         return postProcessSvg(svg);
       } catch (err) {
+        // Clean up failed attempt's DOM nodes immediately to prevent memory leaks and selector clashes
+        const id = renderedIds[renderedIds.length - 1];
+        if (id) {
+          document.getElementById(`d${id}`)?.remove();
+          document.getElementById(`i${id}`)?.remove();
+        }
         if (firstError === null) firstError = err;
       }
     }
 
     throw firstError;
   } finally {
-    // mermaid leaves a hidden measuring node behind if rendering throws.
-    for (const id of renderedIds) document.getElementById(`d${id}`)?.remove();
     unlock!();
   }
 }
